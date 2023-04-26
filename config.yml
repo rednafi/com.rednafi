@@ -66,15 +66,15 @@ params:
   assets:
     #disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "https://img.icons8.com/stickers/100/null/engine.png"
-    favicon16x16: "https://img.icons8.com/stickers/100/null/engine.png"
-    favicon32x32: "https://img.icons8.com/stickers/100/null/engine.png"
-    apple_touch_icon: "https://img.icons8.com/stickers/100/null/engine.png"
-    safari_pinned_tab: "https://img.icons8.com/stickers/100/null/engine.png"
+    favicon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    favicon16x16: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    favicon32x32: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
 
   label:
     text: "Redowan's Reflections"
-    icon: /apple-touch-icon.png
+    icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
     iconHeight: 35
 
   # home-info mode
