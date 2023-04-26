@@ -7,3 +7,7 @@
 .first-entry .entry-content {
     font-size: 18px;
 }
+.entry-content {
+    font-size: 15px;
+    line-height: 1.5;
+}
