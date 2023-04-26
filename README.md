@@ -14,7 +14,7 @@ Musings & rants on software. Find them at [rednafi.github.io][site].
     ```
 * Bootstrap the theme:
     ```
-    brew init
+    make init
     ```
 * Update the theme:
     ```
