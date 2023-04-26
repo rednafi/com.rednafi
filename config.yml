@@ -33,9 +33,7 @@ params:
   ]
   author: ""
   images: [
-    "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png",
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
-
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
@@ -68,11 +66,11 @@ params:
   assets:
     #disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
+    favicon: "https://img.icons8.com/stickers/100/null/engine.png"
+    favicon16x16: "https://img.icons8.com/stickers/100/null/engine.png"
+    favicon32x32: "https://img.icons8.com/stickers/100/null/engine.png"
+    apple_touch_icon: "https://img.icons8.com/stickers/100/null/engine.png"
+    safari_pinned_tab: "https://img.icons8.com/stickers/100/null/engine.png"
 
   label:
     text: "Redowan's Reflections"
