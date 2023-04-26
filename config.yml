@@ -16,7 +16,7 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
-  description: "Personal musings & rants on software..."
+  description: "Musings & rants on software."
   keywords: [
     # Languages
     Python, JavaScript, TypeScript, Go,
@@ -33,7 +33,8 @@ params:
   ]
   author: ""
   images: [
-    "https://user-images.githubusercontent.com/30027932/234461377-7c89aa55-c037-492b-ad94-d685e6c90ea6.png",
+    "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png",
+    "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
 
   ]
   DateFormat: "January 2, 2006"

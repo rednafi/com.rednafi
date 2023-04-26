@@ -3,6 +3,19 @@
     font-size: 30px;
 }
 
+.post-content h1 {
+    font-size: 29px;
+}
+
+.post-content h2 {
+    font-size: 26px;
+}
+
+.post-content h3 {
+    font-size: 23px;
+}
+
+
 .post-content code {
     margin: auto 4px;
     padding: 4px 6px;
