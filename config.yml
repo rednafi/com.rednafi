@@ -34,7 +34,7 @@ params:
   author: ""
   images: [
     "https://user-images.githubusercontent.com/30027932/234461377-7c89aa55-c037-492b-ad94-d685e6c90ea6.png",
-    
+
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
@@ -84,7 +84,8 @@ params:
     Content: "
     This is **Redowan**—a software engineer with a knack for data science, networking,
     databases, all sorts of backend shenanigans. Currently hacking healthcare at
-    <b><u><a href='https://dendisoftware.com'>Dendi</a></u></b> and embracing the chaos.
+    <b><u><a href='https://dendisoftware.com' target='_blank'>Dendi</a></u></b> and
+    embracing the chaos.
     "
 
   socialIcons:
