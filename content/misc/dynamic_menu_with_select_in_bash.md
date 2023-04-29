@@ -7,7 +7,7 @@ tags:
 ---
 
 Whenever I need to whip up a quick command line tool, my go-to is usually Python.
-Python's solutions tend to be more robust than their Shell counterparts. However,
+Python's CLI solutions tend to be more robust than their Shell counterparts. However,
 dealing with Python's portability can sometimes be a hassle, especially when all you
 want is to distribute a simple script. That's why while toying around with `argparse`
 to create a dynamic menu, I decided to ask ChatGPT if there's a way to achieve the same
