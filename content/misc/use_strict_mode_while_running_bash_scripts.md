@@ -3,6 +3,7 @@ title: Use strict mode while running bash scripts
 date: 2021-11-08
 tags:
     - Shell
+    - TIL
 ---
 
 Use unofficial bash strict mode while writing scripts. Bash has a few gotchas and this

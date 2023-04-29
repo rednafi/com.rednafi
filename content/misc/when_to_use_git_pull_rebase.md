@@ -3,6 +3,7 @@ title: When to use 'git pull --rebase'
 date: 2022-07-14
 tags:
     - Git
+    - TIL
 ---
 
 Whenever your local branch diverges from the remote branch, you can't directly pull from

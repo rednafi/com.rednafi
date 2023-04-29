@@ -3,6 +3,7 @@ title: Use 'command -v' over 'which' to find a program's executable
 date: 2021-11-16
 tags:
     - Shell
+    - TIL
 ---
 
 One thing that came to me as news is that the command `which`—which is the de-facto tool

@@ -3,6 +3,7 @@ title: Don't add extensions to shell executables
 date: 2021-11-23
 tags:
     - Shell
+    - TIL
 ---
 
 I was browsing through the source code of

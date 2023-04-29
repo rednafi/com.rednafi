@@ -3,6 +3,7 @@ title: Returning values from a shell function
 date: 2022-09-25
 tags:
     - Shell
+    - TIL
 ---
 
 TIL that returning a value from a function in bash doesn't do what I thought it

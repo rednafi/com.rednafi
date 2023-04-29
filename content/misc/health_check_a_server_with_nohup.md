@@ -3,6 +3,7 @@ title: Health check a server with 'nohup $(cmd) &'
 date: 2022-04-18
 tags:
     - Shell
+    - TIL
 ---
 
 While working on a project with [EdgeDB](https://www.edgedb.com/) and

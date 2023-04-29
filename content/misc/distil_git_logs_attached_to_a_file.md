@@ -4,6 +4,7 @@ date: 2022-06-21
 tags:
     - Shell
     - Git
+    - TIL
 ---
 
 I run `git log --oneline` to list out the commit logs all the time. It prints out a

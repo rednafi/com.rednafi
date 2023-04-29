@@ -3,6 +3,7 @@ title: Simple terminal text formatting with tput
 date: 2023-04-23
 tags:
     - Shell
+    - TIL
 ---
 
 When writing shell scripts, I'd often resort to using hardcoded ANSI [escape codes] to

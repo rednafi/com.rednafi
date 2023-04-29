@@ -3,6 +3,7 @@ title: Colon command in shell scripts
 date: 2022-12-23
 tags:
     - Shell
+    - TIL
 ---
 
 The colon `:` command is a shell utility that represents a truthy value. It can be
