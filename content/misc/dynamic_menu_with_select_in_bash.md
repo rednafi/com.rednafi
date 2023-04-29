@@ -8,10 +8,10 @@ tags:
 
 Whenever I need to whip up a quick command line tool, my go-to is usually Python.
 Python's CLI solutions tend to be more robust than their Shell counterparts. However,
-dealing with Python's portability can sometimes be a hassle, especially when all you
-want is to distribute a simple script. That's why while toying around with `argparse`
-to create a dynamic menu, I decided to ask ChatGPT if there's a way to achieve the same
-using native shell scripting. Delightfully, it introduced me to the dead-simple `select`
+dealing with its portability can sometimes be a hassle, especially when all you want is
+to distribute a simple script. That's why while toying around with `argparse` to create
+a dynamic menu, I decided to ask ChatGPT if there's a way to achieve the same using
+native shell scripting. Delightfully, it introduced me to the dead-simple `select`
 command that I probably should've known about years ago. But I guess better late than
 never! Here's what I was trying to accomplish:
 
