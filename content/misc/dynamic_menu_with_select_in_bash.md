@@ -15,9 +15,9 @@ native shell scripting. Delightfully, it introduced me to the dead-simple `selec
 command that I probably should've known about years ago. But I guess better late than
 never! Here's what I was trying to accomplish:
 
-Print a menu that allows a user to choose an option and then trigger a specific
+*Print a menu that allows a user to choose an option and then trigger a specific
 function associated with the chosen option. When you run the script, it should present
-you with something similar to this:
+you with something similar to this:*
 
 ```
 1) Option 1
@@ -92,17 +92,18 @@ corresponds to a specific function, such as `option1`, `option2`, and `option3` 
 can be customized to perform specific actions or tasks.
 
 The script then prompts the user to enter their choice using the `select` statement.
-The user's selection is stored in the variable `option`. The script uses a case
-statement to match the selected option and execute the corresponding function. For
-example, if the user chooses `Option 1` by typing `1` into the console, the script calls
-the `option1` function and displays a message confirming the selection. The same applies
-to `Option 2` and `Option 3`. If the user selects `Quit` by typing `4`, the script
-breaks out of the loop and terminates. If the user enters an invalid option, the script
-displays an error message indicating that the option is not recognized and prompts the
-user to try again.
+The user's selection is stored in the variable `option`. Then it uses a case statement
+to match the selected option and execute the corresponding function. For example, if the
+user chooses `Option 1` by typing `1` into the console, the script calls the `option1`
+function and displays a message confirming the selection. The same applies to `Option 2`
+and `Option 3`. If the user selects `Quit` by typing `4`, the script breaks out of the
+loop and terminates. Moreover, if the user enters an invalid option, the script displays
+an error message indicating that the option is not recognized and prompts the user to
+try again.
 
-Here's a little more useful script to run some common Docker commands based on the user's
-selection. The script assumes that Docker engine is installed on the target system:
+Here's a little more useful script to run some common Docker commands based on the
+user's selection. The script assumes that Docker engine is installed on the targeted
+system:
 
 ```bash
 #!/usr/bin/env bash
