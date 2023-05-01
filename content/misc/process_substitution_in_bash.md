@@ -10,20 +10,24 @@ I needed to compare two large directories with thousands of similarly named PDF 
 and find the differing filenames between them. In the first pass, this is what I did:
 
 Listed out the content of the first directory and saved it in a file:
+
 ```bash
 ls dir1 > dir1.txt
 ```
 
-Do the same for the second directory:
+Did the same for the second directory:
+
 ```bash
 ls dir2 > dir2.txt
 ```
 
-Compare the difference between the two outputs:
+Compared the difference between the two outputs:
+
 ```bash
 diff dir1.txt dir2.txt
 ```
-This returns the name of the differing files likes this:
+
+This returned the name of the differing files likes this:
 
 ```
 3c3,4
@@ -33,10 +37,10 @@ This returns the name of the differing files likes this:
 > f5.pdf
 ```
 
-This works but I asked BingChat whether there's a better way to perform this without
-creating the intermediate files and it didn't disappoint. Turns out, in Bash, process
-substitution allows you to do exactly that. Instead of having to run three commands, the
-previous outcome can be achieved by the following one-liner:
+It does the job, but I asked BingChat if there's a better way to accomplish the task
+without creating intermediate files, and it didn't let me down. Turns out that in Bash,
+process substitution allows you to do just that. Instead of running three commands, you
+can achieve the same result with a simple one-liner:
 
 ```bash
 diff <(ls dir1) <(ls dir2)
