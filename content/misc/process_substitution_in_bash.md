@@ -53,10 +53,10 @@ command or commands as if it were a file. It enables you to use the output of a 
 as an input to another command or perform other operations that expect file input or
 output.
 
-One important thing to point out is that process substitution is specific to Bash, Zsh,
+*One important thing to point out is that process substitution is specific to Bash, Zsh,
 and certain versions of Ksh. Other shells and Bash in POSIX mode don't understand it.
 Bash, Zsh, and Ksh (88,93) support process substitution, but pdksh derivatives like
-mksh don't currently have this capability.
+mksh don't currently have this capability.*
 
 The syntax for process substitution is as follows:
 
