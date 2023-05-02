@@ -130,7 +130,6 @@ def dedup(
         for item in it
         if not ((elem := item[index]) in seen or seen_add(elem))
     )
-
     return expr if lazy else list(expr)
 
 
