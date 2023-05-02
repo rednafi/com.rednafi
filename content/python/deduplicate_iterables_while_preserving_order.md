@@ -65,7 +65,7 @@ def dedup(it: Iterable) -> list:
     ]
 ```
 
-## Dedup with collections.OrderedDict
+## Dedup with ordered dict
 
 ```python
 from collections import OrderedDict
