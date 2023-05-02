@@ -1,5 +1,5 @@
 ---
-title: Deduplicating an iterable while preserving order in Python
+title: Deduplicating iterables while preserving order in Python
 date: 2023-05-01
 tags:
     - Python
