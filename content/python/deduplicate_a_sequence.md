@@ -151,3 +151,11 @@ returns a list created from the generator expression.
 In the example provided, the function is called with arguments `it`, `2`, and `False`.
 This means that it will deduplicate the input iterable based on the second element of
 each tuple and return a list. The result is `[(1,1), (1,3)]`.
+
+
+## References
+
+* [How do I remove duplicates from a list while preserving order]
+
+
+[How do I remove duplicates from a list while preserving order]: (https://stackoverflow.com/questions/480214/how-do-i-remove-duplicates-from-a-list-while-preserving-order)
