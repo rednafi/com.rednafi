@@ -13,6 +13,7 @@ works:
 
 ```python
 from __future__ import annotations
+
 from collections.abc import Iterable  # Python >3.9
 
 
@@ -59,7 +60,9 @@ def dedup(it: Iterable) -> list:
 
     # Here, 'or' allows us to add the item to 'seen' when it doesn't
     # already exist there in a single line.
-    return [item for item in it if not (item in seen or seen_add(item))]
+    return [
+        item for item in it if not (item in seen or seen_add(item))
+    ]
 ```
 
 ## Dedup with collections.OrderedDict
@@ -123,7 +126,9 @@ def dedup(
     seen = set()  # type: set[Any]
     seen_add = seen.add
     expr = (
-        item for item in it if not ((elem := item[index]) in seen or seen_add(elem))
+        item
+        for item in it
+        if not ((elem := item[index]) in seen or seen_add(elem))
     )
 
     return expr if lazy else list(expr)
