@@ -142,8 +142,8 @@ dedup(it, 2, False)  # Returns [(1,1), (1,3)]
 
 This time, the `dedup` function takes in an iterable of tuples `it`, an element
 index `index`, and a boolean `lazy` (defaulting to `True`) as arguments. The function
-returns a list or generator of the unique elements in the input iterable based on the
-specified index.
+returns a list or generator of the unique items from the input iterable based on the
+specified element index.
 
 Just as before, the function first creates an empty set `seen` and binds its `add`
 method to a variable `seen_add`. It then creates a generator expression that iterates
