@@ -5,9 +5,9 @@ tags:
     - Python
 ---
 
-Whenever I need to deduplicate the elements of an iterable in Python, my usual approach
+Whenever I need to deduplicate the items of an iterable in Python, my usual approach
 is to create a set from the iterable and then convert it back into a list or tuple.
-However, this approach doesn't preserve the original order of the elements, which can
+However, this approach doesn't preserve the original order of the items, which can
 be a problem if you need to keep the order unscathed. Here's a naive approach that
 works:
 
@@ -32,15 +32,15 @@ deduped_it = dedup(it)  # Gives you [2, 1, 3, 4, 66, 0]
 ```
 
 This code snippet defines a function `dedup` that takes an iterable `it` as input and
-returns a new list containing the unique elements of the input iterable in their
-original order. The function uses a set `seen` to keep track of the elements that have
-already been seen, and a list `result` to store the unique elements in their original
+returns a new list containing the unique items of the input iterable in their
+original order. The function uses a set `seen` to keep track of the items that have
+already been seen, and a list `result` to store the unique items in their original
 order.
 
-Then it iterates over all elements of the input iterable using a for loop. For each
-element, the function checks if it has already been seen (i.e., if it's in the `seen`
-set) using the in operator. If the element hasn't been seen, it's added to both the
-`seen` set and the `result` list. The final result list contains the unique elements of
+Then it iterates over all items of the input iterable using a for loop. For each
+item, the function checks if it has already been seen (i.e., if it's in the `seen`
+set) using the in operator. If the item hasn't been seen, it's added to both the
+`seen` set and the `result` list. The final result list contains the unique items of
 `it` in their original order.
 
 This can be made a little terser by using listcomp as follows:
@@ -77,22 +77,22 @@ deduped_it = dedup(it)  # Gives you [2, 1, 3, 4, 66, 0]
 ```
 
 Similar to the first snippet, this also defines `dedup` that takes an iterable `it` as
-input and returns a new list containing the unique elements of `it` in their original
+input and returns a new list containing the unique items of `it` in their original
 order. The function uses the `OrderedDict.fromkeys()` method to create a new ordered
-dict with the elements of `it` as keys and `None` as values.
+dict with the items of `it` as keys and `None` as values.
 
 Since an ordered dict maintains the insertion order of its keys, this effectively
-removes any duplicate elements from the iterable while preserving the order of the
-remaining elements. The iterable containing the keys of the resulting ordered dict is
+removes any duplicate items from the iterable while preserving the order of the
+remaining ones. The iterable containing the keys of the resulting ordered dict is
 then converted into a list using the `list()` function to obtain a list of the unique
-elements in their original order.
+items in their original order.
 
 While this is quite terse and does the job with `O(1)` complexity, neither this nor the
 previous solution would work for compound iterables as follows:
 
 ```python
-# Here the dedup function will have to remove the duplicate elements by
-# keys. So the desired output will be ((1,1), (2, 1), (3, 1))
+# Here the dedup function will have to remove the duplicate items by
+# nested items. So the desired output will be ((1,1), (2, 1), (3, 1))
 it = ((1, 1), (2, 1), (3, 1), (1, 1), (1, 3))
 ```
 
