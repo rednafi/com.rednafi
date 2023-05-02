@@ -34,14 +34,12 @@ deduped_it = dedup(it)  # Gives you [2, 1, 3, 4, 66, 0]
 This code snippet defines a function `dedup` that takes an iterable `it` as input and
 returns a new list containing the unique items of the input iterable in their
 original order. The function uses a set `seen` to keep track of the items that have
-already been seen, and a list `result` to store the unique items in their original
-order.
+already been seen, and a list `result` to store the unique items.
 
-Then it iterates over all items of the input iterable using a for loop. For each
+Then it iterates over all the items of the input iterable using a `for` loop. For each
 item, the function checks if it has already been seen (i.e., if it's in the `seen`
-set) using the in operator. If the item hasn't been seen, it's added to both the
-`seen` set and the `result` list. The final result list contains the unique items of
-`it` in their original order.
+set). If the item hasn't been seen, it's added to both the `seen` set and the `result`
+list. The final result list contains the unique items of `it` in their original order.
 
 This can be made a little terser by using listcomp as follows:
 
@@ -82,7 +80,7 @@ order. The function uses the `OrderedDict.fromkeys()` method to create a new ord
 dict with the items of `it` as keys and `None` as values.
 
 Since an ordered dict maintains the insertion order of its keys, this effectively
-removes any duplicate items from the iterable while preserving the order of the
+removes any duplicate items from the iterable without affecting the order of the
 remaining ones. The iterable containing the keys of the resulting ordered dict is
 then converted into a list using the `list()` function to obtain a list of the unique
 items in their original order.
@@ -150,10 +148,10 @@ over `it` and yields each item if its element at the specified index isn't alrea
 present in the `seen` set. If `item[index]` isn't present in `seen`, it's added to it
 using the `seen_add` method.
 
-If `lazy` is `True`, the function returns the generator expression. Otherwise, it
-returns a list created from the generator expression.
+If `lazy` is `True`, the function returns the generator expression verbatim. Otherwise,
+it returns a list created from the generator expression.
 
-In the example provided, the function is called with arguments `it`, `2`, and `False`.
+In the example provided, the function is called with arguments `it`, `1`, and `False`.
 This means that it will deduplicate the input iterable based on the second element of
 each tuple and return a list. The result is `[(1,1), (1,3)]`.
 
