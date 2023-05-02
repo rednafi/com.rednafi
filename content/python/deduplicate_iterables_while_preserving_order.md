@@ -7,7 +7,7 @@ tags:
 
 Whenever I need to deduplicate the elements of an iterable in Python, my usual approach
 is to create a set from the iterable and then convert it back into a list or tuple.
-However, this approach does not preserve the original order of the elements, which can
+However, this approach doesn't preserve the original order of the elements, which can
 be a problem if you need to keep the order unscathed. Here's a naive approach that
 works:
 
@@ -87,7 +87,7 @@ remaining elements. The iterable containing the keys of the resulting ordered di
 then converted into a list using the `list()` function to obtain a list of the unique
 elements in their original order.
 
-While this is quite terse and does the job with `O(1)` complexity, neither this or the
+While this is quite terse and does the job with `O(1)` complexity, neither this nor the
 previous solution would work for compound iterables as follows:
 
 ```python
@@ -104,7 +104,7 @@ Consider this one-level nested iterable:
 
 ```python
 # Here, (1,1), (2, 1) are items of the iterable 'it' and 1 is an element
-# of the first item (1,1). We're referring items of item as elements.
+# of the first item (1,1). We're referring to items of items as elements.
 it = ((1, 1), (2, 1), (3, 1), (1, 1), (1, 3))
 ```
 
@@ -140,15 +140,16 @@ it = ((1, 1), (2, 1), (3, 1), (1, 1), (1, 3))
 dedup(it, 2, False)  # Returns [(1,1), (1,3)]
 ```
 
-This time, the `dedup` function that takes in an iterable of tuples `it`, an element
+This time, the `dedup` function takes in an iterable of tuples `it`, an element
 index `index`, and a boolean `lazy` (defaulting to `True`) as arguments. The function
 returns a list or generator of the unique elements in the input iterable based on the
 specified index.
 
-Just as before, the function first creates an empty set `seen` and assigns its `add`
+Just as before, the function first creates an empty set `seen` and binds its `add`
 method to a variable `seen_add`. It then creates a generator expression that iterates
-over `it` and yields each item if its element at the specified index is not already in
-the `seen` set. The element is added to the seen set using the seen_add method.
+over `it` and yields each item if its element at the specified index isn't already
+present in the `seen` set. If `item[index]` isn't present in `seen`, it's added to it
+using the `seen_add` method.
 
 If `lazy` is `True`, the function returns the generator expression. Otherwise, it
 returns a list created from the generator expression.
@@ -161,6 +162,5 @@ each tuple and return a list. The result is `[(1,1), (1,3)]`.
 ## References
 
 * [How do I remove duplicates from a list while preserving order]
-
 
 [How do I remove duplicates from a list while preserving order]: (https://stackoverflow.com/questions/480214/how-do-i-remove-duplicates-from-a-list-while-preserving-order)
