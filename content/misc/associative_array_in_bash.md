@@ -33,7 +33,7 @@ echo ${fruits[0]}
 
 This prints:
 
-```
+```txt
 apple
 ```
 
@@ -52,7 +52,7 @@ echo ${fruits[*]}
 
 This returns:
 
-```
+```txt
 apple banana cherry
 ```
 
@@ -76,7 +76,7 @@ echo ${prices[apple]}
 
 This will print:
 
-```
+```txt
 1.00
 ```
 
@@ -90,7 +90,7 @@ echo ${!prices[*]}
 
 This will print:
 
-```
+```txt
 apple banana cherry.
 ```
 
@@ -102,7 +102,7 @@ echo ${prices[@]}
 
 This returns:
 
-```
+```txt
 1.00 0.50 2.00.
 ```
 
@@ -125,7 +125,7 @@ snippet will output the name of each fruit along with its corresponding price.
 
 Running the snippet will print:
 
-```
+```txt
 apple costs 1.00
 banana costs 0.50
 cherry costs 2.00
@@ -168,7 +168,7 @@ echo "======================"
 
 Running this will download the RFCs in the current directory:
 
-```
+```txt
 ======================
 start downloading rfcs
 ======================
