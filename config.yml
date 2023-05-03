@@ -94,6 +94,8 @@ params:
       url: "https://stackoverflow.com/users/8963300/redowan-delowar"
     - name: github
       url: "https://github.com/rednafi"
+    - name: "rss"
+      url: "https://rednafi.github.io/index.xml"
 
   analytics:
     google:
@@ -110,7 +112,7 @@ params:
 
   editPost:
     URL: "https://github.com/rednafi/rednafi.github.io/blob/main/content"
-    Text: "Suggest Changes" # edit text
+    Text: "Suggest changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
   # for search

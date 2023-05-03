@@ -43,7 +43,7 @@ You can also use a range of indices to get a slice of the array, such as:
 echo ${fruits[@]:1:2}
 ```
 
-This will print: 
+This will print:
 
 ```txt
 banana cherry
@@ -139,8 +139,8 @@ cherry costs 2.00
 
 ## A more practical example
 
-Here's a script that downloads three famous RFCs using cURL. We're using an associative array
-for bookkeeping purposes.
+Here's a script that downloads three famous RFCs using cURL. We're using an associative
+array for bookkeeping purposes.
 
 ```bash
 #!/usr/bin/env bash
