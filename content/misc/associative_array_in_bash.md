@@ -12,7 +12,7 @@ my understanding. Some of the things it comes up with are absolutely delightful.
 spirit of that, I asked it *to teach me a Shell trick that I can use to mimic maps or
 dictionaries in a shell environment*. I didn't even know what I was expecting.
 
-It didn't disappoint and introduced me to the idea of associate arrays in Bash. This
+It didn't disappoint and introduced me to the idea of associative arrays in Bash. This
 data structure is basically the Bash equivalent of a map.
 
 First, we have our usual arrays which are containers that can store multiple values,
