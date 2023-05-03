@@ -139,6 +139,8 @@ for bookkeeping purposes.
 ```bash
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 declare -A rfc_urls
 
 base_url="https://www.rfc-editor.org/rfc"
