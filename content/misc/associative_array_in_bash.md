@@ -97,7 +97,7 @@ echo ${!prices[*]}
 This will print:
 
 ```txt
-apple banana cherry.
+apple banana cherry
 ```
 
 To get the values, run:
@@ -109,7 +109,7 @@ echo ${prices[@]}
 This returns:
 
 ```txt
-1.00 0.50 2.00.
+1.00 0.50 2.00
 ```
 
 Arrays and associative arrays can be useful when you want to store and manipulate
