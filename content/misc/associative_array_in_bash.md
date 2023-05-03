@@ -197,8 +197,8 @@ indicating the RFC being downloaded.
 Using the `curl` command with the options `-OJLs`, we initiate the download process.
 The `-O` flag ensures that the remote file is saved with its original filename, while
 the `-J` flag takes advantage of the `Content-Disposition` header in the HTTP response
-to determine the filename. We include the `-L` flag to follow redirects, and the -s flag
-to silence curl's progress output.
+to determine the filename. We include the `-L` flag to follow redirects, and the `-s`
+flag to silence curl's progress output.
 
 ## Resources
 
