@@ -43,7 +43,13 @@ You can also use a range of indices to get a slice of the array, such as:
 echo ${fruits[@]:1:2}
 ```
 
-This will print banana cherry. You can also use `*` or `@` to get all the elements of
+This will print: 
+
+```txt
+banana cherry
+```
+
+You can also use `*` or `@` to get all the elements of
 the array, such as:
 
 ```bash
