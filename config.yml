@@ -55,6 +55,7 @@ params:
   tocopen: false
   hideFooter: true
   ShowAllPagesInArchive: true
+  ShowFullTextinRSS: true
   mainSections:
     - databases
     - javascript
@@ -106,9 +107,10 @@ params:
       SiteVerificationTag: "cb037a09f985e313"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
+    hidden: false # hide everywhere but not in structured data
     hiddenInList: true # hide on list pages and home
-    hiddenInSingle: true # hide on single page
+    hiddenInSingle: false # hide on single page
+    image: https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png
 
   editPost:
     URL: "https://github.com/rednafi/rednafi.github.io/blob/main/content"
