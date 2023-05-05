@@ -22,7 +22,7 @@ any markdown file in any repo, just not the profile readme. So, here's the plan:
 
 * A custom GitHub Action workflow will periodically run a nodejs script.
 * The script will then:
-    * Grab the XML [sitemap][sitemap] of this blog that you're reading.
+    * Grab the XML [index][index] of this blog that you're reading.
     * Parse the XML content and extract the URLs and publication dates of 5 most recent
     articles.
     * Update the associated markdown table with the extracted content on the profile's
@@ -106,7 +106,7 @@ The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML pars
 the built-in `fs` module's `promises` for handling file system operations.
 
 Next, it defines an async function `getRssData` responsible for fetching the XML data
-from the [https://rednafi.com/index.html][sitemap] URL. It extracts the blog URLs
+from the [https://rednafi.com/index.html][index] URL. It extracts the blog URLs
 and publication dates, and returns the parsed data as a list of objects. Another async
 function, `writeOutputFile`, writes the parsed XML content as a markdown table and saves
 it to the `README.md` file.
@@ -205,7 +205,7 @@ to see the whole setup in action. I'm quite satisfied with the final output:
 [gh-profile-repo]: https://github.com/rednafi/rednafi
 [gh-readme]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme
 [blog-workflow]: https://github.com/gautamkrishnar/blog-post-workflow
-[sitemap]: https://rednafi.com/index.xml
+[index]: https://rednafi.com/index.xml
 [action-secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
 [access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [gh-profile-workflow-dir]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
