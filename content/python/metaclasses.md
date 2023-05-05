@@ -1061,7 +1061,7 @@ entirely. Python 2.x has reached its EOL. Save yourself some trouble and switch 
 Python 3.x if you already haven't done so.
 
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on
-them is rusty, checkout these posts on [decorators](https://rednafi.github.io/digressions/python/2020/05/13/python-decorators.html) and [dataclasses](https://rednafi.github.io/digressions/python/2020/03/12/python-dataclasses.html).
+them is rusty, checkout these posts on [decorators](https://rednafi.com/digressions/python/2020/05/13/python-decorators.html) and [dataclasses](https://rednafi.com/digressions/python/2020/03/12/python-dataclasses.html).
 
 ## References
 

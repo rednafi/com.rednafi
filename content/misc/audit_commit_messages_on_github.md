@@ -215,7 +215,7 @@ You can learn more about the terminologies [here][7].
 [1]: https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/
 [2]: https://github.com/rednafi/reflections/issues/170
 [3]: https://github.com/rednafi/reflections/tree/master/.github/workflows
-[4]: https://rednafi.github.io/misc/automerge_dependabot_prs_on_github/
+[4]: https://rednafi.com/misc/automerge_dependabot_prs_on_github/
 [5]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
 [6]: https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml
 [7]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
@@ -223,7 +223,7 @@ You can learn more about the terminologies [here][7].
 1. [How I build a feature - Simon Willison](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/)
 2. [Example issue that reflects the pattern explained here](https://github.com/rednafi/reflections/issues/170)
 3. [Worflows directory of this blog](https://github.com/rednafi/reflections/tree/master/.github/workflows)
-4. [Automerge Dependabot PRs on GitHub](https://rednafi.github.io/misc/automerge_dependabot_prs_on_github/)
+4. [Automerge Dependabot PRs on GitHub](https://rednafi.com/misc/automerge_dependabot_prs_on_github/)
 5. [Reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
 6. [The main CI file of this blog](https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml)
 7. [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)

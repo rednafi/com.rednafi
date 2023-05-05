@@ -31,6 +31,6 @@ Musings & rants on software. Find them at [rednafi.github.io][site].
 The site is deployed to GitHub Pages via GitHub Actions.
 
 
-[site]: https://rednafi.github.io
+[site]: https://rednafi.com
 [hugo]: https://gohugo.io/
 [localhost]: http://localhost:1313

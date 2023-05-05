@@ -176,7 +176,7 @@ the get request. Httpx is almost a drop-in replacement for the ubiquitous
 support. Here, I've used context manager `httpx.Client()` for better resource management
 while making the `get` request. You can read more about context managers and how to use
 them for hassle free resource management
-[here](https://rednafi.github.io/digressions/python/2020/03/26/python-contextmanager.html).
+[here](https://rednafi.com/digressions/python/2020/03/26/python-contextmanager.html).
 
 The `base_url` is the base url of the route optimization API and the you'll need to
 provide your own access token in the `access_token` field. Notice, how the `url`

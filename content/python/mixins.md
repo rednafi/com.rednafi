@@ -287,7 +287,7 @@ Here, I've imported `ABC` class and `abstractmethod` decorator from the `abc` mo
 Python's standard library. The name `ABC` stands for *Abstract Base Class*. The
 interface class needs to inherit from this `ABC`class and all the abstract methods need
 to be decorated using the `abstractmethod` decorator. If your knowledge on decorators
-are fuzzy, checkout this in-depth article on [python decorators](https://rednafi.github.io/digressions/python/2020/05/13/python-decorators.html).
+are fuzzy, checkout this in-depth article on [python decorators](https://rednafi.com/digressions/python/2020/05/13/python-decorators.html).
 
 Although, it seems like `ICalc` has merely inherited from the `ABC` class, under the
 hood, a [metaclass]() `ABCMeta` gets attached to the interface which essentially makes

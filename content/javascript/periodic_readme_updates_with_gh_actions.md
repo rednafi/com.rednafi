@@ -40,7 +40,7 @@ import fetch from "node-fetch";
 import { Parser } from "xml2js";
 import { promises } from "fs";
 
-const rssUrl = "https://rednafi.github.io/index.xml";
+const rssUrl = "https://rednafi.com/index.xml";
 
 const header = `<div align="center">
     Introducing myself...
@@ -106,7 +106,7 @@ The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML pars
 the built-in `fs` module's `promises` for handling file system operations.
 
 Next, it defines an async function `getRssData` responsible for fetching the XML data
-from the [https://rednafi.github.io/index.html][sitemap] URL. It extracts the blog URLs
+from the [https://rednafi.com/index.html][sitemap] URL. It extracts the blog URLs
 and publication dates, and returns the parsed data as a list of objects. Another async
 function, `writeOutputFile`, writes the parsed XML content as a markdown table and saves
 it to the `README.md` file.
@@ -200,12 +200,12 @@ to see the whole setup in action. I'm quite satisfied with the final output:
 
 ![gh-profile-img]
 
-[blog]: https://rednafi.github.io/
+[blog]: https://rednafi.com/
 [gh-profile]: https://github.com/rednafi/
 [gh-profile-repo]: https://github.com/rednafi/rednafi
 [gh-readme]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme
 [blog-workflow]: https://github.com/gautamkrishnar/blog-post-workflow
-[sitemap]: https://rednafi.github.io/index.xml
+[sitemap]: https://rednafi.com/index.xml
 [action-secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
 [access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [gh-profile-workflow-dir]: https://github.com/rednafi/rednafi/tree/master/.github/workflows

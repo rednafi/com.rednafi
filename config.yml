@@ -1,4 +1,4 @@
-baseURL: "https://rednafi.github.io"
+baseURL: "https://rednafi.com"
 title: Redowan's Reflections
 paginate: 20
 theme: PaperMod
@@ -96,7 +96,7 @@ params:
     - name: github
       url: "https://github.com/rednafi"
     - name: "rss"
-      url: "https://rednafi.github.io/index.xml"
+      url: "https://rednafi.com/index.xml"
 
   analytics:
     google:

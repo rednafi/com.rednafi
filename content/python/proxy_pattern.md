@@ -293,7 +293,7 @@ class will have to implement later. `Concrete` class inherits from the interface
 implements all the methods defined in it. Notice how each method in the `Interface`
 class is decorated with the `@abstractmethod` decorator. If your knowledge on decorator
 is fuzzy, then checkout
-[this](https://rednafi.github.io/digressions/python/2020/05/13/python-decorators)
+[this](https://rednafi.com/digressions/python/2020/05/13/python-decorators)
 post on Python decorators. The `@abstractmethod` decorator turns a normal method into an
 abstract method which means that the method is nothing but a blueprint of the required
 methods that the concrete subclass will have to implement later. You can't directly
