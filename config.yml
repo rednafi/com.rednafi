@@ -31,7 +31,7 @@ params:
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
 
   ]
-  author: ""
+  author: "Redowan Delowar"
   images: [
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
   ]
