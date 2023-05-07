@@ -16,7 +16,7 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: rednafi's notestack
-  description: "Redowan Delowar's musings, notes, and rants on software."
+  description: "Musings and rants on software."
   keywords: [
     # Languages
     Python, JavaScript, TypeScript, Go,
