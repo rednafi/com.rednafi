@@ -1,6 +1,6 @@
 <div align="center">
 
-# [rednafi's stack][site]
+# [rednafi's webstack][site]
 
 </div>
 

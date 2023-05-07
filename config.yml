@@ -15,14 +15,14 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: rednafi's stack
-  description: "Musings & rants on software."
+  title: rednafi's notestack
+  description: "Redowan Delowar's musings, notes, and rants on software."
   keywords: [
     # Languages
     Python, JavaScript, TypeScript, Go,
 
     # Stack
-    Backend, Networking,
+    Backend, Networking, APIs,
 
     # Databases
     Databases, SQLite, PostgreSQL, MySQL, NoSQL, Redis, MongoDB, DynamoDB,
@@ -31,7 +31,7 @@ params:
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
 
   ]
-  author: "Redowan Delowar"
+  author: ""
   images: [
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
   ]
@@ -74,7 +74,7 @@ params:
     safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
 
   label:
-    text: "rednafi's stack"
+    text: "rednafi's notestack"
     icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
     iconHeight: 35
 
@@ -137,6 +137,11 @@ menu:
       name: archives
       url: /archives/
       weight: 30
+    - identifier: contacts
+      name: contacts
+      url: /contacts/
+      weight: 40
+
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
