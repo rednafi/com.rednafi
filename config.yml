@@ -1,5 +1,5 @@
-baseURL: "https://rednafi.com/"
-title: Redowan's Reflections
+baseURL: "https://rednafi.com"
+title: rednafi
 paginate: 20
 theme: PaperMod
 
@@ -15,7 +15,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: Redowan's Reflections
+  title: rednafi's stack
   description: "Musings & rants on software."
   keywords: [
     # Languages
@@ -74,29 +74,24 @@ params:
     safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
 
   label:
-    text: "Redowan's Reflections"
+    text: "rednafi's stack"
     icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
     iconHeight: 35
 
   # home-info mode
   homeInfoParams:
-    Title: "Ohe!"
-    Content: "
-    This is **Redowan**—a software engineer with a knack for data science, networking,
-    databases, all sorts of backend shenanigans. Currently hacking healthcare at
-    <b><u><a href='https://dendisoftware.com' target='_blank'>Dendi</a></u></b> and
-    embracing the chaos.
-    "
+    # Title: ""
+    # Content: ""
 
   socialIcons:
     - name: twitter
       url: "https://twitter.com/rednafi"
-    - name: stackoverflow
-      url: "https://stackoverflow.com/users/8963300/redowan-delowar"
-    - name: github
-      url: "https://github.com/rednafi"
-    - name: "rss"
-      url: "https://rednafi.com/index.xml"
+    # - name: stackoverflow
+    #   url: "https://stackoverflow.com/users/8963300/redowan-delowar"
+    # - name: github
+    #   url: "https://github.com/rednafi"
+    # - name: "rss"
+    #   url: "https://rednafi.com/index.xml"
 
   analytics:
     google:
@@ -113,7 +108,7 @@ params:
     image: https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png
 
   editPost:
-    URL: "https://github.com/rednafi/rednafi.github.io/blob/main/content"
+    URL: "https://github.com/rednafi/rednafi.com/blob/main/content"
     Text: "Suggest changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
