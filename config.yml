@@ -1,5 +1,5 @@
 baseURL: "https://rednafi.com"
-title: rednafi
+title: Redowan's Reflections
 paginate: 20
 theme: PaperMod
 
@@ -15,7 +15,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: rednafi's notestack
+  title: Redowan's Reflections
   description: "Musings and rants on software."
   keywords: [
     # Languages
@@ -74,7 +74,7 @@ params:
     safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
 
   label:
-    text: "rednafi's notestack"
+    text: "Redowan's Reflections"
     icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
     iconHeight: 35
 
