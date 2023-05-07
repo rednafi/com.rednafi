@@ -209,4 +209,4 @@ to see the whole setup in action. I'm quite satisfied with the final output:
 [action-secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
 [access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [gh-profile-workflow-dir]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
-[gh-profile-img]: https://user-images.githubusercontent.com/30027932/236357026-0f703a1b-f61a-4af2-ba49-09fe390dea78.png
+[gh-profile-img]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
