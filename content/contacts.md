@@ -4,8 +4,12 @@ layout: "contacts" # is necessary
 summary: "contacts"
 ---
 
-Ping me at [hello@rednafi.com][email] or find me on Twitter at [@rednafi][twitter].
-
+* Email: [hello@rednafi.com][email]
+* Twitter: [@rednafi][twitter]
+* Github: [rednafi][github]
+* Stackoverflow: [rednafi][stackoverflow]
 
 [email]: hello@rednafi.com
 [twitter]: https://twitter.com/rednafi
+[github]: https://github.com/rednafi
+[stackoverflow]: https://stackoverflow.com/users/8963300/rednafi
