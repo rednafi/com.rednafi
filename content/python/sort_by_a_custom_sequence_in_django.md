@@ -24,16 +24,17 @@ id_list = [3, 1, 2, 4, 8, 7, 5, 6]
 products = Product.objects.all()
 ```
 
-Turns out, this is a great case where Django's `Case` and `When` can come in handy.
-Django exposes the underlying SQL's way of performing conditional logic via `CASE` and
-`WHEN` statements. These allow you to return different values or expressions based on
-some criteria. Think of them as similar to `IF-THEN-ELSE` statements in other
-programming languages. There are two types of CASE expressions: simple and searched.
+Turns out, this is a great case where Django's `Case` and `When` can come in handy. With
+these, Django exposes the underlying SQL's way of performing conditional logic through
+`CASE` and `WHEN` statements. They allow you to return different values or expressions
+based on some criteria. Think of them as similar to `IF-THEN-ELSE` statements in other
+programming languages. Primarily, there are two types of `CASE` expressions: simple and
+searched.
 
 ## Simple CASE Expression
 
 A simple `CASE` expression compares an input expression to a list of values and returns
-the corresponding result. Here is the syntax:
+the corresponding result. Here's the syntax:
 
 ```txt
 CASE input_expression
@@ -63,7 +64,7 @@ table called `products` with the following data:
 | 5  | E    | 50    | Y        |
 ```
 
-We can use a simple CASE expression to assign a label to each product based on its
+We can use a simple `CASE` expression to assign a label to each product based on its
 category:
 
 ```sql
@@ -91,7 +92,7 @@ The output would be:
 ## Searched CASE Expression
 
 A searched `CASE` expression evaluates a list of Boolean expressions and returns the
-corresponding result. Here is the syntax for a searched CASE expression:
+corresponding result. The syntax looks as follows:
 
 ```txt
 CASE
@@ -136,7 +137,7 @@ The output would be:
 | 5  | E    | 50    | 35               |
 ```
 
-## Using searched CASE expression to order a queryset
+## Using searched CASE expressions to order querysets
 
 With the intro explanations out of the way, here's how you can sort the `products` table
 introduced in the previous section by a list of product ids:
@@ -193,7 +194,7 @@ ORDER BY
 ```
 
 You can directly run this query against the database and get the same result. Notice how
-Django is taking advantage of searched `CASE` expression to sort the queryset in the
+Django is taking advantage of a searched `CASE` expression to sort the queryset in the
 desired way. This also allows sorting by a custom sequence of an attribute related to
 the target model. So you can do this:
 
