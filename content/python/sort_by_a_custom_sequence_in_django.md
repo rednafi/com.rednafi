@@ -136,7 +136,7 @@ The output would be:
 | 5  | E    | 50    | 35               |
 ```
 
-## Using searched CASE expression to order a Django queryset
+## Using searched CASE expression to order a queryset
 
 With the intro explanations out of the way, here's how you can sort the `products` table
 introduced in the previous section by a list of product ids:
