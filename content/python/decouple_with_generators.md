@@ -171,9 +171,7 @@ def tail_f(filepath: str) -> Generator[str, None, None]:
 
 
 # Consumer.
-def grep(
-    lines: Generator[str, None, None], pattern: str | None = None
-) -> None:
+def grep(lines: Generator[str, None, None], pattern: str | None = None) -> None:
     for line in gen:
         if not pattern:
             print(line)

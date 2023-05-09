@@ -222,7 +222,8 @@ from datetime import datetime, timezone
 
 for question_text in ("Are you okay?", "Do you wanna go there?"):
     question = polls_models.Question.objects.create(
-        question_text=question_text, pub_date=datetime.now(tz=timezone.utc)
+        question_text=question_text,
+        pub_date=datetime.now(tz=timezone.utc),
     )
     question.choice_set.set(
         polls_models.Choice.objects.create(choice_text=ctext)

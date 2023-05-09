@@ -193,7 +193,8 @@ class SocketServer(socketserver.ThreadingTCPServer):
     ) -> None:
         if isinstance(request, socket.socket):
             logging.info(
-                "Closing connection from %s:%s", *request.getpeername()
+                "Closing connection from %s:%s",
+                *request.getpeername(),
             )
         super().shutdown_request(request)
 

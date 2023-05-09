@@ -192,7 +192,6 @@ else:
     from typing import assert_never
 
 ...
-
 ```
 
 ## References

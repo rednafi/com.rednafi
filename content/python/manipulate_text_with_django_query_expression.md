@@ -48,9 +48,7 @@ file_paths = FileCabinet.objects.values_list("file_path", flat=True)
 
 # Now the file names can be collected in a list via a listcomp.
 # This will return: ["dir/file_1.pdf", ..., "dir/image_2.jpg"]
-file_paths_new = [
-    f"dir/{file_path.split('/')[-1]}" for file_path in file_paths
-]
+file_paths_new = [f"dir/{file_path.split('/')[-1]}" for file_path in file_paths]
 
 ...
 ```
@@ -72,7 +70,12 @@ same result in a declarative manner:
 ...
 
 from django.db.models import F, Value
-from django.db.models.functions import Concat, Reverse, Right, StrIndex
+from django.db.models.functions import (
+    Concat,
+    Reverse,
+    Right,
+    StrIndex,
+)
 
 
 file_cabinet = polls_models.FileCabinet.objects.annotate(

@@ -521,7 +521,10 @@ def logexc(func):
         try:
             return func(*args, **kwargs)
         except Exception as e:
-            print("Time: ", datetime.now().strftime("%Y-%m-%d [%H:%M:%S]"))
+            print(
+                "Time: ",
+                datetime.now().strftime("%Y-%m-%d [%H:%M:%S]"),
+            )
             print("Arguments: ", sig)
             print("Error:\n")
             raise
@@ -1093,7 +1096,8 @@ import time
 
 def api(a):
     """API takes an integer and returns the square value of it.
-    To simulate a time consuming process, I've added some time delay to it."""
+    To simulate a time consuming process, I've added some time delay to it.
+    """
 
     print("The API has been called...")
 
@@ -1123,7 +1127,8 @@ import functools
 @functools.lru_cache(maxsize=32)
 def api(a):
     """API takes an integer and returns the square value of it.
-    To simulate a time consuming process, I've added some time delay to it."""
+    To simulate a time consuming process, I've added some time delay to it.
+    """
 
     print("The API has been called...")
 

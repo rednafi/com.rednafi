@@ -224,7 +224,12 @@ Python's standard library APIs uses `abc.ABC` in many places. See this example:
 # src.py
 from __future__ import annotations
 
-from abc import ABC, abstractmethod, abstractclassmethod, abstractproperty
+from abc import (
+    ABC,
+    abstractmethod,
+    abstractclassmethod,
+    abstractproperty,
+)
 
 
 class FooInterface(ABC):

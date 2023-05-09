@@ -1539,7 +1539,8 @@ class SQLAlechemyDict(MutableMapping):
     def __getitem__(self, key):
         with self.session_scope() as session:
             r = session.execute(
-                text("SELECT value FROM Dict WHERE key=:key"), {"key": key}
+                text("SELECT value FROM Dict WHERE key=:key"),
+                {"key": key},
             )
             row = r.fetchone()
 
@@ -1577,7 +1578,9 @@ class SQLAlechemyDict(MutableMapping):
 if __name__ == "__main__":
     # test the struct
     sqladict = SQLAlechemyDict(
-        dbname="foo.db", session_scope=session_scope, items={"hello": "world"}
+        dbname="foo.db",
+        session_scope=session_scope,
+        items={"hello": "world"},
     )
     print(sqladict)
     sqladict["key"] = "val"

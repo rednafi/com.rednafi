@@ -45,7 +45,9 @@ def make_request(url: str) -> dict:
         return response.json()
 
 
-def make_requests(urls: list[str]) -> Generator[list[dict], None, None]:
+def make_requests(
+    urls: list[str],
+) -> Generator[list[dict], None, None]:
     with tqdm(total=len(urls)) as pbar:
         with ThreadPoolExecutor(max_workers=5) as executor:
             futures = [executor.submit(make_request, url) for url in urls]
@@ -103,7 +105,9 @@ I usually use `contextlib.ExitStack` to avoid nested context managers like this:
 from contextlib import ExitStack
 
 
-def make_requests(urls: list[str]) -> Generator[list[dict], None, None]:
+def make_requests(
+    urls: list[str],
+) -> Generator[list[dict], None, None]:
     with ExitStack() as stack:
         executor = stack.enter_context(ThreadPoolExecutor(max_workers=5))
         pbar = stack.enter_context(tqdm(total=len(urls)))
