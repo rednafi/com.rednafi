@@ -31,7 +31,7 @@ params:
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
 
   ]
-  author: ""
+  author: "Redowan Delowar"
   images: [
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
   ]
@@ -86,12 +86,12 @@ params:
   socialIcons:
     - name: twitter
       url: "https://twitter.com/rednafi"
-    # - name: stackoverflow
-    #   url: "https://stackoverflow.com/users/8963300/redowan-delowar"
-    # - name: github
-    #   url: "https://github.com/rednafi"
-    # - name: "rss"
-    #   url: "https://rednafi.com/index.xml"
+    - name: stackoverflow
+      url: "https://stackoverflow.com/users/8963300/redowan-delowar"
+    - name: github
+      url: "https://github.com/rednafi"
+    - name: "rss"
+      url: "https://rednafi.com/index.xml"
 
   analytics:
     google:
