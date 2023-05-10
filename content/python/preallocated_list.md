@@ -1,6 +1,6 @@
 ---
 title: Pre-allocated lists in Python
-date: 27-03-2022
+date: 2022-03-27
 tags:
     - Python
 ---
