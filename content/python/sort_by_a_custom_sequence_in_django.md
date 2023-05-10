@@ -31,7 +31,7 @@ based on some criteria. Think of them as similar to `IF-THEN-ELSE` statements in
 programming languages. Primarily, there are two types of `CASE` expressions: simple and
 searched.
 
-## Simple CASE Expression
+## Simple CASE expression
 
 A simple `CASE` expression compares an input expression to a list of values and returns
 the corresponding result. Here's the syntax:
@@ -89,7 +89,7 @@ The output would be:
 | 5  | E    | 50    | Medium |
 ```
 
-## Searched CASE Expression
+## Searched CASE expression
 
 A searched `CASE` expression evaluates a list of Boolean expressions and returns the
 corresponding result. The syntax looks as follows:
