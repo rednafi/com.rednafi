@@ -95,7 +95,7 @@ params:
     - name: github
       url: "https://github.com/rednafi"
     - name: "rss"
-      url: "https://rednafi.com/index.xml"
+      url: "https://rednafi.com/sitemap.xml"
 
   analytics:
     google:
