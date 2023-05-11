@@ -8,7 +8,7 @@ tags:
 
 I was working with a table that had a similar (simplified) structure like this:
 
-```
+```txt
 |               uuid               |         file_path         |
 |----------------------------------|---------------------------|
 | b8658dfc3e80446c92f7303edf31dcbd | media/private/file_1.pdf  |
