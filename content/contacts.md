@@ -6,8 +6,8 @@ summary: "contacts"
 
 * Email: [hello@rednafi.com][email]
 * Twitter: [@rednafi][twitter]
-* Github: [rednafi][github]
-* Stackoverflow: [rednafi][stackoverflow]
+* GitHub: [rednafi][github]
+* StackOverflow: [rednafi][stackoverflow]
 
 [email]: mailto:hello@rednafi.com
 [twitter]: https://twitter.com/rednafi
