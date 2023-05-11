@@ -6,11 +6,14 @@ tags:
 ---
 
 Writing consistent commit messages helps you to weave a coherent story with your git
-history. Recently, I've started paying attention to my commit messages. Before this, my commit messages in this repository used to look like this:
+history. Recently, I've started paying attention to my commit messages. Before this, my
+commit messages in this repository used to look like this:
 
+```sh
+git log --oneline -5
 ```
-$ git log --oneline -5
 
+```txt
 d058a23 (HEAD -> master) bash strict mode
 a62e59b Updating functool partials til.
 532b21a Added functool partials til
@@ -19,7 +22,8 @@ ec9191c added unfinished indexing script
 ```
 
 With all the misuse of letter casings and punctuations, clearly, the message formatting
-is all over the place. To tame this mayhem, I've adopted these 7 rules of writing great commit messages:
+is all over the place. To tame this mayhem, I've adopted these 7 rules of writing great
+commit messages:
 
 ## The seven rules of writing consistent git commit messages
 
@@ -34,9 +38,11 @@ body)
 
 Now, after rebasing, currently, the commit messages in this repo look like this:
 
+```sh
+git log --oneline -5
 ```
-$ git log --oneline -5
 
+```sh
 d058a23 (HEAD -> master) Employ bash strict mode
 a62e59b Update functool partials til
 532b21a Add functool partials til

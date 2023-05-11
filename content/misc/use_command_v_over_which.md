@@ -14,13 +14,13 @@ built into most of the shells.
 
 So, instead of doing this:
 
-```
+```sh
 which python3.10
 ```
 
 Do this:
 
-```
+```sh
 command -v which python3.10
 ```
 

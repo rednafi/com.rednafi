@@ -10,14 +10,14 @@ The colon `:` command is a shell utility that represents a truthy value. It can 
 thought of as an alias for the built-in `true` command. You can test it by opening a
 shell script and typing a colon on the command line, like this:
 
-```sh
+```bash
 :
 ```
 
 If you then inspect the exit code by typing `$?` on the command line, you'll see a `0`
 there, which is exactly what you'd see if you had used the true command.
 
-```sh
+```bash
 : ; echo $?
 ```
 
@@ -31,7 +31,7 @@ I find the colon command useful when running a shell script with the `-x` flag, 
 prints out the commands being executed by the interpreter. For example, consider the
 following script:
 
-```sh
+```bash
 #!/bin/bash
 # script.sh
 
@@ -44,7 +44,7 @@ du -sh /usr/bin
 
 Running this script with `bash -x script.sh` will print the following lines:
 
-```
+```txt
 + echo 'section 1: print the first 2 lines of the current directory'
 section 1: print the first 2 lines of the current directory
 + ls -lah
@@ -64,7 +64,7 @@ providing separation between different sections. Therefore, repeating these comm
 their outputs can be a little redundant. You can use the colon command to eliminate this
 repetition, as follows:
 
-```sh
+```bash
 #!/bin/bash
 
 : "section 1: print the first 2 lines of the current directory"
@@ -76,7 +76,7 @@ du -sh /usr/bin
 
 Running this script with the -x flag will produce the following output:
 
-```
+```txt
 + : 'section 1: print the first 2 lines of the current directory'
 + ls -lah
 + head -n 2
