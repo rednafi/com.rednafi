@@ -9,7 +9,7 @@ summary: "contacts"
 * Github: [rednafi][github]
 * Stackoverflow: [rednafi][stackoverflow]
 
-[email]: hello@rednafi.com
+[email]: mailto:hello@rednafi.com
 [twitter]: https://twitter.com/rednafi
 [github]: https://github.com/rednafi
 [stackoverflow]: https://stackoverflow.com/users/8963300/rednafi
