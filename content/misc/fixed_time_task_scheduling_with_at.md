@@ -104,7 +104,7 @@ you'll need to provide full disk access to `atrun`. To do so:
 
 You can learn more about making `atrun` work on MacOS [here][atrun-disk-access].
 Although I'm using MacOS for development, In my particular case, making `at` work on
-MacOS wasn't the first priority because I deployed the final solution in an Ubuntu
+MacOS wasn't the first priority because I deployed the final solution to an Ubuntu
 container.
 
 ## A few examples
