@@ -2,3 +2,4 @@ public
 .DS_Store
 .venv
 .ruff_cache
+node_modules
