@@ -18,7 +18,7 @@ Musings & rants on software. Find them at [rednafi.com][site].
     ```
 * Update the theme:
     ```
-    brew update
+    make update
     ```
 * Run the local server:
     ```
