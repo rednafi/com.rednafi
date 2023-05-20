@@ -209,7 +209,7 @@ products = Product.objects.all()
 preferred = Case(
     *(
         When(order__id=id, then=pos)
-        for pos, id in enumerate(product_ids, start=1)
+        for pos, id in enumerate(order_ids, start=1)
     )
 )
 products_sorted = products.filter(order__id__in=order_ids).order_by(preferred)
