@@ -122,8 +122,8 @@ pushed to the `main` branch.
 
 ### Installing the prerequisites
 
-Assuming you have `node` installed on your system, you can fetch the `wrangler` CLI with
-the following command:
+Assuming you have `node` installed on your system, you can fetch the
+[wrangler][cloudflare-wrangler] CLI with the following command:
 
 ```sh
 npm install -g wrangler
@@ -423,6 +423,7 @@ The whole CI setup can be seen in action [here].
 
 
 [cloudflare-workers]: https://workers.cloudflare.com/
+[cloudflare-wrangler]: https://developers.cloudflare.com/workers/wrangler/
 [cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 [cors-intro]: https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919
 [cors.sh]: https://cors.sh/
