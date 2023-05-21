@@ -236,7 +236,9 @@ export default {
       const responseHeaders = {
         "Access-Control-Allow-Origin": headers.get("Origin"),
         "Access-Control-Allow-Methods": "*", // Allow all methods
-        "Access-Control-Allow-Headers": headers.get("Access-Control-Request-Headers"),
+        "Access-Control-Allow-Headers": headers.get(
+          "Access-Control-Request-Headers"
+        ),
         "Access-Control-Max-Age": "86400",
       };
       return new Response(null, { headers: responseHeaders });
@@ -419,7 +421,7 @@ jobs:
 
 For this to work, you'll need to create a [Cloudflare API key][cloudflare-api-key] and
 add it to the [GitHub Secrets][github-secrets] of your proxy server's repository.
-The whole CI setup can be seen in action [here].
+The whole CI setup can be seen in action [here][simple-cors-proxy-ci].
 
 
 [cloudflare-workers]: https://workers.cloudflare.com/
