@@ -423,6 +423,15 @@ For this to work, you'll need to create a [Cloudflare API key][cloudflare-api-ke
 add it to the [GitHub Secrets][github-secrets] of your proxy server's repository.
 The whole CI setup can be seen in action [here][simple-cors-proxy-ci].
 
+## Resources
+
+* [Introduction to CORS][cors-intro]
+* [CORS - Mozilla docs][cors]
+* [CORS proxy][cors-proxy]
+* [CORS preflight][cors-preflight]
+* [Cloudflare workers][cloudflare-workers]
+* [Cloudflare wrangler][cloudflare-wrangler]
+
 
 [cloudflare-workers]: https://workers.cloudflare.com/
 [cloudflare-wrangler]: https://developers.cloudflare.com/workers/wrangler/
