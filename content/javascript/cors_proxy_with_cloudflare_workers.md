@@ -431,7 +431,7 @@ The whole CI setup can be seen in action [here][simple-cors-proxy-ci].
 * [CORS preflight][cors-preflight]
 * [Cloudflare workers][cloudflare-workers]
 * [Cloudflare wrangler][cloudflare-wrangler]
-
+* [Complete CORS proxy implementation][simple-cors-proxy]
 
 [cloudflare-workers]: https://workers.cloudflare.com/
 [cloudflare-wrangler]: https://developers.cloudflare.com/workers/wrangler/
