@@ -34,7 +34,7 @@ fetch("https://mozilla.org")
   });
 ```
 
-This snippet will attempt to make a GET request from https://rednafi.com to
+This snippet will attempt to make a `GET` request from https://rednafi.com to
 https://mozilla.org. However, the client's CORS policy won't allow you to make an AJAX
 request like this and load external resources into the current site. On your console,
 you'll see an error message like this:
@@ -64,10 +64,12 @@ access to the origin server or simply don't want to deal with modifying the serv
 response headers every time you need to access external resources. That's where CORS
 proxies can come in handy.
 
-A CORS proxy server acts as a bridge between your client and the target server. It
-receives your request and forwards it to the target server with a modified origin
-header so that the target server thinks the request is coming from the same origin as
-itself. This way, you can bypass the same-origin policy of browsers and access resources
+> A CORS proxy server acts as a bridge between your client and the target server. It
+> receives your request and forwards it to the target server with a modified origin
+> header so that the target server thinks the request is coming from the same origin as
+> itself.
+
+This way, you can bypass the same-origin policy of browsers and access resources
 from different domains. I usually use free proxies like [cors.sh][cors.sh] to bypass
 CORS restrictions. You can drop this snippet to your browser's console and this time
 it'll allow you to load the contents of https://mozilla.org from https://rednafi.com:
@@ -86,7 +88,7 @@ fetch("https://proxy.cors.sh/https://mozilla.org")
   });
 ```
 
-This time, your browser will allow you to load the content from the target server:
+The target server's response looks somewhat like this:
 
 ```html
 <!doctype html>
