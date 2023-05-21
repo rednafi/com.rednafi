@@ -40,9 +40,9 @@ request like this and load external resources into the current site. On your con
 you'll see an error message like this:
 
 ```txt
-Access to fetch at 'https://mozilla.org/' from origin 'https://rednafi.com' has been
-blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the
-requested resource.
+Access to fetch at 'https://mozilla.org/' from origin 'https://rednafi.com'
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is
+present on the requested resource.
 
 If an opaque response serves your needs, set the request's mode to
 'no-cors' to fetch the resource with CORS disabled.
