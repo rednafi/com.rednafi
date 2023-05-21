@@ -289,7 +289,7 @@ the function returns a `Response` object with an error message and a status code
 The code then checks if the request method is `OPTIONS`. The `OPTIONS` method is used in
 CORS [preflight][cors-preflight] requests to determine if the actual request is safe to
 send. If the request is an `OPTIONS` request and contains specific headers indicating a
-CORS preflight request (Origin and Access-Control-Request-Method), the function
+CORS preflight request (`Origin` and `Access-Control-Request-Method`), the function
 generates a response with appropriate CORS headers. The response headers include `Access-Control-Allow-Origin` to reflect the client's origin,
 `Access-Control-Allow-Methods` set to `*`, allowing any HTTP method,
 `Access-Control-Allow-Headers` based on the requested headers, and
