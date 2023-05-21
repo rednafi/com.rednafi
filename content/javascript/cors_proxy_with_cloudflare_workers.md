@@ -298,10 +298,10 @@ conditions, the code continues execution. It creates a new `Request` object name
 the original request. The `Origin` header is removed to prevent CORS restrictions when
 forwarding the request.
 
-The subsequent code performs the actual request forwarding. It uses the `fetch` function
-to send the `proxyRequest` to the destination URL. If the fetch is successful, the code
-proceeds to process the response. It creates a new `Headers` object from the response's
-headers and modifies them to include the necessary CORS headers.
+The subsequent code performs the actual request forwarding. It uses `fetch` to send the
+`proxyRequest` to the destination URL. If the fetch is successful, the code proceeds to
+process the response. It creates a new `Headers` object from the response's headers and
+modifies them to include the necessary CORS headers.
 
 Finally, the function constructs a `Response` object using the response `body`,
 `status`, `statusText`, and modified `headers`. If an error occurs during the fetch
