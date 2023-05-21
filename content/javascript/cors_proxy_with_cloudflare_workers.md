@@ -9,7 +9,7 @@ tags:
 
 Cloudflare absolutely nailed the serverless function DX with
 [Cloudflare Workers][cloudflare-workers]. However, I feel like it's yet to receive
-widespread popularity like AWS Lambda since as of now, it only offers a single
+widespread popularity like AWS Lambda since as of now, the service only offers a single
 runtime—JavaScript. But if you can look past that big folly, it's a delightful piece of
 tech to work with. I've been building small tools with it for a couple of years but
 never got around to writing about the immense productivity boost it usually gives me
