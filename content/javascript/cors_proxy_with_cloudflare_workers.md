@@ -273,10 +273,6 @@ export default {
 };
 ```
 
-The snippet defines an object exported as the default value, which can be imported and
-used as a middleware or handler in a server-side application. The `fetch` function
-within this object serves as the entry point for processing requests.
-
 The first section of the code deals with extracting relevant information from the
 incoming request. It destructures the `method`, `url`, and `headers` properties from the
 `request` object, which represents the client's request.
