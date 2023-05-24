@@ -9,3 +9,8 @@ body {
 .page-header h1 {
     font-size: 32px;
 }
+
+.social-icons a svg {
+    height: 23px;
+    width: 23px;
+}

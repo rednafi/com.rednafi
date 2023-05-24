@@ -17,10 +17,10 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >
-    "Ohe, I'm Redowan Delowar—a software carpenter with a focus on backend technologies, 
-    networking, I/O, databases, and data science. I regularly rant and write 
-    about Python, JavaScript, Go, PostgreSQL, APIs, AWS, Serverless, Static Typing, 
-    and software in general."
+    Ohe, I'm Redowan Delowar—a software carpenter with a focus on backend technologies,
+    networking, I/O, databases, and data science. I regularly rant and write
+    about Python, JavaScript, Go, PostgreSQL, APIs, AWS, Serverless, Static Typing,
+    and software in general.
   keywords: [
     # Languages
     Python, JavaScript, TypeScript, Go,
@@ -84,8 +84,11 @@ params:
 
   # home-info mode
   homeInfoParams:
-    # Title: ""
-    # Content: ""
+    Title: "Ohe"
+    Content: >
+      Ohe, I'm Redowan Delowar—a software carpenter with a focus on automation,
+      networking, I/O, and databases. I regularly rant and write about Python,
+      JavaScript, Go, SQL, and the broader landscape of software in general.
 
   socialIcons:
     - name: twitter
@@ -141,10 +144,6 @@ menu:
       name: archives
       url: /archives/
       weight: 30
-    - identifier: contacts
-      name: contacts
-      url: /contacts/
-      weight: 40
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true

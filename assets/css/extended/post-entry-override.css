@@ -1,5 +1,6 @@
 .first-entry {
     min-height: 20px;
+    text-align: center;
 }
 .first-entry .entry-header h1 {
     font-size: 27px;
