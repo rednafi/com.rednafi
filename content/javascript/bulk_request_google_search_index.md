@@ -6,7 +6,7 @@ tags:
     - API
 ---
 
-Recently, I've purchased a domain for this blog and migrated the content from
+Recently, I purchased a domain for this blog and migrated the content from
 [rednafi.github.io][rednafi.com] to [rednafi.com]. This turned out to be a much bigger
 hassle than I originally thought it'd be, mostly because, despite setting redirection
 for almost all the URLs from the previous domain to the new one and submitting the new
@@ -18,7 +18,7 @@ submitted the sitemap file via their webmaster panel.
 
 While researching this, one potential solution suggested that along with submitting the
 sitemap via [Google Search Console][google-search-console], I'd have to make individual
-indexing requests for each URL to encourange faster indexing. The problem is, I've got
+indexing requests for each URL to encourage faster indexing. The problem is, I've got
 quite a bit of content on this site, and it'll take forever for me to click through all
 the links and request indexing that way. Naturally, I looked for a way to do this
 programmatically. Luckily, I found out that there's an [indexing API][indexing-api]
@@ -29,7 +29,7 @@ requests with sitemap submission.
 All you've to do is:
 
 * List out the URLs that need to be indexed.
-* Fullfil the [prerequisites][indexing-api] and download the private key JSON file
+* Fulfill the [prerequisites][indexing-api] and download the private key JSON file
 required to make requests to the API. From the docs:
 
     > *Every call to the Indexing API must be authenticated with an OAuth token that you
@@ -180,7 +180,7 @@ script will give you an output similar to this:
 ```
 
 Here, the `getUrls` function is defined to fetch the sitemap content from a specified
-URL, parse the XML content, and extract the URLs. It uses the fetch function to retrieve
+URL, parse the XML content and extract the URLs. It uses the fetch function to retrieve
 the file, then uses `xml2js` to parse the XML and extract the URLs from the result.
 
 The script then initializes an authentication client using the imported private key and
@@ -189,7 +189,7 @@ client and obtain access tokens. Inside the authorization callback, the script p
 the necessary `options` for making API requests to the Google indexing API. It then
 calls the `getUrls` function to fetch the URLs from the `sitemap.xml` file. For each
 URL, it updates the `options` with the URL and makes a POST request to the Indexing API
-to request indexing. The response from the API is then logged to the console.
+to request indexing. The response from the API is then logged into the console.
 
 One thing to keep in mind is that by default, the daily request quota per project is 
 200. But you can request more [quota][quota-and-pricing] if you need it.
