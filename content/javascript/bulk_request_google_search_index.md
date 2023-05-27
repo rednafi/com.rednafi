@@ -191,11 +191,13 @@ calls the `getUrls` function to fetch the URLs from the `sitemap.xml` file. For 
 URL, it updates the `options` with the URL and makes a POST request to the Indexing API
 to request indexing. The response from the API is then logged to the console.
 
-And we're done!
+One thing to keep in mind that by default, the daily request quota per project is 200.
+But you can request more [quota][quota-and-pricing] if you need it.
 
 ## Resources
 
 * [Indexing API quickstart][indexing-api]
+* [Indexing API quota and pricing information][quota-and-pricing]
 
 [rednafi.com]: https://rednafi.com
 [indexing-api]: https://developers.google.com/search/apis/indexing-api/v3/quickstart
@@ -203,3 +205,4 @@ And we're done!
 [sitemap.xml]: https://rednafi.com/sitemap.xml
 [google-search-console]: https://search.google.com/search-console/about
 [cors-proxy]: https://corsproxy.io
+[quota-and-pricing]: https://developers.google.com/search/apis/indexing-api/v3/quota-pricing
