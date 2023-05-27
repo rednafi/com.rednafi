@@ -32,9 +32,9 @@ All you've to do is:
 * Fullfil the [prerequisites][indexing-api] and download the private key JSON file
 required to make requests to the API. From the docs:
 
-    > Every call to the Indexing API must be authenticated with an OAuth token that you
+    > *Every call to the Indexing API must be authenticated with an OAuth token that you
     get in exchange for your private key. Each token is good for a span of time. Google
-    provides API client libraries to get OAuth tokens for a number of languages.
+    provides API client libraries to get OAuth tokens for a number of languages.*
 
     The private key file will look like this:
     ```json
@@ -60,10 +60,6 @@ In my case, this site's [sitemap][sitemap.xml] lists out all the URLs as follows
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url>
-    <loc>https://rednafi.com/javascript/cors_proxy_with_cloudflare_workers/</loc>
-    <lastmod>2023-05-21T00:00:00+00:00</lastmod>
-</url>
 <url>
     <loc>https://rednafi.com/tags/github/</loc>
     <lastmod>2023-05-21T00:00:00+00:00</lastmod>
@@ -196,6 +192,10 @@ URL, it updates the `options` with the URL and makes a POST request to the Index
 to request indexing. The response from the API is then logged to the console.
 
 And we're done!
+
+## Resources
+
+* [Indexing API quickstart][indexing-api]
 
 [rednafi.com]: https://rednafi.com
 [indexing-api]: https://developers.google.com/search/apis/indexing-api/v3/quickstart
