@@ -1,7 +1,9 @@
 ---
 title: Bulk request Google search indexing with API
 date: 2023-05-23
-tags: JavaScript, API
+tags:
+    - JavaScript
+    - API
 ---
 
 Recently, I've purchased a domain for this blog and migrated the content from
