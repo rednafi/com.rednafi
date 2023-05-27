@@ -14,7 +14,7 @@ for almost all the URLs from the previous domain to the new one and submitting t
 things worse, the search engine selected the previous domain as canonical, and no amount
 of manual requests were changing the status in the last 30 days. Strangely, I didn't
 encounter this issue with Bing, as it reindexed the new site within a week after I
-submitted the [sitemap.xml] via their webmaster panel.
+submitted the sitemap file via their webmaster panel.
 
 While researching this, one potential solution suggested that along with submitting the
 sitemap via [Google Search Console][google-search-console], I'd have to make individual
@@ -179,7 +179,7 @@ script will give you an output similar to this:
 ...
 ```
 
-Here, the `getUrls` function is defined to fetch the `sitemap.xml` file from a specified
+Here, the `getUrls` function is defined to fetch the sitemap content from a specified
 URL, parse the XML content, and extract the URLs. It uses the fetch function to retrieve
 the file, then uses `xml2js` to parse the XML and extract the URLs from the result.
 
@@ -191,8 +191,8 @@ calls the `getUrls` function to fetch the URLs from the `sitemap.xml` file. For 
 URL, it updates the `options` with the URL and makes a POST request to the Indexing API
 to request indexing. The response from the API is then logged to the console.
 
-One thing to keep in mind that by default, the daily request quota per project is 200.
-But you can request more [quota][quota-and-pricing] if you need it.
+One thing to keep in mind is that by default, the daily request quota per project is 
+200. But you can request more [quota][quota-and-pricing] if you need it.
 
 ## Resources
 
