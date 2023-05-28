@@ -1,6 +1,6 @@
 ---
 title: Bulk request Google search indexing with API
-date: 2023-05-23
+date: 2023-05-26
 tags:
     - JavaScript
     - API
@@ -22,8 +22,8 @@ indexing requests for each URL to encourage faster indexing. The problem is, I'v
 quite a bit of content on this site, and it'll take forever for me to click through all
 the links and request indexing that way. Naturally, I looked for a way to do this
 programmatically. Luckily, I found out that there's an [indexing API][indexing-api]
-that allows you to make bulk indexing requests programmatically. This has one big 
-advantage—Google [responds][api-submission] to API requests faster than indexing 
+that allows you to make bulk indexing requests programmatically. This has one big
+advantage—Google [responds][api-submission] to API requests faster than indexing
 requests with sitemap submission.
 
 All you've to do is:
@@ -191,7 +191,7 @@ calls the `getUrls` function to fetch the URLs from the `sitemap.xml` file. For 
 URL, it updates the `options` with the URL and makes a POST request to the Indexing API
 to request indexing. The response from the API is then logged into the console.
 
-One thing to keep in mind is that by default, the daily request quota per project is 
+One thing to keep in mind is that by default, the daily request quota per project is
 200. But you can request more [quota][quota-and-pricing] if you need it.
 
 ## Resources
