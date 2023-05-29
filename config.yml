@@ -17,19 +17,22 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >
-    Ohe, I'm Redowan Delowar—a software carpenter with a focus on backend technologies,
-    networking, I/O, databases, and data science. I regularly rant and write
-    about Python, JavaScript, Go, PostgreSQL, APIs, AWS, Serverless, Static Typing,
-    and software in general.
+    Ohe, I'm Redowan Delowar—a software carpenter with a focus on automation,
+    networking, I/O, and databases. I regularly rant and write about Python,
+    JavaScript, Go, SQL, and the broader landscape of software in general.
   keywords: [
+    # Meta
+    Redowan, Delowar, Redowan Delowar, rednafi, SWE, software, software engineering,
+    Redowan Nafi, Nafi,
+
     # Languages
-    Python, JavaScript, TypeScript, Go,
+    Python, JavaScript, TypeScript, Go, HTML, CSS,
 
     # Stack
-    Backend, Networking, APIs,
+    Backend, Networking, APIs, AWS, Google Cloud,
 
     # Databases
-    Databases, SQLite, PostgreSQL, MySQL, NoSQL, Redis, MongoDB, DynamoDB,
+    Databases, SQL, SQLite, PostgreSQL, MySQL, NoSQL, Redis, MongoDB, DynamoDB,
 
     # Frameworks
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
