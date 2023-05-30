@@ -13,8 +13,8 @@ ShowBreadCrumbs: false
   width: 100%;
   justify-content: left;
 }
-.twitter-timeline, .tweet-skeleton{
-  width: 40rem;
+.tweet-skeleton{
+  width: 50rem;
 }
 .tweet-skeleton{
   border: 0.05rem solid rgb(190, 190, 190);
