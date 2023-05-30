@@ -147,6 +147,10 @@ menu:
       name: archives
       url: /archives/
       weight: 30
+    - identifier: elsewhere
+      name: elsewhere
+      url: /elsewhere/
+      weight: 40
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
