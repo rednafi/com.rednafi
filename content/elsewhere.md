@@ -14,7 +14,7 @@ ShowBreadCrumbs: false
   justify-content: left;
 }
 .twitter-timeline, .tweet-skeleton{
-  width: 41rem;
+  width: 40rem;
 }
 .tweet-skeleton{
   border: 0.05rem solid rgb(190, 190, 190);
