@@ -95,8 +95,8 @@ source to the destination and back. It reflects the latency (or delay) between e
 Traceroute then increases the TTL value by 1 and sends another packet. This packet can
 make 2 hops before it expires. The process repeats until traceroute reaches the
 destination or a maximum TTL value, usually 30. When the returned IP is the same as the
-initial destination IP that's when `traceroute` knows that the packet has completed the
-whole journey. By doing this, traceroute can trace the route that your packets take to
+initial destination IP, `traceroute` knows that the packet has completed the whole
+journey. By doing this, traceroute can trace the route that your packets take to
 reach the target IP address or URL and measure the latency between each hop. The tool
 prints out the associated IPs and latencies as it jumps through different hops.
 
