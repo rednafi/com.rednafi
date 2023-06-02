@@ -148,9 +148,9 @@ def traceroute(
     Args:
         dest_addr (str): The destination address.
         max_hops (int, optional): The maximum number of hops.
-        Defaults to 100.
+        Defaults to 64.
         timeout (float, optional): The timeout for receiving packets.
-        Defaults to 1.
+        Defaults to 2.
 
     Yields:
         Generator[tuple[str, float], None, None]: A generator that
