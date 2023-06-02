@@ -123,10 +123,11 @@ address of the first hop.
 5. Calculate the time delta between sending a packet and receiving the ICMP time
 exceeded message. Also, capture the address of the first hop and log the time delta and
 address to the console.
-6. In the next iteration, an empty packet with a TTL value of 2
-would be sent, repeating steps 1 through 5 until the `max_hops` is reached, usually 30.
+6. In the subsequent iterations, the TTL value will be incremented by 1 (2, 3, 4, ...)
+and the steps from 1 through 5 will be repeated until it reaches the `max_hops` value,
+which is set at 64.
 
-Here's the entire self-contained implementation. I ran it with Python 3.11:
+Here's the complete self-contained implementation. I tested it on Python 3.11:
 
 ```python
 # script.py
@@ -270,7 +271,7 @@ Hop  IP Address          Hostname                                          Time 
 
 * [Storytelling with traceroute][storytelling-with-traceroute]
 * [How traceroute works][how-traceroute-works]
-* [Traceroute machinery slide][testroute-slide]
+* [Traceroute machinery slide][traceroute-slide]
 
 [storytelling-with-traceroute]: https://www.youtube.com/watch?v=xW_ALxfop7Y
 [karla-burnett]: https://twitter.com/tetrakazi
