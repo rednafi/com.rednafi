@@ -277,4 +277,4 @@ Hop  IP Address          Hostname                                          Time 
 [karla-burnett]: https://twitter.com/tetrakazi
 [how-traceroute-works]: https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command
 [traceroute-workflow]: https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b
-[traceroute-slide]: http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.html
+[traceroute-slide]: http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm
