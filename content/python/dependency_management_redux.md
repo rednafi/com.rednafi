@@ -1,6 +1,6 @@
 ---
 title: Python dependency management redux
-date: 2023-06-12
+date: 2023-06-27
 tags:
     - Python
 ---
