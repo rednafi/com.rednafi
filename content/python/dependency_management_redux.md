@@ -290,7 +290,7 @@ You can also build and install the CLI with:
 pip install ".[dev]"
 ```
 
-Hatch also provides a `hatch publish` command to upload the package to PYPI. For a
+Hatch also provides a `hatch publish` command to upload the package to PyPI. For a
 complete reference, check out how I shipped another [CLI][rubric] following this
 workflow.
 
