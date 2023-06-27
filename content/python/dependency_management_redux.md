@@ -42,7 +42,7 @@ swallowed into the vortex of conflicting opinions in this space.
 ## Dependency management in applications
 
 Whether I'm working on a large Django monolith or exposing a microservice via FastAPI or
-Flask, whenever I'm writing an application, I want to be able to:
+Flask, while packaging an application, I want to be able to:
 
 * Store all project metadata, linter configs, and top-level dependencies in a
 `pyproject.toml` file following the [PEP 621] conventions.
@@ -51,7 +51,7 @@ Flask, whenever I'm writing an application, I want to be able to:
 specified in the TOML file, where the top-level and their transient dependencies will be
 pinned to specific versions.
 * Use vanilla `pip` to build the application hermetically from the locked dependencies
-specified in the requirements*.txt files.
+specified in the `requirements*.txt` files.
 
 The goal is to simply be able to run the following command to install all the pinned
 dependencies in a reproducible manner:
@@ -61,7 +61,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 ```
 
 [pip-tools] allows me to do exactly that. Suppose, you have an app where you're defining
-the top-level dependencies in a `pyproject.toml` file like this:
+the top-level dependencies in a canonical `pyproject.toml` file like this:
 
 ```toml
 [project]
@@ -90,12 +90,12 @@ where = ["app"]  # ["."] by default
 ```
 
 Here, following PEP-621 conventions, we've specified the app and dev dependencies in the
-`project.dependencies` and `project.optional-dependencies.dev` section respectively. Now
-in a virtual environment, install [pip-tools] and run the following commands:
+`project.dependencies` and `project.optional-dependencies.dev` sections respectively.
+Now in a virtual environment, install [pip-tools] and run the following commands:
 
 ```sh
-# This will pin the app and dev deps to a requirements*.txt files and
-# generate hashes for hermetic build
+# This will pin the app and dev deps to requirements*.txt files and
+# generate hashes for hermetic builds
 
 # Pin the app deps along with their build hashes
 pip-compile -o requirements.txt pyproject.toml \
@@ -154,14 +154,14 @@ black==23.3.0 \
 ```
 
 Once the lock files are generated, you're free to build the application in however way
-you see fit and the build process doesn't need to be aware of the existence of
-`pip-tools`. In the simplest case, it can just run `pip install` to build the
-application. Check out this working [application][fastapi-nano] that uses the workflow
+you see fit and the build process doesn't even need to be aware of the existence of
+`pip-tools`. In the simplest case, you can just run `pip install` to build the
+application. Check out this working [example][fastapi-nano] that uses the workflow
 explained in this section.
 
 ## Dependency management in libraries
 
-While packaging libraries, I pretty much want the same things as I've mentioned in the
+While packaging libraries, I pretty much want the same things mentioned in the
 application section. However, the story of dependency management in reusable libraries
 is a bit more hairy. Currently, there's no standard around a lock file and I'm not aware
 of a way to build artifacts from a plain `requirements.txt` file. For this purpose, my
