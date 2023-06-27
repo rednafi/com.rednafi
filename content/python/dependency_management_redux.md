@@ -39,7 +39,7 @@ in a single file. This made me want to rethink how I wanted to manage the depend
 without sailing against the current recommended standard while also not getting
 swallowed into the vortex of conflicting opinions in this space.
 
-## Dependency management in applications
+## Applications
 
 Whether I'm working on a large Django monolith or exposing a microservice via FastAPI or
 Flask, while packaging an application, I want to be able to:
@@ -159,7 +159,7 @@ you see fit and the build process doesn't even need to be aware of the existence
 application. Check out this working [example][fastapi-nano] that uses the workflow
 explained in this section.
 
-## Dependency management in libraries
+## Libraries
 
 While packaging libraries, I pretty much want the same things mentioned in the
 application section. However, the story of dependency management in reusable libraries
