@@ -298,6 +298,8 @@ workflow.
 
 * [Using pyproject.toml in your Django project - Peter Baumgartner][pyproject-in-django]
 * [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack][pip-tools-pyproject]
+* [Example application][fastapi-nano]
+* [Example library][rubric]
 
 [poetry]: https://python-poetry.org/docs/
 [pipenv]: https://pipenv.pypa.io/en/latest/
