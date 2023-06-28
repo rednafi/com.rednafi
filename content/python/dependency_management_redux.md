@@ -32,12 +32,12 @@ that's not typically my day-to-day focus. Here, I'll primarily delve into how I 
 dependencies when developing large-scale web apps and reusable libraries.
 
 In applications, I manage my dependencies with [pip] and [pip-tools], and for libraries,
-my preferred build backend is the default [hatch]. [PEP 621] attempts to standardize the
-process of storing project metadata in a `pyproject.toml` file, and I absolutely love
-the fact that now, I'll mostly be able to define all my configurations and dependencies
-in a single file. This made me want to rethink how I wanted to manage the dependencies
-without sailing against the current recommended standard while also not getting
-swallowed into the vortex of conflicting opinions in this space.
+my preferred build backend is [hatch]. [PEP 621] attempts to standardize the process of
+storing project metadata in a `pyproject.toml` file, and I absolutely love the fact that
+now, I'll mostly be able to define all my configurations and dependencies in a single
+file. This made me want to rethink how I wanted to manage the dependencies without
+sailing against the current recommended standard while also not getting swallowed into
+the vortex of conflicting opinions in this space.
 
 ## In applications
 
