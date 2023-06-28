@@ -202,7 +202,6 @@ The content of `cli.py` looks like this:
 import click
 
 
-# Simple cli command to show the version of the package
 @click.command()
 @click.version_option()
 def cli() -> None:
