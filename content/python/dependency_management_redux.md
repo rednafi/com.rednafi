@@ -187,7 +187,7 @@ However, it doesn't support lock files yet:
 In my experience, I haven't faced many issues regarding the lack of support for lock
 files while building reusable libraries. Your mileage may vary.
 
-Now let's say we're trying to package up a CLI that the following source structure:
+Now let's say we're trying to package up a CLI that has the following source structure:
 
 ```txt
 src
