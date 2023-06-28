@@ -205,7 +205,7 @@ import click
 # Simple cli command to show the version of the package
 @click.command()
 @click.version_option()
-def cli():
+def cli() -> None:
     """Simple cli command to show the version of the package"""
     click.echo("Hello from foo-cli!")
 
