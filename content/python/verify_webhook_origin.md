@@ -206,7 +206,10 @@ async def receive_webhook(request: Request) -> JSONResponse:
     expected_signature = expected_signature.hexdigest()
 
     # Compare the expected signature with the incoming signature.
-    if secrets.compare_digest(x_payload_signature, expected_signature) is False:
+    if (
+        secrets.compare_digest(x_payload_signature, expected_signature)
+        is False
+    ):
         return JSONResponse(
             {"error": "Invalid signature"},
             status_code=HTTPStatus.UNAUTHORIZED,

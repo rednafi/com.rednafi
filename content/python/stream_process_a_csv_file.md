@@ -146,7 +146,8 @@ def process_row(row: Mapping[str, str | int]) -> None:
 
     # Do some processing.
     print(
-        f"Processed row {row['lineno']}:" f"a={float_a:.15f}, b={float_b:.15f}",
+        f"Processed row {row['lineno']}:"
+        f"a={float_a:.15f}, b={float_b:.15f}",
     )
 
     # Mimick some other heavy processing.

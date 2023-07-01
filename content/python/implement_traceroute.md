@@ -166,7 +166,9 @@ def traceroute(
 
         # Create a UDP socket connection for sending packets
         tx = stack.enter_context(
-            socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+            socket.socket(
+                socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP
+            )
         )
 
         # Set the timeout for receiving packets
