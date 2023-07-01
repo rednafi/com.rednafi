@@ -168,21 +168,21 @@ of a way to build artifacts from a plain `requirements.txt` file. For this purpo
 preferred build backend is [hatch]. Mostly because it follows the latest standards
 formalized by the associated PEPs. From the FAQ section of the hatch docs:
 
-> Q: What is the risk of lock-in?
+> *Q: What is the risk of lock-in?*
 
-> A: Not much! Other than the plugin system, everything uses Python's established
+> *A: Not much! Other than the plugin system, everything uses Python's established
 > standards by default. Project metadata is based entirely on [PEP 621]/[PEP 631], the
 > build system is compatible with [PEP 517]/[PEP 660], versioning uses the scheme
 > specified by [PEP 440], dependencies are defined with [PEP 508] strings, and
-> environments use virtualenv.
+> environments use virtualenv.*
 
 However, it doesn't support lock files yet:
 
-> The only caveat is that currently there is no support for re-creating an environment
+> *The only caveat is that currently there is no support for re-creating an environment
 > given a set of dependencies in a reproducible manner. Although a standard lock file
 > format may be far off since [PEP 665] was rejected, resolving capabilities are coming
 > to pip. When that is stabilized, Hatch will add locking functionality and dedicated
-> documentation for managing applications.
+> documentation for managing applications.*
 
 In my experience, I haven't faced many issues regarding the lack of support for lock
 files while building reusable libraries. Your mileage may vary.
