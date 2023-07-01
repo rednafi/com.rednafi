@@ -1,6 +1,6 @@
 ---
 title: Escaping the template pattern hellscape in Python
-date: 2023-06-28
+date: 2023-07-01
 tags:
     - Python
 ---
