@@ -479,7 +479,7 @@ to do so.
 
 ## Prior arts
 
-* [Template patter][template pattern]
+* [Template pattern][template pattern]
 * [Composition over inheritance - Brandon Rhodes][composition over inheritance]
 * [Subclassing, composition, Python, and you - Hynek Schlawack][subclassing, composition, python, and you]
 * [Subclassing in Python redux][subclassing in python redux]
