@@ -152,7 +152,7 @@ Here's the first issue: how do we even know which methods to implement and which
 methods we get for free? You can consult the [documentation][sequence] and learn that
 `__getitem__` and `__len__` are the abstract methods that subclasses are expected to
 implement. In return, the base `Sequence` class gives you `__contains__`, `__iter__`,
-`__reversed__`, `index`, and `count` for as mixin methods. You can also print out the
+`__reversed__`, `index`, and `count` as mixin methods. You can also print out the
 abstract methods by accessing the `Sequence.__abstractmethod__` attribute. Sure, you're
 getting a lot of concrete methods for free, but suddenly you're dependent on some
 out-of-band information to learn about the behavior of your specialized `CustomSequence`
@@ -496,5 +496,5 @@ to do so.
 [webhook]: https://zapier.com/blog/what-are-webhooks/
 [structural subtyping]: https://rednafi.com/python/structural_subtyping/
 [i want a new duck]: https://blog.glyph.im/2020/07/new-duck.html
-[mypy]: https://mypy-lang.org/
+[mypy]: https://mypy-l`ang.org/
 [strategy pattern]: https://refactoring.guru/design-patterns/strategy/python/example
