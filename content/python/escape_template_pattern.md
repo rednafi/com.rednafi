@@ -212,11 +212,11 @@ suboptimal default.
 
 ### SRP violation & goose chase program flow
 
-The biggest complaint I have against the template pattern is how it encourages the base
-class to do too many things at once. I can endure poor discoverability of public APIs
-and namespace pollution to some extent, but when a class tries to do too many things
-simultaneously, it eventually exhibits the tendency to give birth to [God Objects];
-breaching the SRP (Single Responsibility Principle).
+The biggest complaint I have against the template pattern is how it encourages the
+baseclass to do too many things at once. I can endure poor discoverability of public
+APIs and namespace pollution to some extent, but when a class tries to do too many
+things simultaneously, it eventually exhibits the tendency to give birth to
+[God Objects]; breaching the SRP (Single Responsibility Principle).
 
 Intentionally violating the SRP rarely fosters good results, and in this case, the
 baseclass defines both concrete and abstract methods. Not only that, the base expects
