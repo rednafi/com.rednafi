@@ -58,7 +58,7 @@ This pattern enables the sharing of concrete method implementations with subclas
 However, the concrete methods of the baseclass are only valid when the user inherits
 from the base and implements the abstract methods. Attempting to instantiate the `Base`
 class without implementing the abstract methods will result in a `TypeError`. Only the
-subclass can be initialized once all the abstract methods have been implemented.
+`Sub` class can be initialized once all the abstract methods have been implemented.
 
 Observe this example:
 
