@@ -497,6 +497,6 @@ to do so.
 [webhook]: https://zapier.com/blog/what-are-webhooks/
 [structural subtyping]: https://rednafi.com/python/structural_subtyping/
 [i want a new duck]: https://blog.glyph.im/2020/07/new-duck.html
-[mypy]: https://mypy-l`ang.org/
+[mypy]: https://mypy-lang.org/
 [strategy pattern]: https://refactoring.guru/design-patterns/strategy/python/example
 [end of object inheritance]: https://www.youtube.com/watch?v=3MNVP9-hglc
