@@ -55,7 +55,7 @@ for the abstract methods.
 * Users then utilize the concrete methods defined in the ABC class.
 
 This pattern enables the sharing of concrete method implementations with subclasses.
-However, the concrete methods of the base class are only valid when the user inherits
+However, the concrete methods of the baseclass are only valid when the user inherits
 from the base and implements the abstract methods. Attempting to instantiate the `Base`
 class without implementing the abstract methods will result in a `TypeError`. Only the
 subclass can be initialized once all the abstract methods have been implemented.
@@ -109,7 +109,7 @@ it just prints a statement. By subclassing `Base` and implementing `abstract_met
 pattern is to define a common interface through the `Base` class, with the expectation
 that subclasses will implement specific behavior by overriding the abstract methods,
 while still providing a way to call those methods through the concrete methods defined
-in the base class. This seemingly innocuous and often convenient bi-directional
+in the baseclass. This seemingly innocuous and often convenient bi-directional
 relationship between the base and subclass tends to become infectious and introduces
 complexity into all the subclasses that inherit from the base.
 
@@ -199,14 +199,14 @@ the following result. I've removed the common attributes that every class inheri
 ]
 ```
 
-From the above list, it's evident that all the methods from the base class and the
-subclass live in the same namespace. The moment you're inheriting from some base class,
+From the above list, it's evident that all the methods from the baseclass and the
+subclass live in the same namespace. The moment you're inheriting from some baseclass,
 you have no control over what that class is bringing over to your subclass's namespace
 and effectively polluting it. It's like a more sneaky version of `from foo import *`.
 
 This flat namespacing makes it hard to understand which method is coming from where. In
 the above case, without the annotations, you'd have a hard time discerning between the
-methods that you implemented and the alien methods from the base class. This isn't a
+methods that you implemented and the alien methods from the baseclass. This isn't a
 cardinal sin in the Python realm if that's what you want, but it's certainly a
 suboptimal default.
 
@@ -303,7 +303,7 @@ Next, we write an abstract `BaseWebhook` class that inherits from `abc.ABC`. Thi
 serves as a template for the webhook functionality and declares two abstract methods:
 `get_message()` and `get_url()`. Type annotations are used to indicate the return types
 of these methods. Any subclasses derived from `BaseWebhook` must implement these
-abstract methods. The `send()` method, implemented in the base class, uses the concrete
+abstract methods. The `send()` method, implemented in the baseclass, uses the concrete
 implementations of the abstract methods to perform webhook dispatching. In this case, we
 simulate the HTTP POST functionality by printing the message and destination URL.
 
