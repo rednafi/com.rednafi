@@ -110,7 +110,7 @@ pattern is to define a common interface through the `Base` class, with the expec
 that subclasses will implement specific behavior by overriding the abstract methods,
 while still providing a way to call those methods through the concrete methods defined
 in the baseclass. This seemingly innocuous and often convenient bi-directional
-relationship between the base and subclass tends to become infectious and introduces
+relationship between the base and sub class tends to become infectious and introduces
 complexity into all the subclasses that inherit from the base.
 
 ## The dark side of the moon
