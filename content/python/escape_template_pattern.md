@@ -484,6 +484,7 @@ to do so.
 * [Subclassing, composition, Python, and you - Hynek Schlawack][subclassing, composition, python, and you]
 * [Subclassing in Python redux][subclassing in python redux]
 * [I want a new duck - Glyph][i want a new duck]
+* [End of object inheritance & the beginning of a new modularity - Augie Fackler, Nathaniel Manista][end of object inheritance]
 
 [template pattern]: https://refactoring.guru/design-patterns/template-method/python/example
 [composition over inheritance]: https://python-patterns.guide/gang-of-four/composition-over-inheritance/
@@ -498,3 +499,4 @@ to do so.
 [i want a new duck]: https://blog.glyph.im/2020/07/new-duck.html
 [mypy]: https://mypy-l`ang.org/
 [strategy pattern]: https://refactoring.guru/design-patterns/strategy/python/example
+[end of object inheritance]: https://www.youtube.com/watch?v=3MNVP9-hglc
