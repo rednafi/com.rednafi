@@ -56,12 +56,11 @@ for the abstract methods.
 
 This pattern enables the sharing of concrete method implementations with subclasses.
 However, the concrete methods of the baseclass are only valid when the user inherits
-from the base and implements the abstract methods. In the example below, attempting to
-instantiate the `Base` class without implementing the abstract methods will result in a
-`TypeError`. Only the `Sub` class can be initialized once all the abstract methods have
-been implemented.
+from the base and implements the abstract methods. Attempting to instantiate the
+baseclass without implementing the abstract methods will result in a `TypeError`. Only
+the subclass can be initialized once all the abstract methods have been implemented.
 
-Observe this:
+Observe this example:
 
 ```python
 from abc import ABC, abstractmethod
