@@ -17,7 +17,7 @@ headaches as the codebase starts to grow.
 
 This isn't an attempt to explain why you should prefer composition over inheritance
 (although you should), as it's a vast topic and much has been said regarding this. Also,
-only after a few years of reading concomitant literature and making enough mistakes in
+only after a few years of reading concomitant literatures and making enough mistakes in
 real-life codebases, it dawned on me that opting for inheritance as the default option
 leads to a fragile design. So I won't even attempt to tackle that in a single post and
 will refer to a few fantastic [prior arts](#prior-arts) that proselytized me to the
