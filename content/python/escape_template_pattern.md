@@ -3,6 +3,7 @@ title: Escaping the template pattern hellscape in Python
 date: 2023-07-01
 tags:
     - Python
+weight: 100
 ---
 
 Over the years, I've used the [template pattern] across multiple OO languages with

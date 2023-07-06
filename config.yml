@@ -2,6 +2,7 @@ baseURL: "https://rednafi.com"
 title: Redowan's Reflections
 paginate: 20
 theme: PaperMod
+pluralizelisttitles: false
 
 enableRobotsTXT: true
 buildDrafts: false
@@ -47,7 +48,7 @@ params:
   disableThemeToggle: true
   ShowReadingTime: false
   ShowShareButtons: false
-  ShowPostNavLinks: false
+  ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: false
@@ -87,7 +88,6 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Ohe"
     Content: >
       Ohe, I'm Redowan Delowar—a software carpenter with a focus on automation,
       networking, I/O, and databases. I regularly rant and write about Python,
@@ -147,10 +147,10 @@ menu:
       name: archives
       url: /archives/
       weight: 30
-    - identifier: elsewhere
-      name: elsewhere
-      url: /elsewhere/
-      weight: 40
+    - identifier: mélange
+      name: mélange
+      title: mélange
+      url: /mélange/
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
