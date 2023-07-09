@@ -61,7 +61,7 @@ So far, performance hasn't been a bottleneck at all, and I can always resort to 
 apparatus if I need to. However, for the work that I usually do, the device is holding
 up surprisingly well, and I knew exactly what I'd be getting when I picked the Air over
 the 14" Pro. One big caveat is that the I/O situation is less than ideal as it only has
-two USB-C ports, a 3.5mm headphone jack, and a MagSafe power port—that's it. Also, it
+two USB-C ports, a 3.5 mm headphone jack, and a MagSafe power port—that's it. Also, it
 only supports a single monitor, but that's rarely an issue since where would I even get
 a monitor in an Airbnb?
 
