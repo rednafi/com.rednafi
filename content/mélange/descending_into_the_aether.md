@@ -30,7 +30,7 @@ But here's the thing, if you're not down with the base model and don't mind roll
 a 14" screen, the 14" Pro is actually a better deal. It's got better I/O, a slightly
 better screen, and definitely better speakers. Personally, I already have all those perks
 with my 16" machine, so my sights were strictly set on the aesthetics and portabitly
-aspects of the device and boy, it didn't disappoint. I went for the 16/512 config and
+aspects of the device. And boy, it didn't disappoint. I went for the 16/512 config and
 snagged it for around 1700 USD.
 
 > *This isn't a product review, and I honestly don't know a squat about reviewing
