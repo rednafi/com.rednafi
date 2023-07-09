@@ -16,8 +16,8 @@ since, it's been my primary machine for both personal and work stuff. I love how
 machine strikes a decent balance between power and portability. However, I often joke
 that this chonky boy is just a pound shy of being an [ENIAC]. It's a beast of a machine
 when you need all that power, but certainly isn't the most convenient thing to lug
-around when you're on airplanes. I work fully remote, but can't get any work done while
-traveling and rarely ever need to tap into the full power this thing offers.
+around while flying. I work fully remote, but can't get any work done while traveling and
+rarely ever need to tap into the full power this thing offers.
 
 So I wanted to find an excuse to have separate machines for work and when I'm out and
 about. Sure, I could've gone for a 14" Pro to make it more portable and all, but here's
