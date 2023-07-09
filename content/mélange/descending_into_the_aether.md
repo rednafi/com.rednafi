@@ -45,17 +45,17 @@ barely noticeable, and the Air still rocks a larger-than-life trackpad. The scre
 a bit less bright than its big brother, but that isn't a problem since I mostly work
 indoors. For the price, the screen is terrific, and I don't have any complaints about it.
 Oddly enough, I found the lack of external speaker grills aesthetically pleasing, and it
-still gets plenty loud; noticeably louder than the 13" Air.
+still gets plenty loud; noticeably so than the 13" Air.
 
-In terms of external looks, hands down, the Air looks much better than the Pros because
-of its significantly slimmer body. The 15" Air is barely half as thick and weighs half as
+In terms of appearance, hands down, the Air looks much better than the Pros because of
+its significantly slimmer body. The 15" Air is barely half as thick and weighs half as
 much as the Pros. Did I mention it weighs half as much as the bigger Pro machine? Now,
 since there's no fan and the whole SoC is passively cooled, the performance does take a
 hit when compared with an actively cooled machine. My workflow on this device includes
 writing stuff on VSCode, running 3-10 Docker containers, developing web applications,
-and the usual lightweight browsing. Turns out the 8-core M2 can handle all of those like
-a champ and some more. Also, the 16 GB memory gives me enough leeway to do serious
-development work every now and then should I need to.
+and the usual lightweight browsing. Turns out the passively cooled 8-core M2 can handle
+all of those like a champ and some more. Also, the 16 GB memory gives me enough leeway
+to do serious development work every now and then should I need to.
 
 So far, performance hasn't been a bottleneck at all, and I can always resort to the 16"
 apparatus if I need to. However, for the work that I usually do, the device is holding
@@ -65,11 +65,11 @@ two USB-C ports, a 3.5mm headphone jack, and a MagSafe power port—that's it. A
 only supports a single monitor, but that's rarely an issue since where would I even get
 a monitor in an Airbnb?
 
-Finally, I won't even talk about the good battery life, as the Airs are famous for it.
-The 16" MBP already has great battery life, and the Air matches that with a smaller
-battery due to having less powerful but more efficient internals. Overall, taking into
-account my [recency bias], this is certainly one of—if not the most—prudent tech
-purchases that I made this year!
+Finally, I won't even talk about the insanely good battery life, as the Airs have been
+the reigning champion in that department for years. The 16" MBP already has great
+battery life, and the Air matches that with a smaller battery due to having less
+powerful but more efficient internals. Overall, even considering my [recency bias], this
+is certainly one of—if not the most—prudent tech purchases that I made this year!
 
 
 [eniac]: https://en.wikipedia.org/wiki/ENIAC
