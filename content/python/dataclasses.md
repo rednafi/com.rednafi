@@ -266,7 +266,8 @@ class CartesianPoint:
     z: float
 ```
 
-If you try to mutate the any of the attributes of the above class, it will raise `FrozenInstanceError`.
+If you try to mutate the any of the attributes of the above class, it will raise
+`FrozenInstanceError`.
 
 
 ```python
