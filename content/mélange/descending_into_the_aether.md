@@ -6,8 +6,7 @@ tags:
 ---
 
 <img
-    src="https://github.com/rednafi/rednafi.com/assets/
-        30027932/23b57045-c975-4d69-ab41-3634d0f4581c"
+    src="https://user-images.githubusercontent.com/30027932/252213261-01adc640-3bcf-46d8-8f40-dc506e0cb493.jpg"
 width="800px">
 </img>
 
