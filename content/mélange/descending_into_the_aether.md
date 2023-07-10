@@ -52,7 +52,7 @@ much as the Pros. Did I mention it weighs half as much as the bigger Pro machine
 since there's no fan and the whole SoC is passively cooled, the performance does take a
 hit when compared with an actively cooled machine. My workflow on this device includes
 writing stuff on VSCode, running 3-10 Docker containers, developing web applications,
-and the usual lightweight browsing. Turns out the passively cooled 8-core M2 can handle
+and the usual lightweight browsing. Turns out, the passively cooled 8-core M2 can handle
 all of those like a champ and some more. Also, the 16 GB memory gives me enough leeway
 to do serious development work every now and then should I need to.
 
