@@ -15,7 +15,7 @@ Around a year ago, I ditched my fancy Linux rig for a beefed-up 16" MacBook Pro 
 since, it's been my primary machine for both personal and work stuff. I love how this
 machine strikes a decent balance between power and portability. However, I often joke
 that this chonky boy is just a pound shy of being an [ENIAC]. It's a beast of a machine
-when you need all that power, but certainly isn't the most convenient thing to lug
+when you need all that power, but certainly isn't the most convenient contraption to lug
 around while flying. I work fully remote, but can't get any work done while traveling and
 rarely ever need to tap into the full power this thing offers.
 
@@ -62,8 +62,8 @@ apparatus if I need to. However, for the work that I usually do, the device is h
 up surprisingly well, and I knew exactly what I'd be getting when I picked the Air over
 the 14" Pro. One big caveat is that the I/O situation is less than ideal as it only has
 two USB-C ports, a 3.5 mm headphone jack, and a MagSafe power port—that's it. Also, it
-only supports a single monitor, but that's rarely an issue since where would I even get
-a monitor in an Airbnb?
+only supports a single monitor, but that's rarely an issue because where would I even
+get a monitor in an Airbnb?
 
 Finally, I won't even talk about the insanely good battery life, as the Airs have been
 the reigning champion in that department for years. The 16" MBP already has great
