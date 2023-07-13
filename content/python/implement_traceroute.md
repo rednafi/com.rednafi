@@ -161,7 +161,9 @@ def traceroute(
     with ExitStack() as stack:
         # Create an ICMP socket connection for receiving packets
         rx = stack.enter_context(
-            socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+            socket.socket(
+                socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP
+            )
         )
 
         # Create a UDP socket connection for sending packets
@@ -217,7 +219,9 @@ def main() -> None:
 
     # Print the traceroute header
     print(f"Traceroute to {dest_name} ({dest_addr})")
-    print(f"{'Hop':<5s}{'IP Address':<20s}{'Hostname':<50s}{'Time (ms)':<10s}")
+    print(
+        f"{'Hop':<5s}{'IP Address':<20s}{'Hostname':<50s}{'Time (ms)':<10s}"
+    )
     print("-" * 90)
 
     # Iterate over the traceroute results and print each hop information

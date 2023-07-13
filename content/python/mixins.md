@@ -1318,9 +1318,7 @@ class BitSet(MutableSet):
         return sum(1 for elem in self)
 
     def __repr__(self):
-        return (
-            f"{type(self).__name__}(limit={self.limit}, iterable={list(self)})"
-        )
+        return f"{type(self).__name__}(limit={self.limit}, iterable={list(self)})"
 
     def _from_iterable(self, iterable):
         return type(self)(self.limit, iterable)
