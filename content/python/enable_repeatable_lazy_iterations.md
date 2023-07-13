@@ -118,9 +118,9 @@ If you run the for-loop again on the number instance, you'll see that the snippe
 print the same numbers again. Here, instantiating the `NumberGen` class creates a
 `NumberGen` instance that is not a generator per se, but can return a generator if you
 call the `iter()`` function on the instance. When you run the for loop on the instance, it
-runs the underlying `__iter__`` method to produce a new generator that the loop can
-iterate through. This allows you to run the for-loop multiple times on the instance, since
-each run creates a new generator that the loop can consume.
+runs the underlying `__iter__` method to produce a new generator that the loop can iterate
+through. This allows you to run the for-loop multiple times on the instance, since each
+run creates a new generator that the loop can consume.
 
 > *A generator can still only be consumed once but each time you're running a new
 > for-loop on the above instance, the `__iter__` method on it gets called and the method
