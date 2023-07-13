@@ -1,5 +1,5 @@
 ---
-title: Enabling repeated lazy iterations in Python
+title: Enabling repeatable lazy iterations in Python
 date: 2023-07-13
 tags:
     - TIL
