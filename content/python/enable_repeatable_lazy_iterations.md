@@ -10,10 +10,10 @@ The current title of this post is probably incorrect and may even be misleading.
 hard time coming up with a suitable name for it. But the idea goes like this: sometimes
 you might find yourself in a situation where you need to iterate through a generator more
 than once. Sure, you can use an iterable like a tuple or list to allow multiple
-iterations, but if the number of elements is large, that'll cause an OOM. On the other
-hand, once you have already consumed a generator, you'll need to restart it if you want
-to go through it again. This behavior is common in pretty much every programming language
-that supports the generator construct.
+iterations, but if the number of elements is large, that'll cause an OOM error. On the
+other hand, once you have already consumed a generator, you'll need to restart it if you
+want to go through it again. This behavior is common in pretty much every programming
+language that supports the generator construct.
 
 So, in the case where a function returns a generator and you have already consumed its
 values, you'll have to call the function again to generate a new instance of the generator
