@@ -218,4 +218,11 @@ Finally, the `procs` list is iterated through and `proc.communicate()` is called
 `sha256sum`, which is the hash of the random input string. The hash is then decoded,
 stripped, and printed to the console.
 
+
+## References
+
+* [subprocess]
+* [Effective Python - Item 52 - Brett Slatkin][effective python]
+
 [subprocess]: https://docs.python.org/3/library/subprocess
+[effective python]: https://effectivepython.com/
