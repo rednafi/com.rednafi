@@ -226,7 +226,7 @@ stripped, and printed to the console.
 
 ## References
 
-* [subprocess]
+* [The subprocess module][subprocess]
 * [Effective Python - Item 52 - Brett Slatkin][effective python]
 
 [subprocess]: https://docs.python.org/3/library/subprocess
