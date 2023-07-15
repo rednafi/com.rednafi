@@ -36,14 +36,19 @@ drwxr-xr-x@  4 rednafi  staff   128B Jul  8 12:10 .github
 ...
 ```
 
-This works great when working with simple and synchronous workflows, but I got curious to
-see how I could emulate that in Python. Turns out you can do that easily with
-`subprocess.Popen`. This function allows for more control over the subprocess. It starts
-the process and returns a `Popen` object immediately, without waiting for the command to
-complete. This allows you to continue executing code while the subprocess runs in
-parallel. `Popen` has methods like `poll()` to check if the process has finished, `wait()`
-to wait for completion, and `communicate()` for interacting with stdin/stdout/stderr. For
-example:
+This works great when you're carrying out simple and synchronous workflows, but it doesn't
+offer enough flexibility when you need to fork multiple processes and want the processes
+to run in parallel. I was working on a project where I wanted to glue a bunch of programs
+together with Python and needed a way to run composite shell commands with pipes, e.g.
+`echo 'foo\nbar' | grep 'foo'`. So I got curious to see how I could emulate that in
+Python.
+
+Turns out you can do that easily with `subprocess.Popen`. This function allows for more
+control over the subprocess. It starts the process and returns a `Popen` object
+immediately, without waiting for the command to complete. This allows you to continue
+executing code while the subprocess runs in parallel. `Popen` has methods like `poll()` to
+check if the process has finished, `wait()` to wait for completion, and `communicate()`
+for interacting with stdin/stdout/stderr. For example:
 
 ```python
 import subprocess
