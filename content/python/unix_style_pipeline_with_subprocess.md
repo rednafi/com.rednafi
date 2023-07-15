@@ -129,7 +129,7 @@ UID PID PPID C STIME   TTY   TIME     CMD
 ```
 
 The `ps -ef` command outputs a full list of running processes, then the pipe symbol sends
-that output as input to the `head -5`` command, which reads the first 5 lines from that
+that output as input to the `head -5` command, which reads the first 5 lines from that
 input and prints just those, essentially slicing off the top 5 processes. We can emulate
 this in Python as follows:
 
