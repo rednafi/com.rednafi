@@ -9,10 +9,10 @@ tags:
 
 Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and
 run arbitrary commands in your system. However, the documentation usually encourages you
-to only use the [subprocess] module for creating and managing child processes. The
-`subprocess` module exposes a high-level `run()` function that provides a simple interface
-for running a subprocess and waiting for it to complete. It accepts the command to run as
-a list of strings, starts the subprocess, waits for it to finish, and then returns a
+to use the [subprocess] module for creating and managing child processes. The `subprocess`
+module exposes a high-level `run()` function that provides a simple interface for running
+a subprocess and waiting for it to complete. It accepts the command to run as a list of
+strings, starts the subprocess, waits for it to finish, and then returns a
 `CompletedProcess` object with information about the result. For example:
 
 ```python
