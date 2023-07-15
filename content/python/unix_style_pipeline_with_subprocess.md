@@ -79,7 +79,7 @@ you need them. The goal here is to ping a couple of IP addresses in parallel usi
 subprocess module. First, it creates an empty list to store the processes. Then it loops
 through the IPs, printing a message and kicking off a ping for each one using `Popen()` so
 they run asynchronously in the background. The `Popen` objects get appended to the
-`processes` list.
+`procs` list.
 
 After starting the pings, it simulates doing other work by sleeping for a second. Then it
 loops through the processes again, waits for each one to finish with `communicate()`, and
