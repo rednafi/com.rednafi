@@ -7,20 +7,20 @@ tags:
 
 How come I didn't know about the `python -m pydoc` command before today!
 
-> It lets you inspect the docstrings of any modules, classes, functions, or methods in
-> Python.
+> *It lets you inspect the docstrings of any modules, classes, functions, or methods in
+> Python.*
 
 I'm running the commands from a Python 3.10 virtual environment but it'll work on any
 Python version. Let's print out the docstrings of the `functools.lru_cache` function.
 Run:
 
-```
+```sh
 python -m pydoc functools.lru_cache
 ```
 
 This will print the following on the console:
 
-```
+```txt
 Help on function lru_cache in functools:
 
 functools.lru_cache = lru_cache(maxsize=128, typed=False)
@@ -46,7 +46,7 @@ functools.lru_cache = lru_cache(maxsize=128, typed=False)
 
 Works for third party tools as well:
 
-```
+```sh
 python -m pydoc typing_extensions.ParamSpec
 ```
 
@@ -72,19 +72,19 @@ follows:
 
 To inspect the module, run:
 
-```
+```sh
 python -m pydoc src
 ```
 
 To inspect the `greetings` function only, run:
 
-```
+```sh
 python -m pydoc src.greetings
 ```
 
 It'll return:
 
-```
+```txt
 Help on function greetings in src:
 
 src.greetings = greetings(name: str) -> None
@@ -99,7 +99,7 @@ src.greetings = greetings(name: str) -> None
 Instead of inspecting the docstrings one by one, you can also pull up all of them in the
 current Python path and serve them as HTML pages. To do so, run:
 
-```
+```sh
 python -m pydoc -b
 ```
 
