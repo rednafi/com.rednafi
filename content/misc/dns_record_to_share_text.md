@@ -47,16 +47,16 @@ In the morning glad I see;
 My foe outstretched beneath the tree.
 ```
 
-You can also encode image data and retrieve it in a similar manner. Plus, if your data is
-too large to fit in a single record, you can split it into multiple records and
-concatenate them on the receiving end.
+You can also encode image data and retrieve it in a similar manner. If your data is too
+large to fit in a single record, you can split it into multiple records and concatenate
+them on the receiving end.
 
 However, there are some limitations to this approach. [RFC 1035] says that the total size
 of a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual
 text value in a single TXT record is 255 bytes or characters. So there isn't much room to
 tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks,
 injection issues, cache poisoning, and DoS. Protocols like DANE and DNSSEC aim to address
-some of these concerns but their adoption is spotty at best. Still, I found the concept of
+some of these concerns but their adoption is spotty at best. Still, I found the idea of
 using DNS records as a simple database quite clever!
 
 ## References
