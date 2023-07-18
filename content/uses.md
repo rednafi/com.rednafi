@@ -2,7 +2,6 @@
 title: Uses
 layout: post
 summary: Tools in my repertoire
-ShowToc: false
 editPost:
     disabled: true
 hideMeta: true
