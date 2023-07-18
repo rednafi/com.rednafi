@@ -59,3 +59,14 @@ I like neo-grotesque fonts.
 ### Browser
 
 * Chrome
+
+### Browser extensions
+
+* ublock origin
+* Bitwarden
+* Dark reader
+
+### Password manager
+
+* iCloud Keychain
+* Bitwarden
