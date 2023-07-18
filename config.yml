@@ -63,7 +63,7 @@ params:
   tocopen: false
   hideFooter: true
   ShowAllPagesInArchive: true
-  ShowFullTextinRSS: true
+  ShowFullTextinRSS: false
   mainSections:
     - databases
     - javascript
@@ -100,7 +100,7 @@ params:
     - name: github
       url: "https://github.com/rednafi"
     - name: "rss"
-      url: "https://rednafi.com/sitemap.xml"
+      url: "https://rednafi.com/index.xml"
 
   analytics:
     google:
