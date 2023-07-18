@@ -18,17 +18,17 @@ Keep it simple, silly!
 * Macbook Air (M2 15" 16/256)
 * iPad Air (M1 8/64)
 
-## Phone
+### Phone
 
 * iPhone 14 Plus (6/128)
 * OnePlus Nord N20 5G
 
-## Audio
+### Audio
 
 * AirPod Pro 2
 * Xiaomi Mi In-Ear Basic
 
-## Monitor
+### Monitor
 
 * Dell 27 4K UHD - S2721QS (1x)
 
