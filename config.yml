@@ -18,8 +18,8 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >
-    Ohe, I'm Redowan Delowar—a software carpenter with a focus on automation,
-    networking, I/O, and databases. I regularly rant and write about Python,
+    Ohe, I'm Redowan Delowar—a software tinkerer with a focus on automation,
+    networking, I/O, and databases. I sporadically rant and write about Python,
     JavaScript, Go, SQL, and the broader landscape of software in general.
   keywords: [
     # Meta
@@ -45,16 +45,16 @@ params:
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
-  disableThemeToggle: true
+  disableThemeToggle: false
   ShowReadingTime: false
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
-  disableSpecial1stPost: true
+  disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
   hidemeta: false
@@ -69,7 +69,6 @@ params:
     - javascript
     - misc
     - python
-    - random
     - typescript
 
   assets:
@@ -89,8 +88,8 @@ params:
   # home-info mode
   homeInfoParams:
     Content: >
-      Ohe, I'm Redowan Delowar—a software carpenter with a focus on automation,
-      networking, I/O, and databases. I regularly rant and write about Python,
+      Ohe, I'm Redowan Delowar—a software tinkerer with a focus on automation,
+      networking, I/O, and databases. I sporadically rant and write about Python,
       JavaScript, Go, SQL, and the broader landscape of software in general.
 
   socialIcons:
@@ -139,18 +138,34 @@ menu:
       name: search
       url: /search/
       weight: 10
+
     - identifier: tags
       name: tags
       url: /tags/
       weight: 20
+
     - identifier: archives
       name: archives
       url: /archives/
       weight: 30
-    - identifier: mélange
-      name: mélange
-      title: mélange
-      url: /mélange/
+
+    - identifier: zephyr
+      name: zephyr
+      title: zephyr
+      url: /zephyr/
+      weight: 40
+
+    - identifier: uses
+      name: uses
+      title: uses
+      url: /uses/
+      weight: 50
+
+    # - identifier: about
+    #   name: about
+    #   title: about
+    #   url: /about/
+    #   weight: 60
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
