@@ -155,12 +155,6 @@ menu:
       url: /zephyr/
       weight: 40
 
-    - identifier: uses
-      name: uses
-      title: uses
-      url: /uses/
-      weight: 50
-
     # - identifier: about
     #   name: about
     #   title: about
