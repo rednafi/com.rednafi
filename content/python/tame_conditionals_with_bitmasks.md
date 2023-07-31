@@ -33,13 +33,13 @@ class Client:
 The business logic requires that the system must abide by the following rules while
 sending notifications:
 
-* If only `email` is populated, send email.
-* If only `url` is populated, send webhook.
-* If only `address` is populated, send postal mail.
-* If `email` and `url` are populated, send email and webhook.
-* If `email` and `address` are populated, send only email.
-* If `url` and `address` are populated, send only webhook.
-* If all three are populated, send email and webhook.
+* If only `email` is populated, send an email.
+* If only `url` is populated, send a webhook.
+* If only `address` is populated, send a postal mail.
+* If `email` and `url` are populated, send an email and a webhook.
+* If `email` and `address` are populated, only send an email.
+* If `url` and `address` are populated, only send a webhook.
+* If all three are populated, send both an email and a webhook.
 * At least one attribute must be populated, or it's an error.
 
 Notice how the business logic wants to minimize sending notifications via postal mail.
