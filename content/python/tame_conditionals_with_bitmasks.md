@@ -191,7 +191,7 @@ is pretty much all we need to know to tame the twisted conditional branching nec
 by the business logic. Check out this incredibly in-depth [article] from Real Python on
 this topic if you want to dig deeper into bitwise operations.
 
-## Trimming conditional branches with flags
+## Pruning conditional branches with flags
 
 With all the intros and primers out of the way, we can now start working towards making
 the `notify` function more tractable and testable. We'll do that in 3 phases:
