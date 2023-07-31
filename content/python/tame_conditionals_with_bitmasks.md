@@ -44,7 +44,7 @@ sending notifications:
 
 Notice how the business logic wants to minimize sending notifications via postal mail.
 Postal mails are expensive and will only be sent if `address` is the only attribute on the
-`Client` instance. In any other cases, email and webhooks are preferred.
+`Client` instance. In any other cases, emails and webhooks are preferred.
 
 ## First shot
 
@@ -110,7 +110,7 @@ if client.email and not (client.url or client.address):
 ```
 
 However, that still doesn't reduce the number of branches. Bitmasks can help us to get out
-of this sinkhole.
+of this pothole.
 
 ## A quick primer on bitwise operations & bitmasking
 
@@ -139,7 +139,7 @@ is the number of positions shifted.
 * **Right shift (>>)**: Shifts the bits of a number to the right by a specified number of
 positions. Zeros are shifted in on the left. Equivalent to integer division by `2^n`.
 
-Here is an example displaying these operators:
+Here's an example displaying these operators:
 
 ```python
 a = 60  # 60    = 0011 1100
@@ -156,7 +156,7 @@ Bitmasks are integers that represent a set of flags using bits as boolean values
 Bitmasking uses bitwise operators to manipulate and access these flags. A common use of
 bitmasks is to compactly store multiple boolean values or options in a single integer,
 where each bit position has a specific meaning if it is `1`. In the next section, we'll
-use this capability to simplify the conditionals of the `notify` function.
+use this capability to clip the conditional statements in the `notify` function.
 
 For example, here's a bitmask representing text style options:
 
@@ -187,23 +187,23 @@ STYLE ^= BOLD  # Toggles BOLD bit on/off
 ```
 
 You can do a ton of other cool stuff with bitwise operations and bitmasks. However, this
-is pretty much all we need to know to tame the twisted conditional branching necessitated
-by the business logic. Check out this incredibly in-depth [article] from Real Python on
-this topic if you want to dig deeper into bitwise operations.
+is pretty much all we need to know to curtail the twisted conditional branching
+necessitated by the business logic. Check out this incredibly in-depth [article] from Real
+Python on this topic if you want to dig deeper into bitwise operations.
 
 ## Pruning conditional branches with flags
 
 With all the intros and primers out of the way, we can now start working towards making
 the `notify` function more tractable and testable. We'll do that in 3 phases:
 
-* First, we're gonna define a flag type enum called `NotifyStatus` which will house all
+* First, we're gonna define a flag-type enum called `NotifyStatus` which will house all
 the valid states our notification system can be in. Any state that's not explicitly
 defined as an enum variant is invalid.
 
 * Second, we'll write a function named `get_notify_status` that'll take in a `Client`
 object as input, apply the business logic and return the appropriate `NotifyStatus` enum
 variant. This function won't be responsible for dispatching the actual notification
-handlers; rather, it'll just map the attribute values of the `Client` instance to the
+handlers; rather, it'll just map the attribute values of the `Client` instance to a
 fitting enum variant. We do this to keep the core business logic devoid of any external dependencies—following Gary Bernhardt's [functional core, imperative shell] ethos.
 
 * Finally, we'll define the `notify` function that'll just accept the enum variant
@@ -260,7 +260,7 @@ If all three attributes are empty, it raises a `ValueError`. The final value of 
 then used to return the correct `NotifyStatus` enum variant.
 
 On the last step, the `notify` function can take the `NotifyStatus` variant returned by
-the `get_notify_status` function and dispatch the correct notification handler like this:
+the `get_notify_status` function and dispatch the correct notification handlers like this:
 
 ```python
 def notify(notify_status: NotifyStatus) -> None:
@@ -286,7 +286,7 @@ Observe how we've totally eliminated conditional statements from the `notify` fu
 The key takeaway here is that the program flow is now flatter and easier to follow. The
 core business logic is neatly tucked inside the `get_notify_status` routine, and the
 `NotifyStatus` enum explicitly defines all the valid states that the system can be in.
-This also means that if a new notification channel pops up, all we will need to do is
+This also means that if a new notification channel pops up, all we'll need to do is
 update three flat constructs and write the corresponding tests instead of battling with
 the twisted conditional statements that we started with. Not too shabby, eh?
 
