@@ -11,8 +11,8 @@ moderately complex problem to the chat window and ask questions about it. In tha
 it recently refactored some pretty gnarly conditional logic for me in such an elegant
 manner that it absolutely blew me away. Now, I know how [bitmasks] work and am aware of
 the existence of [enum.Flag] in Python. However, it never crossed my mind that flags can
-be leveraged to trim conditional branches in the way Claude demonstrated for me. But once
-I looked at the proposed solution, the whole thing immediately clicked for me.
+be leveraged to trim conditional branches in the ingenious way Claude illustrated. But
+once I looked at the proposed solution, the whole thing immediately clicked for me.
 
 ## The conundrum
 
