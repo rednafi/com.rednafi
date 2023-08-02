@@ -167,7 +167,7 @@ ITALIC = 2  # 0000 0010
 UNDERLINE = 4  # 0000 0100
 
 # Bitmask
-STYLE = BOLD | ITALIC  # 0000 0111 - bold and italic
+STYLE = BOLD | ITALIC  # 0000 0011 - bold and italic
 ```
 
 We use powers of 2 (1, 2, 4, 8, etc.) for the flag values so that each bit position
