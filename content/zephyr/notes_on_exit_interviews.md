@@ -13,7 +13,7 @@ future should the need arise. While I've participated in a few of them over the 
 years, this text doesn't attempt to combat the inexorable recency bias that may have
 seeped into the writing.
 
-Exit interviews are a bit trickier than your typical run-of-the-mill one-on-ones, mostly
+Exit interviews are trickier than your typical run-of-the-mill one-on-ones, mostly
 because:
 
 * It typically means that you're resigning voluntarily, and not getting fired
@@ -25,7 +25,7 @@ Instead of throwing a wall of text sectioned by a bunch of headers, I'm intentio
 laying out the epiphanies and action items a bit aphoristic:
 
 * Avoid it if you can
-* Ask for a short one if you can't
+* Ask for a shorter one if you can't
 * Try to exit early if you can't do either
 * The less work your interviewer has put into the meeting, the better
 * No point in rambling on why you're leaving, be vague
