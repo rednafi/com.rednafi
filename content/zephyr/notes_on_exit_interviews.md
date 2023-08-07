@@ -40,4 +40,4 @@ laying out the action items as aphoristic assertions.
 * Be neutral and don't react to tantrums
 * Maintain mutual respect for both yourself and your employer
 * Remember, it's all business at the end of the day
-* And finally, don't burn bridges if you don't have to
+* And finally, don't burn any bridges if you don't have to
