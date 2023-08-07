@@ -90,7 +90,7 @@ params:
   homeInfoParams:
     Content: >
       Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros.
-      I occassionally rant and write about networking, I/O, distributed systems, and the
+      I sporadically rant and write about networking, I/O, distributed systems, and the
       broader spectrum of the software industry in general.
   socialIcons:
     - name: twitter
