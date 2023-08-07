@@ -18,9 +18,9 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: redowan's reflections
   description: >
-    Ohe, I'm Redowan Delowar—a software tinkerer with a focus on automation,
-    networking, I/O, and databases. I sporadically rant and write about Python,
-    JavaScript, Go, SQL, and the broader landscape of software in general.
+    Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros. I
+    sporadically rant and write about Python, JavaScript, Go, SQL, and the broader
+    landscape of software in general.
   keywords: [
     # Meta
     Redowan, Delowar, Redowan Delowar, rednafi, SWE, software, software engineering,
@@ -30,7 +30,8 @@ params:
     Python, JavaScript, TypeScript, Go, HTML, CSS,
 
     # Stack
-    Backend, Networking, APIs, AWS, Google Cloud,
+    Backend, Networking, APIs, AWS, Google Cloud, Distributed systems, microservices,
+    monoliths,
 
     # Databases
     Databases, SQL, SQLite, PostgreSQL, MySQL, NoSQL, Redis, MongoDB, DynamoDB,
@@ -88,10 +89,9 @@ params:
   # home-info mode
   homeInfoParams:
     Content: >
-      Ohe, I'm Redowan Delowar—a software tinkerer with a focus on automation,
-      networking, I/O, and databases. I sporadically rant and write about Python,
-      JavaScript, Go, SQL, and the broader landscape of software in general.
-
+      Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros.
+      I occassionally rant and write about networking, I/O, distributed systems, and the
+      broader spectrum of the software industry in general.
   socialIcons:
     - name: twitter
       url: "https://twitter.com/rednafi"
