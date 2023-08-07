@@ -15,7 +15,7 @@ and am writing this while the last one is still fresh in my memory.
 Exit interviews are a bit trickier than your typical run of the mill one-on-ones, mostly
 because:
 
-* It most likely means that you're resigning voluntarily, and not getting fired
+* It typically means that you're resigning voluntarily, and not getting fired
 * By the time it happens, there's usually no going back
 * There are rarely any objectives that benefits you
 * The gains are low but the stakes can be high
