@@ -32,7 +32,7 @@ keeping the list of actionables open ended and a bit aphoristic:
 * You can't change the culture through one last meeting, so don't try to
 * Your objective opinions can cause more harm than good
 * Last minute feedback matters less than you think, they've heard these before
-* A counter offer is a bad idea
+* A counter offer is usually a bad idea for both parties
 * If you sense a trap, silence is your friend
 * Let it be awkward
 * Don't be a child or throw tantrums
