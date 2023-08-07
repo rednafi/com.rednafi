@@ -70,7 +70,6 @@ params:
     - misc
     - python
     - typescript
-    - zephyr
 
   assets:
     #disableHLJS: true # to disable highlight.js

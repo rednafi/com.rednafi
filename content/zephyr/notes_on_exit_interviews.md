@@ -38,4 +38,4 @@ keeping the list of actionables open ended and a bit aphoristic:
 * Don't be a child or throw tantrums
 * Maintain mutual respect for both yourself and your employer
 * Remember, it's all business at the end of the day
-* And don't burn any bridges
+* And finally, don't burn any bridges
