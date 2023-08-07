@@ -35,7 +35,8 @@ keeping the list of actionables open ended and a bit aphoristic:
 * A counter offer is usually a bad idea for both parties
 * If you sense a trap, silence is your friend
 * Let it be awkward
-* Don't be a child or throw tantrums
+* Don't be a child and throw tantrums
+* Be neutral and don't react to tantrums
 * Maintain mutual respect for both yourself and your employer
 * Remember, it's all business at the end of the day
 * And finally, don't burn any bridges
