@@ -1,5 +1,5 @@
 baseURL: "https://rednafi.com"
-title: Redowan's Reflections
+title: redowan's reflections
 paginate: 20
 theme: PaperMod
 pluralizelisttitles: false
@@ -16,7 +16,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: Redowan's Reflections
+  title: redowan's reflections
   description: >
     Ohe, I'm Redowan Delowar—a software tinkerer with a focus on automation,
     networking, I/O, and databases. I sporadically rant and write about Python,
@@ -39,7 +39,7 @@ params:
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
 
   ]
-  author: "Redowan Delowar"
+  author: "redowan delowar"
   images: [
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
   ]
@@ -70,6 +70,7 @@ params:
     - misc
     - python
     - typescript
+    - zephyr
 
   assets:
     #disableHLJS: true # to disable highlight.js
@@ -81,7 +82,7 @@ params:
     safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
 
   label:
-    text: "Redowan's Reflections"
+    text: "redowan's reflections"
     icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
     iconHeight: 35
 
