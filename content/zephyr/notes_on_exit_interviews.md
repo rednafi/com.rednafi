@@ -5,8 +5,8 @@ tags:
     - Meta
 ---
 
-If you're a manager, then there's no shortage of information on how to conduct exit
-interviews. But there aren't many resources that focus on how to handle them from an
+If you're a manager, then there's no shortage of information for you on how to conduct
+exit interviews. But there aren't many resources that focus on how to handle them from an
 employee's perspective. I've been meaning to write a quick piece that isn't biased by
 anyone else's experience and is short enough so that I can quickly jog my memory in the
 future should the need arise. While I've participated in a few of them over the past five
