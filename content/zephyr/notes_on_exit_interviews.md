@@ -25,7 +25,7 @@ keeping the list of actionables open ended and a bit aphoristic:
 
 * Avoid it if you can
 * Ask for a short one if you can't
-* Try to get out early if you can't do either
+* Try to exit early if you can't do either
 * The less work your interviewer has put into the meeting, the better
 * No point in detailing out why you're leaving, be vague
 * It's a mistake to discuss next steps and future opportunities
