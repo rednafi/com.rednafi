@@ -22,7 +22,7 @@ because:
 * The gains are low but the stakes can be high
 
 Instead of throwing a wall of text sectioned by a bunch of headers, I'm intentionally
-laying out the action items as aphoristic assertions.
+laying out the actionable items as aphoristic assertions.
 
 * Avoid it if you can
 * Ask for a shorter one if you can't
