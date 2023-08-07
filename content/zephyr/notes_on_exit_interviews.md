@@ -1,5 +1,6 @@
 ---
 title: Notes on exit interviews
+date: 2023-08-07
 tags:
     - Meta
 ---
