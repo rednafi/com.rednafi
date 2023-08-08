@@ -6,16 +6,16 @@ tags:
 ---
 
 Over the years, I've used Python's `contextlib.ExitStack` in a few interesting ways. The
-official [documentation][1] advertises it as a way to manage multiple context managers and
+official [documentation] advertises it as a way to manage multiple context managers and
 has a couple of examples of how to leverage it. However, neither in the docs nor in GitHub
-code [search][2] I could find examples of some of the maybe unusual ways I've used it in the
-past. So, I thought I'd document them here.
+code [search] I could find examples of some of the maybe unusual ways I've used it in
+the past. So, I thought I'd document them here.
 
 ## Enforcing request level transaction
 
-While consuming APIs, it's important to handle errors in a way that prevents database state
-corruption. In the following example, I'm making two `POST` requests to an API and rolling
-back to the original state if any one of them fails:
+While consuming APIs, it's important to handle errors in a way that prevents database
+state corruption. In the following example, I'm making two `POST` requests to an API and
+rolling back to the original state if any one of them fails:
 
 ```python
 # src.py
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
 Running this will print the following output:
 
-```
+```txt
 INFO:root:Request fec8fc9f-7762-4d53-b8f9-3dc7802108a4 completed successfully.
 INFO:root:Request 4b6ed0ed-b7cf-46f0-9374-85627be4c26c completed successfully.
 ```
@@ -95,7 +95,7 @@ fails. In the `main` function, I've used the `ExitStack.callback` method to regi
 function to something like `HTTPStatus.FORBIDDEN`, you'll be able to see the cleanup
 callbacks in action:
 
-```
+```txt
 INFO:root:Rolling back request: 50eb2734-f84c-4013-b5f6-0ccf1aa5d79a
 INFO:root:Rolling back request: b326e567-a006-4648-bf04-202397f44e31
 ```
@@ -105,8 +105,8 @@ INFO:root:Rolling back request: b326e567-a006-4648-bf04-202397f44e31
 The same strategy used in the previous section can be applied to invoke event hooks
 conditionally. For example, let's say you want to run a callback function when some event
 function executes. However, you want only a particular type of callback function to be
-executed depending on the state of your conditionals or code path. I've found the following
-pattern useful in this case:
+executed depending on the state of your conditionals or code path. I've found the
+following pattern useful in this case:
 
 ```python
 # src.py
@@ -163,7 +163,7 @@ if __name__ == "__main__":
     main()
 ```
 
-```
+```txt
 'successful_event' executed
 'failed_event' executed
 'failure' hook called
@@ -176,7 +176,7 @@ raises an exception.
 ## Avoiding nested context structure
 
 It can get ugly pretty quickly when you start using multiple nested context managers. For
-example, if you need to open two files and copy content from one file to the other, you would
+example, if you need to open two files and copy content from one file to the other, you'd
 typically start two nested context managers and transfer the content like this:
 
 ```python
@@ -243,14 +243,14 @@ if __name__ == "__main__":
 This example creates two in-memory temporary file instances with
 `tempfile.SpooledTemporaryFile`. The `SpooledTemporaryFile` can be used as a context
 manager. However, instead of nesting the two instances, I'm using `ExitStack.enter_context`
-method to enter into the context manager without explicitly using the `with` statement.
-This `.enter_context` method ensures that the `__exit__` method of the respective context
+to enter into the context manager without explicitly using the `with` statement. This
+`.enter_context` method ensures that the `__exit__` method of the respective context
 managers will be called properly at the end of the `main()` function run.
 
-Then in the body of the `ExitStack`, we're writing some content to the first in-memory file
-and then copying the content to the other in-memory file. If we had to open and manage even
-more context managers, in this way, we'd be able to that without crating any additional
-nestings.
+Then in the body of the `ExitStack`, we're writing some content to the first in-memory
+file and then copying the content to the other in-memory file. If we had to open and
+manage even more context managers, in this way, we'd be able to that without crating any
+additional nestings.
 
 ## Applying multiple patches as context managers
 
@@ -320,7 +320,7 @@ def test_main() -> None:
 
 Running the above snippet with pytest will reveal that the test passes without any error:
 
-```
+```txt
 src.py::test_main PASSED
 
 ======================= 1 passed in 0.11s =======================
@@ -331,5 +331,5 @@ function, the `httpx.get` and `httpx.post` callable are patched with the `patch`
 manager. However, `ExitStack` allows me here to do it without creating additional nested
 `with` blocks.
 
-[1]: https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack
-[2]: https://github.com/search?l=Python&q=ExitStack&type=Code
+[documentation]: https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack
+[search]: https://github.com/search?l=Python&q=ExitStack&type=Code
