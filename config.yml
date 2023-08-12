@@ -71,6 +71,7 @@ params:
     - misc
     - python
     - typescript
+    - go
 
   assets:
     #disableHLJS: true # to disable highlight.js
