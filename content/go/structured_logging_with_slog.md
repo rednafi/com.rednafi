@@ -1,5 +1,5 @@
 ---
-title: Structured logging in Go with slog
+title: Go structured logging with slog
 date: 2023-08-10
 tags:
     - Go
