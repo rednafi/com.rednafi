@@ -471,6 +471,6 @@ slog.Info("info message", "some int", 7)
 
 ## References
 
-[slog docs][documentation]
+* [slog docs][documentation]
 
 [documentation]: https://pkg.go.dev/log/slog
