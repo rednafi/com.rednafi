@@ -21,7 +21,7 @@ cases.
 
 ## Kickoff
 
-Here's how you'd add levels to your log message:
+Here's how you'd add levels to your log messages:
 
 ```go
 package main
@@ -301,6 +301,7 @@ It prints:
 
 ```txt
 2023/08/11 01:56:44 INFO an info message sticky_key=sticky_value
+2023/08/11 01:56:44 ERROR an error message sticky_key=sticky_value
 ```
 
 The `Logger.With()` method accepts key-value pairs of attributes. This saves you from
