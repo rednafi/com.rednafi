@@ -8,28 +8,27 @@ tags:
 I enjoy writing about software—the things that I learn, the tools that I use, and the work
 that I do. Due to the constraints of the corporate software world, more often than not, you
 can't directly showcase your work or talk about them. At least that's how it always has been
-throughout my career so far. At the same time, as you grow older and start having a life
-outside of your computer screen, you suddenly find that working on OSS after a 40+ hour
-workweek is hard, and maintaining consistency is even harder. On that front, how do you keep
-track of your progress or not lose your sense of purpose as the years go by?
+throughout my career. At the same time, as you grow older and start having a life outside of
+your computer screen, you suddenly find that working on OSS after a 40+ hour workweek is
+hard, and maintaining consistency is even harder. On that front, how do you keep track of
+your progress without losing your sense of purpose as the years go by?
 
-I attempt to ameliorate this by factoring out the things I learn at or outside work and
-writing about them in public. Countless times I've found myself looking for stuff on the
-web only to land on my website. But this approach isn't bulletproof: you rarely come
-across situations where you get to write about some novel concepts or one of your brilliant
-epiphanies. Routinely, I find myself writing about just another tool or library that I've
-figured out how to use or another book that's already considered a cliché in my area of
-interest. Plus, there are probably a gazillion amount of more in-depth or clickbaity posts
-that already exist on the topic. So what good it'll do if you add another drop to the ocean?
-Who'll even read it?
+I ameliorate this by factoring out the things I learn at or outside work and writing about
+them publicly. Countless times I've found myself looking for stuff on the web only to land
+on my own website. But this approach isn't bulletproof: you rarely encounter situations
+where you get to write about some novel concept or one of your brilliant epiphanies.
+Routinely, I find myself writing about just another tool or library that I've figured out
+how to use or another book that's already considered cliché in my area of interest. Plus,
+there are already a ton of more detailed or clickbaity posts out there covering the same
+ground. So what good will it do if I add another drop to the ocean? Who will even read it?
 
 The most recent example of this is when I spent an hour going through the [docs] of
-`log/slog` package of Go 1.21 and another two listing out my most common [use cases]. I wrote
-about it despite seeing countless examples of how to use it on the internet; some of them
-even have the exact same title as mine. But I did that anyway because it helped me echo out
-my own experience with the tool that I'll be able to relive in the future should the need
-arise. The goal here was not to craft the perfect post for a curated group of audience to
-get a bunch of SEO points. Rather I wanted to write it for myself to itch a very specific
+`log/slog` package of Go 1.21 and another two listing out my most common [use cases]. I
+wrote about it despite seeing countless examples of how to use it on the internet; some of
+them even have the exact same title as mine. But I did that anyway because it helped me echo
+out my own experience with the tool that I'll be able to relive in the future should the
+need arise. The goal here was not to craft the perfect post for a curated group of audience
+to get a bunch of SEO points. Rather I wanted to write it for myself to itch a very specific
 scratch. If people find it useful, great, but if I find it useful in the future, even
 better.
 
