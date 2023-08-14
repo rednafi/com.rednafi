@@ -40,6 +40,6 @@ and share your thoughts on something. For me, the aim is to uphold a meticulous 
 odyssey, my own DaVinci's [notebook], and this post is but another page within!
 
 [docs]: https://pkg.go.dev/golang.org/x/exp/slog
-[use cases]: ../go/structured_logging_with_slog.md
-[avoid template pattern in Python]: ../python/escape_template_pattern.md
+[use cases]: /go/structured_logging_with_slog
+[avoid template pattern in Python]: /python/escape_template_pattern
 [notebook]: https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks
