@@ -37,7 +37,7 @@ orange site citizens. However, the general trend is that the majority of these p
 completely unnoticed. This might be one of them too and that's perfectly okay. Internet
 applauds are great but it shouldn't be the only thing that propels your desire to explore
 and share your thoughts on something. For me, the aim is to uphold a meticulous record of
-odyssey, my own DaVinci's [notebook], and this post is but another page within!
+my odyssey, my own DaVinci's [notebook], and this post is but another page within!
 
 [docs]: https://pkg.go.dev/golang.org/x/exp/slog
 [use cases]: /go/structured_logging_with_slog
