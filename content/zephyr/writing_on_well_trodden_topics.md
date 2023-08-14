@@ -5,7 +5,7 @@ tags:
     - Meta
 ---
 
-I enjoy writing about software—the books that I read, the things that I learn, and the work
+I enjoy writing about software—the things that I learn, the tools that I use, and the work
 that I do. Due to the constraints of the corporate software world, more often than not, you
 can't directly showcase your work or talk about them. At least that's how it always has been
 throughout my career so far. At the same time, as you grow older and start having a life
