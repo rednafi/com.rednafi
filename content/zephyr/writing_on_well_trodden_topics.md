@@ -34,7 +34,7 @@ scratch. If people find it useful, great, but if I find it useful in the future,
 better.
 
 But every now and then I do experience those lightbulb moments that give birth to more
-original proses like *[Avoide template pattern in Python]* that get well-applauded by the
+original proses like *[Avoid template pattern in Python]* that get well-applauded by the
 venerable orange site dwellers. However, the general trend is that the majority of these
 pieces go completely unnoticed. This might be one of them too and that's perfectly okay.
 Internet applauds are great but that shouldn't propel your desire to explore and share your
@@ -43,6 +43,6 @@ as my own [DaVinci's Notebook] and this post is another piece on the quiver. I l
 boring texts on well-trodden but useful topics as much as the viral ones!
 
 [docs]: https://pkg.go.dev/golang.org/x/exp/slog
-[usecases]: ../go/structured_logging_with_slog.md
-[avoide template pattern in Python]: ../python/escape_template_pattern.md
+[use cases]: ../go/structured_logging_with_slog.md
+[avoid template pattern in Python]: ../python/escape_template_pattern.md
 [davinci's notebook]: https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks
