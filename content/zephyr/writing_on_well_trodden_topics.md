@@ -16,7 +16,7 @@ progress without losing your sense of purpose as the years fly by?
 I ameliorate this by factoring out the things I learn at or outside work and writing about
 them publicly. Countless times I've found myself looking for stuff on the web only to land
 on my own website. But this approach isn't bulletproof: you rarely encounter situations
-where you get to write about some novel concept or one of your brilliant epiphanies.
+where you get to write about some novel concepts or one of your brilliant epiphanies.
 Routinely, I find myself writing about just another tool or library that I've figured out
 how to use or another book that's already considered cliché in my area of interest. Plus,
 there are already a ton of more detailed or clickbaity posts out there that cover the same
