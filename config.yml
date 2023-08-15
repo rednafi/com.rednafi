@@ -1,5 +1,5 @@
 baseURL: "https://rednafi.com"
-title: redowan's reflections
+title: Redowan's Reflections
 paginate: 20
 theme: PaperMod
 pluralizelisttitles: false
@@ -16,7 +16,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: redowan's reflections
+  title: Redowan's Reflections
   description: >
     Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros. I
     sporadically rant and write about Python, JavaScript, Go, SQL, and the broader
@@ -27,7 +27,7 @@ params:
     Redowan Nafi, Nafi,
 
     # Languages
-    Python, JavaScript, TypeScript, Go, HTML, CSS,
+    Python, JavaScript, TypeScript, Go, Golang, HTML, CSS,
 
     # Stack
     Backend, Networking, APIs, AWS, Google Cloud, Distributed systems, microservices,
@@ -40,7 +40,7 @@ params:
     Django, Flask, FastAPI, Starlette, HTMX, VueJS,
 
   ]
-  author: "redowan delowar"
+  author: "Redowan Delowar"
   images: [
     "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
   ]
