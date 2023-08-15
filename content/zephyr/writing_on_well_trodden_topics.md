@@ -32,12 +32,12 @@ get some SEO points. Rather, I wanted to write this for myself, to scratch a ver
 itch. If people find it useful, great, but if I find it useful at some point, even better.
 
 But occasionally, I do experience those lightbulb moments that beget more original proses
-like *[Avoid template pattern in Python]*, which get applauded by the venerable orange
+like *[Avoid template pattern in Python]*, which get highly lauded by the venerable orange
 site citizens. However, the general trend is that the majority of these pieces go completely
 unnoticed. This might be one of them too and that's perfectly okay. Internet accolades are
-great but it doesn't have to be the only thing that propels your desire to explore and share
-your thoughts on something. For me, the aim is to uphold a meticulous record of my odyssey,
-my own Da Vinci's [notebook], and this post is but another page within!
+great, but they need not be the only reason you want to explore and share your thoughts on
+something. For me, the aim is to uphold a meticulous record of my odyssey, my own Da Vinci's
+[notebook], and this post is but another page within!
 
 [docs]: https://pkg.go.dev/golang.org/x/exp/slog
 [use cases]: /go/structured_logging_with_slog
