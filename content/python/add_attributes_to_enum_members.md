@@ -1,13 +1,13 @@
 ---
-title: Add additional attributes to enum members in Python
+title: Add extra attributes to enum members in Python
 date: 2022-02-17
 tags:
     - Python
 ---
 
 While grokking the source code of `http.HTTPStatus` module, I came across this technique
-to add additional attributes to the values of enum members. Now, to understand what do I
-mean by adding attributes, let's consider the following example:
+to add extra attributes to the values of enum members. Now, to understand what do I mean by
+adding attributes, let's consider the following example:
 
 ```python
 # src.py
@@ -22,8 +22,8 @@ class Color(str, Enum):
     BLUE = "Blue"
 ```
 
-Here, I've inherited from `str` to ensure that the values of the enum members are
-strings. This class can be used as follows:
+Here, I've inherited from `str` to ensure that the values of the enum members are strings.
+This class can be used as follows:
 
 ```python
 # src.py
