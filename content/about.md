@@ -8,13 +8,12 @@ hideMeta: true
 ShowShareButtons: false
 ---
 
+*Redowan Delowar is a tinkerer, writer, and a wandering autodidact with 5+ years of
+industry experience working as a backend software engineer.*
 
-> *Redowan Delowar is a tinkerer, writer, and a wandering autodidact with 5+ years of*
-> *industry experience working as a backend software engineer.*
-> 
-> *He is an avid OSS enthusiast and a [serial project hoarder] with a focus on API*
-> *development, distributed systems, networking, I/O, databases, and data science. Since*
-> *2020, Redowan has been journaling his odyssey here at [rednafi.com].*
+*He is an avid OSS enthusiast and a [serial project hoarder] with a focus on API
+development, distributed systems, networking, I/O, databases, and data science. Since
+2020, Redowan has been journaling his odyssey here at [rednafi.com].*
 
 ## Gateways
 
