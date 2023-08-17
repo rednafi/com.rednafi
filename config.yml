@@ -48,14 +48,14 @@ params:
   defaultTheme: light # dark, light
   disableThemeToggle: false
   ShowReadingTime: false
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
-  disableSpecial1stPost: false
+  disableSpecial1stPost: true
   disableScrollToTop: false
   comments: false
   hidemeta: false
@@ -90,18 +90,27 @@ params:
   # home-info mode
   homeInfoParams:
     Content: >
-      Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros.
-      I sporadically rant and write about networking, I/O, distributed systems, and the
-      broader spectrum of the software industry in general.
-  socialIcons:
-    - name: twitter
-      url: "https://twitter.com/rednafi"
-    - name: stackoverflow
-      url: "https://stackoverflow.com/users/8963300/redowan-delowar"
-    - name: github
-      url: "https://github.com/rednafi"
-    - name: "rss"
-      url: "https://rednafi.com/index.xml"
+      <div>
+        <i>
+        <div>
+          Hi, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros
+        </div>
+        <div>
+          <a href="tags" style="color:#3f51b5;">tags</a>
+          <span style="color:#3f51b5;"> | </span>
+          <a href="search" style="color:#3f51b5;">search</a>
+        </div>
+        </i>
+      </div>
+  # socialIcons:
+  #   - name: twitter
+  #     url: "https://twitter.com/rednafi"
+  #   - name: stackoverflow
+  #     url: "https://stackoverflow.com/users/8963300/redowan-delowar"
+  #   - name: github
+  #     url: "https://github.com/rednafi"
+  #   - name: "rss"
+  #     url: "https://rednafi.com/index.xml"
 
   analytics:
     google:
@@ -128,39 +137,29 @@ params:
     isCaseSensitive: false
     shouldSort: true
     location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
+    distance: 200
+    threshold: 0.3
+    minMatchCharLength: 2
+    keys: ["title", "tags", "permalink", "summary", "content"]
 
 menu:
   main:
-    - identifier: search
-      name: search
-      url: /search/
-      weight: 10
-
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
-
-    - identifier: archives
-      name: archives
-      url: /archives/
-      weight: 30
-
     - identifier: zephyr
       name: zephyr
       title: zephyr
       url: /zephyr/
-      weight: 40
+      weight: 1
+
+    - identifier: archives
+      name: archives
+      url: /archives/
+      weight: 2
 
     # - identifier: about
     #   name: about
     #   title: about
     #   url: /about/
-    #   weight: 60
+    #   weight: 3
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true

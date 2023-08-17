@@ -1,10 +1,10 @@
 ---
-title: About me
+title: About
 layout: post
-summary: About me
 ShowToc: false
 editPost:
     disabled: true
 hideMeta: true
 ShowShareButtons: false
 ---
+
