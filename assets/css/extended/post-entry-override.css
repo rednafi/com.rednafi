@@ -13,3 +13,11 @@
     font-size: 14.5px;
     line-height: 1.5;
 }
+.bio-urls{
+    font-style: italic;
+    color: var(--bio-urls);
+}
+.bio-urls a{
+    font-style: italic;
+    color: var(--bio-urls);
+}

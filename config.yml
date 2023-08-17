@@ -92,15 +92,14 @@ params:
     Content: >
       <div>
         <i>
-        <div>
-          Hi, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros
-        </div>
-        <div>
-          <a href="tags" style="color:#3f51b5;">tags</a>
-          <span style="color:#3f51b5;"> | </span>
-          <a href="search" style="color:#3f51b5;">search</a>
-        </div>
+          Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros
         </i>
+
+        <div class="bio-urls">
+          <a href="tags">tags</a>
+          <span> | </span>
+          <a href="search">search</a>
+        </div>
       </div>
   # socialIcons:
   #   - name: twitter
@@ -155,11 +154,11 @@ menu:
       url: /archives/
       weight: 2
 
-    # - identifier: about
-    #   name: about
-    #   title: about
-    #   url: /about/
-    #   weight: 3
+    - identifier: about
+      name: about
+      title: about
+      url: /about/
+      weight: 3
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
