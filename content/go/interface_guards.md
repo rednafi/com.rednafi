@@ -39,6 +39,10 @@ conforms to the `io.ReadWriter` interface. This is only possible because `nil` v
 can assume many [different] types. In this case, `var _ io.ReadWriter = T{}` will also
 work, but then you'll have to fiddle with different zero values if the type isn't a struct.
 
+One important thing to point out is that we're using `_` because we don't want to
+accidentally refer to this `nil` pointer anywhere in our code. Also, trying to access any
+method on it will cause runtime panic.
+
 Here's another example borrowed from Uber's [style guide]:
 
 No check:
