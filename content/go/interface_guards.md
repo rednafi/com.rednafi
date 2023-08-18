@@ -23,11 +23,11 @@ type T struct {
     //...
 }
 
-func (t T) Read(p []byte) (n int, err error) {
+func (t *T) Read(p []byte) (n int, err error) {
     // ...
 }
 
-func (t T) Write(p []byte) (n int, err error) {
+func (t *T) Write(p []byte) (n int, err error) {
     // ...
 }
 ```
