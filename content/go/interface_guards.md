@@ -9,9 +9,9 @@ tags:
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs
 unless you're careful. Types expected to conform to certain interfaces can fluidly add or
 remove methods. The compiler will only complain if an identifier anticipates an interface,
-but is passed a type that doesn't implement that interface. However, you can statically
-check interface conformity at compile time with zero runtime overhead. Turns out, this was
-always buried in [Effective Go]. Observe:
+but is passed a type that doesn't implement that interface. However, there's another way
+you can statically check interface conformity at compile time with zero runtime overhead.
+Turns out, this was always buried in [Effective Go]. Observe:
 
 ```go
 import "io"
