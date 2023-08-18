@@ -5,7 +5,6 @@ tags:
     - Go
     - TIL
 ---
-Here are a few suggested edits to improve the grammar:
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs
 unless you're careful. Types expected to conform to certain interfaces can fluidly add or
