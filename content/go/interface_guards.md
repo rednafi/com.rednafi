@@ -8,15 +8,15 @@ tags:
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs
 unless you're careful. Types expected to conform to certain interfaces can fluidly add or
-remove methods. The compiler will only complain if an identifier expects an interface, but
-is passed a type that doesn't implement that interface. However, you can statically check
-interface conformity at compile time with zero runtime overhead. Turns out, this was always
-buried in [Effective Go]. Observe:
+remove methods. The compiler will only complain if an identifier anticipates an interface,
+but is passed a type that doesn't implement that interface. However, you can statically
+check interface conformity at compile time with zero runtime overhead. Turns out, this was
+always buried in [Effective Go]. Observe:
 
 ```go
 import "io"
 
-// Interface guard.
+// Interface guard
 var _ io.ReadWriter = (*T)(nil)
 
 type T struct {
@@ -70,9 +70,9 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 Neat, but don't abuse this. [Effective Go] warns:
 
-> Don't do this for every type that satisfies an interface, though. By convention, such
+> *Don't do this for every type that satisfies an interface, though. By convention, such
 > declarations are only used when there are no static conversions already present in the
-> code, which is a rare event.
+> code, which is a rare event.*
 
 ## References
 
