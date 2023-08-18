@@ -80,9 +80,9 @@ Neat, but don't abuse this. [Effective Go] warns:
 
 ## References
 
-* [Interface checks][effective go]
-* [Check interface compliance — Uber style guide][style guide]
-* [Interface guards — Caddy docs][interface guards]
+* [Interface checks - Effective Go][effective go]
+* [Check interface compliance - Uber style guide][style guide]
+* [Interface guards - Caddy docs][interface guards]
 * [Tweet by Matt Boyle][tweet]
 
 [effective go]: https://go.dev/doc/effective_go#interfaces:~:text=var%20_%20json.Marshaler%20%3D%20(*RawMessage)(nil)
