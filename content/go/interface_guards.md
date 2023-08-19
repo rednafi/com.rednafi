@@ -10,7 +10,7 @@ I love Go's implicit interfaces. While convenient, they can also introduce subtl
 unless you're careful. Types expected to conform to certain interfaces can fluidly add or
 remove methods. The compiler will only complain if an identifier anticipates an interface,
 but is passed a type that doesn't implement that interface. This can be problematic if you
-need to export types that are required to implement specific interfaces as a part of their
+need to export types that are required to implement specific interfaces as part of their
 API contract.
 
 However, there's another way you can statically check interface conformity at compile time
