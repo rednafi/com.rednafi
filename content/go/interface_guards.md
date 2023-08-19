@@ -9,9 +9,12 @@ tags:
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs
 unless you're careful. Types expected to conform to certain interfaces can fluidly add or
 remove methods. The compiler will only complain if an identifier anticipates an interface,
-but is passed a type that doesn't implement that interface. However, there's another way
-you can statically check interface conformity at compile time with zero runtime overhead.
-Turns out, this was always buried in [Effective Go]. Observe:
+but is passed a type that doesn't implement that interface. This can be problematic if you
+need to export types that are required to implement specific interfaces as a part of their
+API contract.
+
+However, there's another way you can statically check interface conformity at compile time
+with zero runtime overhead. Turns out, this was always buried in [Effective Go]. Observe:
 
 ```go
 import "io"
@@ -35,13 +38,14 @@ func (t *T) Write(p []byte) (n int, err error) {
 We're checking if struct `T` implements the `io.ReadWriter` interface. It needs to have
 both `Read` and `Write` methods defined. The type conformity is explicitly checked via
 `var _ io.ReadWriter = (*T)(nil)`. It verifies that a `nil` pointer to a value of type `T`
-conforms to the `io.ReadWriter` interface. This is only possible because `nil` values in Go
-can assume many [different] types. In this case, `var _ io.ReadWriter = T{}` will also
-work, but then you'll have to fiddle with different zero values if the type isn't a struct.
+conforms to the `io.ReadWriter` interface. The code will fail to compile if the type ever
+stops matching the interface.
 
-One important thing to point out is that we're using `_` because we don't want to
-accidentally refer to this `nil` pointer anywhere in our code. Also, trying to access any
-method on it will cause runtime panic.
+This is only possible because `nil` values in Go can assume many [different] types. In this
+case, `var _ io.ReadWriter = T{}` will also work, but then you'll have to fiddle with
+different zero values if the type isn't a struct. One important thing to point out is that
+we're using `_` because we don't want to accidentally refer to this `nil` pointer anywhere
+in our code. Also, trying to access any method on it will cause runtime panic.
 
 Here's another example borrowed from Uber's [style guide]:
 
