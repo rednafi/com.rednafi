@@ -13,7 +13,7 @@ but is passed a type that doesn't implement that interface. This can be problema
 need to export types that are required to implement specific interfaces as part of their
 API contract.
 
-However, there's another way you can statically check interface conformity at compile time
+However, there's a way you can statically check interface conformity at compile time
 with zero runtime overhead. Turns out, this was always buried in [Effective Go]. Observe:
 
 ```go
