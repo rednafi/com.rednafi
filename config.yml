@@ -94,11 +94,12 @@ params:
         <i>
           Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros
         </i>
-
         <div class="bio-urls">
           <a href="tags">tags</a>
-          <span> | </span>
+          <span> • </span>
           <a href="search">search</a>
+          <span> • </span>
+          <a href="index.xml">rss</a>
         </div>
       </div>
   # socialIcons:
