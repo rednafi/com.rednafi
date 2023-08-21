@@ -99,7 +99,7 @@ last 4 bits to get an offset index from 0-15
 * Use the offset index to truncate the SHA-1 digest to get a 32-bit unsigned integer
 * AND the 32-bit integer with 0x7FFFFFFF (2147483647) to mask off the most significant bit
 and convert to an unsigned 31-bit integer
-* Take modulo 1_000_000 of the 31-bit integer to get a 6-digit TOTP code
+* Take the modulo 1_000_000 of the 31-bit integer to get a 6-digit TOTP code
 * Return the 6-digit TOTP code
 
 To test the implementation, I collected a secret key from GitHub's [2FA panel]. Then I
