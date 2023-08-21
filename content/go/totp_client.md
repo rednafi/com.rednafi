@@ -65,8 +65,9 @@ func generateTOTP(secretKey string, timestamp int64) uint32 {
 Use it as such:
 
 ```go
-...
-// Import "time"
+// Import "time" and "fmt"
+
+// ...
 
 func main() {
     // Collect it from a TOTP server like GitHub 2FA panel
