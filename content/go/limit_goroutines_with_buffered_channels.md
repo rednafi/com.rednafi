@@ -54,9 +54,10 @@ so that it only allows `n` number of concurrent requests at the same time? Sure,
 only choose to spin up `n` number of goroutines and no more. But how do you do it from
 inside an infinite loop that's also polling a queue continuously?
 
-In this specific case, I'd like to throttle the script so that it'll send 2 requests in
-parallel and then wait until those are done. Buffered channels allow us to do exactly that.
-Observe:
+In this case, I'd like to throttle the script so that it'll send 2 requests in parallel and
+then wait until those are done. Then it'll wait for a bit before spinning up the next 2
+goroutines and continuously repeat the same process. Buffered channels allow us to do
+exactly that. Observe:
 
 ```go
 package main
@@ -156,8 +157,8 @@ Waiting for batch interval...
 ...
 ```
 
-Now you can add abstractions over the core behavior with your heart's content to make it
-more ergonomic. Here's a [pointer]!
+Now you might want to add abstractions over the core behavior to make it more ergonomic.
+Here's a [pointer]!
 
 ## References
 
