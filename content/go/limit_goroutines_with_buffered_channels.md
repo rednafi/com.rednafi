@@ -34,8 +34,8 @@ func main() {
     var wg sync.WaitGroup
     nWorkers := 10
     for i := 1; i <= nWorkers; i++ {
-    	wg.Add(1)
-    	go worker(i, &wg)
+        wg.Add(1)
+        go worker(i, &wg)
     }
     wg.Wait()
     fmt.Println("All workers have completed")
@@ -49,13 +49,13 @@ we spawn 10 workers as goroutines and wait for all of them to finish work with `
 Without the wait-group synchronization, the `main` goroutine would bail before all the
 background workers finish their work.
 
-In the above scenario, all the reqeusts were made in parallel. How can we limit the system
-so that it only allows `n` number of concurrent request at the same time? Sure, you can
+In the above scenario, all the requests were made in parallel. How can we limit the system
+so that it only allows `n` number of concurrent requests at the same time? Sure, you can
 only choose to spin up `n` number of goroutines and no more. But how do you do it from
 inside an infinite loop that's also polling a queue continuously?
 
 In this specific case, I'd like to throttle the script so that it'll send 2 requests in
-parallel and then wait until those are done. Buffered channel allows us to do exactly that.
+parallel and then wait until those are done. Buffered channels allow us to do exactly that.
 Observe:
 
 ```go
@@ -91,14 +91,14 @@ func main() {
 
     // We start 10 goroutines but only 2 of them will run in parallel
     for i := 1; i <= nWorkers; i++ {
-    	wg.Add(1)
-    	go worker(i, sem, &wg)
+        wg.Add(1)
+        go worker(i, sem, &wg)
 
         // Introduce a delay after each batch of workers
         if i%maxConcurrency == 0 && i != nWorkers {
             fmt.Printf("Waiting for batch interval...\n")
             time.Sleep(batchInterval)
-    	}
+        }
     }
     wg.Wait()
     close(sem) // Remember to close the channel once done
@@ -156,7 +156,7 @@ Waiting for batch interval...
 ...
 ```
 
-Now you can add abstractions over the core behavior with your heart's conent to make it
+Now you can add abstractions over the core behavior with your heart's content to make it
 more ergonomic. Here's a [pointer]!
 
 ## References
