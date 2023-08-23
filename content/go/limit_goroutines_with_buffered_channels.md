@@ -43,20 +43,20 @@ func main() {
 ```
 
 We're sending the webhook request in the `worker` function. It takes an integer ID for
-bookkeeping and a pointer to a `WaitGroup` instance for synchronization. Once it's finished
+bookkeeping and a pointer to a `WaitGroup` instance for synchronization. Once it finishes
 making the request, it signals the `WaitGroup` with `wg.Done()`. In the `main` function,
 we spawn 10 workers as goroutines and wait for all of them to finish work with `wg.Wait()`.
 Without the wait-group synchronization, the `main` goroutine would bail before all the
 background workers finish their work.
 
 In the above scenario, all the requests were made in parallel. How can we limit the system
-so that it only allows `n` number of concurrent requests at the same time? Sure, you can
-only choose to spin up `n` number of goroutines and no more. But how do you do it from
-inside an infinite loop that's also polling a queue continuously?
+to only allow `n` number of concurrent requests at the same time? Sure, you can choose to
+spin up `n` number of goroutines and no more. But how do you do it from inside an infinite
+loop that's also polling a queue continuously?
 
-In this case, I'd like to throttle the script so that it'll send 2 requests in parallel and
-then wait until those are done. Then it'll wait for a bit before spinning up the next 2
-goroutines and continuously repeat the same process. Buffered channels allow us to do
+In this case, I want to throttle the script so that it'll send 2 requests in parallel and
+then wait until those are done. Then it'll wait for a bit before firing up the next batch of
+2 goroutines and continuously repeat the same process. Buffered channels allow us to do
 exactly that. Observe:
 
 ```go
