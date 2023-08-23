@@ -110,7 +110,7 @@ func main() {
 The clever bit here is the buffered channel named `sem` which acts as a semaphore to limit
 concurrency. We set its capacity to the max number of goroutines we want running at once,
 in this case 2. Before making the request, each `worker` goroutine tries to *acquire* the
-semaphore by sending a value into the channel via `sem <- struct{}`. The value itself
+semaphore by sending a value into the channel via `sem <- struct{}{}`. The value itself
 doesn't matter. So we're just sending an empty struct to avoid redundant allocation.
 
 Sending data to the channel will block if it's already full, essentially meaning all
