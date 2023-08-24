@@ -166,6 +166,7 @@ briefly.
 * [Limit concurrency with semaphore][here]
 * [Go concurrency pattern: semaphore][pointer]
 * [How to wait until buffer channel is empty][stack overflow]
+* [Effective Go — channels][mentions]
 
 [here]: /python/limit_concurrency_with_semaphore
 [pointer]: https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d
