@@ -157,8 +157,9 @@ Waiting for batch interval...
 ...
 ```
 
-Now you might want to add extra abstractions over the core behavior to make it more
-ergonomic. Here's a [pointer]!
+Now, you might want to add extra abstractions over the core behavior to make it more
+ergonomic. Here's a [pointer] on how to do so. Effective Go also [mentions] this pattern
+briefly.
 
 ## References
 
@@ -169,3 +170,4 @@ ergonomic. Here's a [pointer]!
 [here]: /python/limit_concurrency_with_semaphore
 [pointer]: https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d
 [stack overflow]: https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty
+[mentions]: https://go.dev/doc/effective_go#channels
