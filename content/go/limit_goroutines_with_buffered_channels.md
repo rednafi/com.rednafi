@@ -96,7 +96,7 @@ func main() {
         go worker(i, sem, &wg)
 
         // Introduce a delay after each batch of workers
-        if i%maxConcurrency == 0 && i != nWorkers {
+        if i % maxConcurrency == 0 && i != nWorkers {
             fmt.Printf("Waiting for batch interval...\n")
             time.Sleep(batchInterval)
         }
@@ -128,7 +128,7 @@ with:
 
 ```go
 // Introduce additional delay after each batch of workers
-if i%maxConcurrency == 0 && i != nWorkers {
+if i % maxConcurrency == 0 && i != nWorkers {
     fmt.Printf("Waiting for batch interval...\n")
     time.Sleep(batchInterval)
 }
