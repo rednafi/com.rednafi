@@ -16,9 +16,9 @@ He is a tinkerer, writer, and a wandering autodidact with 5+ years of experience
 and developing resilient software systems.*
 
 *He specializes in system architecture, performance tuning, networking, data analysis,
-databases, and API design. In his spare time, he is an avid open-source contributor, a
-long-form content consumer, and serves as a vociferous pontificator of software systems on
-his website, [rednafi.com].*
+databases, and API design. In his spare time, he is an open-source contributor, a long-form
+content consumer, and serves as a vociferous pontificator of software systems on his
+website, [rednafi.com].*
 
 
 ## Gateways
