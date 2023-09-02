@@ -1,6 +1,6 @@
 .first-entry {
-    min-height: 20px;
-    text-align: center;
+    min-height: 250px;
+    text-align: left;
     margin: 0.5rem;
 }
 .first-entry .entry-header h1 {
@@ -13,11 +13,13 @@
     font-size: 14.5px;
     line-height: 1.5;
 }
+.bio-title{
+    font-size: 2rem;
+}
 .bio-urls{
-    font-style: italic;
+    margin-top: 0.4rem;
     color: var(--bio-urls);
 }
 .bio-urls a{
-    font-style: italic;
     color: var(--bio-urls);
 }

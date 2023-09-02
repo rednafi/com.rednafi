@@ -84,22 +84,25 @@ params:
 
   label:
     text: "Redowan's Reflections"
-    icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    iconHeight: 35
+    # icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    # iconHeight: 23
 
   # home-info mode
   homeInfoParams:
     Content: >
-      <div>
-        <i>
-          Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros
-        </i>
-        <div class="bio-urls">
-          <a href="tags">tags</a>
-          <span> • </span>
-          <a href="search">search</a>
-          <span> • </span>
-          <a href="index.xml">rss</a>
+      <div class="container">
+
+        <div class="text">
+          <h1 class="bio-title">Hi, I'm Redowan!</h1>
+          <br>
+          And this is my digital taxidermy shop.
+          <div class="bio-urls">
+            <a href="tags">tags</a>
+            <span> • </span>
+            <a href="search">search</a>
+            <span> • </span>
+            <a href="index.xml">rss</a>
+          </div>
         </div>
       </div>
   # socialIcons:
