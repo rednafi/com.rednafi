@@ -18,8 +18,8 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >
-    Ohe, I'm Redowan Delowar—a professional sciolist with a flair for ones and zeros. I
-    sporadically rant and write about Python, JavaScript, Go, SQL, and the broader
+    Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros. I
+    sporadically rant and write about Python, Go, JavaScript, SQL, and the broader
     landscape of software in general.
   keywords: [
     # Meta
@@ -160,6 +160,11 @@ menu:
       title: about
       url: /about/
       weight: 3
+
+    - identifier: categories
+      name: categories
+      url: /categories/
+      weight: 10
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
