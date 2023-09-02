@@ -26,7 +26,7 @@ print(random.choice(lst))
 
 This will print:
 
-```
+```txt
 choice_3
 choice_1
 ```
@@ -35,8 +35,8 @@ I was looking for a way to quickly hydrate a table with random data in an SQLite
 database. To be able to do so, I needed to extract unpremeditated values from an array
 of predefined elements. The issue is, that SQLite doesn't support array types or have a
 built-in function to pick random values from an array. However, recently I came across
-[this][1] trick from Ricardo Ander-Egg's [tweet][2], where he exploits SQLite's JSON
-support to parse an array. This idea can be further extended to pluck random values from
+[this] trick from Ricardo Ander-Egg's [tweet], where he exploits SQLite's JSON support to
+parse an array. This idea can be further extended to pluck random values from
 an array.
 
 To extract values from any JSON object in SQLite, you can use the `json_extract`
@@ -57,7 +57,7 @@ Ohe
 The above query parses the JSON object inside the `json_extract` function and extracts
 the last element from the `greetings` array. If you want to know more details about how
 you can extract specific elements from JSON objects, head over to the SQLite docs on
-this [topic][3].
+this [topic].
 
 You can pick any value from a JSON array by its index:
 
@@ -166,7 +166,7 @@ select * from stat;
 If you run the above queries via the SQLite CLI, the final statement will reveal the
 `stat` table with the randomly filled in data:
 
-```
+```txt
 | id  | cat | score  |
 |-----|-----|--------|
 | 1   | a   | 390.0  |
@@ -184,6 +184,6 @@ If you run the above queries via the SQLite CLI, the final statement will reveal
 | 100 | c   | 420.0  |
 ```
 
-[1]: https://ricardoanderegg.com/posts/sqlite-list-array-parameter-query/
-[2]: https://twitter.com/ricardoanderegg/status/1564723221173342220?s=20&t=V4TtJsxqyH0IuheqhEvb4w
-[3]: https://www.sqlite.org/json1.html#jex
+[this]: https://ricardoanderegg.com/posts/sqlite-list-array-parameter-query/
+[tweet]: https://twitter.com/ricardoanderegg/status/1564723221173342220?s=20&t=V4TtJsxqyH0IuheqhEvb4w
+[topic]: https://www.sqlite.org/json1.html#jex
