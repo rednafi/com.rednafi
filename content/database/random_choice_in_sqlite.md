@@ -88,7 +88,7 @@ select abs(random()) % 4;
 If you run this query multiple times, you'll see that it prints a value between `0` and
 `3` in random order.
 
-```
+```txt
 sqlite> select abs(random()) % 4;
 0
 
