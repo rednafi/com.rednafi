@@ -161,11 +161,6 @@ menu:
       url: /about/
       weight: 3
 
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
