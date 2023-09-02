@@ -50,7 +50,7 @@ select json_extract(
 
 This will give you an output as follows:
 
-```
+```txt
 Ohe
 ```
 
@@ -66,7 +66,7 @@ select json_extract(
     '["Columbus", "Cincinnati", "Dayton", "Toledo"]', '$[2]'
 )
 ```
-```
+```txt
 Dayton
 ```
 
@@ -116,7 +116,7 @@ select json_extract(
 Running the above query will give you a single value from the JSON array in random
 order. Execute the query multiple times to see it in action.
 
-```
+```txt
 sqlite> select json_extract('["Columbus", ...
 Toledo
 
