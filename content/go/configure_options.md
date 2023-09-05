@@ -225,6 +225,7 @@ The complete snippet looks as follows:
 ```go
 package src
 
+// We can keep style private
 type style struct {
     fg string
     bg string
@@ -232,9 +233,10 @@ type style struct {
     zigzag bool // Optional field
 }
 
+// This can be priave too since the users won't need it directly
 type styleoption func(*style)
 
-// We only define config functions for the optional fields
+// We only define public config functions for the optional fields
 func WithUnd(und bool) styleoption {
     return func(s *style) {
         s.und = true
@@ -247,6 +249,7 @@ func WithZigzag(zigzag bool) styleoption {
     }
 }
 
+// Options are variadic but the required fiels must be passed
 func NewStyle(fg, bg string, options ...styleoption) *style {
     s := &style{fg, bg, false, false}
     for _, opt := range options {
