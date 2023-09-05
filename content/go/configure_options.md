@@ -225,7 +225,7 @@ The complete snippet looks as follows:
 ```go
 package src
 
-// We can keep style private
+// We can keep the option struct private
 type style struct {
     fg string
     bg string
@@ -233,7 +233,7 @@ type style struct {
     zigzag bool // Optional field
 }
 
-// This can be priave too since the users won't need it directly
+// This can be priavate too since the users won't need it directly
 type styleoption func(*style)
 
 // We only define public config functions for the optional fields
