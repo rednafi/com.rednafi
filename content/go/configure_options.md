@@ -265,9 +265,9 @@ never reach for it unless I need my users to be able to configure large option s
 many optional fields. It is rare and the extra indirection makes the code inscrutable. Also,
 it renders the IDE suggestions useless.
 
-In most cases, you can get away with exporting the option struct `Stuff` and a factory
-function `NewStuff` to instantiate it. For another canonical example, see the `bufio.Read`
-and `bufio.NewReader` in the standard library.
+In most cases, you can get away with exporting the option struct `Stuff` and a companion
+function `NewStuff` to instantiate it. For another canonical example, see `bufio.Read` and
+`bufio.NewReader` in the standard library.
 
 ## References
 
