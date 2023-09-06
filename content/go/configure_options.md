@@ -156,7 +156,7 @@ want. Go doesn't allow setting non-zero default values for struct fields. So an 
 of indirection is necessary to let the users configure them. This approach also allows us
 to make the option struct private so that there's no ambiguity around API usage.
 
-Let's say `style` now has two optional fields `und` and `zigzag` that allow users to
+Let's say `style` now has two optional fields `und` and `zigzag` that allows users to
 decorate the message string with underlines or zigzagged lines:
 
 ```go
@@ -267,7 +267,7 @@ func WithZigzag(zigzag bool) styleoption {
 
 // Options are variadic but the required fiels must be passed
 func NewStyle(fg, bg string, options ...styleoption) *style {
-    // You can also intialize the optional values explicitly
+    // You can also initialize the optional values explicitly
     s := &style{fg: fg, bg: bg}
     for _, opt := range options {
         opt(s)
