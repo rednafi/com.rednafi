@@ -167,10 +167,10 @@ field with a user-provided value. The implementation of this type would look as 
 func (s *style) {s.fieldName = fieldValue}
 ```
 
-Next, we'll need to define a config function for each optional field in the struct where the
-function will accept the field value and return another function with the `styleoption`
-signature. The `WithUnd` and `WithZigzag` wrapper functions will be a part of the public API
-that the users will use to configure `style`:
+Next, we'll need to define a higher order config function for each optional field in the
+struct where the function will accept the field value and return another function with the
+`styleoption` signature. The `WithUnd` and `WithZigzag` wrapper functions will be a part of
+the public API that the users will use to configure `style`:
 
 ```go
 // We only define config functions for the optional fields
