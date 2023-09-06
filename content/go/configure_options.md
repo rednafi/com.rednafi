@@ -278,7 +278,7 @@ I first came across this pattern in Rob Pike's [blog] on the same topic.
 
 While the functional factory pattern is the most intriguing one among the three, I almost
 never reach for it unless I need my users to be able to configure large option structs with
-many optional fields. It is rare and the extra indirection makes the code inscrutable. Also,
+many optional fields. It's rare and the extra indirection makes the code inscrutable. Also,
 it renders the IDE suggestions useless.
 
 In most cases, you can get away with exporting the option struct `Stuff` and a companion
