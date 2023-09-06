@@ -71,10 +71,10 @@ c := &src.Style{
 }
 ```
 
-In this case, the field that wasn't passed will assume the corresponding zero value. For
+In this case, the field that wasn't passed would assume the corresponding zero value. For
 instance, `Bg` will be initialized as an empty string. However, this pattern puts the
-responsibilty of retaining API compatibity on the users' shoulders. So if your code is meant
-for external use, there are better ways to achieve option configurability.
+responsibility of retaining API compatibility on the users' shoulders. So if your code is
+meant for external use, there are better ways to achieve option configurability.
 
 ## Option factory
 
