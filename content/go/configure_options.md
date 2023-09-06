@@ -153,9 +153,11 @@ option factory.
 As mentioned at the tail of the last section, this approach works better when your struct
 contains many optional fields and you need your users to be able to configure them if they
 want. Go doesn't allow setting non-zero default values for struct fields. So an extra level
-of indirection is necessary to let the users configure them. Let's say `Style` now has two
-optional fields `Und` and `Zigzag` that allow users to decorate the message string with
-underlines or zigzagged lines:
+of indirection is necessary to let the users configure them. This approach also allows us
+to make the option struct private so that there's no ambiguity around API usage.
+
+Let's say `style` now has two optional fields `und` and `zigzag` that allow users to
+decorate the message string with underlines or zigzagged lines:
 
 ```go
 package src
@@ -219,7 +221,7 @@ func NewStyle(fg, bg string, options ...styleoption) *style {
 }
 ```
 
-The users will use the code like this to instantiate `Style` and update the optional fields:
+The users will use the code like this to instantiate `style` and update the optional fields:
 
 ```go
 c := src.NewStyle(
