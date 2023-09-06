@@ -37,7 +37,7 @@ Each comes with its own pros and cons.
 ## Expose the option struct
 
 In this case, you'd export the `Style` struct with all its fields and let the user configure
-them directly. The previous snipped already made the struct and fields public. From another
+them directly. The previous snippet already made the struct and fields public. From another
 package, you could import the `src` package and instantiate `Style` like this:
 
 ```go
