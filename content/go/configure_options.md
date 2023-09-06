@@ -292,7 +292,9 @@ function `NewStuff` to instantiate it. For another canonical example, see `bufio
 ## References
 
 * [Self-referential functions and the design of options - Rob Pike][blog]
+* [Functional options for friendly APIs - Dave Cheney][talk]
 * [Functional options pattern in Go - Matt Boyle][tweet]
 
 [blog]: https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
+[talk]: https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
 [tweet]: https://twitter.com/MattJamesBoyle/status/1698605808517288428
