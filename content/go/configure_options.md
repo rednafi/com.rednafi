@@ -265,7 +265,7 @@ func WithZigzag(zigzag bool) styleoption {
 
 // Options are variadic but the required fiels must be passed
 func NewStyle(fg, bg string, options ...styleoption) *style {
-	// You can also intialize the optional values explicitly
+    // You can also intialize the optional values explicitly
     s := &style{fg: fg, bg: bg}
     for _, opt := range options {
         opt(s)
