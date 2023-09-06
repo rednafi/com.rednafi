@@ -193,13 +193,13 @@ the public API that the users will use to configure `style`:
 // We only define config functions for the optional fields
 func WithUnd(und bool) styleoption {
     return func(s *style) {
-        s.und = true
+        s.und = und
     }
 }
 
 func WithZigzag(zigzag bool) styleoption {
     return func(s *style) {
-        s.zigzag = true
+        s.zigzag = zigzag
     }
 }
 ```
@@ -255,13 +255,13 @@ type styleoption func(*style)
 // We only define public config functions for the optional fields
 func WithUnd(und bool) styleoption {
     return func(s *style) {
-        s.und = true
+        s.und = und
     }
 }
 
 func WithZigzag(zigzag bool) styleoption {
     return func(s *style) {
-        s.zigzag = true
+        s.zigzag = zigzag
     }
 }
 
