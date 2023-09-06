@@ -228,7 +228,6 @@ c := src.NewStyle(
     src.WithUnd(true), // Default is false, but we're setting it to true
     src.WithZigzag(true), // Default is false
 )
-fmt.Printf("%+#v\n", c)
 ```
 
 The required fields `fg` and `bg` must be passed while constructing the option struct. The
