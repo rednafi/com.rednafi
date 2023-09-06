@@ -61,8 +61,20 @@ c.Fg = "\033[35m" // Magenta
 c.Bg = "\033[40m" // Black
 ```
 
-This works but will break users' code if new fields are added to the option struct. If your
-code is meant for external use, this isn't the best way to let users configure options.
+This works but will break users' code if new fields are added to the option struct. But your
+users can instantiate the struct with named parameters to avoid breakage:
+
+```go
+c := &src.Style{
+    Fg: "\033[31m", // Maroon
+					// Bg will be implicitly set to an empty string
+}
+```
+
+In this case, the field that wasn't passed will assume the corresponding zero value. For
+instance `Bg` will be an empty string. However, this pattern puts the responsibilty of
+retaining API compatibity on the users' shoulders. So if your code is meant for external
+use, there are better ways to achieve option configurability.
 
 ## Option factory
 
@@ -103,19 +115,20 @@ package src
 type Style struct {
     Fg string
     Bg string
-    Und true // Underline or not
+    Und bool // Underline or not
 }
 
 // Function signature unchanged though new option field added
 // Set sensible default in factory function
 func NewStyle(fg, bg string) *Style{
     return &Style{
-        fg, bg, false // Und is false by default
+        Fg: fg, Bg: bg, // Und will be implicitly set to false
     }
 }
 ```
 
-The struct fields can be updated in the same manner as before:
+In `NewStyle`, we implicitly set the value of `Und` to `false` but you can be explicit there
+depending on your needs. The struct fields can be updated in the same manner as before:
 
 ```go
 package main
@@ -193,7 +206,7 @@ struct pointer:
 
 ```go
 func NewStyle(fg, bg string, options ...styleoption) *style {
-    s := &style{fg, bg, false, false}
+    s := &style{fg: fg, bg: bg} // und and zigzag are set to false
 
     // Apply all the styleoption functions returned from
     // field config functions.
@@ -251,7 +264,7 @@ func WithZigzag(zigzag bool) styleoption {
 
 // Options are variadic but the required fiels must be passed
 func NewStyle(fg, bg string, options ...styleoption) *style {
-    s := &style{fg, bg, false, false}
+    s := &style{fg: fg, bg: bg}
     for _, opt := range options {
         opt(s)
     }
