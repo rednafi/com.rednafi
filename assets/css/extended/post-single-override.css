@@ -15,14 +15,13 @@
     font-size: 23px;
 }
 
-
 .post-content code {
     margin: auto 4px;
     padding: 4px 6px;
     font-size: 0.90em;
     line-height: 1.5;
-    background: var(--code-bg);
     border-radius: 2px;
+    color: var(--hljs-color) !important;
 }
 
 .toc {

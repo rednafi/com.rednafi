@@ -1,63 +1,102 @@
-.hljs-comment,
-.hljs-quote {
-    color: #b6b18b;
-}
+/*!
+  The name an-old-hope is kept to override the default theme.
+  In reality, this site uses a11y-light.
 
-.hljs-deletion,
-.hljs-name,
-.hljs-regexp,
-.hljs-selector-class,
-.hljs-selector-id,
-.hljs-tag,
-.hljs-template-variable,
-.hljs-variable {
-    color: #a0b3ee;
-}
+  Theme: a11y-light
+  Author: @ericwbailey
+  Maintainer: @ericwbailey
 
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-link,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-params,
-.hljs-type {
-    color: #e7ce56;
-}
-
-.hljs-attribute {
-    color: #ee7c2b;
-}
-
-.hljs-addition,
-.hljs-bullet,
-.hljs-string,
-.hljs-symbol {
-    color: #4fb4d7;
-}
-
-.hljs-section,
-.hljs-title {
-    color: #78bb65;
-}
-
-.hljs-keyword,
-.hljs-selector-tag {
-    color: #db90ce;
-}
+  Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css
+*/
 
 .hljs {
-    display: block;
-    overflow-x: auto;
-    background: #1c1d21;
-    color: #c0c5ce;
-    padding: .5em;
-}
+    background: #fefefe;
+    color: #545454;
+  }
 
-.hljs-emphasis {
+  /* Comment */
+  .hljs-comment,
+  .hljs-quote {
+    color: #696969;
     font-style: italic;
-}
+  }
 
-.hljs-strong {
-    font-weight: 700;
-}
+  /* Red */
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-regexp,
+  .hljs-deletion {
+    color: #d91e18;
+  }
+
+  /* Orange */
+  .hljs-number,
+  .hljs-built_in,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-params,
+  .hljs-meta,
+  .hljs-link {
+    color: #aa5d00;
+  }
+
+  /* Yellow */
+  .hljs-attribute {
+    color: #aa5d00;
+  }
+
+  /* Green */
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-addition {
+    color: #008000;
+  }
+
+  /* Blue */
+  .hljs-title,
+  .hljs-section {
+    color: #007faa;
+  }
+
+  /* Purple */
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: #7928a1;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  @media screen and (-ms-high-contrast: active) {
+    .hljs-addition,
+    .hljs-attribute,
+    .hljs-built_in,
+    .hljs-bullet,
+    .hljs-comment,
+    .hljs-link,
+    .hljs-literal,
+    .hljs-meta,
+    .hljs-number,
+    .hljs-params,
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-type,
+    .hljs-quote {
+          color: highlight;
+      }
+
+      .hljs-keyword,
+      .hljs-selector-tag {
+          font-weight: bold;
+      }
+  }
