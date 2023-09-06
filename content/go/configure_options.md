@@ -67,7 +67,7 @@ users can instantiate the struct with named parameters to avoid breakage:
 ```go
 c := &src.Style{
     Fg: "\033[31m", // Maroon
-					// Bg will be implicitly set to an empty string
+                   // Bg will be implicitly set to an empty string
 }
 ```
 
