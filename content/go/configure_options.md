@@ -29,8 +29,8 @@ specified in the option struct. In the wild, I've seen 3 main ways to write APIs
 users configure options:
 
 - Expose the option struct directly
-- Use the option factory pattern
-- Apply functional option factory pattern
+- Use the option constructor pattern
+- Apply functional option constructor pattern
 
 Each comes with its own pros and cons.
 
@@ -76,17 +76,17 @@ instance, `Bg` will be initialized as an empty string. However, this pattern put
 responsibility of retaining API compatibility on the users' shoulders. So if your code is
 meant for external use, there are better ways to achieve option configurability.
 
-## Option factory
+## Option constructor
 
 Go standard library extensively uses this pattern. Instead of letting the users instantiate
-`Style` directly, you expose a `NewStyle` factory function that constructs the struct
+`Style` directly, you expose a `NewStyle` constructor function that constructs the struct
 instance for them:
 
 ```go
 package src
 // same as before
 
-// NewStyle option factory instantiates a Style instance
+// NewStyle option constructor instantiates a Style instance
 func NewStyle(fg, bg string) *Style {
     return &Style{fg, bg}
 }
@@ -108,8 +108,8 @@ Display(c, "Hello, World!")
 
 If a new field is added to `Style`, update `NewStyle` to have a sensible default value for
 it or initialize the struct with named parameters to set the optional fields to their
-respective zero values. This avoids breaking users' code as long as the factory function's
-signature doesn't change.
+respective zero values. This avoids breaking users' code as long as the constructor
+function's signature doesn't change.
 
 ```go
 package src
@@ -121,7 +121,7 @@ type Style struct {
 }
 
 // Function signature unchanged though new option field added
-// Set sensible default in factory function
+// Set sensible default in constructor function
 func NewStyle(fg, bg string) *Style{
     return &Style{
         Fg: fg, Bg: bg, // Und will be implicitly set to false
@@ -146,9 +146,9 @@ src.Display(c, "Hello, World!")
 This should cover most use cases. However, if you don't want to export the underlying option
 struct, or your struct has tons of optional fields requiring extensibility, you'll need an
 extra layer of indirection to avoid the need to accept a zillion config parameters in your
-option factory.
+option constructor.
 
-## Functional option factory
+## Functional option constructor
 
 As mentioned at the tail of the last section, this approach works better when your struct
 contains many optional fields and you need your users to be able to configure them if they
@@ -204,9 +204,9 @@ func WithZigzag(zigzag bool) styleoption {
 }
 ```
 
-Finally, our option factory function needs to be updated to accept variadic options. Observe
-how we're looping through the `options` slice and applying the field config functions to the
-struct pointer:
+Finally, our option constructor function needs to be updated to accept variadic options.
+Observe how we're looping through the `options` slice and applying the field config
+functions to the struct pointer:
 
 ```go
 func NewStyle(fg, bg string, options ...styleoption) *style {
@@ -280,10 +280,10 @@ I first came across this pattern in Rob Pike's [blog] on the same topic.
 
 ## Verdict
 
-While the functional factory pattern is the most intriguing one among the three, I almost
-never reach for it unless I need my users to be able to configure large option structs with
-many optional fields. It's rare and the extra indirection makes the code inscrutable. Also,
-it renders the IDE suggestions useless.
+While the functional constructor pattern is the most intriguing one among the three, I
+almost never reach for it unless I need my users to be able to configure large option
+structs with many optional fields. It's rare and the extra indirection makes the code
+inscrutable. Also, it renders the IDE suggestions useless.
 
 In most cases, you can get away with exporting the option struct `Stuff` and a companion
 function `NewStuff` to instantiate it. For another canonical example, see `bufio.Read` and
