@@ -72,7 +72,7 @@ c := &src.Style{
 ```
 
 In this case, the field that wasn't passed will assume the corresponding zero value. For
-instance `Bg` will be initialized as an empty string. However, this pattern puts the
+instance, `Bg` will be initialized as an empty string. However, this pattern puts the
 responsibilty of retaining API compatibity on the users' shoulders. So if your code is meant
 for external use, there are better ways to achieve option configurability.
 
@@ -106,8 +106,10 @@ c := src.NewStyle(
 Display(c, "Hello, World!")
 ```
 
-If a new field is added to `Style`, update `NewStyle` to have a default value for it. This
-avoids breaking users' code as long as the factory function's signature doesn't change.
+If a new field is added to `Style`, update `NewStyle` to have a sensible default value for
+it or initialize the struct with named parameters to set the optional fields to their
+respective zero values. This avoids breaking users' code as long as the factory function's
+signature doesn't change.
 
 ```go
 package src
@@ -264,6 +266,7 @@ func WithZigzag(zigzag bool) styleoption {
 
 // Options are variadic but the required fiels must be passed
 func NewStyle(fg, bg string, options ...styleoption) *style {
+	// You can also intialize the optional values explicitly
     s := &style{fg: fg, bg: bg}
     for _, opt := range options {
         opt(s)
