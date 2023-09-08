@@ -91,11 +91,10 @@ params:
   homeInfoParams:
     Content: >
       <div class="container">
-
         <div class="text">
           <h1 class="bio-title">Hi, I'm Redowan!</h1>
           <br>
-          And this is my digital taxidermy shop.
+            <p>And this is my digital taxidermy lab ⏳</p>
           <div class="bio-urls">
             <a href="tags">tags</a>
             <span> • </span>
