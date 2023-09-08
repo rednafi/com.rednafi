@@ -42,7 +42,7 @@ params:
   ]
   author: "Redowan Delowar"
   images: [
-    "https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png"
+    "https://github.com/rednafi/rednafi.com/assets/30027932/9b61f612-4456-43df-b57c-7cb8a08949a1"
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
@@ -76,16 +76,16 @@ params:
   assets:
     #disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    favicon16x16: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    favicon32x32: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
+    favicon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    favicon16x16: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    favicon32x32: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    apple_touch_icon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    safari_pinned_tab: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
 
   label:
     text: "Redowan's Reflections"
-    # icon: "https://user-images.githubusercontent.com/30027932/234704858-2cff14b0-bdf1-4393-a184-cff35eb9de81.png"
-    # iconHeight: 23
+    icon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    iconHeight: 20
 
   # home-info mode
   homeInfoParams:
@@ -125,7 +125,7 @@ params:
 
   cover:
     hidden: false # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
+    hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
     image: https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png
 

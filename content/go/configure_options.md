@@ -249,7 +249,7 @@ type style struct {
     zigzag bool // Optional field
 }
 
-// This can be priavate too since the users won't need it directly
+// This can be private too since the users won't need it directly
 type styleoption func(*style)
 
 // We only define public config functions for the optional fields
