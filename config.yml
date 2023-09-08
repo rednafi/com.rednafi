@@ -126,7 +126,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: https://user-images.githubusercontent.com/30027932/234678636-4748b670-faa3-481a-b74a-abf49b6de261.png
+    image: https://github.com/rednafi/rednafi.com/assets/30027932/9b61f612-4456-43df-b57c-7cb8a08949a1
 
   editPost:
     URL: "https://github.com/rednafi/rednafi.com/blob/main/content"
