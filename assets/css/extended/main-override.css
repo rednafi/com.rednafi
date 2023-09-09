@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'JetBrains Mono', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Schibsted Grotesk', 'Helvetica Neue', sans-serif;
     font-size: 16.5px;
-    line-height: 1.5;
+    line-height: 1.6;
     word-break: break-word;
     background: var(--theme);
 }

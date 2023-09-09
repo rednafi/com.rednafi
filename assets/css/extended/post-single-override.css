@@ -19,6 +19,7 @@
     margin: auto 4px;
     padding: 4px 6px;
     font-size: 0.90em;
+    font-family: 'Jetbrains Mono', monospace;
     line-height: 1.5;
     border-radius: 2px;
     color: var(--hljs-color) !important;
