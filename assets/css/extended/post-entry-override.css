@@ -4,7 +4,7 @@
     margin: 0.5rem;
 }
 .first-entry .entry-header h1 {
-    font-size: 27px;
+    font-size: 2rem;
 }
 .first-entry .entry-content {
     font-size: 16.5px;
@@ -13,8 +13,8 @@
     font-size: 14.5px;
     line-height: 1.5;
 }
-.bio-title{
-    font-size: 2rem;
+.bio-text{
+    margin-top: 0.4rem;
 }
 .bio-urls{
     margin-top: 0.4rem;

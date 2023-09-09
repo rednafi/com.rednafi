@@ -17,28 +17,10 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
-  description: >
-    Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros. I
-    sporadically rant and write about Python, Go, JavaScript, SQL, and the broader
-    landscape of software in general.
+  description: >-
+    Redowan Delowar—wandering autodidact with a flair for ones and zeros
   keywords: [
-    # Meta
-    Redowan, Delowar, Redowan Delowar, rednafi, SWE, software, software engineering,
-    Redowan Nafi, Nafi,
-
-    # Languages
-    Python, JavaScript, TypeScript, Go, Golang, HTML, CSS,
-
-    # Stack
-    Backend, Networking, APIs, AWS, Google Cloud, Distributed systems, microservices,
-    monoliths,
-
-    # Databases
-    Databases, SQL, SQLite, PostgreSQL, MySQL, NoSQL, Redis, MongoDB, DynamoDB,
-
-    # Frameworks
-    Django, Flask, FastAPI, Starlette, HTMX, VueJS,
-
+    Redowan Delowar, Blog, Python, DevOps, Go, Golang, Shell, Database
   ]
   author: "Redowan Delowar"
   images: [
@@ -89,21 +71,20 @@ params:
 
   # home-info mode
   homeInfoParams:
+    Title: Hi, I'm Redowan
     Content: >
-      <div class="container">
-        <div class="text">
-          <h1 class="bio-title">Hi, I'm Redowan!</h1>
-          <br>
-            <p>And this is my digital taxidermy lab ⏳</p>
-          <div class="bio-urls">
-            <a href="tags">tags</a>
-            <span> • </span>
-            <a href="search">search</a>
-            <span> • </span>
-            <a href="index.xml">rss</a>
-          </div>
-        </div>
+      <div class="bio-text">
+        And this is my digital taxidermy lab ⏳
       </div>
+
+      <div class="bio-urls">
+        <a href="tags">tags</a>
+        <span> • </span>
+        <a href="search">search</a>
+        <span> • </span>
+        <a href="index.xml">rss</a>
+      </div>
+
   # socialIcons:
   #   - name: twitter
   #     url: "https://twitter.com/rednafi"
