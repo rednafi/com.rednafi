@@ -20,11 +20,12 @@ params:
   description: >-
     Redowan Delowar—wandering autodidact with a flair for ones and zeros
   keywords: [
-    Redowan Delowar, Blog, Python, DevOps, Go, Golang, Shell, Database
+    Redowan Delowar, Redowan Nafi, rednafi, Blog, Python, DevOps, Go, Golang, Shell,
+    Database
   ]
   author: "Redowan Delowar"
   images: [
-    "https://github.com/rednafi/rednafi.com/assets/30027932/9b61f612-4456-43df-b57c-7cb8a08949a1"
+    "https://user-images.githubusercontent.com/30027932/266722327-9b61f612-4456-43df-b57c-7cb8a08949a1.png"
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
@@ -58,15 +59,15 @@ params:
   assets:
     #disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
-    favicon16x16: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
-    favicon32x32: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
-    apple_touch_icon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
-    safari_pinned_tab: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    favicon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
+    favicon16x16: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
+    favicon32x32: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
+    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
+    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
 
   label:
     text: "Redowan's Reflections"
-    icon: "https://github.com/rednafi/rednafi.com/assets/30027932/bc5c6530-79f0-442f-98d5-3d92edecffcd"
+    icon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
     iconHeight: 20
 
   # home-info mode
@@ -107,7 +108,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: https://github.com/rednafi/rednafi.com/assets/30027932/9b61f612-4456-43df-b57c-7cb8a08949a1
+    image: https://user-images.githubusercontent.com/30027932/266722327-9b61f612-4456-43df-b57c-7cb8a08949a1.png
 
   editPost:
     URL: "https://github.com/rednafi/rednafi.com/blob/main/content"

@@ -1,102 +1,93 @@
-/*!
-  The name an-old-hope is kept to override the default theme.
-  In reality, this site uses a11y-light.
-
-  Theme: a11y-light
-  Author: @ericwbailey
-  Maintainer: @ericwbailey
-
-  Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css
+/*
+Modified Docco style by redowan delowar
 */
 
 .hljs {
-    background: #fefefe;
-    color: #545454;
-  }
+  color: #000;
+  background: #f8f8ff;
+}
 
-  /* Comment */
-  .hljs-comment,
-  .hljs-quote {
-    color: #696969;
-    font-style: italic;
-  }
+.hljs-comment,
+.hljs-quote {
+  color: #408080;
+  font-style: italic;
+}
 
-  /* Red */
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-tag,
-  .hljs-name,
-  .hljs-selector-id,
-  .hljs-selector-class,
-  .hljs-regexp,
-  .hljs-deletion {
-    color: #d91e18;
-  }
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-subst {
+  color: #954121;
+}
 
-  /* Orange */
-  .hljs-number,
-  .hljs-built_in,
-  .hljs-literal,
-  .hljs-type,
-  .hljs-params,
-  .hljs-meta,
-  .hljs-link {
-    color: #aa5d00;
-  }
+.hljs-number {
+  color: #40a070;
+}
 
-  /* Yellow */
-  .hljs-attribute {
-    color: #aa5d00;
-  }
+.hljs-string,
+.hljs-doctag {
+  color: #219161;
+}
 
-  /* Green */
-  .hljs-string,
-  .hljs-symbol,
-  .hljs-bullet,
-  .hljs-addition {
-    color: #008000;
-  }
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-section,
+.hljs-type {
+  color: #19469d;
+}
 
-  /* Blue */
-  .hljs-title,
-  .hljs-section {
-    color: #007faa;
-  }
+.hljs-params {
+  color: rgb(131, 82, 9);
+}
 
-  /* Purple */
-  .hljs-keyword,
-  .hljs-selector-tag {
-    color: #7928a1;
-  }
+.hljs-title {
+  color: #458;
+  font-weight: bold;
+}
 
-  .hljs-emphasis {
-    font-style: italic;
-  }
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
 
-  .hljs-strong {
-    font-weight: bold;
-  }
+.hljs-variable,
+.hljs-template-variable {
+  color: #008080;
+}
 
-  @media screen and (-ms-high-contrast: active) {
-    .hljs-addition,
-    .hljs-attribute,
-    .hljs-built_in,
-    .hljs-bullet,
-    .hljs-comment,
-    .hljs-link,
-    .hljs-literal,
-    .hljs-meta,
-    .hljs-number,
-    .hljs-params,
-    .hljs-string,
-    .hljs-symbol,
-    .hljs-type,
-    .hljs-quote {
-          color: highlight;
-      }
+.hljs-regexp,
+.hljs-link {
+  color: #b68;
+}
 
-      .hljs-keyword,
-      .hljs-selector-tag {
-          font-weight: bold;
-      }
-  }
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #323232;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
