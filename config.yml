@@ -18,7 +18,9 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >-
-    Redowan Delowar—wandering autodidact with a flair for ones and zeros
+    Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros. I
+    learn, write, and tweet about Python, Go, SQL, and the broader landscape of software in
+    general.
   keywords: [
     Redowan Delowar, Redowan Nafi, rednafi, Blog, Python, DevOps, Go, Golang, Shell,
     Database
@@ -75,7 +77,11 @@ params:
     Title: Hi, I'm Redowan
     Content: >
       <div class="bio-text">
-        And this is my digital taxidermy lab ⏳
+        A wandering autodidact with a flair for ones and zeros. I
+          <a class="bio-urls" href="/tags">learn<a/>,
+          <a class="bio-urls" href="/archives">write</a>, and
+          <a class="bio-urls" href="https://twitter.com/rednafi">tweet</a>
+        about Python, Go, SQL, and the broader landscape of software in general.
       </div>
 
       <div class="bio-urls">

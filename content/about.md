@@ -12,8 +12,8 @@ ShowShareButtons: false
 
 Circa 2018, a glitch in the matrix zapped Redowan Delowar to pivot from electrical
 engineering to data science, eventually finding his footing in backend software development.
-He is a tinkerer, writer, and a wandering autodidact with 5+ years of experience designing
-and developing resilient software systems.
+He is a [tinkerer], [writer], and a wandering autodidact with 5+ years of experience
+designing and developing resilient software systems.
 
 He specializes in system architecture, performance tuning, networking, data analysis,
 databases, and API design. In his spare time, he is an open-source contributor, a long-form
@@ -30,7 +30,8 @@ website, [rednafi.com].
 
 
 [rednafi.com]: /
-[serial project hoarder]: https://simonwillison.net/2022/Nov/26/productivity/#:~:text=strategies%20for%20the-,serial%20project%20hoarder,-I%20gave%20a
+[writer]: /archives/
+[tinkerer]: /tags/til/
 [rss]: https://rednafi.com/index.xml
 [github]: https://github.com/rednafi
 [twitter]: https://twitter.com/rednafi
