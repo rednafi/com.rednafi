@@ -78,18 +78,21 @@ params:
     Content: >
       <div class="bio-text">
         A wandering autodidact with a flair for ones and zeros. I
-          <a class="bio-urls" href="/tags">learn<a/>,
-          <a class="bio-urls" href="/archives">write</a>, and
-          <a class="bio-urls" href="https://twitter.com/rednafi">tweet</a>
-        about Python, Go, SQL, and the broader landscape of software in general.
+        <a class="bio-urls" href="/tags">learn</a>,
+        <a class="bio-urls" href="/archives">write</a>, and
+        <a class="bio-urls" href="https://twitter.com/rednafi">tweet</a> about
+        <a class="bio-urls" href="/tags/python">Python</a>,
+        <a class="bio-urls" href="/tags/go">Go</a>,
+        <a class="bio-urls" href="/tags/database">SQL</a>, and the broader
+        <a class="bio-urls" href="/zephyr">landscape</a> of software in general.
       </div>
 
       <div class="bio-urls">
-        <a href="tags">tags</a>
+        <a href="/tags">tags</a>
         <span> • </span>
-        <a href="search">search</a>
+        <a href="/search">search</a>
         <span> • </span>
-        <a href="index.xml">rss</a>
+        <a href="/index.xml">rss</a>
       </div>
 
   # socialIcons:
