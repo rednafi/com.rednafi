@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-Recently, my work needed me to create lots of custom data types and draw comparison
-among them. So, my code was littered with many classes that somewhat looked like this:
+Recently, my work needed me to create lots of custom data types and draw comparison among
+them. So, my code was littered with many classes that somewhat looked like this:
 
 ```python
 class CartesianPoint:
@@ -26,16 +26,16 @@ print(CartesianPoint(1, 2, 3))
 >>> CartesianPoint(x = 1, y = 2, z = 3)
 ```
 
-This class only creates a `CartesianPoint` type and shows a pretty output of the
-instances created from it. However, it already has two methods inside, `__init__` and
-`__repr__` that do not do much.
+This class only creates a `CartesianPoint` type and shows a pretty output of the instances
+created from it. However, it already has two methods inside, `__init__` and `__repr__` that
+do not do much.
 
 ## Dataclasses
 
-Let's see how data classes can help to improve this situation. Data classes were
-introduced to python in version 3.7. Basically they can be regarded as code generators
-that reduce the amount of boilerplate you need to write while generating generic
-classes. Rewriting the above class using `dataclass` will look like this:
+Let's see how data classes can help to improve this situation. Data classes were introduced
+to python in version 3.7. Basically they can be regarded as code generators that reduce the
+amount of boilerplate you need to write while generating generic classes. Rewriting the
+above class using `dataclass` will look like this:
 
 ```python
 from dataclasses import dataclass
@@ -57,10 +57,10 @@ print(point)
 >>> CartesianPoint(x=1, y=2, z=3)
 ```
 
-In the above code, the magic is done by the `dataclass` decorator. Data classes require
-you to use explicit [type annotation](https://docs.python.org/3/library/typing.html) and
-it automatically implements methods like `__init__`, `__repr__`, `__eq__` etc
-beforehand. You can inspect the methods that `dataclass` auto defines via python's help.
+In the above code, the magic is done by the `dataclass` decorator. Data classes require you
+to use explicit [type annotations] and it automatically implements methods like `__init__`,
+`__repr__`, `__eq__` etc beforehand. You can inspect the methods that `dataclass` auto
+defines via Python's help.
 
 ```python
 help(CartesianPoint)
@@ -183,12 +183,12 @@ print(point_1 > point_2)
 >>> True
 ```
 
-By default, while comparing instances, all of the fields are used. In our above case,
-all the fields  `x`, `y`, `z`of `point_1` instance are compared with all the fields of
-`point_2` instance. You can customize this using the `field` function.
+By default, while comparing instances, all of the fields are used. In our above case, all
+the fields  `x`, `y`, `z`of `point_1` instance are compared with all the fields of `point_2`
+instance. You can customize this using the `field` function.
 
-Suppose you want to acknowledge two instances as equal only when attribute `x` of both
-of them are equal. You can emulate this in the following way:
+Suppose you want to acknowledge two instances as equal only when attribute `x` of both of
+them are equal. You can emulate this in the following way:
 
 ```python
 from dataclasses import dataclass, field
@@ -215,14 +215,14 @@ print(point_1 < point_2)
 >>> False
 ```
 
-You can see the above code prints out `True` despite the instances have different `y`
-and `z` attributes.
+You can see the above code prints out `True` despite the instances have different `y` and
+`z` attributes.
 
 ## Adding methods
 
 Methods can be added to dataclasses just like normal classes. Let's add another method
-called `dist` to our `CartesianPoint` class. This method calculates the distance of a
-point from origin.
+called `dist` to our `CartesianPoint` class. This method calculates the distance of a point
+from origin.
 
 ```python
 from dataclasses import dataclass
@@ -293,11 +293,10 @@ FrozenInstanceError: cannot assign to field 'x'
 
 ## Making instances hashable
 
-You can turn on the `unsafe_hash` parameter of the `dataclass` decorator to make the
-class instances hashable. This may come in handy when you want to use your instances as
-dictionary keys or want to perform set operation on them. However, if you are using
-`unsafe_hash` make sure that your dataclasses do not contain any mutable data structure
-in it.
+You can turn on the `unsafe_hash` parameter of the `dataclass` decorator to make the class
+instances hashable. This may come in handy when you want to use your instances as dictionary
+keys or want to perform set operation on them. However, if you are using `unsafe_hash` make
+sure that your dataclasses do not contain any mutable data structure in it.
 
 ```python
 from dataclasses import dataclass
@@ -339,9 +338,9 @@ print(asdict(point))
 
 ## Post-init processing
 
-When dataclass generates the `__init__` method, internally it'll call `_post_init__`
-method. You can add additional processing in the `__post_init__` method. Here, I've
-added another attribute `tup` that returns the cartesian point as a tuple.
+When dataclass generates the `__init__` method, internally it'll call `_post_init__` method.
+You can add additional processing in the `__post_init__` method. Here, I've added another
+attribute `tup` that returns the cartesian point as a tuple.
 
 ```python
 from dataclasses import dataclass
@@ -532,5 +531,9 @@ True
 
 ## References
 
-* [Python dataclasses — Official docs](https://docs.python.org/3/library/dataclasses.html)
-* [The ultimate guide to dataclasses in Python 3.7](https://realpython.com/python-data-classes/)
+* [Python dataclasses - Official docs]
+* [The ultimate guide to dataclasses in Python 3.7]
+
+[type annotations]: https://docs.python.org/3/library/typing.html
+[python dataclasses - official docs]: https://docs.python.org/3/library/dataclasses.html
+[the ultimate guide to dataclasses in python 3.7]: https://realpython.com/python-data-classes/

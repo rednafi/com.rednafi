@@ -5,17 +5,17 @@ tags:
     - Python
 ---
 
-Python's context managers are great for resource management and stopping the propagation
-of leaked abstractions. You've probably used it while opening a file or a database
-connection. Usually it starts with a `with` statement like this:
+Python's context managers are great for resource management and stopping the propagation of
+leaked abstractions. You've probably used it while opening a file or a database connection.
+Usually it starts with a `with` statement like this:
 
 ```python
 with open("file.txt", "wt") as f:
     f.write("contents go here")
 ```
 
-In the above case, `file.txt` gets automatically closed when the execution flow goes out
-of the scope. This is equivalent to writing:
+In the above case, `file.txt` gets automatically closed when the execution flow goes out of
+the scope. This is equivalent to writing:
 
 ```python
 try:
@@ -27,9 +27,9 @@ finally:
 
 ## Writing custom context managers
 
-To write a custom context manager, you need to create a class that includes the
-`__enter__` and `__exit__` methods. Let's recreate a custom context manager that will
-execute the same workflow as above.
+To write a custom context manager, you need to create a class that includes the `__enter__`
+and `__exit__` methods. Let's recreate a custom context manager that will execute the same
+workflow as above.
 
 ```python
 class CustomFileOpen:
@@ -56,11 +56,11 @@ with CustomFileOpen("file.txt", "wt") as f:
 
 ## From generators to context managers
 
-Creating context managers by writing a class with `__enter__` and `__exit__` methods, is
-not difficult. However, you can achieve better brevity by defining them using
-`contextlib.contextmanager` decorator. This decorator converts a generator function into
-a context manager. The blueprint for creating context manager decorators goes something
-like this:
+Creating context managers by writing a class with `__enter__` and `__exit__` methods, is not
+difficult. However, you can achieve better brevity by defining them using
+`contextlib.contextmanager` decorator. This decorator converts a generator function into a
+context manager. The blueprint for creating context manager decorators goes something like
+this:
 
 ```python
 @contextmanager
@@ -76,12 +76,12 @@ When you use the context manager with the `with` statement:
 
 ```python
 with some_generator(<arguments>) as <variable>:
-    <body>
+    # ...body
 ```
 
 It roughly translates to:
 
-```python
+```txt
 <setup>
 try:
     <variable> = <value>
@@ -90,16 +90,14 @@ finally:
     <cleanup>
 ```
 
-The setup code goes before the `try..finally` block. Notice the point where the
-generator yields. This is where the code block nested in the `with` statement gets
-executed. After the completion of the code block, the generator is then resumed. If an
-unhandled exception occurs in the block, it's re-raised inside the generator at the
-point where the `yield` occurred and then the `finally` block is executed. If no
-unhandled exception occurs, the code gracefully proceeds to the `finally` block where
-you run your cleanup code.
+The setup code goes before the `try..finally` block. Notice the point where the generator
+yields. This is where the code block nested in the `with` statement gets executed. After the
+completion of the code block, the generator is then resumed. If an unhandled exception
+occurs in the block, it's re-raised inside the generator at the point where the `yield`
+occurred and then the `finally` block is executed. If no unhandled exception occurs, the
+code gracefully proceeds to the `finally` block where you run your cleanup code.
 
-Let's implement the same `CustomFileOpen` context manager with `contextmanager`
-decorator.
+Let's implement the same `CustomFileOpen` context manager with `contextmanager` decorator.
 
 ```python
 from contextlib import contextmanager
@@ -127,11 +125,11 @@ with CustomFileOpen("file.txt", "wt") as f:
 ## Writing context managers as decorators
 
 You can use context managers as decorators also. To do so, while defining the class, you
-have to inherit from `contextlib.ContextDecorator` class. Let's make a `RunTime`
-decorator that will be applied on a file-opening function. The decorator will:
+have to inherit from `contextlib.ContextDecorator` class. Let's make a `RunTime` decorator
+that'll be applied on a file-opening function. The decorator will:
 
-* Print a user provided description of the function
-* Print the time it takes to run the function
+* Print a user provided description of the function.
+* Print the time it takes to run the function.
 
 ```python
 from contextlib import ContextDecorator
@@ -170,7 +168,7 @@ Using the function like this should return:
 print(custom_file_write("file.txt", "wt", "jello"))
 ```
 
-```
+```txt
 This function opens a file
 The function took 0.0005390644073486328 seconds to run.
 None
@@ -215,7 +213,7 @@ with get_state("A") as A, get_state("B") as B, get_state("C") as C:
     print("inside with statement:", A, B, C)
 ```
 
-```
+```txt
 entering: A
 entering: B
 entering: C
@@ -227,15 +225,14 @@ exiting : A
 
 Notice the order they're closed. Context managers are treated as a stack, and should be
 exited in reverse order in which they're entered. If an exception occurs, this order
-matters, as any context manager could suppress the exception, at which point the
-remaining managers will not even get notified of this. The `__exit__` method is also
-permitted to raise a different exception, and other context managers then should be able
+matters, as any context manager could suppress the exception, at which point the remaining
+managers will not even get notified of this. The `__exit__` method is also permitted to
+raise a different exception, and other context managers then should be able
 to handle that new exception.
 
 ## Combining multiple context managers
 
 You can combine multiple context managers too. Let's consider these two managers.
-
 
 ```python
 from contextlib import contextmanager
@@ -258,7 +255,6 @@ def b(name):
 Now combine these two using the decorator syntax. The following function takes the above
 define managers `a` and `b` and returns a combined context manager `ab`.
 
-
 ```python
 @contextmanager
 def ab(a, b):
@@ -274,7 +270,7 @@ with ab(a, b) as AB:
     print("Inside the composite context manager:", AB)
 ```
 
-```
+```txt
 entering a: A
 entering b: B
 Inside the composite context manager: ('A', 'B')
@@ -282,10 +278,10 @@ exiting b: B
 exiting a: A
 ```
 
-If you have variable numbers of context managers and you want to combine them
-gracefully, `contextlib.ExitStack` is here to help. Let's rewrite context manager `ab`
-using `ExitStack`. This function takes the individual context managers and their
-arguments as tuples and returns the combined manager.
+If you have variable numbers of context managers and you want to combine them gracefully,
+`contextlib.ExitStack` is here to help. Let's rewrite context manager `ab` using
+`ExitStack`. This function takes the individual context managers and their arguments as
+tuples and returns the combined manager.
 
 ```python
 from contextlib import contextmanager, ExitStack
@@ -303,7 +299,7 @@ with ab((a, b), ("A", "B")) as AB:
     print("Inside the composite context manager:", AB)
 ```
 
-```
+```txt
 entering a: A
 entering b: B
 Inside the composite context manager: ['A', 'B']
@@ -312,9 +308,9 @@ exiting a: A
 ```
 
 `ExitStack` can be also used in cases where you want to manage multiple resources
-gracefully. For example, suppose, you need to create a list from the contents of
-multiple files in a directory. Let's see, how you can do so while avoiding accidental
-memory leakage with robust resource management.
+gracefully. For example, suppose, you need to create a list from the contents of multiple
+files in a directory. Let's see, how you can do so while avoiding accidental memory leakage
+with robust resource management.
 
 ```python
 from contextlib import ExitStack
@@ -331,11 +327,11 @@ with ExitStack() as stack:
 
 ## Using context managers to create SQLAlchemy session
 
-If you are familiar with SQLALchemy, Python's SQL toolkit and Object Relational Mapper,
-then you probably know the usage of `Session` to run a query. A `Session` basically
-turns any query into a transaction and make it atomic. Context managers can help you
-write a transaction session in a very elegant way. A basic querying workflow in
-SQLAlchemy may look like this:
+If you are familiar with SQLALchemy, Python's SQL toolkit and Object Relational Mapper, then
+you probably know the usage of `Session` to run a query. A `Session` basically turns any
+query into a transaction and make it atomic. Context managers can help you write a
+transaction session in a very elegant way. A basic querying workflow in SQLAlchemy may look
+like this:
 
 ```python
 from sqlalchemy import create_engine
@@ -363,10 +359,10 @@ def session_scope():
         session.close()
 ```
 
-The excerpt above creates an in memory `SQLite` connection and a `session_scope`
-function with context manager. The session_scope function takes care of committing and
-rolling back in case of exception automatically. The `session_scope` function can be
-used to run queries in the following way:
+The excerpt above creates an in memory `SQLite` connection and a `session_scope` function
+with context manager. The session_scope function takes care of committing and rolling back
+in case of exception automatically. The `session_scope` function can be used to run queries
+in the following way:
 
 ```python
 with session_scope() as session:
@@ -379,9 +375,9 @@ with session_scope() as session:
 This is my absolute favorite use case of context managers. Suppose you want to write a
 function but want the exception handling logic out of the way. Exception handling logics
 with sophisticated logging can often obfuscate the core logic of your function. You can
-write a decorator type context manager that will handle the exceptions for you and
-decouple these additional code from your main logic. Let's write a decorator that will
-handle `ZeroDivisionError` and `TypeError` simultaneously.
+write a decorator type context manager that will handle the exceptions for you and decouple
+these additional code from your main logic. Let's write a decorator that will handle
+`ZeroDivisionError` and `TypeError` simultaneously.
 
 ```python
 from contextlib import contextmanager
@@ -412,7 +408,7 @@ def div(a, b):
 div("b", 0)
 ```
 
-```
+```txt
 This is a custom TypeError message.
 ---------------------------------------------------------------------------
 
@@ -438,12 +434,12 @@ TypeError                                 Traceback (most recent call last)
 TypeError: unsupported operand type(s) for //: 'str' and 'int'
 ```
 
-You can see that the `errhandler` decorator is doing the heavylifting for you. Pretty
-neat, huh?
+You can see that the `errhandler` decorator is doing the heavylifting for you. Pretty neat,
+huh?
 
-The following one is a more sophisticated example of using context manager to decouple
-your error handling monstrosity from the main logic. It also hides the elaborate logging
-logics from the main method.
+The following one is a more sophisticated example of using context manager to decouple your
+error handling monstrosity from the main logic. It also hides the elaborate logging logic
+from the main method.
 
 ```python
 import logging
@@ -491,7 +487,7 @@ print(obj.main_func())
 
 This will return
 
-```
+```txt
 (asctime)s [ERROR] ZeroDivisionError
 Traceback (most recent call last):
     File "<ipython-input-44-ff609edb5d6e>", line 25, in errorhandler
@@ -507,13 +503,12 @@ None
 
 ## Persistent parameters across HTTP requests with context managers
 
-Another great use case for context managers is making parameters persistent across
-multiple http requests. Python's `requests` library has a `Session` object that will let
-you easily achieve this. So, if you’re making several requests to the same host, the
-underlying TCP connection will be reused, which can result in a significant performance
-increase. The following example is taken directly from
-[requests'](https://2.python-requests.org/en/v2.8.1/user/advanced/) official docs. Let's
-persist some cookies across requests.
+Another great use case for context managers is making parameters persistent across multiple
+HTTP requests. Python's `requests` library has a `Session` object that will let you easily
+achieve this. So, if you’re making several requests to the same host, the underlying TCP
+connection will be reused, which can result in a significant performance increase. The
+following example is taken directly from [requests]' official docs. Let's persist some
+cookies across requests.
 
 ```python
 with requests.Session() as session:
@@ -524,7 +519,7 @@ with requests.Session() as session:
 
 This should show:
 
-```
+```json
 {
   "cookies": {
     "sessioncookie": "123456789"
@@ -544,3 +539,5 @@ and now deprecated `contextlib.nested` function to create nested context manager
 * [SQLALchemy session creation](https://docs.sqlalchemy.org/en/13/core/engines.html)
 * [Scipy lectures: context managers](https://scipy-lectures.org/advanced/advanced_python/index.html#context-managers)
 * [Merging context managers](https://stackoverflow.com/a/45681273/8963300)
+
+[requests]: https://2.python-requests.org/en/v2.8.1/user/advanced/
