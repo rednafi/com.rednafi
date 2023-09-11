@@ -27,7 +27,7 @@ params:
   ]
   author: "Redowan Delowar"
   images: [
-    "https://user-images.githubusercontent.com/30027932/266722327-9b61f612-4456-43df-b57c-7cb8a08949a1.png"
+    "https://user-images.githubusercontent.com/30027932/266914031-f48582fe-b371-4d14-9f65-0edde5f26ae7.png"
   ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
@@ -61,11 +61,11 @@ params:
   assets:
     #disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
-    favicon16x16: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
-    favicon32x32: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
-    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
-    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
+    favicon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    favicon16x16: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    favicon32x32: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.pngbase"
 
   label:
     text: "Redowan's Reflections"
@@ -117,7 +117,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: https://user-images.githubusercontent.com/30027932/266722327-9b61f612-4456-43df-b57c-7cb8a08949a1.png
+    image: https://user-images.githubusercontent.com/30027932/266914031-f48582fe-b371-4d14-9f65-0edde5f26ae7.png
 
   editPost:
     URL: "https://github.com/rednafi/rednafi.com/blob/main/content"
