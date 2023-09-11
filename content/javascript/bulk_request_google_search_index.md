@@ -7,30 +7,29 @@ tags:
 ---
 
 Recently, I purchased a domain for this blog and migrated the content from
-[rednafi.github.io][rednafi.com] to [rednafi.com]. This turned out to be a much bigger
-hassle than I originally thought it'd be, mostly because, despite setting redirection
-for almost all the URLs from the previous domain to the new one and submitting the new
-[sitemap.xml] to the Search Console, Google kept indexing the older domain. To make
-things worse, the search engine selected the previous domain as canonical, and no amount
-of manual requests were changing the status in the last 30 days. Strangely, I didn't
-encounter this issue with Bing, as it reindexed the new site within a week after I
-submitted the sitemap file via their webmaster panel.
+[rednafi.github.io] to [rednafi.com]. This turned out to be a much bigger hassle than I
+originally thought it'd be, mostly because, despite setting redirection for almost all the
+URLs from the previous domain to the new one and submitting the new [sitemap.xml] to the
+Search Console, Google kept indexing the older domain. To make things worse, the search
+engine selected the previous domain as canonical, and no amount of manual requests were
+changing the status in the last 30 days. Strangely, I didn't encounter this issue with Bing,
+as it reindexed the new site within a week after I submitted the sitemap file via their
+webmaster panel.
 
 While researching this, one potential solution suggested that along with submitting the
-sitemap via [Google Search Console][google-search-console], I'd have to make individual
-indexing requests for each URL to encourage faster indexing. The problem is, I've got
-quite a bit of content on this site, and it'll take forever for me to click through all
-the links and request indexing that way. Naturally, I looked for a way to do this
-programmatically. Luckily, I found out that there's an [indexing API][indexing-api]
-that allows you to make bulk indexing requests programmatically. This has one big
-advantage—Google [responds][api-submission] to API requests faster than indexing
-requests with sitemap submission.
+sitemap via [Google Search Console], I'd have to make individual indexing requests for each
+URL to encourage faster indexing. The problem is, I've got quite a bit of content on this
+site, and it'll take forever for me to click through all the links and request indexing that
+way. Naturally, I looked for a way to do this programmatically. Luckily, I found out that
+there's an [indexing API] that allows you to make bulk indexing requests programmatically.
+This has one big advantage—Google [responds] to API requests faster than indexing requests
+with sitemap submission.
 
 All you've to do is:
 
 * List out the URLs that need to be indexed.
-* Fulfill the [prerequisites][indexing-api] and download the private key JSON file
-required to make requests to the API. From the docs:
+* Fulfill the [prerequisites][indexing api] and download the private key JSON file required
+to make requests to the API. From the docs:
 
     > *Every call to the Indexing API must be authenticated with an OAuth token that you
     get in exchange for your private key. Each token is good for a span of time. Google
@@ -71,8 +70,8 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ...
 ```
 
-Here's a NodeJS script that collects the URLs from `sitemap.xml` and makes requests to
-the indexing API:
+Here's a NodeJS script that collects the URLs from `sitemap.xml` and makes requests to the
+indexing API:
 
 ```js
 // ES6 import
@@ -152,8 +151,8 @@ jwtClient.authorize(async function (err, tokens) {
 });
 ```
 
-Before executing the script, npm install `googleapis` and `xml2js`. Now running the
-script will give you an output similar to this:
+Before executing the script, npm install `googleapis` and `xml2js`. Now running the script
+will give you an output similar to this:
 
 ```txt
 {
@@ -179,30 +178,31 @@ script will give you an output similar to this:
 ...
 ```
 
-Here, the `getUrls` function is defined to fetch the sitemap content from a specified
-URL, parse the XML content and extract the URLs. It uses the fetch function to retrieve
-the file, then uses `xml2js` to parse the XML and extract the URLs from the result.
+Here, the `getUrls` function is defined to fetch the sitemap content from a specified URL,
+parse the XML content and extract the URLs. It uses the fetch function to retrieve the file,
+then uses `xml2js` to parse the XML and extract the URLs from the result.
 
 The script then initializes an authentication client using the imported private key and
 specifies the required API scope. The `authorize` function is called to authenticate the
-client and obtain access tokens. Inside the authorization callback, the script prepares
-the necessary `options` for making API requests to the Google indexing API. It then
-calls the `getUrls` function to fetch the URLs from the `sitemap.xml` file. For each
-URL, it updates the `options` with the URL and makes a POST request to the Indexing API
-to request indexing. The response from the API is then logged into the console.
+client and obtain access tokens. Inside the authorization callback, the script prepares the
+necessary `options` for making API requests to the Google indexing API. It then calls the
+`getUrls` function to fetch the URLs from the `sitemap.xml` file. For each URL, it updates
+the `options` with the URL and makes a POST request to the Indexing API to request indexing.
+The response from the API is then logged into the console.
 
-One thing to keep in mind is that by default, the daily request quota per project is
-200. But you can request more [quota][quota-and-pricing] if you need it.
+One thing to keep in mind is that by default, the daily request quota per project is 200.
+But you can request more [quota][quota] if you need it.
 
 ## Resources
 
-* [Indexing API quickstart][indexing-api]
-* [Indexing API quota and pricing information][quota-and-pricing]
+* [Indexing API quickstart][indexing api]
+* [Indexing API quota and pricing information][quota]
 
-[rednafi.com]: https://rednafi.com
-[indexing-api]: https://developers.google.com/search/apis/indexing-api/v3/quickstart
-[api-submission]: https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps
-[sitemap.xml]: https://rednafi.com/sitemap.xml
-[google-search-console]: https://search.google.com/search-console/about
+[rednafi.com]: /
+[rednafi.github.io]: https://rednafi.github.io
+[indexing api]: https://developers.google.com/search/apis/indexing-api/v3/quickstart
+[responds]: https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps
+[sitemap.xml]: /sitemap.xml
+[google search console]: https://search.google.com/search-console/about
 [cors-proxy]: https://corsproxy.io
-[quota-and-pricing]: https://developers.google.com/search/apis/indexing-api/v3/quota-pricing
+[quota]: https://developers.google.com/search/apis/indexing-api/v3/quota-pricing
