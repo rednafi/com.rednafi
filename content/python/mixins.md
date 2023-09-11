@@ -108,7 +108,7 @@ print(c.mul(4, 5))
 print(c.div(5, 6))
 ```
 
-```
+```txt
 3
 -1
 20
@@ -167,7 +167,7 @@ print(clog.mul(4, 5))
 print(clog.div(5, 6))
 ```
 
-```
+```txt
 INFO:root:Operation: Addition, Arguments: (1, 2)
 INFO:root:Operation: Subtraction, Arguments: (2, 3)
 INFO:root:Operation: Multiplication, Arguments: (4, 5)
@@ -216,7 +216,7 @@ print(cfake.add(1, 2))
 print(cfake.sub(2, 3))
 ```
 
-```
+```txt
 3
 
 ---------------------------------------------------------------------------
@@ -293,7 +293,7 @@ can't instantiate this class independently. Let's try to do so and see what happ
 i = ICalc()
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-118-a3cb2945d943> in <module>
@@ -398,8 +398,7 @@ Notice how `method_c` in the above class is a concrete method and can have imple
 
 The two examples above establish the fact that
 
-> All interfaces are abstract base classes but not all abstract base classes are
-> interfaces.
+> All interfaces are abstract base classes but not all abstract base classes are interfaces.
 
 ### A complete example
 
@@ -485,7 +484,7 @@ print(bus.accelerate())
 print(bus.stop())
 ```
 
-```
+```txt
 The car is starting
 The car is accelerating
 The car is stopping
@@ -652,7 +651,7 @@ f.multiply_show(20)
 pprint(inspect.getmembers(f, predicate=inspect.ismethod))
 ```
 
-```
+```txt
 Factor: 10, Argument: 20,  Result: 200
 [('__init__',
     <bound method FactorMult.__init__ of <__main__.FactorMult object at
@@ -732,7 +731,7 @@ print(
 )
 ```
 
-```
+```txt
 VerboseTuple(1, 3, 4)
 Abstract Methods: {'__len__', '__getitem__'}
 Mixin Methods: {'__iter__', '__contains__', 'index', 'count', '__getitem__',
@@ -776,7 +775,7 @@ print("\n ==== Checking count ====")
 print(vt.count(1))
 ```
 
-```
+```txt
     ==== Checking __getitem__ ====
 Method: __getitem__, Index: 2
 4
@@ -881,7 +880,7 @@ print(
 )
 ```
 
-```
+```txt
 VerboseList(4, 5, 6)
 Abstract Methods: {'__delitem__', '__len__', '__getitem__', 'insert', '__setitem__'}
 Mixin Methods: {'__iadd__', '__setitem__', 'pop', 'append', 'extend', '__delitem__',
@@ -924,7 +923,7 @@ vl += vl2
 print(vl)
 ```
 
-```
+```txt
     ==== Checking __setitem__ ====
 Method: __setitem__, Index: 1, Value: 44
 VerboseList(4, 44, 6)
@@ -1013,7 +1012,7 @@ print(
 )
 ```
 
-```
+```txt
 VerboseFrozenDict({'a': 'apple'})
 Abstract Methods: {'__len__', '__getitem__', '__iter__'}
 Mixin Methods: {'items', '__contains__', 'values', '__eq__', 'keys', 'get',
@@ -1063,7 +1062,7 @@ print(vf == vf2)
 print(vf != vf2)
 ```
 
-```
+```txt
     ==== Checking __getitem__ ====
 Method: __getitem__, Key: a
 apple
@@ -1168,7 +1167,7 @@ print(
 )
 ```
 
-```
+```txt
 VerboseDict({'a': 'apple', 'b': 'ball', 'c': 'cat'})
 Abstract Methods: {'__delitem__', '__len__', '__iter__', '__getitem__', '__setitem__'}
 Mixin Methods: {'__setitem__', 'pop', 'popitem', '__delitem__', 'setdefault', 'update',
@@ -1208,7 +1207,7 @@ print(x)
 print(vd)
 ```
 
-```
+```txt
     ==== Checking __setitem__ ====
 Method: __setitem__, Key: a
 VerboseDict({'a': 'orange', 'b': 'ball', 'c': 'cat'})
@@ -1395,7 +1394,7 @@ print(f"Size of a normal Set object: {deep_getsizeof(s)} bytes")
 print(f"Size of a BitSet object: {deep_getsizeof(bs)} bytes")
 ```
 
-```
+```txt
 Normal Set object: {0, 4}
 BitSet object: BitSet(limit=5, iterable=[0, 4])
 Size of a normal Set object: 268 bytes
@@ -1576,7 +1575,7 @@ if __name__ == "__main__":
     # >>> key
 ```
 
-```
+```txt
 SQLAlechemyDict(dbname='foo.db', items=[('hello', 'world'), ('key', 'val')])
 hello
 key
