@@ -7,8 +7,7 @@ tags:
 
 ***Updated on 2022-02-13***: *Change import style of `functools.singledispatch`.*
 
-Recently, I was refactoring a portion of a Python function that somewhat looked like
-this:
+Recently, I was refactoring a portion of a Python function that somewhat looked like this:
 
 ```python
 def process(data):
@@ -38,36 +37,36 @@ def func45(data):
 This pattern gets tedious when the number of conditions and actionable functions start
 to grow. I was looking for a functional approach to avoid defining and calling three
 different functions that do very similar things. Situations like this is where
-[parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism) comes
-into play. The idea is, you have to define a single function that will be dynamically
-overloaded with alternative implementations based on the type of the function arguments.
+[parametric polymorphism] comes into play. The idea is, you have to define a single function
+that'll be dynamically overloaded with alternative implementations based on the type of the
+function arguments.
 
 ## Function overloading & generic functions
 
 **Function overloading** is a specific type of polymorphism where multiple functions can
-have the same name with different implementations. Calling an overloaded function will
-run a specific implementation of that function based on some prior conditions or
-appropriate context of the call.
+have the same name with different implementations. Calling an overloaded function will run a
+specific implementation of that function based on some prior conditions or appropriate
+context of the call.
 
 When function overloading happens based on its argument types, the resulting function is
-known as **generic function**. Let's see how Python's `singledispatch` decorator can
-help to design generic functions and refactor the icky code above.
+known as **generic function**. Let's see how Python's `singledispatch` decorator can help to
+design generic functions and refactor the icky code above.
 
 ## Singledispatch
 
-Python fairly recently added partial support for function overloading in *Python 3.4*.
-They did this by adding a neat little decorator to the *functools* module called
+Python fairly recently added partial support for function overloading in *Python 3.4*. They
+did this by adding a neat little decorator to the *functools* module called
 `singledispatch`.  In *Python 3.8*, there is another decorator for methods called
-`singledispatchmethod`. This decorator will transform your regular function into a
-single dispatch generic function.
+`singledispatchmethod`. This decorator will transform your regular function into a single
+dispatch generic function.
 
-> A generic function is composed of multiple functions implementing the same operation
-> for different types. Which implementation should be used during a call is determined by
-> the dispatch algorithm. When the implementation is chosen based on the type of a single
+> A generic function is composed of multiple functions implementing the same operation for
+> different types. Which implementation should be used during a call is determined by the
+> dispatch algorithm. When the implementation is chosen based on the type of a single
 > argument, this is known as single dispatch.
 
-As PEP-443 said, singledispatch only happens based on the first argument’s type. Let’s
-take a look at an example to see how this works!
+As PEP-443 said, singledispatch only happens based on the first argument’s type. Let’s take
+a look at an example to see how this works!
 
 ### Example-1: Singledispatch with built-in argument type
 
@@ -99,16 +98,16 @@ print(process(12.0))
 print(process(1))
 ```
 
-Running this code will return
+Running this code will return:
 
 ```python
 >>> Float 12.0 has been processed successfully!
 >>> Integer 1 has been processed successfully!
 ```
 
-The above code snippet applies `process_int` or `process_float` functions on the
-incoming number based on its type. Now let's see how the same thing can be achieved with
-`singledispatch`.
+The above code snippet applies `process_int` or `process_float` functions on the incoming
+number based on its type. Now let's see how the same thing can be achieved with
+`singledispatch`:
 
 ```python
 # single_dispatch.py
@@ -139,7 +138,7 @@ print(process(1))
 
 Running this will return the same result as before.
 
-```python
+```txt
 >>> Float 12.0 has been processed successfully!
 >>> Integer 1 has been processed successfully!
 ```
@@ -178,15 +177,15 @@ if __name__ == "__main__":
 
 Running this snippet will print out:
 
-```python
+```txt
 >>> Cat data has been processed successfully!
 >>> Dog data has been processed successfully!
 ```
 
-To refactor this with `singledispatch`, you can create two data types `Cat` and `Dog`.
-When you make `Cat` and `Dog` objects from the classes and pass them through the
-`process` function, singledispatch will take care of dispatching the appropriate
-implementation of that function.
+To refactor this with `singledispatch`, you can create two data types `Cat` and `Dog`. When
+you make `Cat` and `Dog` objects from the classes and pass them through the `process`
+function, singledispatch will take care of dispatching the appropriate implementation of
+that function.
 
 ```python
 from dataclasses import dataclass
@@ -232,13 +231,18 @@ if __name__ == "__main__":
 
 Running this will print out the same output as before:
 
-```python
+```txt
 >>> Cat data has been processed successfully!
 >>> Dog data has been processed successfully!
 ```
 
 ## References
 
-1. [Transform a function into a single dispatch generic function](https://docs.python.org/3/library/functools.html)
-2. [Function overloading](https://en.wikipedia.org/wiki/Function_overloading)
-3. [Parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
+1. [Transform a function into a single dispatch generic function]
+2. [Function overloading]
+3. [Parametric polymorphism]
+
+
+[parametric polymorphism]: https://en.wikipedia.org/wiki/Parametric_polymorphism
+[function overloading]: https://en.wikipedia.org/wiki/Function_overloading
+[transform a function into a single dispatch generic function]: https://docs.python.org/3/library/functools.html

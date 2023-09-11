@@ -10,19 +10,18 @@ tags:
 When I first learned about Python decorators, using them felt like doing voodoo magic.
 Decorators can give you the ability to add new functionalities to any callable without
 actually touching or changing the code inside it. This can typically yield better
-encapsulation and help you write cleaner and more understandable code. However,
-*decorator* is considered as a fairly advanced topic in Python since understanding and
-writing it requires you to have command over multiple additional concepts like first
-class objects, higher order functions, closures etc. First, I'll try to introduce these
-concepts as necessary and then unravel the core concept of decorator layer by layer. So
-let's dive in.
+encapsulation and help you write cleaner and more understandable code. However, *decorator*
+is considered as a fairly advanced topic in Python since understanding and writing it
+requires you to have command over multiple additional concepts like first class objects,
+higher order functions, closures etc. First, I'll try to introduce these concepts as
+necessary and then unravel the core concept of decorator layer by layer. So let's dive in.
 
 ## First class objects
 
 In Python, basically everything is an object and functions are regarded as first-class
-objects. It means that functions can be passed around and used as arguments, just like
-any other object (string, int, float, list, and so on). You can assign functions to
-variables and treat them like any other objects. Consider this example:
+objects. It means that functions can be passed around and used as arguments, just like any
+other object (string, int, float, list, and so on). You can assign functions to variables
+and treat them like any other objects. Consider this example:
 
 ```python
 def func_a():
@@ -42,22 +41,22 @@ main_func = func_c
 main_func(func_a, func_b)
 ```
 
-```
+```txt
 >>> I was angry with my friend.
 >>> I told my wrath, my wrath did end
 ```
 
-The above example demonstrates how Python treats functions as first class citizens.
-First, I defined two functions, `func_a` and `func_b` and then `func_c` takes them as
-parameters. `func_c` runs the functions taken as parameters and prints the results.
-Then we assign `func_c` to variable `main_func`. Finally, we run `main_func` and it
-behaves just like `func_c`.
+The above example demonstrates how Python treats functions as first class citizens. First,
+I defined two functions, `func_a` and `func_b` and then `func_c` takes them as parameters.
+`func_c` runs the functions taken as parameters and prints the results. Then we assign
+`func_c` to variable `main_func`. Finally, we run `main_func` and it behaves just like
+`func_c`.
 
 ## Higher order functions
 
-Python also allows you to use functions as return values. You can take in another
-function and return that function or you can define a function within another function
-and return the inner function.
+Python also allows you to use functions as return values. You can take in another function
+and return that function or you can define a function within another function and return the
+inner function.
 
 ```python
 def higher(func):
@@ -75,7 +74,7 @@ def lower():
 higher(lower)
 ```
 
-```
+```txt
 >>> <function __main__.lower()>
 ```
 
@@ -87,12 +86,12 @@ h = higher(lower)
 h()
 ```
 
-```
+```txt
 >>> "I'm hunting high and low"
 ```
 
-Let's look into another example where you can define a nested function within a
-function and return the nested function instead of its result.
+Let's look into another example where you can define a nested function within a function and
+return the nested function instead of its result.
 
 ```python
 def outer():
@@ -108,23 +107,23 @@ inn = outer()
 inn()
 ```
 
-```
+```txt
 >>> 'Hello from the inner func'
 ```
 
-Notice how the nested function `inner` was defined inside the `outer` function and then
-the return statement of the `outer` function returned the nested function. After
-definition, to get to the nested function, first we called the `outer` function and
-received the result as another function. Then executing the result of the `outer`
-function prints out the message from the `inner` function.
+Notice how the nested function `inner` was defined inside the `outer` function and then the
+return statement of the `outer` function returned the nested function. After definition, to
+get to the nested function, first we called the `outer` function and received the result as
+another function. Then executing the result of the `outer` function prints out the message
+from the `inner` function.
 
 ## Closures
 
-You saw examples of inner functions at work in the previous section. Nested functions
-can access variables of the enclosing scope. In Python, these non-local variables are
-read only by default and we must declare them explicitly as non-local (using `nonlocal`
-keyword) in order to modify them. Following is an example of a nested function
-accessing a non-local variable.
+You saw examples of inner functions at work in the previous section. Nested functions can
+access variables of the enclosing scope. In Python, these non-local variables are read only
+by default and we must declare them explicitly as non-local (using `nonlocal` keyword) in
+order to modify them. Following is an example of a nested function accessing a non-local
+variable.
 
 ```python
 def burger(name):
@@ -146,21 +145,20 @@ ingr = burger("deli")
 ingr()
 ```
 
-```
+```txt
 >>> ('steak', 'pastrami', 'emmental')
 ```
 
 Well, that's unusual.
 
-The `burger` function was called with the string `deli` and the returned function was
-bound to the name `ingr`. On calling `ingr()`, the message was still remembered and
-used to derive the outcome although the outer function `burger` had already finished
-its execution.
+The `burger` function was called with the string `deli` and the returned function was bound
+to the name `ingr`. On calling `ingr()`, the message was still remembered and used to derive
+the outcome although the outer function `burger` had already finished its execution.
 
-This technique by which some data ("deli") gets attached to the code is called closure
-in Python. The value in the enclosing scope is remembered even when the variable goes
-out of scope or the function itself is removed from the current namespace. Decorators
-uses the idea of non-local variables multiple times and soon you'll see how.
+This technique by which some data ("deli") gets attached to the code is called closure in
+Python. The value in the enclosing scope is remembered even when the variable goes out of
+scope or the function itself is removed from the current namespace. Decorators uses the idea
+of non-local variables multiple times and soon you'll see how.
 
 ## Writing a basic decorator
 
@@ -191,23 +189,23 @@ ans = deco(ans)
 ans()
 ```
 
-```
+```txt
 >>> This will get printed before the function is called.
     42
     This will get printed after the function is called.
 ```
 
-In the above two lines, you can see a very simple decorator in action. Our `deco`
-function takes in a target function, manipulates the target function inside a `wrapper`
-function and then returns the `wrapper` function. Running the function returned by the
-decorator, you will get your modified result. To put it simply, decorators wraps a
-function and modifies its behavior.
+In the above two lines, you can see a very simple decorator in action. Our `deco` function
+takes in a target function, manipulates the target function inside a `wrapper` function and
+then returns the `wrapper` function. Running the function returned by the decorator, you'll
+get your modified result. To put it simply, decorators wraps a function and modifies its
+behavior.
 
-> The decorator function runs at the time the decorated function is imported/defined,
-> not when it is called.
+> The decorator function runs at the time the decorated function is imported/defined, not
+> when it is called.
 
-Before moving onto the next section, let's see how we can get the return value of
-target function instead of just printing it.
+Before moving onto the next section, let's see how we can get the return value of target
+function instead of just printing it.
 
 ```python
 def deco(func):
@@ -226,16 +224,15 @@ def ans():
     return 42
 ```
 
-In the above example, the wrapper function returns the result of the target function
-and the wrapper itself. This makes it possible to get the result of the modified
-function.
+In the above example, the wrapper function returns the result of the target function and the
+wrapper itself. This makes it possible to get the result of the modified function.
 
 ```python
 ans = deco(ans)
 print(ans())
 ```
 
-```
+```txt
 >>> This will get printed before the function is called.
     This will get printed after the function is called.
     42
@@ -246,11 +243,11 @@ instead of in the middle like before?
 
 ## The @ syntactic sugar
 
-The way you've used decorator in the last section might feel a little clunky. First,
-you have to type the name `ans` three times to call and use the decorator. Also, it
-becomes harder to tell apart where the decorator is actually working. So Python allows
-you to use decorator with the special syntax `@`. You can apply your decorators while
-defining your functions, like this:
+The way you've used decorator in the last section might feel a little clunky. First, you
+have to type the name `ans` three times to call and use the decorator. Also, it becomes
+harder to tell apart where the decorator is actually working. So Python allows you to use
+decorator with the special syntax `@`. You can apply your decorators while defining your
+functions, like this:
 
 ```python
 @deco
@@ -262,16 +259,15 @@ def func():
 func()
 ```
 
-Sometimes the above syntax is called the **pie syntax** and it's just a syntactic sugar
-for `func = deco(func)`.
+Sometimes the above syntax is called the **pie syntax** and it's just a syntactic sugar for
+`func = deco(func)`.
 
 ## Decorating functions with arguments
 
-The naive decorator that we've implemented above will only work for functions that take
-no arguments. It'll fail and raise `TypeError` if your try to decorate a function
-having arguments with `deco`. Now let's create another decorator called `yell` which
-will take in a function that returns a string value and transform that string value to
-uppercase.
+The naive decorator that we've implemented above will only work for functions that take no
+arguments. It'll fail and raise `TypeError` if your try to decorate a function having
+arguments with `deco`. Now let's create another decorator called `yell` which will take in a
+function that returns a string value and transform that string value to uppercase.
 
 ```python
 def yell(func):
@@ -295,26 +291,26 @@ def hello(name):
 hello("redowan")
 ```
 
-```
+```txt
 >>> 'HELLO REDOWAN!'
 ```
 
-Function `hello` takes a `name:string` as parameter and returns a message as string.
-Look how the `yell` decorator is modifying the original return string, transforming
-that to uppercase and adding an extra `!` sign without directly changing any code in
-the `hello` function.
+Function `hello` takes a `name:string` as parameter and returns a message as string. Look
+how the `yell` decorator is modifying the original return string, transforming that to
+uppercase and adding an extra `!` sign without directly changing any code in the `hello`
+function.
 
 ## Solving identity crisis
 
-In Python, you can introspect any object and its properties via the interactive shell.
-A function knows its identity, docstring etc. For instance, you can inspect the built
-in `print` function in the following ways:
+In Python, you can introspect any object and its properties via the interactive shell. A
+function knows its identity, docstring etc. For instance, you can inspect the built in
+`print` function in the following ways:
 
 ```python
 print
 ```
 
-```
+```txt
 >>> <function print>
 ```
 
@@ -322,7 +318,7 @@ print
 print.__name__
 ```
 
-```
+```txt
 >>> 'print'
 ```
 
@@ -330,7 +326,7 @@ print.__name__
 print.__doc__
 ```
 
-```
+```txt
 >>> "print(value, ..., sep=' ', end='\\n', file=sys.stdout, flush=False)\n\nPrints the
 values to a stream, or to sys.stdout by default.\nOptional keyword arguments:\nfile:  a
 file-like object (stream); defaults to the current sys.stdout.\nsep:   string inserted
@@ -342,7 +338,7 @@ a newline.\nflush: whether to forcibly flush the stream."
 help(print)
 ```
 
-```
+```txt
 >>> Help on built-in function print in module builtins:
 
     print(...)
@@ -356,15 +352,15 @@ help(print)
     flush: whether to forcibly flush the stream.
 ```
 
-This introspection works similarly for functions that you defined yourself. I'll be
-using the previously defined `hello` function.
+This introspection works similarly for functions that you defined yourself. I'll be using
+the previously defined `hello` function.
 
 
 ```python
 hello.__name__
 ```
 
-```
+```txt
 >>> 'wrapper'
 ```
 
@@ -372,16 +368,16 @@ hello.__name__
 help(hello)
 ```
 
-```
+```txt
 >>> Help on function wrapper in module __main__:
     wrapper(*args, **kwargs)
 ```
 
-Now what's going on there. The decorator `yell` has made the function `hello` confused
-about its own identity. Instead of reporting its own name, it takes the identity of the
-inner function `wrapper`. This can be confusing while doing debugging. You can fix this
-by using builtin `wraps` decorator from the `functools` module. This will make sure
-that the original identity of the decorated function stays preserved.
+Now what's going on there. The decorator `yell` has made the function `hello` confused about
+its own identity. Instead of reporting its own name, it takes the identity of the inner
+function `wrapper`. This can be confusing while doing debugging. You can fix this by using
+builtin `wraps` decorator from the `functools` module. This will make sure that the original
+identity of the decorated function stays preserved.
 
 ```python
 import functools
@@ -407,7 +403,7 @@ def hello(name):
 hello("Galaxy")
 ```
 
-```
+```txt
 >>> 'HELLO GALAXY!'
 ```
 
@@ -418,7 +414,7 @@ desired result.
 hello.__name__
 ```
 
-```
+```txt
 >>> 'hello'
 ```
 
@@ -426,7 +422,7 @@ hello.__name__
 help(hello)
 ```
 
-```
+```txt
 >>> Help on function hello in module __main__:
 
     hello(name)
@@ -435,9 +431,9 @@ help(hello)
 
 ## Decorators in the wild
 
-Before moving on to the next section let's see a few real world examples of decorators.
-To define all the decorators, we'll be using the following template that we've
-perfected so far.
+Before moving on to the next section let's see a few real world examples of decorators. To
+define all the decorators, we'll be using the following template that we've perfected so
+far.
 
 ```python
 from functools import wraps
@@ -456,8 +452,8 @@ def decorator(func):
 
 ### Timer
 
-Timer decorator will help you time your callables in a non-intrusive way. It can help
-you while debugging and profiling your functions.
+Timer decorator will help you time your callables in a non-intrusive way. It can help you
+while debugging and profiling your functions.
 
 ```python
 from functools import wraps
@@ -485,24 +481,24 @@ def dothings(n_times):
         return sum((i**3 for i in range(100_000)))
 ```
 
-In the above way, we can introspect the time it requires for function `dothings` to
-complete its execution.
+In the above way, we can introspect the time it requires for function `dothings` to complete
+its execution.
 
 ```python
 dothings(100_000)
 ```
 
-```
+```txt
 >>> Finished running dothings in 0.0353 seconds.
     24999500002500000000
 ```
 
 ### Exception logger
 
-Just like the `timer` decorator, we can define a logger decorator that will log the
-state of a callable. For this demonstration, I'll be defining a exception logger that
-will show additional information like timestamp, argument names when an exception
-occurs inside of the decorated callable.
+Just like the `timer` decorator, we can define a logger decorator that will log the state of
+a callable. For this demonstration, I'll be defining a exception logger that will show
+additional information like timestamp, argument names when an exception occurs inside of the
+decorated callable.
 
 ```python
 from functools import wraps
@@ -543,7 +539,7 @@ Let's invoke ZeroDivisionError to see the logger in action.
 divint(1, 0)
 ```
 
-```
+```txt
 >>> Time:  2020-05-12 [12:03:31]
     Arguments:  1, 0
     Error:
@@ -554,21 +550,21 @@ divint(1, 0)
         ....
 ```
 
-The decorator first prints a few info regarding the function and then raises the
-original error.
+The decorator first prints a few info regarding the function and then raises the original
+error.
 
 ### Validation & runtime checks
 
-Python’s type system is strongly typed, but very dynamic. For all its benefits, this
-means some bugs can try to creep in, which more statically typed languages (like Java)
-would catch at compile time. Looking beyond even that, you may want to enforce more
-sophisticated, custom checks on data going in or out. Decorators can let you easily
-handle all of this, and apply it to many functions at once.
+Python’s type system is strongly typed, but very dynamic. For all its benefits, this means
+some bugs can try to creep in, which more statically typed languages (like Java) would catch
+at compile time. Looking beyond even that, you may want to enforce more sophisticated,
+custom checks on data going in or out. Decorators can let you easily handle all of this, and
+apply it to many functions at once.
 
-Imagine this: you have a set of functions, each returning a dictionary, which (among
-other fields) includes a field called “summary.” The value of this summary must not be
-more than 30 characters long; if violated, that’s an error. Here is a decorator that
-raises a ValueError if that happens:
+Imagine this: you have a set of functions, each returning a dictionary, which (among other
+fields) includes a field called “summary.” The value of this summary must not be more than
+30 characters long; if violated, that’s an error. Here is a decorator that raises a
+`ValueError` if that happens:
 
 ```python
 from functools import wraps
@@ -599,7 +595,7 @@ print(short_summary())
 print(long_summary())
 ```
 
-```
+```txt
 >>> {'summary': 'This is a short summary'}
 
     -------------------------------------------------------------------
@@ -615,10 +611,10 @@ print(long_summary())
 
 ### Retry
 
-Imagine a situation where your defined callable fails due to some I/O related issues
-and you'd like to retry that again. Decorator can help you to achieve that in a
-reusable manner. Let's define a `retry` decorator that will rerun the decorated
-function multiple times if an http error occurs.
+Imagine a situation where your defined callable fails due to some I/O related issues and
+you'd like to retry that again. Decorator can help you to achieve that in a reusable manner.
+Let's define a `retry` decorator that will rerun the decorated function multiple times if an
+HTTP error occurs.
 
 ```python
 import requests
@@ -659,7 +655,7 @@ resp = getdata("https://httpbin.org/get/1")
 resp.text
 ```
 
-```
+```txt
 >>> retrying... (0)
     retrying... (1)
     retrying... (2)
@@ -671,8 +667,8 @@ resp.text
 
 ## Applying multiple decorators
 
-You can apply multiple decorators to a function by stacking them on top of each other.
-Let's define two simple decorators and use them both on a function.
+You can apply multiple decorators to a function by stacking them on top of each other. Let's
+define two simple decorators and use them both on a function.
 
 ```python
 from functools import wraps
@@ -709,22 +705,22 @@ def getname(name):
 getname("Nafi")
 ```
 
-```
+```txt
 >>> '🎉 Hello Nafi! 🎉'
 ```
 
-The decorators are called in a bottom up order. First, the decorator `greet` gets
-applied on the result of `getname` function and then the result of `greet` gets passed
-to the `flare` decorator. The decorator stack above can be written as
-`flare(greet(getname(name)))`. Change the order of the decorators and see what happens!
+The decorators are called in a bottom up order. First, the decorator `greet` gets applied on
+the result of `getname` function and then the result of `greet` gets passed to the `flare`
+decorator. The decorator stack above can be written as `flare(greet(getname(name)))`. Change
+the order of the decorators and see what happens!
 
 ## Decorators with arguments
 
-While defining the `retry` decorator in the previous section, you may have noticed that
-I've hard coded the number of times I'd like the function to retry if an error occurs.
-It'd be handy if you could inject the number of tries as a parameter into the decorator
-and make it work accordingly. This is not a trivial task and you'll need three levels
-of nested functions to achieve that.
+While defining the `retry` decorator in the previous section, you may have noticed that I've
+hard coded the number of times I'd like the function to retry if an error occurs. It'd be
+handy if you could inject the number of tries as a parameter into the decorator and make it
+work accordingly. This is not a trivial task and you'll need three levels of nested
+functions to achieve that.
 
 Before doing that let's cook up a trivial example of how you can define decorators with
 parameters.
@@ -771,26 +767,26 @@ print(greet("Redowan"))
 print(goodbye("Delowar"))
 ```
 
-```
+```txt
 >>> Hello,Nafi!
     Greetings>Redowan!
     Goodbye Delowar!
 ```
 
-The decorator `joinby` takes a single parameter called `delimiter`. It splits the
-string output of the decorated function by a single space and then joins them using the
-user defined delimiter specified in the `delimiter` argument. The three layer nested
-definition looks scary but we'll get to that in a moment. Notice how you can use the
-decorator with different parameters. In the above example, I've defined three different
-functions to demonstrate the usage of `joinby`. It's important to note that in case of
-a decorator that takes parameters, you'll always need to pass something to it and even
-if you don't want to pass any parameter (run with the default), you'll still need to
-decorate your function with `deco()` instead of `deco`. Try changing the decorator on
-the `goodbye` function from `joinby()` to `joinby` and see what happens.
+The decorator `joinby` takes a single parameter called `delimiter`. It splits the string
+output of the decorated function by a single space and then joins them using the user
+defined delimiter specified in the `delimiter` argument. The three layer nested definition
+looks scary but we'll get to that in a moment. Notice how you can use the decorator with
+different parameters. In the above example, I've defined three different functions to
+demonstrate the usage of `joinby`. It's important to note that in case of a decorator that
+takes parameters, you'll always need to pass something to it and even if you don't want to
+pass any parameter (run with the default), you'll still need to decorate your function with
+`deco()` instead of `deco`. Try changing the decorator on the `goodbye` function from
+`joinby()` to `joinby` and see what happens.
 
 Typically, a decorator creates and returns an inner wrapper function but here in the
-`repeat` decorator, there is an inner function within another inner function. This
-almost looks like a *dream within a dream* from the movie Inception.
+`repeat` decorator, there is an inner function within another inner function. This almost
+looks like a *dream within a dream* from the movie Inception.
 
 There are a few subtle things happening in the `joinby()` function:
 
@@ -804,11 +800,11 @@ be used later by `inner_wrapper()`
 ## Decorators with & without arguments
 
 You saw earlier that a decorator specifically designed to take parameters can't be used
-without parameters; you need to at least apply parenthesis after the decorator `deco()`
-to use it without explicitly providing the arguments. But what if you want to design
-one that can used both with and without arguments. Let's redefine the `joinby`
-decorator so that you can use it with parameters or just like an ordinary
-parameter-less decorator that we've seen before.
+without parameters; you need to at least apply parenthesis after the decorator `deco()` to
+use it without explicitly providing the arguments. But what if you want to design one that
+can used both with and without arguments. Let's redefine the `joinby` decorator so that you
+can use it with parameters or just like an ordinary parameter-less decorator that we've seen
+before.
 
 ```python
 from functools import wraps
@@ -850,29 +846,28 @@ print(hello("Nafi"))
 print(greet("Redowan"))
 ```
 
-```
+```txt
 >>> Hello,Nafi!
     Greetings Redowan!
 ```
 
-Here, the `_func` argument acts as a marker, noting whether the decorator has been
-called with arguments or not:
+Here, the `_func` argument acts as a marker, noting whether the decorator has been called
+with arguments or not:
 
-If `joinby` has been called without arguments, the decorated function will be passed in
-as `_func`. If it has been called with arguments, then `_func` will be None. The * in
-the argument list means that the remaining arguments can’t be called as positional
-arguments. This time you can use `joinby` with or without arguments and function
-`hello` and `greet` above demonstrate that.
+If `joinby` has been called without arguments, the decorated function will be passed in as
+`_func`. If it has been called with arguments, then `_func` will be None. The * in the
+argument list means that the remaining arguments can’t be called as positional arguments.
+This time you can use `joinby` with or without arguments and function `hello` and `greet`
+above demonstrate that.
 
 ## A generic pattern
 
-Personally, I find it cumbersome how you need three layers of nested functions to
-define a generalized decorator that can be used with or without arguments.
-[David Beazly](https://www.dabeaz.com/) in his book
-[Python Cookbook](https://realpython.com/asins/1449340377/) shows an excellent way to
-define generalized decorators without writing three levels of nested functions. It uses
-the built in `functools.partial` function to achieve that. The following is a pattern
-you can use to define generalized decorators in a more elegant way:
+Personally, I find it cumbersome how you need three layers of nested functions to define a
+generalized decorator that can be used with or without arguments. [David Beazley] in his
+book [Python Cookbook] shows an excellent way to define generalized decorators without
+writing three levels of nested functions. It uses the built in `functools.partial` function
+to achieve that. The following is a pattern you can use to define generalized decorators in
+a more elegant way:
 
 ```python
 from functools import partial, wraps
@@ -948,7 +943,7 @@ print("-----------------------")
 resp2 = getdata_("https://httpbin.org/get/1")
 ```
 
-```
+```txt
 >>> retrying... (0)
     retrying... (1)
     retrying... (2)
@@ -959,8 +954,8 @@ resp2 = getdata_("https://httpbin.org/get/1")
 ```
 
 In this case, you do not have to write three level nested functions and the `functools.
-partial` takes care of that. Partials can be used to make new derived functions that
-have some input parameters pre-assigned.Roughly `partial` does the following:
+partial` takes care of that. Partials can be used to make new derived functions that have
+some input parameters pre-assigned.Roughly `partial` does the following:
 
 ```python
 def partial(func, *part_args):
@@ -978,9 +973,9 @@ generalized decorator.
 ## Defining decorators with classes
 
 This time, I'll be using a class to compose a decorator. Classes can be handy to avoid
-nested architecture while writing decorators. Also, it can be helpful to use a class
-while writing stateful decorators. You can follow the pattern below to compose
-decorators with classes.
+nested architecture while writing decorators. Also, it can be helpful to use a class while
+writing stateful decorators. You can follow the pattern below to compose decorators with
+classes.
 
 ```python
 import functools
@@ -1000,9 +995,8 @@ class ClassDeco:
         return ret
 ```
 
-
-Let's use the above template to write a decorator named `Emphasis` that will add bold
-tags `<b></b>`to the string output of a function.
+Let's use the above template to write a decorator named `Emphasis` that will add bold tags
+`<b></b>`to the string output of a function.
 
 ```python
 import functools
@@ -1027,22 +1021,22 @@ print(hello("Nafi"))
 print(hello("Redowan"))
 ```
 
-```
+```txt
 >>> <b>Hello Nafi</b>
     <b>Hello Redowan</b>
 ```
 
-The __init__() method stores a reference to the function num_calls and can do other
-necessary initialization. The __call__() method will be called instead of the decorated
+The `__init__()` method stores a reference to the function num_calls and can do other
+necessary initialization. The `__call__()` method will be called instead of the decorated
 function. It does essentially the same thing as the `wrapper()` function in our earlier
-examples. Note that you need to use the `functools.update_wrapper()` function instead
-of `@functools.wraps`.
+examples. Note that you need to use the `functools.update_wrapper()` function instead of
+`@functools.wraps`.
 
-Before moving on, let's write a stateful decorator using classes. Stateful decorators
-can remember the state of their previous run. Here's a stateful decorator called
-`Tally` that will keep track of the number of times decorated functions are called in a
-dictionary. The keys of the dictionary will hold the names of the functions and the
-corresponding values will hold the call count.
+Before moving on, let's write a stateful decorator using classes. Stateful decorators can
+remember the state of their previous run. Here's a stateful decorator called `Tally` that'll
+keep track of the number of times decorated functions are called in a dictionary. The keys
+of the dictionary will hold the names of the functions and the corresponding values will
+hold the call count.
 
 ```python
 import functools
@@ -1072,7 +1066,7 @@ print(hello("Redowan"))
 print(hello("Nafi"))
 ```
 
-```
+```txt
 >>> Callable Tally: {'hello': 1}
     Hello Redowan!
     Callable Tally: {'hello': 2}
@@ -1083,12 +1077,12 @@ print(hello("Nafi"))
 
 ### Caching return values
 
-Decorators can provide an elegant way of memoizing function return values. Imagine you
-have an expensive API and you'd like call that as few times as possible. The idea is to
-save and cache values returned by the API for particular arguments, so that if those
-arguments appear again, you can serve the results from the cache instead of calling the
-API again. This can dramatically improve your applications' performance. Here I've
-simulated an expensive API call and provided caching with a decorator.
+Decorators can provide an elegant way of memoizing function return values. Imagine you have
+an expensive API and you'd like call that as few times as possible. The idea is to save and
+cache values returned by the API for particular arguments, so that if those arguments appear
+again, you can serve the results from the cache instead of calling the API again. This can
+dramatically improve your applications' performance. Here I've simulated an expensive API
+call and provided caching with a decorator.
 
 ```python
 import time
@@ -1110,15 +1104,15 @@ def api(a):
 api(3)
 ```
 
-```
+```txt
 >>> The API has been called...
     9
 ```
 
-You'll see that running this function takes roughly 3 seconds. To cache the result, we
-can use Python's built in functools.lru_cache to save the result against an argument in
-a dictionary and serve that when it encounters the same argument again. The only
-drawback here is, all the arguments need to be hashable.
+You'll see that running this function takes roughly 3 seconds. To cache the result, we can
+use Python's built in functools.lru_cache to save the result against an argument in a
+dictionary and serve that when it encounters the same argument again. The only drawback
+here is, all the arguments need to be hashable.
 
 ```python
 import functools
@@ -1141,17 +1135,16 @@ def api(a):
 api(3)
 ```
 
-```
+```txt
 >>> 9
 ```
 
-Least Recently Used (LRU) Cache organizes items in order of use, allowing you to
-quickly identify which item hasn't been used for the longest amount of time. In the
-above case, the parameter `max_size` refers to the maximum numbers of responses to be
-saved up before it starts deleting the earliest ones. While you run the decorated
-function, you'll see first time it'll take roughly 3 seconds to return the result. But
-if you rerun the function again with the same parameter it'll spit the result from the
-cache almost instantly.
+Least Recently Used (LRU) Cache organizes items in order of use, allowing you to quickly
+identify which item hasn't been used for the longest amount of time. In the above case, the
+parameter `max_size` refers to the maximum numbers of responses to be saved up before it
+starts deleting the earliest ones. While you run the decorated function, you'll see first
+time it'll take roughly 3 seconds to return the result. But if you rerun the function again
+with the same parameter it'll spit the result from the cache almost instantly.
 
 ### Unit Conversion
 
@@ -1207,21 +1200,20 @@ def area(a, b):
 area(1, 2)
 ```
 
-```
+```txt
 >>> Conversion unit: mile
     0.001242742
 ```
 
-Using the convert decorator on the area function shows how it prints out the
-transformation unit before returning the desired result. Experiment with other
-conversion units and see what happens.
+Using the convert decorator on the area function shows how it prints out the transformation
+unit before returning the desired result. Experiment with other conversion units and see
+what happens.
 
 ### Function registration
 
-The following is an example of registering logger function in Flask framework. The
-decorator `register_logger` doesn't make any change to the decorated `logger` function.
-Rather it takes the function and registers it in a list called `logger_list` every time
-it's invoked.
+The following is an example of registering logger function in Flask framework. The decorator
+`register_logger` doesn't make any change to the decorated `logger` function. Rather it
+takes the function and registers it in a list called `logger_list` every time it's invoked.
 
 ```python
 from flask import Flask, request
@@ -1257,12 +1249,18 @@ if __name__ == "__main__":
 
 If you run the server and hit the `http://localhost:5000/` url, it'll greet you with a
 `Hello World!` message. Also you'll able to see the printed `method` and `path` of your
-http request on the terminal. Moreover, if you inspect the `logger_list`, you'll find
-the registered logger there. You'll find a lot more real life usage of decorators in
-the Flask framework.
+HTTP request on the terminal. Moreover, if you inspect the `logger_list`, you'll find the
+registered logger there. You'll find a lot more real life usage of decorators in the Flask
+framework.
 
 ## References
 
-* [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/)
-* [Decorators in Python - DataCamp](https://www.datacamp.com/community/tutorials/decorators-python)
-* [5 reasons you need to write Python decorators](https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/)
+* [Primer on Python decorator - Real Python]
+* [Decorators in Python - DataCamp]
+* [5 reasons you need to write Python decorators]
+
+[david beazley]: https://www.dabeaz.com/
+[python cookbook]: https://realpython.com/asins/1449340377/
+[primer on python decorator - real python]: https://realpython.com/primer-on-python-decorators/
+[decorators in python - datacamp]: https://www.datacamp.com/community/tutorials/decorators-python
+[5 reasons you need to write python decorators]: https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/
