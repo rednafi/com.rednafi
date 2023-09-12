@@ -16,10 +16,10 @@
 .bio-text{
     margin-top: 0.4rem;
 }
-.bio-urls{
+.secondary-urls{
     margin-top: 0.4rem;
-    color: var(--bio-urls);
+    color: var(--secondary-urls);
 }
-.bio-urls a{
-    color: var(--bio-urls);
+.secondary-urls a{
+    color: var(--secondary-urls);
 }

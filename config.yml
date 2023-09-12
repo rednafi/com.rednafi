@@ -78,16 +78,16 @@ params:
     Content: >
       <div class="bio-text">
         A wandering autodidact with a flair for ones and zeros. I
-        <a class="bio-urls" href="/tags">learn</a>,
-        <a class="bio-urls" href="/archives">write</a>, and
-        <a class="bio-urls" href="https://twitter.com/rednafi">tweet</a> about
-        <a class="bio-urls" href="/tags/python">Python</a>,
-        <a class="bio-urls" href="/tags/go">Go</a>,
-        <a class="bio-urls" href="/tags/database">SQL</a>, and the broader
-        <a class="bio-urls" href="/zephyr">landscape</a> of software in general.
+        <a class="secondary-urls" href="/tags">learn</a>,
+        <a class="secondary-urls" href="/archives">write</a>, and
+        <a class="secondary-urls" href="https://twitter.com/rednafi">tweet</a> about
+        <a class="secondary-urls" href="/tags/python">Python</a>,
+        <a class="secondary-urls" href="/tags/go">Go</a>,
+        <a class="secondary-urls" href="/tags/database">SQL</a>, and the broader
+        <a class="secondary-urls" href="/zephyr">landscape</a> of software in general.
       </div>
 
-      <div class="bio-urls">
+      <div class="secondary-urls">
         <a href="/tags">tags</a>
         <span> • </span>
         <a href="/search">search</a>
@@ -118,11 +118,6 @@ params:
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
     image: https://user-images.githubusercontent.com/30027932/266914031-f48582fe-b371-4d14-9f65-0edde5f26ae7.png
-
-  editPost:
-    URL: "https://github.com/rednafi/rednafi.com/blob/main/content"
-    Text: "Suggest changes" # edit text
-    appendFilePath: true # to append file path to Edit link
 
   # for search
   # https://fusejs.io/api/options.html
