@@ -5,6 +5,17 @@
 }
 
 .footer-tags a{
+    white-space: pre-wrap;
     border-bottom: 0px;
+    font-size: 14.5px;
     color: var(--secondary-urls);
+}
+
+.footer-icons a{
+    border-bottom: 0px;
+    font-size: 14.5px;
+}
+
+.footer-tags a span{
+    white-space: no-wrap;
 }

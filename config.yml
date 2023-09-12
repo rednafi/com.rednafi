@@ -95,15 +95,15 @@ params:
         <a href="/index.xml">rss</a>
       </div>
 
-  # socialIcons:
-  #   - name: twitter
-  #     url: "https://twitter.com/rednafi"
-  #   - name: stackoverflow
-  #     url: "https://stackoverflow.com/users/8963300/redowan-delowar"
-  #   - name: github
-  #     url: "https://github.com/rednafi"
-  #   - name: "rss"
-  #     url: "https://rednafi.com/index.xml"
+  socialIcons:
+    - name: twitter
+      url: "https://twitter.com/rednafi"
+    - name: stackoverflow
+      url: "https://stackoverflow.com/users/8963300/redowan-delowar"
+    - name: github
+      url: "https://github.com/rednafi"
+    - name: "rss"
+      url: "https://rednafi.com/index.xml"
 
   analytics:
     google:
