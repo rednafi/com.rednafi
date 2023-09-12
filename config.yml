@@ -47,7 +47,7 @@ params:
   hideSummary: false
   showtoc: true
   tocopen: false
-  hideFooter: true
+  hideFooter: false
   ShowAllPagesInArchive: true
   ShowFullTextinRSS: false
   mainSections:
