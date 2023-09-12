@@ -5,20 +5,20 @@ tags:
     - JavaScript
 ---
 
-Whenever I plan to build something, I spend 90% of my time researching and figuring out
-the idiosyncrasies of the tools that I decide to use for the project. LLM tools like
-ChatGPT has helped me immensely in that regard. I'm taking on more tangential side
-projects because they are no longer as time-consuming as they used to be and provide me
-with an immense amount of joy and learning opportunities. While LLM interfaces like
-ChatGPT may hallucinate, confabulate, and confidently give you misleading information,
-they also allow you to avoid starting from scratch when you decide to work on something.
-Personally, this benefits me enough to keep language models in my tool belt and use them
-to churn out more exploratory work at a much faster pace.
+Whenever I plan to build something, I spend 90% of my time researching and figuring out the
+idiosyncrasies of the tools that I decide to use for the project. LLM tools like ChatGPT has
+helped me immensely in that regard. I'm taking on more tangential side projects because
+they're no longer as time-consuming as they used to be and provide me with an immense amount
+of joy and learning opportunities. While LLM interfaces like ChatGPT may hallucinate,
+confabulate, and confidently give you misleading information, they also allow you to avoid
+starting from scratch when you decide to work on something. Personally, this benefits me
+enough to keep language models in my tool belt and use them to churn out more exploratory
+work at a much faster pace.
 
-For some strange reason, I never took the time to explore [ObservableHQ][observable],
-despite knowing what it does and how it can help me quickly build nifty client-side
-tools without going through the hassle of containerizing and deploying them as dedicated
-applications. So, I asked ChatGPT to build me a tool that would allow me to:
+For some strange reason, I never took the time to explore [ObservableHQ], despite knowing
+what it does and how it can help me quickly build nifty client-side tools without going
+through the hassle of containerizing and deploying them as dedicated applications. So, I
+asked ChatGPT to build me a tool that would allow me to:
 
 * Upload two CSV files
 * Calculate the row and column counts from the files
@@ -27,20 +27,19 @@ and their corresponding index numbers, so that you can compare them easily.
 
 Here's the initial prompt that I used:
 
-> Give me the JavaScript code for an Observable notebook that'll allow me to upload a
-> CSV file, calculate the row and column counts from it, and then display the stats with
-> column headers and their corresponding index starting from 0. Display the info in an
-> HTML table.
+> Give me the JavaScript code for an Observable notebook that'll allow me to upload a CSV
+> file, calculate the row and column counts from it, and then display the stats with column
+> headers and their corresponding index starting from 0. Display the info in an HTML table.
 
-Then I refactored the JavaScript it returned so that it'll allow me to upload two CSV
-files and compare their stats. I made ChatGPT do it for me with this follow-up prompt:
+Then I refactored the JavaScript it returned so that it'll allow me to upload two CSV files
+and compare their stats. I made ChatGPT do it for me with this follow-up prompt:
 
-> Can you change the code so that it allows uploading two CSV files and displays
-> the stats of both of them in two HTML tables? Don't blindly repeat the logic from the
-> previous section twice.
+> Can you change the code so that it allows uploading two CSV files and displays the stats
+> of both of them in two HTML tables? Don't blindly repeat the logic from the previous
+> section twice.
 
-Finally, I asyncified the code and changed some HTML parsing to make the table look a
-bit better. Here's the complete 85-line code snippet:
+Finally, I asyncified the code and changed some HTML parsing to make the table look a bit
+better. Here's the complete 85-line code snippet:
 
 ```js
 {
@@ -131,34 +130,33 @@ bit better. Here's the complete 85-line code snippet:
 }
 ```
 
-The snippet above starts by creating two file input elements using HTML input tags.
-These are used to allow the user to select and upload CSV files. Two empty HTML tables
-are also created to hold the extracted statistics for each CSV file.
+The snippet above starts by creating two file input elements using HTML input tags. These
+are used to allow the user to select and upload CSV files. Two empty HTML tables are also
+created to hold the extracted statistics for each CSV file.
 
 Next, it defines a function called `handleFileLoad` which takes a table element as its
-argument. This function is called when the user uploads a file, and it reads the
-contents of the file and extracts some basic statistics from it. These statistics are
-then used to populate the HTML table with the extracted information.
+argument. This function is called when the user uploads a file, and it reads the contents of
+the file and extracts some basic statistics from it. These statistics are then used to
+populate the HTML table with the extracted information.
 
-Inside the `handleFileLoad` function, the `FileReader` API is used to read the contents
-of the uploaded file. The file contents are then parsed as text and split into lines.
-The first line contains the column headers, which are extracted by splitting the line by
-commas. The number of columns is then determined by the number of headers, and the
-number of rows is determined by counting the number of lines in the file (excluding the
-header).
+Inside the `handleFileLoad` function, the `FileReader` API is used to read the contents of
+the uploaded file. The file contents are then parsed as text and split into lines. The first
+line contains the column headers, which are extracted by splitting the line by commas. The
+number of columns is then determined by the number of headers, and the number of rows is
+determined by counting the number of lines in the file (excluding the header).
 
-It then creates three rows for the extracted statistics: one row for the number of rows,
-one row for the number of columns, and one row for the column headers with their
-corresponding indexes starting from zero. The rows are then added to the HTML table.
+It then creates three rows for the extracted statistics: one row for the number of rows, one
+row for the number of columns, and one row for the column headers with their corresponding
+indexes starting from zero. The rows are then added to the HTML table.
 
 Finally, the code adds event listeners to the file input elements to trigger the
 `handleFileLoad` function when the user uploads a file. The file input elements and HTML
-tables are then returned as an HTML fragment using the HTML template literal, and
-displayed in the notebook.
+tables are then returned as an HTML fragment using the HTML template literal, and displayed
+in the notebook.
 
-You can find the working application embedded in the following section. Try uploading
-two CSV files by clicking on the `Choose File` button and see how the app displays the
-stats in separate HTML tables.
+You can find the working application embedded in the following section. Try uploading two
+CSV files by clicking on the `Choose File` button and see how the app displays the stats in
+separate HTML tables.
 
 <iframe width="100%" height="500" frameborder="0"
   src="https://observablehq.com/embed/@rednafi/compare-two-csv-files@latest?cell=*">
@@ -174,12 +172,10 @@ Click on the following thumbnail to take the notebook for a spin:
 
 [![img][observable-thumbnail]][observable-notebook]
 
-
 ## References
 
 * [ObservableHQ][observable-notebook]
 
-
-[observable]: https://observablehq.com/
+[observablehq]: https://observablehq.com/
 [observable-thumbnail]: https://user-images.githubusercontent.com/30027932/231017828-91745232-d7ea-4573-86f6-341007fdc816.png
 [observable-notebook]: https://observablehq.com/@rednafi/compare-two-csv-files

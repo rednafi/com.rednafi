@@ -6,29 +6,28 @@ tags:
     - GitHub
 ---
 
-I recently gave my [blog][blog] a fresh new look and decided it was time to spruce up my
-GitHub [profile's][gh-profile] landing page as well. GitHub has a [special][gh-readme]
-way of treating the `README.md` file of your <your-username> repo, displaying its
-content as the landing page for your profile. My goal was to showcase a brief
-introduction about myself and my work, along with a list of the five most recent
-articles on my blog. Additionally, I wanted to ensure that the article list stayed up to
-date.
+I recently gave my [blog] a fresh new look and decided it was time to spruce up my GitHub
+[profile]'s landing page as well. GitHub has a [special] way of treating the `README.md`
+file of your <your-username> repo, displaying its content as the landing page for your
+profile. My goal was to showcase a brief introduction about myself and my work, along with a
+list of the five most recent articles on my blog. Additionally, I wanted to ensure that the
+article list stayed up to date.
 
-There are plenty of fancy GitHub Action workflows like [this][blog-workflow] one that
-allows you to add your site's URL to the CI file and it'll periodically fetch the most
-recent content from the source and update the readme file. However, I wanted to make a
-simpler version of it from scratch which can be extended for periodically updating
-any markdown file in any repo, just not the profile readme. So, here's the plan:
+There are plenty of fancy GitHub Action [workflows] that allow you to add your site's URL to
+the CI file and it'll periodically fetch the most recent content from the source and update
+the readme file. However, I wanted to make a simpler version of it from scratch which can be
+extended for periodically updating any markdown file in any repo, just not the profile
+readme. So, here's the plan:
 
 * A custom GitHub Action workflow will periodically run a nodejs script.
 * The script will then:
-    * Grab the XML [index][index] of this blog that you're reading.
+    * Grab the XML [index] of this blog that you're reading.
     * Parse the XML content and extract the URLs and publication dates of 5 most recent
     articles.
     * Update the associated markdown table with the extracted content on the profile's
     `README.md` file.
-* Finally, the workflow will commit the changes and push them to the
-[profile][gh-profile-repo] repo. You can see the final outcome [here][gh-profile].
+* Finally, the workflow will commit the changes and push them to the [profile repo]. You can
+see the final outcome [here][profile repo].
 
 Here's the script that performs the above steps:
 
@@ -106,15 +105,14 @@ The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML pars
 the built-in `fs` module's `promises` for handling file system operations.
 
 Next, it defines an async function `getRssData` responsible for fetching the XML data
-from the [https://rednafi.com/index.html][index] URL. It extracts the blog URLs
-and publication dates, and returns the parsed data as a list of objects. Another async
-function, `writeOutputFile`, writes the parsed XML content as a markdown table and saves
-it to the `README.md` file.
+from the [https://rednafi.com/index.html][index] URL. It extracts the blog URLs and
+publication dates, and returns the parsed data as a list of objects. Another async function,
+`writeOutputFile`, writes the parsed XML content as a markdown table and saves it to the
+`README.md` file.
 
-The script is executed by the following GitHub Action workflow every day at 0:00 UTC.
-Before the CI runs, make sure you create a new [Action Secret][action-secret] named
-`ACCESS_TOKEN` that houses an [access token][access-token] with write access to the
-repo where the CI runs.
+The script is executed by the following GitHub Action workflow every day at 0:00 UTC. Before
+the CI runs, make sure you create a new [Action Secret] named `ACCESS_TOKEN` that houses an
+[access token] with write access to the repo where the CI runs.
 
 ```yaml
 # Run a bash script to randomly generate an empty commit to this repo.
@@ -183,30 +181,30 @@ jobs:
           branch: ${{ github.ref }}
 ```
 
-In the first four steps, the workflow checks out the codebase, sets up nodejs, installs
-the dependencies, and then runs `prettier` on the scripts. Next, it executes the
+In the first four steps, the workflow checks out the codebase, sets up nodejs, installs the
+dependencies, and then runs `prettier` on the scripts. Next, it executes the
 `importBlogs.js` script. The script updates the readme and the subsequent shell commands
-commit the changes to the repo. The following line ensures that we're only trying to
-commit when there's a change in the tracked files.
+commit the changes to the repo. The following line ensures that we're only trying to commit
+when there's a change in the tracked files.
 
 ```sh
 git diff-index --quiet HEAD \
   || git commit -m "Autocommit: updated at $(date -u)"
 ```
 
-Then in the last step, we use an off-the-shelf workflow to push our changes to the
-repo. Check out the [workflow][gh-profile-workflow-dir] directory of my profile's repo
-to see the whole setup in action. I'm quite satisfied with the final output:
+Then in the last step, we use an off-the-shelf workflow to push our changes to the repo.
+Check out the [workflow directory] of my profile's repo to see the whole setup in action.
+I'm quite satisfied with the final output:
 
-![gh-profile-img]
+![screenshot_1]
 
 [blog]: https://rednafi.com/
-[gh-profile]: https://github.com/rednafi/
-[gh-profile-repo]: https://github.com/rednafi/rednafi
-[gh-readme]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme
-[blog-workflow]: https://github.com/gautamkrishnar/blog-post-workflow
+[profile]: https://github.com/rednafi/
+[profile repo]: https://github.com/rednafi/rednafi
+[special]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme
+[workflows]: https://github.com/gautamkrishnar/blog-post-workflow
 [index]: https://rednafi.com/index.xml
-[action-secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
-[access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-[gh-profile-workflow-dir]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
-[gh-profile-img]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
+[action secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
+[access token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+[workflow directory]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
+[screenshot_1]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
