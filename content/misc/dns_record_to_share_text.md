@@ -12,17 +12,17 @@ share textual data by leveraging DNS TXT records. It can be useful for sharing a
 amount of data in environments that restrict IP but allow DNS queries, or to bypass
 censorship.
 
-To test this out, I opened my domain registrar's panel and created a new TXT type DNS
-entry with a base64 encoded message containing the poem **A Poison Tree** by William
-Blake. The message can now be queried and decoded with the following shell command:
+To test this out, I opened my domain registrar's panel and created a new TXT type DNS entry
+with a base64 encoded message containing the poem **A Poison Tree** by William Blake. The
+message can now be queried and decoded with the following shell command:
 
 ```sh
 dig +short _poem.rednafi.com TXT | sed 's/"//g' | base64 --decode
 ```
 
-The command uses `dig` to query a TXT DNS record for `_poem.rednafi.com`, removes any
-double quotes from the record value via `sed`, and then decodes the base64-encoded value
-via `base64` to retrieve the original plaintext message that was stored in the TXT record.
+The command uses `dig` to query a TXT DNS record for `_poem.rednafi.com`, removes any double
+quotes from the record value via `sed`, and then decodes the base64-encoded value via
+`base64` to retrieve the original plaintext message that was stored in the TXT record.
 Running this will return the decoded content of the record:
 
 ```txt
@@ -48,17 +48,17 @@ My foe outstretched beneath the tree.
 ```
 
 You can also encode image data and retrieve it in a similar manner. If your data is too
-large to fit in a single record, you can split it into multiple records and concatenate
-them on the receiving end.
+large to fit in a single record, you can split it into multiple records and concatenate them
+on the receiving end.
 
-However, there are some limitations to this approach. [RFC 1035] says that the total size
-of a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual
-text value in a single TXT record is 255 bytes or characters. This doesn't give us much
-room to tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM
-attacks, injection issues, cache poisoning, and DoS. So I'd refrain from transferring any
-data in this manner that requires a layer of security. Protocols like DANE and DNSSEC aim
-to address some of these concerns but their adoption is spotty at best. Still, I found the
-idea of using DNS records as a simple database quite clever!
+However, there are some limitations to this approach. [RFC 1035] says that the total size of
+a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual text
+value in a single TXT record is 255 bytes or characters. This doesn't give us much room to
+tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks,
+injection issues, cache poisoning, and DoS. So I'd refrain from transferring any data in
+this manner that requires a layer of security. Protocols like DANE and DNSSEC aim to address
+some of these concerns but their adoption is spotty at best. Still, I found the idea of
+using DNS records as a simple database quite clever!
 
 ## References
 

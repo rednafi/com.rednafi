@@ -6,42 +6,42 @@ tags:
     - TIL
 ---
 
-Whenever your local branch diverges from the remote branch, you can't directly pull from
-the remote branch and merge it into the local branch. This can happen when, for example:
+Whenever your local branch diverges from the remote branch, you can't directly pull from the
+remote branch and merge it into the local branch. This can happen when, for example:
 
 * You checkout from the `main` branch to work on a feature in a branch named `alice`.
 * When you're done, you merge `alice` into `main`.
-* After that, if you try to pull the `main` branch from remote again and the content of
-the `main` branch changes by this time, you'll encounter a merge error.
+* After that, if you try to pull the `main` branch from remote again and the content of the
+`main` branch changes by this time, you'll encounter a merge error.
 
 ## Reproduce the issue
 
 Create a new branch named `alice` from `main`. Run:
 
-```bash
+```sh
 git checkout -b alice
 ```
 
 From `alice` branch, add a line to a newly created file `foo.txt`:
 
-```bash
+```sh
 echo "from branch alice" >> foo.txt
 ```
 
 Add, commit, and push the branch:
 
-```bash
+```sh
 git commit -am "From branch alice" && git push
 ```
 
 From the GitHub UI, send a pull request against the `main` branch and merge it:
 
-![image](https://user-images.githubusercontent.com/30027932/179367132-de85b59e-aa1c-477e-b3b2-89593f3a8b4c.png)
+![example pull rebase][image_1]
 
-In your local machine, switch to `main` and try to pull the latest content merged from
-the `alice` branch. You'll encounter the following error:
+In your local machine, switch to `main` and try to pull the latest content merged from the
+`alice` branch. You'll encounter the following error:
 
-```
+```txt
 hint: You have divergent branches and need to specify how to reconcile them.
 hint: You can do so by running one of the following commands sometime before
 hint: your next pull:
@@ -63,7 +63,7 @@ have diverged and they aren't reconciliable.
 
 From the `main` branch, you can run:
 
-```bash
+```sh
 git pull --rebase
 ```
 
@@ -72,5 +72,10 @@ commits.
 
 ## References
 
-* [When should I use git pull --rebase?](https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase)
-* [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase)
+* [When should I use git pull --rebase?]
+* [An example repo that reproduces the issue]
+
+
+[image_1]: https://user-images.githubusercontent.com/30027932/179367132-de85b59e-aa1c-477e-b3b2-89593f3a8b4c.png
+[when should i use git pull --rebase]: https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase
+[an example repo that reproduces the issue]: https://github.com/rednafi/_pull-rebase

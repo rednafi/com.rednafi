@@ -6,22 +6,22 @@ tags:
     - TIL
 ---
 
-While working on a project with [EdgeDB](https://www.edgedb.com/) and
-[FastAPI](https://fastapi.tiangolo.com/), I wanted to perform health checks against the
-FastAPI server in the GitHub CI. This would notify me about the working state of the
-application. The idea is to—
+While working on a project with [EdgeDB] and [FastAPI], I wanted to perform health checks
+against the FastAPI server in the GitHub CI. This would notify me about the working state of
+the application. The idea is to:
 
 * Run the server in the background.
 * Run the commands against the server that'll denote that the app is in a working state.
 * Perform cleanup.
 * Exit with code 0 if the check is successful, else exit with code 1.
 
-The following shell script demonstrates a similar workflow with a Python HTTP server. This script—
+The following shell script demonstrates a similar workflow with a Python HTTP server. This
+script:
 
 * Runs a Python web server in the background.
 * Makes an HTTP request against the server and checks if it returns HTTP 200 (OK).
-  If the request fails or the server isn't ready then waits for a second and makes the
-  request again, and keeps retrying for the next 20 times before giving up.
+    If the request fails or the server isn't ready then waits for a second and makes the
+    request again, and keeps retrying for the next 20 times before giving up.
 * Performs cleanups and kills the Python processes.
 * Exit with code 0 if the request is successful, else exit with code 1.
 
@@ -57,15 +57,18 @@ exit 1
 ```
 
 The `nohup` before the `python3 -m http.server 5000` makes sure that the `SIGHUP` signal
-can't reach the server and shut down the process. The ampersand `&` after the command
-runs the process in the background. Afterward, the script starts making requests to the
-`http://localhost:5000/` URL in a loop. If the server returns HTTP 200, the health check
-is considered successful. This will break the loop and the script will be terminated with
-`exit 0` status. If the server doesn't return HTTP 200 or isn't ready yet, the script
-will keep retrying 20 times with a 1 second interval between each subsequent request
-before giving up. A failed health check will cause the script to terminate with `exit 1`
-status.
+can't reach the server and shut down the process. The ampersand `&` after the command runs
+the process in the background. Afterward, the script starts making requests to the
+`http://localhost:5000/` URL in a loop. If the server returns HTTP 200, the health check is
+considered successful. This will break the loop and the script will be terminated with
+`exit 0` status. If the server doesn't return HTTP 200 or isn't ready yet, the script will
+keep retrying 20 times with a 1 second interval between each subsequent request before
+giving up. A failed health check will cause the script to terminate with `exit 1` status.
 
 ## References
 
-* [What's the difference between nohup and ampersand](https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand)
+* [What's the difference between nohup and ampersand]
+
+[edgedb]: https://www.edgedb.com/
+[fastapi]: https://fastapi.tiangolo.com/
+[what's the difference between nohup and ampersand]

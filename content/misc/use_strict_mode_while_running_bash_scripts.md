@@ -6,8 +6,8 @@ tags:
     - TIL
 ---
 
-Use unofficial bash strict mode while writing scripts. Bash has a few gotchas and this
-helps you to avoid that. For example:
+Use unofficial bash strict mode while writing scripts. Bash has a few gotchas and this helps
+you to avoid that. For example:
 
 ```bash
 #!/bin/bash
@@ -29,6 +29,7 @@ Where,
 
 ## References
 
-* The idea is a less radical version of this
-[post](http://redsymbol.net/articles/unofficial-bash-strict-mode/). I don't recommend
-messing with the IFS without a valid reason.
+The idea is a less radical version of this [post]. I don't recommend messing with the IFS
+without a valid reason.
+
+[post]: http://redsymbol.net/articles/unofficial-bash-strict-mode/

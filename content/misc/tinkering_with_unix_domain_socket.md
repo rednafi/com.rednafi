@@ -7,37 +7,37 @@ tags:
     - Networking
 ---
 
-I've always had a vague idea about what Unix domain sockets are from my experience
-working with Docker for the past couple of years. However, lately, I'm spending more
-time in embedded edge environments and had to explore Unix domain sockets in a bit more
-detail. This is a rough documentation of what I've explored to gain some insights.
+I've always had a vague idea about what Unix domain sockets are from my experience working
+with Docker for the past couple of years. However, lately, I'm spending more time in
+embedded edge environments and had to explore Unix domain sockets in a bit more detail. This
+is a rough documentation of what I've explored to gain some insights.
 
 ## The dry definition
 
-Unix domain sockets (UDS) are similar to TCP sockets in a way that they allow two
-processes to communicate with each other, but there are some core differences. While TCP
-sockets are used for communication over a network, Unix domain sockets are used for
-communication between processes running on the same computer.
+Unix domain sockets (UDS) are similar to TCP sockets in a way that they allow two processes
+to communicate with each other, but there are some core differences. While TCP sockets are
+used for communication over a network, Unix domain sockets are used for communication
+between processes running on the same computer.
 
 A Unix domain socket is a way for programs to exchange data in a fast and efficient way
-without having to worry about the overhead of network protocols like TCP/IP or UDP. It
-works by creating a special file on the file system called a socket, which acts as a
-bidirectional data channel between the processes. The processes can send and receive
-data through the socket just like they would with a network socket. Also, just like
-TCP/UDP sockets, Unix domain sockets can also be either stream-based (TCP equivalent) or
-datagram-based (UDP equivalent).
+without having to worry about the overhead of network protocols like TCP/IP or UDP. It works
+by creating a special file on the file system called a socket, which acts as a bidirectional
+data channel between the processes. The processes can send and receive data through the
+socket just like they would with a network socket. Also, just like TCP/UDP sockets, Unix
+domain sockets can also be either stream-based (TCP equivalent) or datagram-based
+(UDP equivalent).
 
-Unix domain sockets are commonly used in server-client applications, such as web
-servers, databases, and email servers, where they provide a secure and efficient way for
-processes on the same machine to communicate with each other. They're also used in many
-other types of programs where different parts of the program need to work together or
-share data. Another cool thing about them is that you can control access to your server
-just by tuning the permission of the socket file on the system.
+Unix domain sockets are commonly used in server-client applications, such as web servers,
+databases, and email servers, where they provide a secure and efficient way for processes on
+the same machine to communicate with each other. They're also used in many other types of
+programs where different parts of the program need to work together or share data. Another
+cool thing about them is that you can control access to your server just by tuning the
+permission of the socket file on the system.
 
 ## Prerequisites
 
-I'm running these experiments on an M-series Macbook pro. However, any Unix-y
-environment will work as long as you can run the following tools:
+I'm running these experiments on an M-series Macbook pro. However, any Unix-y environment
+will work as long as you can run the following tools:
 
 * `socat`: To create the socket servers and clients.
 * `curl`: To make HTTP requests to a supported socket server.
@@ -46,15 +46,15 @@ environment will work as long as you can run the following tools:
 
 ## Inspecting Unix domain sockets in your system
 
-Most likely, there are currently multiple processes listening on different sockets in
-your system. You can explore them using `lsof` with the following command:
+Most likely, there are currently multiple processes listening on different sockets in your
+system. You can explore them using `lsof` with the following command:
 
 ```sh
 sudo lsof -U
 ```
 
-This will return a list of all Unix domain socket files and the server process PIDs that
-are currently listening on them:
+This will return a list of all Unix domain socket files and the server process PIDs that are
+currently listening on them:
 
 ```txt
 COMMAND   PID  USER FD  TYPE             DEVICE SIZE/OFF NODE NAME
@@ -67,8 +67,8 @@ launchd   1  root   9u  unix 0x25269ff9edd0554d      0t0      /var/run/portmap.s
 ...
 ```
 
-You can also filter out the socket files by their process names. Docker processes listen
-on a few socket files:
+You can also filter out the socket files by their process names. Docker processes listen on
+a few socket files:
 
 ```sh
 sudo lsof -U  -a -c 'com.docker'
@@ -96,9 +96,9 @@ socket:
 socat unix-listen:/tmp/stream.sock,fork STDOUT
 ```
 
-This process listens on the `/tmp/stream.sock` and prints the incoming data to the
-`stdout`. The `fork` portion on the command ensures that multiple clients can be
-connected to the server process and they'll be served by forking child processes.
+This process listens on the `/tmp/stream.sock` and prints the incoming data to the `stdout`.
+The `fork` portion on the command ensures that multiple clients can be connected to the
+server process and they'll be served by forking child processes.
 
 From another console, you can try to send data to the socket file as a client:
 
@@ -106,8 +106,8 @@ From another console, you can try to send data to the socket file as a client:
 echo "hello world" | socat - unix-connect:/tmp/stream.sock
 ```
 
-Running this command will send the `hello world` string to the `/tmp/stream.sock` file
-and the server process will print it on the standard output stream.
+Running this command will send the `hello world` string to the `/tmp/stream.sock` file and
+the server process will print it on the standard output stream.
 
 Similarly, you can also create a datagram-based socket server with `socat` like this:
 
@@ -125,8 +125,8 @@ echo "hello world" | socat - unix-sendto:/tmp/datagram.sock
 
 By default, Docker runs through a non-networked UNIX socket. It can also optionally
 communicate using SSH or a TLS (HTTPS) socket. On MacOS, the socket file can be found in
-`~/.docker/run/docker.sock`. We can make HTTP requests against the listening socket
-server and use Docker engine's RESTful API suite.
+`~/.docker/run/docker.sock`. We can make HTTP requests against the listening socket server
+and use Docker engine's RESTful API suite.
 
 **Checking the engine's version number:** The following command uses `curl` to spawn a
 client process and send a request against the Docker engine running in my local system.
@@ -181,31 +181,31 @@ curl -sX POST \
     'http://localhost/images/create?fromImage=hello-world:latest'
 ```
 
-**Listening for docker events:** This API call lets you listen for all incoming events
-from the docker engine. You can run the following command on one terminal and send
-events from another:
+**Listening for docker events:** This API call lets you listen for all incoming events from
+the docker engine. You can run the following command on one terminal and send events from
+another:
 
 ```sh
 curl --no-buffer --unix-socket \
     ~/.docker/run/docker.sock http://localhost/events | jq
 ```
 
-Here, the `--no-buffer` flag is necessary for instructing `curl` to send the output
-events to the input stream of `jq` without doing any buffering. This allows `jq` to
-pretty-print the outputs in real-time. Now from another console if you run the following
-command, you'll see events pouring into the console that's listening for them:
+Here, the `--no-buffer` flag is necessary for instructing `curl` to send the output events
+to the input stream of `jq` without doing any buffering. This allows `jq` to pretty-print
+the outputs in real-time. Now from another console if you run the following command, you'll
+see events pouring into the console that's listening for them:
 
 ```sh
 docker run hello-world
 ```
 
-The complete list of APIs can be found [here][docker-engine-api].
+The complete list of APIs can be found [here].
 
 ## Writing a Unix domain socket server in Python
 
-You can quickly write a simple server that allows clients to connect to it via Unix
-domain sockets. If the clients exist on the same machine then, a UDS server has the
-advantage of having lower overhead than its networked TCP counterpart.
+You can quickly write a simple server that allows clients to connect to it via Unix domain
+sockets. If the clients exist on the same machine then, a UDS server has the advantage of
+having lower overhead than its networked TCP counterpart.
 
 The following server uses Python's `socketserver` module to create a stream-based echo
 server:
@@ -259,9 +259,9 @@ if __name__ == "__main__":
 ```
 
 Here, `socketserver.ThreadingUnixStreamServer` enables us to create a server that allows
-multiple clients to be connected to it via Unix domain sockets. The server spins up a
-new thread to serve each new client and does bi-directional communication via UDS. The
-client code is quite similar to a TCP client:
+multiple clients to be connected to it via Unix domain sockets. The server spins up a new
+thread to serve each new client and does bi-directional communication via UDS. The client
+code is quite similar to a TCP client:
 
 ```python
 # client.py
@@ -284,21 +284,21 @@ with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
         logging.info(f"Received {data!r}")
 ```
 
-The client connects to the server through the `/tmp/stream.sock` socket and sends a
-static `hello world` string to it. The server then sends that data back and the client
-sends it to the stdout stream.
+The client connects to the server through the `/tmp/stream.sock` socket and sends a static
+`hello world` string to it. The server then sends that data back and the client sends it to
+the stdout stream.
 
 Running the server and client as two separate processes will yield the following output:
 
-![echo-client-server]
+![echo client server][image_1]
 
 ## Exposing an HTTP application via a Unix domain socket
 
-Webservers usually allow you to expose HTTP applications via Unix domain sockets. In
-Python, the [uvicorn][uvicorn] ASGI server lets you do this quite easily. This can
-come as handy whenever you need to spin up a local server and all the clients are
-running on the same machine or you're running your server behind a proxy. Here's an
-example of a simple webserver built with [starlette][starlette] and served with uvicorn.
+Webservers usually allow you to expose HTTP applications via Unix domain sockets. In Python,
+the [uvicorn] ASGI server lets you do this quite easily. This can come as handy whenever you
+need to spin up a local server and all the clients are running on the same machine or you're
+running your server behind a proxy. Here's an example of a simple webserver built with
+[starlette] and served with uvicorn.
 
 ```python
 # server.py (http server)
@@ -344,38 +344,38 @@ curl --unix-socket /tmp/stream.sock http://localhost/index
     <p>This is the index page.</p>
 ```
 
-If you want to access this server from a browser, you'll need to make sure that your
-reverse proxy server (Nginx / Apache / Caddy) is configured to relay the incoming
-request from the network to the UDS server. For a quick and dirty approach, you can use
-`socat` to proxy the request from a `HOST:PORT` pair to the UDS server like this:
+If you want to access this server from a browser, you'll need to make sure that your reverse
+proxy server (Nginx / Apache / Caddy) is configured to relay the incoming request from the
+network to the UDS server. For a quick and dirty approach, you can use `socat` to proxy the
+request from a `HOST:PORT` pair to the UDS server like this:
 
 ```sh
 uvicorn --uds /tmp/stream.sock server:app \
     & socat tcp-listen:9999,fork unix-connect:/tmp/stream.sock &
 ```
 
-The `uvicorn` command spins up a webserver in the background as before and listens on
-the socket file `/tmp/stream.sock`. Then we're using `socat` to create a forking TCP
-server that handles the incoming HTTP requests from the network and relays them to the
-webserver via UDS. It also relays the server's responses back to the client—doing the
-work of a reverse proxy.
+The `uvicorn` command spins up a webserver in the background as before and listens on the
+socket file `/tmp/stream.sock`. Then we're using `socat` to create a forking TCP server that
+handles the incoming HTTP requests from the network and relays them to the webserver via
+UDS. It also relays the server's responses back to the client—doing the work of a reverse
+proxy.
 
-You can then head over to your browser and go to `http://localhost:9999`. This will
-display the HTML page:
+You can then head over to your browser and go to `http://localhost:9999`. This will display
+the HTML page:
 
-![reverse-proxy-access]
+![reverse proxy access][image_2]
 
 ## References
 
-* [Understanding sockets][understanding-sockets]
-* [Fun with Unix domain sockets][fun-with-unix-domain-sockets]
+* [Understanding sockets]
+* [Fun with Unix domain sockets]
 
 
-[docker-engine-api]: https://docs.docker.com/engine/api/latest/
-[echo-client-server]: https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
+[here]: https://docs.docker.com/engine/api/latest/
+[image_1]: https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
 [uvicorn]: https://www.uvicorn.org/
 [starlette]: https://www.starlette.io/
-[reverse-proxy-access]: https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png
+[image_2]: https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png
 
-[understanding-sockets]: https://www.digitalocean.com/community/tutorials/understanding-sockets
-[fun-with-unix-domain-sockets]: https://simonwillison.net/2021/Jul/13/unix-domain-sockets/
+[understanding sockets]: https://www.digitalocean.com/community/tutorials/understanding-sockets
+[fun with unix domain sockets]: https://simonwillison.net/2021/Jul/13/unix-domain-sockets/

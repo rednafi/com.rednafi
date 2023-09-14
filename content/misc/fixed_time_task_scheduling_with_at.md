@@ -9,36 +9,34 @@ tags:
 
 This weekend, I was working on a fun project that required a fixed-time job scheduler to
 run a `curl` command at a future timestamp. I was aiming to find the simplest solution
-that could just get the job done. I've also been exploring Google [Bard][bard] recently
-and wanted to see how it stacks up against other LLM tools like ChatGPT, BingChat, or
-Anthropic's Claude in terms of resolving programming queries.
+that could just get the job done. I've also been exploring Google [Bard] recently and wanted
+to see how it stacks up against other LLM tools like ChatGPT, BingChat, or Anthropic's
+Claude in terms of resolving programming queries.
 
 So, I asked Bard:
 
-> What's the simplest solution I could get away with to run a shell command at a
-> future datetime?
+> What's the simplest solution I could get away with to run a shell command at a future
+> datetime?
 
 It introduced me to the UNIX `at` command that does exactly what I needed. Cron wouldn't
 be a good fit for this particular use case, and I wasn't aware of the existence of `at`
 before. So I started probing the model and wanted to document my findings for future
 reference. Also, the final hacky solution that allowed me to schedule jobs remotely can
-be found at the [tail][a-hacky-way-to-schedule-jobs-remotely] of this post.
+be found at the [tail] of this post.
 
 ## The insipid definition
 
-The command `at` in UNIX is used to schedule one-time jobs or commands to be executed
-at a specific time in the future. Internally, the system maintains
-a queue that adds a new entry when a job is scheduled, and once it gets executed, the
-job is removed from the queue.
+The command `at` in UNIX is used to schedule one-time jobs or commands to be executed at a
+specific time in the future. Internally, the system maintains a queue that adds a new entry
+when a job is scheduled, and once it gets executed, the job is removed from the queue.
 
 > ***NOTE:***
-    *By default, the jobs will be scheduled using the targeted machine's local
-    timezone.*
+    *By default, the jobs will be scheduled using the targeted machine's local timezone.*
 
 ## Prerequisites
 
-The command isn't included in GNU coreutils, so you might have to install it
-separately on your machine.
+The command isn't included in GNU coreutils, so you might have to install it separately on
+your machine.
 
 ### Debian-ish
 
@@ -70,9 +68,9 @@ service atd start
 
 ### MacOS
 
-On MacOS, scheduled jobs are carried out by `atrun` and it's disabled by default. I had
-to fiddle around quite a bit to make it work on my MacBook Pro running MacOS Ventura.
-First, you'll need to launch the daemon with the following command:
+On MacOS, scheduled jobs are carried out by `atrun` and it's disabled by default. I had to
+fiddle around quite a bit to make it work on my MacBook Pro running MacOS Ventura. First,
+you'll need to launch the daemon with the following command:
 
 ```sh
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.atrun.plist
@@ -89,28 +87,27 @@ This will start the `atrun` daemon. Or enable it for future bootups by modifying
 
 ```
 
-On modern MacOS like Ventura, unfortunately, this requires disabling [SIP][sip]. Next,
-you'll need to provide full disk access to `atrun`. To do so:
+On modern MacOS like Ventura, unfortunately, this requires disabling [SIP]. Next, you'll
+need to provide full disk access to `atrun`. To do so:
 
 * Open Spotlight and type in *Allow full disk access*.
 * On the left panel, click on *Allow applications to access all user files*.
 
-![scr-allow-app-to-access-all-user-files][scr-a]
+![image_1]
 
 * On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
 `cmd + shift + g` and type in the full path of `atrun`.
 
-![scr-add-atrun-to-allow-disk-list][scr-b]
+![image_2]
 
-You can learn more about making `atrun` work on MacOS [here][atrun-disk-access].
-Although I'm using MacOS for development, In my particular case, making `at` work on
-MacOS wasn't the first priority because I deployed the final solution to an Ubuntu
-container.
+You can learn more about making `atrun` work on MacOS [here]. Although I'm using MacOS for
+development, In my particular case, making `at` work on MacOS wasn't the first priority
+because I deployed the final solution to an Ubuntu container.
 
 ## A few examples
 
-The following sections demonstrates some examples of scheduling commands to be executed
-in a few different scenarios.
+The following sections demonstrates some examples of scheduling commands to be executed in a
+few different scenarios.
 
 ### Schedule at a specific time
 
@@ -120,8 +117,8 @@ To schedule a command to be executed at a specific time, use this command syntax
 at <time> <command>
 ```
 
-For example, to schedule the command `ls -lah >> foo.txt` to be executed at `3:00 PM`
-local time, you'd use the following command:
+For example, to schedule the command `ls -lah >> foo.txt` to be executed at `3:00 PM` local
+time, you'd use the following command:
 
 ```sh
 at 3pm
@@ -129,9 +126,9 @@ at> ls -lah >> foo.txt
 at> <Ctrl-D>
 ```
 
-Pressing `<Ctrl-D>` tells `at` that you have finished entering the command, and it
-should schedule the job to run at the specified time. You'll see that at `3.00PM` local
-time, a file named `foo.txt` containing the output of `ls -l` will be created.
+Pressing `<Ctrl-D>` tells `at` that you have finished entering the command, and it should
+schedule the job to run at the specified time. You'll see that at `3.00PM` local time, a
+file named `foo.txt` containing the output of `ls -l` will be created.
 
 ### Schedule after a certain period of time
 
@@ -155,12 +152,11 @@ This will schedule the command to run in two minutes in the current local time.
 ### Schedule a script run
 
 You can also run a script containing multiple commands at a specific time. To do this,
-create a script file that houses the commands you want to run, and then use `at` to
-schedule the script to be executed at the desired time.
+create a script file that houses the commands you want to run, and then use `at` to schedule
+the script to be executed at the desired time.
 
 For example, suppose you have a script file called `script.sh` that contains a `curl`
-command which makes an API call and saves the output to a file. You can schedule it
-as such:
+command which makes an API call and saves the output to a file. You can schedule it as such:
 
 ```sh
 #!/usr/bin/env bash
@@ -172,8 +168,8 @@ curl -X GET https://httpbin.org/get >> foo.json
 at -f script.sh now + 1 minute
 ```
 
-The script will be executed in a minute from now. You can check the content of
-`foo.json` 1 minute later:
+The script will be executed in a minute from now. You can check the content of `foo.json` 1
+minute later:
 
 ```json
 {
@@ -191,9 +187,9 @@ The script will be executed in a minute from now. You can check the content of
 
 ### Schedule in a non-interactive manner
 
-What if you don't want to create a new script file and also don't want to schedule a
-command interactively as shown before? You can `echo` the desired command and pipe it to
-`at` like this:
+What if you don't want to create a new script file and also don't want to schedule a command
+interactively as shown before? You can `echo` the desired command and pipe it to `at` like
+this:
 
 ```sh
 echo "dig +short rednafi.com >> foo.txt" | at now + 1 minute
@@ -219,18 +215,18 @@ local directory with the following content:
 ```
 
 This command above uses `at` to schedule the execution of a `dig` command for the domain
-name `rednafi.com`. In this case, `dig` performs a DNS lookup, and the scheduled time is
-set to be 1 minute from now in the current local time. The output of the command is then
+name `rednafi.com`. In this case, `dig` performs a DNS lookup, and the scheduled time is set
+to be 1 minute from now in the current local time. The output of the command is then
 appended to the file `foo.txt`. The `<<EOF` syntax is used for input redirection, which
-allows the command to be specified in a heredoc format without requiring you to enter
-the command in interactive mode as before.
+allows the command to be specified in a heredoc format without requiring you to enter the
+command in interactive mode as before.
 
 ### Schedule with UNIX timestamp
 
-You can schedule jobs using a UNIX timestamp with the `-t` flag. The `at` command
-requires a timestamp in the format `[[[mm]dd]HH]MM[[cc]yy][.ss]]`. Here's an example
-that uses the `date` command to generate the current datetime, adds a 30-second offset
-to it, formats it to the `at`'s expected format, and schedules a job.
+You can schedule jobs using a UNIX timestamp with the `-t` flag. The `at` command requires a
+timestamp in the format `[[[mm]dd]HH]MM[[cc]yy][.ss]]`. Here's an example that uses the
+`date` command to generate the current datetime, adds a 30-second offset to it, formats it
+to the `at`'s expected format, and schedules a job.
 
 On Linux, run:
 
@@ -265,7 +261,7 @@ This will display a list of all the tasks that are currently scheduled.
 
 To remove a scheduled task, use the following command:
 
-```
+```sh
 atrm <job number>
 ```
 
@@ -279,14 +275,14 @@ atrm $(atq | cut -f 1)
 
 ## A hacky way to schedule jobs remotely
 
-This is a hacky and probably dangerous way to do remote job scheduling. However, the
-beauty of side projects is that nobody's here to tell you what to do and it's a fun way
-to play with hazmats.
+This is a hacky and probably dangerous way to do remote job scheduling. However, the beauty
+of side projects is that nobody's here to tell you what to do and it's a fun way to play
+with hazmats.
 
-I needed a way to quickly prop up a service that'd allow me to schedule webhook API
-calls at a fixed point in time in the future. So I exposed a simple NodeJS server that'd
-allow me to schedule an API call with `at` and execute the command at the desired
-datetime. Here's the complete server:
+I needed a way to quickly prop up a service that'd allow me to schedule webhook API calls at
+a fixed point in time in the future. So I exposed a simple NodeJS server that'd allow me to
+schedule an API call with `at` and execute the command at the desired datetime. Here's the
+complete server:
 
 ```js
 // server.js
@@ -326,12 +322,12 @@ app.listen(port, () => {
 });
 ```
 
-This endpoint takes in a shell command and just runs it on the server; bad idea, right?
-But the endpoint is secured behind a Bearer token and I'm the only one who's going to
-use this. Security by obscurity!
+This endpoint takes in a shell command and just runs it on the server; bad idea, right? But
+the endpoint is secured behind a Bearer token and I'm the only one who's going to use this.
+Security by obscurity!
 
-Before running the server, you'll need to install `express` and once you've done it,
-you can start the server with the following command:
+Before running the server, you'll need to install `express` and once you've done it, you can
+start the server with the following command:
 
 ```sh
 node server.js
@@ -348,7 +344,7 @@ curl -X POST -H "Authorization: Bearer some-token" \
 
 This will return:
 
-```txt
+```json
 {"msg":"Command execution successful.","output":""}
 ```
 
@@ -363,13 +359,13 @@ curl -X POST -H "Authorization: Bearer some-token" \
 
 ## Resources
 
-* [At command in Linux][at-command-in-linux]
-* [Give disk access to atrun on MacOS][atrun-disk-access]
+* [At command in Linux][at]
+* [Give disk access to atrun on MacOS][here]
 
 [bard]: https://bard.google.com/
-[a-hacky-way-to-schedule-jobs-remotely]: #a-hacky-way-to-schedule-jobs-remotely
+[tail]: #a-hacky-way-to-schedule-jobs-remotely
 [sip]: https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection
-[atrun-disk-access]: https://unix.stackexchange.com/a/478840/383934
-[scr-a]: https://github.com/rednafi/rednafi.com/assets/30027932/a6d775a6-b547-4ad4-80b2-e517288cc697
-[scr-b]: https://github.com/rednafi/rednafi.com/assets/30027932/e1e61f38-e35f-40df-a9bf-31ae651283f0
-[at-command-in-linux]: https://linuxize.com/post/at-command-in-linux/
+[here]: https://unix.stackexchange.com/a/478840/383934
+[image_1]: https://github.com/rednafi/rednafi.com/assets/30027932/a6d775a6-b547-4ad4-80b2-e517288cc697
+[image_2]: https://github.com/rednafi/rednafi.com/assets/30027932/e1e61f38-e35f-40df-a9bf-31ae651283f0
+[at]: https://linuxize.com/post/at-command-in-linux/

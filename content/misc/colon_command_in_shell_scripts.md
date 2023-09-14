@@ -6,30 +6,30 @@ tags:
     - TIL
 ---
 
-The colon `:` command is a shell utility that represents a truthy value. It can be
-thought of as an alias for the built-in `true` command. You can test it by opening a
-shell script and typing a colon on the command line, like this:
+The colon `:` command is a shell utility that represents a truthy value. It can be thought
+of as an alias for the built-in `true` command. You can test it by opening a shell script
+and typing a colon on the command line, like this:
 
-```bash
+```sh
 :
 ```
 
 If you then inspect the exit code by typing `$?` on the command line, you'll see a `0`
 there, which is exactly what you'd see if you had used the true command.
 
-```bash
+```sh
 : ; echo $?
 ```
 
 The output will be:
 
-```
+```txt
 0
 ```
 
-I find the colon command useful when running a shell script with the `-x` flag, which
-prints out the commands being executed by the interpreter. For example, consider the
-following script:
+I find the colon command useful when running a shell script with the `-x` flag, which prints
+out the commands being executed by the interpreter. For example, consider the following
+script:
 
 ```bash
 #!/bin/bash
@@ -57,12 +57,12 @@ section 2: print the size of the /usr/bin directory
  76M    /usr/bin
 ```
 
-Notice that the above script prints out each command first (denoted by a preceding `+`
-sign) and then its respective output. However, the `echo "section..."` commands in this
-script are only used for debugging purposes, to enhance the readability of the output by
-providing separation between different sections. Therefore, repeating these commands and
-their outputs can be a little redundant. You can use the colon command to eliminate this
-repetition, as follows:
+Notice that the above script prints out each command first (denoted by a preceding `+` sign)
+and then its respective output. However, the `echo "section..."` commands in this script are
+only used for debugging purposes, to enhance the readability of the output by providing
+separation between different sections. Therefore, repeating these commands and their outputs
+can be a little redundant. You can use the colon command to eliminate this repetition, as
+follows:
 
 ```bash
 #!/bin/bash
@@ -92,6 +92,6 @@ getting repeated.
 
 ## Resources
 
-1. [Why I use the colon command - @anthonywritescode][1]
+1. [Why I use the colon command - @anthonywritescode][why i use the colon command]
 
-[1]: https://www.youtube.com/watch?v=onkNf1AKSgg
+[why i use the colon command]: https://www.youtube.com/watch?v=onkNf1AKSgg

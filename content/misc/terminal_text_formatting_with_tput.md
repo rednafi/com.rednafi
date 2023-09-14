@@ -9,7 +9,7 @@ tags:
 When writing shell scripts, I'd often resort to using hardcoded ANSI [escape codes] to
 format text, such as:
 
-```sh
+```bash
 #!/usr/bin/env bash
 
 BOLD="\033[1m"
@@ -26,30 +26,30 @@ echo -e "${BOLD}${FG_RED}${BG_YELLOW}This is a warning message${RESET}"
 echo -e "${BG_BLUE}This is a debug message${RESET}"
 ```
 
-This shell snippet above shows how to add text formatting and color to shell script
-output via ANSI escape codes. It defines a few variables that contain different escape
-codes for bold, unbold, foreground, and background colors. Then, we `echo` two log
-messages with different colors and formatting options.
+This shell snippet above shows how to add text formatting and color to shell script output
+via ANSI escape codes. It defines a few variables that contain different escape codes for
+bold, unbold, foreground, and background colors. Then, we `echo` two log messages with
+different colors and formatting options.
 
 The first message is printed in bold red text on a yellow background, while the second
-message is printed in white text on a blue background. To ensure that subsequent output
-is not affected by the previous formatting, the `RESET` variable is used to reset all
-color and formatting options back to their defaults after each message is printed.
-The `-e` option is used with echo to enable the interpretation of backslash escapes,
-which includes the ANSI escape codes.
+message is printed in white text on a blue background. To ensure that subsequent output is
+not affected by the previous formatting, the `RESET` variable is used to reset all color and
+formatting options back to their defaults after each message is printed. The `-e` option is
+used with echo to enable the interpretation of backslash escapes, which includes the ANSI
+escape codes.
 
-While this works fairly well, every time I have to write a fancy shell script, I have
-to either look up the ANSI color codes, copy-paste from an existing script, or explain
-to an LLM what I need. Then chatGPT serendipitously recommended a shell tool called
-`tput` that makes this workflow quite a bit better. Underneath `tput` also uses ANSI
-escape codes to control various text formatting options but it doesn't require you to
-hardcode these ugly escape codes.
+While this works fairly well, every time I have to write a fancy shell script, I have to
+either look up the ANSI color codes, copy-paste from an existing script, or explain to an
+LLM what I need. Then chatGPT serendipitously recommended a shell tool called `tput` that
+makes this workflow quite a bit better. Underneath `tput` also uses ANSI escape codes to
+control various text formatting options but it doesn't require you to hardcode these ugly
+escape codes.
 
 ## Basic usage
 
 The basic syntax of the `tput` command goes as follows:
 
-```
+```sh
 tput <formatting_option>
 ```
 
@@ -66,7 +66,7 @@ Here are some commonly used `tput` formatting options:
 
 ## Example usage
 
-```sh
+```bash
 #!/usr/bin/env bash
 
 # Print text in red on a yellow background
@@ -107,13 +107,13 @@ tput sgr0
 
 Running the script will give you the following output:
 
-![example-a]
+![image_1]
 
 This also hardcodes the color and formatting codes but it's much easier than having to
-remember or search for the ANSI escape codes. Currently, I'm using a 256-bit macOS
-terminal and it supports fairly large sets of formatting options. You can run `man tput`
-to find out other features that are supported by your terminal. The following loop will
-print all the supported colors:
+remember or search for the ANSI escape codes. Currently, I'm using a 256-bit macOS terminal
+and it supports fairly large sets of formatting options. You can run `man tput` to find out
+other features that are supported by your terminal. The following loop will print all the
+supported colors:
 
 ```sh
 for i in {0..255}; do
@@ -125,8 +125,8 @@ done
 
 On my terminal, it prints this nice color palette:
 
-![example-b]
+![image_2]
 
 [escape codes]: https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
-[example-a]: https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
-[example-b]: https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png
+[image_1]: https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
+[image_2]: https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png

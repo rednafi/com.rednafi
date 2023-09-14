@@ -6,20 +6,20 @@ tags:
     - TIL
 ---
 
-Whenever I need to whip up a quick command line tool, my go-to is usually Python.
-Python's CLI solutions tend to be more robust than their Shell counterparts. However,
-dealing with its portability can sometimes be a hassle, especially when all you want is
-to distribute a simple script. That's why while toying around with `argparse` to create
-a dynamic menu, I decided to ask ChatGPT if there's a way to achieve the same using
-native shell scripting. Delightfully, it introduced me to the dead-simple `select`
-command that I probably should've known about years ago. But I guess better late than
-never! Here's what I was trying to accomplish:
+Whenever I need to whip up a quick command line tool, my go-to is usually Python. Python's
+CLI solutions tend to be more robust than their Shell counterparts. However, dealing with
+its portability can sometimes be a hassle, especially when all you want is to distribute a
+simple script. That's why while toying around with `argparse` to create a dynamic menu, I
+decided to ask ChatGPT if there's a way to achieve the same using native shell scripting.
+Delightfully, it introduced me to the dead-simple `select` command that I probably should've
+known about years ago. But I guess better late than never! Here's what I was trying to
+accomplish:
 
-*Print a menu that allows a user to choose an option and then trigger a specific
-function associated with the chosen option. When you run the script, it should present
-you with something similar to this:*
+*Print a menu that allows a user to choose an option and then trigger a specific function
+associated with the chosen option. When you run the script, it should present you with
+something similar to this:*
 
-```
+```txt
 1) Option 1
 2) Option 2
 3) Option 3
@@ -33,10 +33,10 @@ You selected Option 3.
 Please enter your choice: 4
 ```
 
-Whenever the user selects an option, the script dispatches an associated function
-with the option. Currently, the associated function just prints `You selected option x`
-but it has the freedom to do whatever it wants. The following native Shell script
-uses `select` to produce the output above:
+Whenever the user selects an option, the script dispatches an associated function with the
+option. Currently, the associated function just prints `You selected option x` but it has
+the freedom to do whatever it wants. The following native Shell script uses `select` to
+produce the output above:
 
 ```bash
 #!/usr/bin/env bash
@@ -86,24 +86,22 @@ select option in "${options[@]}"; do
 done
 ```
 
-The snippet allows users to make selections from a list of options. It starts by
-defining an array called `options` which holds the available possibilities. Each option
-corresponds to a specific function, such as `option1`, `option2`, and `option3` which
-can be customized to perform specific actions or tasks.
+The snippet allows users to make selections from a list of options. It starts by defining an
+array called `options` which holds the available possibilities. Each option corresponds to a
+specific function, such as `option1`, `option2`, and `option3` which can be customized to
+perform specific actions or tasks.
 
-The script then prompts the user to enter their choice using the `select` statement.
-The user's selection is stored in the variable `option`. Then it uses a case statement
-to match the selected option and execute the corresponding function. For example, if the
-user chooses `Option 1` by typing `1` into the console, the script calls the `option1`
-function and displays a message confirming the selection. The same applies to `Option 2`
-and `Option 3`. If the user selects `Quit` by typing `4`, the script breaks out of the
-loop and terminates. Moreover, if the user enters an invalid option, the script displays
-an error message indicating that the option is not recognized and prompts the user to
-try again.
+The script then prompts the user to enter their choice using the `select` statement. The
+user's selection is stored in the variable `option`. Then it uses a case statement to match
+the selected option and execute the corresponding function. For example, if the user chooses
+`Option 1` by typing `1` into the console, the script calls the `option1` function and
+displays a message confirming the selection. The same applies to `Option 2` and `Option 3`.
+If the user selects `Quit` by typing `4`, the script breaks out of the loop and terminates.
+Moreover, if the user enters an invalid option, the script displays an error message
+indicating that the option is not recognized and prompts the user to try again.
 
-Here's a little more useful script to run some common Docker commands based on the
-user's selection. The script assumes that Docker engine is installed on the targeted
-system:
+Here's a little more useful script to run some common Docker commands based on the user's
+selection. The script assumes that Docker engine is installed on the targeted system:
 
 ```bash
 #!/usr/bin/env bash
