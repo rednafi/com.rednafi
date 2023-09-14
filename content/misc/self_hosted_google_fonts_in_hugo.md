@@ -16,7 +16,7 @@ didn't want to go with Google Fonts for a few reasons:
 But since I'm using the latter anyway, this might come off a bit apocryphal.
 * I wanted to get a few extra Lighthouse points.
 
-Turns out it's pretty easy to host the fonts yourself.
+Turns out, it's pretty easy to host the fonts yourself.
 
 ## Download the fonts
 
