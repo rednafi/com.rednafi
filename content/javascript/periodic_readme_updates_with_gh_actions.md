@@ -114,8 +114,8 @@ The script is executed by the following GitHub Action workflow every day at 0:00
 the CI runs, make sure you create a new [Action Secret] named `ACCESS_TOKEN` that houses an
 [access token] with write access to the repo where the CI runs.
 
-```yaml
-# Run a bash script to randomly generate an empty commit to this repo.
+```yml
+# Run a bash script to randomly generate empty commit to this repo.
 name: CI
 
 on:
@@ -136,14 +136,13 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          # Otherwise, the token used is the GITHUB_TOKEN, instead of your
-          # personal access token
-          persist-credentials: false
           # Otherwise, there would be errors pushing refs to the destination
           # repository
           fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - uses: actions/setup-node@v3
         with:
@@ -165,11 +164,10 @@ jobs:
 
       - name: Commit changes
         run: |
-          # I want the GitHub bot to make commits on my behalf
-          git config --local \
-            user.name "github-actions[bot]"
-          git config --local \
-            user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name \
+            "github-actions[bot]"
+          git config --local user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git diff-index --quiet HEAD \
             || git commit -m "Autocommit: updated at $(date -u)"
@@ -177,13 +175,12 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.ref }}
+          force_with_lease: true
 ```
 
 In the first four steps, the workflow checks out the codebase, sets up nodejs, installs the
 dependencies, and then runs `prettier` on the scripts. Next, it executes the
-`importBlogs.js` script. The script updates the readme and the subsequent shell commands
+`importBlogs.js` script. The script updates the README and the subsequent shell commands
 commit the changes to the repo. The following line ensures that we're only trying to commit
 when there's a change in the tracked files.
 
@@ -196,7 +193,7 @@ Then in the last step, we use an off-the-shelf workflow to push our changes to t
 Check out the [workflow directory] of my profile's repo to see the whole setup in action.
 I'm quite satisfied with the final output:
 
-![screenshot_1]
+![periodic readme update][image_1]
 
 [blog]: https://rednafi.com/
 [profile]: https://github.com/rednafi/
@@ -207,4 +204,4 @@ I'm quite satisfied with the final output:
 [action secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
 [access token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 [workflow directory]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
-[screenshot_1]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
+[image_1]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
