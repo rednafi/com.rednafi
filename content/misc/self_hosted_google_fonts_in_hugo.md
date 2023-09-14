@@ -79,7 +79,7 @@ attribute to reflect your font's path:
 
 Here, you'll need to change `../fonts/<rest>` to `/fonts/<rest>`, and Hugo will take care of
 the rest. Notice there's no `/static` prefix in the font's path. Find this blog's
-[header-override.css] if you're facing any trouble while doing this. Serve your website
+[header-override.css] if you're facing any trouble while doing it. Serve your website
 locally and ensure that the fonts are being loaded and displayed correctly. Deploy!
 
 [violates]: https://rewis.io/urteile/urteil/lhm-20-01-2022-3-o-1749320/
