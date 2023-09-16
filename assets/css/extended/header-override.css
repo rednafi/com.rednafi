@@ -1,44 +1,19 @@
-/* Use our own fonts instead of the ones from the CDN */
-/* schibsted-grotesk-regular - latin */
+/* inter-regular - latin */
 @font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Schibsted Grotesk';
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/schibsted-grotesk-v3-latin-regular.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* schibsted-grotesk-italic - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Schibsted Grotesk';
-    font-style: italic;
-    font-weight: 400;
-    src: url('/fonts/schibsted-grotesk-v3-latin-italic.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* schibsted-grotesk-700 - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Schibsted Grotesk';
+    src: url('/fonts/inter-v12-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* inter-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    src: url('/fonts/schibsted-grotesk-v3-latin-700.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* schibsted-grotesk-700italic - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Schibsted Grotesk';
-    font-style: italic;
-    font-weight: 700;
-    src: url('/fonts/schibsted-grotesk-v3-latin-700italic.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
+    src: url('/fonts/inter-v12-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
 /* jetbrains-mono-regular - latin */
 @font-face {
     font-display: swap;
@@ -59,26 +34,7 @@
     src: url('/fonts/jetbrains-mono-v18-latin-italic.woff2') format('woff2');
    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* jetbrains-mono-700 - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: url('/fonts/jetbrains-mono-v18-latin-700.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* jetbrains-mono-700italic - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'JetBrains Mono';
-    font-style: italic;
-    font-weight: 700;
-    src: url('/fonts/jetbrains-mono-v18-latin-700italic.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
+
 .logo a {
     font-size: 20px;
     font-weight: 700;

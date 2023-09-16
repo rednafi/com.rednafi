@@ -22,9 +22,9 @@ Turns out, it's pretty easy to host the fonts yourself.
 
 I found this fantastic [webfont helper tool] that allows you to search for any Google font
 and download it. You can specify the font style, thickness, and browser support status. I've
-used it to download Schibsted Grotesk for text and JetBrains Mono for code snippets,
-targeting only modern browsers. You might want to pick *Legacy Support* if you need
-compatibility with older browsers and *Historic Support* for the really old ones.
+used it to download Inter for text and JetBrains Mono for code snippets, targeting only
+modern browsers. You might want to pick *Legacy Support* if you need compatibility with
+older browsers and *Historic Support* for the really old ones.
 
 ![download google fonts][image_1]
 
