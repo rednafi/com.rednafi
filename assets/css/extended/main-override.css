@@ -1,10 +1,17 @@
 body {
     font-family: 'Inter', 'Helvetica Neue', sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.5;
     letter-spacing: -0.01rem;
     word-break: break-word;
     background: var(--theme);
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 17px;
+        line-height: 1.6;
+    }
 }
 
 .page-header h1 {
