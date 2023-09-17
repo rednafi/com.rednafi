@@ -1,29 +1,44 @@
-/* inter-regular - latin */
 @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/inter-v12-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
-  /* inter-700 - latin */
-  @font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url('/fonts/inter-v12-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
-/* jetbrains-mono-regular - latin */
-@font-face {
-    font-display: swap;
-   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/jetbrains-mono-v18-latin-regular.woff2') format('woff2');
-   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-display: swap;
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Inter.var.woff2') format('woff2');
 }
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter Variable';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/Inter-italic.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Inter.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter Variable';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/Inter-italic.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/jetbrains-mono-v18-latin-regular.woff2') format('woff2');
+}
+
+
 /* jetbrains-mono-italic - latin */
 @font-face {
     font-display: swap;

@@ -1,8 +1,8 @@
 body {
-    /* font-family: 'Inter', 'Helvetica Neue', sans-serif; */
-    font-size: 16.5px;
+    font-family: 'Inter Variable', 'Helvetica Neue', sans-serif;
+    font-size: 16.7px;
     line-height: 1.5;
-    /* letter-spacing: -0.01rem; */
+    letter-spacing: -0.01rem;
     word-break: break-word;
     background: var(--theme);
 }
