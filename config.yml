@@ -26,9 +26,7 @@ params:
     Database
   ]
   author: "Redowan Delowar"
-  images: [
-    "https://user-images.githubusercontent.com/30027932/266914031-f48582fe-b371-4d14-9f65-0edde5f26ae7.png"
-  ]
+  images: []
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
@@ -64,8 +62,6 @@ params:
     favicon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     favicon16x16: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     favicon32x32: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.pngbase"
 
   label:
     text: "Redowan's Reflections"
