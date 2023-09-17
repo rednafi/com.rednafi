@@ -7,7 +7,12 @@
     font-size: 2rem;
 }
 .first-entry .entry-content {
-    font-size: 16.5px;
+    font-size: 16px;
+}
+@media(min-width: 992px){
+    .first-entry .entry-content {
+        font-size: 16.5px;
+    }
 }
 .entry-header h2 {
     font-size: 1.4rem;

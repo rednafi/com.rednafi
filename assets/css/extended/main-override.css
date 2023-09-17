@@ -1,15 +1,20 @@
 .main{
     padding: 15px;
-    transform: matrix(1, 0, 0, 1, 0, 0);
 }
 body {
     font-family: 'Inter Variable', 'Helvetica Neue', sans-serif;
-    font-size: 16.5px;
+    font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.01rem;
     word-break: break-word;
     background: var(--theme);
 
+}
+/* Desktop */
+@media(min-width: 992px){
+    body {
+        font-size: 16.5px;
+    }
 }
 .page-header h1 {
     font-size: 30px;
