@@ -3,7 +3,7 @@
   font-family: 'Inter Variable';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/Inter.var.woff2') format('woff2');
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-family: 'Inter Variable';
   font-style: italic;
   font-weight: 400;
-  src: url('/fonts/Inter.var.woff2') format('woff2');
+  src: url('/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-family: 'Inter Variable';
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/Inter.var.woff2') format('woff2');
+  src: url('/fonts/Inter-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-family: 'Inter Variable';
   font-style: italic;
   font-weight: 700;
-  src: url('/fonts/Inter.var.woff2') format('woff2');
+  src: url('/fonts/Inter-BoldItalic.woff2') format('woff2');
 }
 
 @font-face {
