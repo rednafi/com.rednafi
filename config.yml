@@ -65,12 +65,10 @@ params:
 
   label:
     text: "Redowan's Reflections"
-    icon: "https://user-images.githubusercontent.com/30027932/266732646-bc5c6530-79f0-442f-98d5-3d92edecffcd.png"
-    iconHeight: 20
 
   # home-info mode
   homeInfoParams:
-    Title: Hi, I'm Redowan
+    Title: Hi, I'm Redowan!
     Content: >
       <div class="bio-text">
         A wandering autodidact with a flair for ones and zeros. I
