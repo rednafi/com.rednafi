@@ -1,23 +1,19 @@
+.main{
+    padding: 15px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
 body {
     font-family: 'Inter Variable', 'Helvetica Neue', sans-serif;
-    font-size: 16.7px;
+    font-size: 16.5px;
     line-height: 1.5;
     letter-spacing: -0.01rem;
     word-break: break-word;
     background: var(--theme);
+
 }
-
-/* @media (min-width: 768px) {
-    body {
-        font-size: 16.5px;
-        line-height: 1.5;
-    }
-} */
-
 .page-header h1 {
     font-size: 30px;
 }
-
 .social-icons a svg {
     height: 15px;
     width: 15px;

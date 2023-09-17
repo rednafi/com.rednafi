@@ -9,6 +9,9 @@
 .first-entry .entry-content {
     font-size: 16.5px;
 }
+.entry-header h2 {
+    font-size: 1.4rem;
+}
 .entry-content {
     font-size: 15px;
     line-height: 1.5;
