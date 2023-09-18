@@ -10,12 +10,6 @@ body {
     background: var(--theme);
 
 }
-/* Desktop */
-@media(min-width: 992px){
-    body {
-        font-size: 16.5px;
-    }
-}
 .page-header h1 {
     font-size: 30px;
 }

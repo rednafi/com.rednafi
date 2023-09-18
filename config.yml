@@ -62,6 +62,12 @@ params:
     favicon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     favicon16x16: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     favicon32x32: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
+    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.pngbase"
+
+
+    disableFingerprinting: true
+    disableHLJS: true
 
   label:
     text: "Redowan's Reflections"
@@ -145,15 +151,16 @@ menu:
 
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
-pygmentsUseClasses: true
+# pygmentsUseClasses: true
 markup:
   highlight:
     noClasses: false
     # anchorLineNos: true
-    # codeFences: true
-    guessSyntax: false
+    codeFences: true
+    guessSyntax: true
     # lineNos: true
-    # style: custom-syntax-highlight
+    style: syntax-highlight
+    tabWidth: 4
   goldmark:
     extensions:
       definitionList: true
