@@ -12,7 +12,7 @@ googleAnalytics: G-11NK905JK8
 
 taxonomies:
   tag: tags
-  
+
 minify:
   disableXML: true
   minifyOutput: true
@@ -67,7 +67,7 @@ params:
     favicon16x16: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     favicon32x32: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
     apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.pngbase"
+    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
 
 
     disableFingerprinting: true
