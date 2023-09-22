@@ -29,7 +29,9 @@ params:
     Database
   ]
   author: "Redowan Delowar"
-  images: []
+  images: [
+    "/images/home/cover.webp"
+  ]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
@@ -61,14 +63,11 @@ params:
     - go
 
   assets:
-    #disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
-    favicon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    favicon16x16: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    favicon32x32: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    apple_touch_icon: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-    safari_pinned_tab: "https://user-images.githubusercontent.com/30027932/266915019-a909bc00-3117-4d59-a1dc-fbf8dc608d06.png"
-
+    favicon: "/images/home/favicon.webp"
+    favicon16x16: "/images/home/favicon.webp"
+    favicon32x32: "/images/home/favicon.webp"
+    apple_touch_icon: "/images/home/favicon.webp"
+    safari_pinned_tab: "/images/home/favicon.webp"
 
     disableFingerprinting: true
     disableHLJS: true
@@ -120,7 +119,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: https://user-images.githubusercontent.com/30027932/266914031-f48582fe-b371-4d14-9f65-0edde5f26ae7.png
+    image: "/images/home/cover.webp"
 
   # for search
   # https://fusejs.io/api/options.html
