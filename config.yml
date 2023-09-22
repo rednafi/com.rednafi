@@ -9,6 +9,10 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 googleAnalytics: G-11NK905JK8
+disableKinds: ["taxonomy"]
+
+taxonomy:
+  - categories
 
 minify:
   disableXML: true

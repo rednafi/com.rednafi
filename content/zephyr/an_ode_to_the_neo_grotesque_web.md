@@ -65,4 +65,4 @@ Ugly can still be beautiful. Excrement contains nutrients. All hail the neo-grot
 [rob pike]: https://commandcenter.blogspot.com/
 [stripe]: https://stripe.com/
 [page]: https://motherfuckingwebsite.com/
-[craiglist]: https://www.craigslist.org/about/sites#US
+[craigslist]: https://www.craigslist.org/about/sites#US
