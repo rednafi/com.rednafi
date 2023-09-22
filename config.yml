@@ -74,6 +74,9 @@ params:
 
   label:
     text: "Redowan's Reflections"
+    icon: "/images/home/favicon.webp"
+    iconHeight: 23
+    iconWidth: 23
 
   # home-info mode
   homeInfoParams:
