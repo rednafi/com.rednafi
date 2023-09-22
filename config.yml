@@ -9,11 +9,10 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 googleAnalytics: G-11NK905JK8
-disableKinds: ["taxonomy"]
 
-taxonomy:
-  - categories
-
+taxonomies:
+  tag: tags
+  
 minify:
   disableXML: true
   minifyOutput: true
