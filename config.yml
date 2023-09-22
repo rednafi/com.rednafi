@@ -52,6 +52,7 @@ params:
     - databases
     - javascript
     - misc
+    - zephyr
     - python
     - typescript
     - go
@@ -74,7 +75,15 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: Hi, I'm Redowan!
+    Title: Hi, I'm Redowan
+      <a href="/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+     </a>
     Content: >
       <div class="bio-text">
         A wandering autodidact with a flair for ones and zeros. I
@@ -87,14 +96,6 @@ params:
         <a class="secondary-urls" href="/zephyr">landscape</a> of software in general.
       </div>
 
-      <div class="secondary-urls">
-        <a href="/tags">tags</a>
-        <span> • </span>
-        <a href="/search">search</a>
-        <span> • </span>
-        <a href="/index.xml">rss</a>
-      </div>
-
   socialIcons:
     - name: twitter
       url: "https://twitter.com/rednafi"
@@ -102,8 +103,7 @@ params:
       url: "https://stackoverflow.com/users/8963300/redowan-delowar"
     - name: github
       url: "https://github.com/rednafi"
-    - name: "rss"
-      url: "https://rednafi.com/index.xml"
+
 
   analytics:
     google:
@@ -132,22 +132,25 @@ params:
 
 menu:
   main:
-    - identifier: zephyr
-      name: zephyr
-      title: zephyr
-      url: /zephyr/
+    - identifier: search
+      name: search
+      url: /search/
       weight: 1
+
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 2
 
     - identifier: archives
       name: archives
       url: /archives/
-      weight: 2
+      weight: 3
 
     - identifier: about
       name: about
-      title: about
       url: /about/
-      weight: 3
+      weight: 4
 
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
