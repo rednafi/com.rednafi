@@ -24,7 +24,7 @@ useful out there.
 
 Now, I don't want to come across as one of those anachronistic hipster millennials reeking
 of RMS energy, who'll reject anything that's even remotely modern. Neither am I under the
-illusion that web 1.0 was a blissful nirvana, and we should have halted the progress wheel
+illusion that web 1.0 was a blissful nirvana, and we should've halted the progress wheel
 there. I wouldn't want to relive the past of loading jQuery-heavy pages on my crappy 2G
 mobile network or the security horrors of PHP CMSes. Also, I'd prefer not all the websites
 to adopt the user-hostile-pitch-black-text-on-blinding-white design. It wouldn't be
