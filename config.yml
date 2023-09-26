@@ -118,7 +118,7 @@ params:
     yandex:
       SiteVerificationTag: "cb037a09f985e313"
     naver:
-      SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aeeea1b1a50be20"
+      SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aaeea1b1a50be20"
 
   cover:
     hidden: false # hide everywhere but not in structured data
