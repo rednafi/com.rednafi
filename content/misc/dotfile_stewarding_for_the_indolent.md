@@ -62,7 +62,7 @@ symlinks it creates or updates, making it easier to see the changes it's making.
 * `-R (or --restow)` tells stow to restow the packages. It's useful when you've already
 stowed the packages previously, and want to reapply them. The `-R` flag ensures that stow
 re-symlinks files, even if they already exist. This makes each run idempotent and you won't
-have to worry about polluting your workspace straggler links.
+have to worry about polluting your workspace with straggler links.
 
 * `-t <target> (or --target=<target>)` specifies the target directory where stow should
 create symlinks. The default target directory is the parent of `$pwd`. In the above command,
