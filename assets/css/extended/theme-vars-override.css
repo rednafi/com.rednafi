@@ -1,19 +1,19 @@
 :root {
-    --gap: 20px;
-    --content-gap: 20px;
-    --nav-width: 1024px;
-    --main-width: 728px;
-    --header-height: 60px;
-    --footer-height: 60px;
-    --radius: 8px;
-    --theme: #fefcf6;
-    --entry: #fefcf6;
-    --primary: #101010;
-    --secondary: #101010;
-    --tertiary: #d6d6d6;
-    --content: #101010;
-    --hljs-bg: #f2f1eb;
-    --code-bg: #f2f1eb;
-    --secondary-urls: #516727;
-    --code-color: #202020;
+  --gap: 20px;
+  --content-gap: 20px;
+  --nav-width: 1024px;
+  --main-width: 728px;
+  --header-height: 60px;
+  --footer-height: 60px;
+  --radius: 8px;
+  --theme: #fefcf6;
+  --entry: #fefcf6;
+  --primary: #101010;
+  --secondary: #101010;
+  --tertiary: #d6d6d6;
+  --content: #101010;
+  --hljs-bg: #f2f1eb;
+  --code-bg: #f2f1eb;
+  --secondary-urls: #516727;
+  --code-color: #202020;
 }

@@ -10,6 +10,10 @@ insert_final_newline = false
 charset = utf-8
 end_of_line = lf
 
+[*.{css,html,js,json}]
+indent_style = space
+indent_size = 2
+
 [*{.py,.md,Makefile,.sh}]
 indent_style = space
 indent_size = 4

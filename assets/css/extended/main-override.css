@@ -1,25 +1,24 @@
-.main{
-    padding: 15px;
+.main {
+  padding: 15px;
 }
 body {
-    font-family: 'Inter Variable', 'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.01rem;
-    word-break: break-word;
-    background: var(--theme);
-
+  font-family: "Inter Variable", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01rem;
+  word-break: break-word;
+  background: var(--theme);
 }
 .page-header h1 {
-    font-size: 30px;
+  font-size: 30px;
 }
 .social-icons a svg {
-    height: 15px;
-    width: 15px;
+  height: 15px;
+  width: 15px;
 }
 .social-icons {
-    padding: 0px 0;
+  padding: 0px 0;
 }
 .social-icons a:not(:last-of-type) {
-    margin-inline-end: 12px;
+  margin-inline-end: 12px;
 }
