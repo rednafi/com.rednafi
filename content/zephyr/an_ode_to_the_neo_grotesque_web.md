@@ -17,12 +17,12 @@ Before social media and other corporate silos became mainstream, the web had, fo
 of a better word, more character to it. From IRC rooms to personal blogs with weird
 pixelated designs and sound effects, the realm was fragmented, chaotic, heterogeneous, and
 mostly, a lot of fun. There were no best practices around doing anything, and the notion of
-creativity wasn't tied to the craft of how many keywords or interactive animations you can
-shove into a page to get the most amount of eyeballs. You were the cool kid if you could
-just wire together a few pages with Perl, PHP, Python, or even Bash, and put something
-useful out there.
+creativity wasn't tied to the craft of how many keywords or interactive animations you could
+shove into a page to get the most eyeballs. You were the cool kid if you could just wire
+together a few pages with Perl, PHP, Python, or even Bash, and put something useful out
+there.
 
-Now, I don't want to come across as one of those anachronistic hipster millennials reeking
+Now, I don’t want to come across as one of those anachronistic hipster millennials, reeking
 of RMS energy, who'll reject anything that's even remotely modern. Neither am I under the
 illusion that web 1.0 was a blissful nirvana, and we should've halted the progress wheel
 there. I wouldn't want to relive the past of loading jQuery-heavy pages on my crappy 2G
