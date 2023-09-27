@@ -105,7 +105,7 @@ lrwxr-xr-x  1 rednafi  staff  24 Sep 23 19:52 .zprofile -> canvas/dot/zsh/.zprof
 lrwxr-xr-x  1 rednafi  staff  21 Sep 23 19:45 .zshrc -> canvas/dot/zsh/.zshrc
 ```
 
-If you want to remove a config file, can unstow it with:
+If you want to remove a config file, you can unstow it with:
 
 ```sh
 unstow -v -R -t ~ pkg1
