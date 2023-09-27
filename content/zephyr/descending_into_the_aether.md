@@ -7,6 +7,7 @@ tags:
 
 <img
     src="https://user-images.githubusercontent.com/30027932/252213261-01adc640-3bcf-46d8-8f40-dc506e0cb493.jpg"
+    alt="Macbook Air M2 15 inch"
 width="800px">
 </img>
 
