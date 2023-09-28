@@ -7,14 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        # Make sure the actual branch is checked out when running on pull requests
+        ref: ${{ github.head_ref }}
 
     - name: Install dependencies
       run: npm install -g prettier
 
-    - name: Run Prettier
-      run: |
-        find . -type f -name '*.css' | xargs prettier --write
-        find . -type f -name '*.js' | xargs prettier --write
+    - name: Prettify code
+      uses: creyD/prettier_action@v4.3
+      with:
+          prettier_options: --write **/*.{js,css}
 
     - name: Commit files
       run: |
