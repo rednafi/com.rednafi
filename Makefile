@@ -2,6 +2,9 @@
 init:
 	@git submodule update --init --recursive
 
+lint:
+	
+
 
 .PHONY: update
 update:

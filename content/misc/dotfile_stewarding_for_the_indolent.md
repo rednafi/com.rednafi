@@ -70,9 +70,9 @@ create symlinks. The default target directory is the parent of `$pwd`. In the ab
 
 * `<pkg1>` is the package name you want to stow.
 
-For a more concrete example, let's say, my source repo `~/canvas/dot` has two packages named
-`git` and `zsh` where the former contains `.gitconfig` and the latter houses `.zshrc` and
-`.zprofile` files:
+For a more concrete example, let's say, your source repo `~/canvas/dot` has two packages
+named `git` and `zsh` where the former contains `.gitconfig` and the latter houses `.zshrc`
+and `.zprofile` files:
 
 ```txt
 # ~/canvas/dot
@@ -121,7 +121,7 @@ One neat side effect of managing configs in this manner is that, since symlinks 
 to the original files living in the source repo, any changes made to the source files are
 automatically reflected in the destination configs.
 
-Here are my dotfiles[^2] and their management scripts in all their splendor!
+Here are my dotfiles[^2] and a few management scripts in all their splendor!
 
 [^1]: https://www.gnu.org/software/stow/
 [^2]: https://github.com/rednafi/dot

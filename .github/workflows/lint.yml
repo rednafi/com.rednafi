@@ -5,7 +5,6 @@ on: push
 jobs:
   prettify:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
 
@@ -14,10 +13,17 @@ jobs:
 
     - name: Run Prettier
       run: |
-        find . -name "*.css" -exec prettier --write {} \;
-        find . -name "*.js" -exec prettier --write {} \;
+        find . -type f -name '*.css' | xargs prettier --write
+        find . -type f -name '*.js' | xargs prettier --write
 
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Commit files
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Lint"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
-        commit_message: 'Style: Prettify HTML and CSS'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
