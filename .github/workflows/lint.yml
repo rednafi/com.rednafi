@@ -11,9 +11,6 @@ jobs:
         # Make sure the actual branch is checked out when running on pull requests
         ref: ${{ github.head_ref }}
 
-    - name: Install dependencies
-      run: npm install -g prettier
-
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
       with:
@@ -23,7 +20,7 @@ jobs:
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -a -m "Lint"
+        git commit -am "Lint" || true
 
     - name: Push changes
       uses: ad-m/github-push-action@master
