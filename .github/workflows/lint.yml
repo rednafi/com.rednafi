@@ -14,8 +14,8 @@ jobs:
 
     - name: Run Prettier
       run: |
-        npx prettier --write '**/*.js'
-        npx prettier --write '**/*.css'
+        find . -name "*.css" -exec prettier --write {} \;
+        find . -name "*.js" -exec prettier --write {} \;
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
