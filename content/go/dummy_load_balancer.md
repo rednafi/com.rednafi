@@ -17,7 +17,7 @@ backend servers; balancing the inbound load.
 * For simplicity, we'll only handle client's GET requests.
 
 Obviously, this won't have SSL termination, advanced balancing algorithms, or session
-persistence like you'd get with [Nginx] or [Caddy]. The point is to understand the basic
+persistence like you'd get with Nginx[^1] or Caddy[^2]. The point is to understand the basic
 workflow and show how Go makes it easy to write this sort of stuff.
 
 ## Architecture
@@ -290,12 +290,9 @@ Hello from backend server on :8082
 ```
 
 Notice how the client requests are handled by different backends in an interleaving manner.
+The complete implementation can be found in this gist[^4].
 
-## Pointers
-
-* [Complete implementation][gist]
-
-[algorithm]: /go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion
-[gist]: https://gist.github.com/rednafi/4f871286f42177f21a74a0ce038ce725
-[nginx]: https://www.nginx.com/
-[caddy]: https://caddyserver.com/
+[^1]: [Nginx](https://www.nginx.com/)
+[^2]: [Caddy](https://caddyserver.com/)
+[^3]: [Selecting backend server in a round robin fashion](/go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion)
+[^4]: [Complete implementation](https://gist.github.com/rednafi/4f871286f42177f21a74a0ce038ce725)

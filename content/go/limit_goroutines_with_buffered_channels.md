@@ -15,7 +15,7 @@ spawn new goroutines to make HTTP requests to the destination. This had two prob
 * It might overload the destination system by making many concurrent requests
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously written
-about this [here]. Turns out, in Go, you could do the same with a buffered channel. Here's
+about this here[^1]. Turns out, in Go, you could do the same with a buffered channel. Here's
 how the naive version looks:
 
 ```go
@@ -158,17 +158,10 @@ Waiting for batch interval...
 ```
 
 Now, you might want to add extra abstractions over the core behavior to make it more
-ergonomic. Here's a [pointer] on how to do so. Effective Go also [mentions] this pattern
+ergonomic. Here's a pointer[^2] on how to do so. Effective Go also mentions[^3] this pattern
 briefly.
 
-## References
-
-* [Limit concurrency with semaphore][here]
-* [Go concurrency pattern: semaphore][pointer]
-* [How to wait until buffer channel is empty][stack overflow]
-* [Effective Go - channels][mentions]
-
-[here]: /python/limit_concurrency_with_semaphore
-[pointer]: https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d
-[stack overflow]: https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty
-[mentions]: https://go.dev/doc/effective_go#channels
+[^1]: [Limit concurrency with semaphore](/python/limit_concurrency_with_semaphore)
+[^2]: [Go concurrency pattern: semaphore](https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d)
+[^3]: [Effective Go - channels](https://go.dev/doc/effective_go#channels)
+[^4]: [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty) [^4]

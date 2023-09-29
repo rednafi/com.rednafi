@@ -276,7 +276,7 @@ func NewStyle(fg, bg string, options ...styleoption) *style {
 }
 ```
 
-I first came across this pattern in Rob Pike's [blog] on the same topic.
+I first came across this pattern in Rob Pike's blog[^1] on the same topic.
 
 ## Verdict
 
@@ -289,12 +289,7 @@ In most cases, you can get away with exporting the option struct `Stuff` and a c
 function `NewStuff` to instantiate it. For another canonical example, see `bufio.Read` and
 `bufio.NewReader` in the standard library.
 
-## References
 
-* [Self-referential functions and the design of options - Rob Pike][blog]
-* [Functional options for friendly APIs - Dave Cheney][talk]
-* [Functional options pattern in Go - Matt Boyle][tweet]
-
-[blog]: https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
-[talk]: https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
-[tweet]: https://twitter.com/MattJamesBoyle/status/1698605808517288428
+[^1]: [Self-referential functions and the design of options - Rob Pike](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
+[^2]: [Functional options for friendly APIs - Dave Cheney](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis) [^2]
+[^3]: [Functional options pattern in Go - Matt Boyle](https://twitter.com/MattJamesBoyle/status/1698605808517288428) [^3]
