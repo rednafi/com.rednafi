@@ -98,7 +98,7 @@ handled the most recent request. This will be used later to perform the round-ro
 balancing between the backends.
 
 The `backendMutex` lock provides mutually exclusive access to the shared variables. We'll
-see how it's used when we write the load balancing [algorithm].
+see how it's used when we write the load balancing algorithm[4].
 
 ## Writing the backend server
 
