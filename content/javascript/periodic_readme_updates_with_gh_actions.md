@@ -6,14 +6,14 @@ tags:
     - GitHub
 ---
 
-I recently gave my [blog] a fresh new look and decided it was time to spruce up my GitHub
-[profile]'s landing page as well. GitHub has a [special] way of treating the `README.md`
+I recently gave my blog[^1] a fresh new look and decided it was time to spruce up my GitHub
+profile's[^2] landing page as well. GitHub has a special[^3] way of treating the `README.md`
 file of your <your-username> repo, displaying its content as the landing page for your
 profile. My goal was to showcase a brief introduction about myself and my work, along with a
 list of the five most recent articles on my blog. Additionally, I wanted to ensure that the
 article list stayed up to date.
 
-There are plenty of fancy GitHub Action [workflows] that allow you to add your site's URL to
+There are plenty of fancy GitHub Action workflows[^4] that allow you to add your site's URL to
 the CI file and it'll periodically fetch the most recent content from the source and update
 the readme file. However, I wanted to make a simpler version of it from scratch which can be
 extended for periodically updating any markdown file in any repo, just not the profile
@@ -21,13 +21,13 @@ readme. So, here's the plan:
 
 * A custom GitHub Action workflow will periodically run a nodejs script.
 * The script will then:
-    * Grab the XML [index] of this blog that you're reading.
+    * Grab the XML index[^5] of this blog that you're reading.
     * Parse the XML content and extract the URLs and publication dates of 5 most recent
     articles.
     * Update the associated markdown table with the extracted content on the profile's
     `README.md` file.
-* Finally, the workflow will commit the changes and push them to the [profile repo]. You can
-see the final outcome [here][profile repo].
+* Finally, the workflow will commit the changes and push them to the profile repo. You can
+see the final outcome here[^6].
 
 Here's the script that performs the above steps:
 
@@ -111,8 +111,8 @@ publication dates, and returns the parsed data as a list of objects. Another asy
 `README.md` file.
 
 The script is executed by the following GitHub Action workflow every day at 0:00 UTC. Before
-the CI runs, make sure you create a new [Action Secret] named `ACCESS_TOKEN` that houses an
-[access token] with write access to the repo where the CI runs.
+the CI runs, make sure you create a new Action Secret[^7] named `ACCESS_TOKEN` that houses an
+access token[^8] with write access to the repo where the CI runs.
 
 ```yml
 # Run a bash script to randomly generate empty commit to this repo.
@@ -190,18 +190,19 @@ git diff-index --quiet HEAD \
 ```
 
 Then in the last step, we use an off-the-shelf workflow to push our changes to the repo.
-Check out the [workflow directory] of my profile's repo to see the whole setup in action.
+Check out the workflow directory[^9] of my profile's repo to see the whole setup in action.
 I'm quite satisfied with the final output:
 
 ![periodic readme update][image_1]
 
-[blog]: https://rednafi.com/
-[profile]: https://github.com/rednafi/
-[profile repo]: https://github.com/rednafi/rednafi
-[special]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme
-[workflows]: https://github.com/gautamkrishnar/blog-post-workflow
-[index]: https://rednafi.com/index.xml
-[action secret]: https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28
-[access token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-[workflow directory]: https://github.com/rednafi/rednafi/tree/master/.github/workflows
+[^1]: [Blog](https://rednafi.com/)
+[^2]: [GitHub profile landing page](https://github.com/rednafi/)
+[^3]: [Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
+[^4]: [Blog post workflow](https://github.com/gautamkrishnar/blog-post-workflow)
+[^5]: [Blog index](https://rednafi.com/index.xml)
+[^6]: [Profile repository](https://github.com/rednafi/rednafi)
+[^7]: [Action secrets](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28)
+[^8]: [Personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+[^9]: [Workflow directory](https://github.com/rednafi/rednafi/tree/master/.github/workflows)
+
 [image_1]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png

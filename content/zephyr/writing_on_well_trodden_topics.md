@@ -22,8 +22,8 @@ how to use or another book that's already considered cliché in my area of inter
 there are already a ton of more detailed or clickbaity posts out there that cover the same
 ground. So what good will it do if you add another drop to the ocean? Who will even read it?
 
-The most recent example of this is when I spent an hour going through the [docs] of
-`log/slog` package of Go 1.21 and another two listing out my most common [use cases]. I
+The most recent example of this is when I spent an hour going through the docs[^1] of
+`log/slog` package of Go 1.21 and another two listing out my most common use cases[^2]. I
 wrote about it despite seeing countless examples of how to use it on the internet; some of
 them even have the exact same title as mine. But I did that anyway because it helped me echo
 out my own experience with the tool that I'll be able to relive in the future should the
@@ -32,14 +32,14 @@ get some SEO points. Rather, I wanted to write this for myself, to scratch a ver
 itch. If people find it useful, great, but if I find it useful at some point, even better.
 
 But occasionally, I do experience those lightbulb moments that beget more original proses
-like *[Avoid template pattern in Python]*, which get highly lauded by the venerable orange
-site citizens. However, the general trend is that the majority of these pieces go completely
-unnoticed. This might be one of them too and that's perfectly okay. Internet accolades are
-great, but they need not be the only reason you want to explore and share your thoughts on
-something. For me, the aim is to uphold a meticulous record of my odyssey, my own Da Vinci's
-[notebook], and this post is but another page within!
+like *Avoid template pattern in Python*[^3], which get highly lauded by the venerable
+orange site citizens. However, the general trend is that the majority of these pieces go
+completely unnoticed. This might be one of them too and that's perfectly okay. Internet
+accolades are great, but they need not be the only reason you want to explore and share your
+thoughts on something. For me, the aim is to uphold a meticulous record of my odyssey, my
+own Da Vinci's notebook[^4], and this post is but another page within!
 
-[docs]: https://pkg.go.dev/golang.org/x/exp/slog
-[use cases]: /go/structured_logging_with_slog
-[avoid template pattern in Python]: /python/escape_template_pattern
-[notebook]: https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks
+[^1]: [slog docs](https://pkg.go.dev/golang.org/x/exp/slog)
+[^2]: [Structured logging with slog](/go/structured_logging_with_slog)
+[^3]: [Avoid template pattern in Python](/python/escape_template_pattern)
+[^4]: [Leonardo da Vinci's notebook](https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks)

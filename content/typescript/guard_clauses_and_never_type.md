@@ -7,10 +7,9 @@ tags:
     - Typing
 ---
 
-
 Nested conditionals suck. They're hard to write and even harder to read. I've rarely
-regretted the time I've spent optimizing for the flattest conditional structure in my
-code. The following piece mimics the actions of a traffic signal:
+regretted the time I've spent optimizing for the flattest conditional structure in my code.
+The following piece mimics the actions of a traffic signal:
 
 ```ts
 // src.ts
@@ -73,12 +72,12 @@ function processSignal(signal: Signal) {
 }
 ```
 
-This model has a flatter structure and now it's gracefully handling the `undefined`
-return path. However, the third issue still persists. In an alien world, if someone
-added a fourth member to the `Signal` enum, that'd make the conditional flow in
-the `processSignal` function incomplete since it wouldn't be covering that newly added
-fourth enum member. In that case, the above snippet will execute the final catch-all
-conditional statement; not something that we'd want.
+This model has a flatter structure and now it's gracefully handling the `undefined` return
+path. However, the third issue still persists. In an alien world, if someone added a fourth
+member to the `Signal` enum, that'd make the conditional flow in the `processSignal`
+function incomplete since it wouldn't be covering that newly added fourth enum member. In
+that case, the above snippet will execute the final catch-all conditional statement; not
+something that we'd want.
 
 TypeScript provides a `never` type to throw a compilation error if a new member isn't
 covered by the conditional flow. Here's how you'd leverage it:
@@ -118,9 +117,9 @@ function processSignal(signal: Signal) {
 processSignal(Signal.PURPLE);
 ```
 
-Ideally, the `assertNever` should never be called. Try removing a conditional and see
-how TypeScript starts screaming at you regarding the unhandled case. The `assertNever`
-function will also raise a runtime error if any case remains unhandled.
+Ideally, the `assertNever` should never be called. Try removing a conditional and see how
+TypeScript starts screaming at you regarding the unhandled case. The `assertNever` function
+will also raise a runtime error if any case remains unhandled.
 
 ## Example in Python
 
@@ -171,12 +170,12 @@ if __name__ == "__main__":
     print(process_signal(Signal.PURPLE))
 ```
 
-Similar to TypeScript, mypy will complain if you add a new member to the enum but
-forget to handle that in the processor function. Python 3.11 added the  `Never` type
-and `assert_never` function to the `typing` module. Underneath, `Never` is an alias
-to the `NoReturn` type; so you can use them interchangeably. However, in this case,
-`Never` seems to communicate the intent better. You may also choose to use the backported
-versions of the type and function from the `typing_extensions` module. Here's how:
+Similar to TypeScript, mypy will complain if you add a new member to the enum but forget to
+handle that in the processor function. Python 3.11 added the  `Never` type and
+`assert_never` function to the `typing` module. Underneath, `Never` is an alias to the
+`NoReturn` type; so you can use them interchangeably. However, in this case, `Never` seems
+to communicate the intent better. You may also choose to use the backported versions of the
+type and function from the `typing_extensions` module. Here's how:
 
 ```python
 # src.py
@@ -194,8 +193,6 @@ else:
 ...
 ```
 
-## References
-
-* [Guard clause, guard code, or guard statement](https://en.wikipedia.org/wiki/Guard_(computer_science))
-* [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never)
-* [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html)
+[^1]: [Guard clause, guard code, or guard statement](https://en.wikipedia.org/wiki/Guard_(computer_science)) [^1]
+[^2]: [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never) [^2]
+[^3]: [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html) [^3]

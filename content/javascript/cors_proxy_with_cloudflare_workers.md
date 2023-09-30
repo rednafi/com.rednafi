@@ -7,17 +7,17 @@ tags:
     - GitHub
 ---
 
-Cloudflare absolutely nailed the serverless function DX with [Cloudflare Workers]. However,
-I feel like it's yet to receive widespread popularity like AWS Lambda since as of now, the
-service only offers a single runtime—JavaScript. But if you can look past that big folly,
-it's a delightful piece of tech to work with. I've been building small tools with it for a
-couple of years but never got around to writing about the immense productivity boost it
-usually gives me whenever I need to quickly build and deploy a self-contained service.
+Cloudflare absolutely nailed the serverless function DX with Cloudflare Workers[^1].
+However, I feel like it's yet to receive widespread popularity like AWS Lambda since as of
+now, the service only offers a single runtime—JavaScript. But if you can look past that big
+folly, it's a delightful piece of tech to work with. I've been building small tools with it
+for a couple of years but never got around to writing about the immense productivity boost
+it usually gives me whenever I need to quickly build and deploy a self-contained service.
 
 Recently, I was doing some lightweight frontend work and needed to make some AJAX calls
-from one domain to another. Usually, browser's [CORS] (Cross-Origin Resource Sharing) policy
-will get in your way if you try this. While you're reading this piece, open the dev console
-and paste the following `fetch` snippet:
+from one domain to another. Usually, browser's CORS (Cross-Origin Resource Sharing)[^2]
+policy will get in your way if you try this. While you're reading this piece, open the dev
+console and paste the following `fetch` snippet:
 
 ```js
 fetch("https://mozilla.org")
@@ -49,7 +49,7 @@ If an opaque response serves your needs, set the request's mode to
 This is a good security measure. Without CORS, a malicious script could make a request to a
 server in another domain and access the resources that the user of the page is not intended
 to have access to. So much has been said and written about CORS that I won't even attempt to
-explain it here. Here's another high-level introduction to the [concept].
+explain it here. Here's another high-level introduction to the concept[^3].
 
 ## CORS proxy
 
@@ -66,7 +66,7 @@ handy.
 > so that the target server thinks the request is coming from the same origin as itself.
 
 This way, you can bypass the same-origin policy of browsers and access resources from
-different domains. I usually use free proxies like [cors.sh] to bypass CORS restrictions.
+different domains. I usually use free proxies like cors.sh[^4] to bypass CORS restrictions.
 You can drop this snippet to your browser's console and this time it'll allow you to load
 the contents of https://mozilla.org from https://rednafi.com:
 
@@ -96,7 +96,7 @@ data-stub-attribution-rate="1.0" data-convert-project-id="10039-1003343">
 ...
 ```
 
-If you want to learn more about how CORS proxies work, here's a fantastic [resource] that
+If you want to learn more about how CORS proxies work, here's a fantastic resource[^5] that
 explains the inner machinery in more detail.
 
 ## Free proxy servers can be pernicious
@@ -112,14 +112,14 @@ even support HTTPS or other security bells and whistles.
 
 With all the intros out of the way, here's how CloudFlare Workers afforded me to prop
 up a CORS proxy in less than half an hour. If you're impatient and just want to take a
-look at the service in its full glory then head over [here]. GitHub Actions deploys the
+look at the service in its full glory then head over here[^6]. GitHub Actions deploys the
 service automatically to CloudFlare Workers every time a change is pushed to the `main`
 branch.
 
 ### Installing the prerequisites
 
-Assuming you have `node` installed on your system, you can fetch the [wrangler] CLI with the
-following command:
+Assuming you have `node` installed on your system, you can fetch the wrangler[^7] CLI with
+the following command:
 
 ```sh
 npm install -g wrangler
@@ -278,10 +278,10 @@ using the `searchParams.get()` method. If the destination URL isn't provided, th
 returns a `Response` object with an error message and a status code of 400 (Bad Request).
 
 The code then checks if the request method is `OPTIONS`. The `OPTIONS` method is used in
-CORS [preflight] requests to determine if the actual request is safe to send. If the request
-is an `OPTIONS` request and contains specific headers indicating a CORS preflight request
-(`Origin` and `Access-Control-Request-Method`), the function generates a response with
-appropriate CORS headers. The response headers include `Access-Control-Allow-Origin` to
+CORS preflight[^8] requests to determine if the actual request is safe to send. If the
+request is an `OPTIONS` request and contains specific headers indicating a CORS preflight
+request (`Origin` and `Access-Control-Request-Method`), the function generates a response
+with appropriate CORS headers. The response headers include `Access-Control-Allow-Origin` to
 reflect the client's origin, `Access-Control-Allow-Methods` set to `*`, allowing any HTTP
 method, `Access-Control-Allow-Headers` based on the requested headers, and
 `Access-Control-Max-Age` set to `86400` seconds (one day) to cache the preflight response.
@@ -352,7 +352,7 @@ result in a successful request. You can also interactively send requests to the 
 URLs via the Cloudflare Workers dashboard. Go to your Cloudflare dashboard, head over to the
 Workers section, and select your deployed serverless function:
 
-![screenshot_1]
+![cloudflare worker editor][image_1]
 
 ### Deploying the service with GitHub Actions
 
@@ -406,28 +406,20 @@ jobs:
           workingDirectory: "cors-proxy"
 ```
 
-For this to work, you'll need to create a [Cloudflare API key] and add it to the [GitHub
-Secrets] of your proxy server's repository. Here's the complete [setup].
+For this to work, you'll need to create a Cloudflare API key[^9] and add it to the GitHub
+Secrets[^10] of your proxy server's repository. Here's the complete workflow[^11] file.
 
-## Resources
+[^1]: [Cloudflare Workers](https://workers.cloudflare.com/)
+[^2]: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+[^3]: [Let's talk about CORS](https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919)
+[^4]: [cors.sh](https://cors.sh/)
+[^5]: [CORS proxy](https://httptoolkit.com/blog/cors-proxies)
+[^6]: [Complete implementation](https://github.com/rednafi/cors-proxy)
+[^7]: [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
+[^8]: [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
+[^9]: [Cloudflare API Key](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+[^10]: [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+[^11]: [CI](https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml)
 
-* [Introduction to CORS][concept]
-* [CORS - Mozilla docs][cors]
-* [CORS proxy][resource]
-* [CORS preflight][cors-preflight]
-* [Cloudflare workers][cloudflare workers]
-* [Cloudflare wrangler][wrangler]
-* [Complete CORS proxy implementation][here]
 
-[cloudflare workers]: https://workers.cloudflare.com/
-[wrangler]: https://developers.cloudflare.com/workers/wrangler/
-[cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-[concept]: https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919
-[cors.sh]: https://cors.sh/
-[resource]: https://httptoolkit.com/blog/cors-proxies
-[here]: https://github.com/rednafi/cors-proxy
-[preflight]: https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request
-[screenshot_1ƒ]: https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png
-[cloudflare api key]: https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
-[github secrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
-[setup]: https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml
+[image_1]: https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png

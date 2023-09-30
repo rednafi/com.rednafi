@@ -123,5 +123,5 @@ automatically reflected in the destination configs.
 
 Here are my dotfiles[^2] and a few management scripts in all their splendor!
 
-[^1]: [Stow](https://www.gnu.org/software/stow/)
+[^1]: [GNU stow](https://www.gnu.org/software/stow/)
 [^2]: [Dotfiles](https://github.com/rednafi/dot)
