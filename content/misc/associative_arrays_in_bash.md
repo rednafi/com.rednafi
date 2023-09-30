@@ -203,14 +203,8 @@ flag takes advantage of the `Content-Disposition` header in the HTTP response to
 the filename. We include the `-L` flag to follow redirects, and the `-s` flag to silence
 curl's progress output.
 
-## Resources
 
-* [Advanced Bash scripting guide – devconnected]
-* [Advanced Bash scripting techniques for Linux administrators]
-* [Useful Bash command line tips and tricks examples – part 1 - Linux config]
-* [3 command line games for learning Bash the fun way]
-
-[Advanced Bash scripting guide – devconnected]: https://devconnected.com/advanced-bash-scripting-guide/
-[Advanced Bash scripting techniques for Linux administrators]: https://tecadmin.net/advanced-bash-scripting-techniques/
-[Useful Bash command line tips and tricks examples – part 1 - Linux config]: https://linuxconfig.org/useful-bash-command-line-tips-and-tricks-examples-part-1
-[3 command line games for learning Bash the fun way]: https://opensource.com/article/19/10/learn-bash-command-line-games
+[^1]: [Advanced Bash scripting guide – devconnected](https://devconnected.com/advanced-bash-scripting-guide/) [^1]
+[^2]: [Advanced Bash scripting techniques for Linux administrators](https://tecadmin.net/advanced-bash-scripting-techniques/) [^2]
+[^3]: [Useful Bash command line tips and tricks examples – part 1 - Linux config](https://linuxconfig.org/useful-bash-command-line-tips-and-tricks-examples-part-1) [^3]
+[^4]: [3 command line games for learning Bash the fun way](https://opensource.com/article/19/10/learn-bash-command-line-games) [^4]

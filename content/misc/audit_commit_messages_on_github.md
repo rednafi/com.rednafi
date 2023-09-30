@@ -5,7 +5,7 @@ tags:
     - GitHub
 ---
 
-After reading Simon Willison's amazing [piece] on how he adds new features to his
+After reading Simon Willison's amazing piece[^1] on how he adds new features to his
 open-source softwares, I wanted to adopt some of the good practices and incorporate them
 into my own workflow. One of the highlights of that post was how to kick off a feature work.
 The process roughly goes like this:
@@ -24,15 +24,14 @@ doc update, this step can be skipped.
     `#refs <issue-number>` to the commit message.
 
     So a commit message should look similar to `Feature foo, refs #120` or
-    `Update foo, closes #115`
+    `Update foo, closes #115`. The comma (`,`) before `refs/closes` is essential here. I
+    like to enforce it.
 
-    The comma (`,`) before `refs/closes` is essential here. I like to enforce it.
-
-This pattern can also work for bugfixes without any changes. Here's an [example] of it in
+This pattern can also work for bugfixes without any changes. Here's an example[^2] of it in
 action. I follow the pattern to write the blogs on this site as well. This is what a feature
 issue might look like on GitHub:
 
-![image_1]
+![enforce commit style][image_1]
 
 While I'm quite happy with how the process is working for me, often time, I get careless and
 push commits without a reference to any issue. This pollutes the Git history and breaks my
@@ -43,17 +42,17 @@ thing to worry about.
 I've decided to use GitHub Actions to audit the conformity of the commit messages. The CI
 pipeline is orchestrated as follows:
 
-* After every push and pull-request, the `audit-commits` job in an `audit.yml` workflow
-file will verify the conformity of the commit messages. This job runs a regex pattern
-against every commit message and fails with exit code 1 if the message doesn't respect the
-expected format.
+* After every push and pull-request, the `audit-commits` job in an `audit.yml` workflow file
+will verify the conformity of the commit messages. This job runs a regex pattern against
+every commit message and fails with exit code 1 if the message doesn't respect the expected
+format.
 * If the `audit-commits` job passes successfully, only then the primary jobs in the `ci.yml`
 workflow will execute. The entire pipeline will fail and the primary CI workflow won't be
 triggered at all if the `audit-commit` job fails at any point.
 
 On GitHub, you're expected to place your workflow files in the `.github/workflows`
-directory. If you inspect this blog's [workflows] folder, you'll see this pattern in action.
-Here, the directory has three workflow files:
+directory. If you inspect this blog's workflows[^3] folder, you'll see this pattern in
+action. Here, the directory has three workflow files:
 
 ```txt
 .github/workflows
@@ -62,13 +61,13 @@ Here, the directory has three workflow files:
 └── ci.yml
 ```
 
-The `automerge.yml` file automatically merges a pull-request when the primary CI jobs
-pass. I wrote about it in more detail in [another] write-up. We'll ignore the
-`automerge.yml` file for now. Here, the audit file runs after every push and pull-request
-and verifies the structure of the commit message. I picked a generic name like `audit.yml`
-instead of a more specific one like `audit-commit.yml` because in the future if I want to
-add another check, I can easily extend this file without renaming it. Here's the unabridged
-content of the `audit.yml` file:
+The `automerge.yml` file automatically merges a pull-request when the primary CI jobs pass.
+I wrote about it in more detail in another[^4] write-up. We'll ignore the `automerge.yml`
+file for now. Here, the audit file runs after every push and pull-request and verifies the
+structure of the commit message. I picked a generic name like `audit.yml` instead of a more
+specific one like `audit-commit.yml` because in the future if I want to add another check, I
+can easily extend this file without renaming it. Here's the unabridged content of the
+`audit.yml` file:
 
 ```yml
 # .github/workflows/audit.yml
@@ -129,7 +128,7 @@ function with parameters from another workflow. The `workflow_call` node the `au
 file makes it a reusable one and you can define additional parameters in this section if you
 need to do so. However, in this particular case, I don't need to pass any parameters while
 calling the `audit.yml` workflow from the `ci.yml` workflow. You can find more details on
-how to define [reusable workflows] in the docs.
+how to define reusable workflows[^5] in the docs.
 
 In the `jobs` section of the `audit.yml` file, we define a single `audit-commits` job that
 runs a bash script against every incoming commit message and verifies its structure. The
@@ -195,7 +194,7 @@ jobs:
 Here the `needs: ["audit"]` node in the `build` section ensures that the build will only
 trigger if the `audit` job passes successfully. Otherwise, none of the `build`, `test`, or
 `deploy` jobs will run and the CI will fail with a non-zero exit code. Here's the fully
-working [ci.yml] file.
+working ci.yml[^6] file.
 
 ## Notes
 
@@ -207,23 +206,15 @@ GitHub Actions terminology can be confusing.
 run a single job at a time.
 * A **reusable** workflow can be called from another workflow file.
 
-The docs have more information on the [terminologies].
+The docs have more information on the terminologies[^7].
 
-## References
 
-1. [How I build a feature - Simon Willison][piece]
-2. [Example issue that reflects the pattern explained here][example]
-3. [Worflows directory of this blog][workflows]
-4. [Automerge Dependabot PRs on GitHub][another]
-5. [Reusing workflows][reusable workflows]
-6. [The main CI file of this blog][ci.yml]
-7. [Understanding GitHub Actions][terminologies]
+[^1]: [How I build a feature - Simon Willison](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/)
+[^2]: [Example issue that reflects the pattern explained here](https://github.com/rednafi/reflections/issues/170)
+[^3]: [Worflows directory of this blog](https://github.com/rednafi/reflections/tree/master/.github/workflows)
+[^4]: [Automerge Dependabot PRs on GitHub](/misc/automerge_dependabot_prs_on_github/)
+[^5]: [Reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
+[^6]: [The main CI file of this blog](https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml)
+[^7]: [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
 
-[piece]: https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/
-[example]: https://github.com/rednafi/reflections/issues/170
 [image_1]: https://user-images.githubusercontent.com/30027932/194779762-2000b766-3efa-421c-be77-757233e1e8f2.png
-[workflows]: https://github.com/rednafi/reflections/tree/master/.github/workflows
-[another]: /misc/automerge_dependabot_prs_on_github/
-[reusable workflows]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
-[ci.yml]: https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml
-[terminologies]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions

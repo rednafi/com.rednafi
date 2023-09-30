@@ -19,7 +19,7 @@ While many of these prototypes become full-fledged projects, most end up being j
 journies. One common theme among all of these endeavors is that I always include
 instructions in the `readme.md` on how to get the project up and running—no matter how small
 it is. Also, I tend to configure a rudimentary CI pipeline that runs the linters and tests.
-GitHub Actions and [Dependabot] make it simple to configure a basic CI workflow. Dependabot
+GitHub Actions and Dependabot[^1] make it simple to configure a basic CI workflow. Dependabot
 keeps the dependencies fresh and makes pull requests automatically when there's a new
 version of a dependency used in a project.
 
@@ -98,6 +98,7 @@ branch.
 [workflow]: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#enable-auto-merge-on-a-pull-request
 [branch protection]: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches
 [file]: https://github.com/rednafi/reflections/blob/master/.github/workflows/automerge.yml
+
 [image_1]: https://user-images.githubusercontent.com/30027932/178368689-4766f2d3-86ed-4287-b058-6edfeecba66a.png
 [image_2]: https://user-images.githubusercontent.com/30027932/177646826-f07b6ad0-9df7-42cd-ab70-c74a1ec31059.png
 [image_3]: https://user-images.githubusercontent.com/30027932/177646967-36ba6b6d-861f-44d6-9a91-b5f5f3a3ce45.png

@@ -7,7 +7,7 @@ tags:
     - Networking
 ---
 
-This morning, while browsing Hacker News, I came across a neat [trick] that allows you to
+This morning, while browsing Hacker News, I came across a neat trick[^1] that allows you to
 share textual data by leveraging DNS TXT records. It can be useful for sharing a small
 amount of data in environments that restrict IP but allow DNS queries, or to bypass
 censorship.
@@ -60,10 +60,6 @@ this manner that requires a layer of security. Protocols like DANE and DNSSEC ai
 some of these concerns but their adoption is spotty at best. Still, I found the idea of
 using DNS records as a simple database quite clever!
 
-## References
 
-* [Use DNS record to share text data][trick]
-* [RFC 1035]
-
-[trick]: https://news.ycombinator.com/item?id=36754366
-[rfc 1035]: https://datatracker.ietf.org/doc/html/rfc1035
+[^1]: [Use DNS TXT to share information](https://news.ycombinator.com/item?id=36754366)
+[^2]: [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035)

@@ -6,7 +6,7 @@ tags:
     - TIL
 ---
 
-When writing shell scripts, I'd often resort to using hardcoded ANSI [escape codes] to
+When writing shell scripts, I'd often resort to using hardcoded ANSI escape codes[^1] to
 format text, such as:
 
 ```bash
@@ -107,7 +107,7 @@ tput sgr0
 
 Running the script will give you the following output:
 
-![image_1]
+![tput color][image_1]
 
 This also hardcodes the color and formatting codes but it's much easier than having to
 remember or search for the ANSI escape codes. Currently, I'm using a 256-bit macOS terminal
@@ -125,8 +125,9 @@ done
 
 On my terminal, it prints this nice color palette:
 
-![image_2]
+![tput color palette][image_2]
 
-[escape codes]: https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+[^1]: [Escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+
 [image_1]: https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
 [image_2]: https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png

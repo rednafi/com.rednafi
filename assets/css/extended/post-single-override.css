@@ -37,3 +37,14 @@
 .post-content img[src*="#center"] {
   margin: 1rem auto;
 }
+
+/* Add [] to footnote-ref and remove url underline */
+a.footnote-ref {
+  box-shadow: none;
+}
+a.footnote-ref::before {
+  content: "[";
+}
+a.footnote-ref::after {
+  content: "]";
+}

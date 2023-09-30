@@ -90,8 +90,4 @@ drwxr-xr-x   26 rednafi  staff   832B Dec 23 13:35 .
 If you look closely, you'll see that the debug commands and their outputs are no longer
 getting repeated.
 
-## Resources
-
-1. [Why I use the colon command - @anthonywritescode][why i use the colon command]
-
-[why i use the colon command]: https://www.youtube.com/watch?v=onkNf1AKSgg
+[^1]: [Why I use the colon command - @anthonywritescode](https://www.youtube.com/watch?v=onkNf1AKSgg) [^1]

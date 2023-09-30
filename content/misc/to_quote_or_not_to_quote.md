@@ -5,7 +5,7 @@ tags:
     - Shell
 ---
 
-My [grug] brain can never remember the correct semantics of quoting commands and variables
+My grug[^1] brain can never remember the correct semantics of quoting commands and variables
 in a UNIX shell environment. Every time I work with a shell script or run some commands in a
 Docker compose file, I've to look up how to quote things properly to stop my ivory tower
 from crashing down. So, I thought I'd list out some of the most common rules that I usually
@@ -54,9 +54,9 @@ returns the result to the main shell. The `git checkout` part of the command in 
 shell then uses the output value of the `git rev-parse --short HEAD~1` sub-command to carry
 out the intended action.
 
-> While this works, `` `...` `` is the [legacy][2] syntax for command substitution,
-> required by only the very oldest of non-POSIX-compatible Bourne shells. A better
-> alternative is to use the `$(...)` syntax.
+> While this works, `` `...` `` is the legacy[^2] syntax for command substitution, required
+> by only the very oldest of non-POSIX-compatible Bourne shells. A better alternative is to
+> use the `$(...)` syntax.
 
 ```sh
 git checkout $(git rev-parse --short HEAD~1)
@@ -111,11 +111,5 @@ Instead of double quotes, if you wrap the variable with single quotes, the comma
 to apply `cat` on a file that's literally named `$file` which is most likely not what you
 want.
 
-## Resources
-
-* [Grug brained developer][grug]
-* [Why is $(...) preferred over `...` (backticks)?]
-
-
-[grug]: https://grugbrain.dev/
-[why is $(...) preferred over `...` (backticks)?]: http://mywiki.wooledge.org/BashFAQ/082
+[^1]: [Grug brained developer](https://grugbrain.dev/)
+[^2]: [Why is $(...) preferred over `...` (backticks)?](http://mywiki.wooledge.org/BashFAQ/082)

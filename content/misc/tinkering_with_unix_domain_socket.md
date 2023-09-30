@@ -199,7 +199,7 @@ see events pouring into the console that's listening for them:
 docker run hello-world
 ```
 
-The complete list of APIs can be found [here].
+The complete list of APIs can be found here[^1].
 
 ## Writing a Unix domain socket server in Python
 
@@ -295,10 +295,10 @@ Running the server and client as two separate processes will yield the following
 ## Exposing an HTTP application via a Unix domain socket
 
 Webservers usually allow you to expose HTTP applications via Unix domain sockets. In Python,
-the [uvicorn] ASGI server lets you do this quite easily. This can come as handy whenever you
-need to spin up a local server and all the clients are running on the same machine or you're
-running your server behind a proxy. Here's an example of a simple webserver built with
-[starlette] and served with uvicorn.
+the uvicorn[^2] ASGI server lets you do this quite easily. This can come as handy whenever
+you need to spin up a local server and all the clients are running on the same machine or
+you're running your server behind a proxy. Here's an example of a simple webserver built
+with starlette[^3] and served with uvicorn.
 
 ```python
 # server.py (http server)
@@ -365,17 +365,11 @@ the HTML page:
 
 ![reverse proxy access][image_2]
 
-## References
+[^1]: [Docker engine API](https://docs.docker.com/engine/api/latest/)
+[^2]: [Uvicorn](https://www.uvicorn.org/)
+[^3]: [Starlette](https://www.starlette.io/)
+[^4]: [Understanding sockets](https://www.digitalocean.com/community/tutorials/understanding-sockets) [^4]
+[^5]: [Fun with Unix domain sockets](https://simonwillison.net/2021/Jul/13/unix-domain-sockets/) [^5]
 
-* [Understanding sockets]
-* [Fun with Unix domain sockets]
-
-
-[here]: https://docs.docker.com/engine/api/latest/
 [image_1]: https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
-[uvicorn]: https://www.uvicorn.org/
-[starlette]: https://www.starlette.io/
 [image_2]: https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png
-
-[understanding sockets]: https://www.digitalocean.com/community/tutorials/understanding-sockets
-[fun with unix domain sockets]: https://simonwillison.net/2021/Jul/13/unix-domain-sockets/

@@ -51,7 +51,4 @@ ec9191c Add unfinished indexing script
 
 ## Reference
 
-* [How to write a git commit message]
-
-
-[how to write a git commit message]: https://chris.beams.io/posts/git-commit/
+[^1]: [How to write a git commit message](https://chris.beams.io/posts/git-commit/) [^1]

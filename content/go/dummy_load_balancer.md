@@ -98,7 +98,7 @@ handled the most recent request. This will be used later to perform the round-ro
 balancing between the backends.
 
 The `backendMutex` lock provides mutually exclusive access to the shared variables. We'll
-see how it's used when we write the load balancing algorithm[4].
+see how it's used when we write the load balancing algorithm[^3].
 
 ## Writing the backend server
 
@@ -257,7 +257,7 @@ func main() {
 
 ## Taking it for a spin
 
-You can find the self-contained complete implementation in this [gist]. Run the server in
+You can find the self-contained complete implementation in this gist[^4]. Run the server in
 one terminal with:
 
 ```sh
@@ -290,7 +290,6 @@ Hello from backend server on :8082
 ```
 
 Notice how the client requests are handled by different backends in an interleaving manner.
-The complete implementation can be found in this gist[^4].
 
 [^1]: [Nginx](https://www.nginx.com/)
 [^2]: [Caddy](https://caddyserver.com/)
