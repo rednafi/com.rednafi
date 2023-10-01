@@ -95,7 +95,8 @@ the default contents of the files and when the other test runs after this one, i
 the default content and hence raises an `AssertionError`. To fix this, we'll need to make
 sure that the fixture's state gets cleaned up after each test function executes.
 
-One way to achieve this is by making the `create_files` fixture function-scoped; instead of session-scoped. If you decorate `create_files` with `@pytest.fixture(scope="function")` and
+One way to achieve this is by making the `create_files` fixture function-scoped; instead of
+session-scoped. If you decorate `create_files` with `@pytest.fixture(scope="function")` and
 then run the above snippet in a reverse manner, you'll see that the error doesn't occur this
 time. However, making the fixture function-scoped means, the fixture will be executed once
 before running each test function. This can be a deal breaker if the fixture has to perform
