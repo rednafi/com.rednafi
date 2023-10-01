@@ -21,18 +21,18 @@ for i in l:
 print(l)
 ```
 
-The above snippet iterates through a list of numbers and modifies the list `l` in-place
-to remove any even number. However, running the script prints out this:
+The above snippet iterates through a list of numbers and modifies the list `l` in-place to
+remove any even number. However, running the script prints out this:
 
-```
+```txt
 [3, 56, 7, 9, 5]
 ```
 
-Wait a minute! The output doesn't look correct. The final list still contains `56` which
-is an even number. Why did it get skipped? Printing the members of the list while the
-for-loop advances reveal what's happening inside:
+Wait a minute! The output doesn't look correct. The final list still contains `56` which is
+an even number. Why did it get skipped? Printing the members of the list while the for-loop
+advances reveal what's happening inside:
 
-```
+```txt
 3
 4
 7
@@ -42,9 +42,9 @@ for-loop advances reveal what's happening inside:
 ```
 
 From the output, it seems like the for-loop doesn't even visit all the elements of the
-sequence. However, trying to emulate what happens inside the for-loop with `iter` and
-`next` makes the situation clearer. Notice the following example. I'm using `ipython`
-shell to explore:
+sequence. However, trying to emulate what happens inside the for-loop with `iter` and `next`
+makes the situation clearer. Notice the following example. I'm using `ipython` shell to
+explore:
 
 ```python
 In [1]: l = [3, 4, 56, 7, 10, 9, 6, 5]
@@ -76,13 +76,13 @@ In [12]: next(it)
 Out[12]: 9
 ```
 
-The REPL experiment reveals that
+The REPL experiment reveals that:
 
-> Whenever you remove an element of an iterable that's already been visited by the
-> iterator, in the next iteration, the iterator will jump right by 1 element. This can
-> make the iterator skip a value. The opposite is also true if you prepend some value to
-> a sequence after the iterator has started iterating. In that case, in the next
-> iteration, the iterator will jump left by 1 element and may visit the same value again.
+> Whenever you remove an element of an iterable that's already been visited by the iterator,
+> in the next iteration, the iterator will jump right by 1 element. This can make the
+> iterator skip a value. The opposite is also true if you prepend some value to a sequence
+> after the iterator has started iterating. In that case, in the next iteration, the
+> iterator will jump left by 1 element and may visit the same value again.
 
 Here's what happens when you prepend values after the iteration has started:
 
@@ -103,14 +103,13 @@ In[6]: next(it)
 Out[6]: 4
 ```
 
-Notice how the element `4` is being visited twice after prepending a value to the list
-`l`.
+Notice how the element `4` is being visited twice after prepending a value to the list `l`.
 
 ## Solution
 
 To solve this, you'll have to make sure the target elements don't get removed after the
-iterator has already visited them. You can iterate in the reverse order and remove
-elements maintaining the original order. The first snippet can be rewritten as follows:
+iterator has already visited them. You can iterate in the reverse order and remove elements
+maintaining the original order. The first snippet can be rewritten as follows:
 
 ```python
 # src.py
@@ -129,7 +128,7 @@ print(l)
 
 Running the script prints:
 
-```
+```txt
 5
 6
 9
@@ -166,7 +165,7 @@ This time, the order of the iteration and element removal is the same, but that 
 problem since these two operations occur on two different lists. Running the snippet
 produces the following output:
 
-```
+```txt
 3
 4
 56
@@ -195,16 +194,15 @@ for k, v in d.items():
     d.pop(k)
 ```
 
-```
+```txt
 Traceback (most recent call last):
   File "/home/rednafi/canvas/personal/reflections/src.py", line 4, in <module>
     for k,v in d.items():
 RuntimeError: dictionary changed size during iteration
 ```
 
-You can solve this by making a copy of the keys of the dictionary and iterating through
-it while removing the elements from the dictionary. Here's one way to do it:
-
+You can solve this by making a copy of the keys of the dictionary and iterating through it
+while removing the elements from the dictionary. Here's one way to do it:
 
 ```python
 # src.py
@@ -225,14 +223,10 @@ print(d)
 
 Running the snippet prints:
 
-```
+```txt
 {1: 1, 3: 3, 5: 5, 7: 7, 9: 9}
 ```
 
 Voila, the key-value pairs of the even numbers have been removed successfully!
 
-## Resources
-
-I wrote this post after watching
-[Anthony Sottile's](https://twitter.com/codewithanthony) short YouTube video on the
-topic. Go watch [it](https://www.youtube.com/watch?v=JXis-BKRDFY).
+[^1]: [How to modify a list while iterating - Anthony Sottile](https://www.youtube.com/watch?v=JXis-BKRDFY) [^1]

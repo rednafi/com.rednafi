@@ -8,8 +8,8 @@ tags:
 
 I just found out that you can use Python's `unittest.mock.ANY` to make assertions about
 certain arguments in a mock call, without caring about the other arguments. This can be
-handy if you want to test how a callable is called but only want to make assertions
-about some arguments. Consider the following example:
+handy if you want to test how a callable is called but only want to make assertions about
+some arguments. Consider the following example:
 
 ```python
 # test_src.py
@@ -32,11 +32,10 @@ def procss() -> float:
     return add(*fetch())
 ```
 
-Let's say we only want to test the `process` function. But `process` ultimately depends
-on the `fetch` function, which has multiple side effects—it returns pseudo-random values
-and waits for 2 seconds on a fictitious network call. Since we only care about
-`process`, we'll mock the other two functions. Here's how `unittest.mock.ANY` can
-make life easier:
+Let's say we only want to test the `process` function. But `process` ultimately depends on
+the `fetch` function, which has multiple side effects—it returns pseudo-random values and
+waits for 2 seconds on a fictitious network call. Since we only care about `process`, we'll
+mock the other two functions. Here's how `unittest.mock.ANY` can make life easier:
 
 ```python
 # test_src.py
@@ -59,13 +58,13 @@ def test_process(mock_add, mock_fetch):
 ```
 
 While this is a simple example, I found `ANY` to be quite useful while making assertions
-about callables that accept multiple complex objects as parameters. Being able to
-ignore some aruments while calling `mock_callable.assert_called_with()` can make the
-tests more tractable.
+about callables that accept multiple complex objects as parameters. Being able to ignore
+some aruments while calling `mock_callable.assert_called_with()` can make the tests more
+tractable.
 
 Under the hood, the implementation of `ANY` is quite simple. It's an instance of a class
-that defines `__eq__` and `__ne__` in a way that comparing any value with `ANY` will
-return `True`. Here's the full implementation:
+that defines `__eq__` and `__ne__` in a way that comparing any value with `ANY` will return
+`True`. Here's the full implementation:
 
 ```python
 from __future__ import annotations
@@ -109,7 +108,5 @@ In [6]: ANY == None
 Out[6]: True
 ```
 
-## References
-
-* [unittest.mock.ANY](https://docs.python.org/3/library/unittest.mock.html#any)
-* [ANY in the wild](https://github.com/rednafi/example-rq-sentry/blob/9630e8ae31197fea6606a1972a108fa70de8b331/tests/test_tasks.py#L19)
+[^1]: [unittest.mock.ANY](https://docs.python.org/3/library/unittest.mock.html#any) [^1]
+[^2]: [ANY in the wild](https://github.com/rednafi/example-rq-sentry/blob/9630e8ae31197fea6606a1972a108fa70de8b331/tests/test_tasks.py#L19) [^2]

@@ -6,11 +6,11 @@ tags:
     - Python
 ---
 
-While going through the documentation of Python's [`sqlite3`][1] module, I noticed that
-it's quite API-driven, where different parts of the module are explained in a prescriptive
-manner. I, however, learn better from examples, recipes, and narratives. Although a few
-good recipes already exist in the docs, I thought I'd also enlist some of the examples
-I tried out while grokking them.
+While going through the documentation of Python's `sqlite3`[^1] module, I noticed that it's
+quite API-driven, where different parts of the module are explained in a prescriptive
+manner. I, however, learn better from examples, recipes, and narratives. Although a few good
+recipes already exist in the docs, I thought I'd also enlist some of the examples I tried
+out while grokking them.
 
 ## Executing individual statements
 
@@ -40,7 +40,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [(1, 'a', 1.0), (2, 'b', 2.0)]
 ```
 
@@ -76,7 +76,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [(1, 'a', 1.0), (2, 'b', 2.0), (3, 'c', 3.0)]
 ```
 
@@ -87,6 +87,7 @@ table. There are two types of callbacks that you can apply:
 
 * Scalar function: A scalar function returns one value per invocation; in most cases, you
 can think of this as returning one value per row.
+
 * Aggregate function: In contrast, an aggregate function returns one value per group of
 rows.
 
@@ -139,7 +140,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [
     (
         'admin',
@@ -200,7 +201,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [(6,)]
 ```
 
@@ -220,9 +221,9 @@ sqlite3.enable_callback_tracebacks(True)
 
 ## Transforming types
 
-Conventionally, Python `sqlite3` documentation uses the term *adaptation* to refer to
-the transformation that changes Python types to SQLite types and *conversion* to refer to
-the change in the reverse direction.
+Conventionally, Python `sqlite3` documentation uses the term *adaptation* to refer to the
+transformation that changes Python types to SQLite types and *conversion* to refer to the
+change in the reverse direction.
 
 ### Adapting Python types to SQLite types
 
@@ -268,7 +269,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [('red',), ('green',)]
 ```
 
@@ -329,7 +330,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [
     (<Color.RED: 'red'>,),
     (<Color.GREEN: 'green'>,),
@@ -353,10 +354,10 @@ on column type parsing by setting
 `detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES` in the `sqlite3.connect`
 method.
 
-Finally, notice how we're inserting `datetime.date` and `datetime.datetime` objects
-directly into the table. Also, this time, the final `select ...` statement looks a bit
-different. We're specifying the expected type in the `select ...` statement and it's
-returning native Python objects in the returned list.
+Finally, notice how we're inserting `datetime.date` and `datetime.datetime` objects directly
+into the table. Also, this time, the final `select ...` statement looks a bit different.
+We're specifying the expected type in the `select ...` statement and it's returning native
+Python objects in the returned list.
 
 ```python
 # src.py
@@ -393,7 +394,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [
     (
         datetime.date(2022, 9, 5),
@@ -416,12 +417,12 @@ authorization control. Here, `auth_callback` takes in 5 arguments. From the docs
 > Please consult the SQLite documentation about the possible values for the first argument
 > and the meaning of the second and third arguments depending on the first one.
 
-You can find the list of all the supported actions [here][2]. In the following example,
-I'm disallowing create table, create index, drop table, and drop index actions. To deny an
-action, the `auth_callback` will have to return `sqlite3.SQLITE_DENY` and that'll raise
-an `sqlite3.DatabaseError` exception whenever a user tries to execute any of the restricted
-actions. Returning `sqlite3.SQLITE_OK` from the callback ensures that unfiltered actions
-can still pass through the guardrail without incurring any errors.
+You can find the list of all the supported actions here[^2]. In the following example, I'm
+disallowing create table, create index, drop table, and drop index actions. To deny an
+action, the `auth_callback` will have to return `sqlite3.SQLITE_DENY` and that'll raise an
+`sqlite3.DatabaseError` exception whenever a user tries to execute any of the restricted
+actions. Returning `sqlite3.SQLITE_OK` from the callback ensures that unfiltered actions can
+still pass through the guardrail without incurring any errors.
 
 ```python
 # src.py
@@ -467,7 +468,7 @@ with conn:
     c.execute("drop table colors;")
 ```
 
-```
+```txt
 18 colors None main None
 22 BEGIN None None None
 9 sqlite_master None main None
@@ -483,9 +484,8 @@ sqlite3.DatabaseError: not authorized
 
 The `sqlite3` module allows you to change the representation of a database row to your
 liking. By default, the result of a query comes out as a list of tuples where each tuple
-represents a single row. However, you can change the representation of database rows in
-such a way that the result might come out as a list of dictionaries or a list of custom
-objects.
+represents a single row. However, you can change the representation of database rows in such
+a way that the result might come out as a list of dictionaries or a list of custom objects.
 
 ### Via an arbitrary container object as the row factory
 
@@ -496,11 +496,11 @@ table record and `row` is the default representation of a single database row as
 
 In the following snippet, just like before, I'm creating the same `colors` table with two
 columns—`name` and `hex`. Here, the `row_factory` function is the factory callback that
-converts the default row representation from a tuple to a dictionary. We're then
-registering the `row_factory` function with the `connection_obj.row_factory = row_factory`
-assignment statement. Afterward, the `sqlite3` module calls this statement on each record
-and transforms the representation of the rows. When you run the snippet, you'll see that
-the result comes out as a list of dictionaries instead of a list of tuples.
+converts the default row representation from a tuple to a dictionary. We're then registering
+the `row_factory` function with the `connection_obj.row_factory = row_factory` assignment
+statement. Afterward, the `sqlite3` module calls this statement on each record and
+transforms the representation of the rows. When you run the snippet, you'll see that the
+result comes out as a list of dictionaries instead of a list of tuples.
 
 ```python
 # src.py
@@ -554,7 +554,7 @@ with conn:
     result = c.execute("select * from colors;").fetchall()
     print(result)
 ```
-```
+```txt
 [
     {'name': 'red', 'hex': '#ff0000'},
     {'name': 'green', 'hex': '#00ff00'},
@@ -571,10 +571,10 @@ highly optimized `sqlite3.Row` object. From the docs:
 > supports iteration, equality testing, len(), and mapping access by column name and index.
 > Two row objects compare equal if have equal columns and equal members.
 
-In the following example, I've reused the script from the previous section and just
-replaced the custom row factory callback with `sqlite3.Row`. In the output, you'll see that
-the `Row` object not only allows us to access the value of a column by `row[column_name]`
-syntax but also let us convert the representation of the final result.
+In the following example, I've reused the script from the previous section and just replaced
+the custom row factory callback with `sqlite3.Row`. In the output, you'll see that the `Row`
+object not only allows us to access the value of a column by `row[column_name]` syntax but
+also let us convert the representation of the final result.
 
 
 ```python
@@ -620,7 +620,7 @@ with conn:
     print(result_dict)
 ```
 
-```
+```txt
 red #ff0000
 green #00ff00
 blue #0000ff
@@ -638,10 +638,9 @@ If you need to apply a common transformation callback to multiple text columns, 
 `sqlite3` module has a shortcut to do so. You can certainly write an ordinary row factory
 that'll only transform the text columns but the `connection_obj.text_factory` attribute
 enables you to do that in a more elegant fashion. You can set
-`connection_obj.text_factory = row_factory`
-and that'll selectively apply the `row_factory` callback only to the text columns. In
-the following example, I'm applying an anonymous function to the text columns to translate
-the color names to English.
+`connection_obj.text_factory = row_factory` and that'll selectively apply the `row_factory`
+callback only to the text columns. In the following example, I'm applying an anonymous
+function to the text columns to translate the color names to English.
 
 ```python
 # src.py
@@ -668,7 +667,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [('red',), ('green',)]
 ```
 
@@ -679,7 +678,7 @@ the data in the column will be ordered when you perform any kind of sort operati
 collation callback can be registered with the
 `connection_obj.create_collation(name, collation_callback)` syntax where the `name` denotes
 the name of the collation rule and the `collation_callback` determines how the string
-comparison should be done. The callback accepts two string values as arguments and returns—
+comparison should be done. The callback accepts two string values as arguments and returns:
 
 *  1 if the first is ordered higher than the second
 * -1 if the first is ordered lower than the second
@@ -724,21 +723,20 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [('সবুজ',), ('το κόκκινο',)]
 ```
 
 ## Registering trace callbacks to introspect running SQL statements
 
-During debugging, I often find it helpful to be able to trace all the SQL statements
-running under a certain connection. This becomes even more useful in a multiprocessing
-environment where each process opens a new connection to the DB and runs its own sets
-of SQL queries. We can leverage the `connection_obj.set_trace_callback` method to trace
-the statements. The `set_trace_callback` method accepts a callable that takes a single
-argument and `sqlite3` module passes the currently running statement to the callback
-every time it invokes it. Notice how the output prints all the statements executed by
-SQLite behind the scene. This also reveals that `cursor_obj.executemany` wraps up multiple
-statements in a transaction and runs them in an atomic manner.
+During debugging, I often find it helpful to be able to trace all the SQL statements running
+under a certain connection. This becomes even more useful in a multiprocessing environment
+where each process opens a new connection to the DB and runs its own sets of SQL queries. We
+can leverage the `connection_obj.set_trace_callback` method to trace the statements. The `set_trace_callback` method accepts a callable that takes a single argument and `sqlite3`
+module passes the currently running statement to the callback every time it invokes it.
+Notice how the output prints all the statements executed by SQLite behind the scene. This
+also reveals that `cursor_obj.executemany` wraps up multiple statements in a transaction and
+runs them in an atomic manner.
 
 
 ```python
@@ -770,7 +768,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 create table if not exists colors (name text);
 BEGIN
 insert into colors (name) values (?);
@@ -823,7 +821,7 @@ with ExitStack() as stack:
     print(dst_file.read().decode("utf-8"))
 ```
 
-```
+```txt
 BEGIN TRANSACTION;
 CREATE TABLE colors (name text);
 INSERT INTO "colors" VALUES('red');
@@ -841,10 +839,10 @@ empty backup DB. Afterward, the source data is backed up to the destination DB w
 
 The `.backup` method takes in three values—a connection object that points to the
 destination DB, the number of pages to copy in a single pass, and a callback to introspect
-the progress. You can set the value of the `progress` parameter to `-1` if you want to
-load the entire source database into memory and copy everything to the destination in a
-single pass. Also, in this example, the `progress` hook just prints the progress of the
-copied pages.
+the progress. You can set the value of the `progress` parameter to `-1` if you want to load
+the entire source database into memory and copy everything to the destination in a single
+pass. Also, in this example, the `progress` hook just prints the progress of the copied
+pages.
 
 
 ```python
@@ -898,7 +896,7 @@ with ExitStack() as stack:
     print(f"Number of rows in dst: {result[0]}")
 ```
 
-```
+```txt
 Copied 1 of 2 pages...
 Copied 2 of 2 pages...
 Number of rows in dst: 3
@@ -906,11 +904,11 @@ Number of rows in dst: 3
 
 ### Loading an on-disk database into the memory
 
-The `connection_obj.backup` API also lets you load your existing database into memory.
-This is helpful when the DB you're working with is small and you want to leverage the extra
-performance benefits that come with an in-memory DB. The workflow is almost exactly the
-same as before and the only difference is that the destination connection object points to
-an in-memory DB instead of an on-disk one.
+The `connection_obj.backup` API also lets you load your existing database into memory. This
+is helpful when the DB you're working with is small and you want to leverage the extra
+performance benefits that come with an in-memory DB. The workflow is almost exactly the same
+as before and the only difference is that the destination connection object points to an
+in-memory DB instead of an on-disk one.
 
 
 ```python
@@ -952,7 +950,7 @@ with conn_src:
     print(f"Number of rows in dst: {result[0]}")
 ```
 
-```
+```txt
 Number of rows in dst: 3
 ```
 
@@ -1007,10 +1005,9 @@ Number of rows in dst: 3
 ## Implementing a full text search engine
 
 This is not exactly a feature that's specific to the `sqlite3` API. However, I wanted to
-showcase how effortless it is to leverage SQLite's native features via the Python API.
-The following example creates a virtual table and implements a full-text search engine
-that allows us to fuzzy search the colors in the `colors` table by their names or hex
-values.
+showcase how effortless it is to leverage SQLite's native features via the Python API. The
+following example creates a virtual table and implements a full-text search engine that
+allows us to fuzzy search the colors in the `colors` table by their names or hex values.
 
 ```python
 # src.py
@@ -1053,7 +1050,7 @@ with conn:
     print(result)
 ```
 
-```
+```txt
 [
     {
         'uuid': 'c5f6e5ea-124b-44fe-afad-69aad565541e',
@@ -1069,5 +1066,5 @@ with conn:
 ]
 ```
 
-[1]: https://docs.python.org/3/library/sqlite3.html
-[2]: https://www.sqlite.org/c3ref/constlist.html
+[^1]: [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+[^2]: [SQLite actions](https://www.sqlite.org/c3ref/constlist.html)

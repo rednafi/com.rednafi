@@ -8,7 +8,7 @@ tags:
 When I first encountered Python's `pathlib` module for path manipulation, I brushed it aside
 assuming it to be just an OOP way of doing what `os.path` already does quite well. The
 official doc also dubs it as the `Object-oriented filesystem paths`. However, back in 2019
-when [ticket] confirmed that Django was replacing `os.path` with `pathlib`, I got curious.
+when ticket[^1] confirmed that Django was replacing `os.path` with `pathlib`, I got curious.
 
 The `os.path` module has always been the de facto standard for working with paths in Python.
 But the API can feel massive as it performs a plethora of other loosely coupled system
@@ -272,7 +272,7 @@ individual classes internally coupled by inheritance. They are:
 This UML diagram from the official docs does a better job at explaining the internal
 relationships between the component classes.
 
-![screenshot_1]
+![pathlib path hierarchy][image_1]
 
 Unless you are doing cross platform path manipulation, most of the time you'll be working
 with the concrete `Path` object. So I'll focus on the methods and properties of `Path` class
@@ -745,15 +745,11 @@ while working with paths in different operating systems.
 The ability to manipulate paths in an OO way and not having to rummage through the massive
 `os` or `shutil` module can make path manipulation a lot less painful.
 
-## References
 
-* [pathlib - Object-oriented filesystem paths]
-* [Python 3's pathlib Module: Taming the File System]
-* [Why you should be using pathlib]
+[^1]: [Replace os.path with pathlib](https://code.djangoproject.com/ticket/29983)
+[^2]: [pathlib - Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html) [^2]
+[^3]: [Python 3's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/) [^3]
+[^4]: [Why you should be using pathlib](https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded) [^4]
 
 
-[ticket]: https://code.djangoproject.com/ticket/29983
-[screenshot_1]: https://docs.python.org/3/_images/pathlib-inheritance.png
-[pathlib - object-oriented filesystem paths]: https://docs.python.org/3/library/pathlib.html
-[python 3's pathlib module: taming the file system]: https://realpython.com/python-pathlib/
-[why you should be using pathlib]: https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded
+[image_1]: https://docs.python.org/3/_images/pathlib-inheritance.png

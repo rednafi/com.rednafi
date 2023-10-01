@@ -5,9 +5,9 @@ tags:
     - Python
 ---
 
-Python's `operator.itemgetter` is quite versatile. It works on pretty much any iterables
-and map-like objects and allows you to fetch elements from them. The following snippet
-shows how you can use it to sort a list of tuples by the first element of the tuple:
+Python's `operator.itemgetter` is quite versatile. It works on pretty much any iterables and
+map-like objects and allows you to fetch elements from them. The following snippet shows how
+you can use it to sort a list of tuples by the first element of the tuple:
 
 ```python
 In [2]: from operator import itemgetter
@@ -21,8 +21,8 @@ Out[3]: [(0, 55), (1, 3), (4, 8), (6, 7), (10, 9)]
 
 Here, the `itemgetter` callable is doing the work of selecting the first element of every
 tuple inside the list and then the `sorted` function is using those values to sort the
-elements. Also, this is faster than using a lambda function and passing that to the
-`key` parameter to do the sorting:
+elements. Also, this is faster than using a lambda function and passing that to the `key`
+parameter to do the sorting:
 
 ```python
 In [6]: from operator import itemgetter
@@ -36,8 +36,8 @@ In [9]: %timeit sorted(l, key=lambda x: x[0])
 498 ns ± 0.444 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 ```
 
-You can also use `itemgetter` to extract multiple values from a dictionary in a single
-pass. Consider this example:
+You can also use `itemgetter` to extract multiple values from a dictionary in a single pass.
+Consider this example:
 
 ```python
 In [13]: from operator import itemgetter
@@ -51,9 +51,9 @@ Out[16]: (31, 12, 42)
 
 ```
 
-So, instead of extracting the key-value pairs with `d['foo'], d['bar'], ...`,
-`itemgetter` allows us to make it DRY. The source code of the callable is freakishly
-simple. Here's the entire thing:
+So, instead of extracting the key-value pairs with `d['foo'], d['bar'], ...`, `itemgetter`
+allows us to make it DRY. The source code of the callable is freakishly simple. Here's the
+entire thing:
 
 ```python
 # operator.py
@@ -101,9 +101,9 @@ class itemgetter:
         return self.__class__, self._items
 ```
 
-While this is all good and dandy, `itemgetter` will raise a `KeyError` if it can't find
-the corresponding value against a key in a map or an `IndexError` if the provided index
-is outside of the range of the sequence. This is how it looks in a dict:
+While this is all good and dandy, `itemgetter` will raise a `KeyError` if it can't find the
+corresponding value against a key in a map or an `IndexError` if the provided index is
+outside of the range of the sequence. This is how it looks in a dict:
 
 ```python
 
@@ -122,9 +122,8 @@ Input In [4], in <cell line: 1>()
 KeyError: 'fiz'
 ```
 
-In the above snippet, `itemgetter` can't find the key `fiz` in the dict `d` and it
-complains when we try to fetch the value against it. In a sequence, the error looks
-like this:
+In the above snippet, `itemgetter` can't find the key `fiz` in the dict `d` and it complains
+when we try to fetch the value against it. In a sequence, the error looks like this:
 
 ```python
 
@@ -145,18 +144,18 @@ IndexError: list index out of range
 
 ## A more tolerant version of 'operator.itemgetter'
 
-I wanted something that works similar to `itemgetter` but doesn't raise these
-exceptions when it can't find the key in a dict or the index of a sequence is out of
-range. Instead, it'd return a default value when these exceptions occur. So, to avoid
-`KeyError` in a map, it'd use `d.get(key, default)` instead of `d[key]` to fetch the
-value. Similarly, in a sequence, it'd first compare the length of the sequence with the
-index and return a default value if the index is out of range.
+I wanted something that works similar to `itemgetter` but doesn't raise these exceptions
+when it can't find the key in a dict or the index of a sequence is out of range. Instead,
+it'd return a default value when these exceptions occur. So, to avoid `KeyError` in a map,
+it'd use `d.get(key, default)` instead of `d[key]` to fetch the value. Similarly, in a
+sequence, it'd first compare the length of the sequence with the index and return a default
+value if the index is out of range.
 
 Since `operator.itemgetter` is a class, we could inherit it and overwrite the `__init__`
-method. However, your type-checker will complain if you do so. That's because, in the
-stub file, the `itemgetter` class is decorated with the `typing.final` decorator and
-isn't meant to be subclassed. So, our only option is to rewrite it. The good news is
-that this implementation is quite terse just like the original. Here it goes:
+method. However, your type-checker will complain if you do so. That's because, in the stub
+file, the `itemgetter` class is decorated with the `typing.final` decorator and isn't meant
+to be subclassed. So, our only option is to rewrite it. The good news is that this
+implementation is quite terse just like the original. Here it goes:
 
 ```python
 # src.py
@@ -231,8 +230,7 @@ class safe_itemgetter:
 
 This class behaves almost the same way as the original `itemgetter` function. The only
 difference is that you can pass a `default` value to return instead of raising
-`KeyError/IndexError` depending on the type of the container. Let's try it out with a
-dict:
+`KeyError/IndexError` depending on the type of the container. Let's try it out with a dict:
 
 ```python
 In [12]: d = {'foo': 31, 'bar': 12, 'baz': 42, 'chez': 83, 'moi': 24}
@@ -241,11 +239,11 @@ In [13]: safe_itemgetter(-5, -3, -33, 'baz', 1)(d)
 Out[13]: (<NOTHING>, <NOTHING>, <NOTHING>, 42, <NOTHING>)
 ```
 
-Here, we're trying to access a bunch of keys that don't exist in the dict `d` and we
-want to do this without raising any exceptions. You can see that instead of raising an
-exception, `safe_itemgetter` returns a tuple containing the value(s) that it can find
-and the rest of the positions are filled with the `default` value; in this case, the
-`<NOTHING>` sentinel. We can pass any default value there:
+Here, we're trying to access a bunch of keys that don't exist in the dict `d` and we want to
+do this without raising any exceptions. You can see that instead of raising an exception,
+`safe_itemgetter` returns a tuple containing the value(s) that it can find and the rest of
+the positions are filled with the `default` value; in this case, the `<NOTHING>` sentinel.
+We can pass any default value there:
 
 ```python
 In[14]: safe_itemgetter(-5, -3, -33, "baz", 1, default="default")(d)
@@ -261,8 +259,8 @@ In[19]: safe_itemgetter(-11, default=())(l)
 Out[19]: ()
 ```
 
-This returns an empty tuple when the sequence index is out of range. It works with
-multiple indices as well:
+This returns an empty tuple when the sequence index is out of range. It works with multiple
+indices as well:
 
 ```python
 In [28]: l = [(10, 9), (1, 3), (4, 8), (0, 55), (6, 7)]
@@ -271,6 +269,5 @@ In [29]: safe_itemgetter(-1, -3, -7, 1)(l)
 Out[29]: ((6, 7), (4, 8), <NOTHING>, (1, 3))
 ```
 
-## References
 
-* [operator.itemgetter - Python docs](https://docs.python.org/3/library/operator.html#operator.itemgetter)
+[^1]: [operator.itemgetter - Python docs](https://docs.python.org/3/library/operator.html#operator.itemgetter) [^1]

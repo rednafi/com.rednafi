@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-[Pre-commit hooks] can be a neat way to run automated ad-hoc *tasks* before submitting a new
-git commit. These tasks may include linting, trimming trailing whitespaces, running code
+Pre-commit hooks[^1] can be a neat way to run automated ad-hoc *tasks* before submitting a
+new git commit. These tasks may include linting, trimming trailing whitespaces, running code
 formatter before code reviews etc. Let's see how multiple Python linters and formatters can
 be applied automatically before each commit to impose strict conformity on your codebase.
 
@@ -35,8 +35,8 @@ to format your python code and makes sure that they look the same regardless of 
 you're reading.
 
 * **[Flake8]**: *Flake8* is a wrapper around *PyFlakes*, *pycodestyle*, Ned Batchelder's
-[McCabe script]. The combination of these three linters makes sure that your code is
-compliant with [PEP-8] and free of some obvious code smells.
+McCabe script[^2]. The combination of these three linters makes sure that your code is
+compliant with PEP-8[^3] and free of some obvious code smells.
 
 ## Installing pre-commit
 
@@ -78,7 +78,7 @@ repos:
 
 ## Installing the git hook scripts
 
-Run
+Run:
 
 ```sh
 pre-commit install
@@ -188,9 +188,12 @@ This should apply the pre-commit hooks to your code base harmoniously. From now 
 each commit, the hooks will make sure that your code complies with the rules imposed by the
 linters.
 
-[pre-commit hooks]: https://pre-commit.com/#introduction
+
+[^1]: [pre-commit hooks](https://pre-commit.com/#introduction)
+[^2]: [mccabe script](https://github.com/PyCQA/mccabe)
+[^3]: [PEP-8](https://www.python.org/dev/peps/pep-0008/)
+
+
 [isort]: https://github.com/timothycrosley/isort
 [black]: https://github.com/psf/black
 [flake8]: https://github.com/PyCQA/flake8
-[mccabe script]: https://github.com/PyCQA/mccabe
-[pep-8]: https://www.python.org/dev/peps/pep-0008/

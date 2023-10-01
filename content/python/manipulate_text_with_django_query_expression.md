@@ -33,9 +33,8 @@ class FileCabinet(models.Model):
 
 I needed to extract the file names with their extensions from the `file_path` column and
 create new paths by adding the prefix `dir/` before each file name. This would involve
-stripping everything before the file name from a file path and adding the prefix,
-resulting in a list of new file paths like this:
-`['dir/file_1.pdf', ..., 'dir/image_2.jpg']`.
+stripping everything before the file name from a file path and adding the prefix, resulting
+in a list of new file paths like this: `['dir/file_1.pdf', ..., 'dir/image_2.jpg']`.
 
 Using Django ORM and some imperative Python code you could do the following:
 
@@ -55,18 +54,17 @@ file_paths_new = [
 ...
 ```
 
-Here, we use the `FileCabinet` model to make a query and obtain the file paths. We then
-use Python to split the file paths and extract the file names, and add the prefix `dir/`
-to create the new paths. While this approach is relatively simple, it can be slow and
-resource-intensive if the size of the working dataset is large. This is because the
-entire working dataset is loaded into memory and the text manipulation is performed in
-Python.
+Here, we use the `FileCabinet` model to make a query and obtain the file paths. We then use
+Python to split the file paths and extract the file names, and add the prefix `dir/` to
+create the new paths. While this approach is relatively simple, it can be slow and
+resource-intensive if the size of the working dataset is large. This is because the entire
+working dataset is loaded into memory and the text manipulation is performed in Python.
 
 To improve performance and efficiency, Django offers a declarative approach using
-expressions. These expressions allow you to offload operations like this to the
-database, which can be significantly faster and less resource-intensive than the
-imperative approach, especially for larger querysets. Here's how you can achieve the
-same result in a declarative manner:
+expressions. These expressions allow you to offload operations like this to the database,
+which can be significantly faster and less resource-intensive than the imperative approach,
+especially for larger querysets. Here's how you can achieve the same result in a declarative
+manner:
 
 ```python
 ...
@@ -97,7 +95,7 @@ file_paths_new = file_cabinet.values_list("file_path_new", flat=True)
 
 This will give you the following queryset:
 
-```
+```txt
 <QuerySet
     ['dir/file_1.pdf',
     'dir/file_2.csv',
@@ -110,44 +108,37 @@ This will give you the following queryset:
 Now, let's step through the each of the ORM functionality that was levereged here:
 
 The `annotate` function is being used to add additional information to each returned
-`FileCabinet` object. This function allows you to specify additional fields that should
-be calculated and included in the returned queryset. Inside the annotation method, we
-use `F` objects to reference a model field within the query. They can be used to
-refer to a field's value in the context of an update or filter, rather than referring
-to the actual field itself.
+`FileCabinet` object. This function allows you to specify additional fields that should be
+calculated and included in the returned queryset. Inside the annotation method, we use `F`
+objects to reference a model field within the query. They can be used to refer to a field's
+value in the context of an update or filter, rather than referring to the actual field
+itself.
 
-Three fields are being added to the `FileCabinet` objects: `last_occur`, `file_name`,
-and `file_path_new`.
+Three fields are being added to the `FileCabinet` objects: `last_occur`, `file_name`, and
+`file_path_new`.
 
-`last_occur` is being calculated by using the `StrIndex` function. This function takes
-two arguments: the string to search and the string to search for. In this case, the
-string being searched is the `file_path` field, but it has been passed through the
-`Reverse` function to reverse the string. This is done so that the `StrIndex` function
-starts searching from the end of the string, rather than the beginning. The second
-argument to `StrIndex` is the string to search for, which in this case is `/`. The
-`StrIndex` function returns the position of the first occurrence of the search string in
-the main string.
+`last_occur` is being calculated by using the `StrIndex` function. This function takes two
+arguments: the string to search and the string to search for. In this case, the string being
+searched is the `file_path` field, but it has been passed through the `Reverse` function to
+reverse the string. This is done so that the `StrIndex` function starts searching from the
+end of the string, rather than the beginning. The second argument to `StrIndex` is the
+string to search for, which in this case is `/`. The `StrIndex` function returns the
+position of the first occurrence of the search string in the main string.
 
 `file_name` is being calculated by using the `Right` function. This function takes two
-arguments: the string to extract from and the number of characters to extract. In this
-case, the string being extracted from is the `file_path` field, and the number of
-characters to extract is specified by the `last_occur` field. The `last_occur` field
-represents the position of the last occurrence of `/` in the file_path field, so
-extracting the characters from this position onwards gives us the file name with its
-extension. The `- 1` at the end is used to remove the `/` character itself from the
-extracted string.
+arguments: the string to extract from and the number of characters to extract. In this case,
+the string being extracted from is the `file_path` field, and the number of characters to
+extract is specified by the `last_occur` field. The `last_occur` field represents the
+position of the last occurrence of `/` in the file_path field, so extracting the characters
+from this position onwards gives us the file name with its extension. The `- 1` at the end
+is used to remove the `/` character itself from the extracted string.
 
-Finally, the `file_path_new` is constructed by using the `Concat` function. This
-function takes a variable number of arguments and concatenates them together into a
-single string. In this case, the `dir/` prefix is being concatenated with `file_name`
-field.
+Finally, the `file_path_new` is constructed by using the `Concat` function. This function
+takes a variable number of arguments and concatenates them together into a single string. In
+this case, the `dir/` prefix is being concatenated with `file_name` field.
 
 Perfection!
 
-## Resources
 
-* [Do database work in the database rather than in Python][1]
-* [Use StrIndex to get the last instance of a character for an annotation in Django][2]
-
-[1]: https://docs.djangoproject.com/en/4.1/topics/db/optimization/#do-database-work-in-the-database-rather-than-in-python
-[2]: https://stackoverflow.com/questions/67030571/django-use-strindex-to-get-the-last-instance-of-a-character-for-an-annotation
+[^1]: [Do database work in the database rather than in Python](https://docs.djangoproject.com/en/4.1/topics/db/optimization/#do-database-work-in-the-database-rather-than-in-python) [^1]
+[^2]: [Use StrIndex to get the last instance of a character for an annotation in Django](https://stackoverflow.com/questions/67030571/django-use-strindex-to-get-the-last-instance-of-a-character-for-an-annotation) [^2]

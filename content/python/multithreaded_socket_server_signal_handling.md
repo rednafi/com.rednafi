@@ -92,10 +92,10 @@ logs and made the demonstration difficult.
 Let's run the server and the client in two separate processes and then send a `SIGINT`
 signal to the server by clicking `Ctrl + C` on the server console:
 
-![echo-server-client-a]
+![multi-threaded socket server][image_1]
 
-At first, the server just ignores the signal, and clicking `Ctrl + C` multiple times
-crashes the server down with this nasty traceback (full traceback trimmed for brevity):
+At first, the server just ignores the signal, and clicking `Ctrl + C` multiple times crashes
+the server down with this nasty traceback (full traceback trimmed for brevity):
 
 ```txt
 Traceback (most recent call last):
@@ -266,9 +266,9 @@ Next, we define a new server class called `SocketServer` that inherits from the
 `ThreadingTCPServer` class. Here are the explanations for each:
 
 1. `reuse_address`: This variable determines whether the server can reuse a socket that's
-still in the [TIME_WAIT] state after a previous connection has been closed. If this variable
-is set to `True`, the server can reuse the socket. Otherwise, the socket will be unavailable
-for a short period of time after it's closed.
+still in the TIME_WAIT[^1] state after a previous connection has been closed. If this
+variable is set to `True`, the server can reuse the socket. Otherwise, the socket will be
+unavailable for a short period of time after it's closed.
 
 2. `daemon_threads`: This variable determines whether the server's worker threads should be
 daemon threads. Daemon threads are threads that run in the background and don't prevent the
@@ -322,7 +322,7 @@ means, upon receiving the interruption signal, the server will wait `5` seconds 
 shutting itself down. Notice, how we're running the `server.serve_forever` method in a new
 thread. That's because our custom signal handler explicitly calls the `shutdown` of the
 server instance and the `shutdown` method can only be called when the `serve_forever` loop
-is running in a different thread. From the [shutdown] documentation:
+is running in a different thread. From the shutdown[^2] documentation:
 
 > Tell the serve_forever() loop to stop and wait until it does. shutdown() must be called
 > while serve_forever() is running in a different thread otherwise it will deadlock.
@@ -369,14 +369,12 @@ terminals. Once both the server and client are running, try sending a `SIGINT` o
 three other handled signals. You see that the server acknowledges the interruption signal,
 gives the clients enough time to disconnect, then shut itself down in a graceful manner:
 
-![echo-server-client-b]
+![error handling in multi-threaded socket server][image_2]
 
-## References
 
-* [socketserver][socketserver]
+[^1]: [TIME_WAIT](https://totozhang.github.io/2016-01-31-tcp-timewait-status/)
+[^2]: [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)
+[^3]: [socketserver](https://docs.python.org/3/library/socketserver.html) [^3]
 
-[time_wait]: https://totozhang.github.io/2016-01-31-tcp-timewait-status/
-[echo-server-client-a]: https://user-images.githubusercontent.com/30027932/221752665-a6a1584d-e7bf-48b4-93a4-7679bc915682.png
-[echo-server-client-b]: https://user-images.githubusercontent.com/30027932/222344540-ace10d97-81f5-47d4-bf83-4ec505a72f74.png
-[shutdown]: https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown
-[socketserver]: https://docs.python.org/3/library/socketserver.html
+[image_1]: https://user-images.githubusercontent.com/30027932/221752665-a6a1584d-e7bf-48b4-93a4-7679bc915682.png
+[image_2]: https://user-images.githubusercontent.com/30027932/222344540-ace10d97-81f5-47d4-bf83-4ec505a72f74.png

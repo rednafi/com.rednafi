@@ -6,9 +6,9 @@ tags:
     - Testing
 ---
 
-I was reading [Ned Bachelder's][1] blog [*Why your mock doesn’t work*][1] and it
-triggered an epiphany in me about a testing pattern that I've been using for a while
-without being aware that there might be an aphorism on the practice.
+I was reading Ned Bachelder's blog "Why your mock doesn’t work"[^1] and it triggered an
+epiphany in me about a testing pattern that I've been using for a while without being aware
+that there might be an aphorism on the practice.
 
 > Patch where the object is used; not where it's defined.
 
@@ -27,8 +27,8 @@ def get_data() -> list[int]:
     return [random.randint(100, 200) for _ in range(4)]
 ```
 
-Let's say another module named `service.py` imports the `get_data` function and calls
-that inside of a function named `process_data`:
+Let's say another module named `service.py` imports the `get_data` function and calls that
+inside of a function named `process_data`:
 
 ```python
 # service.py
@@ -44,12 +44,12 @@ def process_data() -> list[int]:
 ```
 
 Now, let's say we want to write a test for the `service.process_data` function. Since the
-function depends on `db.get_data`, we'll patch the `get_data` function and replace it
-with a mock object that returns a canned response. This will make sure that calling
-`process` doesn't invoke the real `get_data` which might have side effects that we don't
-want to trigger during test runs. Also, in this case, instead of returning a list of
-pseudo-random integers, the replaced `get_data` function will deterministically return a
-list of known integers.
+function depends on `db.get_data`, we'll patch the `get_data` function and replace it with a
+mock object that returns a canned response. This will make sure that calling `process`
+doesn't invoke the real `get_data` which might have side effects that we don't want to
+trigger during test runs. Also, in this case, instead of returning a list of pseudo-random
+integers, the replaced `get_data` function will deterministically return a list of known
+integers.
 
 You could patch `get_data` in multiple ways. Here's the first attempt:
 
@@ -74,10 +74,10 @@ def test_process(mock_get_data):
 ```
 
 Since `get_data` is defined in the `db.py` module, we pass `db.get_data` to the `patch`
-decorator. Unfortunately, if you run the above test with [pytest][3], you'll see that the
+decorator. Unfortunately, if you run the above test with pytest[^2], you'll see that the
 test fails with the following error:
 
-```
+```txt
 test_service.py F                                      [100%]
 
 ========== FAILURES ==========
@@ -107,11 +107,10 @@ FAILED test_src.py::test_process
 ========== 1 failed in 0.14s ==========
 ```
 
-The original implementation of `get_data` returns a list of 4 pseudo-random integers
-where the values lie between 100 and 200 whereas our patched version of `get_data`
-always returns `[1, 2, 3, 4]`. So, the test is failing because the `get_data` function
-didn't get patched properly and it's calling the original `get_data` function during
-the test run.
+The original implementation of `get_data` returns a list of 4 pseudo-random integers where
+the values lie between 100 and 200 whereas our patched version of `get_data` always returns
+`[1, 2, 3, 4]`. So, the test is failing because the `get_data` function didn't get patched
+properly and it's calling the original `get_data` function during the test run.
 
 While the function `get_data` is defined in the `db.py` module, it's actally used in the
 `service.py` module. So, we can avoid this missing target issue by patching `get_data` in
@@ -128,6 +127,6 @@ def test_process(mock_get_data):
 
 This time, when you run the tests, pytest doesn't complain.
 
-[1]: https://nedbatchelder.com/
-[2]: https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html
-[3]: https://docs.pytest.org/en/latest/
+
+[^1]: [Why your mock doesn’t work]( https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
+[^2]: [pytest](https://docs.pytest.org/en/latest/)

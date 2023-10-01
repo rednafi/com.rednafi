@@ -18,7 +18,7 @@ custom data structures based on them. Python provides several mixin classes in t
 `collection.abc` module to design custom data structures that look and act like built-in
 structures with additional functionalities baked in.
 
-## Concept edifice
+## Concepts
 
 To understand how all these work, you'll need a fair bit of knowledge about Interfaces,
 Abstract Base Classes, Mixin Classes etc. I'll build the concept edifice layer by layer
@@ -283,11 +283,11 @@ Here, I've imported `ABC` class and `abstractmethod` decorator from the `abc` mo
 Python's standard library. The name `ABC` stands for *Abstract Base Class*. The interface
 class needs to inherit from this `ABC`class and all the abstract methods need to be
 decorated using the `abstractmethod` decorator. If your knowledge on decorators are fuzzy,
-checkout this in-depth article on [python decorators].
+checkout this in-depth article on python decorators[^1].
 
 Although, it seems like `ICalc` has merely inherited from the `ABC` class, under the hood,
-a [metaclass] `ABCMeta` gets attached to the interface which essentially makes sure that you
-can't instantiate this class independently. Let's try to do so and see what happens:
+a metaclass[^2] `ABCMeta` gets attached to the interface which essentially makes sure that
+you can't instantiate this class independently. Let's try to do so and see what happens:
 
 ```python
 i = ICalc()
@@ -299,8 +299,8 @@ TypeError                                 Traceback (most recent call last)
 <ipython-input-118-a3cb2945d943> in <module>
 ----> 1 i = ICalc()
 
-TypeError: Can't instantiate abstract class ICalc with abstract methods add, div, mul,
-sub
+TypeError: Can't instantiate abstract class ICalc with abstract methods
+add, div, mul, sub
 ```
 
 The error message clearly states that you can't instantiate the class `ICalc` directly at
@@ -408,7 +408,7 @@ about the cases where interfaces can come handy. I'll define an interface called
 interface defines three abstract methods `start`, `accelerate` and `stop` that the concrete
 classes will need to implement later.
 
-![screenshot_1]
+![mixins][image_1]
 
 ```python
 from abc import ABC, abstractmethod
@@ -534,8 +534,9 @@ These can help you when -
 in separate classes so that each of them is about one feature (behavior).
 * You want to use one particular feature in many different classes.
 
-Let's see a contrived example. Consider [Werkzeug]'s request and response system. Werkzeug
-is a small library that [Flask] depends on. I can make a plain old request object by saying:
+Let's see a contrived example. Consider Werkzeug's[^3] request and response system. Werkzeug
+is a small library that Flask[^4] depends on. I can make a plain old request object by
+saying:
 
 ```python
 from werkzeug import BaseRequest
@@ -555,8 +556,8 @@ class Request(AcceptMixin, BaseRequest):
     pass
 ```
 
-If I wanted to make a request object that supports accept headers, etags, user agent
-and authentication support, I could do this:
+If I wanted to make a request object that supports accept headers, etags, user agent and
+authentication support, I could do this:
 
 ```python
 from werkzeug import (
@@ -654,13 +655,12 @@ pprint(inspect.getmembers(f, predicate=inspect.ismethod))
 ```txt
 Factor: 10, Argument: 20,  Result: 200
 [('__init__',
-    <bound method FactorMult.__init__ of <__main__.FactorMult object at
-    0x7f0f0546bf40>>),
-    ('multiply',
-    <bound method FactorMult.multiply of <__main__.FactorMult object at 0x7f0f0546bf40>>),
-    ('multiply_show',
-    <bound method DisplayFactorMult.multiply_show of <__main__.FactorMult object at
-    0x7f0f0546bf40>>)]
+    <bound method FactorMult.__init__ of
+    <__main__.FactorMult object at 0x7f0f0546bf40>>),
+    ('multiply', <bound method FactorMult.multiply of
+    <__main__.FactorMult object at 0x7f0f0546bf40>>),
+    ('multiply_show', <bound method DisplayFactorMult.multiply_show of
+    <__main__.FactorMult object at 0x7f0f0546bf40>>)]
 ```
 
 The `FactorMult` class takes in a number as a factor and the `multiply` method simply
@@ -672,7 +672,7 @@ method `multiply`, a concrete method `multiply_show` and doesn't store any insta
 variable.
 
 If you really want to dive deeper into mixins and their real-life use cases, checkout the
-codebase of the [requests] library. It defines and employs many powerful mixin classes to
+codebase of the requests[^5] library. It defines and employs many powerful mixin classes to
 bestow superpowers upon different concrete classes.
 
 ## Building powerful custom data structures with mixins
@@ -876,7 +876,9 @@ vl2 = VerboseList(7, 8, 9)
 print(vl)
 print(f"Abstract Methods: {set(MutableSequence.__abstractmethods__)}")
 print(
-    f"Mixin Methods: { {k for k, v in MutableSequence.__dict__.items() if callable(v)}}"
+    f"Mixin Methods: {
+        {k for k, v in MutableSequence.__dict__.items() if callable(v)}
+    }"
 )
 ```
 
@@ -1008,7 +1010,9 @@ vf2 = VerboseFrozenDict(**{"b": "orange", "c": "mango"})
 print(vf)
 print(f"Abstract Methods: {set(Mapping.__abstractmethods__)}")
 print(
-    f"Mixin Methods: { {k for k, v in Mapping.__dict__.items() if callable(v)} }"
+    f"Mixin Methods: {
+        {k for k, v in Mapping.__dict__.items() if callable(v)}
+    }"
 )
 ```
 
@@ -1163,15 +1167,23 @@ vd = VerboseDict(**{"a": "apple", "b": "ball", "c": "cat"})
 print(vd)
 print(f"Abstract Methods: {set(MutableMapping.__abstractmethods__)}")
 print(
-    f"Mixin Methods: { {k for k, v in MutableMapping.__dict__.items() if callable(v)}}"
+    f"Mixin Methods: {
+        {k for k, v in MutableMapping.__dict__.items() if callable(v)}
+    }"
 )
 ```
 
 ```txt
 VerboseDict({'a': 'apple', 'b': 'ball', 'c': 'cat'})
-Abstract Methods: {'__delitem__', '__len__', '__iter__', '__getitem__', '__setitem__'}
-Mixin Methods: {'__setitem__', 'pop', 'popitem', '__delitem__', 'setdefault', 'update',
-'clear'}
+Abstract Methods: {
+    '__delitem__', '__len__', '__iter__',
+    '__getitem__', '__setitem__'
+}
+Mixin Methods: {
+    '__setitem__', 'pop', 'popitem',
+    '__delitem__', 'setdefault', 'update',
+    'clear'
+}
 ```
 
 The output statements reveal the structure of the `VeboseDict` class and the abstract and
@@ -1258,8 +1270,8 @@ integers in a fixed range. While storing integers, `BitSet` objects use less mem
 to built-in sets.
 
 However, since no hashing happens, it's slower to perform addition and retrieval compared to
-built-in sets. The following code snippet was taken directly from [Raymond Hettinger]'s 2019
-PyCon Russia [talk] on advanced data structures.
+built-in sets. The following code snippet was taken directly from Raymond Hettinger's 2019
+PyCon Russia talk[^6] on advanced data structures.
 
 ```python
 from collections.abc import MutableSet
@@ -1423,36 +1435,7 @@ Before running the code snippet below, you'll need to install SQLAlchemy as an e
 dependency.
 
 ```python
-sqla_dict.py
-"""
-This is a self contained custom data structure with dict like
-key-value storage capabilities.
-* Can store the key-value pairs in any sqlalchemy supported db
-* Employs thread safe transactional scope
-* Modular, just change the session_scope to use a different db
-* This example uses sqlite db for demonstration purpose
-The code is inspired by Raymond Hettinger's talk `Build powerful,
-new data structures with Python's abstract base classes`.
-https://www.youtube.com/watch?v=S_ipdVNSFlo
-MIT License
-Copyright (c) 2020 Redowan Delowar
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
-
+# sqla_dict.py
 
 from collections.abc import MutableMapping
 from contextlib import contextmanager
@@ -1586,24 +1569,15 @@ current working directory. You can inspect the database with any database viewer
 find your key-value pairs there. Everything else is the same as a built-in dictionary
 object.
 
-## References
+[^1]: [decorators](/python/decorators)
+[^2]: [metaclass](/python/metaclasses)
+[^3]: [werkzeug](https://werkzeug.palletsprojects.com/en/latest/)
+[^4]: [flask](https://flask.palletsprojects.com/)
+[^5]: [Mixins in the requests library](https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60)
+[^6]: [Build powerful, new data structures with Python's abstract base classes - Raymond Hettinger](https://www.youtube.com/watch?v=S_ipdVNSFlo)
+[^7]: [Implementing an interface in Python - Real Python](https://realpython.com/python-interface/) [^7]
+[^8]: [What is a mixin, and why are they useful? - Stackoverflow](https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful) [^8]
+[^9]: [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556) [^9]
 
-* [Implementing an Interface in Python - Real Python]
-* [What is a mixin, and why are they useful? - Stack Overflow]
-* [Mixins for Fun and Profit - Dan Hillard]
-* [Mixins in the Requests Library]
-* [Build powerful, new data structures with Python's abstract base classes - Raymond Hettinger][talk]
 
-
-[python decorators]: /python/decorators
-[metaclass]: /python/metaclasses
-[screenshot_1]: https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png
-[werkzeug]: https://werkzeug.palletsprojects.com/en/1.0.x/
-[flask]: https://flask.palletsprojects.com/
-[requests]: https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60
-[raymond hettinger]: https://twitter.com/raymondh
-[talk]: https://www.youtube.com/watch?v=S_ipdVNSFlo
-[implementing an interface in python - real python]: https://realpython.com/python-interface/
-[what is a mixin, and why are they useful? - stack overflow]: https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful
-[mixins for fun and profit - dan hillard]: https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556
-[mixins in the requests library]: https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60
+[image_1]: https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png

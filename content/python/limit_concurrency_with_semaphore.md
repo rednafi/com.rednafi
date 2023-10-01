@@ -6,15 +6,14 @@ tags:
 ---
 
 I was working with a rate-limited API endpoint where I continuously needed to send short
-polling GET requests without hitting HTTP 429 error. Perusing the API doc, I found out
-that the API endpoint only allows a maximum of 100 requests per second. So, my goal was
-to find out a way to send the maximum amount of requests without encountering the
-too-many-requests error.
+polling GET requests without hitting HTTP 429 error. Perusing the API doc, I found out that
+the API endpoint only allows a maximum of 100 requests per second. So, my goal was to find
+out a way to send the maximum amount of requests without encountering the too-many-requests
+error.
 
-I picked up Python's [Asyncio](https://docs.python.org/3/library/asyncio.html) and the
-amazing [HTTPx](https://www.python-httpx.org/) library by
-[Tom Christie](https://twitter.com/starletdreaming) to make the requests. This is the
-naive version that I wrote in the beginning; it quickly hits the HTTP 429 error:
+I picked up Python's asyncio[^1] and the amazing HTTPx[^2] library by Tom Christie to make
+the requests. This is the naive version that I wrote in the beginning; it quickly hits the
+HTTP 429 error:
 
 ```python
 # src.py
@@ -65,16 +64,16 @@ if __name__ == "__main__":
     asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
 ```
 
-Here, for this demonstration, I'm using the `https://httpbin.org/get` endpoint that's
-openly accessible. This particular endpoint doesn't impose any limit on the number of
-requests per second. However, in the above snippet, if you inspect the `for` loop in the
-`make_many_requests` function, you'll see that it's sending 200 concurrent requests
-without any restrictions.
+Here, for this demonstration, I'm using the `https://httpbin.org/get` endpoint that's openly
+accessible. This particular endpoint doesn't impose any limit on the number of requests per
+second. However, in the above snippet, if you inspect the `for` loop in the
+`make_many_requests` function, you'll see that it's sending 200 concurrent requests without
+any restrictions.
 
-Also, the snippet will raise a `ValueError` if it encounters an
-HTTP-429-too-many-requests error. Running the script produces the following output:
+Also, the snippet will raise a `ValueError` if it encounters an HTTP-429-too-many-requests
+error. Running the script produces the following output:
 
-```
+```txt
 Making request 0
 Making request 1
 Making request 2
@@ -102,20 +101,19 @@ Final result:
 ```
 
 From the output, it's pretty evident that the script is hammering the server without any
-delay between the concurrent requests. While 200 requests per second may not be that
-high but even if there weren't any restrictions, sending so many rogue requests like
-that isn't desirable. It's easy to overwhelm any service if you're not being careful.
+delay between the concurrent requests. While 200 requests per second may not be that high
+but even if there weren't any restrictions, sending so many rogue requests like that isn't
+desirable. It's easy to overwhelm any service if you're not being careful.
 
 Luckily, Python exposes a `Semaphore` construct that allows you to synchronize the
-concurrent workers (threads, processes, or coroutines) regarding how they should access
-a shared resource. All concurrency primitives in Python have semaphores to help you
-control resource access. This means if you're using any of the—`multiprocessing`,
-`threading`, or `asyncio` module, you can take advantage of it. From the `asyncio` docs:
+concurrent workers (threads, processes, or coroutines) regarding how they should access a
+shared resource. All concurrency primitives in Python have semaphores to help you control
+resource access. This means if you're using any of the—`multiprocessing`, `threading`, or
+`asyncio` module, you can take advantage of it. From the `asyncio` docs:
 
-> A semaphore manages an internal counter which is decremented by each `acquire()` call
-> and incremented by each `release()` call. The counter can never go below zero; when
-> `acquire()` finds that it is zero, it blocks, waiting until some task calls
-> `release()`.
+> A semaphore manages an internal counter which is decremented by each `acquire()` call and
+> incremented by each `release()` call. The counter can never go below zero; when
+> `acquire()` finds that it is zero, it blocks, waiting until some task calls `release()`.
 
 You can use the semaphores in the above script as follows:
 
@@ -152,14 +150,14 @@ async def make_one_request(url: str, num: int) -> httpx.Response:
 ```
 
 Here, I only had to change the `make_one_request` function to take advantage of the
-semaphore. First, I initialized an `asyncio.Semaphore` object with the limit `3`. This
-means the semaphore won't allow more than three concurrent workers to make HTTP GET
-requests at the same time. The semaphore instance is then used as a context manager.
-Inside the `async with` block, the line starting with `if limit.locked()` makes the
-workers wait for a second whenever the concurrency limit is reached. If you execute the
-script, it'll produce the following output:
+semaphore. First, I initialized an `asyncio.Semaphore` object with the limit `3`. This means
+the semaphore won't allow more than three concurrent workers to make HTTP GET requests at
+the same time. The semaphore instance is then used as a context manager. Inside the
+`async with` block, the line starting with `if limit.locked()` makes the workers wait for a
+second whenever the concurrency limit is reached. If you execute the script, it'll produce
+the following output:
 
-```
+```txt
 Making request 0
 Making request 1
 Making request 2
@@ -180,9 +178,9 @@ Making request 199
 ...
 ```
 
-The output makes it clear that no more than 3 async functions are making concurrent
-requests to the server at the same time. You can tune the number of concurrent workers
-by changing the limit in the `asyncio.Semaphore` object.
+The output makes it clear that no more than 3 async functions are making concurrent requests
+to the server at the same time. You can tune the number of concurrent workers by changing
+the limit in the `asyncio.Semaphore` object.
 
 ## Complete script
 
@@ -247,6 +245,6 @@ if __name__ == "__main__":
     asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
 ```
 
-## References
-
-* [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py)
+[^1]: [asyncio](https://docs.python.org/3/library/asyncio.html)
+[^2]: [HTTPx](https://www.python-httpx.org/)
+[^3]: [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py) [^3]

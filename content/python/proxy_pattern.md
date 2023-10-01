@@ -5,10 +5,10 @@ tags:
     - Python
 ---
 
-In Python, there's a saying that *[design patterns] are anti-patterns*. Also, in the realm
+In Python, there's a saying that "design patterns are anti-patterns". Also, in the realm
 of dynamic languages, design patterns have the notoriety of injecting additional abstraction
 layers to the core logic and making the flow gratuitously obscure. Python's dynamic nature
-and the treatment of functions as [first-class] objects often make Java-ish design patterns
+and the treatment of functions as first-class objects often make Java-ish design patterns
 redundant.
 
 Instead of littering your code with seemingly over-engineered patterns, you can almost
@@ -58,9 +58,9 @@ single method called `open_method` which denotes the action of *opening* on the 
 object. This method gets extended in the `SecuredDoor` class and in this case, I've just
 added a print statement to the method of the latter class.
 
-Notice how the class `Door` was called from `SecuredDoor` via [composition]. In the case of
-proxy pattern, you can substitute primary object with the proxy object without any
-additional changes in the code. This conforms to the [Liskov Substitution Principle]. It
+Notice how the class `Door` was called from `SecuredDoor` via composition[^1]. In the case
+of proxy pattern, you can substitute primary object with the proxy object without any
+additional changes in the code. This conforms to the Liskov Substitution Principle[^2]. It
 states:
 
 > Objects of a superclass shall be replaceable with objects of its subclasses without
@@ -84,8 +84,8 @@ Wikipedia says:
 > provided, for example caching when operations on the real object are resource intensive,
 > or checking preconditions before operations on the real object are invoked.
 
-Pedagogically, the proxy pattern belongs to a family of patterns called the
-[structural pattern].
+Pedagogically, the proxy pattern belongs to a family of patterns called the structural
+pattern[^3].
 
 ## Why use it?
 
@@ -131,7 +131,7 @@ print(division(1.9, 2))
 ```
 
 You can see this function is already doing three things at once which violates the
-[Single Responsibility Principle]. SRP says that a function or class should have only one
+Single Responsibility Principle[^4]. SRP says that a function or class should have only one
 reason to change. In this case, a change in any of the three responsibilities can force the
 function to change. Also this means, changing or extending the function can be difficult to
 keep track of.
@@ -283,7 +283,7 @@ It's evident from the above workflow that you'll need to define an `Interface` c
 Python provides abstract base classes as `ABC` in the `abc` module. Abstract class
 `Interface` inherits from `ABC` and defines all the methods that the concrete class will
 have to implement later. `Concrete` class inherits from the interface and implements all the
-methods defined in it. Notice how each method in the `Interface` class is decorated with the `@abstractmethod` decorator. If your knowledge on decorator is fuzzy, then checkout [this]
+methods defined in it. Notice how each method in the `Interface` class is decorated with the `@abstractmethod` decorator. If your knowledge on decorator is fuzzy, then checkout this[^5]
 post on Python decorators. The `@abstractmethod` decorator turns a normal method into an
 abstract method which means that the method is nothing but a blueprint of the required
 methods that the concrete subclass will have to implement later. You can't directly
@@ -468,7 +468,7 @@ if __name__ == "__main__":
         pprint(fetch.get_args(data))
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 INFO:root:Getting the headers at 2022-01-31 16:54:36.214562
@@ -496,7 +496,7 @@ Cache Info: CacheInfo(hits=0, misses=1, maxsize=32, currsize=1)
 ....
 ```
 
-In the `get_data` method of the `FetchUrl` class, I've used the awesome [httpx] client to
+In the `get_data` method of the `FetchUrl` class, I've used the awesome HTTPx[^6] client to
 fetch the data from the URL. Pay attention to the fact that I've practically ignored all the
 additional logics of error handling and logging here. The exception handling and logging
 logic were added via `ExcFetchUrl` proxy class. Another class `CacheFetchUrl` further
@@ -526,21 +526,12 @@ So use the pattern wisely. On the flip side, proxy pattern can come in handy whe
 to extend the functionality of some class arbitrarily as it can work a gateway to the El
 Dorado of loose coupling.
 
-## References
 
-* [Python patterns]
-* [Design patterns for humans]
-* [Design patterns - refactoring guru]
-* [Design patterns & idioms]
-
-[design patterns]: https://en.wikipedia.org/wiki/Design_Patterns
-[composition]: https://realpython.com/inheritance-composition-python/#composition-in-python
-[liskov substitution principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
-[structural pattern]: https://en.wikipedia.org/wiki/Structural_pattern
-[single responsibility principle]: https://stackify.com/solid-design-principles/
-[this]: /python/decorators
-[httpx]: https://github.com/encode/httpx
-[python patterns]: https://github.com/faif/python-patterns
-[design patterns for humans]: https://github.com/kamranahmedse/design-patterns-for-humans
-[design patterns - refactoring guru]: https://refactoring.guru/design-patterns/proxy/python/example
-[design patterns & idioms]: https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Fronting.html
+[^1]: [Composition](https://realpython.com/inheritance-composition-python/#composition-in-python)
+[^2]: [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+[^3]: [Structural pattern](https://en.wikipedia.org/wiki/Structural_pattern)
+[^4]: [Single Responsibility Principle](https://stackify.com/solid-design-principles/)
+[^5]: [Python decorators](/python/decorators)
+[^6]: [HTTPx](https://github.com/encode/httpx)
+[^7]: [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py) [^7]
+[^8]: [Design patterns for humans - proxy pattern](https://github.com/kamranahmedse/design-patterns-for-humans#-proxy) [^8]

@@ -11,11 +11,11 @@ In Python, metaclass is one of the few tools that enables you to inject metaprog
 capabilities into your code. The term metaprogramming refers to the potential for a program
 to manipulate itself in a self referential manner. However, messing with metaclasses is
 often considered an arcane art that's beyond the grasp of the plebeians. Heck, even
-[Tim Peters] advices you to tread carefully while dealing with these.
+Tim Peters[^1] advices you to tread carefully while dealing with these.
 
 > Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder
-> whether you need them, you don’t (the people who actually need them know with
-> certainty that they need them, and don’t need an explanation about why).
+> whether you need them, you don’t (the people who actually need them know with certainty
+> that they need them, and don’t need an explanation about why).
 
 Metaclasses are an esoteric OOP concept, lurking behind virtually all Python code. Every
 Python class that you create is attached to a default metaclass and Python cleverly
@@ -30,7 +30,7 @@ A metaclass is a class whose instances are classes. Like an "ordinary" class def
 behavior of the instances of the class, a metaclass defines the behavior of classes and
 their instances.
 
-![image.png]
+![metaclass][image_1]
 
 Metaclasses aren't supported by every object oriented programming language. Those
 programming language, which support metaclasses, considerably vary in way they implement
@@ -266,7 +266,7 @@ class A(metaclass=ExampleMeta):
 a = A(1, 3)
 ```
 
-```
+```txt
 Calling __prepare__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
 Calling __new__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
 Calling __init__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
@@ -312,7 +312,7 @@ class Third(First, Second):
 third = Third()
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call last)
@@ -325,8 +325,8 @@ TypeError                                 Traceback (most recent call last)
         15
 
 
-TypeError: metaclass conflict: the metaclass of a derived class must be a (non-strict)
-subclass of the metaclasses of all its bases
+TypeError: metaclass conflict: the metaclass of a derived class must be a
+(non-strict) subclass of the metaclasses of all its bases
 ```
 
 Class `First` and `Second` are attached to different metaclasses and class `Third` inherits
@@ -376,7 +376,7 @@ p = Point(5, 10)
 print(p)
 ```
 
-```
+```txt
 INFO:root:classname: Point
 INFO:root:baseclasses: ()
 INFO:root:attrs: {'__module__': '__main__', '__qualname__': 'Point', '__init__':
@@ -430,7 +430,7 @@ a = A(1, 2)
 print(a.__attrs_ordered__)
 ```
 
-```
+```txt
 ['__init__', '__module__', '__qualname__']
 ```
 
@@ -468,7 +468,7 @@ b = A()
 a is b
 ```
 
-```
+```txt
 True
 ```
 
@@ -510,7 +510,7 @@ class B(A):
 a = A()
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 RuntimeError                              Traceback (most recent call last)
@@ -560,7 +560,7 @@ class C(A, B):
     pass
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call last)
@@ -628,7 +628,7 @@ s = Shouter()
 s.intro()
 ```
 
-```
+```txt
 Executing Shouter.__init__ took 9.5367431640625e-07 seconds.
 I shout!
 Executing Shouter.intro took 1.0011515617370605 seconds.
@@ -670,7 +670,7 @@ b = B()
 print(registry)
 ```
 
-```
+```txt
 {'A': __main__.A, 'B': __main__.B, 'C': __main__.C, 'D': __main__.D}
 ```
 
@@ -728,7 +728,7 @@ mycal = CalcAdv()
 print(mycal.mul(2, 3))
 ```
 
-```
+```txt
 Full name of this method: CalcAdv.mul
 6
 ```
@@ -791,7 +791,7 @@ mycal = CalcAdv()
 print(mycal.div(2, 0))
 ```
 
-```
+```txt
 Exception Occured!
 Method name: CalcAdv.div
 Args: (<__main__.CalcAdv object at 0x7febe692d1c0>, 2, 0), Kwargs: {}
@@ -852,7 +852,7 @@ class ICalc(ABC):
 intrf = ICalc()
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call last)
@@ -863,7 +863,8 @@ TypeError                                 Traceback (most recent call last)
 ---> 23 intrf = ICalc()
 
 
-TypeError: Can't instantiate abstract class ICalc with abstract methods add, div, mul, sub
+TypeError: Can't instantiate abstract class ICalc with abstract methods
+add, div, mul, sub
 ```
 
 Although it seems like interface `ICalc` is simply inheriting from the class `ABC`, in fact,
@@ -954,10 +955,14 @@ inv = InvoiceIssued(
 print(inv)
 ```
 
-```
-InvoiceIssued(created_at=datetime.datetime(2020, 6, 20, 1, 3, 24, 967633),
-invoice_uuid=22, customer_uuid=34, total_amount=100.0, due_date=datetime.datetime(2020,
-6, 19, 0, 0))
+```txt
+InvoiceIssued(
+    created_at=datetime.datetime(2020, 6, 20, 1, 3, 24, 967633),
+    invoice_uuid=22,
+    customer_uuid=34,
+    total_amount=100.0,
+    due_date=datetime.datetime(2020, 6, 19, 0, 0)
+)
 ```
 
 #### Avoiding dataclass decorator with metaclasses
@@ -1025,10 +1030,14 @@ inv = InvoiceIssued(
 print(inv)
 ```
 
-```
-InvoiceIssued(created_at=datetime.datetime(2020, 6, 24, 12, 57, 22, 543328),
-invoice_uuid=22, customer_uuid=34, total_amount=100.0, due_date=datetime.datetime(2020,
-6, 19, 0, 0))
+```txt
+InvoiceIssued(
+    created_at=datetime.datetime(2020, 6, 24, 12, 57, 22, 543328),
+    invoice_uuid=22,
+    customer_uuid=34,
+    total_amount=100.0,
+    due_date=datetime.datetime(2020, 6, 19, 0, 0)
+)
 ```
 
 ## Should you use it?
@@ -1054,25 +1063,18 @@ reached its EOL. Save yourself some trouble and switch to Python 3.x if you alre
 done so.
 
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on them
-is rusty, checkout these posts on [decorators] and [dataclasses].
-
-## References
-
-* [Understanding Python's metaclasses]
-* [What are metaclasses in Python - Stackoverflow]
-* [Python metaclasses - Real Python]
-* [Metaclasses - Python course EU]
-* [When to use metaclasses in Python]
-* [A primer on Python metaclasses]
+is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 
 
-[tim peters]: https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
-[image.png]: https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg
-[decorators]: /python/decorators
-[dataclasses]: /python/dataclasses
-[understanding python's metaclasses]: https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/
-[what are metaclasses in python - stackoverflow]: https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python
-[python metaclasses - real python]: https://realpython.com/python-metaclasses/
-[metaclasses - Python course eu]: https://www.python-course.eu/python3_metaclasses.php
-[when to use metaclasses in python]: https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/
-[a primer on python metaclasses]: https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/
+[^1]: [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer))
+[^2]: [decorators](/python/decorators)
+[^3]: [dataclasses](/python/dataclasses)
+[^4]: [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/) [^4]
+[^5]: [What are metaclasses in Python - Stackoverflow]( https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python) [^5]
+[^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
+[^7]: [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php) [^7]
+[^8]: [When to use metaclasses in Python](https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/) [^8]
+[^9]: [A primer on Python metaclasses]( https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/) [^9]
+
+
+[image_1]: https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg

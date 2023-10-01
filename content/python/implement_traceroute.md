@@ -8,20 +8,19 @@ tags:
     - Shell
 ---
 
-I was watching this amazing lightning [talk][storytelling-with-traceroute] by [Karla
-Burnett][karla-burnett] and wanted to understand how `traceroute` works in UNIX.
-Traceroute is a tool that shows the route of a network packet from your computer to
-another computer on the internet. It also tells you how long it takes for the packet to
-reach each stop along the way.
+I was watching this amazing lightning talk[^1] by Karla Burnett and wanted to understand how
+`traceroute` works in Unix. Traceroute is a tool that shows the route of a network packet
+from your computer to another computer on the internet. It also tells you how long it takes
+for the packet to reach each stop along the way.
 
-It's useful when you want to know more about how your computer connects to other
-computers on the internet. For example, if you want to visit a website, your computer
-sends a request to the website’s server, which is another computer that hosts the
-website. But the request doesn’t go directly from your computer to the server. It has to
-pass through several other devices, such as routers, that help direct the traffic on the
-internet. These devices are called hops. Traceroute shows you the list of hops that your
-request goes through, and how long it takes for each hop to respond. This can help you
-troubleshoot network problems, such as slow connections or unreachable websites.
+It's useful when you want to know more about how your computer connects to other computers
+on the internet. For example, if you want to visit a website, your computer sends a request
+to the website’s server, which is another computer that hosts the website. But the request
+doesn’t go directly from your computer to the server. It has to pass through several other
+devices, such as routers, that help direct the traffic on the internet. These devices are
+called hops. Traceroute shows you the list of hops that your request goes through, and how
+long it takes for each hop to respond. This can help you troubleshoot network problems, such
+as slow connections or unreachable websites.
 
 This is how you usually use `traceroute`:
 
@@ -50,61 +49,60 @@ traceroute to example.com (93.184.216.34), 64 hops max, 52 byte packets
 ```
 
 This traceroute output draws the path of a network packet from my computer to
-`example.com`'s server, which has an IP address of `93.184.216.34`. It shows that the
-packet goes through 11 hops before reaching the destination. The first hop is my
-router (`192.168.1.1`), the second hop is my ISP's router (`142.254.158.201`), and so
-on. The last column shows the time it takes for each hop to respond in milliseconds
-(ms). The lower the time, the faster the connection.
+`example.com`'s server, which has an IP address of `93.184.216.34`. It shows that the packet
+goes through 11 hops before reaching the destination. The first hop is my router
+(`192.168.1.1`), the second hop is my ISP's router (`142.254.158.201`), and so on. The last
+column shows the time it takes for each hop to respond in milliseconds (ms). The lower the
+time, the faster the connection.
 
-Some hops have multiple lines with different names or IP addresses. This means that
-there are multiple routers at that hop that can handle the traffic, and `traceroute`
-randomly picks one of them for each packet. For example, hop 7 has three routers with
-names starting with `lag-11`, `lag-21`, and `lag-31`. These are probably load-balancing
-routers that distribute the traffic among them.
+Some hops have multiple lines with different names or IP addresses. This means that there
+are multiple routers at that hop that can handle the traffic, and `traceroute` randomly
+picks one of them for each packet. For example, hop 7 has three routers with names starting
+with `lag-11`, `lag-21`, and `lag-31`. These are probably load-balancing routers that
+distribute the traffic among them.
 
-The last hop (`93.184.216.34`) appears twice in the output. This is because traceroute
-sends three packets to each hop by default, and sometimes the last hop responds to all
-three packets instead of discarding them. This is not a problem and does not affect the
-accuracy of the traceroute.
+The last hop (`93.184.216.34`) appears twice in the output. This is because traceroute sends
+three packets to each hop by default, and sometimes the last hop responds to all three
+packets instead of discarding them. This is not a problem and does not affect the accuracy
+of the traceroute.
 
 This is all good and dandy but I wanted to understand how `traceroute` can find out what
 route a packet takes and how long it takes between each hop. So I started reading blogs
-like [this][how-traceroute-works] one that does an awesome job at explaining what's
-going on behind the scene. The gist of it goes as follows.
+like this[^2] one that does an awesome job at explaining what's going on behind the scene.
+The gist of it goes as follows.
 
 ## How traceroute works
 
 Traceroute works by sending a series of ICMP (Internet Control Message Protocol) echo
-request packets, which are also known as pings, to the target IP address or URL that
-you want to reach. Each packet has an associated time-to-live (TTL) value, which is a
-number that indicates how many hops (or intermediate devices) the packet can pass
-through before it expires and is discarded by a router. Yeah, strangely, TTL doesn't
-denote any time duration here.
+request packets, which are also known as pings, to the target IP address or URL that you
+want to reach. Each packet has an associated time-to-live (TTL) value, which is a number
+that indicates how many hops (or intermediate devices) the packet can pass through before it
+expires and is discarded by a router. Yeah, strangely, TTL doesn't denote any time duration
+here.
 
-Traceroute starts by sending a packet with a low TTL value, usually 1. This means that
-the packet can only make one hop before it expires. When a router receives this packet,
-it decreases its TTL value by 1 and checks if it is 0. If it is 0, the router discards
-the packet and sends back an **ICMP time exceeded message** to the source of the packet.
-This message contains the IP address of the router that discarded the packet. This is
-how the sender knows the IP address of the first hop (router, computer, or whatsoever).
+Traceroute starts by sending a packet with a low TTL value, usually 1. This means that the
+packet can only make one hop before it expires. When a router receives this packet, it
+decreases its TTL value by 1 and checks if it is 0. If it is 0, the router discards the
+packet and sends back an **ICMP time exceeded message** to the source of the packet. This
+message contains the IP address of the router that discarded the packet. This is how the
+sender knows the IP address of the first hop (router, computer, or whatsoever).
 
 Traceroute records the IP address and round-trip time (RTT) of each ICMP time exceeded
-message it receives. The RTT is the time it takes for a packet to travel from the
-source to the destination and back. It reflects the latency (or delay) between each hop.
+message it receives. The RTT is the time it takes for a packet to travel from the source to
+the destination and back. It reflects the latency (or delay) between each hop.
 
-Traceroute then increases the TTL value by 1 and sends another packet. This packet can
-make 2 hops before it expires. The process repeats until traceroute reaches the
-destination or a maximum TTL value, usually 30. When the returned IP is the same as the
-initial destination IP, `traceroute` knows that the packet has completed the whole
-journey. By doing this, traceroute can trace the route that your packets take to
-reach the target IP address or URL and measure the latency between each hop. The tool
-prints out the associated IPs and latencies as it jumps through different hops.
+Traceroute then increases the TTL value by 1 and sends another packet. This packet can make
+2 hops before it expires. The process repeats until traceroute reaches the destination or a
+maximum TTL value, usually 30. When the returned IP is the same as the initial destination
+IP, `traceroute` knows that the packet has completed the whole journey. By doing this,
+traceroute can trace the route that your packets take to reach the target IP address or URL
+and measure the latency between each hop. The tool prints out the associated IPs and
+latencies as it jumps through different hops.
 
-I snagged this photo from an SFU (Simon Fraser University) [slide][traceroute-slide]
-that I think explains the machinery of `traceroute` quite well:
+I snagged this photo from an SFU (Simon Fraser University) slide[^3] that I think explains
+the machinery of `traceroute` quite well:
 
-![traceroute-workflow]
-
+![how traceroute works][image_1]
 
 ## Writing a crappier version of traceroute in Python
 
@@ -265,14 +263,8 @@ Hop  IP Address          Hostname                                          Time 
 10   93.184.216.34                                                         23.546     ms
 ```
 
-## References
+[^1]: [Storytelling with traceroute](https://www.youtube.com/watch?v=xW_ALxfop7Y)
+[^2]: [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
+[^3]: [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
 
-* [Storytelling with traceroute][storytelling-with-traceroute]
-* [How traceroute works][how-traceroute-works]
-* [Traceroute machinery slide][traceroute-slide]
-
-[storytelling-with-traceroute]: https://www.youtube.com/watch?v=xW_ALxfop7Y
-[karla-burnett]: https://twitter.com/tetrakazi
-[how-traceroute-works]: https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command
-[traceroute-workflow]: https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b
-[traceroute-slide]: http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm
+[image_1]: https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b
