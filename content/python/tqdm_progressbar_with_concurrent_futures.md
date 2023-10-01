@@ -6,14 +6,14 @@ tags:
 ---
 
 At my workplace, I was writing a script to download multiple files from different S3
-buckets. The script relied on Django ORM, so I couldn't use Python's async paradigm to
-speed up the process. Instead, I opted for `boto3` to download the files and
-`concurrent.futures.ThreadPoolExecutor` to spin up multiple threads and make the
-requests concurrently.
+buckets. The script relied on Django ORM, so I couldn't use Python's async paradigm to speed
+up the process. Instead, I opted for `boto3` to download the files and
+`concurrent.futures.ThreadPoolExecutor` to spin up multiple threads and make the requests
+concurrently.
 
-However, since the script was expected to be long-running, I needed to display progress
-bars to show the state of execution. It's quite easy to do with `tqdm` when you're just
-looping over a list of file paths and downloading the contents synchronously:
+However, since the script was expected to be long-running, I needed to display progress bars
+to show the state of execution. It's quite easy to do with `tqdm` when you're just looping
+over a list of file paths and downloading the contents synchronously:
 
 ```python
 from tqdm import tqdm
@@ -78,24 +78,23 @@ if __name__ == "__main__":
 
 Running this will print:
 
-```
+```txt
 100%|█████████████████████████████████████████████████████| 5/5
                                         [00:01<00:00,  3.51it/s]
 ...
 ```
 
 This script makes 5 concurrent requests by leveraging `ThreadPoolExecutor` from the
-`concurrent.futures` module. The `make_request` function just sends one request to a
-URL and sleeps for a second to simulate a long-running task. Then the `make_requests`
-function spins up 5 threads and calls the `make_request` function in each one with
-a different URL.
+`concurrent.futures` module. The `make_request` function just sends one request to a URL and
+sleeps for a second to simulate a long-running task. Then the `make_requests` function spins
+up 5 threads and calls the `make_request` function in each one with a different URL.
 
-Here, we're instantiating `tqdm` as a context manager and passing the total length of
-the `urls`. This allows `tqdm` to calculate the progress bar. Then in a nested context
-manager, we spin up the threads and pass the `make_request` to the `executor.submit`
-method. We collect the future objects returned by the `executor.submit` methods in a
-list and update the progress bar with `pbar.update(1)` while iterating through the
-futures. And that's it, mission successful.
+Here, we're instantiating `tqdm` as a context manager and passing the total length of the
+`urls`. This allows `tqdm` to calculate the progress bar. Then in a nested context manager,
+we spin up the threads and pass the `make_request` to the `executor.submit` method. We
+collect the future objects returned by the `executor.submit` methods in a list and update
+the progress bar with `pbar.update(1)` while iterating through the futures. And that's it,
+mission successful.
 
 I usually use `contextlib.ExitStack` to avoid nested context managers like this:
 
@@ -123,8 +122,5 @@ def make_requests(
 
 Running this script will yield the same result as before.
 
-## References
 
-* [How to use tqdm with multithreading?][1]
-
-[1]: https://stackoverflow.com/questions/63826035/how-to-use-tqdm-with-multithreading
+[^1]: [How to use tqdm with multithreading?](https://stackoverflow.com/questions/63826035/how-to-use-tqdm-with-multithreading) [^1]

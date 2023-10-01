@@ -6,9 +6,8 @@ tags:
     - Typing
 ---
 
-[PEP-673](https://www.python.org/dev/peps/pep-0673/) introduces the `Self` type and it's
-coming to Python 3.11. However, you can already use that now via the
-[`typing_extenstions`](https://typing.readthedocs.io/) module.
+PEP-673[^1] introduces the `Self` type and it's coming to Python 3.11. However, you can
+already use that now via the `typing_extenstions`[^2] module.
 
 The `Self` type makes annotating methods that return the instances of the corresponding
 classes trivial. Before this, you'd have to do some mental gymnastics to statically type
@@ -47,21 +46,20 @@ if __name__ == "__main__":
 ```
 
 The class `Animal` has a `from_description` class method that acts as an additional
-constructor. It takes a description string, and then builds and returns an instance of
-the same class. The return type of the method is annotated as `Animal` here. However,
-doing this makes the child class `Dog` conflate its identity with the `Animal` class. If
-you execute the snippet, it won't raise any runtime error. Also, Mypy will complain
-about the type:
+constructor. It takes a description string, and then builds and returns an instance of the
+same class. The return type of the method is annotated as `Animal` here. However, doing this
+makes the child class `Dog` conflate its identity with the `Animal` class. If you execute
+the snippet, it won't raise any runtime error. Also, Mypy will complain about the type:
 
-```
+```txt
 src.py:27: error: "Animal" has no attribute "legs"
         print(dog.legs)  # Mypy complains here!
               ^
 Found 1 error in 1 file (checked 1 source file)
 ```
 
-To fix this, we'll have to make sure that the return type of the `from_description`
-class method doesn't confuse the type checker. This is one way to do this:
+To fix this, we'll have to make sure that the return type of the `from_description` class
+method doesn't confuse the type checker. This is one way to do this:
 
 ```python
 from __future__ import annotations
@@ -86,11 +84,11 @@ class Animal:
 ```
 
 In the above snippet, first I had to declare a `TypeVar` and bind that to the `Animal`
-class. Then I had to explicitly type the `cls` variable in the `from_description`
-method. This time, the type checker will be happy. While this isn't a lot of work, it
-surely goes against the community convention. Usually, we don't explicitly type the
-`self`, `cls` variables and instead, let the type checker figure out their types. Also,
-subjectively, this sticks out like a sore thumb.
+class. Then I had to explicitly type the `cls` variable in the `from_description` method.
+This time, the type checker will be happy. While this isn't a lot of work, it surely goes
+against the community convention. Usually, we don't explicitly type the `self`, `cls`
+variables and instead, let the type checker figure out their types. Also, subjectively, this
+sticks out like a sore thumb.
 
 PEP-673 allows us to solve the issue elegantly:
 
@@ -189,5 +187,6 @@ class Config:
 The `__new__` method in the `Config` class validates the `var` before constructing an
 instance of the class. The `Self` type makes it easy to annotate the method.
 
-* [PEP 673 -- Self Type](https://www.python.org/dev/peps/pep-0673/)
-* [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1491187805636407298)
+[^1]: [PEP 673 -- Self Type](https://www.python.org/dev/peps/pep-0673/)
+[^2]: [typing_extensions](https://typing.readthedocs.io/)
+[^3]: [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1491187805636407298) [^3]

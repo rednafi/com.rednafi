@@ -1,17 +1,16 @@
 ---
-title: UNIX-style pipelining with Python's subprocess module
+title: Unix-style pipelining with Python's subprocess module
 date: 2023-07-14
 tags:
     - Python
     - TIL
 ---
 
-
-Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and
-run arbitrary commands in your system. However, the documentation usually encourages you
-to use the [subprocess] module for creating and managing child processes. The `subprocess`
-module exposes a high-level `run()` function that provides a simple interface for running
-a subprocess and waiting for it to complete. It accepts the command to run as a list of
+Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and run
+arbitrary commands in your system. However, the documentation usually encourages you to use
+the subprocess[^1] module for creating and managing child processes. The `subprocess` module
+exposes a high-level `run()` function that provides a simple interface for running a
+subprocess and waiting for it to complete. It accepts the command to run as a list of
 strings, starts the subprocess, waits for it to finish, and then returns a
 `CompletedProcess` object with information about the result. For example:
 
@@ -40,15 +39,14 @@ This works great when you're carrying out simple and synchronous workflows, but 
 offer enough flexibility when you need to fork multiple processes and want the processes
 to run in parallel. I was working on a project where I wanted to glue a bunch of programs
 together with Python and needed a way to run composite shell commands with pipes, e.g.
-`echo 'foo\nbar' | grep 'foo'`. So I got curious to see how I could emulate that in
-Python.
+`echo 'foo\nbar' | grep 'foo'`. So I got curious to see how I could emulate that in Python.
 
 Turns out you can do that easily with `subprocess.Popen`. This function allows for more
-control over the subprocess. It starts the process and returns a `Popen` object
-immediately, without waiting for the command to complete. This allows you to continue
-executing code while the subprocess runs in parallel. `Popen` has methods like `poll()` to
-check if the process has finished, `wait()` to wait for completion, and `communicate()`
-for interacting with stdin/stdout/stderr. For example:
+control over the subprocess. It starts the process and returns a `Popen` object immediately,
+without waiting for the command to complete. This allows you to continue executing code
+while the subprocess runs in parallel. `Popen` has methods like `poll()` to check if the
+process has finished, `wait()` to wait for completion, and `communicate()` for interacting
+with stdin/stdout/stderr. For example:
 
 ```python
 import subprocess
@@ -129,9 +127,9 @@ UID PID PPID C STIME   TTY   TIME     CMD
 ```
 
 The `ps -ef` command outputs a full list of running processes, then the pipe symbol sends
-that output as input to the `head -5` command, which reads the first 5 lines from that
-input and prints just those, essentially slicing off the top 5 processes. We can emulate
-this in Python as follows:
+that output as input to the `head -5` command, which reads the first 5 lines from that input
+and prints just those, essentially slicing off the top 5 processes. We can emulate this in
+Python as follows:
 
 ```python
 import subprocess
@@ -151,20 +149,20 @@ stdout, stderr = head_cmd.communicate()
 print(stdout)
 ```
 
-This snippet uses the `subprocess.Popen` to run shell commands and pipe the outputs
-between them. First, `ps_cmd` executes `ps -ef` and sends the full output to the
-`subprocess.PIPE` buffer. Next, `head_cmd` runs `head -n 5`. The stdin of `head_cmd` is
-set to the stdout of `ps_cmd`. This pipes the stdout from `ps_cmd` as input to `head_cmd`.
-Finally, `head_cmd.communicate()` runs the composite command and waits for the whole thing
-to finish. The final output of this snippet is the same as the `ps -ef | head -5` command.
+This snippet uses the `subprocess.Popen` to run shell commands and pipe the outputs between
+them. First, `ps_cmd` executes `ps -ef` and sends the full output to the `subprocess.PIPE`
+buffer. Next, `head_cmd` runs `head -n 5`. The stdin of `head_cmd` is set to the stdout of
+`ps_cmd`. This pipes the stdout from `ps_cmd` as input to `head_cmd`. Finally,
+`head_cmd.communicate()` runs the composite command and waits for the whole thing to finish.
+The final output of this snippet is the same as the `ps -ef | head -5` command.
 
 Here's another example where we'll emulate the `sha256sum < <(echo 'foo')` command. On the
 left side, `sha256sum` computes the SHA-256 cryptographic hash of an input. The construct
-`<(echo 'foo')` creates a temporary file descriptor containing the output 'foo' from
-`echo`, which is then redirected via `<` as standard input to `sha256sum`. Together this
-computes and prints the SHA-256 hash of the input string without needing an actual file.
-In this particular case, we want to compute the hash of 3 different inputs in parallel by
-spawning three separate processes.
+`<(echo 'foo')` creates a temporary file descriptor containing the output 'foo' from `echo`,
+which is then redirected via `<` as standard input to `sha256sum`. Together this computes
+and prints the SHA-256 hash of the input string without needing an actual file. In this
+particular case, we want to compute the hash of 3 different inputs in parallel by spawning
+three separate processes.
 
 ```python
 import subprocess
@@ -203,20 +201,20 @@ Running this snippet will display the 3 hashes:
 f9aa6903c454c70f037328fa1504bf66700e6fdb20407fe1830223e3acec2028  -
 ```
 
-First, we define a function called `calculate_hash` that accepts a bytes plaintext input
-and returns a `subprocess.Popen` object. This function will spawn a new child process
-running the `sha256sum` command. The stdin and stdout of the child process are configured
-as `subprocess.PIPE` using the `Popen` constructor. This enables data to be piped between
-the parent and child processes. Inside `calculate_hash`, the plaintext input is written to
-the stdin pipe of the child process using `proc.stdin.write()`. This pipes the data into
-the child's standard input stream. Next, `proc.stdin.flush()` method is called to ensure
-the child process actually receives the input.
+First, we define a function called `calculate_hash` that accepts a bytes plaintext input and
+returns a `subprocess.Popen` object. This function will spawn a new child process running
+the `sha256sum` command. The stdin and stdout of the child process are configured as
+`subprocess.PIPE` using the `Popen` constructor. This enables data to be piped between the
+parent and child processes. Inside `calculate_hash`, the plaintext input is written to the
+stdin pipe of the child process using `proc.stdin.write()`. This pipes the data into the
+child's standard input stream. Next, `proc.stdin.flush()` method is called to ensure the
+child process actually receives the input.
 
 The main logic begins by initializing an empty list called `procs`. Then a loop runs 3
 times, each time generating a random 10-byte string using `os.urandom`. This string is
 passed to `calculate_hash`, which spawns a new `sha256sum` child process, pipes the random
-data to it, and returns the `Popen` object representing the child. Each `Popen` is
-appended to the procs list, so now there are 3 child processes running in parallel.
+data to it, and returns the `Popen` object representing the child. Each `Popen` is appended
+to the procs list, so now there are 3 child processes running in parallel.
 
 Finally, the `procs` list is iterated through and `proc.communicate()` is called on each
 `Popen` instance to read back the stdout pipe from the child. This contains the output of
@@ -224,10 +222,5 @@ Finally, the `procs` list is iterated through and `proc.communicate()` is called
 stripped, and printed to the console.
 
 
-## References
-
-* [The subprocess module][subprocess]
-* [Effective Python - Item 52 - Brett Slatkin][effective python]
-
-[subprocess]: https://docs.python.org/3/library/subprocess
-[effective python]: https://effectivepython.com/
+[^1]: [subprocess](https://docs.python.org/3/library/subprocess)
+[^2]: [Effective Python - Item 52 - Brett Slatkin](https://effectivepython.com/) [^2]

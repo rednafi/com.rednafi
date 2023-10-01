@@ -7,15 +7,15 @@ tags:
 ---
 
 A common bottleneck for processing large data files is—memory. Downloading the file and
-loading the entire content is surely the easiest way to go. However, it's likely that
-you'll quickly hit OOM errors. Often time, whenever I have to deal with large data files
-that need to be downloaded and processed, I prefer to stream the content line by line
-and use multiple processes to consume them concurrently.
+loading the entire content is surely the easiest way to go. However, it's likely that you'll
+quickly hit OOM errors. Often time, whenever I have to deal with large data files that need
+to be downloaded and processed, I prefer to stream the content line by line and use multiple
+processes to consume them concurrently.
 
 For example, say, you have a CSV file containing millions of rows with the following
 structure:
 
-```
+```txt
 ---------------------------------------
 |        a        |           b       |
 ---------------------------------------
@@ -27,10 +27,9 @@ structure:
 ```
 
 Here, let's say you need to download the file from some source and run some other heavy
-tasks that depends on the data from the file. To avoid downloading the file to the disk,
-you can stream and read the content line by line directly from the network. While doing
-so, you may want to trigger multiple other tasks that can run independent of the primary
-process.
+tasks that depends on the data from the file. To avoid downloading the file to the disk, you
+can stream and read the content line by line directly from the network. While doing so, you
+may want to trigger multiple other tasks that can run independent of the primary process.
 
 At my workplace, I often have to create objects in a relational database using the
 information in a CSV file. The idea here is to consume the information in the CSV file
@@ -38,9 +37,9 @@ directly from the network and create the objects in the database. This database 
 creation task can be offloaded to a separate process outside of the main process that's
 streaming the file contents.
 
-Since we're streaming the content from the network line by line, there should be zero
-disk usage and minimal memory footprint. Also, to speed up the consumption, we'll fork
-multiple OS processes. To put in concisely, we'll need to perform the following steps:
+Since we're streaming the content from the network line by line, there should be zero disk
+usage and minimal memory footprint. Also, to speed up the consumption, we'll fork multiple
+OS processes. To put in concisely, we'll need to perform the following steps:
 
 * Stream a single row from the target CSV file.
 * Write the content of the row in an in-memory string buffer.
@@ -166,19 +165,19 @@ if __name__ == "__main__":
             pass
 ```
 
-The first function `stream_csv` accepts a URL that points to a CSV file. In this case,
-the URL used here points to a real CSV file hosted on GitHub. [HTTPx][1] allows you to
-make a [streaming][2] GET request and iterate through the contents of the file without
-fully downloading it to the disk.
+The first function `stream_csv` accepts a URL that points to a CSV file. In this case, the
+URL used here points to a real CSV file hosted on GitHub. HTTPx[^1] allows you to
+make a streaming[^2] GET request and iterate through the contents of the file without fully
+downloading it to the disk.
 
 Inside the `client.stream` block, we've created an in-memory file instance with
-`io.StringIO`. This allows us to write the streamed content of the source CSV file to
-the in-memory file. Then we pull one row from the source file, write it to the in-memory
-buffer, and pass the in-memory file buffer over to the `csv.DictReader` class.
+`io.StringIO`. This allows us to write the streamed content of the source CSV file to the
+in-memory file. Then we pull one row from the source file, write it to the in-memory buffer,
+and pass the in-memory file buffer over to the `csv.DictReader` class.
 
-The `DictReader` class will parse the content of the row and emit a `reader` object.
-Running `next` on the `reader` iterator returns a dictionary with the parsed content of
-the row. The parsed content for the first row of the example CSV looks like this:
+The `DictReader` class will parse the content of the row and emit a `reader` object. Running
+`next` on the `reader` iterator returns a dictionary with the parsed content of the row. The
+parsed content for the first row of the example CSV looks like this:
 
 ```python
 {
@@ -196,7 +195,7 @@ Finally, in the `__main__` block, we fire up four processes to apply the `proces
 function to the output of the `stream_csv` function. Running the script will print the
 following output:
 
-```sh
+```txt
 Processed row 2:a=0.902210680227088, b=0.236522024407207
 Processed row 3:a=0.424413804319515, b=0.400788559643378
 Processed row 4:a=0.601611774624256, b=0.499238925693800
@@ -212,10 +211,11 @@ Processed row 10:a=0.770407022765901, b=0.021249180774146
 ```
 
 Since we're forking 4 processes, the script will print four items, and then it'll pause
-roughly for 2 seconds before moving on. If we were using a single process, the script
-would wait for 2 seconds after printing every row. By increasing the number of
-processes, you can speed up the consumption rate. Also, if the consumer tasks are
-lightweight, you can open multiple threads to consume them.
+roughly for 2 seconds before moving on. If we were using a single process, the script would
+wait for 2 seconds after printing every row. By increasing the number of processes, you can
+speed up the consumption rate. Also, if the consumer tasks are lightweight, you can open
+multiple threads to consume them.
 
-[1]: https://www.python-httpx.org/
-[2]: https://www.python-httpx.org/quickstart/#streaming-responses
+
+[^1]: [HTTPx](https://www.python-httpx.org/)
+[^2]: [Streaming responses](https://www.python-httpx.org/quickstart/#streaming-responses)

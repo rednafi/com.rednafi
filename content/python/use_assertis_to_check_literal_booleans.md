@@ -3,14 +3,15 @@ title: Use 'assertIs' to check literal booleans in Python unittest
 date: 2022-01-24
 tags:
     - Python
+    - TIL
 ---
 
 I used to use Unittest's `self.assertTrue` / `self.assertFalse` to check both
 **literal booleans** and **truthy**/**falsy** values in Unittest. Committed the same sin
 while writing tests in Django.
 
-> I feel like `assertTrue` and `assertFalse` are misnomers. They don't specifically
-> check literal booleans, only truthy and falsy states respectively.
+> I feel like `assertTrue` and `assertFalse` are misnomers. They don't specifically check
+> literal booleans, only truthy and falsy states respectively.
 
 Consider this example:
 
@@ -44,8 +45,8 @@ if __name__ == "__main__":
 ```
 
 In the above snippet, I've used `assertTrue` and `assertFalse` to check both literal
-booleans and truthy/falsy values. However, to test the literal boolean values,
-`assertIs` works better and is more explicit. Here's how to do the above test properly:
+booleans and truthy/falsy values. However, to test the literal boolean values, `assertIs`
+works better and is more explicit. Here's how to do the above test properly:
 
 ```python
 # src.py
@@ -76,10 +77,9 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-Notice how I've used `self.assertIs` in the `is_true` and `is_false` methods to
-explicitly test out the literal boolean values. The `is_truthy` and `is_falsy` methods
-were kept unchanged from the previous snippet.
+Notice how I've used `self.assertIs` in the `is_true` and `is_false` methods to explicitly
+test out the literal boolean values. The `is_truthy` and `is_falsy` methods were kept
+unchanged from the previous snippet.
 
-## References
 
-* [Tweet by Drewrey Lupton](https://twitter.com/chieftanbonobo/status/741689567590395905)
+[^1]: [Tweet by Drewrey Lupton](https://twitter.com/chieftanbonobo/status/741689567590395905) [^1]

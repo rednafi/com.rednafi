@@ -7,9 +7,9 @@ tags:
     - TIL
 ---
 
-TIL that you can specify `update_fields` while saving a Django model to generate a
-leaner underlying SQL query. This yields better performance while updating multiple
-objects in a tight loop. To test that, I'm opening an IPython shell with
+TIL that you can specify `update_fields` while saving a Django model to generate a leaner
+underlying SQL query. This yields better performance while updating multiple objects in a
+tight loop. To test that, I'm opening an IPython shell with
 `python manage.py shell -i ipython` command and creating a few user objects with the
 following lines:
 
@@ -41,7 +41,7 @@ In [8]: connection.queries
 ```
 This will print:
 
-```
+```txt
 [
     ...,
     {
@@ -57,15 +57,14 @@ This will print:
 ```
 
 If you inspect the query, you'll see that although we're only updating the `first_name`
-field on the `user_0` object, Django is generating a query that updates all the
-underlying fields on the object. The SQL query always passes the pre-existing values of
-the fields that weren't touched. This might seem trivial, but what if the model
-consisted of 20 fields and you need to call `save()` on it frequently? At a certain
-scale the database query that updates all of your columns every time you call `save()`
-can start becoming expensive.
+field on the `user_0` object, Django is generating a query that updates all the underlying
+fields on the object. The SQL query always passes the pre-existing values of the fields that
+weren't touched. This might seem trivial, but what if the model consisted of 20 fields and
+you need to call `save()` on it frequently? At a certain scale the database query that
+updates all of your columns every time you call `save()` can start becoming expensive.
 
-Specifying `update_fields` inside the `save()` method can make the query leaner.
-Consider this:
+Specifying `update_fields` inside the `save()` method can make the query leaner. Consider
+this:
 
 ```python
 In[9]: reset_queries()
@@ -79,7 +78,7 @@ In[12]: connection.queries
 
 This prints:
 
-```
+```txt
 [
     {'sql': 'UPDATE "auth_user" SET "first_name" = \'changed_again\'
       WHERE "auth_user"."id" = 1002',
@@ -88,9 +87,9 @@ This prints:
 ]
 ```
 
-You can see this time, Django generates a SQL that only updates the specific field
-we want and doesn't send any redundant data over the wire. The following snippet
-quantifies the performance gain while updating 1000 objects in a tight loop:
+You can see this time, Django generates a SQL that only updates the specific field we want
+and doesn't send any redundant data over the wire. The following snippet quantifies the
+performance gain while updating 1000 objects in a tight loop:
 
 ```python
 # src.py
@@ -145,7 +144,7 @@ print(
 
 Running this script will print the following:
 
-```
+```txt
 User.save(): 1.86s
 User.save(update_fields=[...]): 1.77s
 User.save(update_fields=[...] is 1.05x faster than User.save()
@@ -155,14 +154,14 @@ You can see that `User.save(updated_fields=[...])` is a tad bit faster than plai
 
 ## Should you always use it?
 
-Probably not. While the performance gain is measurable when you're updating multiple
-objects in a loop, it's quite negligible if the object count is low. Also, this adds
-maintenance overhead as any time you change the model, you'll have to remember to keep
-the `Model.save(update_fields=[...])` in sync. If you forget to add a field to the
-`update_fields`, Django will silently ignore the incoming data against that field and
-data will be lost.
+Probably not. While the performance gain is measurable when you're updating multiple objects
+in a loop, it's quite negligible if the object count is low. Also, this adds maintenance
+overhead as any time you change the model, you'll have to remember to keep the
+`Model.save(update_fields=[...])` in sync. If you forget to add a field to the
+`update_fields`, Django will silently ignore the incoming data against that field and data
+will be lost.
 
 ## References
 
-* [Specifying which fields to save - Django docs](https://docs.djangoproject.com/en/4.1/ref/models/instances/#specifying-which-fields-to-save)
-* [Save your Django models using update_fields for better performance - Reddit](https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/)
+[^1]: [Specifying which fields to save - Django docs](https://docs.djangoproject.com/en/4.1/ref/models/instances/#specifying-which-fields-to-save) [^1]
+[^2]: [Save your Django models using update_fields for better performance - Reddit](https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/) [^2]

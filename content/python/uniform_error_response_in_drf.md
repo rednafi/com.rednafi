@@ -4,18 +4,16 @@ date: 2022-01-20
 tags:
     - Python
     - Django
+    - TIL
 ---
 
 Django Rest Framework exposes a neat hook to customize the response payload of your API
-when errors occur. I was going through Microsoft's REST API
-[guideline](https://github.com/microsoft/api-guidelines) and wanted to make the error
-response of my APIs more uniform and somewhat similar to
-[this](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples).
+when errors occur. I was going through Microsoft's REST API guideline[^1] and wanted to make
+the error response of my APIs more uniform and somewhat similar to this[^2].
 
-I'll use a modified version of the quickstart
-[example](https://www.django-rest-framework.org/#example) in the DRF docs to show how to
-achieve that. Also, we'll need a POST API to demonstrate the changes better. Here's the
-same example with the added POST API. Place this code in the project's `urls.py` file.
+I'll use a modified version of the quickstart example[^3] in the DRF docs to show how to
+achieve that. Also, we'll need a POST API to demonstrate the changes better. Here's the same
+example with the added POST API. Place this code in the project's `urls.py` file.
 
 ```python
 # urls.py
@@ -94,15 +92,14 @@ you'll see the following response:
 }
 ```
 
-While this is okay, there's one gotcha here. The error payload isn't consistent.
-Depending on the type of error, the shape of the response payload will change. This can
-be a problem if your system has custom error handling logic that expects a consistent
-response.
+While this is okay, there's one gotcha here. The error payload isn't consistent. Depending
+on the type of error, the shape of the response payload will change. This can be a problem
+if your system has custom error handling logic that expects a consistent response.
 
 I wanted the error payload to have a predictable shape while carrying more information
 like—HTTP error code, error message, etc. You can do it by wrapping the default
-`rest_framework.views.exception_handler` function in a custom exception handler
-function. Let's write the `api_exception_handler`:
+`rest_framework.views.exception_handler` function in a custom exception handler function.
+Let's write the `api_exception_handler`:
 
 ```python
 # urls.py
@@ -146,8 +143,8 @@ def api_exception_handler(exc: Exception, context: dict[str, Any]) -> Response:
 ...
 ```
 
-Now, you'll have to register this custom exception handler in the `settings.py` file.
-Head over to the `REST_FRAMEWORK` section and add the following key:
+Now, you'll have to register this custom exception handler in the `settings.py` file. Head
+over to the `REST_FRAMEWORK` section and add the following key:
 
 ```python
 REST_FRAMEWORK = {
@@ -156,8 +153,8 @@ REST_FRAMEWORK = {
 }
 ```
 
-If you make a POST request to `/users` endpoint with an invalid payload as before,
-you'll see this:
+If you make a POST request to `/users` endpoint with an invalid payload as before, you'll
+see this:
 
 ```json
 {
@@ -178,6 +175,7 @@ you'll see this:
 
 Much nicer!
 
-## References
-
-* [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling)
+[^1]: [API guidelines - Microsoft](https://github.com/microsoft/api-guidelines)
+[^2]: [Error payload](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples)
+[^3]: [DRF example](https://www.django-rest-framework.org/#example)
+[^4]: [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling) [^4]

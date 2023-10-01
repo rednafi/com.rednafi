@@ -17,49 +17,45 @@ asynchronously.
 depending on the final status of the finished task.
 
 The de facto tool for handling situations where real-time bidirectional communication is
-necessary is [WebSocket][websocket]. However, in the case above, you can see that the
-communication is mostly unidirectional where the client initiates some action in the
-server and then the server continuously pushes data to the client during the lifespan of
-the background job.
+necessary is WebSocket[^1]. However, in the case above, you can see that the communication
+is mostly unidirectional where the client initiates some action in the server and then the
+server continuously pushes data to the client during the lifespan of the background job.
 
-In Django, I usually go for the [channels][channels] library whenever I need to do any
-real-time communication over WebSockets. It's a fantastic tool if you need real-time
-full duplex communication between the client and the server. But it can be quite
-cumbersome to set up, especially if you're not taking full advantage of it or not
-working with Django. Moreover, WebSockets can be quite flaky and usually have quite a
-bit of overhead. So, I was looking for a simpler alternative and found out that
-Server-Sent Events (SSEs) work quite nicely when all I needed was to stream some data
-from the server to the client in a unidirectional manner.
+In Django, I usually go for the channels[^2] library whenever I need to do any real-time
+communication over WebSockets. It's a fantastic tool if you need real-time full duplex
+communication between the client and the server. But it can be quite cumbersome to set up,
+especially if you're not taking full advantage of it or not working with Django. Moreover,
+WebSockets can be quite flaky and usually have quite a bit of overhead. So, I was looking
+for a simpler alternative and found out that Server-Sent Events (SSEs) work quite nicely
+when all I needed was to stream some data from the server to the client in a unidirectional
+manner.
 
 ## Server-Sent Events (SSEs)
 
-[Server-Sent Events (SSE)][sse] is a way for a web server to send real-time updates to a
-web page without the need for the page to repeatedly ask for updates. Instead of the
-page asking the server for new data every few seconds, the server can just send updates
-as they happen, like a live stream. This is useful for things like live chat, news
-feeds, and stock tickers but won't work in situations where you also need to send
-real-time updates from the client to the server. In the latter scenarios, WebSockets are
-kind of your only option.
+Server-Sent Events (SSE)[^3] is a way for a web server to send real-time updates to a web
+page without the need for the page to repeatedly ask for updates. Instead of the page asking
+the server for new data every few seconds, the server can just send updates as they happen,
+like a live stream. This is useful for things like live chat, news feeds, and stock tickers
+but won't work in situations where you also need to send real-time updates from the client
+to the server. In the latter scenarios, WebSockets are kind of your only option.
 
 SSEs are sent over traditional HTTP. That means they don't need any special protocol or
 server implementation to get working. WebSockets on the other hand, need full-duplex
-connections and new WebSocket servers like Daphne to handle the protocol. In addition,
-SSEs have a variety of features that WebSockets lack by design such as automatic
-reconnection, event IDs, and the ability to send arbitrary events. This is quite nice
-since on the browser, you won't have to write additional logic to handle reconnections
-and stuff.
+connections and new WebSocket servers like Daphne to handle the protocol. In addition, SSEs
+have a variety of features that WebSockets lack by design such as automatic reconnection,
+event IDs, and the ability to send arbitrary events. This is quite nice since on the
+browser, you won't have to write additional logic to handle reconnections and stuff.
 
-The biggest reason why I wanted to explore SSE is because of its simplicity and the
-fact that it plays in the HTTP realm. If you want to learn more about how SSEs stack
-up against WebSockts, I recommend this [post][sse-websockets] by
-[Germano Gabbianelli][germano-gabbianelli].
+The biggest reason why I wanted to explore SSE is because of its simplicity and the fact
+that it plays in the HTTP realm. If you want to learn more about how SSEs stack up against
+WebSockts, I recommend this post[^4] by Germano Gabbianelli.
 
 ## The wire protocol
 
 The wire protocol works on top of HTTP and is quite simple. The server needs to send the
 data maintaining the following structure:
 
-```
+```txt
 HTTP/1.1 200 OK
 date: Sun, 02 Apr 2023 20:17:53 GMT
 server: uvicorn
@@ -82,36 +78,36 @@ data: message 2
 retry: 5000
 ```
 
-Here, the server header needs to set the MIME type to `text/event-stream` and ask the
-client not to cache the response by setting the `cache-control` header to `no-cache`.
-Next, in the message payload, only the `data` field is required, everything else is
-optional. Let's break down the message structure:
+Here, the server header needs to set the MIME type to `text/event-stream` and ask the client
+not to cache the response by setting the `cache-control` header to `no-cache`. Next, in the
+message payload, only the `data` field is required, everything else is optional. Let's break
+down the message structure:
 
-* `event`: This is an optional field that specifies the name of the event. If present,
-it must be preceded by the string 'event:'. If not present, the event is considered to
-have the default name 'message'.
+* `event`: This is an optional field that specifies the name of the event. If present, it
+must be preceded by the string 'event:'. If not present, the event is considered to have the
+default name 'message'.
 
-* `id`: This is an optional field that assigns an ID to the event. If present, it must
-be preceded by the string 'id:'. Clients can use this ID to resume an interrupted
-connection and receive only events that they have not yet seen.
+* `id`: This is an optional field that assigns an ID to the event. If present, it must be
+preceded by the string 'id:'. Clients can use this ID to resume an interrupted connection
+and receive only events that they have not yet seen.
 
-* `data:` This field is required and contains the actual message data that the server
-wants to send to the client. It must be preceded by the string 'data:' and can contain
-any string of characters.
+* `data:` This field is required and contains the actual message data that the server wants
+to send to the client. It must be preceded by the string 'data:' and can contain any string
+of characters.
 
 * `retry`: This is an optional field that specifies the number of milliseconds that the
-client should wait before attempting to reconnect to the server in case the connection
-is lost. If present, it must be preceded by the string 'retry:'.
+client should wait before attempting to reconnect to the server in case the connection is
+lost. If present, it must be preceded by the string 'retry:'.
 
-Each message must end with double newline characters `("\n\n")`. Yep, this is part of
-the protocol. The server can send multiple messages in a single HTTP response, and each
-message will be treated as a separate event by the client.
+Each message must end with double newline characters `("\n\n")`. Yep, this is part of the
+protocol. The server can send multiple messages in a single HTTP response, and each message
+will be treated as a separate event by the client.
 
 
 ## A simple example
 
-In this section, I'll prop up a simple HTTP streaming server with [starlette][starlette]
-and collect the events from the browser. Here's the complete server implementation:
+In this section, I'll prop up a simple HTTP streaming server with starlette[^5] and collect
+the events from the browser. Here's the complete server implementation:
 
 ```python
 # server.py
@@ -186,12 +182,12 @@ app = Starlette(debug=True, routes=routes)
 
 The server exposes a `/stream` endpoint that will just continuously send data to any
 connected client. The `stream` function returns a `StreamingResponse` object that the
-framework uses to send SSE messages to the client. Internally, it defines an
-asynchronous generator function `_stream` which produces a sequence of messages that
-follows the SSE wire protocol and yields them line by line.
+framework uses to send SSE messages to the client. Internally, it defines an asynchronous
+generator function `_stream` which produces a sequence of messages that follows the SSE wire
+protocol and yields them line by line.
 
-The index `/` page is there so that you can head over to it in your browser and paste
-the client-side code.
+The index `/` page is there so that you can head over to it in your browser and paste the
+client-side code.
 
 You can run this server with `uvicorn` via the following command:
 
@@ -200,8 +196,8 @@ uvicorn server:app --port 5000 --reload
 ```
 
 This will expose the server to the localhost's port `5000`. Now you can head over to your
-browser, go to the `localhost:5000` URL and paste this following snippet to the dev
-console to catch the streamed data from the client side:
+browser, go to the `localhost:5000` URL and paste this following snippet to the dev console
+to catch the streamed data from the client side:
 
 ```js
 // client.js
@@ -232,11 +228,11 @@ eventSource.onmessage = (event) => {
 };
 ```
 
-Notice, how the client API is quite similar to the WebSocket API but simpler. Once
-you've pasted the code snippet to the browser console, you'll be able to see the
-streamed data from the server that looks like this:
+Notice, how the client API is quite similar to the WebSocket API but simpler. Once you've
+pasted the code snippet to the browser console, you'll be able to see the streamed data from
+the server that looks like this:
 
-```
+```txt
 start event: streaming started
 Default event: message 1
 Default event: message 2
@@ -251,15 +247,14 @@ Default event: closing connection
 
 ## A more practical example
 
-This section will demonstrate the scenario that was mentioned at the beginning of this
-post where loading a particular page in your browser will trigger a long-running
-asynchronous [celery][celery] task in the background. While the task runs, the server
-will communicate the progress with the client.
+This section will demonstrate the scenario that was mentioned at the beginning of this post
+where loading a particular page in your browser will trigger a long-running asynchronous
+celery[^6] task in the background. While the task runs, the server will communicate the
+progress with the client.
 
-Once the task is finished, the server will send a specific message to the client and
-it'll update the DOM to let the user know that the task has been finished. The workflow
-only requires unidirectional communication and SSE is a perfect candidate for this
-situation.
+Once the task is finished, the server will send a specific message to the client and it'll
+update the DOM to let the user know that the task has been finished. The workflow only
+requires unidirectional communication and SSE is a perfect candidate for this situation.
 
 To test it out, you'll need to install a few dependencies. You can `pip install` them as
 such:
@@ -268,9 +263,9 @@ such:
 pip install 'celery[redis]' jinja2 starlette uvicorn
 ```
 
-You'll also need to set up a Redis server that Celery will use for broker communication.
-If you have Docker installed in your system, you can run the following command to start
-a Redis server:
+You'll also need to set up a Redis server that Celery will use for broker communication. If
+you have Docker installed in your system, you can run the following command to start a Redis
+server:
 
 ```sh
 docker run --name dev-redis -d -h localhost -p 6379:6379 redis:alpine
@@ -380,16 +375,15 @@ routes = [
 app = Starlette(debug=True, routes=routes)
 ```
 
-Here, first, we're setting up celery and connecting it to the local Redis instance. Next
-up, the `background` function simulates some async work where it just waits for a while
-and returns a message. The `index` view calls the asynchronous background task and sets
-the id of the task as a session cookie with `response.set_cookie("task_id", task_id)`.
-The frontend JavaScript will look for this `task_id` cookie to identify a running
-background task.
+Here, first, we're setting up celery and connecting it to the local Redis instance. Next up,
+the `background` function simulates some async work where it just waits for a while and
+returns a message. The `index` view calls the asynchronous background task and sets the id
+of the task as a session cookie with `response.set_cookie("task_id", task_id)`. The frontend
+JavaScript will look for this `task_id` cookie to identify a running background task.
 
-Then we expose a `task_status` endpoint that takes in the value of a `task_id` and
-streams the status of the running task to the frontend as SSE messages. To avoid
-dangling connections, we stream the task status for 10 seconds before giving up.
+Then we expose a `task_status` endpoint that takes in the value of a `task_id` and streams
+the status of the running task to the frontend as SSE messages. To avoid dangling
+connections, we stream the task status for 10 seconds before giving up.
 
 Now on the client side, the `index.html` looks like this:
 
@@ -503,8 +497,8 @@ Now on the client side, the `index.html` looks like this:
 ```
 
 When the index page is loaded, the server starts a background task and sets the
-`task_id=<task_id>` session cookie. The HTML above then defines a paragraph element to
-show the message streamed from the server:
+`task_id=<task_id>` session cookie. The HTML above then defines a paragraph element to show
+the message streamed from the server:
 
 ```html
 <body class="centered">
@@ -516,57 +510,56 @@ show the message streamed from the server:
 </body>
 ```
 
-The JavaScript code defines a function named `waitForResult()` that listens for updates
-on the status of a long-running task that is being executed on the server. The function
-first waits for the `task_id` to be set in a cookie by calling `waitForTaskIdCookie()`.
-Once the `task_id` is obtained, the function creates a new `EventSource` object that
-connects to the streaming endpoint on the server using the ID to get updates on the
-status of the task.
+The JavaScript code defines a function named `waitForResult()` that listens for updates on
+the status of a long-running task that is being executed on the server. The function first
+waits for the `task_id` to be set in a cookie by calling `waitForTaskIdCookie()`. Once the
+`task_id` is obtained, the function creates a new `EventSource` object that connects to the
+streaming endpoint on the server using the ID to get updates on the status of the task.
 
 The `EventSource` object is set up with four event listeners: `onmessage`, `onerror`,
 `onopen`, and `onclose`. The `onmessage` listener is triggered when the server sends an
-update on the task status. The listener first logs the updated task status and then
-checks if the state of the task is `SUCCESS` or `UNFINISHED`. In either case, the client
-fetches the message element on the DOM and updates it with the result of the background
-task streamed by the server.
+update on the task status. The listener first logs the updated task status and then checks
+if the state of the task is `SUCCESS` or `UNFINISHED`. In either case, the client fetches
+the message element on the DOM and updates it with the result of the background task
+streamed by the server.
 
 The client-side SSE API will automatically keep reconnecting if the connection fails for
-some reason. This is handy since you don't have to write any additional logic to make
-the connection more robust. However, you do need to be mindful about closing the
-connection from the client side once you've received the final task status. The
-`onmessage` event listener explicitly closes the connection with `eventSource.close()`
-once the final message about a specific task has reached the client from the server.
+some reason. This is handy since you don't have to write any additional logic to make the
+connection more robust. However, you do need to be mindful about closing the connection from
+the client side once you've received the final task status. The `onmessage` event listener
+explicitly closes the connection with `eventSource.close()` once the final message about a
+specific task has reached the client from the server.
 
-The `onerror` listener handles errors that occur with the connection. The `onopen`
-callback is called when the connection is successfully opened, and `onclose` gets called
-when the connection is closed.
+The `onerror` listener handles errors that occur with the connection. The `onopen` callback
+is called when the connection is successfully opened, and `onclose` gets called when the
+connection is closed.
 
 The `waitForTaskIdCookie()` function that is called by the entrypoint waits for the
 `task_id` to be set in a cookie by repeatedly calling `getCookie()` until the ID is
-obtained. The function waits for `300ms` between each iteration so that it doesn't
-overwhelm the client.
+obtained. The function waits for `300ms` between each iteration so that it doesn't overwhelm
+the client.
 
-The `getCookie()` function is a utility function that returns the value of a cookie
-given its name.
+The `getCookie()` function is a utility function that returns the value of a cookie given
+its name.
 
 Finally, the code sets the window.onload event listener to call the `waitForResult()`
 function when the page has finished loading.
 
 Now, go to the `sse` directory and start the server with the following command:
 
-```
+```sh
 uvicorn views:app --port 5000 --reload
 ```
 
 On another terminal, start the celery workers:
 
-```
+```sh
 celery -A views.celery_app worker -l info -Q default -c 1
 ```
 
-Finally, head over to your browser and go to `http://localhost:5000/index` page and
-see that the server has triggered a background job. Once the job finishes after 5
-seconds, the client shows a message:
+Finally, head over to your browser and go to `http://localhost:5000/index` page and see that
+the server has triggered a background job. Once the job finishes after 5 seconds, the client
+shows a message:
 
 <video
     src="https://user-images.githubusercontent.com/30027932/229604497-0a0b058f-32dd-4219-a68f-9cd35b250334.mov"
@@ -578,30 +571,22 @@ Notice, how the server pushes the result of the task automatically once it finis
 
 ## Limitations
 
-While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts—
-apart from only supporting unidirectional communication, they suffer from a few other
-limitations:
+While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts—apart
+from only supporting unidirectional communication, they suffer from a few other limitations:
 
-* SSE is limited to sending text data only. If an application needs to send binary data,
-it must encode the data as text before sending it over SSE.
-* SSE connections are subject to the same connection limitations as HTTP connections.
-In some cases, a large number of SSE connections can overload the server, leading to
+* SSE is limited to sending text data only. If an application needs to send binary data, it
+must encode the data as text before sending it over SSE.
+* SSE connections are subject to the same connection limitations as HTTP connections. In
+some cases, a large number of SSE connections can overload the server, leading to
 performance issues. However, this can be mitigated by taking advantage of connection
 multiplexing in HTTP/2.
 
 
-## References
-
-* [Using server-sent events][using-sses]
-* [SSE vs WebSockets vs Long Polling. Martin Chaov. JS Fest 2018][sse-websocket-long_polling]
-* [Server-Sent Events: the alternative to WebSockets you should be using][sse-websockets]
-
-[websocket]: https://en.wikipedia.org/wiki/WebSocket
-[channels]: https://channels.readthedocs.io/en/stable/
-[sse]: https://en.wikipedia.org/wiki/Server-sent_events
-[sse-websockets]: https://germano.dev/sse-websockets/
-[germano-gabbianelli]: https://twitter.com/germanodev
-[starlette]: https://www.starlette.io/
-[celery]: https://docs.celeryq.dev/en/stable/getting-started/introduction.html
-[using-sses]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
-[sse-websocket-long_polling]: https://www.youtube.com/watch?v=n9mRjkQg3VE&t=2834s
+[^1]: [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
+[^2]: [channels](https://channels.readthedocs.io/en/stable/)
+[^3]: [SSE](https://en.wikipedia.org/wiki/Server-sent_events)
+[^4]: [SSE vs WebSockets](https://germano.dev/sse-websockets/)
+[^5]: [starlette](https://www.starlette.io/)
+[^6]: [celery](https://docs.celeryq.dev/en/stable/getting-started/introduction.html)
+[^7]: [Using server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) [^7]
+[^8]: [SSE vs WebSockets vs Long Polling. Martin Chaov. JS Fest 2018](https://www.youtube.com/watch?v=n9mRjkQg3VE&t=2834s)

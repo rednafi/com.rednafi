@@ -3,11 +3,11 @@ title: Running tqdm with Python multiprocessing
 date: 2021-11-18
 tags:
     - Python
+    - TIL
 ---
 
-Making tqdm play nice with multiprocessing requires some additional work. It's not
-always obvious and I don't want to add another third-party dependency just for this
-purpose.
+Making tqdm play nice with multiprocessing requires some additional work. It's not always
+obvious and I don't want to add another third-party dependency just for this purpose.
 
 The following example attempts to make tqdm work with `multiprocessing.imap_unordered`.
 However, this should also work with similar mapping methods like—`multiprocessing.map`,
@@ -106,6 +106,5 @@ This will print:
 100%|██████████████████████████████████████████████████████| 100/100 [00:04<00:00]
 ```
 
-## Resources
 
-* [Using tqdm with multiprocessing](https://stackoverflow.com/questions/58560686/using-tqdm-with-multiprocessing)
+[^1]: [Using tqdm with multiprocessing](https://stackoverflow.com/questions/58560686/using-tqdm-with-multiprocessing) [^1]

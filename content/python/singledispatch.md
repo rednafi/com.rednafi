@@ -34,12 +34,12 @@ def func45(data):
     ...
 ```
 
-This pattern gets tedious when the number of conditions and actionable functions start
-to grow. I was looking for a functional approach to avoid defining and calling three
-different functions that do very similar things. Situations like this is where
-[parametric polymorphism] comes into play. The idea is, you have to define a single function
-that'll be dynamically overloaded with alternative implementations based on the type of the
-function arguments.
+This pattern gets tedious when the number of conditions and actionable functions start to
+grow. I was looking for a functional approach to avoid defining and calling three different
+functions that do very similar things. Situations like this is where parametric
+polymorphism[^1] comes into play. The idea is, you have to define a single function that'll
+be dynamically overloaded with alternative implementations based on the type of the function
+arguments.
 
 ## Function overloading & generic functions
 
@@ -65,8 +65,8 @@ dispatch generic function.
 > dispatch algorithm. When the implementation is chosen based on the type of a single
 > argument, this is known as single dispatch.
 
-As PEP-443 said, singledispatch only happens based on the first argument’s type. Let’s take
-a look at an example to see how this works!
+As PEP-443[^2] said, singledispatch only happens based on the first argument’s type. Let’s
+take a look at an example to see how this works!
 
 ### Example-1: Singledispatch with built-in argument type
 
@@ -243,6 +243,7 @@ Running this will print out the same output as before:
 3. [Parametric polymorphism]
 
 
-[parametric polymorphism]: https://en.wikipedia.org/wiki/Parametric_polymorphism
-[function overloading]: https://en.wikipedia.org/wiki/Function_overloading
-[transform a function into a single dispatch generic function]: https://docs.python.org/3/library/functools.html
+[^1]: [Parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
+[^2]: [PEP-443](https://peps.python.org/pep-0443/)
+[^3]: [Transform a function into a single dispatch generic function](https://docs.python.org/3/library/functools.html#functools.singledispatch) [^3]
+[^4]: [Function overloading](https://en.wikipedia.org/wiki/Function_overloading) [^4]
