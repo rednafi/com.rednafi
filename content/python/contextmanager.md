@@ -507,8 +507,8 @@ Another great use case for context managers is making parameters persistent acro
 HTTP requests. Python's `requests` library has a `Session` object that will let you easily
 achieve this. So, if you’re making several requests to the same host, the underlying TCP
 connection will be reused, which can result in a significant performance increase. The
-following example is taken directly from [requests]' official docs. Let's persist some
-cookies across requests.
+following example is taken directly from the official docs of the requests[^1] library.
+Let's persist some cookies across requests.
 
 ```python
 with requests.Session() as session:
@@ -529,15 +529,12 @@ This should show:
 
 ## Remarks
 
-To avoid redundencies, I have purposefully excluded examples of nested with statements
-and now deprecated `contextlib.nested` function to create nested context managers.
+To avoid redundencies, I have purposefully excluded examples of nested with statements and
+now deprecated `contextlib.nested` function to create nested context managers.
 
-## Resources
-
-* [Python contextlib documentation](https://docs.python.org/3/library/contextlib.html)
-* [Python with context manager - Jeff Knupp](https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/)
-* [SQLALchemy session creation](https://docs.sqlalchemy.org/en/13/core/engines.html)
-* [Scipy lectures: context managers](https://scipy-lectures.org/advanced/advanced_python/index.html#context-managers)
-* [Merging context managers](https://stackoverflow.com/a/45681273/8963300)
-
-[requests]: https://2.python-requests.org/en/v2.8.1/user/advanced/
+[^1]: [Session objects in requests](https://docs.python-requests.org/en/latest/user/advanced/#session-objects)
+[^2]: [Python contextlib documentation](https://docs.python.org/3/library/contextlib.html) [^2]
+[^3]: [Python with context manager - Jeff Knupp](https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/) [^3]
+[^4]: [SQLAlchemy session creation](https://docs.sqlalchemy.org/en/20/core/engines.html) [^4]
+[^5]: [Scipy lectures: context managers](https://scipy-lectures.org/advanced/advanced_python/index.html#context-managers) [^5]
+[^6]: [Merging context managers](https://stackoverflow.com/a/45681273/8963300) [^6]

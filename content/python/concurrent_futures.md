@@ -8,7 +8,7 @@ tags:
 Writing concurrent code in Python can be tricky. Before you even start, you have to worry
 about all these icky stuff like whether the task at hand is I/O or CPU bound or whether
 putting the extra effort to achieve concurrency is even going to give you the boost you
-need. Also, the presence of Global Interpreter Lock, [GIL] foists further limitations on
+need. Also, the presence of Global Interpreter Lock, GIL[^1] foists further limitations on
 writing truly concurrent code. But for the sake of sanity, you can oversimplify it like
 this without being blatantly incorrect:
 
@@ -379,7 +379,7 @@ worker you want to deploy to spawn and manage the threads. A general rule of thu
 There is one small problem with the example above. The `executor.map()` method returns a
 generator which allows to iterate through the results once ready. That means if any error
 occurs inside `map`, it's not possible to handle that and resume the generator after the
-exception occurs. From [PEP-255]:
+exception occurs. From PEP-255[^2]:
 
 > If an unhandled exception-- including, but not limited to, StopIteration --is raised by,
 > or passes through, a generator function, then the exception is passed on to the caller in
@@ -770,8 +770,8 @@ with complicated code that performs worse than the naive solution.
 * [Easy concurrency in Python]
 * [Adventures in Python with concurrent.futures]
 
-[gil]: https://wiki.python.org/moin/GlobalInterpreterLock
-[pep-255]: https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation
-[concurrent.futures - the official documentation]: https://docs.python.org/3/library/concurrent.futures.html
-[easy concurrency in python]: http://pljung.de/posts/easy-concurrency-in-python/
-[adventures in python with concurrent.futures]: https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/
+[^1]: [GIL](https://wiki.python.org/moin/GlobalInterpreterLock)
+[^2]: [PEP-255](https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation)
+[^3]: [concurrent.futures - the official documentation](https://docs.python.org/3/library/concurrent.futures.html) [^3]
+[^4]: [easy concurrency in python](http://pljung.de/posts/easy-concurrency-in-python/) [^4]
+[^5]: [Adventures in python with concurrent.futures](https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/) [^5]

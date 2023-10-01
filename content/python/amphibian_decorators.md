@@ -6,25 +6,23 @@ tags:
 ---
 
 Whether you like it or not, the split world of sync and async functions in the Python
-ecosystem is something we'll have to live with; at least for now. So, having to write
-things that work with both sync and async code is an inevitable part of the journey.
-Projects like [Starlette](https://www.starlette.io/),
-[HTTPx](https://www.python-httpx.org/) can give you some clever pointers on how to craft
-APIs that are compatible with both sync and async code.
+ecosystem is something we'll have to live with; at least for now. So, having to write things
+that work with both sync and async code is an inevitable part of the journey. Projects like
+Starlette[^1], HTTPx[^2] can give you some clever pointers on how to craft APIs that are
+compatible with both sync and async code.
 
 > Lately, I've been calling constructs that are compatible with both synchronous and
 > asynchronous paradigms as Amphibian Constructs.
 
-So, I wanted to write an amphibian decorator that'd work with both sync and async
-functions. Let's consider writing a trivial decorator that'll tag the wrapped function.
-Here, by tagging I mean, the decorator will attach a `_tag` attribute to the wrapped
-function where the value of the tag can be passed as the function parameter.
+So, I wanted to write an amphibian decorator that'd work with both sync and async functions.
+Let's consider writing a trivial decorator that'll tag the wrapped function. Here, by
+tagging I mean, the decorator will attach a `_tags` attribute to the wrapped function where
+the value of the tag can be passed as the function parameter.
 
 This type of tagging can be helpful if you want to write code that'll classify functions
-based on their tags and do interesting things with them.
-[Locust](http://docs.locust.io/en/stable/api.html#locust.tag) uses this concept of
-tagging to select and deselect load-testing routines in the CLI. Also,
-`@pytest.mark.*` utilizes a similar concept.
+based on their tags and do interesting things with them. Locust[^3] uses this concept of
+tagging to select and deselect load-testing routines in the CLI. Also, `@pytest.mark.*`
+utilizes a similar concept.
 
 Here's how you can do that:
 
@@ -47,18 +45,15 @@ def tag(*names: str) -> Callable:
         func._tags = names  # type: ignore
 
         if inspect.iscoroutinefunction(func):
-
             @wraps(func)
             async def async_wrapped(*args: Any, **kwargs: Any) -> Awaitable:
                 return await func(*args, **kwargs)
-
             return async_wrapped
-        else:
 
+        else:
             @wraps(func)
             def sync_wrapped(*args: Any, **kwargs: Any) -> Any:
                 return func(*args, **kwargs)
-
             return sync_wrapped
 
     return decorator
@@ -108,12 +103,14 @@ Out[7]: 24
 
 ## Breadcrumbs
 
-Astute readers might notice that the type annotations in this decorator are quite loose
-and it doesn't take advantage of Python 3.10's `typing.ParamSpec` type. This is
-intentional as it adds quite a bit of noise that might obfuscate the primary intent of
-the code snippet. Also, typing a decorator that returns either a sync or async callable
-based on the control flow is tricky.
+Astute readers might notice that the type annotations in this decorator are quite loose and
+it doesn't take advantage of Python 3.10's `typing.ParamSpec` type. This is intentional as
+it adds quite a bit of noise that might obfuscate the primary intent of the code snippet.
+Also, typing a decorator that returns either a sync or async callable based on the control
+flow is tricky.
 
-## References
 
-* [Amphibian decorator in Starlette's source code](https://github.com/encode/starlette/blob/424351cb231c67798a65c091b0b7d42790f5e444/starlette/authentication.py#L19)
+[^1]: [Starlette](https://www.starlette.io/)
+[^2]: [HTTPx](https://www.python-httpx.org/)
+[^3]: [Locust](http://docs.locust.io/en/stable/api.html#locust.tag)
+[^4]: [Amphibian decorator in Starlette's source code](https://github.com/encode/starlette/blob/424351cb231c67798a65c091b0b7d42790f5e444/starlette/authentication.py#L19) [^4]

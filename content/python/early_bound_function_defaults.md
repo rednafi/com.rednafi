@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-I was reading a tweet about it yesterday and that didn't stop me from pushing a code
-change in production with the same rookie mistake today. Consider this function:
+I was reading a tweet about it yesterday and that didn't stop me from pushing a code change
+in production with the same rookie mistake today. Consider this function:
 
 ```python
 # src.py
@@ -36,13 +36,13 @@ if __name__ == "__main__":
         log("Reality can often be disappointing.", level="warning")
 ```
 
-Here, the function `log` has a parameter `timestamp` that computes its default value
-using the built-in `datetime.utcnow().isoformat()` method. I was under the impression
-that the `timestamp` parameter would be computed each time when the `log` function was
-called. However, that's not what happens when you try to run it. If you run the above
-snippet, you'll get this instead:
+Here, the function `log` has a parameter `timestamp` that computes its default value using
+the built-in `datetime.utcnow().isoformat()` method. I was under the impression that the
+`timestamp` parameter would be computed each time when the `log` function was called.
+However, that's not what happens when you try to run it. If you run the above snippet,
+you'll get this instead:
 
-```
+```txt
 WARNING:root:Timestamp: 2022-01-27T19:57:34.147403
 Message: Reality can often be disappointing.
 
@@ -54,10 +54,10 @@ Message: Reality can often be disappointing.
 ```
 
 In the `__main__` block, I'm calling the `log` function 3 times with a 1-second delay
-between each invocation. But if you take a look at the timestamp of each of the log
-entries in the output, you'll notice that all 3 of them are exactly the same.
+between each invocation. But if you take a look at the timestamp of each of the log entries
+in the output, you'll notice that all 3 of them are exactly the same.
 
-Default function arguments are early-bound in Python. That means—
+Default function arguments are early-bound in Python. That means:
 
 > Python interpreter will bind the default parameters at function definition time and
 > will use that static value at run time. It's also true for methods. This design choice
@@ -65,9 +65,8 @@ Default function arguments are early-bound in Python. That means—
 
 We're getting the same value of the timestamp each time because Python is computing the
 value of the default `timestamp` parameter once in the function definition time and then
-reusing the same value across all the function calls. The `log` function was called 3
-times but the timestamp function was invoked only once; during the function definition
-time.
+reusing the same value across all the function calls. The `log` function was called 3 times
+but the timestamp function was invoked only once; during the function definition time.
 
 This is easy to fix. Remove the default value of the timestamp and explicitly pass the
 parameter value while calling the function:
@@ -107,7 +106,7 @@ if __name__ == "__main__":
 
 Now if you run it, you'll get this:
 
-```
+```txt
 WARNING:root:Timestamp: 2022-01-27T20:19:47.618326
 Message: Reality can often be disappointing.
 
@@ -119,8 +118,8 @@ Message: Reality can often be disappointing.
 ```
 
 Notice, how the values of the seconds in the timestamps have roughly a 1-second delay
-between them. Early-bound defaults can also produce surprising results if you try to use
-a mutable data structure as the default value of a function/method. Here's an example:
+between them. Early-bound defaults can also produce surprising results if you try to use a
+mutable data structure as the default value of a function/method. Here's an example:
 
 ```python
 # src.py
@@ -142,11 +141,11 @@ if __name__ == "__main__":
         print(ret)
 ```
 
-The function `append_to` takes any object and appends that to the `target` mutable
-sequence. Here, the parameter `target` has a default value; an empty list. However,
-running the function reveals something unexpected:
+The function `append_to` takes any object and appends that to the `target` mutable sequence.
+Here, the parameter `target` has a default value; an empty list. However, running the
+function reveals something unexpected:
 
-```
+```txt
 [0]
 [0, 1]
 [0, 1, 2]
@@ -154,16 +153,15 @@ running the function reveals something unexpected:
 
 Whereas, you might expect it to print out the following:
 
-```
+```txt
 [0]
 [1]
 [2]
 ```
 
 Python is reusing the same `MutableSequence` that was defined in the function definition
-time; just like it was reusing the same return value of the
-`datetime.utcnow().isoformat()` in the previous section. To fix this you can do the
-following:
+time; just like it was reusing the same return value of the `datetime.utcnow().isoformat()`
+in the previous section. To fix this you can do the following:
 
 ```python
 # src.py
@@ -187,31 +185,30 @@ if __name__ == "__main__":
 
 Running the snippet will produce the expected result this time:
 
-```
+```txt
 [0]
 [1]
 [2]
 ```
 
 Here, I just omitted the `target` parameter from the `append_to` function signature.
-Defining the variable inside the function body can save you from being surprised at the
-most unfortunate time.
+Defining the variable inside the function body can save you from being surprised at the most
+unfortunate time.
 
 ## Breadcrumbs
 
-Currently, there's an outstanding
-PEP ([PEP-671](https://www.python.org/dev/peps/pep-0671/)) that proposes late-bound
-function argument defaults. It's still in a draft state and I'm quite fond of the syntax
-that it's proposing. Here's how you'd make a default parameter late-bound:
+Currently, there's an outstanding PEP ([PEP-671][^1]) that proposes late-bound function
+argument defaults. It's still in a draft state and I'm quite fond of the syntax that it's
+proposing. Here's how you'd make a default parameter late-bound:
 
 ```python
 def foo(bar, baz => []):
     ...
 ```
 
-The default parameter `baz` will be late-bound and will produce similar results that
-we've seen in the last solution.
+The default parameter `baz` will be late-bound and will produce similar results that we've
+seen in the last solution.
 
-## References
 
-* [Mutable default arguments - The hitchhiker’s guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments)
+[^1]: [PEP-671](https://www.python.org/dev/peps/pep-0671)
+[^2]: [Mutable default arguments - The hitchhiker’s guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments) [^2]

@@ -3,15 +3,16 @@ title: Create a sub dictionary with O(K) complexity in Python
 Date: 2022-01-30
 tags:
     - Python
+    - TIL
 ---
 
 How'd you create a sub dictionary from a dictionary where the keys of the sub-dict are
 provided as a list?
 
-I was reading a [tweet](https://twitter.com/nedbat/status/1487084661163626506) by Ned
-Bachelder on this today and that made me realize that I usually solve it with `O(DK)`
-complexity, where `K` is the length of the sub-dict keys and `D` is the length of the
-primary dict. Here's how I usually do that without giving it any thoughts or whatsoever:
+I was reading a tweet[^1] by Ned Bachelder on this today and that made me realize that I
+usually solve it with `O(DK)` complexity, where `K` is the length of the sub-dict keys and
+`D` is the length of the primary dict. Here's how I usually do that without giving it any
+thoughts or whatsoever:
 
 ```python
 # src.py
@@ -37,14 +38,14 @@ print(sub_dict)
 ```
 This prints:
 
-```
+```txt
 {'this': 0, 'is': 1, 'an': 2, 'example': 3}
 ```
 
-While this works fine, if you look carefully you'll notice that in the above snippet,
-the complexity of creating the sub-dict is O(DK). This means, in the worst-case
-scenario, it'll have to traverse the entire length of the main-dict and all the keys of
-the sub-dict to create the sub-dict. We can do better. Consider this:
+While this works fine, if you look carefully you'll notice that in the above snippet, the
+complexity of creating the sub-dict is O(DK). This means, in the worst-case scenario, it'll
+have to traverse the entire length of the main-dict and all the keys of the sub-dict to
+create the sub-dict. We can do better. Consider this:
 
 ```python
 # src.py
@@ -58,14 +59,14 @@ sub_dict = {k: main_dict[k] for k in sub_keys}
 
 It prints out the same thing as before:
 
-```
+```txt
 {'this': 0, 'is': 1, 'an': 2, 'example': 3}
 ```
 
-It's quite a bit faster because in the worst case scenario, it'll only have to traverse
-the entire `sub_keys` list—O(K) complexity achieved. This is so simple and elegant. How
-did I miss that! There's another functional but subjectively less readable way of
-achieving the same thing. Here you go:
+It's quite a bit faster because in the worst case scenario, it'll only have to traverse the
+entire `sub_keys` list—O(K) complexity achieved. This is so simple and elegant. How did I
+miss that! There's another functional but subjectively less readable way of achieving the
+same thing. Here you go:
 
 ```python
 # src.py
@@ -97,11 +98,11 @@ In [5]: %timeit dict(zip(sub_keys, itemgetter(*sub_keys)(main_dict)))
 ...
 ```
 
-It shows that the solution I was using does suffer from the effects of `O(DK)`
-complexity even when the dict size is as small as 9 elements. The second solution is the
-fastest and the least complex one to understand. While the third one is better than the
-first solution, it's a gratuitously complex way of doing something so trivial.
+It shows that the solution I was using does suffer from the effects of `O(DK)` complexity
+even when the dict size is as small as 9 elements. The second solution is the fastest and
+the least complex one to understand. While the third one is better than the first solution,
+it's a gratuitously complex way of doing something so trivial.
 
-## References
 
-* [The second solution came out of a comment on the same tweet](https://twitter.com/__mharrison__/status/1487087733633781766/photo/1)
+[^1]: [Ned Bachelder's tweet](https://twitter.com/nedbat/status/1487084661163626506)
+[^2]: [The second solution came out of a comment on the same tweet](https://twitter.com/__mharrison__/status/1487087733633781766/photo/1) [^2]

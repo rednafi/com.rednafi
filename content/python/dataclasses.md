@@ -22,7 +22,7 @@ class CartesianPoint:
 print(CartesianPoint(1, 2, 3))
 ```
 
-```
+```txt
 >>> CartesianPoint(x = 1, y = 2, z = 3)
 ```
 
@@ -58,15 +58,15 @@ print(point)
 ```
 
 In the above code, the magic is done by the `dataclass` decorator. Data classes require you
-to use explicit [type annotations] and it automatically implements methods like `__init__`,
-`__repr__`, `__eq__` etc beforehand. You can inspect the methods that `dataclass` auto
-defines via Python's help.
+to use explicit type annotations[^1] and it automatically implements methods like
+`__init__`, `__repr__`, `__eq__` etc beforehand. You can inspect the methods that
+`dataclass` auto defines via Python's help.
 
 ```python
 help(CartesianPoint)
 ```
 
-```
+```txt
 Help on class CartesianPoint in module __main__:
 
 class CartesianPoint(builtins.object)
@@ -210,7 +210,7 @@ print(point_1 == point_2)
 print(point_1 < point_2)
 ```
 
-```
+```txt
 >>> True
 >>> False
 ```
@@ -246,7 +246,7 @@ norm = point.abs_val()
 print(norm)
 ```
 
-```
+```txt
 >>> 10.488088481701515
 ```
 
@@ -275,7 +275,7 @@ point = CartesianPoint(2, 4, 6)
 point.x = 23
 ```
 
-```
+```txt
 ---------------------------------------------------------------------------
 
 FrozenInstanceError                       Traceback (most recent call last)
@@ -361,7 +361,7 @@ point = CartesianPoint(4, 5, 6)
 print(point.tup)
 ```
 
-```
+```txt
 >>> (4, 5, 6)
 ```
 
@@ -458,7 +458,7 @@ print(c < a)
 print({f"{a}": a.dist()})
 ```
 
-```
+```txt
 CartesianPoint(x = 1, y = 2, z = 3)
 True
 True
@@ -520,7 +520,7 @@ print(c < a)
 print({f"{a}": a.dist()})
 ```
 
-```
+```txt
 CartesianPoint(x=1, y=2, z=3)
 True
 True
@@ -529,11 +529,6 @@ True
 {'CartesianPoint(x=1, y=2, z=3)': 3.7416573867739413}
 ```
 
-## References
-
-* [Python dataclasses - Official docs]
-* [The ultimate guide to dataclasses in Python 3.7]
-
-[type annotations]: https://docs.python.org/3/library/typing.html
-[python dataclasses - official docs]: https://docs.python.org/3/library/dataclasses.html
-[the ultimate guide to dataclasses in python 3.7]: https://realpython.com/python-data-classes/
+[^1]: [Type annotations](https://docs.python.org/3/library/typing.html)
+[^2]: [Python dataclasses - official docs](https://docs.python.org/3/library/dataclasses.html) [^2]
+[^3]: [The ultimate guide to dataclasses in python 3.7](https://realpython.com/python-data-classes/) [^3]

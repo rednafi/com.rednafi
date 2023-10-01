@@ -6,29 +6,28 @@ tags:
   - Django
 ---
 
-Back in the days when I was working as a data analyst, I used to spend hours inside
-Jupyter notebooks exploring, wrangling, and plotting data to gain insights. However, as
-I shifted my career gear towards backend software development, my usage of interactive
-exploratory tools dwindled.
+Back in the days when I was working as a data analyst, I used to spend hours inside Jupyter
+notebooks exploring, wrangling, and plotting data to gain insights. However, as I shifted my
+career gear towards backend software development, my usage of interactive exploratory tools
+dwindled.
 
 Nowadays, I spend the majority of my time working on a fairly large Django monolith
 accompanied by a fleet of microservices. Although I love my text editor and terminal
-emulators, I miss the ability to just start a Jupyter Notebook server and run code
-snippets interactively. While Django allows you to open up a shell environment and run
-code snippets interactively, it still isn't as flexible as a notebook.
+emulators, I miss the ability to just start a Jupyter Notebook server and run code snippets
+interactively. While Django allows you to open up a shell environment and run code snippets
+interactively, it still isn't as flexible as a notebook.
 
-So, I wanted to see if I could connect a Jupyter notebook server to a containerized
-Django application running on my local machine and interactively start making queries
-from there. Turns out, you can do that by integrating three tools into your Dockerized
-environment: [ipykernel][ipykernel], [jupyter][jupyter], and
-[django-extensions][django-extensions]. Before I start explaining how everything is tied
-together, here's a fully working [example][example-app] of a containerized Django
+So, I wanted to see if I could connect a Jupyter notebook server to a containerized Django
+application running on my local machine and interactively start making queries from there.
+Turns out, you can do that by integrating three tools into your Dockerized environment:
+ipykernel[^1], jupyter[^2], and django-extensions[^3]. Before I start explaining how
+everything is tied together, here's a fully working example[^4] of a containerized Django
 application where you can log into the Jupyter server and start debugging the app.
 
 The app is just a Dockerized version of the famous `polls-app` from the Django tutorial.
 The directory structure looks as follows:
 
-```
+```txt
 ../django-jupyter/
 ├── Dockerfile
 ├── docker-compose.yml
@@ -61,7 +60,7 @@ The directory structure looks as follows:
 We define and pin the dependencies required for the Jupyter integration in the
 `requirements-dev.txt` file:
 
-```
+```txt
 # These pinned deps will probably get outdated by the time you're reading it.
 # Use the latest version but always pin them in applications.
 
@@ -77,8 +76,8 @@ django==4.1.5
 ```
 
 In the `mysite/mysite/_debug_settings.py` file, we import the configs from the primary
-settings file and add the Jupyter configuration attributes there. Here's the full
-content of the extended `_debug_settings.py` file:
+settings file and add the Jupyter configuration attributes there. Here's the full content of
+the extended `_debug_settings.py` file:
 
 ```python
 from .settings import *  # noqa
@@ -115,7 +114,7 @@ and some auth-specific settings.
 
 Next, in the `Dockerfile`, we're defining the application like this:
 
-```
+```dockerfile
 # Dockerfile
 
 FROM python:3.11-bullseye
@@ -174,30 +173,29 @@ services:
     command: sleep infinity
 ```
 
-We're orchestrating three services here: `webserver`, `jupyter`, and `debug`. All of
-them extend the base `web` service that builds the `Dockerfile`. The `webserver` service
-is where the Django app is run and exposed via the `8000` port. The `jupyter` service
-runs the Jupyter server and makes it accessible through your browser via the `8895`
-port. Additionally, note how we are using our extended version of the main settings by
-overriding the `DJANGO_SETTINGS_MODULE` environment variable and setting it to
-`mysite._debug_settings`. The `debug` container is spun up to run the migration commands
-and perform other maintenance tasks within the container network. All the maintenance
-commands are defined in the `Makefile` for your convenience. You can run any of these by
-running `make <target>` from the root directory.
+We're orchestrating three services here: `webserver`, `jupyter`, and `debug`. All of them
+extend the base `web` service that builds the `Dockerfile`. The `webserver` service is where
+the Django app is run and exposed via the `8000` port. The `jupyter` service runs the
+Jupyter server and makes it accessible through your browser via the `8895` port.
+Additionally, note how we are using our extended version of the main settings by overriding
+the `DJANGO_SETTINGS_MODULE` environment variable and setting it to
+`mysite._debug_settings`. The `debug` container is spun up to run the migration commands and
+perform other maintenance tasks within the container network. All the maintenance commands
+are defined in the `Makefile` for your convenience. You can run any of these by running
+`make <target>` from the root directory.
 
 And that's it!
 
-If you have [Docker][docker] and [docker-compose][docker-compose] installed on your
-local system, you can give it a try. Clone the [example-app] repo, navigate to the root
-directory and run:
+If you have Docker[^5] and docker-compose[^6] installed on your local system, you can give
+it a try. Clone the example-app[^4] repo, navigate to the root directory and run:
 
-```
+```sh
 docker compose up -d
 ```
 
 Then run the migration command:
 
-```
+```sh
 docker compose exec debug python mysite/manage.py makemigrations \
     && docker compose exec debug python mysite/manage.py migrate
 ```
@@ -205,13 +203,13 @@ docker compose exec debug python mysite/manage.py makemigrations \
 Now head over to your browser and go to `http://localhost:8000`. You should see an empty
 page with a simple header like this:
 
-![img][app-a]
+![empty page with a simple header][image_1]
 
 If you go to `http://localhost:8895`, you'll be able to open a new notebook that
 automatically connects to your database and allows you to write interactive code
 immediately.
 
-![img][jupyter-a]
+![interactive code in jupyter notebook][image_2]
 
 You can run the following snippet and it'll create two questions and two choices in the
 database.
@@ -234,19 +232,18 @@ for question_text in ("Are you okay?", "Do you wanna go there?"):
 If you run this and refresh your application server, you'll that the objects have been
 created and they appear in the view:
 
-![img][jupyter-b]
+![display created objects in jupyter notebook][image_3]
 
-## Reference
 
-* [How to access Jupyter notebook in Docker Container][stackoverflow]
+[^1]: [ipykernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
+[^2]: [jupyter](https://jupyter.org/)
+[^3]: [django-extensions](https://django-extensions.readthedocs.io/en/latest/)
+[^4]: [example-app](https://github.com/rednafi/django-jupyter)
+[^5]: [Docker](https://www.docker.com/)
+[^6]: [docker-compose](https://docs.docker.com/compose/)
+[^7]: [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container) [^7]
 
-[ipykernel]: https://ipython.readthedocs.io/en/stable/install/kernel_install.html
-[jupyter]: https://jupyter.org/
-[django-extensions]: https://django-extensions.readthedocs.io/en/latest/
-[example-app]: https://github.com/rednafi/django-jupyter
-[docker]: https://www.docker.com/
-[docker-compose]: https://docs.docker.com/compose/
-[app-a]: https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
-[jupyter-a]: https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png
-[jupyter-b]: https://user-images.githubusercontent.com/30027932/212461809-ef67edbb-71cd-4d23-a2af-0a6c7039a78c.png
-[stackoverflow]: https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container
+
+[image_1]: https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
+[image_2]: https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png
+[image_3]: https://user-images.githubusercontent.com/30027932/212461809-ef67edbb-71cd-4d23-a2af-0a6c7039a78c.png

@@ -3,14 +3,14 @@ title: Automatic attribute delegation in Python composition
 date: 2021-11-28
 tags:
     - Python
+    - TIL
 ---
 
-While trying to avoid inheritance in an API that I was working on, I came across this
-neat trick to perform attribute delegation on composed classes. Let's say there's a
-class called `Engine` and you want to put an engine instance in a `Car`. In this case,
-the car has a classic 'has a' (inheritance usually refers to 'is a' relationships)
-relationship with the engine. So, composition makes more sense than inheritance here.
-Consider this example:
+While trying to avoid inheritance in an API that I was working on, I came across this neat
+trick to perform attribute delegation on composed classes. Let's say there's a class called
+`Engine` and you want to put an engine instance in a `Car`. In this case, the car has a
+classic 'has a' (inheritance usually refers to 'is a' relationships) relationship with the
+engine. So, composition makes more sense than inheritance here. Consider this example:
 
 ```python
 # src.py
@@ -57,9 +57,9 @@ w16
 vroom
 ```
 
-However, I wanted free attribute access, just like we get in inheritance. We should be
-able to do `car.name`, not `car.engine.name`, and get the name of the engine instance.
-With a little bit of `__getattr__` magic, it's easy to do so:
+However, I wanted free attribute access, just like we get in inheritance. We should be able
+to do `car.name`, not `car.engine.name`, and get the name of the engine instance. With a
+little bit of `__getattr__` magic, it's easy to do so:
 
 ```python
 # src.py
@@ -117,11 +117,10 @@ vroom
 Engine w16 goes vroom!
 ```
 
-!!! Warning
-    While this was all fun and dandy, I don't recommend putting it in any serious code
-    as it can obfuscate the program's intent and can make obvious things not-so-obvious.
-    Also, in case of attributes and methods with the same names in different classes,
-    this can get hairy. I just found this gymnastics intellectually stimulating.
+> While this was all fun and dandy, I don't recommend putting it in any serious code as it
+> can obfuscate the program's intent and can make obvious things not-so-obvious. Also, in
+> case of attributes and methods with the same names in different classes, this can get
+> hairy. I just found this gymnastics intellectually stimulating.
 
 ## Complete example with tests
 

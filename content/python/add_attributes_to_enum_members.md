@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-While grokking the source code of `http.HTTPStatus` module, I came across this technique
-to add extra attributes to the values of enum members. Now, to understand what do I mean by
+While grokking the source code of `http.HTTPStatus` module, I came across this technique to
+add extra attributes to the values of enum members. Now, to understand what do I mean by
 adding attributes, let's consider the following example:
 
 ```python
@@ -47,13 +47,12 @@ Color.GREEN.name='GREEN'
 Color.BLUE.value='Blue'
 ```
 
-While this works but it's evident that you can only assign a single value to an enum
-member. How'd you rewrite this if you needed multiple values attached to a single enum
-member?
+While this works but it's evident that you can only assign a single value to an enum member.
+How'd you rewrite this if you needed multiple values attached to a single enum member?
 
-Suppose, in the above case, along with the color title, you also need to save the hex
-codes and short descriptions of the colors. One way you can achieve this is via the
-assignment of an immutable container as the value of an enum member:
+Suppose, in the above case, along with the color title, you also need to save the hex codes
+and short descriptions of the colors. One way you can achieve this is via the assignment of
+an immutable container as the value of an enum member:
 
 
 ```python
@@ -70,9 +69,9 @@ class Color(Enum):
 ```
 
 Here, I'm using a tuple to contain the title, hex code, and description of the `Color`
-members. This gets awkward whenever you'll need to access the individual elements inside
-the tuple. You'll have to use hardcoded indexes to access the elements of the tuple.
-This is how you'll probably use it:
+members. This gets awkward whenever you'll need to access the individual elements inside the
+tuple. You'll have to use hardcoded indexes to access the elements of the tuple. This is how
+you'll probably use it:
 
 ```python
 ...
@@ -91,11 +90,11 @@ title=Green, hex_code=#00ff00, description=Guava Green
 title=Blue, hex_code=#0000ff, description=Baby Blue
 ```
 
-Hardcoding indexes in such a manner is fragile and will break if you drop a new value in
-the middle of the tuple assigned to an enum member. Also, it's hard to reason through
-logic when you've to keep the semantic meanings of the index positions in your working
-memory. A better thing to do is to rewrite the enum in a way that'll allow you to access
-different elements of the member values by their attribute names. Let's do it:
+Hardcoding indexes in such a manner is fragile and will break if you drop a new value in the
+middle of the tuple assigned to an enum member. Also, it's hard to reason through logic when
+you've to keep the semantic meanings of the index positions in your working memory. A better
+thing to do is to rewrite the enum in a way that'll allow you to access different elements
+of the member values by their attribute names. Let's do it:
 
 
 ```python
@@ -124,22 +123,21 @@ class Color(str, Enum):
     BLUE = ("Blue", "#0000ff", "Baby Blue")
 ```
 
-Here, I overrode the `__new__` method of the class `Color`. Method `__new__` is a
-special class method that you don't need to decorate with the `@classmethod` decorator.
-It gets executed during the creation of the `Color` object; before the `__init__`
-method. Other than the first argument `cls`, you can define the `__new__` method with
-any number of arbitrarily named arguments.
+Here, I overrode the `__new__` method of the class `Color`. Method `__new__` is a special
+class method that you don't need to decorate with the `@classmethod` decorator. It gets
+executed during the creation of the `Color` object; before the `__init__` method. Other than
+the first argument `cls`, you can define the `__new__` method with any number of arbitrarily
+named arguments.
 
 In this case, the value of each member of `Color` will have three elements—`title`,
-`hex_code`, and `description`. So, I defined the `__new__` method to accept those
-arguments. In the following line, the `str` class was initialized via
-`obj = str.__new__(cls, title)` and then `title` was assigned to the newly created
-string object via `obj._value_=title`. This line is crucial; without it, the enum won't
-operate at all. This assignment makes sure that the `Enum.member.value` will return a
-string value.
+`hex_code`, and `description`. So, I defined the `__new__` method to accept those arguments.
+In the following line, the `str` class was initialized via `obj = str.__new__(cls, title)`
+and then `title` was assigned to the newly created string object via `obj._value_=title`.
+This line is crucial; without it, the enum won't operate at all. This assignment makes sure
+that the `Enum.member.value` will return a string value.
 
-In the next two lines, `hex_code` and `description` were attached to the member values
-via the `obj.hex_code=hexcode` and `obj.description=description` statements respectively.
+In the next two lines, `hex_code` and `description` were attached to the member values via
+the `obj.hex_code=hexcode` and `obj.description=description` statements respectively.
 
 Now, you'll be able to use this enum without any hardcoded shenanigans:
 
@@ -169,6 +167,4 @@ title=Green, hex_code=#00ff00, description=Guava Green
 title=Blue, hex_code=#0000ff, description=Baby Blue
 ```
 
-## References
-
-* [http.HTTPStatus](https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6)
+[^1]: [http.HTTPStatus](https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6) [^1]

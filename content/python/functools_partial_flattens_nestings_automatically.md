@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-The constructor for `functools.partial()` detects nesting and automatically flattens
-itself to a more efficient form. For example:
+The constructor for `functools.partial()` detects nesting and automatically flattens itself
+to a more efficient form. For example:
 
 ```python
 from functools import partial
@@ -27,11 +27,9 @@ g()
 
 This returns:
 
-```
+```txt
 functools.partial(<function f at 0x7f4fd16c11f0>, a=1, b=2, c=3)
 Args are 1-2-3
 ```
 
-## References
-
-* Raymond Hettinger's [tweet](https://twitter.com/raymondh/status/1454865294120325124).
+[^1]: [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1454865294120325124) [^1]

@@ -3,6 +3,7 @@ title: Check whether an integer is a power of two in Python
 date: 2022-01-21
 tags:
     - Python
+    - TIL
 ---
 
 To check whether an integer is a power of two, I've deployed hacks like this:
@@ -12,14 +13,11 @@ def is_power_of_two(x: int) -> bool:
     return x > 0 and hex(x)[-1] in ("0", "2", "4", "8")
 ```
 
-While this
-[works](https://twitter.com/rednafi/status/1484326191687696391/photo/1), I've never
-liked explaining the pattern matching hack that's going on here.
+While this works[^1], I've never liked explaining the pattern matching hack that's going on
+here.
 
-Today, I came across this
-[tweet](https://twitter.com/raymondh/status/1483948152906522625) by
-[Raymond Hettinger](https://twitter.com/raymondh) where he proposed an elegant solution
-to the problem. Here's how it goes:
+Today, I came across this tweet[^2] by Raymond Hettinger where he proposed an elegant
+solution to the problem. Here's how it goes:
 
 ```python
 def is_power_of_two(x: int) -> bool:
@@ -31,7 +29,8 @@ integer is a power of `2` or not. Also, it's a tad bit faster.
 
 ## Explanation
 
-> Any integer that's a power of `2`, will only contain a single `1` in its binary representation.
+> Any integer that's a power of `2`, will only contain a single `1` in its binary
+> representation.
 
 For example:
 
@@ -75,6 +74,5 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-## References
-
-* [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1483948152906522625)
+[^1]: [My tweet on the hack](https://twitter.com/rednafi/status/1484326191687696391/photo/1)
+[^2]: [A better solution by Raymond Hettinger](https://twitter.com/raymondh/status/1483948152906522625)

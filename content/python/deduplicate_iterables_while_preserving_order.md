@@ -151,8 +151,4 @@ means that it will deduplicate the input iterable based on the second element of
 and return a list. The result is `[(1,1), (1,3)]`.
 
 
-## References
-
-* [How do I remove duplicates from a list while preserving order]
-
-[How do I remove duplicates from a list while preserving order]: https://stackoverflow.com/questions/480214/how-do-i-remove-duplicates-from-a-list-while-preserving-order
+[^1]: [How do I remove duplicates from a list while preserving order](https://stackoverflow.com/questions/480214/how-do-i-remove-duplicates-from-a-list-while-preserving-order) [^1]

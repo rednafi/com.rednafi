@@ -7,8 +7,8 @@ tags:
 ---
 
 While working with microservices in Python, a common pattern that I see is—the usage of
-dynamically filled dictionaries as payloads of REST APIs or message queues. To
-understand what I mean by this, consider the following example:
+dynamically filled dictionaries as payloads of REST APIs or message queues. To understand
+what I mean by this, consider the following example:
 
 ```python
 # src.py
@@ -50,14 +50,12 @@ if __name__ == "__main__":
     save_to_cache(payload)
 ```
 
-Here, the `get_payload` function constructs a payload that gets stored in a Redis DB in
-the `save_to_cache` function. The `get_payload` function returns a dict that denotes a
-contrived payload containing the data of an imaginary zoo. To execute the above snippet,
-you'll need to spin up a Redis database first. You can use
-[Docker](https://www.docker.com/) to do so. Install and configure Docker on your system
-and run:
+Here, the `get_payload` function constructs a payload that gets stored in a Redis DB in the `save_to_cache` function. The `get_payload` function returns a dict that denotes a contrived
+payload containing the data of an imaginary zoo. To execute the above snippet, you'll need
+to spin up a Redis database first. You can use Docker[^1] to do so.
+Install and configure Docker on your system and run:
 
-```
+```sh
 docker run -d -p 6379:6379 redis:alpine
 ```
 
@@ -65,7 +63,7 @@ If you run the above snippet after instantiating the Redis server, it'll run wit
 raising any error. You can inspect the content saved in Redis with the following command
 (assuming you've got `redis-cli` and `jq` installed in your system):
 
-```
+```txt
 echo "get zoo:awesome_zoo" | redis-cli | jq
 ```
 
@@ -101,15 +99,15 @@ function; as it dynamically builds the dictionary. First, it declares a dictiona
 two fields—`name` and `animals`. Here, `name` is a string value that denotes the name of
 the zoo. The other field `animals` is a list containing the names and attributes of the
 animals in the zoo. Later on, the for-loop fills up the dictionary with nested data
-structures. This charade of operations makes it difficult to reify the final shape of
-the resulting `payload` in your mind.
+structures. This charade of operations makes it difficult to reify the final shape of the
+resulting `payload` in your mind.
 
-In this case, you'll have to inspect the content of the Redis cache to fully understand
-the shape of the data. Writing code in the above manner is effortless but it makes it
-really hard for the next person working on the codebase to understand how the payload
-looks without tapping into the data storage. There's a better way to declaratively
-communicate the shape of the payload that doesn't involve writing unmaintainably large
-docstrings. Here's how you can leverage `TypedDict` and `Annotated` to achieve the goals:
+In this case, you'll have to inspect the content of the Redis cache to fully understand the
+shape of the data. Writing code in the above manner is effortless but it makes it really
+hard for the next person working on the codebase to understand how the payload looks without
+tapping into the data storage. There's a better way to declaratively communicate the shape
+of the payload that doesn't involve writing unmaintainably large docstrings. Here's how you
+can leverage `TypedDict` and `Annotated` to achieve the goals:
 
 ```python
 # src.py
@@ -168,30 +166,29 @@ if __name__ == "__main__":
     save_to_cache(payload)
 ```
 
-Notice, how I've used `TypedDict` to declare the nested structure of the payload `Zoo`.
-In runtime, instances of typed-dict classes behave the same way as normal dicts. Here,
-`Zoo` contains two fields—`name` and `animals`. The `animals` field is annotated as
-`list[Animal]` where `Animal` is another typed-dict. The `Animal` typed-dict houses
-another typed-dict called `Attribute` that defines various properties of the animal.
+Notice, how I've used `TypedDict` to declare the nested structure of the payload `Zoo`. In
+runtime, instances of typed-dict classes behave the same way as normal dicts. Here, `Zoo`
+contains two fields—`name` and `animals`. The `animals` field is annotated as `list[Animal]`
+where `Animal` is another typed-dict. The `Animal` typed-dict houses another typed-dict
+called `Attribute` that defines various properties of the animal.
 
-Taking a look at the typed-dict `Zoo` and following along its nested structure, the
-final shape of the payload becomes clearer without us having to look for example
-payloads. Also, Mypy can check whether the payload conforms to the shape of the
-annotated type. I used `Annotated[Zoo, dict]` in the input parameter of `save_to_cache`
-function to communicate with the reader that an instance of the class `Zoo` is a dict
-that conforms to the contract laid out in the type itself. The type `Annotated` can be
-used to add any arbitrary metadata to a particular type.
+Taking a look at the typed-dict `Zoo` and following along its nested structure, the final
+shape of the payload becomes clearer without us having to look for example payloads. Also,
+Mypy can check whether the payload conforms to the shape of the annotated type. I used
+`Annotated[Zoo, dict]` in the input parameter of `save_to_cache` function to communicate
+with the reader that an instance of the class `Zoo` is a dict that conforms to the contract
+laid out in the type itself. The type `Annotated` can be used to add any arbitrary metadata
+to a particular type.
 
 In runtime, this snippet will exhibit the same behavior as the previous one. Mypy also
 approves this.
 
 ## Handling missing key-value pairs
 
-By default, the type checker will structurally validate the shape of the dict annotated
-with a `TypedDict` class and all the key-value pairs expected by the annotation must be
-present in the dict. It's possible to lax this behavior by specifying *totality*. This
-can be helpful to deal with missing fields without letting go of type safety. Consider
-this:
+By default, the type checker will structurally validate the shape of the dict annotated with
+a `TypedDict` class and all the key-value pairs expected by the annotation must be present
+in the dict. It's possible to lax this behavior by specifying *totality*. This can be
+helpful to deal with missing fields without letting go of type safety. Consider this:
 
 ```python
 from __future__ import annotations
@@ -213,7 +210,7 @@ animal_attribute: Attribute = {
 
 Mypy will complain about the missing key:
 
-```
+```txt
 src.py:12: error: Missing key "is_mammal" for TypedDict "Attribute"
     animal_attribute: Attribute = {
                                   ^
@@ -248,7 +245,7 @@ animal_attribute["species"] = "Sapiens"
 ...
 ```
 
-```
+```txt
 src.py:17: error: TypedDict "Attribute" has no key "species"
     animal_attribute["species"] = "Sapiens"
                     ^
@@ -259,6 +256,5 @@ make: *** [Makefile:134: mypy] Error 1
 
 Sweet type safety without being too strict about missing fields!
 
-## References
-
-* [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/)
+[^1]: [Docker](https://www.docker.com/)
+[^2]: [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/) [^2]

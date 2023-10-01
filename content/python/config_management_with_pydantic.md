@@ -8,25 +8,28 @@ tags:
 Managing configurations in your Python applications isn't something you think about much
 often, until complexity starts to seep in and forces you to re-architect your initial
 approach. Ideally, your config management flow shouldn't change across different
-applications or as your application begins to grow in size and complexity. Even if you're
-writing a library, there should be a consistent config management process that scales up
-properly. Since I primarily spend my time writing data-analytics, data-science applications
-and expose them using [Flask] or [FastAPI] framework, I'll be tacking config management from
-an application development perspective.
+applications or as your application begins to grow in size and complexity.
+
+Even if you're writing a library, there should be a consistent config management process
+that scales up properly. Since I primarily spend my time writing data-analytics,
+data-science applications and expose them using Flask[^1] or FastAPI[^2] framework, I'll be
+tacking config management from an application development perspective.
 
 ## Few ineffective approaches
 
-In the past, while exposing APIs with Flask, I used to use `.env`, `.flaskenv` and
-`Config` class approach to manage configs which is pretty much a standard in the Flask
-realm. However, it quickly became cumbersome to maintain and juggle between configs
-depending on development, staging or production environments. There were additional
-application specific global constants to deal with too. So I tried using `*.json`, `*.
-yaml` or `*.toml` based config management approaches but those too, quickly turned into
-a tangled mess. I was constantly accessing variables buried into 3-4 levels of nested
-toml data structure and it wasn't pretty. Then there are config management libraries
-like [Dynaconf] or [environ-config] that aim to ameliorate the issue. While these are all
-amazing tools but they also introduce their own custom workflow that can feel
-over-engineered while dealing with maintenance and extension.
+In the past, while exposing APIs with Flask, I used to use `.env`, `.flaskenv` and `Config`
+class approach to manage configs which is pretty much a standard in the Flask realm.
+However, it quickly became cumbersome to maintain and juggle between configs depending on
+development, staging or production environments.
+
+There were additional application specific global constants to deal with too. So I tried
+using `*.json`, `*.yaml` or `*.toml` based config management approaches but those too,
+quickly turned into a tangled mess. I was constantly accessing variables buried into 3-4
+levels of nested toml data structure and it wasn't pretty.
+
+Then there are config management libraries like Dynaconf[^3] or environ-config[^4] that aim
+to ameliorate the issue. While these are all amazing tools but they also introduce their own
+custom workflow that can feel over-engineered while dealing with maintenance and extension.
 
 ## A pragmatic wishlist
 
@@ -41,8 +44,7 @@ conversion.
 * Keep *development*, *staging* and *production* configs separate.
 * Switch between the different environments e.g development, staging effortlessly.
 * Inspect the *active* config values
-* Create arbitrarily nested config structure if required (Not encouraged though. Constraints
-fosters creativity, remember?)
+* Create arbitrarily nested config structure if required (Not encouraged though).
 
 ## Building the config management pipeline
 
@@ -60,15 +62,15 @@ pip install pydantic python-dotenv
 ```
 
 Make sure you have fairly a recent version of `Python 3` installed, preferably
-`Python 3.10`. You might need to install `python3.10 venv`.
+`Python 3.10+`. You might need to install `python3.10 venv`.
 
 ### Introduction to Pydantic
 
 To check off all the boxes of the wishlist above, I made a custom config management flow
-using [Pydantic], [python-dotenv] and the `.env` file. Pydantic is a fantastic data
+using Pydantic[^5], python-dotenv[^6] and the `.env` file. Pydantic is a fantastic data
 validation library that can be used for validating and implicitly converting data types
 using Python's type hints. Type hinting is a formal solution to statically indicate the type
-of a value within your Python code. It was specified in [PEP-484] and introduced in Python
+of a value within your Python code. It was specified in PEP-484[^7] and introduced in Python
 3.5. Let's define and validate the attributes of a class named `User`:
 
 ```python
@@ -128,13 +130,12 @@ PROD_REDIS_PORT="5000"
 ```
 
 Notice how I've used the `DEV_` and `PROD_` prefixes before the environment specific
-configs. These help you discern between the variables designated for different
-environments.
+configs. These help you discern between the variables designated for different environments.
 
-> Configs related to your application's internal logic should either be explicitly
-> mentioned in the same `configs.py` or imported from a different `app_configs.py` file. You
-> shouldn't pollute your `.env` files with the internal global variables necessitated by
-> your application's core logic.
+> Configs related to your application's internal logic should either be explicitly mentioned
+> in the same `configs.py` or imported from a different `app_configs.py` file. You shouldn't
+> pollute your `.env` files with the internal global variables necessitated by your
+> application's core logic.
 
 Now let's dump the entire config orchestration and go though the building blocks one by one:
 
@@ -349,7 +350,7 @@ print(REDIS_PORT)
 
 This should print out:
 
-```
+```txt
 >>> ProdConfig(
 ...     ENV_STATE='prod',
 ...     APP_CONFIG=AppConfig(VAR_A=33, VAR_B=22.0),
@@ -382,9 +383,9 @@ STAGE_REDIS_PORT="6000"
 
 ```
 
-* Then you've to create a class named `StageConfig` that inherits from the
-`GlobalConfig` class. The architecture of the class is  similar to that of the
-`DevConfig` or `ProdConfig` class.
+* Then you've to create a class named `StageConfig` that inherits from the `GlobalConfig`
+class. The architecture of the class is  similar to that of the `DevConfig` or `ProdConfig`
+class.
 
 ```python
 # configs.py
@@ -442,18 +443,13 @@ This will print out an instance of the class `StageConfig`.
 The above workflow works perfectly for my usage scenario. So subjectively, I feel like it's
 an elegant solution to a very icky problem. Your mileage will definitely vary.
 
-## Resources
 
-* [Settings management with Pydantic]
-* [Flask config management]
-
-
-[flask]: https://github.com/pallets/flask
-[fastapi]: https://github.com/tiangolo/fastapi
-[dynaconf]: https://github.com/rochacbruno/dynaconf
-[environ-config]: https://github.com/hynek/environ-config
-[pydantic]: https://github.com/samuelcolvin/pydantic
-[python-dotenv]: https://github.com/theskumar/python-dotenv
-[pep-484]: https://www.python.org/dev/peps/pep-0484/
-[settings management with pydantic]: https://pydantic-docs.helpmanual.io/usage/settings/
-[flask config management]: https://flask.palletsprojects.com/en/1.1.x/config/
+[^1]: [Flask](https://github.com/pallets/flask)
+[^2]: [FastAPI](https://github.com/tiangolo/fastapi)
+[^3]: [Dynaconf](https://github.com/rochacbruno/dynaconf)
+[^4]: [environ-config](https://github.com/hynek/environ-config)
+[^5]: [Pydantic](https://github.com/samuelcolvin/pydantic)
+[^6]: [python-dotenv](https://github.com/theskumar/python-dotenv)
+[^7]: [PEP-484](https://www.python.org/dev/peps/pep-0484/)
+[^8]: [Settings management with pydantic](https://pydantic-docs.helpmanual.io/usage/settings/) [^8]
+[^9]: [Flask config management](https://flask.palletsprojects.com/en/1.1.x/config/) [^9]

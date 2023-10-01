@@ -7,16 +7,15 @@ tags:
     - Database
 ---
 
-Django has a `Model.objects.bulk_update` method that allows you to update multiple
-objects in a single pass. While this method is a great way to speed up the update
-process, oftentimes it's not fast enough. Recently, at my workplace, I found myself
-writing a script to update half a million user records and it was taking quite a bit of
-time to mutate them even after leveraging bulk update. So I wanted to see if I could use
-`multiprocessing` with `.bulk_update` to quicken the process even more. Turns out, yep
-I can!
+Django has a `Model.objects.bulk_update` method that allows you to update multiple objects
+in a single pass. While this method is a great way to speed up the update process,
+oftentimes it's not fast enough. Recently, at my workplace, I found myself writing a script
+to update half a million user records and it was taking quite a bit of time to mutate them
+even after leveraging bulk update. So I wanted to see if I could use `multiprocessing` with
+`.bulk_update` to quicken the process even more. Turns out, yep I can!
 
-Here's a script that creates 100k users in a PostgreSQL database and updates their
-usernames via vanilla `.bulk_update`. Notice how we're timing the update duration:
+Here's a script that creates 100k users in a PostgreSQL database and updates their usernames
+via vanilla `.bulk_update`. Notice how we're timing the update duration:
 
 ```python
 # app_name/vanilla_bulk_update.py
@@ -66,13 +65,13 @@ for username in User.objects.values_list("username", flat=True)[:5]:
 
 This can be executed as a script like this:
 
-```
+```sh
 python -m app_name.vanilla_bulk_update
 ```
 
 It'll return:
 
-```
+```txt
 Time taken to update 100k users: 9.220380916005524 seconds.
 Updated usernames:
 ===================
@@ -83,8 +82,8 @@ USER_99843
 USER_99844
 ```
 
-A little over 9 seconds isn't too bad for 100k users but we can do better. Here's how
-I've updated the above script to make it 4x faster:
+A little over 9 seconds isn't too bad for 100k users but we can do better. Here's how I've
+updated the above script to make it 4x faster:
 
 ```python
 # app_name/multiprocessing_bulk_update.py
@@ -161,21 +160,21 @@ if __name__ == "__main__":
     main()
 ```
 
-This script divides the updated user list into a list of multiple user chunks and
-assigns that to the `user_chunks` variable. The `update_users` function takes a single
-user chunk and runs `.bulk_update` on that. Then we fork a bunch of processes and run
-the `update_users` function over the `user_chunks` via `multiprocessing.Pool.map`. Each
-process consumes `10` chunks of users in a single go—determined by the `chunksize`
-parameter of the `pool.map` function. Running the updated script will give you similar
-output as before but with a much smaller runtime:
+This script divides the updated user list into a list of multiple user chunks and assigns
+that to the `user_chunks` variable. The `update_users` function takes a single user chunk
+and runs `.bulk_update` on that. Then we fork a bunch of processes and run the
+`update_users` function over the `user_chunks` via `multiprocessing.Pool.map`. Each process
+consumes `10` chunks of users in a single go—determined by the `chunksize` parameter of the
+`pool.map` function. Running the updated script will give you similar output as before but
+with a much smaller runtime:
 
-```
+```sh
 python -m app_name.multiprocessing_bulk_update
 ```
 
 This will print the following:
 
-```
+```txt
 Time taken to update 100k users with multiprocessing: 2.2682724999976926 seconds.
 Updated usernames:
 ===================
@@ -186,18 +185,12 @@ USER_963
 USER_964
 ```
 
-Whoa! This updated the records in under 2.5 seconds. Quite a bit of performance gain
-there.
+Whoa! This updated the records in under 2.5 seconds. Quite a bit of performance gain there.
 
-!!! Warning
-    This won't work if you're using SQLite database as your backend since SQLite doesn't
-    support concurrent writes from multiple processes. Trying to run the second script
-    with SQLite backend will incur a database error.
+> This won't work if you're using SQLite database as your backend since SQLite doesn't
+> support concurrent writes from multiple processes. Trying to run the second script with
+> SQLite backend will incur a database error.
 
-## References
 
-* [Django bulk_update][1]
-* [Using a pool of forked workers][2]
-
-[1]: https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update
-[2]: https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers
+[^1]: [Django bulk_update](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update) [^1]
+[^2]: [Using a pool of forked workers](https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers) [^2]
