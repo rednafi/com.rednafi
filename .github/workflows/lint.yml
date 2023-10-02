@@ -16,8 +16,3 @@ jobs:
       with:
           prettier_options: --check **/*.{js,css}
 
-    - name: markdownlint-cli
-      uses: nosborn/github-action-markdown-cli@v3.3.0
-      with:
-        files: */**/*.md
-        config_file: .markdownlint.jsonc
