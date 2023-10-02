@@ -24,8 +24,8 @@ ipykernel[^1], jupyter[^2], and django-extensions[^3]. Before I start explaining
 everything is tied together, here's a fully working example[^4] of a containerized Django
 application where you can log into the Jupyter server and start debugging the app.
 
-The app is just a Dockerized version of the famous `polls-app` from the Django tutorial.
-The directory structure looks as follows:
+The app is just a Dockerized version of the famous `polls-app` from the Django tutorial. The
+directory structure looks as follows:
 
 ```txt
 ../django-jupyter/
@@ -107,10 +107,10 @@ NOTEBOOK_ARGUMENTS = [
 DJANGO_ALLOW_ASYNC_UNSAFE = True
 ```
 
-Notice how we're appending the `django_extensions` app to the `INSTALLED_APPS` list
-defined in the main settings file. Then we're setting the shell to `ipython` with the
-`SHELL_PLUS` attribute. The `NOTEBOOK_ARGUMENTS` defines the port of the Jupyter server
-and some auth-specific settings.
+Notice how we're appending the `django_extensions` app to the `INSTALLED_APPS` list defined
+in the main settings file. Then we're setting the shell to `ipython` with the `SHELL_PLUS`
+attribute. The `NOTEBOOK_ARGUMENTS` defines the port of the Jupyter server and some
+auth-specific settings.
 
 Next, in the `Dockerfile`, we're defining the application like this:
 
@@ -240,8 +240,13 @@ created and they appear in the view:
 [^4]: [example-app](https://github.com/rednafi/django-jupyter)
 [^5]: [Docker](https://www.docker.com/)
 [^6]: [docker-compose](https://docs.docker.com/compose/)
-[^7]: [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container) [^7]
+[^7]:
+    [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container)
+    [^7]
 
-[image_1]: https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
-[image_2]: https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png
-[image_3]: https://user-images.githubusercontent.com/30027932/212461809-ef67edbb-71cd-4d23-a2af-0a6c7039a78c.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png
+[image_3]:
+    https://user-images.githubusercontent.com/30027932/212461809-ef67edbb-71cd-4d23-a2af-0a6c7039a78c.png

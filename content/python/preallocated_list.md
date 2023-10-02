@@ -114,8 +114,8 @@ perform dynamic allocation for you. This way, you can make sure that Python won'
 perform dynamic memory allocation multiple times as your list grows.
 
 Static pre-allocation will make your code go slightly faster. I had to do this once in a
-tightly nested loop and the 10% performance improvement was significant for the service
-that I was working on.
+tightly nested loop and the 10% performance improvement was significant for the service that
+I was working on.
 
 ## Pre-allocating memory in a list
 
@@ -176,5 +176,9 @@ difference.
 
 ## References
 
-[^1]: [List struct in CPython](https://github.com/python/cpython/blob/c19c3a09618ac400538ee412f84be4c1196c7bab/Include/cpython/listobject.h#L5)
-[^2]: [Create a list with initial capacity in Python](https://stackoverflow.com/questions/311775/create-a-list-with-initial-capacity-in-python) [^2]
+[^1]:
+    [List struct in CPython](https://github.com/python/cpython/blob/c19c3a09618ac400538ee412f84be4c1196c7bab/Include/cpython/listobject.h#L5)
+
+[^2]:
+    [Create a list with initial capacity in Python](https://stackoverflow.com/questions/311775/create-a-list-with-initial-capacity-in-python)
+    [^2]

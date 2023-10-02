@@ -10,20 +10,20 @@ While working on a project with EdgeDB[^1] and FastAPI[^2], I wanted to perform 
 checks against the FastAPI server in the GitHub CI. This would notify me about the working
 state of the application. The idea is to:
 
-* Run the server in the background.
-* Run the commands against the server that'll denote that the app is in a working state.
-* Perform cleanup.
-* Exit with code 0 if the check is successful, else exit with code 1.
+-   Run the server in the background.
+-   Run the commands against the server that'll denote that the app is in a working state.
+-   Perform cleanup.
+-   Exit with code 0 if the check is successful, else exit with code 1.
 
 The following shell script demonstrates a similar workflow with a Python HTTP server. This
 script:
 
-* Runs a Python web server in the background.
-* Makes an HTTP request against the server and checks if it returns HTTP 200 (OK).
-    If the request fails or the server isn't ready then waits for a second and makes the
-    request again, and keeps retrying for the next 20 times before giving up.
-* Performs cleanups and kills the Python processes.
-* Exit with code 0 if the request is successful, else exit with code 1.
+-   Runs a Python web server in the background.
+-   Makes an HTTP request against the server and checks if it returns HTTP 200 (OK). If the
+    request fails or the server isn't ready then waits for a second and makes the request
+    again, and keeps retrying for the next 20 times before giving up.
+-   Performs cleanups and kills the Python processes.
+-   Exit with code 0 if the request is successful, else exit with code 1.
 
 ```bash
 #!/bin/bash
@@ -67,4 +67,6 @@ giving up. A failed health check will cause the script to terminate with `exit 1
 
 [^1]: [EdgeDB](https://www.edgedb.com/)
 [^2]: [FastAPI](https://fastapi.tiangolo.com/)
-[^3]: [What's the difference between nohup and ampersand](https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand) [^3]
+[^3]:
+    [What's the difference between nohup and ampersand](https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand)
+    [^3]

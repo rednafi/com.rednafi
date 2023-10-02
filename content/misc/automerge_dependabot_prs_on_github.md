@@ -9,11 +9,11 @@ Whether I'm trying out a new tool or just prototyping with a familiar stack, I u
 create a new project on GitHub and run all the experiments there. Some examples of these
 are:
 
-* [rubric]: linter config initializer for Python
-* [exert]: declaratively apply converter functions to class attributes
-* [hook-slinger]: generic service to send, retry, and manage webhooks
-* [think-async]: exploring cooperative concurrency primitives in Python
-* [epilog]: container log aggregation with Elasticsearch, Kibana & Filebeat
+-   [rubric]: linter config initializer for Python
+-   [exert]: declaratively apply converter functions to class attributes
+-   [hook-slinger]: generic service to send, retry, and manage webhooks
+-   [think-async]: exploring cooperative concurrency primitives in Python
+-   [epilog]: container log aggregation with Elasticsearch, Kibana & Filebeat
 
 While many of these prototypes become full-fledged projects, most end up being just one-time
 journies. One common theme among all of these endeavors is that I always include
@@ -32,15 +32,15 @@ this process leads to the path of the least surprise. Instead of depending on a 
 GitHub settings, we'll write a GitHub action workflow[^3] to automate the process.
 
 First, you'll need to turn on the auto-merge option from the repository settings. To do so,
-go to the repo's *settings* tab and turn on the *Allow auto-merge* option from the
-*Pull Requests* section:
+go to the repo's _settings_ tab and turn on the _Allow auto-merge_ option from the _Pull
+Requests_ section:
 
 ![turn on automerge][image_1]
 
 Now, you probably don't want to mindlessly merge every pull request Dependabot throws at
 you. You most likely want to make sure that a pull request triggers certain tests and it'll
 be merged only if all of those checks pass. To do so, you can turn on branch protection[^4].
-From the *settings* panel, select *Branches* on the left panel:
+From the _settings_ panel, select _Branches_ on the left panel:
 
 ![select up a branch protection rule][image_2]
 
@@ -50,7 +50,7 @@ which Dependabot will send the pull requests:
 ![set up a branch protection rule][image_3]
 
 In this case, I'm adding the protection layer to the `main` branch. I've turned on the
-*Require status checks to pass before merging* toggle and added the `build` step to the list
+_Require status checks to pass before merging_ toggle and added the `build` step to the list
 of status checks that are required. Here, you can select any job from your CI files in the
 `.github/workflows` directory:
 
@@ -88,19 +88,31 @@ From now on, every time Dependabot sends a merge request, the checks will be tri
 if all the mandatory checks pass, the `automerge.yml` workflow will merge it into the target
 branch.
 
-[^1]: [Configuring Dependabot security updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates)
-[^2]: [Automatically merging a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request)
-[^3]: [Enable auto-merge on a pull request](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#enable-auto-merge-on-a-pull-request)
-[^4]: [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
-[^5]: [Complete CI file](https://github.com/rednafi/reflections/blob/master/.github/workflows/automerge.yml)
+[^1]:
+    [Configuring Dependabot security updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates)
+
+[^2]:
+    [Automatically merging a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request)
+
+[^3]:
+    [Enable auto-merge on a pull request](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#enable-auto-merge-on-a-pull-request)
+
+[^4]:
+    [About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
+
+[^5]:
+    [Complete CI file](https://github.com/rednafi/reflections/blob/master/.github/workflows/automerge.yml)
 
 [rubric]: https://github.com/rednafi/rubric
 [exert]: https://github.com/rednafi/exert
 [hook-slinger]: https://github.com/rednafi/hook-slinger
 [think-async]: https://github.com/rednafi/think-async
 [epilog]: https://github.com/rednafi/epilog
-
-[image_1]: https://user-images.githubusercontent.com/30027932/178368689-4766f2d3-86ed-4287-b058-6edfeecba66a.png
-[image_2]: https://user-images.githubusercontent.com/30027932/177646826-f07b6ad0-9df7-42cd-ab70-c74a1ec31059.png
-[image_3]: https://user-images.githubusercontent.com/30027932/177646967-36ba6b6d-861f-44d6-9a91-b5f5f3a3ce45.png
-[image_4]: https://user-images.githubusercontent.com/30027932/177647370-012d0162-d80b-4f12-9ac7-b7a6da024735.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/178368689-4766f2d3-86ed-4287-b058-6edfeecba66a.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/177646826-f07b6ad0-9df7-42cd-ab70-c74a1ec31059.png
+[image_3]:
+    https://user-images.githubusercontent.com/30027932/177646967-36ba6b6d-861f-44d6-9a91-b5f5f3a3ce45.png
+[image_4]:
+    https://user-images.githubusercontent.com/30027932/177647370-012d0162-d80b-4f12-9ac7-b7a6da024735.png

@@ -7,9 +7,9 @@ tags:
     - TIL
 ---
 
-Django Rest Framework exposes a neat hook to customize the response payload of your API
-when errors occur. I was going through Microsoft's REST API guideline[^1] and wanted to make
-the error response of my APIs more uniform and somewhat similar to this[^2].
+Django Rest Framework exposes a neat hook to customize the response payload of your API when
+errors occur. I was going through Microsoft's REST API guideline[^1] and wanted to make the
+error response of my APIs more uniform and somewhat similar to this[^2].
 
 I'll use a modified version of the quickstart example[^3] in the DRF docs to show how to
 achieve that. Also, we'll need a POST API to demonstrate the changes better. Here's the same
@@ -176,6 +176,10 @@ see this:
 Much nicer!
 
 [^1]: [API guidelines - Microsoft](https://github.com/microsoft/api-guidelines)
-[^2]: [Error payload](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples)
+[^2]:
+    [Error payload](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples)
+
 [^3]: [DRF example](https://www.django-rest-framework.org/#example)
-[^4]: [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling) [^4]
+[^4]:
+    [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling)
+    [^4]

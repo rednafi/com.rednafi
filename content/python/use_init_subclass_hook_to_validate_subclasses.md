@@ -73,7 +73,7 @@ However, if we initialize the `Sub` class like this:
 
 ```python
 class Sub(Base):
-    config = {"not" : 1, "allowed": 2}
+    config = {"not": 1, "allowed": 2}
 ```
 
 This will raise an error:

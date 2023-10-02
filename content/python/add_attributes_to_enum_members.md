@@ -165,4 +165,6 @@ title=Green, hex_code=#00ff00, description=Guava Green
 title=Blue, hex_code=#0000ff, description=Baby Blue
 ```
 
-[^1]: [http.HTTPStatus](https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6) [^1]
+[^1]:
+    [http.HTTPStatus](https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6)
+    [^1]

@@ -24,14 +24,21 @@ params:
     Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros. I
     learn, write, and tweet about Python, Go, SQL, and the broader landscape of software in
     general.
-  keywords: [
-    Redowan Delowar, Redowan Nafi, rednafi, Blog, Python, DevOps, Go, Golang, Shell,
-    Database
-  ]
+  keywords:
+    [
+      Redowan Delowar,
+      Redowan Nafi,
+      rednafi,
+      Blog,
+      Python,
+      DevOps,
+      Go,
+      Golang,
+      Shell,
+      Database,
+    ]
   author: "Redowan Delowar"
-  images: [
-    "/images/home/cover.webp"
-  ]
+  images: ["/images/home/cover.webp"]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
@@ -83,12 +90,12 @@ params:
     Title: Hi, I'm Redowan
       <a href="/index.xml" title="RSS" aria-label="RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" height="23">
-        <path d="M4 11a9 9 0 0 1 9 9" />
-        <path d="M4 4a16 16 0 0 1 16 16" />
-        <circle cx="5" cy="19" r="1" />
+      stroke-linecap="round" stroke-linejoin="round" height="23">
+      <path d="M4 11a9 9 0 0 1 9 9" />
+      <path d="M4 4a16 16 0 0 1 16 16" />
+      <circle cx="5" cy="19" r="1" />
       </svg>
-     </a>
+      </a>
     Content: >
       <div class="bio-text">
         A wandering autodidact with a flair for ones and zeros. I
@@ -108,7 +115,6 @@ params:
       url: "https://stackoverflow.com/users/8963300/redowan-delowar"
     - name: github
       url: "https://github.com/rednafi"
-
 
   analytics:
     google:
@@ -158,7 +164,6 @@ menu:
       name: about
       url: /about/
       weight: 4
-
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true

@@ -5,13 +5,13 @@ tags:
     - Python
 ---
 
-***Updated on 2023-09-11***: *Fix broken URLs.*
+**_Updated on 2023-09-11_**: _Fix broken URLs._
 
 In Python, metaclass is one of the few tools that enables you to inject metaprogramming
 capabilities into your code. The term metaprogramming refers to the potential for a program
 to manipulate itself in a self referential manner. However, messing with metaclasses is
-often considered an arcane art that's beyond the grasp of the plebeians. Heck, even
-Tim Peters[^1] advices you to tread carefully while dealing with these.
+often considered an arcane art that's beyond the grasp of the plebeians. Heck, even Tim
+Peters[^1] advices you to tread carefully while dealing with these.
 
 > Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder
 > whether you need them, you don’t (the people who actually need them know with certainty
@@ -126,7 +126,7 @@ metaclass `type`. Normally, you can't write self referential classes like that i
 Python. However, you can circumvent this limitation by subclassing from `type`. This enables
 you to write custom metaclasses that you can use to dictate and mutate the way classes are
 created and instantiated. From now on, I'll be referring to the instance class of a
-metaclass as *target class*. Let's create a custom metaclass that just prints the name of
+metaclass as _target class_. Let's create a custom metaclass that just prints the name of
 the target class while creating it:
 
 ```python
@@ -173,12 +173,12 @@ Type `type`, as the default metaclass in Python, defines a few special methods t
 metaclasses can override to implement unique code generation behavior. Here is a brief
 overview of these "magic" methods that exist on a metaclass:
 
-* `__new__`: This method is called on the Metaclass before an instance of a class based on
-the metaclass is created
-* `__init__`: This method is called to set up values after the instance/object is created
-* `__prepare__`: Defines the class namespace in a mapping that stores the attributes
-* `__call__`: This method is called when the constructor of the new class is to be used to
-create an object
+-   `__new__`: This method is called on the Metaclass before an instance of a class based on
+    the metaclass is created
+-   `__init__`: This method is called to set up values after the instance/object is created
+-   `__prepare__`: Defines the class namespace in a mapping that stores the attributes
+-   `__call__`: This method is called when the constructor of the new class is to be used to
+    create an object
 
 These are the methods to override in your custom metaclass to give your classes behaviors
 different from that of `type`. The following example shows the default behaviors of these
@@ -417,7 +417,9 @@ class AttrsListMeta(type):
         attrs_names_ordered = sorted(attrs_names)
         classdict["__attrs_ordered__"] = attrs_names_ordered
 
-        return super().__new__(metacls, cls, bases, classdict, **kwargs)
+        return super().__new__(
+            metacls, cls, bases, classdict, **kwargs
+        )
 
 
 class A(metaclass=AttrsListMeta):
@@ -435,8 +437,8 @@ print(a.__attrs_ordered__)
 ```
 
 You can access the `__attrs_ordered__` attribute from both class `A` and an instance of
-class `A`. Try removing the `sorted()` function inside the `__new__` method of the
-metaclass and see what happens!
+class `A`. Try removing the `sorted()` function inside the `__new__` method of the metaclass
+and see what happens!
 
 ### Creating a singleton class
 
@@ -598,7 +600,9 @@ def timefunc(func):
         ret = func(*args, **kwargs)
         end_time = time.time()
         run_time = end_time - start_time
-        print(f"Executing {func.__qualname__} took {run_time} seconds.")
+        print(
+            f"Executing {func.__qualname__} took {run_time} seconds."
+        )
         return ret
 
     return wrapper
@@ -610,7 +614,9 @@ class TimerMeta(type):
 
         # key is attribute name and val is attribute value in attribute dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(
+                val
+            ):
                 setattr(new_cls, key, timefunc(val))
         return new_cls
 
@@ -705,7 +711,9 @@ class DebugMeta(type):
 
         # key is attribute name and val is attribute value in the attrs dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(
+                val
+            ):
                 setattr(new_cls, key, debug(val))
         return new_cls
 
@@ -768,7 +776,9 @@ class ExceptionMeta(type):
 
         # key is attribute name and val is attribute value in attribute dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(
+                val
+            ):
                 setattr(new_cls, key, exc_handler(val))
         return new_cls
 
@@ -1047,8 +1057,8 @@ Decorators can also be exclusively used to perform metaprogramming in a more man
 subjectively cleaner way. One case where you absolutely have to use metaclasses is to avoid
 applying decorators to multiple classes or methods repetitively.
 
-Also, metaclasses can easily veer into the realm of being a *"solution in search of a
-problem".* If the problem at hand can be solved in a simpler way, it probably should be.
+Also, metaclasses can easily veer into the realm of being a _"solution in search of a
+problem"._ If the problem at hand can be solved in a simpler way, it probably should be.
 However, I still think that you should at least try to understand how metaclasses work to
 have a better grasp on how Python classes work in general and can recognize when a metaclass
 really is the appropriate tool to use.
@@ -1056,8 +1066,8 @@ really is the appropriate tool to use.
 ## Remarks
 
 Wrapping your mind around metaclasses can be tricky. So, to avoid any unnecessary confusion,
-I've entirely evaded any discussion regarding the behavioral difference between *old style
-classes* and *new style classes* in Python. Also, I've intentionally excluded mentioning the
+I've entirely evaded any discussion regarding the behavioral difference between _old style
+classes_ and _new style classes_ in Python. Also, I've intentionally excluded mentioning the
 differences between `type` in Python 2 and `type` in Python 3 entirely. Python 2.x has
 reached its EOL. Save yourself some trouble and switch to Python 3.x if you already haven't
 done so.
@@ -1065,14 +1075,29 @@ done so.
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on them
 is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 
-[^1]: [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer))
+[^1]: [Tim Peters](<https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)>)
 [^2]: [decorators](/python/decorators)
 [^3]: [dataclasses](/python/dataclasses)
-[^4]: [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/) [^4]
-[^5]: [What are metaclasses in Python - Stackoverflow]( https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python) [^5]
-[^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
-[^7]: [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php) [^7]
-[^8]: [When to use metaclasses in Python](https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/) [^8]
-[^9]: [A primer on Python metaclasses]( https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/) [^9]
+[^4]:
+    [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/)
+    [^4]
 
-[image_1]: https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg
+[^5]:
+    [What are metaclasses in Python - Stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
+    [^5]
+
+[^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
+[^7]:
+    [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php)
+    [^7]
+
+[^8]:
+    [When to use metaclasses in Python](https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/)
+    [^8]
+
+[^9]:
+    [A primer on Python metaclasses](https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/)
+    [^9]
+
+[image_1]:
+    https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg

@@ -69,7 +69,9 @@ with conn:
         ("b", 2.0),
         ("c", 3.0),
     )
-    c.executemany("insert into stat (cat, score) values (?, ?);", data)
+    c.executemany(
+        "insert into stat (cat, score) values (?, ?);", data
+    )
     result = c.execute("""select * from stat;""").fetchall()
 
     print(result)
@@ -84,19 +86,19 @@ with conn:
 You can define and apply arbitrary Python callbacks to different data points in an SQLite
 table. There are two types of callbacks that you can apply:
 
-* Scalar function: A scalar function returns one value per invocation; in most cases, you
-can think of this as returning one value per row.
+-   Scalar function: A scalar function returns one value per invocation; in most cases, you
+    can think of this as returning one value per row.
 
-* Aggregate function: In contrast, an aggregate function returns one value per group of
-rows.
+-   Aggregate function: In contrast, an aggregate function returns one value per group of
+    rows.
 
 ### Applying user-defined scalar functions
 
 In the following example, I've created a table called `users` with two text type
 columns—`username` and `password`. Here, we define a transformation scalar function named
 `sha256` that applies sha256 hashing to all the elements of the `password` column. The
-function is then registered via the `connection_obj.create_function(func_name, narg, func)
-` API.
+function is then registered via the `connection_obj.create_function(func_name, narg, func)`
+API.
 
 ```python
 # src.py
@@ -219,8 +221,8 @@ sqlite3.enable_callback_tracebacks(True)
 
 ## Transforming types
 
-Conventionally, Python `sqlite3` documentation uses the term *adaptation* to refer to the
-transformation that changes Python types to SQLite types and *conversion* to refer to the
+Conventionally, Python `sqlite3` documentation uses the term _adaptation_ to refer to the
+transformation that changes Python types to SQLite types and _conversion_ to refer to the
 change in the reverse direction.
 
 ### Adapting Python types to SQLite types
@@ -231,8 +233,8 @@ callback that'll carry out the task. Then the callback will need to be registere
 
 Here, I've created an in-memory table called `colors` with a single text type column `name`
 that refers to the name of the color. Then I register the `lambda color: color.value`
-anonymous function that serializes an enum value to a text value. This allows me to pass
-an enum member directly into the `cursor_obj.execute` method.
+anonymous function that serializes an enum value to a text value. This allows me to pass an
+enum member directly into the `cursor_obj.execute` method.
 
 ```python
 # src.py
@@ -275,15 +277,14 @@ with conn:
 
 Converting SQLite types to Python types works similarly to the previous section. Here, as
 well, I've created the same `colors` table with a single `name` column as before. But this
-time, I want to insert string values into the `name` column and get back native enum
-objects from that field while performing a get query.
+time, I want to insert string values into the `name` column and get back native enum objects
+from that field while performing a get query.
 
 To do so, I've registered a converter function with the
 `sqlite3.register_converter("sqlite_type_as_a_string", converter_callback)` API. Another
-point to keep in mind is that you'll have to set
-`detect_type=sqlite3.PARSE_DECLTYPES` in the `sqlite3.connection` method for the adaptation
-to work. Notice the output of the last `select ...` statement and you'll see that we're
-getting enum objects in the returned list.
+point to keep in mind is that you'll have to set `detect_type=sqlite3.PARSE_DECLTYPES` in
+the `sqlite3.connection` method for the adaptation to work. Notice the output of the last
+`select ...` statement and you'll see that we're getting enum objects in the returned list.
 
 ```python
 # src.py
@@ -339,16 +340,16 @@ with conn:
 ### Using the default adapters and converters
 
 The `sqlite3` module also employs some default adapters and converters that you can take
-advantage of without defining and registering custom transformers. For example,
-SQLite doesn't have any special types to represent a date or timestamp. However, Python
-`sqlite3` allows you to annotate a column with a special type and it'll automatically
-convert the values of the column to a compatible type of Python object while returning the
-result of a get query.
+advantage of without defining and registering custom transformers. For example, SQLite
+doesn't have any special types to represent a date or timestamp. However, Python `sqlite3`
+allows you to annotate a column with a special type and it'll automatically convert the
+values of the column to a compatible type of Python object while returning the result of a
+get query.
 
 Here, I've created a table called `timekeeper` with two columns—`d` and `dt` where `d`
-expects a date and `dt` expects a timestamp. So, in the table creation DDL statement,
-we annotate the columns with `date` and `timestamp` types respectively. We've also turned
-on column type parsing by setting
+expects a date and `dt` expects a timestamp. So, in the table creation DDL statement, we
+annotate the columns with `date` and `timestamp` types respectively. We've also turned on
+column type parsing by setting
 `detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES` in the `sqlite3.connect`
 method.
 
@@ -407,13 +408,13 @@ Sometimes you need control over what operations are allowed to be run on an SQLi
 and what aren't. The `connection_obj.set_authorizer(auth_callback)` allows you to implement
 authorization control. Here, `auth_callback` takes in 5 arguments. From the docs:
 
-> The 1st argument to the callback signifies what kind of operation is to be authorized.
-> The 2nd and 3rd arguments will be arguments or None depending on the 1st argument.
-> The 4th argument is the name of the database (“main”, “temp”, etc.) if applicable. The
-> 5th argument is the name of the inner-most trigger or view that is responsible for the
-> access attempt or None if this access attempt is directly from input SQL code.
-> Please consult the SQLite documentation about the possible values for the first argument
-> and the meaning of the second and third arguments depending on the first one.
+> The 1st argument to the callback signifies what kind of operation is to be authorized. The
+> 2nd and 3rd arguments will be arguments or None depending on the 1st argument. The 4th
+> argument is the name of the database (“main”, “temp”, etc.) if applicable. The 5th
+> argument is the name of the inner-most trigger or view that is responsible for the access
+> attempt or None if this access attempt is directly from input SQL code. Please consult the
+> SQLite documentation about the possible values for the first argument and the meaning of
+> the second and third arguments depending on the first one.
 
 You can find the list of all the supported actions here[^2]. In the following example, I'm
 disallowing create table, create index, drop table, and drop index actions. To deny an
@@ -657,7 +658,9 @@ conn.text_factory = lambda x: color_map.get(x.decode("utf-8"), x)
 with conn:
     c.execute("create table if not exists colors (name text);")
 
-    c.execute("insert into colors (name) values (?);", ("το κόκκινο",))
+    c.execute(
+        "insert into colors (name) values (?);", ("το κόκκινο",)
+    )
     c.execute("insert into colors (name) values (?);", ("সবুজ",))
 
     result = c.execute("select * from colors;").fetchall()
@@ -677,9 +680,9 @@ collation callback can be registered with the
 the name of the collation rule and the `collation_callback` determines how the string
 comparison should be done. The callback accepts two string values as arguments and returns:
 
-* 1 if the first is ordered higher than the second
-* -1 if the first is ordered lower than the second
-* 0 if they are ordered equal
+-   1 if the first is ordered higher than the second
+-   -1 if the first is ordered lower than the second
+-   0 if they are ordered equal
 
 Then you can use the collation rules with an order by clause as follows:
 
@@ -787,9 +790,9 @@ fetches the database content via the `connection_obj.iterdump()` API. Afterward,
 returned content is written to another database file using the `file.write` primitive.
 
 For demonstration purposes, I'm using an in-memory DB and backing that up in another
-`NamedTemporaryFile`. This will work the same way with an on-disk DB and on-disk backup
-file as well. One advantage of this approach is that your data is not loaded into memory at
-once, rather it's streamed iteratively from the main DB to the backup DB.
+`NamedTemporaryFile`. This will work the same way with an on-disk DB and on-disk backup file
+as well. One advantage of this approach is that your data is not loaded into memory at once,
+rather it's streamed iteratively from the main DB to the backup DB.
 
 ```python
 # src.py
@@ -887,7 +890,9 @@ with ExitStack() as stack:
     conn_src.backup(conn_dst, pages=1, progress=progress)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute("select count(*) from colors;").fetchone()
+    result = conn_dst.execute(
+        "select count(*) from colors;"
+    ).fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 
@@ -940,7 +945,9 @@ with conn_src:
     conn_src.backup(conn_dst)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute("select count(*) from colors;").fetchone()
+    result = conn_dst.execute(
+        "select count(*) from colors;"
+    ).fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 
@@ -988,7 +995,9 @@ with conn_src:
     conn_src.backup(conn_dst)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute("select count(*) from colors;").fetchone()
+    result = conn_dst.execute(
+        "select count(*) from colors;"
+    ).fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 

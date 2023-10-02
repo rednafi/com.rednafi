@@ -12,10 +12,10 @@ if you want to shut down the server gracefully in the presence of an interruptio
 The intended behavior here is that whenever any of `SIGHUP`, `SIGINT`, `SIGTERM`, or
 `SIGQUIT` signals are sent to the server, it should:
 
-* Acknowledge the signal and log a message to the output console of the server.
-* Notify all the connected clients that the server is going offline.
-* Give the clients enough time (specified by a timeout parameter) to close the requests.
-* Close all the client requests and then shut down the server after the timeout exceeds.
+-   Acknowledge the signal and log a message to the output console of the server.
+-   Notify all the connected clients that the server is going offline.
+-   Give the clients enough time (specified by a timeout parameter) to close the requests.
+-   Close all the client requests and then shut down the server after the timeout exceeds.
 
 Here's a quick implementation of a multithreaded echo server and see what happens when you
 send `SIGINT` to shut down the server:
@@ -267,23 +267,23 @@ Next, we define a new server class called `SocketServer` that inherits from the
 `ThreadingTCPServer` class. Here are the explanations for each:
 
 1. `reuse_address`: This variable determines whether the server can reuse a socket that's
-still in the TIME_WAIT[^1] state after a previous connection has been closed. If this
-variable is set to `True`, the server can reuse the socket. Otherwise, the socket will be
-unavailable for a short period of time after it's closed.
+   still in the TIME_WAIT[^1] state after a previous connection has been closed. If this
+   variable is set to `True`, the server can reuse the socket. Otherwise, the socket will be
+   unavailable for a short period of time after it's closed.
 
 2. `daemon_threads`: This variable determines whether the server's worker threads should be
-daemon threads. Daemon threads are threads that run in the background and don't prevent the
-Python interpreter from exiting when they are still running. If this variable is set to
-`True`, the server's worker threads will be daemon threads. I found that daemon threads work
-better when I need to shut down the server that's connected to multiple long-running
-clients.
+   daemon threads. Daemon threads are threads that run in the background and don't prevent
+   the Python interpreter from exiting when they are still running. If this variable is set
+   to `True`, the server's worker threads will be daemon threads. I found that daemon
+   threads work better when I need to shut down the server that's connected to multiple
+   long-running clients.
 
 3. `block_on_close`: This variable determines whether the server should block until all
-client connections have been closed before shutting down. If this variable is set to `True`,
-the server will block until all client connections have been closed. Otherwise, the server
-will shut down immediately, even if there are still active client connections. We want to
-set it to `False` since we'll handle the graceful shutdown in a custom signal handler method
-on the server class.
+   client connections have been closed before shutting down. If this variable is set to
+   `True`, the server will block until all client connections have been closed. Otherwise,
+   the server will shut down immediately, even if there are still active client connections.
+   We want to set it to `False` since we'll handle the graceful shutdown in a custom signal
+   handler method on the server class.
 
 Going forward, the `SocketServer` class overrides the `server_activate`, `get_request`,
 `shutdown_request`, and `shutdown` methods from the base class. All of them just log a few
@@ -373,8 +373,12 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 ![error handling in multi-threaded socket server][image_2]
 
 [^1]: [TIME_WAIT](https://totozhang.github.io/2016-01-31-tcp-timewait-status/)
-[^2]: [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)
+[^2]:
+    [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)
+
 [^3]: [socketserver](https://docs.python.org/3/library/socketserver.html) [^3]
 
-[image_1]: https://user-images.githubusercontent.com/30027932/221752665-a6a1584d-e7bf-48b4-93a4-7679bc915682.png
-[image_2]: https://user-images.githubusercontent.com/30027932/222344540-ace10d97-81f5-47d4-bf83-4ec505a72f74.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/221752665-a6a1584d-e7bf-48b4-93a4-7679bc915682.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/222344540-ace10d97-81f5-47d4-bf83-4ec505a72f74.png

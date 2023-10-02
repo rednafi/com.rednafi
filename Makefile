@@ -2,13 +2,16 @@
 init:
 	@git submodule update --init --recursive
 
+
+.PHONY: lint
 lint:
-	
+	@pre-commit run --all-files
 
 
 .PHONY: update
 update:
 	@git submodule update --remote --merge
+	@pre-commit autoupdate -j 4
 
 
 .PHONY: devserver

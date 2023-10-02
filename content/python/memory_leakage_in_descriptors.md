@@ -170,5 +170,7 @@ This will print an empty tuple:
 This also means that now `Within` will only keep track of instances that are alive in
 memory.
 
-[^1]: [Descriptor how to - Raymond Hettinger](https://docs.python.org/3/howto/descriptor.html)
+[^1]:
+    [Descriptor how to - Raymond Hettinger](https://docs.python.org/3/howto/descriptor.html)
+
 [^2]: [Pydantic](https://docs.pydantic.dev/latest/)

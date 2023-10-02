@@ -24,8 +24,8 @@ without having to worry about the overhead of network protocols like TCP/IP or U
 by creating a special file on the file system called a socket, which acts as a bidirectional
 data channel between the processes. The processes can send and receive data through the
 socket just like they would with a network socket. Also, just like TCP/UDP sockets, Unix
-domain sockets can also be either stream-based (TCP equivalent) or datagram-based
-(UDP equivalent).
+domain sockets can also be either stream-based (TCP equivalent) or datagram-based (UDP
+equivalent).
 
 Unix domain sockets are commonly used in server-client applications, such as web servers,
 databases, and email servers, where they provide a secure and efficient way for processes on
@@ -39,10 +39,10 @@ permission of the socket file on the system.
 I'm running these experiments on an M-series Macbook pro. However, any Unix-y environment
 will work as long as you can run the following tools:
 
-* `socat`: To create the socket servers and clients.
-* `curl`: To make HTTP requests to a supported socket server.
-* `jq`: To pretty print JSON payloads.
-* `lsof`: To display currently listening socket server processes.
+-   `socat`: To create the socket servers and clients.
+-   `curl`: To make HTTP requests to a supported socket server.
+-   `jq`: To pretty print JSON payloads.
+-   `lsof`: To display currently listening socket server processes.
 
 ## Inspecting Unix domain sockets in your system
 
@@ -171,8 +171,8 @@ curl --unix-socket \
     ~/.docker/run/docker.sock http://localhost/images/json | jq
 ```
 
-**Downloading a container:** This allows you to programmatically download the
-`hello-world` image from Dockerhub:
+**Downloading a container:** This allows you to programmatically download the `hello-world`
+image from Dockerhub:
 
 ```sh
 curl -sX POST \
@@ -368,8 +368,15 @@ the HTML page:
 [^1]: [Docker engine API](https://docs.docker.com/engine/api/latest/)
 [^2]: [Uvicorn](https://www.uvicorn.org/)
 [^3]: [Starlette](https://www.starlette.io/)
-[^4]: [Understanding sockets](https://www.digitalocean.com/community/tutorials/understanding-sockets) [^4]
-[^5]: [Fun with Unix domain sockets](https://simonwillison.net/2021/Jul/13/unix-domain-sockets/) [^5]
+[^4]:
+    [Understanding sockets](https://www.digitalocean.com/community/tutorials/understanding-sockets)
+    [^4]
 
-[image_1]: https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
-[image_2]: https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png
+[^5]:
+    [Fun with Unix domain sockets](https://simonwillison.net/2021/Jul/13/unix-domain-sockets/)
+    [^5]
+
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png

@@ -22,10 +22,10 @@ website, [rednafi.com].
 
 ## Gateways
 
-* [rss]
-* [github]
-* [twitter]
-* [mastodon]
+-   [rss]
+-   [github]
+-   [twitter]
+-   [mastodon]
 
 [rednafi.com]: /
 [writer]: /archives/

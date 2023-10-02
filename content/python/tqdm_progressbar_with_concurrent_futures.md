@@ -50,7 +50,9 @@ def make_requests(
 ) -> Generator[list[dict], None, None]:
     with tqdm(total=len(urls)) as pbar:
         with ThreadPoolExecutor(max_workers=5) as executor:
-            futures = [executor.submit(make_request, url) for url in urls]
+            futures = [
+                executor.submit(make_request, url) for url in urls
+            ]
             for future in as_completed(futures):
                 pbar.update(1)
                 yield future.result()
@@ -108,7 +110,9 @@ def make_requests(
     urls: list[str],
 ) -> Generator[list[dict], None, None]:
     with ExitStack() as stack:
-        executor = stack.enter_context(ThreadPoolExecutor(max_workers=5))
+        executor = stack.enter_context(
+            ThreadPoolExecutor(max_workers=5)
+        )
         pbar = stack.enter_context(tqdm(total=len(urls)))
 
         futures = [executor.submit(make_request, url) for url in urls]
@@ -122,4 +126,6 @@ def make_requests(
 
 Running this script will yield the same result as before.
 
-[^1]: [How to use tqdm with multithreading?](https://stackoverflow.com/questions/63826035/how-to-use-tqdm-with-multithreading) [^1]
+[^1]:
+    [How to use tqdm with multithreading?](https://stackoverflow.com/questions/63826035/how-to-use-tqdm-with-multithreading)
+    [^1]

@@ -5,11 +5,11 @@ tags:
     - Python
 ---
 
-Imagine a custom *set-like* data structure that doesn't perform hashing and trades
-performance for tighter memory footprint. Or imagine a *dict-like* data structure that
+Imagine a custom _set-like_ data structure that doesn't perform hashing and trades
+performance for tighter memory footprint. Or imagine a _dict-like_ data structure that
 automatically stores data in a PostgreSQL or Redis database the moment you initialize it;
-also it lets you to *get-set-delete* key-value pairs using the usual
-*retrieval-assignment-deletion* syntax associated with built-in dictionaries. Custom data
+also it lets you to _get-set-delete_ key-value pairs using the usual
+_retrieval-assignment-deletion_ syntax associated with built-in dictionaries. Custom data
 structures can give you the power of choice and writing them will make you understand how
 the built-in data structures in Python are constructed.
 
@@ -51,8 +51,8 @@ class in a concrete subclass. Interfaces provide the skeletons and concrete clas
 the implementation of the methods based on those skeletons. Depending on the ways you can
 architect interfaces, they can be segmented into two primary categories.
 
-* Informal Interfaces
-* Formal Interfaces
+-   Informal Interfaces
+-   Formal Interfaces
 
 ## Informal interfaces
 
@@ -282,14 +282,14 @@ class ICalc(ABC):
 ```
 
 Here, I've imported `ABC` class and `abstractmethod` decorator from the `abc` module of
-Python's standard library. The name `ABC` stands for *Abstract Base Class*. The interface
+Python's standard library. The name `ABC` stands for _Abstract Base Class_. The interface
 class needs to inherit from this `ABC`class and all the abstract methods need to be
 decorated using the `abstractmethod` decorator. If your knowledge on decorators are fuzzy,
 checkout this in-depth article on python decorators[^1].
 
-Although, it seems like `ICalc` has merely inherited from the `ABC` class, under the hood,
-a metaclass[^2] `ABCMeta` gets attached to the interface which essentially makes sure that
-you can't instantiate this class independently. Let's try to do so and see what happens:
+Although, it seems like `ICalc` has merely inherited from the `ABC` class, under the hood, a
+metaclass[^2] `ABCMeta` gets attached to the interface which essentially makes sure that you
+can't instantiate this class independently. Let's try to do so and see what happens:
 
 ```python
 i = ICalc()
@@ -342,7 +342,7 @@ early.
 
 ### Interfaces vs abstract base classes
 
-You've probably seen the term *Interface* and *Abstract Base Class* being used
+You've probably seen the term _Interface_ and _Abstract Base Class_ being used
 interchangeably. However, conceptually they're different. Interfaces can be thought of as a
 special case of Abstract Base Classes.
 
@@ -350,7 +350,7 @@ It's imperative that all the methods of an interface are abstract methods and th
 don't store any state (instance variables). However, in case of abstract base classes, the
 methods are generally abstract but there can also be methods that provide implementation
 (concrete methods) and also, these classes can have instance variables. This generic
-abstract base classes can get very interesting and they can be used as *mixins* but more on
+abstract base classes can get very interesting and they can be used as _mixins_ but more on
 that in the later sections.
 
 Both interfaces and abstract base classes are similar in the sense that they can't stand on
@@ -531,10 +531,10 @@ and abstract methods but don't keep any internal states.
 
 These can help you when -
 
-* You want to provide a lot of optional features for a class.
-* You want to provide a lot of not-optional features for a class, but you want the features
-in separate classes so that each of them is about one feature (behavior).
-* You want to use one particular feature in many different classes.
+-   You want to provide a lot of optional features for a class.
+-   You want to provide a lot of not-optional features for a class, but you want the
+    features in separate classes so that each of them is about one feature (behavior).
+-   You want to use one particular feature in many different classes.
 
 Let's see a contrived example. Consider Werkzeug's[^3] request and response system. Werkzeug
 is a small library that Flask[^4] depends on. I can make a plain old request object by
@@ -605,11 +605,11 @@ Abstract classes can contain abstract methods, concrete methods and internal sta
 **Mixins**
 
 Like interfaces, mixins do not contain any internal state. But like abstract classes, they
-can contain one or more concrete methods. ***So mixins are basically abstract classes
-without any internal states.***
+can contain one or more concrete methods. **_So mixins are basically abstract classes
+without any internal states._**
 
 In Python, these are just conventions because all of the above are defined as classes.
-However, one trait that is common among *interfaces*, *abstract classes* and *mixins* is
+However, one trait that is common among _interfaces_, _abstract classes_ and _mixins_ is
 that they shouldn't exist on their own, i.e. shouldn't be instantiated independently.
 
 ### A complete example
@@ -1261,9 +1261,9 @@ VerboseDict({'a': 'pepsi'})
 This section discusses two advanced data structures that I mentioned at the beginning of the
 post.
 
-* BitSet : Mutable set-like data structure that doesn't perform hashing.
-* SQLAlchemyDict: Mutable dict-like data structure that can store key-value pairs in any
-SQLAlchemy supported relational database.
+-   BitSet : Mutable set-like data structure that doesn't perform hashing.
+-   SQLAlchemyDict: Mutable dict-like data structure that can store key-value pairs in any
+    SQLAlchemy supported relational database.
 
 ### BitSet
 
@@ -1327,8 +1327,8 @@ I'll digress a little here. Normally, you'd use `sys.getsizeof` to measure the m
 footprint of an object where the function reveals the size in bytes.
 
 But there's a problem. The function `sys.getsizeof` only reveals the size of the target
-object, excluding the objects the target objects might be referring to. To understand what
-I mean, consider the following situation:
+object, excluding the objects the target objects might be referring to. To understand what I
+mean, consider the following situation:
 
 Suppose, you have a nested list that looks like this:
 
@@ -1343,7 +1343,7 @@ of the nested lists.
 The same is true for other data structures. In case of nested dictionaries, `sys.getsizeof`
 will not include the size of nested data structures. I'll only reveal the size of the
 outermost dictionary object. The following snippet will traverse through the reference tree
-of a nested object and reveal the *true* size of it.
+of a nested object and reveal the _true_ size of it.
 
 ```python
 from collections.abc import Mapping, Container
@@ -1566,19 +1566,31 @@ hello
 key
 ```
 
-Running the above code snippet will create a SQLite database named `foo.db` in your
-current working directory. You can inspect the database with any database viewer and
-find your key-value pairs there. Everything else is the same as a built-in dictionary
-object.
+Running the above code snippet will create a SQLite database named `foo.db` in your current
+working directory. You can inspect the database with any database viewer and find your
+key-value pairs there. Everything else is the same as a built-in dictionary object.
 
 [^1]: [decorators](/python/decorators)
 [^2]: [metaclass](/python/metaclasses)
 [^3]: [werkzeug](https://werkzeug.palletsprojects.com/en/latest/)
 [^4]: [flask](https://flask.palletsprojects.com/)
-[^5]: [Mixins in the requests library](https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60)
-[^6]: [Build powerful, new data structures with Python's abstract base classes - Raymond Hettinger](https://www.youtube.com/watch?v=S_ipdVNSFlo)
-[^7]: [Implementing an interface in Python - Real Python](https://realpython.com/python-interface/) [^7]
-[^8]: [What is a mixin, and why are they useful? - Stackoverflow](https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful) [^8]
-[^9]: [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556) [^9]
+[^5]:
+    [Mixins in the requests library](https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png
+[^6]:
+    [Build powerful, new data structures with Python's abstract base classes - Raymond Hettinger](https://www.youtube.com/watch?v=S_ipdVNSFlo)
+
+[^7]:
+    [Implementing an interface in Python - Real Python](https://realpython.com/python-interface/)
+    [^7]
+
+[^8]:
+    [What is a mixin, and why are they useful? - Stackoverflow](https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful)
+    [^8]
+
+[^9]:
+    [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556)
+    [^9]
+
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png

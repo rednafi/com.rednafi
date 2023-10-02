@@ -17,14 +17,15 @@ GitHub uses this [pattern][^3] successfully to normalize their scripts. Accordin
 pattern, every project should have a folder named `scripts` with a subset or superset of the
 following files:
 
-* `script/bootstrap` – installs/updates all dependencies
-* `script/setup` – sets up a project to be used for the first time
-* `script/update` – updates a project to run at its current version
-* `script/server` – starts app
-* `script/test` – runs tests
-* `script/cibuild` – invoked by continuous integration servers to run tests
-* `script/console` – opens a console
+-   `script/bootstrap` – installs/updates all dependencies
+-   `script/setup` – sets up a project to be used for the first time
+-   `script/update` – updates a project to run at its current version
+-   `script/server` – starts app
+-   `script/test` – runs tests
+-   `script/cibuild` – invoked by continuous integration servers to run tests
+-   `script/console` – opens a console
 
 [^1]: [typesystem](https://github.com/encode/typesystem)
 [^2]: [Scripts without extension](https://github.com/encode/typesystem/tree/master/scripts)
-[^3]: [Scripts to rule them all - GitHub Blog](https://github.com/github/scripts-to-rule-them-all)
+[^3]:
+    [Scripts to rule them all - GitHub Blog](https://github.com/github/scripts-to-rule-them-all)

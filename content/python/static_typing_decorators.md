@@ -207,6 +207,10 @@ Parameter 1: type "Logger" cannot be assigned to type "int"
 ./src.py:83:12 - error: Cannot access member "warning" for type "int"
 ```
 
-[^1]: [PEP 612 -- Parameter specification variables](https://www.python.org/dev/peps/pep-0612/)
+[^1]:
+    [PEP 612 -- Parameter specification variables](https://www.python.org/dev/peps/pep-0612/)
+
 [^2]: [pyright](https://github.com/microsoft/pyright)
-[^3]: [Decorator typing (PEP 612) - Anthony explains #386](https://www.youtube.com/watch?v=fwZoxWyMGM8) [^3]
+[^3]:
+    [Decorator typing (PEP 612) - Anthony explains #386](https://www.youtube.com/watch?v=fwZoxWyMGM8)
+    [^3]

@@ -62,8 +62,8 @@ not, we raise a `ValueError`. When the parameters pass these checks then we comp
 `current_iter` with `throttle_after`. If the value of `current_iter` exceeds that of the
 `throttle_after` parameter, we throttle the operation.
 
-While this works fine, recently, I've started to use `assert` to replace the *conditionals
-with `ValueError`* pattern. It works as follows:
+While this works fine, recently, I've started to use `assert` to replace the _conditionals
+with `ValueError`_ pattern. It works as follows:
 
 ```python
 # src.py
@@ -122,7 +122,13 @@ see this being used frequently[^4] in frameworks like Starlette and FastAPI. Als
 experience, using assertions is much more common than running production code with the
 optimization flag.
 
-[^1]: [Usage of assert in the Starlette codebase](https://github.com/encode/starlette/blob/14ef6bbbd6c5f03f0e1222a0a1b33ccc3a5f04cf/starlette/applications.py#L63)
+[^1]:
+    [Usage of assert in the Starlette codebase](https://github.com/encode/starlette/blob/14ef6bbbd6c5f03f0e1222a0a1b33ccc3a5f04cf/starlette/applications.py#L63)
+
 [^2]: [Starlette](https://github.com/encode/starlette)
-[^3]: [Caveats of using asserts to enforce constraints](https://twitter.com/rednafi/status/1546010546297659392)
-[^4]: [Usage of assert in the FastAPI codebase](https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications.py#L108)
+[^3]:
+    [Caveats of using asserts to enforce constraints](https://twitter.com/rednafi/status/1546010546297659392)
+
+[^4]:
+    [Usage of assert in the FastAPI
+    codebase](<https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications>.

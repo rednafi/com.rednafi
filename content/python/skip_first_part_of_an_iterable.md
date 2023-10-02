@@ -17,7 +17,9 @@ starting from the element `0`. Usually, I'd do this:
 
 ```python
 # This returns (0, 4, 5, 6, 7).
-from_zero = tuple(elem for idx, elem in enumerate(it) if idx >= it.index(0))
+from_zero = tuple(
+    elem for idx, elem in enumerate(it) if idx >= it.index(0)
+)
 ```
 
 While this is quite terse and does the job, it won't work with a generator. There's an even
@@ -37,9 +39,9 @@ function that takes one argument and returns a boolean value.
 
 The `dropwhile` function takes two arguments:
 
-* A function (the predicate), which takes one argument and returns a boolean value.
-* An iterable, which can be any object that can be iterated over, such as a list, tuple,
-string, or even another generator.
+-   A function (the predicate), which takes one argument and returns a boolean value.
+-   An iterable, which can be any object that can be iterated over, such as a list, tuple,
+    string, or even another generator.
 
 The `dropwhile` function starts iterating over the elements of the iterable, and drops the
 elements for which the predicate returns `True`. It then returns all the remaining elements
@@ -89,7 +91,9 @@ import csv
 from itertools import dropwhile
 
 with open("persons.csv", "r") as f:
-    reader = csv.DictReader(f, fieldnames=("ID", "Name", "Age", "Height"))
+    reader = csv.DictReader(
+        f, fieldnames=("ID", "Name", "Age", "Height")
+    )
 
     # Rows without comments.
     rows = dropwhile(lambda x: x["ID"] != "ID", reader)
@@ -109,5 +113,10 @@ Running this will give you the dicts containing the data rows only:
 {'ID': '3', 'Name': 'Jack', 'Age': '22', 'Height': '1.6'}
 ```
 
-[^1]: [Python Cookbook - David Beazley, Ch 4: Iterators and Generators](https://www.oreilly.com/library/view/python-cookbook-3rd/9781449357337/) [^1]
-[^2]: [itertools.dropwhile](https://docs.python.org/3/library/itertools.html#itertools.dropwhile) [^2]
+[^1]:
+    [Python Cookbook - David Beazley, Ch 4: Iterators and Generators](https://www.oreilly.com/library/view/python-cookbook-3rd/9781449357337/)
+    [^1]
+
+[^2]:
+    [itertools.dropwhile](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
+    [^2]

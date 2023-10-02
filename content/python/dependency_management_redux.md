@@ -44,14 +44,14 @@ conflicting opinions in this space.
 Whether I'm working on a large Django monolith or exposing a microservice via FastAPI or
 Flask, while packaging an application, I want to be able to:
 
-* Store all project metadata, linter configs, and top-level dependencies in a
-`pyproject.toml` file following the PEP-621[^6] conventions.
-* Separate the top-level application and development dependencies.
-* Generate `requirements.txt` and `requirements-dev.txt` files from the requirements
-specified in the TOML file, where the top-level and their transient dependencies will be
-pinned to specific versions.
-* Use vanilla `pip` to build the application hermetically from the locked dependencies
-specified in the `requirements*.txt` files.
+-   Store all project metadata, linter configs, and top-level dependencies in a
+    `pyproject.toml` file following the PEP-621[^6] conventions.
+-   Separate the top-level application and development dependencies.
+-   Generate `requirements.txt` and `requirements-dev.txt` files from the requirements
+    specified in the TOML file, where the top-level and their transient dependencies will be
+    pinned to specific versions.
+-   Use vanilla `pip` to build the application hermetically from the locked dependencies
+    specified in the `requirements*.txt` files.
 
 The goal is to simply be able to run the following command to install all the pinned
 dependencies in a reproducible manner:
@@ -167,24 +167,24 @@ artifacts from a plain `requirements.txt` file. For this purpose, my preferred b
 is hatch[^5]. Mostly because it follows the latest standards formalized by the associated
 PEPs. From the FAQ section of the hatch docs:
 
-> *Q: What is the risk of lock-in?*
+> _Q: What is the risk of lock-in?_
 >
-> *A: Not much! Other than the plugin system, everything uses Python's established
-> standards by default. Project metadata is based entirely on PEP-621[^6]/PEP-631[^8], the
-> build system is compatible with PEP-517[^9]/PEP-660[^10], versioning uses the scheme
-> specified by PEP-440[^11], dependencies are defined with PEP-508[^12] strings, and
-> environments use virtualenv.*
+> _A: Not much! Other than the plugin system, everything uses Python's established standards
+> by default. Project metadata is based entirely on PEP-621[^6]/PEP-631[^8], the build
+> system is compatible with PEP-517[^9]/PEP-660[^10], versioning uses the scheme specified
+> by PEP-440[^11], dependencies are defined with PEP-508[^12] strings, and environments use
+> virtualenv._
 
 However, it doesn't support lock files yet:
 
-> *The only caveat is that currently there is no support for re-creating an environment
-> given a set of dependencies in a reproducible manner. Although a standard lock file
-> format may be far off since PEP-665[^13] was rejected, resolving capabilities are coming
-> to pip. When that is stabilized, Hatch will add locking functionality and dedicated
-> documentation for managing applications.*
+> _The only caveat is that currently there is no support for re-creating an environment
+> given a set of dependencies in a reproducible manner. Although a standard lock file format
+> may be far off since PEP-665[^13] was rejected, resolving capabilities are coming to pip.
+> When that is stabilized, Hatch will add locking functionality and dedicated documentation
+> for managing applications._
 
-In my experience, I haven't faced many issues regarding the lack of support for lock
-files while building reusable libraries. Your mileage may vary.
+In my experience, I haven't faced many issues regarding the lack of support for lock files
+while building reusable libraries. Your mileage may vary.
 
 Now let's say we're trying to package up a CLI that has the following source structure:
 
@@ -293,16 +293,25 @@ reference, check out how I shipped another CLI[^14] following this workflow.
 [^1]: [distutils](https://docs.python.org/3/library/distutils.html)
 [^2]: [conda](https://docs.conda.io/en/latest/)
 [^3]: [pip](https://pip.pypa.io/en/stable/)
-[^4]: [pip-tools]( https://pip-tools.readthedocs.io/en/latest/)
+[^4]: [pip-tools](https://pip-tools.readthedocs.io/en/latest/)
 [^5]: [hatch](https://hatch.pypa.io/latest/)
 [^6]: [PEP-621](https://peps.python.org/pep-0621/)
-[^7]: [Example application - fastapi-nano](https://github.com/rednafi/fastapi-nano/blob/master/pyproject.toml)
+[^7]:
+    [Example application - fastapi-nano](https://github.com/rednafi/fastapi-nano/blob/master/pyproject.toml)
+
 [^8]: [PEP-631](https://peps.python.org/pep-0631/)
 [^9]: [PEP-517](https://peps.python.org/pep-0517/)
 [^10]: [PEP-660](https://peps.python.org/pep-0660/)
 [^11]: [PEP-440](https://peps.python.org/pep-0440/)
 [^12]: [PEP-508](https://peps.python.org/pep-0508/)
 [^13]: [PEP-665](https://peps.python.org/pep-0665/)
-[^14]: [Example library - rubric](https://github.com/rednafi/rubric/blob/main/pyproject.toml)
-[^15]: [Using pyproject.toml in your Django project - Peter Baumgartner](https://lincolnloop.com/insights/using-pyprojecttoml-in-your-django-project/) [^15]
-[^16]: [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack](https://hynek.me/til/pip-tools-and-pyproject-toml/) [^16]
+[^14]:
+    [Example library - rubric](https://github.com/rednafi/rubric/blob/main/pyproject.toml)
+
+[^15]:
+    [Using pyproject.toml in your Django project - Peter Baumgartner](https://lincolnloop.com/insights/using-pyprojecttoml-in-your-django-project/)
+    [^15]
+
+[^16]:
+    [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack](https://hynek.me/til/pip-tools-and-pyproject-toml/)
+    [^16]

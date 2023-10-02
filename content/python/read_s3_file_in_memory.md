@@ -63,16 +63,16 @@ with tempfile.NamedTemporaryFile("wb") as f:
 
 The above snippet won't work because:
 
-* The file-like object is opened in binary mode but the `csv.DictReader` expects the file
-pointer to be opened in text mode. So, it'll raise an error.
+-   The file-like object is opened in binary mode but the `csv.DictReader` expects the file
+    pointer to be opened in text mode. So, it'll raise an error.
 
-* Even if you fixed that, the CSV reader wouldn't be able to read anything since the file
-currently only allows writing in binary mode, not reading.
+-   Even if you fixed that, the CSV reader wouldn't be able to read anything since the file
+    currently only allows writing in binary mode, not reading.
 
-* Even if you fixed the second issue, the content of the CSV file would be empty. That's
-because after boto3 downloads and saves the file to the file object, it sets the file handle
-to the end of the file. So loading the content from there would result in an empty file.
-Here's how I fixed all three of these problems:
+-   Even if you fixed the second issue, the content of the CSV file would be empty. That's
+    because after boto3 downloads and saves the file to the file object, it sets the file
+    handle to the end of the file. So loading the content from there would result in an
+    empty file. Here's how I fixed all three of these problems:
 
 ```python
 # src.py
@@ -106,19 +106,22 @@ with tempfile.NamedTemporaryFile("w+b") as f:
         ...
 ```
 
-You can see that the snippet first opens a temporary file in `w+b` mode which allows
-both binary read and write operations. Then it downloads the file from s3 and saves it
-to the file-like object.
+You can see that the snippet first opens a temporary file in `w+b` mode which allows both
+binary read and write operations. Then it downloads the file from s3 and saves it to the
+file-like object.
 
 Once the download is finished, the file handle is placed at the bottom of the file. So,
-we'll need to call `f.seek(0)` to place the handle at the beginning of the file;
-otherwise, our read operation will yield no content. Also, since the currently opened
-file object only allows binary read and write operations, we'll need to convert it to a
-text file object before passing it to the CSV reader. The `io.TextIOWrapper` class does
-exactly that. Once the file object is in text mode, we pass it to the CSV reader and
-do further processing.
+we'll need to call `f.seek(0)` to place the handle at the beginning of the file; otherwise,
+our read operation will yield no content. Also, since the currently opened file object only
+allows binary read and write operations, we'll need to convert it to a text file object
+before passing it to the CSV reader. The `io.TextIOWrapper` class does exactly that. Once
+the file object is in text mode, we pass it to the CSV reader and do further processing.
 
 [^1]: [AWS s3](https://aws.amazon.com/s3/)
 [^2]: [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
-[^3]: [NamedTemporaryFile](https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile)
-[^4]: [How to use Python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract) [^4]
+[^3]:
+    [NamedTemporaryFile](https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile)
+
+[^4]:
+    [How to use Python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract)
+    [^4]

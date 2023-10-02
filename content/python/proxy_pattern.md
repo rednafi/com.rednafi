@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-In Python, there's a saying that "design patterns are anti-patterns". Also, in the realm
-of dynamic languages, design patterns have the notoriety of injecting additional abstraction
+In Python, there's a saying that "design patterns are anti-patterns". Also, in the realm of
+dynamic languages, design patterns have the notoriety of injecting additional abstraction
 layers to the core logic and making the flow gratuitously obscure. Python's dynamic nature
 and the treatment of functions as first-class objects often make Java-ish design patterns
 redundant.
@@ -42,7 +42,9 @@ class SecuredDoor:
         self._klass = Door()
 
     def open_method(self) -> None:
-        print(f"Adding security measure to the method of {self._klass}")
+        print(
+            f"Adding security measure to the method of {self._klass}"
+        )
 
 
 secured_door = SecuredDoor()
@@ -54,7 +56,7 @@ secured_door.open_method()
 ```
 
 The above code snippet concretizes the example given before. Here, the `Door` class has a
-single method called `open_method` which denotes the action of *opening* on the `Door`
+single method called `open_method` which denotes the action of _opening_ on the `Door`
 object. This method gets extended in the `SecuredDoor` class and in this case, I've just
 added a print statement to the method of the latter class.
 
@@ -130,9 +132,9 @@ print(division(1.9, 2))
 >>> 0.95
 ```
 
-You can see this function is already doing three things at once which violates the
-Single Responsibility Principle[^4]. SRP says that a function or class should have only one
-reason to change. In this case, a change in any of the three responsibilities can force the
+You can see this function is already doing three things at once which violates the Single
+Responsibility Principle[^4]. SRP says that a function or class should have only one reason
+to change. In this case, a change in any of the three responsibilities can force the
 function to change. Also this means, changing or extending the function can be difficult to
 keep track of.
 
@@ -184,7 +186,7 @@ print(klass.div(2, 0))
 
 In the example above, since both `Division` and `ProxyDivision` class implement the same
 interface, you can swap out the `Division` class with `ProxyDivision` and vice versa. The
-second class neither inherits directly from the first  class nor it adds any new method to
+second class neither inherits directly from the first class nor it adds any new method to
 it. This means you can easily write another class to extend the functionalities of
 `Division` or `DivisionProxy` class without touching their internal logics directly.
 
@@ -215,7 +217,7 @@ Also, it can be hard to follow all the methods of the primary class if the class
 and complicated.
 
 Here, the solution is an interface that can signal the author of the proxy class about all
-the methods that need to be implemented. An *interface* is nothing but an abstract class
+the methods that need to be implemented. An _interface_ is nothing but an abstract class
 that dictates all the methods a concrete class needs to implement. However, interfaces can't
 be initialized independently. You'll have to make a subclass of the interface and implement
 all the methods defined there. Your subclass will raise error if it fails to implement any
@@ -330,27 +332,28 @@ This API is perfect for the demonstration since it has a rate limiter that kicks
 arbitrarily and make the client throw `ConnectTimeOut` and `ReadTimeOutError`. See how this
 workflow is going to look like:
 
-* Define an interface called `IFetchUrl` that will implement three abstract methods. The
-first method `get_data` will fetch data from the URL and serialize them into `json` format.
-The second method `get_headers` will probe the data and return the header as a dictionary.
-The third method `get_args` will also probe the data like the second method but this time it
-will return the query arguments as a dictionary. However, in the interface, you won't be
-implementing anything inside the methods.
+-   Define an interface called `IFetchUrl` that will implement three abstract methods. The
+    first method `get_data` will fetch data from the URL and serialize them into `json`
+    format. The second method `get_headers` will probe the data and return the header as a
+    dictionary. The third method `get_args` will also probe the data like the second method
+    but this time it will return the query arguments as a dictionary. However, in the
+    interface, you won't be implementing anything inside the methods.
 
-* Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
-time you'll implement all three methods defined in the abstract class. However, you
-shouldn't handle any edge cases here. The method should contain pure logic flow without any
-extra fluff.
+-   Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
+    time you'll implement all three methods defined in the abstract class. However, you
+    shouldn't handle any edge cases here. The method should contain pure logic flow without
+    any extra fluff.
 
-* Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but this
-time you'll add your exception handling logics here. This class also adds logging
-functionality to all the methods. Here you call the concrete class `FetchUrl` in a
-composition format and avoid code repetition by using the methods that's been already
-implemented in the concrete class. Like the `FetchUrl` class, here too, you've to implement
-all the methods found in the abstract class.
+-   Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but
+    this time you'll add your exception handling logics here. This class also adds logging
+    functionality to all the methods. Here you call the concrete class `FetchUrl` in a
+    composition format and avoid code repetition by using the methods that's been already
+    implemented in the concrete class. Like the `FetchUrl` class, here too, you've to
+    implement all the methods found in the abstract class.
 
-* The fourth and the final class will extend the `ExcFetchUrl` and add caching functionality
-to the `get_data` method. It will follow the same pattern as the `ExcFetchUrl` class.
+-   The fourth and the final class will extend the `ExcFetchUrl` and add caching
+    functionality to the `get_data` method. It will follow the same pattern as the
+    `ExcFetchUrl` class.
 
 Since, by now, you're already familiar with the workflow of the proxy pattern, let's dump
 the entire 110 line solution all at once.
@@ -527,11 +530,20 @@ So use the pattern wisely. On the flip side, proxy pattern can come in handy whe
 to extend the functionality of some class arbitrarily as it can work a gateway to the El
 Dorado of loose coupling.
 
-[^1]: [Composition](https://realpython.com/inheritance-composition-python/#composition-in-python)
-[^2]: [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+[^1]:
+    [Composition](https://realpython.com/inheritance-composition-python/#composition-in-python)
+
+[^2]:
+    [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+
 [^3]: [Structural pattern](https://en.wikipedia.org/wiki/Structural_pattern)
 [^4]: [Single Responsibility Principle](https://stackify.com/solid-design-principles/)
 [^5]: [Python decorators](/python/decorators)
 [^6]: [HTTPx](https://github.com/encode/httpx)
-[^7]: [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py) [^7]
-[^8]: [Design patterns for humans - proxy pattern](https://github.com/kamranahmedse/design-patterns-for-humans#-proxy) [^8]
+[^7]:
+    [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py)
+    [^7]
+
+[^8]:
+    [Design patterns for humans - proxy pattern](https://github.com/kamranahmedse/design-patterns-for-humans#-proxy)
+    [^8]

@@ -69,12 +69,16 @@ class ThreadingTCPServer(socketserver.ThreadingTCPServer):
 
     def service_actions(self) -> None:
         if time.monotonic() - self._start_time > self._timeout:
-            logging.info("Server paused, something else is running...")
+            logging.info(
+                "Server paused, something else is running..."
+            )
             self._start_time = time.monotonic()
 
 
 if __name__ == "__main__":
-    with ThreadingTCPServer(("localhost", 9999), RequestHandler) as server:
+    with ThreadingTCPServer(
+        ("localhost", 9999), RequestHandler
+    ) as server:
         server.serve_forever()
 ```
 
@@ -157,4 +161,5 @@ simply running the function in a blocking manner was enough.
 
 [^1]: [socketserver](https://docs.python.org/3/library/socketserver.html)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/221395153-5044d50e-e12d-45f4-b816-5416f69d0308.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/221395153-5044d50e-e12d-45f4-b816-5416f69d0308.png

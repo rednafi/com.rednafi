@@ -10,11 +10,11 @@ This site[^1] is built with Hugo[^2] and served via GitHub pages[^3]. Recently, 
 change the font here to make things more consistent across different devices. However, I
 didn't want to go with Google Fonts for a few reasons:
 
-* CDN is another dependency.
-* Hosting static assets on GitHub Pages has served me well.
-* Google Fonts tracks users and violates[^4] GDPR in Germany. Google Analytics does that
-too. But since I'm using the latter anyway, this might come off a bit apocryphal.
-* I wanted to get a few extra Lighthouse points.
+-   CDN is another dependency.
+-   Hosting static assets on GitHub Pages has served me well.
+-   Google Fonts tracks users and violates[^4] GDPR in Germany. Google Analytics does that
+    too. But since I'm using the latter anyway, this might come off a bit apocryphal.
+-   I wanted to get a few extra Lighthouse points.
 
 Turns out, it's pretty easy to host the fonts yourself.
 
@@ -23,13 +23,13 @@ Turns out, it's pretty easy to host the fonts yourself.
 I found this fantastic webfont helper tool[^5] that allows you to search for any Google font
 and download it. You can specify the font style, thickness, and browser support status. I've
 used it to download Schibsted Grotesk for text and JetBrains Mono for code snippets,
-targeting only modern browsers. You might want to pick *Legacy Support* if you need
-compatibility with older browsers and *Historic Support* for the really old ones.
+targeting only modern browsers. You might want to pick _Legacy Support_ if you need
+compatibility with older browsers and _Historic Support_ for the really old ones.
 
 ![download google fonts][image_1]
 
 After downloading, unzip the file and place the fonts in the `/static/fonts` folder in your
-root directory. If you've selected the *Modern Browsers* option, then the fonts will come in
+root directory. If you've selected the _Modern Browsers_ option, then the fonts will come in
 web-optimized `woff2` format. Sweet!
 
 ## Paste the CSS
@@ -85,8 +85,12 @@ locally and ensure that the fonts are being loaded and displayed correctly. Depl
 [^1]: [Site source](https://github.com/rednafi/rednafi.com/)
 [^2]: [Hugo](https://gohugo.io/)
 [^3]: [GitHub Pages](https://pages.github.com/)
-[^4]: [Google Fonts GDPR violation](https://rewis.io/urteile/urteil/lhm-20-01-2022-3-o-1749320/)
-[^5]: [Webfont helper tool](https://gwfh.mranftl.com/fonts)
-[^6]: [Header CSS](https://github.com/rednafi/rednafi.com/blob/main/assets/css/extended/header-override.css)
+[^4]:
+    [Google Fonts GDPR violation](https://rewis.io/urteile/urteil/lhm-20-01-2022-3-o-1749320/)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/267879992-c61a4008-d05f-45f4-9cee-ca7435bd2459.png
+[^5]: [Webfont helper tool](https://gwfh.mranftl.com/fonts)
+[^6]:
+    [Header CSS](https://github.com/rednafi/rednafi.com/blob/main/assets/css/extended/header-override.css)
+
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/267879992-c61a4008-d05f-45f4-9cee-ca7435bd2459.png

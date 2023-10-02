@@ -12,9 +12,9 @@ that's not just another flavor of Debian. Primarily, I work with Python, NodeJS,
 bit of Go. Previously, any time I had to install these language runtimes, I'd execute a
 bespoke script that'd install:
 
-* Python via deadsnake[^1] ppa.
-* NodeJS via nvm[^2].
-* Go from the official binary source[^3].
+-   Python via deadsnake[^1] ppa.
+-   NodeJS via nvm[^2].
+-   Go from the official binary source[^3].
 
 Along with the hassle of having to manage three version managers, setting up multiple
 versions of Python almost always felt like a chore. I've used pyenv[^4] before which kind of
@@ -114,10 +114,13 @@ Running `asdf uninstall python <python-version>` will do the trick.
 
 [^1]: [deadsnake](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)
 [^2]: [nvm](https://github.com/nvm-sh/nvm)
-[^3]: [Download Go]( https://go.dev/dl/)
+[^3]: [Download Go](https://go.dev/dl/)
 [^4]: [pyenv](https://github.com/pyenv/pyenv)
-[^5]: [Adam Johnson's tweet](https://twitter.com/AdamChainz/status/1591131543262867456?s=20&t=cl7NMLREat945aSICfk-9g)
+[^5]:
+    [Adam Johnson's tweet](https://twitter.com/AdamChainz/status/1591131543262867456?s=20&t=cl7NMLREat945aSICfk-9g)
+
 [^6]: [asdf - manage multiple runtime versions with a single CLI tool](https://asdf-vm.com/)
 [^7]: [homebrew](https://brew.sh/)
 [^8]: [asdf Python plugin](https://github.com/asdf-community/asdf-python)
-[^9]: [asdf plugin dependencies](https://asdf-vm.com/guide/getting-started.html#plugin-dependencies)
+[^9]:
+    [asdf plugin dependencies](https://asdf-vm.com/guide/getting-started.html#plugin-dependencies)

@@ -203,4 +203,6 @@ def log(func: Callable) -> Callable:
 ...
 ```
 
-[^1]: [functools.update_wrapper](https://github.com/python/cpython/blob/0ae40191793da1877a12d512f0116d99301b2c51/Lib/functools.py#L35) [^1]
+[^1]:
+    [functools.update_wrapper](https://github.com/python/cpython/blob/0ae40191793da1877a12d512f0116d99301b2c51/Lib/functools.py#L35)
+    [^1]

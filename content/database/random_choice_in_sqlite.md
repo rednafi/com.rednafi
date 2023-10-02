@@ -70,12 +70,12 @@ Dayton
 ```
 
 Now, how do we extract random elements from the above array? If we can generate a set of
-random indices, those can be used to access values arbitrarily from the JSON array.
-These random indices can be generated using SQLite's built-in `random()` function. The
-function doesn't take any arguments and generates a large positive or negative arbitrary
-integer. From this integer, a random index can be found by computing
-`abs(random()) modulo n` where `abs(random())` denotes the absolute result of the random
-function and `n` represents the length of the target array.
+random indices, those can be used to access values arbitrarily from the JSON array. These
+random indices can be generated using SQLite's built-in `random()` function. The function
+doesn't take any arguments and generates a large positive or negative arbitrary integer.
+From this integer, a random index can be found by computing `abs(random()) modulo n` where
+`abs(random())` denotes the absolute result of the random function and `n` represents the
+length of the target array.
 
 For example, if the length of the array is `4`, and `random()` produces the integer
 `-123456789`, then the index will be `123456789 % 4 = 1` :
@@ -84,8 +84,8 @@ For example, if the length of the array is `4`, and `random()` produces the inte
 select abs(random()) % 4;
 ```
 
-If you run this query multiple times, you'll see that it prints a value between `0` and
-`3` in random order.
+If you run this query multiple times, you'll see that it prints a value between `0` and `3`
+in random order.
 
 ```txt
 sqlite> select abs(random()) % 4;
@@ -101,9 +101,8 @@ sqlite> select abs(random()) % 4;
 1
 ```
 
-Similarly, if you compute `abs(random()) % 5`, it'll print a value between `0` to `4`
-and so on. Armed with this knowledge, we can extract a random value from a JSON array
-like this:
+Similarly, if you compute `abs(random()) % 5`, it'll print a value between `0` to `4` and so
+on. Armed with this knowledge, we can extract a random value from a JSON array like this:
 
 ```sql
 select json_extract(
@@ -112,8 +111,8 @@ select json_extract(
 );
 ```
 
-Running the above query will give you a single value from the JSON array in random
-order. Execute the query multiple times to see it in action.
+Running the above query will give you a single value from the JSON array in random order.
+Execute the query multiple times to see it in action.
 
 ```txt
 sqlite> select json_extract('["Columbus", ...
@@ -131,8 +130,8 @@ Voila, we've successfully emulated Python's `random.choice` in SQL.
 ## Populating a table with random data
 
 Populating a table with randomly distributed data is useful, especially when you need to
-demonstrate a feature or flex your SQL fu. We can leverage the above pattern to populate
-a simple table with 100 data points like this:
+demonstrate a feature or flex your SQL fu. We can leverage the above pattern to populate a
+simple table with 100 data points like this:
 
 ```sql
 -- Create the 'stat' table with 'id', 'cat', and 'score' columns.
@@ -162,8 +161,8 @@ with recursive cte (x, y) as (
 select * from stat;
 ```
 
-If you run the above queries via the SQLite CLI, the final statement will reveal the
-`stat` table with the randomly filled in data:
+If you run the above queries via the SQLite CLI, the final statement will reveal the `stat`
+table with the randomly filled in data:
 
 ```txt
 | id  | cat | score  |
@@ -183,6 +182,10 @@ If you run the above queries via the SQLite CLI, the final statement will reveal
 | 100 | c   | 420.0  |
 ```
 
-[^1]: [Passing arrays as parameters to SQLite](https://ricardoanderegg.com/posts/sqlite-list-array-parameter-query/)
-[^2]: [Passing lists of values to SQLite](https://twitter.com/ricardoanderegg/status/1564723221173342220?s=20&t=V4TtJsxqyH0IuheqhEvb4w)
+[^1]:
+    [Passing arrays as parameters to SQLite](https://ricardoanderegg.com/posts/sqlite-list-array-parameter-query/)
+
+[^2]:
+    [Passing lists of values to SQLite](https://twitter.com/ricardoanderegg/status/1564723221173342220?s=20&t=V4TtJsxqyH0IuheqhEvb4w)
+
 [^3]: [The json_extract() function](https://www.sqlite.org/json1.html#jex)

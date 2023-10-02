@@ -14,10 +14,10 @@ folly, it's a delightful piece of tech to work with. I've been building small to
 for a couple of years but never got around to writing about the immense productivity boost
 it usually gives me whenever I need to quickly build and deploy a self-contained service.
 
-Recently, I was doing some lightweight frontend work and needed to make some AJAX calls
-from one domain to another. Usually, browser's CORS (Cross-Origin Resource Sharing)[^2]
-policy will get in your way if you try this. While you're reading this piece, open the dev
-console and paste the following `fetch` snippet:
+Recently, I was doing some lightweight frontend work and needed to make some AJAX calls from
+one domain to another. Usually, browser's CORS (Cross-Origin Resource Sharing)[^2] policy
+will get in your way if you try this. While you're reading this piece, open the dev console
+and paste the following `fetch` snippet:
 
 ```js
 fetch("https://mozilla.org")
@@ -110,11 +110,10 @@ even support HTTPS or other security bells and whistles.
 
 ## Build your own CORS proxy with Cloudflare Workers
 
-With all the intros out of the way, here's how CloudFlare Workers afforded me to prop
-up a CORS proxy in less than half an hour. If you're impatient and just want to take a
-look at the service in its full glory then head over here[^6]. GitHub Actions deploys the
-service automatically to CloudFlare Workers every time a change is pushed to the `main`
-branch.
+With all the intros out of the way, here's how CloudFlare Workers afforded me to prop up a
+CORS proxy in less than half an hour. If you're impatient and just want to take a look at
+the service in its full glory then head over here[^6]. GitHub Actions deploys the service
+automatically to CloudFlare Workers every time a change is pushed to the `main` branch.
 
 ### Installing the prerequisites
 
@@ -412,14 +411,23 @@ Secrets[^10] of your proxy server's repository. Here's the complete workflow[^11
 
 [^1]: [Cloudflare Workers](https://workers.cloudflare.com/)
 [^2]: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-[^3]: [Let's talk about CORS](https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919)
+[^3]:
+    [Let's talk about CORS](https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919)
+
 [^4]: [cors.sh](https://cors.sh/)
 [^5]: [CORS proxy](https://httptoolkit.com/blog/cors-proxies)
 [^6]: [Complete implementation](https://github.com/rednafi/cors-proxy)
 [^7]: [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
-[^8]: [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
-[^9]: [Cloudflare API Key](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
-[^10]: [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+[^8]:
+    [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
+
+[^9]:
+    [Cloudflare API Key](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+
+[^10]:
+    [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+
 [^11]: [CI](https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png

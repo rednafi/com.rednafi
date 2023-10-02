@@ -41,15 +41,15 @@ Since we're streaming the content from the network line by line, there should be
 usage and minimal memory footprint. Also, to speed up the consumption, we'll fork multiple
 OS processes. To put in concisely, we'll need to perform the following steps:
 
-* Stream a single row from the target CSV file.
-* Write the content of the row in an in-memory string buffer.
-* Parse the file buffer with `csv.DictReader`.
-* Collect the dict the contains the information of the parsed row.
-* Yield the dict.
-* Flush the buffer.
-* Another process will collect the yielded dict and consume that outside of the main
-process.
-* And continue the loop for the next row.
+-   Stream a single row from the target CSV file.
+-   Write the content of the row in an in-memory string buffer.
+-   Parse the file buffer with `csv.DictReader`.
+-   Collect the dict the contains the information of the parsed row.
+-   Yield the dict.
+-   Flush the buffer.
+-   Another process will collect the yielded dict and consume that outside of the main
+    process.
+-   And continue the loop for the next row.
 
 The following snippet implements the workflow mentioned above:
 
@@ -166,8 +166,8 @@ if __name__ == "__main__":
 ```
 
 The first function `stream_csv` accepts a URL that points to a CSV file. In this case, the
-URL used here points to a real CSV file hosted on GitHub. HTTPx[^1] allows you to
-make a streaming[^2] GET request and iterate through the contents of the file without fully
+URL used here points to a real CSV file hosted on GitHub. HTTPx[^1] allows you to make a
+streaming[^2] GET request and iterate through the contents of the file without fully
 downloading it to the disk.
 
 Inside the `client.stream` block, we've created an in-memory file instance with

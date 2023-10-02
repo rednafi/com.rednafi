@@ -19,10 +19,10 @@ whenever HTTP 403 (forbidden), HTTP 404 (not found), or HTTP 500 (internal serve
 occurs. This is suboptimal; JSON APIs should never return HTML text whenever something goes
 wrong. On the other hand, the website needs those error text to appear accordingly.
 
-This happens because 403, 404, and 500 are handled by Django's default handlers for
-those errors and not by DRF's exception handlers. As the DRF doc suggests[^1], overriding
-the error handlers is one way of solving it. But this will only work if the application is
-an API-only backend or if you haven't already overridden the error handlers for custom error
+This happens because 403, 404, and 500 are handled by Django's default handlers for those
+errors and not by DRF's exception handlers. As the DRF doc suggests[^1], overriding the
+error handlers is one way of solving it. But this will only work if the application is an
+API-only backend or if you haven't already overridden the error handlers for custom error
 pages.
 
 In our case, we already had to override the default error handlers to display custom error
@@ -35,9 +35,9 @@ cleaner than most of the solutions that I'd seen at that point.
 To fix the dilemma, I wrote a middleware called `JSONErrorMiddleware` that returns the
 expected response based on the content type in the request header. If the header has
 `Content-Type: html/text` and it experiences an error, the server returns an appropriate
-HTML page. On the contrary, if the incoming request header has `Content-Type:
-application/json` and the server sees an error, it responds with a JSON error payload
-instead. Here's how the middleware looks:
+HTML page. On the contrary, if the incoming request header has
+`Content-Type: application/json` and the server sees an error, it responds with a JSON error
+payload instead. Here's how the middleware looks:
 
 ```python
 # <app>/middleware.py
@@ -77,7 +77,9 @@ class JSONErrorMiddleware:
             {
                 "error": {
                     "status_code": status_code,
-                    "message": self.status_code_description[status_code],
+                    "message": self.status_code_description[
+                        status_code
+                    ],
                     "detail": {"url": request.get_full_path()},
                 }
             },
@@ -158,6 +160,13 @@ This workflow has been tested on Django 3.2, 4.0, and DRF 3.13.
 
 ## References
 
-[^1]: [Generic error views](https://www.django-rest-framework.org/api-guide/exceptions/#generic-error-views)
-[^2]: [HTML sometimes returned when Accept: application/json is provided #3362](https://github.com/encode/django-rest-framework/issues/3362) [^2]
-[^3]: [Added generic 500 and 400 JSON error handlers #5904](https://github.com/encode/django-rest-framework/pull/5904) [^3]
+[^1]:
+    [Generic error views](https://www.django-rest-framework.org/api-guide/exceptions/#generic-error-views)
+
+[^2]:
+    [HTML sometimes returned when Accept: application/json is provided #3362](https://github.com/encode/django-rest-framework/issues/3362)
+    [^2]
+
+[^3]:
+    [Added generic 500 and 400 JSON error handlers #5904](https://github.com/encode/django-rest-framework/pull/5904)
+    [^3]

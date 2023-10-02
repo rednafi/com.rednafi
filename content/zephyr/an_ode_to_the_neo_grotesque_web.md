@@ -39,15 +39,15 @@ still pockets where the web's wild spirit can run free, untouched by the unrelen
 of frameworks stomping out all traces of creativity.
 
 Whenever I see technology mughals like Peter Norvig or Rob Pike showcase their thoughts
-through ancient relics like this[^2] or this[^3], it does put a smile on
-my face. No gaudy animations, no fancy fonts, no dark mode—just strings of thoughts laid
-bare against a backdrop of naked HTML. If you don't like the design, just load the content
-with Safari or Firefox reader and you're golden. Of course, not all websites have to be like
-this but not every website has to look like Stripe's[^4] either.
+through ancient relics like this[^2] or this[^3], it does put a smile on my face. No gaudy
+animations, no fancy fonts, no dark mode—just strings of thoughts laid bare against a
+backdrop of naked HTML. If you don't like the design, just load the content with Safari or
+Firefox reader and you're golden. Of course, not all websites have to be like this but not
+every website has to look like Stripe's[^4] either.
 
 People often conflate this brutalist[^5] approach to designing websites with user-hostile,
-overly minimalist, and lazy design. The opposite of UI maximalism doesn't need to be
-UX belligerence. Your site can look like absolute poop but still be responsive on any device
+overly minimalist, and lazy design. The opposite of UI maximalism doesn't need to be UX
+belligerence. Your site can look like absolute poop but still be responsive on any device
 and provide a great UX, like this absolutely hilarious rant page[^6]. It wraps perfectly on
 your laptop, phone, or tablet, and doesn't need to load 2 MB static assets. Plus, who cares
 about the layout when the content is this interesting?
@@ -64,6 +64,8 @@ Ugly can still be beautiful. Excrement contains nutrients. All hail the neo-grot
 [^2]: [Rob Pike's blog](https://commandcenter.blogspot.com/)
 [^3]: [Peter Norvig's blog](https://www.norvig.com/)
 [^4]: [Stripe website](https://stripe.com/)
-[^5]: [Brutalism in web design](https://designlab.com/blog/examples-brutalism-in-web-design/)
+[^5]:
+    [Brutalism in web design](https://designlab.com/blog/examples-brutalism-in-web-design/)
+
 [^6]: <https://motherfuckingwebsite.com/>
 [^7]: [Craigslist](https://www.craigslist.org/about/sites)

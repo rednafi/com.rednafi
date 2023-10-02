@@ -74,10 +74,10 @@ method and yield numbers from it just like the function. Then when you initiate 
 the instance of the class will allow you to loop through it multiple times; each time
 creating a new generator.
 
-> *I knew that you could create an iterable class by adding `__iter__` to a class and
+> _I knew that you could create an iterable class by adding `__iter__` to a class and
 > yielding values from it. But I wasn't aware that the you could also iterate through the
-> instance of the class multiple times and the class will run `__iter__` on each pass
-> and produce a new generator for you to consume.*
+> instance of the class multiple times and the class will run `__iter__` on each pass and
+> produce a new generator for you to consume._
 
 For example:
 
@@ -122,9 +122,9 @@ function on the instance. When you run the for loop on the instance, it runs the
 you to run the for-loop multiple times on the instance, since each run creates a new
 generator that the loop can consume.
 
-> *A generator can still only be consumed once but each time you're running a new for-loop
+> _A generator can still only be consumed once but each time you're running a new for-loop
 > on the above instance, the `__iter__` method on it gets called and the method returns a
-> new generator for you to iterate through.*
+> new generator for you to iterate through._
 
 This is more convenient than having to repeatedly call a generator function if your API
 needs to consume a generator multiple times.

@@ -91,11 +91,11 @@ class Car:
 
 This snippet is exactly the same as before and the only thing that was added here is the
 `__getattr__` method in the `Car` class. Whenever you'll try to access an attribute or a
-method on an instance of the `Car` class, the `__getattr__` will intervene. It'll first
-look for the attribute in the instance of the `Car` class and if it can't find it there,
-then it'll look for the attribute in the instance of the `Engine` class; just like type
-inheritance. This will work in case of method access as well. So now you can use the
-classes as below:
+method on an instance of the `Car` class, the `__getattr__` will intervene. It'll first look
+for the attribute in the instance of the `Car` class and if it can't find it there, then
+it'll look for the attribute in the instance of the `Engine` class; just like type
+inheritance. This will work in case of method access as well. So now you can use the classes
+as below:
 
 ```python
 engine = Engine("w16", "vroom")

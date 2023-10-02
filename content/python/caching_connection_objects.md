@@ -88,4 +88,5 @@ def get_redis_client(service_name: str = "redis") -> redis.Redis:
 
 Is this singleton pattern? Probably so.
 
-[^1]: [Caching connections in Python — Twitter](https://twitter.com/rednafi/status/1503465791987273729?s=20&t=GlzWHBF_y0ZR-uKHVSP40Q)
+[^1]:
+    [Caching connections in Python — Twitter](https://twitter.com/rednafi/status/1503465791987273729?s=20&t=GlzWHBF_y0ZR-uKHVSP40Q)

@@ -45,7 +45,9 @@ start_time = time.perf_counter()
 result = slow_adder.calculate(1, 2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time-start_time} seconds, result: {result}.")
+print(
+    f"Calculation took {end_time-start_time} seconds, result: {result}."
+)
 
 
 start_time = time.perf_counter()
@@ -53,7 +55,9 @@ start_time = time.perf_counter()
 result = slow_adder.calculate(1, 2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time-start_time} seconds, result: {result}.")
+print(
+    f"Calculation took {end_time-start_time} seconds, result: {result}."
+)
 ```
 
 Here, I've created a simple `SlowAdder` class that accepts a `delay` value; then it sleeps
@@ -252,7 +256,9 @@ start_time = time.perf_counter()
 result = foo_1.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
+print(
+    f"Calculation took {end_time - start_time} seconds, result: {result}."
+)
 
 
 start_time = time.perf_counter()
@@ -260,7 +266,9 @@ start_time = time.perf_counter()
 result = foo_2.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
+print(
+    f"Calculation took {end_time - start_time} seconds, result: {result}."
+)
 ```
 
 You can inspect the garbage collection behavior here:
@@ -292,7 +300,17 @@ class Foo:
         print("Deleting instance ...")
 ```
 
-[^1]: [LRU cache key](https://github.com/python/cpython/blob/8882b30dab237c8b460cb8d18cecc8b8d031da25/Lib/functools.py#L448)
-[^2]: [functools.lru_cache - Python Docs](https://docs.python.org/3/library/functools.html#functools.lru_cache) [^2]
-[^3]: [Don't lru_cache methods! (intermediate) anthony explains #382](https://www.youtube.com/watch?v=sVjtp6tGo0g) [^3]
-[^4]: [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod or classmethod decorator](https://stackoverflow.com/questions/70409673/python-lru-cache-in-a-class-disregards-maxsize-limit-when-decorated-with-a-stati) [^4]
+[^1]:
+    [LRU cache key](https://github.com/python/cpython/blob/8882b30dab237c8b460cb8d18cecc8b8d031da25/Lib/functools.py#L448)
+
+[^2]:
+    [functools.lru_cache - Python Docs](https://docs.python.org/3/library/functools.html#functools.lru_cache)
+    [^2]
+
+[^3]:
+    [Don't lru_cache methods! (intermediate) anthony explains #382](https://www.youtube.com/watch?v=sVjtp6tGo0g)
+    [^3]
+
+[^4]:
+    [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod or classmethod decorator](https://stackoverflow.com/questions/70409673/python-lru-cache-in-a-class-disregards-maxsize-limit-when-decorated-with-a-stati)
+    [^4]

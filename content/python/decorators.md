@@ -5,12 +5,12 @@ tags:
     - Python
 ---
 
-***Updated on 2022-02-13***: *Change functools import style.*
+**_Updated on 2022-02-13_**: _Change functools import style._
 
 When I first learned about Python decorators, using them felt like doing voodoo magic.
 Decorators can give you the ability to add new functionalities to any callable without
 actually touching or changing the code inside it. This can typically yield better
-encapsulation and help you write cleaner and more understandable code. However, *decorator*
+encapsulation and help you write cleaner and more understandable code. However, _decorator_
 is considered as a fairly advanced topic in Python since understanding and writing it
 requires you to have command over multiple additional concepts like first class objects,
 higher order functions, closures etc. First, I'll try to introduce these concepts as
@@ -46,8 +46,8 @@ main_func(func_a, func_b)
 >>> I told my wrath, my wrath did end
 ```
 
-The above example demonstrates how Python treats functions as first class citizens. First,
-I defined two functions, `func_a` and `func_b` and then `func_c` takes them as parameters.
+The above example demonstrates how Python treats functions as first class citizens. First, I
+defined two functions, `func_a` and `func_b` and then `func_c` takes them as parameters.
 `func_c` runs the functions taken as parameters and prints the results. Then we assign
 `func_c` to variable `main_func`. Finally, we run `main_func` and it behaves just like
 `func_c`.
@@ -468,7 +468,9 @@ def timer(func):
         ret = func(*args, **kwargs)
         end_time = perf_counter()
         run_time = end_time - start_time
-        print(f"Finished running {func.__name__} in {run_time:.4f} seconds.")
+        print(
+            f"Finished running {func.__name__} in {run_time:.4f} seconds."
+        )
         return ret
 
     return wrapper
@@ -587,7 +589,9 @@ def short_summary():
 
 @validate_summary
 def long_summary():
-    return {"summary": "This is a long summary that exceeds character limit."}
+    return {
+        "summary": "This is a long summary that exceeds character limit."
+    }
 
 
 print(short_summary())
@@ -785,16 +789,16 @@ pass any parameter (run with the default), you'll still need to decorate your fu
 
 Typically, a decorator creates and returns an inner wrapper function but here in the
 `repeat` decorator, there is an inner function within another inner function. This almost
-looks like a *dream within a dream* from the movie Inception.
+looks like a _dream within a dream_ from the movie Inception.
 
 There are a few subtle things happening in the `joinby()` function:
 
-* Defining `outer_wrapper()` as an inner function means that `repeat()` will refer to a
-function object `outer_wrapper`.
+-   Defining `outer_wrapper()` as an inner function means that `repeat()` will refer to a
+    function object `outer_wrapper`.
 
-* The `delimiter` argument is seemingly not used in `joinby()` itself. But by passing
-`delimiter` a closure is created where the value of `delimiter` is stored until it will
-be used later by `inner_wrapper()`
+-   The `delimiter` argument is seemingly not used in `joinby()` itself. But by passing
+    `delimiter` a closure is created where the value of `delimiter` is stored until it will
+    be used later by `inner_wrapper()`
 
 ## Decorators with & without arguments
 
@@ -854,7 +858,7 @@ Here, the `_func` argument acts as a marker, noting whether the decorator has be
 with arguments or not:
 
 If `joinby` has been called without arguments, the decorated function will be passed in as
-`_func`. If it has been called with arguments, then `_func` will be None. The * in the
+`_func`. If it has been called with arguments, then `_func` will be None. The \* in the
 argument list means that the remaining arguments can’t be called as positional arguments.
 This time you can use `joinby` with or without arguments and function `hello` and `greet`
 above demonstrate that.
@@ -952,9 +956,9 @@ resp2 = getdata_("https://httpbin.org/get/1")
     retrying... (1)
 ```
 
-In this case, you do not have to write three level nested functions and the `functools.
-partial` takes care of that. Partials can be used to make new derived functions that have
-some input parameters pre-assigned.Roughly `partial` does the following:
+In this case, you do not have to write three level nested functions and the
+`functools. partial` takes care of that. Partials can be used to make new derived functions
+that have some input parameters pre-assigned.Roughly `partial` does the following:
 
 ```python
 def partial(func, *part_args):
@@ -1110,8 +1114,8 @@ api(3)
 
 You'll see that running this function takes roughly 3 seconds. To cache the result, we can
 use Python's built in functools.lru_cache to save the result against an argument in a
-dictionary and serve that when it encounters the same argument again. The only drawback
-here is, all the arguments need to be hashable.
+dictionary and serve that when it encounters the same argument again. The only drawback here
+is, all the arguments need to be hashable.
 
 ```python
 import functools
@@ -1247,12 +1251,20 @@ if __name__ == "__main__":
 ```
 
 If you run the server and hit the `http://localhost:5000/` url, it'll greet you with a
-`Hello World!` message. Also you'll able to see the printed `method` and `path` of your
-HTTP request on the terminal. Moreover, if you inspect the `logger_list`, you'll find the
+`Hello World!` message. Also you'll able to see the printed `method` and `path` of your HTTP
+request on the terminal. Moreover, if you inspect the `logger_list`, you'll find the
 registered logger there. You'll find a lot more real life usage of decorators in the Flask
 framework.
 
 [^1]: [Python Cookbook - David Beazley](https://realpython.com/asins/1449340377/)
-[^2]: [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/) [^2]
-[^3]: [Decorators in Python - Datacamp](https://www.datacamp.com/community/tutorials/decorators-python) [^3]
-[^4]: [5 reasons you need to write python decorators](https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/) [^4]
+[^2]:
+    [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/)
+    [^2]
+
+[^3]:
+    [Decorators in Python - Datacamp](https://www.datacamp.com/community/tutorials/decorators-python)
+    [^3]
+
+[^4]:
+    [5 reasons you need to write python decorators](https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/)
+    [^4]

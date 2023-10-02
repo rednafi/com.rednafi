@@ -12,9 +12,9 @@ A common interview question that I've seen goes as follows:
 
 Write a function to crop a text corpus without breaking any word.
 
-* Take the length of the text up to which **character** you should trim.
-* Make sure that the cropped text doesn't have any trailing space.
-* Try to maximize the number of words you can pack in your trimmed text.
+-   Take the length of the text up to which **character** you should trim.
+-   Make sure that the cropped text doesn't have any trailing space.
+-   Try to maximize the number of words you can pack in your trimmed text.
 
 Your function should look something like this:
 
@@ -57,17 +57,18 @@ This is quite easily solvable by using Python's `textwrap.shorten` function. The
 function takes quite a few parameters[^1]. However, we'll only need the following ones to do
 our job:
 
-* `text: str`: Target text that we're going to operate on.
-* `width: int` : Desired width after cropping.
-* `initial_indent: str`: Character to use for the initial indentation. Provide empty string
-for no initial indentation.
-* `subsequent_indent: str`: Character to use for the subsequent indentation. Provide empty
-string for no subsequent indentation.
-* `break_long_words: bool`: Whether to break long words or not.
-* `break_on_hyphens: bool`: Whether to break words on hyphens or not.
-* `placeholder: bool`: Placeholder character. The default here is `[...]`. However, provide
-an empty string if you don't want any placeholder after the cropped string. The length of
-the placeholder is going to be included in the total length of the cropped text.
+-   `text: str`: Target text that we're going to operate on.
+-   `width: int` : Desired width after cropping.
+-   `initial_indent: str`: Character to use for the initial indentation. Provide empty
+    string for no initial indentation.
+-   `subsequent_indent: str`: Character to use for the subsequent indentation. Provide empty
+    string for no subsequent indentation.
+-   `break_long_words: bool`: Whether to break long words or not.
+-   `break_on_hyphens: bool`: Whether to break words on hyphens or not.
+-   `placeholder: bool`: Placeholder character. The default here is `[...]`. However,
+    provide an empty string if you don't want any placeholder after the cropped string. The
+    length of the placeholder is going to be included in the total length of the cropped
+    text.
 
 With the descriptions out of the way, let's write the `crop` function here:
 
@@ -131,7 +132,9 @@ def crop(text: str, limit: int) -> str:
 
 class TestCrop(unittest.TestCase):
     def setUp(self):
-        self.text = "This is an example of speech synthesis in English."
+        self.text = (
+            "This is an example of speech synthesis in English."
+        )
         self.text_complex = """
         wrap(), fill() and shorten() work by creating a TextWrapper instance
         and calling a single method on it.

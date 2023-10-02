@@ -7,22 +7,22 @@ tags:
     - Networking
 ---
 
-This weekend, I was working on a fun project that required a fixed-time job scheduler to
-run a `curl` command at a future timestamp. I was aiming to find the simplest solution
-that could just get the job done. I've also been exploring Google Bard[^1] recently and
-wanted to see how it stacks up against other LLM tools like ChatGPT, BingChat, or
-Anthropic's Claude in terms of resolving programming queries.
+This weekend, I was working on a fun project that required a fixed-time job scheduler to run
+a `curl` command at a future timestamp. I was aiming to find the simplest solution that
+could just get the job done. I've also been exploring Google Bard[^1] recently and wanted to
+see how it stacks up against other LLM tools like ChatGPT, BingChat, or Anthropic's Claude
+in terms of resolving programming queries.
 
 So, I asked Bard:
 
-> *What's the simplest solution I could get away with to run a shell command at a future
-> datetime?*
+> _What's the simplest solution I could get away with to run a shell command at a future
+> datetime?_
 
-It introduced me to the UNIX `at` command that does exactly what I needed. Cron wouldn't
-be a good fit for this particular use case, and I wasn't aware of the existence of `at`
-before. So I started probing the model and wanted to document my findings for future
-reference. Also, the final hacky solution that allowed me to schedule jobs remotely can
-be found at the tail[^2] of this post.
+It introduced me to the UNIX `at` command that does exactly what I needed. Cron wouldn't be
+a good fit for this particular use case, and I wasn't aware of the existence of `at` before.
+So I started probing the model and wanted to document my findings for future reference.
+Also, the final hacky solution that allowed me to schedule jobs remotely can be found at the
+tail[^2] of this post.
 
 ## The insipid definition
 
@@ -30,7 +30,8 @@ The command `at` in UNIX is used to schedule one-time jobs or commands to be exe
 specific time in the future. Internally, the system maintains a queue that adds a new entry
 when a job is scheduled, and once it gets executed, the job is removed from the queue.
 
-> ***NOTE:***
+> **_NOTE:_**
+
     *By default, the jobs will be scheduled using the targeted machine's local timezone.*
 
 ## Prerequisites
@@ -89,13 +90,13 @@ This will start the `atrun` daemon. Or enable it for future bootups by modifying
 On modern MacOS like Ventura, unfortunately, this requires disabling SIP[^3]. Next, you'll
 need to provide full disk access to `atrun`. To do so:
 
-* Open Spotlight and type in *Allow full disk access*.
-* On the left panel, click on *Allow applications to access all user files*.
+-   Open Spotlight and type in _Allow full disk access_.
+-   On the left panel, click on _Allow applications to access all user files_.
 
 ![enable atrun on mac][image_1]
 
-* On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
-`cmd + shift + g` and type in the full path of `atrun`.
+-   On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
+    `cmd + shift + g` and type in the full path of `atrun`.
 
 ![add atrun to allow list][image_2]
 
@@ -264,9 +265,9 @@ To remove a scheduled task, use the following command:
 atrm <job number>
 ```
 
-The job number is the number assigned to the task when it was scheduled. You can find
-the job number by running the `atq` command. If you need to clear all the pending jobs,
-use this:
+The job number is the number assigned to the task when it was scheduled. You can find the
+job number by running the `atq` command. If you need to clear all the pending jobs, use
+this:
 
 ```sh
 atrm $(atq | cut -f 1)
@@ -361,9 +362,13 @@ curl -X POST -H "Authorization: Bearer some-token" \
 
 [^1]: [Bard](https://bard.google.com/)
 [^2]: [A hacky way to schedule jobs remotely](#a-hacky-way-to-schedule-jobs-remotely)
-[^3]: [System Integrity Protection (SIP)](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection)
+[^3]:
+    [System Integrity Protection (SIP)](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection)
+
 [^4]: [Making "at" work on macOS](https://unix.stackexchange.com/a/478840/383934)
 [^5]: ["at" command in Linux](https://linuxize.com/post/at-command-in-linux/) [^5]
 
-[image_1]: https://github.com/rednafi/rednafi.com/assets/30027932/a6d775a6-b547-4ad4-80b2-e517288cc697
-[image_2]: https://github.com/rednafi/rednafi.com/assets/30027932/e1e61f38-e35f-40df-a9bf-31ae651283f0
+[image_1]:
+    https://github.com/rednafi/rednafi.com/assets/30027932/a6d775a6-b547-4ad4-80b2-e517288cc697
+[image_2]:
+    https://github.com/rednafi/rednafi.com/assets/30027932/e1e61f38-e35f-40df-a9bf-31ae651283f0

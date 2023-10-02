@@ -67,9 +67,9 @@ packets instead of discarding them. This is not a problem and does not affect th
 of the traceroute.
 
 This is all good and dandy but I wanted to understand how `traceroute` can find out what
-route a packet takes and how long it takes between each hop. So I started reading blogs
-like this[^2] one that does an awesome job at explaining what's going on behind the scene.
-The gist of it goes as follows.
+route a packet takes and how long it takes between each hop. So I started reading blogs like
+this[^2] one that does an awesome job at explaining what's going on behind the scene. The
+gist of it goes as follows.
 
 ## How traceroute works
 
@@ -106,24 +106,24 @@ the machinery of `traceroute` quite well:
 
 ## Writing a crappier version of traceroute in Python
 
-After getting a rough idea of what's going on underneath, I wanted to write a simpler
-and crappier version of `traceroute` in Python. This version would roughly perform the
-following steps:
+After getting a rough idea of what's going on underneath, I wanted to write a simpler and
+crappier version of `traceroute` in Python. This version would roughly perform the following
+steps:
 
 1. Establish a UDP socket connection that'd be used to send empty packets to the hops.
-2. Create an ICMP socket that'd receive *ICMP time exceeded* messages.
-3. Start a loop and use the UDP socket to send an empty byte with a TTL of 1 to the
-first hop.
+2. Create an ICMP socket that'd receive _ICMP time exceeded_ messages.
+3. Start a loop and use the UDP socket to send an empty byte with a TTL of 1 to the first
+   hop.
 4. The TTL value of the packet would be decremented by 1 at the first hop. Once the TTL
-reaches 0, the packet would be discarded, and an ICMP time exceeded message would be
-returned to the sender through the ICMP socket. The sender would also receive the
-address of the first hop.
-5. Calculate the time delta between sending a packet and receiving the ICMP time
-exceeded message. Also, capture the address of the first hop and log the time delta and
-address to the console.
-6. In the subsequent iterations, the TTL value will be incremented by 1 (2, 3, 4, ...)
-and the steps from 1 through 5 will be repeated until it reaches the `max_hops` value,
-which is set at 64.
+   reaches 0, the packet would be discarded, and an ICMP time exceeded message would be
+   returned to the sender through the ICMP socket. The sender would also receive the address
+   of the first hop.
+5. Calculate the time delta between sending a packet and receiving the ICMP time exceeded
+   message. Also, capture the address of the first hop and log the time delta and address to
+   the console.
+6. In the subsequent iterations, the TTL value will be incremented by 1 (2, 3, 4, ...) and
+   the steps from 1 through 5 will be repeated until it reaches the `max_hops` value, which
+   is set at 64.
 
 Here's the complete self-contained implementation. I tested it on Python 3.11:
 
@@ -231,7 +231,9 @@ def main() -> None:
             except socket.error:
                 host = ""
             # Print the hop information
-            print(f"{i+1:<5d}{addr:<20s}{host:<50s}{elapsed_time:<10.3f} ms")
+            print(
+                f"{i+1:<5d}{addr:<20s}{host:<50s}{elapsed_time:<10.3f} ms"
+            )
         else:
             # Print "*" for hops with no response
             print(f"{i+1:<5d}{'*':<20s}{'*':<50s}{'*':<10s}")
@@ -264,7 +266,11 @@ Hop  IP Address          Hostname                                          Time 
 ```
 
 [^1]: [Storytelling with traceroute](https://www.youtube.com/watch?v=xW_ALxfop7Y)
-[^2]: [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
-[^3]: [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
+[^2]:
+    [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
 
-[image_1]: https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b
+[^3]:
+    [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
+
+[image_1]:
+    https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b

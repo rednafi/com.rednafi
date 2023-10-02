@@ -9,8 +9,8 @@ Writing concurrent code in Python can be tricky. Before you even start, you have
 about all these icky stuff like whether the task at hand is I/O or CPU bound or whether
 putting the extra effort to achieve concurrency is even going to give you the boost you
 need. Also, the presence of Global Interpreter Lock, GIL[^1] foists further limitations on
-writing truly concurrent code. But for the sake of sanity, you can oversimplify it like
-this without being blatantly incorrect:
+writing truly concurrent code. But for the sake of sanity, you can oversimplify it like this
+without being blatantly incorrect:
 
 > In Python, if the task at hand is I/O bound, you can use use standard library's
 > `threading` module or if the task is CPU bound then `multiprocessing` module can be your
@@ -68,7 +68,7 @@ Since both `ThreadPoolExecutor` and `ProcessPoolExecutor` have the same API inte
 both cases I'll primarily talk about two methods that they provide. Their descriptions have
 been collected from the official docs verbatim.
 
-### submit(fn, *args, \**kwargs)
+### submit(fn, \*args, \*\*kwargs)
 
 Schedules the callable, `fn`, to be executed as `fn(*args **kwargs)` and returns a `Future`
 object representing the execution of the callable.
@@ -79,12 +79,12 @@ with ThreadPoolExecutor(max_workers=1) as executor:
     print(future.result())
 ```
 
-### map(func, *iterables, timeout=None, chunksize=1)
+### map(func, \*iterables, timeout=None, chunksize=1)
 
 Similar to `map(func, *iterables)` except:
 
-* the iterables are collected immediately rather than lazily;
-* func is executed asynchronously and several calls to func may be made concurrently.
+-   the iterables are collected immediately rather than lazily;
+-   func is executed asynchronously and several calls to func may be made concurrently.
 
     The returned iterator raises a `concurrent.futures.TimeoutError` if `__next__()` is
     called and the result isn’t available after timeout seconds from the original call to
@@ -153,35 +153,39 @@ futures as they’re done – that is, as each task completes. The `fut.result()
 you the return value of `perform(task)`, or throws an exception in case of failure.
 
 The `executor.submit()` method schedules the tasks asynchronously and doesn't hold any
-contexts regarding the original tasks. So if you want to map the results with the
-original tasks, you need to track those yourself.
+contexts regarding the original tasks. So if you want to map the results with the original
+tasks, you need to track those yourself.
 
 ```python
 import concurrent.futures
 
 
 with concurrent.futures.Executor() as executor:
-    futures = {executor.submit(perform, task): task for task in get_tasks()}
+    futures = {
+        executor.submit(perform, task): task for task in get_tasks()
+    }
 
     for fut in concurrent.futures.as_completed(futures):
         original_task = futures[fut]
         print(f"The result of {original_task} is {fut.result()}")
 ```
 
-Notice the variable `futures` where the original tasks are mapped with their
-corresponding futures using a dictionary.
+Notice the variable `futures` where the original tasks are mapped with their corresponding
+futures using a dictionary.
 
 ### Running tasks with executor.map
 
-Another way the results can be collected in the same order they're scheduled is via
-using `executor.map()` method.
+Another way the results can be collected in the same order they're scheduled is via using
+`executor.map()` method.
 
 ```python
 import concurrent.futures
 
 
 with concurrent.futures.Executor() as executor:
-    for arg, res in zip(get_tasks(), executor.map(perform, get_tasks())):
+    for arg, res in zip(
+        get_tasks(), executor.map(perform, get_tasks())
+    ):
         print(f"The result of {arg} is {res}")
 ```
 
@@ -372,9 +376,9 @@ worker you want to deploy to spawn and manage the threads. A general rule of thu
 `2 * multiprocessing.cpu_count() + 1`. My machine has 6 physical cores with 12 threads. So
 13 is the value I chose.
 
-> Note: You can also try running the above functions with `ProcessPoolExecutor` via the
-> same interface and notice that the threaded version performs slightly better than due to
-> the nature of the task.
+> Note: You can also try running the above functions with `ProcessPoolExecutor` via the same
+> interface and notice that the threaded version performs slightly better than due to the
+> nature of the task.
 
 There is one small problem with the example above. The `executor.map()` method returns a
 generator which allows to iterate through the results once ready. That means if any error
@@ -556,8 +560,8 @@ and `multiprocessing` modules.
 
 Another pitfall of using concurrency is deadlock situations that might occur while using
 `ThreadPoolExecutor`. When a callable associated with a `Future` waits on the results of
-another `Future`, they might never release their control of the threads and cause
-deadlock. Let's see a slightly modified example from the official docs.
+another `Future`, they might never release their control of the threads and cause deadlock.
+Let's see a slightly modified example from the official docs.
 
 ```python
 import time
@@ -566,13 +570,17 @@ from concurrent.futures import ThreadPoolExecutor
 
 def wait_on_b():
     time.sleep(5)
-    print(b.result())  # b will never complete because it is waiting on a.
+    print(
+        b.result()
+    )  # b will never complete because it is waiting on a.
     return 5
 
 
 def wait_on_a():
     time.sleep(5)
-    print(a.result())  # a will never complete because it is waiting on b.
+    print(
+        a.result()
+    )  # a will never complete because it is waiting on b.
     return 6
 
 
@@ -698,7 +706,9 @@ def is_prime(n):
 @timeit
 def main():
     with ThreadPoolExecutor(max_workers=13) as executor:
-        for number, prime in zip(PRIMES, executor.map(is_prime, num_list)):
+        for number, prime in zip(
+            PRIMES, executor.map(is_prime, num_list)
+        ):
             print(f"{number} is prime: {prime}")
 
 
@@ -742,7 +752,9 @@ def is_prime(n):
 @timeit
 def main():
     with ProcessPoolExecutor(max_workers=13) as executor:
-        for number, prime in zip(PRIMES, executor.map(is_prime, num_list)):
+        for number, prime in zip(
+            PRIMES, executor.map(is_prime, num_list)
+        ):
             print(f"{number} is prime: {prime}")
 
 
@@ -765,12 +777,19 @@ with complicated code that performs worse than the naive solution.
 
 ## References
 
-* [concurrent.futures - the official documentation]
-* [Easy concurrency in Python]
-* [Adventures in Python with concurrent.futures]
+-   [concurrent.futures - the official documentation]
+-   [Easy concurrency in Python]
+-   [Adventures in Python with concurrent.futures]
 
 [^1]: [GIL](https://wiki.python.org/moin/GlobalInterpreterLock)
-[^2]: [PEP-255](https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation)
-[^3]: [concurrent.futures - the official documentation](https://docs.python.org/3/library/concurrent.futures.html) [^3]
+[^2]:
+    [PEP-255](https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation)
+
+[^3]:
+    [concurrent.futures - the official documentation](https://docs.python.org/3/library/concurrent.futures.html)
+    [^3]
+
 [^4]: [easy concurrency in python](http://pljung.de/posts/easy-concurrency-in-python/) [^4]
-[^5]: [Adventures in python with concurrent.futures](https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/) [^5]
+[^5]:
+    [Adventures in python with concurrent.futures](https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/)
+    [^5]

@@ -19,26 +19,25 @@ starts to grow.
 This isn't an attempt to explain why you should prefer composition over inheritance
 (although you should), as it's a vast topic and much has been said regarding this. Also,
 only after a few years of reading concomitant literatures and making enough mistakes in
-real-life codebases, it dawned on me that opting for inheritance as the default option
-leads to a fragile design. So I won't even attempt to tackle that in a single post and
-will refer to a few fantastic prior arts that proselytized me to the composition cult.
+real-life codebases, it dawned on me that opting for inheritance as the default option leads
+to a fragile design. So I won't even attempt to tackle that in a single post and will refer
+to a few fantastic prior arts that proselytized me to the composition cult.
 
 The goal of this article is not to focus on the wider spectrum of how to transform
-subclass-based APIs to use composition but rather to zoom in specifically on the
-template pattern and propose an alternative way to solve a problem where this
-pattern most naturally manifests. In the first portion, the post will explain what the
-template pattern is and how it gradually leads to an intractable mess as the code grows.
-In the latter segments, I'll demonstrate how I've designed a real-world service by
-adopting the obvious and natural path of inheritance-driven architecture. Then, I'll
-explain how the service can be refactored to escape the quagmire that I've now started
-to refer to as the **template pattern hellscape**.
+subclass-based APIs to use composition but rather to zoom in specifically on the template
+pattern and propose an alternative way to solve a problem where this pattern most naturally
+manifests. In the first portion, the post will explain what the template pattern is and how
+it gradually leads to an intractable mess as the code grows. In the latter segments, I'll
+demonstrate how I've designed a real-world service by adopting the obvious and natural path
+of inheritance-driven architecture. Then, I'll explain how the service can be refactored to
+escape the quagmire that I've now started to refer to as the **template pattern hellscape**.
 
 Only a few moons ago, while watching Hynek Schlawack's Python 2023 talk aptly titled
 "Subclassing, Composition, Python, and You"[^3] and reading his fantastic blog post
 "Subclassing in Python Redux"[^4], the concept of adopting composition to gradually phase
-out subclass-oriented design from my code finally clicked for me. However, it's not
-always obvious to me how to locate inheritance metastasis and exactly where to intervene to
-make the design better. This post is my attempt to distill some of my learning from those
+out subclass-oriented design from my code finally clicked for me. However, it's not always
+obvious to me how to locate inheritance metastasis and exactly where to intervene to make
+the design better. This post is my attempt to distill some of my learning from those
 resources and focus on improving only a small part of the gamut.
 
 ## The infectious template pattern
@@ -46,13 +45,13 @@ resources and focus on improving only a small part of the gamut.
 You're consciously or subconsciously implementing the template pattern when your API design
 follows these steps:
 
-* You have an Abstract Base Class (ABC) with abstract methods.
-* The ABC also includes one or more concrete methods.
-* The concrete methods in the ABC depend on the concrete implementation of the abstract
-methods.
-* API users are expected to inherit from the ABC and provide concrete implementations for
-the abstract methods.
-* Users then utilize the concrete methods defined in the ABC class.
+-   You have an Abstract Base Class (ABC) with abstract methods.
+-   The ABC also includes one or more concrete methods.
+-   The concrete methods in the ABC depend on the concrete implementation of the abstract
+    methods.
+-   API users are expected to inherit from the ABC and provide concrete implementations for
+    the abstract methods.
+-   Users then utilize the concrete methods defined in the ABC class.
 
 This pattern enables the sharing of concrete method implementations with subclasses.
 However, the concrete methods of the baseclass are only valid when the user inherits from
@@ -324,11 +323,11 @@ every possible solution under the sun, I'll go through the one that has worked f
 well.
 
 We'll refactor the code in the previous section to take advantage of composition and
-structural subtyping[^9] support in Python. Long story short, structural subtyping refers
-to the ability to ensure type safety based on the structure or shape of an object rather
-than its explicit inheritance hierarchy. This allows us to define and enforce contracts
-based on the presence of specific attributes or methods, rather than relying on a
-specific class or inheritance relationship.
+structural subtyping[^9] support in Python. Long story short, structural subtyping refers to
+the ability to ensure type safety based on the structure or shape of an object rather than
+its explicit inheritance hierarchy. This allows us to define and enforce contracts based on
+the presence of specific attributes or methods, rather than relying on a specific class or
+inheritance relationship.
 
 This is achieved through the use of the `typing.Protocol` class introduced in Python 3.8. By
 defining a protocol using the `typing.Protocol` class, we can specify the expected
@@ -462,19 +461,33 @@ composable one. It usually requires planning and designing from the ground up, w
 might decide that the ROI isn't good enough to justify the effort of refactoring. Plus, in a
 language like Python, you can't always escape inheritance, nor should you try to do so.
 
-> *Yet behold, it need not be the customary stratagem that thou graspest at each moment
-> thine heart yearns to commune code amidst classes.*
+> _Yet behold, it need not be the customary stratagem that thou graspest at each moment
+> thine heart yearns to commune code amidst classes._
 
-[^1]: [Template pattern](https://refactoring.guru/design-patterns/template-method/python/example)
-[^2]: [Composition over inheritance - Brandon Rhodes](https://python-patterns.guide/gang-of-four/composition-over-inheritance/)
-[^3]: [Subclassing, composition, Python, and you - Hynek Schlawack](https://www.youtube.com/watch?v=k8MT5liCQ7g)
-[^4]: [Subclassing in Python redux - Hynek Schlawack](https://hynek.me/articles/python-subclassing-redux/)
-[^5]: [Interfaces, mixins and building powerful custom data structures in Python](/python/mixins/)
-[^6]: [Sequence docs](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)
+[^1]:
+    [Template pattern](https://refactoring.guru/design-patterns/template-method/python/example)
+
+[^2]:
+    [Composition over inheritance - Brandon Rhodes](https://python-patterns.guide/gang-of-four/composition-over-inheritance/)
+
+[^3]:
+    [Subclassing, composition, Python, and you - Hynek Schlawack](https://www.youtube.com/watch?v=k8MT5liCQ7g)
+
+[^4]:
+    [Subclassing in Python redux - Hynek Schlawack](https://hynek.me/articles/python-subclassing-redux/)
+
+[^5]:
+    [Interfaces, mixins and building powerful custom data structures in Python](/python/mixins/)
+
+[^6]:
+    [Sequence docs](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)
+
 [^7]: [God objects](https://blog.devgenius.io/code-smell-14-god-objects-b84b75b702)
 [^8]: [Webhook](https://zapier.com/blog/what-are-webhooks/)
 [^9]: [Structural subtyping](https://rednafi.com/python/structural_subtyping/)
 [^10]: [Mypy](https://mypy-lang.org/)
 [^11]: [I want a new duck - Glyph](https://blog.glyph.im/2020/07/new-duck.html)
 [^12]: [Strategy pattern](https://refactoring.guru/design-patterns/strategy/python/example)
-[^13]: [End of object inheritance - Augie Fackler, Nathaniel Manista](https://www.youtube.com/watch?v=3MNVP9-hglc) [^13]
+[^13]:
+    [End of object inheritance - Augie Fackler, Nathaniel Manista](https://www.youtube.com/watch?v=3MNVP9-hglc)
+    [^13]

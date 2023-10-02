@@ -5,48 +5,48 @@ tags:
     - Python
 ---
 
-Pre-commit hooks[^1] can be a neat way to run automated ad-hoc *tasks* before submitting a
+Pre-commit hooks[^1] can be a neat way to run automated ad-hoc _tasks_ before submitting a
 new git commit. These tasks may include linting, trimming trailing whitespaces, running code
 formatter before code reviews etc. Let's see how multiple Python linters and formatters can
 be applied automatically before each commit to impose strict conformity on your codebase.
 
 To keep my sanity, I only use three linters in all of my python projects:
 
-* **[Isort]**: `Isort` is a Python utility to sort *imports* alphabetically, and
-automatically separate them by sections and type.
+-   **[Isort]**: `Isort` is a Python utility to sort _imports_ alphabetically, and
+    automatically separate them by sections and type. It parses specified files for global
+    level import lines and puts them all at the top of the file grouped together by the type
+    of import:
 
-    It parses specified files for global level import lines and puts them all at the top of
-    the file grouped together by the type of import:
+    -   Future
+    -   Python Standard Library
+    -   Third Party
+    -   Current Python Project
+    -   Explicitly Local (. before import, as in: `from . import x`)
+    -   Custom Separate Sections (Defined by `forced_separate` list in the configuration
+        file)
+    -   Custom Sections (Defined by `sections` list in configuration file)
 
-  * Future
-  * Python Standard Library
-  * Third Party
-  * Current Python Project
-  * Explicitly Local (. before import, as in: `from . import x`)
-  * Custom Separate Sections (Defined by `forced_separate` list in the configuration file)
-  * Custom Sections (Defined by `sections` list in configuration file)
+                        Inside each section, the imports are sorted alphabetically. This also automatically
+                        removes duplicate python imports, and wraps long from imports to the specified line
+                        length (defaults to 79).
 
-    Inside each section, the imports are sorted alphabetically. This also automatically
-    removes duplicate python imports, and wraps long from imports to the specified line
-    length (defaults to 79).
+-   **[Black]**: `Black` is the uncompromising Python code formatter. It uses consistent
+    rules to format your python code and makes sure that they look the same regardless of
+    the project you're reading.
 
-* **[Black]**: `Black` is the uncompromising Python code formatter. It uses consistent rules
-to format your python code and makes sure that they look the same regardless of the project
-you're reading.
-
-* **[Flake8]**: *Flake8* is a wrapper around *PyFlakes*, *pycodestyle*, Ned Batchelder's
-McCabe script[^2]. The combination of these three linters makes sure that your code is
-compliant with PEP-8[^3] and free of some obvious code smells.
+-   **[Flake8]**: _Flake8_ is a wrapper around _PyFlakes_, _pycodestyle_, Ned Batchelder's
+    McCabe script[^2]. The combination of these three linters makes sure that your code is
+    compliant with PEP-8[^3] and free of some obvious code smells.
 
 ## Installing pre-commit
 
-* Install using `pip`:
+-   Install using `pip`:
 
     ```sh
     pip install pre-commit
     ```
 
-* Install via `curl`:
+-   Install via `curl`:
 
     ```sh
     curl https://pre-commit.com/install-local.py | python -
@@ -56,9 +56,9 @@ compliant with PEP-8[^3] and free of some obvious code smells.
 
 Pre-commit configuration is a `.pre-commit-config.yaml` file where you define your hooks
 (tasks) that you want to run before every commit. Once you have defined your hooks in the
-config file, they will run automatically every time you say `git commit -m "Commit
-message"`. The following example shows how *black* and a few other linters can be added as
-hooks to the config:
+config file, they will run automatically every time you say
+`git commit -m "Commit message"`. The following example shows how _black_ and a few other
+linters can be added as hooks to the config:
 
 ```yml
 # .pre-commit-config.yaml
@@ -112,16 +112,16 @@ To run the above mentioned linters as pre-commit hooks, you need to add their re
 settings to the `.pre-commit-config.yaml` file. However, there're a few minor issues that
 need to be taken care of.
 
-* The default line length of `black` formatter is 88 (you should embrace that) but `flake8`
-caps the line at 79 characters. This raises conflict and can cause failures.
+-   The default line length of `black` formatter is 88 (you should embrace that) but
+    `flake8` caps the line at 79 characters. This raises conflict and can cause failures.
 
-* *Flake8* can be overly strict at times. You'll want to ignore basic errors like unused
-imports, spacing issues etc. However, since your IDE / editor also points out these issues
-anyway, you should solve them manually. You will need to configure *flake8* to ignore some
-of these minor errors.
+-   _Flake8_ can be overly strict at times. You'll want to ignore basic errors like unused
+    imports, spacing issues etc. However, since your IDE / editor also points out these
+    issues anyway, you should solve them manually. You will need to configure _flake8_ to
+    ignore some of these minor errors.
 
 The following one is an example of how you can define your `.pre-commit-config.yaml` and
-configure the individual hooks so that *isort*, *black*, *flake8* linters can run without
+configure the individual hooks so that _isort_, _black_, _flake8_ linters can run without
 any conflicts.
 
 ```yml

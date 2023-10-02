@@ -72,8 +72,8 @@ messages in your local environment since the local logger will have only the one
 that we've defined. So, the logger will behave differently in the two environments; not
 good.
 
-> Having multiple stream handlers on the root logger that send the message to the
-> stdout will print every log message twice.
+> Having multiple stream handlers on the root logger that send the message to the stdout
+> will print every log message twice.
 
 So, this still doesn't do what we want. Besides, sometimes in the local environment, I just
 want to use `logging.basicConfig` and start logging with minimal configuration. The goal
@@ -108,7 +108,15 @@ kept intact.
 [^1]: [AWS Lambda](https://aws.amazon.com/lambda/)
 [^2]: [Cloudwatch](https://aws.amazon.com/cloudwatch/)
 [^3]: [Serverless framework](https://www.serverless.com/)
-[^4]: [Lambda Python Runtime Interface Client](https://github.com/aws/aws-lambda-python-runtime-interface-client)
-[^5]: [Pre-configured root logger in the Lambda environment](https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/970e9c1d2613e0ce9c388547c76ac30992ad0e96/awslambdaric/bootstrap.py#L376-L385)
-[^6]: [AWS Lambda function logging in Python](https://docs.aws.amazon.com/lambda/latest/dg/python-logging.html)
-[^7]: [Using Python logging with AWS Lambda](https://stackoverflow.com/questions/37703609/using-python-logging-with-aws-lambda) [^7]
+[^4]:
+    [Lambda Python Runtime Interface Client](https://github.com/aws/aws-lambda-python-runtime-interface-client)
+
+[^5]:
+    [Pre-configured root logger in the Lambda environment](https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/970e9c1d2613e0ce9c388547c76ac30992ad0e96/awslambdaric/bootstrap.py#L376-L385)
+
+[^6]:
+    [AWS Lambda function logging in Python](https://docs.aws.amazon.com/lambda/latest/dg/python-logging.html)
+
+[^7]:
+    [Using Python logging with AWS Lambda](https://stackoverflow.com/questions/37703609/using-python-logging-with-aws-lambda)
+    [^7]

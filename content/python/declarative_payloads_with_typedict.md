@@ -60,9 +60,9 @@ Docker on your system and run:
 docker run -d -p 6379:6379 redis:alpine
 ```
 
-If you run the above snippet after instantiating the Redis server, it'll run without
-raising any error. You can inspect the content saved in Redis with the following command
-(assuming you've got `redis-cli` and `jq` installed in your system):
+If you run the above snippet after instantiating the Redis server, it'll run without raising
+any error. You can inspect the content saved in Redis with the following command (assuming
+you've got `redis-cli` and `jq` installed in your system):
 
 ```txt
 echo "get zoo:awesome_zoo" | redis-cli | jq
@@ -96,12 +96,12 @@ This will return the following payload to your console:
 
 Although this workflow is functional in runtime, there's a big gotcha here! It's really
 difficult to picture the shape of the `payload` from the output of the `get_payload`
-function; as it dynamically builds the dictionary. First, it declares a dictionary with
-two fields—`name` and `animals`. Here, `name` is a string value that denotes the name of
-the zoo. The other field `animals` is a list containing the names and attributes of the
-animals in the zoo. Later on, the for-loop fills up the dictionary with nested data
-structures. This charade of operations makes it difficult to reify the final shape of the
-resulting `payload` in your mind.
+function; as it dynamically builds the dictionary. First, it declares a dictionary with two
+fields—`name` and `animals`. Here, `name` is a string value that denotes the name of the
+zoo. The other field `animals` is a list containing the names and attributes of the animals
+in the zoo. Later on, the for-loop fills up the dictionary with nested data structures. This
+charade of operations makes it difficult to reify the final shape of the resulting `payload`
+in your mind.
 
 In this case, you'll have to inspect the content of the Redis cache to fully understand the
 shape of the data. Writing code in the above manner is effortless but it makes it really
@@ -188,7 +188,7 @@ approves this.
 
 By default, the type checker will structurally validate the shape of the dict annotated with
 a `TypedDict` class and all the key-value pairs expected by the annotation must be present
-in the dict. It's possible to lax this behavior by specifying *totality*. This can be
+in the dict. It's possible to lax this behavior by specifying _totality_. This can be
 helpful to deal with missing fields without letting go of type safety. Consider this:
 
 ```python
@@ -234,8 +234,7 @@ class Attribute(TypedDict, total=False):
 ```
 
 Now Mypy will no longer complain about the missing field in the annotated dict. However,
-this will still disallow arbitrary keys that isn't defined in the `TypedDict`. For
-example:
+this will still disallow arbitrary keys that isn't defined in the `TypedDict`. For example:
 
 ```python
 ...
@@ -258,4 +257,6 @@ make: *** [Makefile:134: mypy] Error 1
 Sweet type safety without being too strict about missing fields!
 
 [^1]: [Docker](https://www.docker.com/)
-[^2]: [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/) [^2]
+[^2]:
+    [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/)
+    [^2]

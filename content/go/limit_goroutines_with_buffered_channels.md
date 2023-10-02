@@ -11,8 +11,8 @@ I was cobbling together a long-running Go script to send webhook messages to a s
 some events occur. The initial script would continuously poll a Kafka topic for events and
 spawn new goroutines to make HTTP requests to the destination. This had two problems:
 
-* It could create unlimited goroutines if many events arrived quickly
-* It might overload the destination system by making many concurrent requests
+-   It could create unlimited goroutines if many events arrived quickly
+-   It might overload the destination system by making many concurrent requests
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously written
 about this here[^1]. Turns out, in Go, you could do the same with a buffered channel. Here's
@@ -44,8 +44,8 @@ func main() {
 
 We're sending the webhook request in the `worker` function. It takes an integer ID for
 bookkeeping and a pointer to a `WaitGroup` instance for synchronization. Once it finishes
-making the request, it signals the `WaitGroup` with `wg.Done()`. In the `main` function,
-we spawn 10 workers as goroutines and wait for all of them to finish work with `wg.Wait()`.
+making the request, it signals the `WaitGroup` with `wg.Done()`. In the `main` function, we
+spawn 10 workers as goroutines and wait for all of them to finish work with `wg.Wait()`.
 Without the wait-group synchronization, the `main` goroutine would bail before all the
 background workers finish their work.
 
@@ -108,14 +108,14 @@ func main() {
 ```
 
 The clever bit here is the buffered channel named `sem` which acts as a semaphore to limit
-concurrency. We set its capacity to the max number of goroutines we want running at once,
-in this case 2. Before making the request, each `worker` goroutine tries to *acquire* the
+concurrency. We set its capacity to the max number of goroutines we want running at once, in
+this case 2. Before making the request, each `worker` goroutine tries to _acquire_ the
 semaphore by sending a value into the channel via `sem <- struct{}{}`. The value itself
 doesn't matter. So we're just sending an empty struct to avoid redundant allocation.
 
 Sending data to the channel will block if it's already full, essentially meaning all
-*permits* are taken. Once the send succeeds, the goroutine has acquired the semaphore and is
-free to proceed with its work. When finished, it *releases* the semaphore by reading from
+_permits_ are taken. Once the send succeeds, the goroutine has acquired the semaphore and is
+free to proceed with its work. When finished, it _releases_ the semaphore by reading from
 the channel `<-sem`. This frees up a slot in the channel for another goroutine to acquire
 it. By using this semaphore channel to limit access to critical sections, we can precisely
 control the number of concurrent goroutines.
@@ -162,6 +162,10 @@ ergonomic. Here's a pointer[^2] on how to do so. Effective Go also mentions[^3] 
 briefly.
 
 [^1]: [Limit concurrency with semaphore](/python/limit_concurrency_with_semaphore)
-[^2]: [Go concurrency pattern: semaphore](https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d)
+[^2]:
+    [Go concurrency pattern: semaphore](https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d)
+
 [^3]: [Effective Go - channels](https://go.dev/doc/effective_go#channels)
-[^4]: [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty) [^4]
+[^4]:
+    [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty)
+    [^4]

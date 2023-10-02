@@ -15,9 +15,9 @@ Delightfully, it introduced me to the dead-simple `select` command that I probab
 known about years ago. But I guess better late than never! Here's what I was trying to
 accomplish:
 
-*Print a menu that allows a user to choose an option and then trigger a specific function
+_Print a menu that allows a user to choose an option and then trigger a specific function
 associated with the chosen option. When you run the script, it should present you with
-something similar to this:*
+something similar to this:_
 
 ```txt
 1) Option 1

@@ -18,7 +18,9 @@ strings, starts the subprocess, waits for it to finish, and then returns a
 import subprocess
 
 # Here, result is an instance of CompletedProcess
-result = subprocess.run(["ls", "-lah"], capture_output=True, encoding="utf-8")
+result = subprocess.run(
+    ["ls", "-lah"], capture_output=True, encoding="utf-8"
+)
 
 # No exception means clean exit
 result.check_returncode()
@@ -36,8 +38,8 @@ drwxr-xr-x@  4 rednafi  staff   128B Jul  8 12:10 .github
 ```
 
 This works great when you're carrying out simple and synchronous workflows, but it doesn't
-offer enough flexibility when you need to fork multiple processes and want the processes
-to run in parallel. I was working on a project where I wanted to glue a bunch of programs
+offer enough flexibility when you need to fork multiple processes and want the processes to
+run in parallel. I was working on a project where I wanted to glue a bunch of programs
 together with Python and needed a way to run composite shell commands with pipes, e.g.
 `echo 'foo\nbar' | grep 'foo'`. So I got curious to see how I could emulate that in Python.
 
@@ -76,8 +78,8 @@ chug along in the background, do other stuff, and then collect the results at th
 you need them. The goal here is to ping a couple of IP addresses in parallel using the
 subprocess module. First, it creates an empty list to store the processes. Then it loops
 through the IPs, printing a message and kicking off a ping for each one using `Popen()` so
-they run asynchronously in the background. The `Popen` objects get appended to the
-`procs` list.
+they run asynchronously in the background. The `Popen` objects get appended to the `procs`
+list.
 
 After starting the pings, it simulates doing other work by sleeping for a second. Then it
 loops through the processes again, waits for each one to finish with `communicate()`, and

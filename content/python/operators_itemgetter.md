@@ -269,4 +269,6 @@ In [29]: safe_itemgetter(-1, -3, -7, 1)(l)
 Out[29]: ((6, 7), (4, 8), <NOTHING>, (1, 3))
 ```
 
-[^1]: [operator.itemgetter - Python docs](https://docs.python.org/3/library/operator.html#operator.itemgetter) [^1]
+[^1]:
+    [operator.itemgetter - Python docs](https://docs.python.org/3/library/operator.html#operator.itemgetter)
+    [^1]

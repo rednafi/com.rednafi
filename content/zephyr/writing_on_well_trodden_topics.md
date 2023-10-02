@@ -5,13 +5,13 @@ tags:
     - Meta
 ---
 
-I enjoy writing about software—the things I learn, the tools I use, and the work I do.
-Owing to the constraints of the corporate software world, more often than not, you can't
-showcase your work or talk about them. At least that's how it always has been throughout my
-career. At the same time, as you grow older and start having a life outside of the computer
-screen, you realize that working on OSS at the tail of a 40+ hour workweek is hard, and
-maintaining consistency is even harder. On that front, how do you keep track of your
-progress without losing your sense of purpose as the years fly by?
+I enjoy writing about software—the things I learn, the tools I use, and the work I do. Owing
+to the constraints of the corporate software world, more often than not, you can't showcase
+your work or talk about them. At least that's how it always has been throughout my career.
+At the same time, as you grow older and start having a life outside of the computer screen,
+you realize that working on OSS at the tail of a 40+ hour workweek is hard, and maintaining
+consistency is even harder. On that front, how do you keep track of your progress without
+losing your sense of purpose as the years fly by?
 
 I ameliorate this by factoring out the things I learn at or outside work and writing about
 them publicly. Countless times I've found myself looking for stuff on the web only to land
@@ -32,14 +32,15 @@ get some SEO points. Rather, I wanted to write this for myself, to scratch a ver
 itch. If people find it useful, great, but if I find it useful at some point, even better.
 
 But occasionally, I do experience those lightbulb moments that beget more original proses
-like *Avoid template pattern in Python*[^3], which get highly lauded by the venerable
-orange site citizens. However, the general trend is that the majority of these pieces go
-completely unnoticed. This might be one of them too and that's perfectly okay. Internet
-accolades are great, but they need not be the only reason you want to explore and share your
-thoughts on something. For me, the aim is to uphold a meticulous record of my odyssey, my
-own Da Vinci's notebook[^4], and this post is but another page within!
+like _Avoid template pattern in Python_[^3], which get highly lauded by the venerable orange
+site citizens. However, the general trend is that the majority of these pieces go completely
+unnoticed. This might be one of them too and that's perfectly okay. Internet accolades are
+great, but they need not be the only reason you want to explore and share your thoughts on
+something. For me, the aim is to uphold a meticulous record of my odyssey, my own Da Vinci's
+notebook[^4], and this post is but another page within!
 
 [^1]: [slog docs](https://pkg.go.dev/golang.org/x/exp/slog)
 [^2]: [Structured logging with slog](/go/structured_logging_with_slog)
 [^3]: [Avoid template pattern in Python](/python/escape_template_pattern)
-[^4]: [Leonardo da Vinci's notebook](https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks)
+[^4]:
+    [Leonardo da Vinci's notebook](https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks)

@@ -47,4 +47,5 @@ pytest -v -s --asyncio-mode=auto
 
 The idea came from this quora answer[^1].
 
-[^1]: [How do we test an infinite loop in Python using the unittest library?](https://qr.ae/pGDHVw)
+[^1]:
+    [How do we test an infinite loop in Python using the unittest library?](https://qr.ae/pGDHVw)

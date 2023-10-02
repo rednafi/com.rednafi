@@ -10,22 +10,20 @@ open-source softwares, I wanted to adopt some of the good practices and incorpor
 into my own workflow. One of the highlights of that post was how to kick off a feature work.
 The process roughly goes like this:
 
-* Opening a new GitHub issue for the feature in the corresponding repository.
-* Adding a rough description of the feature to the issue.
-* Creating a feature branch off of `main/master/trunk`. If the feature is trivial or just a
-doc update, this step can be skipped.
-* Referring to the issue in every commit message as you start working on the feature:
+-   Opening a new GitHub issue for the feature in the corresponding repository.
+-   Adding a rough description of the feature to the issue.
+-   Creating a feature branch off of `main/master/trunk`. If the feature is trivial or just
+    a doc update, this step can be skipped.
+-   Referring to the issue in every commit message as you start working on the feature:
 
-  * Appending `#refs <issue-number>` to every commit message. This will attach the commit
-    to the concerning issue on the GitHub UI.
-  * Appending `#closes <issue-number>` to the final commit message when the feature is
-    complete.
-  * If you need to refer to an issue after it's closed, you can still do that by appending
-    `#refs <issue-number>` to the commit message.
-
-    So a commit message should look similar to `Feature foo, refs #120` or
-    `Update foo, closes #115`. The comma (`,`) before `refs/closes` is essential here. I
-    like to enforce it.
+    -   Appending `#refs <issue-number>` to every commit message. This will attach the
+        commit to the concerning issue on the GitHub UI.
+    -   Appending `#closes <issue-number>` to the final commit message when the feature is
+        complete.
+    -   If you need to refer to an issue after it's closed, you can still do that by
+        appending `#refs <issue-number>` to the commit message. So a commit message should
+        look similar to `Feature foo, refs #120` or `Update foo, closes #115`. The comma
+        (`,`) before `refs/closes` is essential here. I like to enforce it.
 
 This pattern can also work for bugfixes without any changes. Here's an example[^2] of it in
 action. I follow the pattern to write the blogs on this site as well. This is what a feature
@@ -42,13 +40,13 @@ thing to worry about.
 I've decided to use GitHub Actions to audit the conformity of the commit messages. The CI
 pipeline is orchestrated as follows:
 
-* After every push and pull-request, the `audit-commits` job in an `audit.yml` workflow file
-will verify the conformity of the commit messages. This job runs a regex pattern against
-every commit message and fails with exit code 1 if the message doesn't respect the expected
-format.
-* If the `audit-commits` job passes successfully, only then the primary jobs in the `ci.yml`
-workflow will execute. The entire pipeline will fail and the primary CI workflow won't be
-triggered at all if the `audit-commit` job fails at any point.
+-   After every push and pull-request, the `audit-commits` job in an `audit.yml` workflow
+    file will verify the conformity of the commit messages. This job runs a regex pattern
+    against every commit message and fails with exit code 1 if the message doesn't respect
+    the expected format.
+-   If the `audit-commits` job passes successfully, only then the primary jobs in the
+    `ci.yml` workflow will execute. The entire pipeline will fail and the primary CI
+    workflow won't be triggered at all if the `audit-commit` job fails at any point.
 
 On GitHub, you're expected to place your workflow files in the `.github/workflows`
 directory. If you inspect this blog's workflows[^3] folder, you'll see this pattern in
@@ -200,20 +198,32 @@ working ci.yml[^6] file.
 
 GitHub Actions terminology can be confusing.
 
-* A **workflow** is a separate file that contains one or more **jobs**.
-* A **job** is a set of steps in a workflow that executes on the same **runner**.
-* A **runner** is a server that runs your workflows when they're triggered. Each runner can
-run a single job at a time.
-* A **reusable** workflow can be called from another workflow file.
+-   A **workflow** is a separate file that contains one or more **jobs**.
+-   A **job** is a set of steps in a workflow that executes on the same **runner**.
+-   A **runner** is a server that runs your workflows when they're triggered. Each runner
+    can run a single job at a time.
+-   A **reusable** workflow can be called from another workflow file.
 
 The docs have more information on the terminologies[^7].
 
-[^1]: [How I build a feature - Simon Willison](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/)
-[^2]: [Example issue that reflects the pattern explained here](https://github.com/rednafi/reflections/issues/170)
-[^3]: [Worflows directory of this blog](https://github.com/rednafi/reflections/tree/master/.github/workflows)
-[^4]: [Automerge Dependabot PRs on GitHub](/misc/automerge_dependabot_prs_on_github/)
-[^5]: [Reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
-[^6]: [The main CI file of this blog](https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml)
-[^7]: [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+[^1]:
+    [How I build a feature - Simon Willison](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/194779762-2000b766-3efa-421c-be77-757233e1e8f2.png
+[^2]:
+    [Example issue that reflects the pattern explained here](https://github.com/rednafi/reflections/issues/170)
+
+[^3]:
+    [Worflows directory of this blog](https://github.com/rednafi/reflections/tree/master/.github/workflows)
+
+[^4]: [Automerge Dependabot PRs on GitHub](/misc/automerge_dependabot_prs_on_github/)
+[^5]:
+    [Reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
+
+[^6]:
+    [The main CI file of this blog](https://github.com/rednafi/reflections/blob/master/.github/workflows/ci.yml)
+
+[^7]:
+    [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/194779762-2000b766-3efa-421c-be77-757233e1e8f2.png

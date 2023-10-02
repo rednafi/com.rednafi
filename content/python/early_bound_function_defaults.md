@@ -59,9 +59,9 @@ in the output, you'll notice that all 3 of them are exactly the same.
 
 Default function arguments are early-bound in Python. That means:
 
-> Python interpreter will bind the default parameters at function definition time and
-> will use that static value at run time. It's also true for methods. This design choice
-> was intentional.
+> Python interpreter will bind the default parameters at function definition time and will
+> use that static value at run time. It's also true for methods. This design choice was
+> intentional.
 
 We're getting the same value of the timestamp each time because Python is computing the
 value of the default `timestamp` parameter once in the function definition time and then
@@ -210,4 +210,6 @@ The default parameter `baz` will be late-bound and will produce similar results 
 seen in the last solution.
 
 [^1]: [PEP-671](https://www.python.org/dev/peps/pep-0671)
-[^2]: [Mutable default arguments - The hitchhiker’s guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments) [^2]
+[^2]:
+    [Mutable default arguments - The hitchhiker’s guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments)
+    [^2]

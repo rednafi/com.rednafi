@@ -1,0 +1,42 @@
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: "1.16.0"
+    hooks:
+      - id: blacken-docs
+        additional_dependencies:
+          - black==23.9.1
+        args:
+          - -l 70
+        verbose: true
+        entry: bash -c 'blacken-docs "$@" || true' --
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v3.0.3" # Use the sha or tag you want to point at
+    hooks:
+      - id: prettier
+        entry: prettier --write .
+
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ""
+  autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
+  autoupdate_schedule: daily
+  skip: []
+  submodules: false

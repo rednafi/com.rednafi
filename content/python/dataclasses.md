@@ -184,7 +184,7 @@ print(point_1 > point_2)
 ```
 
 By default, while comparing instances, all of the fields are used. In our above case, all
-the fields  `x`, `y`, `z`of `point_1` instance are compared with all the fields of `point_2`
+the fields `x`, `y`, `z`of `point_1` instance are compared with all the fields of `point_2`
 instance. You can customize this using the `field` function.
 
 Suppose you want to acknowledge two instances as equal only when attribute `x` of both of
@@ -527,5 +527,10 @@ True
 ```
 
 [^1]: [Type annotations](https://docs.python.org/3/library/typing.html)
-[^2]: [Python dataclasses - official docs](https://docs.python.org/3/library/dataclasses.html) [^2]
-[^3]: [The ultimate guide to dataclasses in python 3.7](https://realpython.com/python-data-classes/) [^3]
+[^2]:
+    [Python dataclasses - official docs](https://docs.python.org/3/library/dataclasses.html)
+    [^2]
+
+[^3]:
+    [The ultimate guide to dataclasses in python 3.7](https://realpython.com/python-data-classes/)
+    [^3]

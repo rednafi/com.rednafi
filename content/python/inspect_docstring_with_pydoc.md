@@ -7,8 +7,8 @@ tags:
 
 How come I didn't know about the `python -m pydoc` command before today!
 
-> *It lets you inspect the docstrings of any modules, classes, functions, or methods in
-> Python.*
+> _It lets you inspect the docstrings of any modules, classes, functions, or methods in
+> Python._
 
 I'm running the commands from a Python 3.10 virtual environment but it'll work on any Python
 version. Let's print out the docstrings of the `functools.lru_cache` function. Run:
@@ -103,4 +103,6 @@ This will render the docstrings as HTML web pages and automatically open the ind
 your default browser. From there you can use the built-in search to find and read your ones
 you need.
 
-[^1]: [Tweet by Brandon Rhodes](https://twitter.com/brandon_rhodes/status/1354416534098214914) [^1]
+[^1]:
+    [Tweet by Brandon Rhodes](https://twitter.com/brandon_rhodes/status/1354416534098214914)
+    [^1]

@@ -43,7 +43,9 @@ async def make_one_request(url: str, num: int) -> httpx.Response:
     )
 
 
-async def make_many_requests(url: str, count: int) -> list[httpx.Response]:
+async def make_many_requests(
+    url: str, count: int
+) -> list[httpx.Response]:
     tasks = []
     for num in range(count):
         task = asyncio.create_task(make_one_request(url, num))
@@ -61,7 +63,9 @@ async def make_many_requests(url: str, count: int) -> list[httpx.Response]:
 
 
 if __name__ == "__main__":
-    asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
+    asyncio.run(
+        make_many_requests("https://httpbin.org/get", count=200)
+    )
 ```
 
 Here, for this demonstration, I'm using the `https://httpbin.org/get` endpoint that's openly
@@ -224,7 +228,9 @@ async def make_one_request(url: str, num: int) -> httpx.Response:
     )
 
 
-async def make_many_requests(url: str, count: int) -> list[httpx.Response]:
+async def make_many_requests(
+    url: str, count: int
+) -> list[httpx.Response]:
     tasks = []
     for num in range(count):
         task = asyncio.create_task(make_one_request(url, num))
@@ -242,9 +248,13 @@ async def make_many_requests(url: str, count: int) -> list[httpx.Response]:
 
 
 if __name__ == "__main__":
-    asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
+    asyncio.run(
+        make_many_requests("https://httpbin.org/get", count=200)
+    )
 ```
 
 [^1]: [asyncio](https://docs.python.org/3/library/asyncio.html)
 [^2]: [HTTPx](https://www.python-httpx.org/)
-[^3]: [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py) [^3]
+[^3]:
+    [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py)
+    [^3]

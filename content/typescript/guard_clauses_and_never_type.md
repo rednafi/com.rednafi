@@ -41,12 +41,12 @@ processSignal(Signal.RED) // prints 'Stop!'
 
 The snippet above suffers from two major issues:
 
-* It contains three contiguous levels of nested conditionals.
-* The conditionals don't cover the case where the return value is `undefined`.
-* If you add a fourth member to the `Signal` enum, now the processing function doesn't
-exhaustively cover all the cases and it won't communicate that fact with you.
+-   It contains three contiguous levels of nested conditionals.
+-   The conditionals don't cover the case where the return value is `undefined`.
+-   If you add a fourth member to the `Signal` enum, now the processing function doesn't
+    exhaustively cover all the cases and it won't communicate that fact with you.
 
-We can leverage *guard clauses* to fix the first two issues.
+We can leverage _guard clauses_ to fix the first two issues.
 
 > The guard (clause) provides an early exit from a subroutine, and is a commonly used
 > deviation from structured programming, removing one level of nesting and resulting in
@@ -171,11 +171,11 @@ if __name__ == "__main__":
 ```
 
 Similar to TypeScript, mypy will complain if you add a new member to the enum but forget to
-handle that in the processor function. Python 3.11 added the  `Never` type and
-`assert_never` function to the `typing` module. Underneath, `Never` is an alias to the
-`NoReturn` type; so you can use them interchangeably. However, in this case, `Never` seems
-to communicate the intent better. You may also choose to use the backported versions of the
-type and function from the `typing_extensions` module. Here's how:
+handle that in the processor function. Python 3.11 added the `Never` type and `assert_never`
+function to the `typing` module. Underneath, `Never` is an alias to the `NoReturn` type; so
+you can use them interchangeably. However, in this case, `Never` seems to communicate the
+intent better. You may also choose to use the backported versions of the type and function
+from the `typing_extensions` module. Here's how:
 
 ```python
 # src.py
@@ -193,6 +193,11 @@ else:
 ...
 ```
 
-[^1]: [Guard clause, guard code, or guard statement](https://en.wikipedia.org/wiki/Guard_(computer_science)) [^1]
+[^1]:
+    [Guard clause, guard code, or guard statement](<https://en.wikipedia.org/wiki/Guard_(computer_science)>)
+    [^1]
+
 [^2]: [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never) [^2]
-[^3]: [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html) [^3]
+[^3]:
+    [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html)
+    [^3]

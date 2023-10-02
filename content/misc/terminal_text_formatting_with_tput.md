@@ -57,12 +57,12 @@ tput <formatting_option>
 
 Here are some commonly used `tput` formatting options:
 
-* `setaf <color>`: set the foreground (text) color to a specific color. For example,
-`setaf 1` sets the color to red, while `setaf 2` sets the color to green.
-* `setab <color>`: set the background color to a specific color.
-* `bold`: set the text to bold.
-* `sgr0`: reset all formatting options to their defaults.
-* `smul`: underline the text.
+-   `setaf <color>`: set the foreground (text) color to a specific color. For example,
+    `setaf 1` sets the color to red, while `setaf 2` sets the color to green.
+-   `setab <color>`: set the background color to a specific color.
+-   `bold`: set the text to bold.
+-   `sgr0`: reset all formatting options to their defaults.
+-   `smul`: underline the text.
 
 ## Example usage
 
@@ -129,5 +129,7 @@ On my terminal, it prints this nice color palette:
 
 [^1]: [Escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
-[image_2]: https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png

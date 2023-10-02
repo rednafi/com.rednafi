@@ -1,0 +1,9 @@
+themes/
+
+# Ignore
+**/*.html
+**/Makefile
+.editorconfig
+.prettierignore
+.git*
+.hugo*

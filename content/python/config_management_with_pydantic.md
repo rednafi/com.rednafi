@@ -37,14 +37,14 @@ I wanted to take a declarative approach while designing a config management pipl
 that'll be **modular**, **scalable** and easy to **maintain**. To meet my requirements, the
 system should be able to:
 
-* Read configs from `.env` files and *shell environment* at the same time.
-* Handle dependency injection for introducing *passwords* or *secrets*.
-* Convert variable types automatically in the appropriate cases, e.g. string to integer
-conversion.
-* Keep *development*, *staging* and *production* configs separate.
-* Switch between the different environments e.g development, staging effortlessly.
-* Inspect the *active* config values
-* Create arbitrarily nested config structure if required (Not encouraged though).
+-   Read configs from `.env` files and _shell environment_ at the same time.
+-   Handle dependency injection for introducing _passwords_ or _secrets_.
+-   Convert variable types automatically in the appropriate cases, e.g. string to integer
+    conversion.
+-   Keep _development_, _staging_ and _production_ configs separate.
+-   Switch between the different environments e.g development, staging effortlessly.
+-   Inspect the _active_ config values
+-   Create arbitrarily nested config structure if required (Not encouraged though).
 
 ## Building the config management pipeline
 
@@ -52,7 +52,7 @@ conversion.
 
 The code block that appears in this section is self contained. It should run without any
 modifications. If you want to play along, then just spin up a Python virtual environment and
-install `Pydantic` and `python-dotenv`. The following commands works on any *\*nix* based
+install `Pydantic` and `python-dotenv`. The following commands works on any _\*nix_ based
 system:
 
 ```sh
@@ -106,7 +106,7 @@ value of an attribute doesn't conform to its assigned type, Pydantic will throw 
 ### The orchestration
 
 Now let's see how you can orchestrate your config management flow with the tools mentioned
-above. For simplicity, let's say you've  3 sets of configurations.
+above. For simplicity, let's say you've 3 sets of configurations.
 
 1. Configs of your app's internal logic
 2. Development environment configs
@@ -209,8 +209,8 @@ cnf = FactoryConfig(GlobalConfig().ENV_STATE)()
 print(cnf.__repr__())
 ```
 
-The print statement of the last line in the above code block is to inspect the *active
-configuration* class. You'll soon learn what I meant by the term *active configuration*. You
+The print statement of the last line in the above code block is to inspect the _active
+configuration_ class. You'll soon learn what I meant by the term _active configuration_. You
 can comment out the last line while using the code in production. Let's explain what's going
 on with each of the classes defined above.
 
@@ -219,8 +219,8 @@ on with each of the classes defined above.
 The `AppConfig` class defines the config variables required for you API's internal logic. In
 this case I'm not loading the variables from the `.env` file, rather defining them directly
 in the class. You can also define and import them from another `app_configs.py` file if
-necessary but they shouldn't be placed in the `.env` file. For data validation to work,
-you have to inherit from Pydantic's `BaseModel` and annotate the attributes using type hints
+necessary but they shouldn't be placed in the `.env` file. For data validation to work, you
+have to inherit from Pydantic's `BaseModel` and annotate the attributes using type hints
 while constructing the `AppConfig` class. Later, this class is called from the
 `GlobalConfig` class to build a nested data structure.
 
@@ -246,7 +246,7 @@ keep the insensitive variables in your `.env` file and include that to the versi
 system. Meanwhile the sensitive information should be injected as a shell environment
 variable. For example, although I've defined an attribute called `REDIS_PASS` in the
 `GlobalConfig` class, there is no mention of any `REDIS_PASS` variable in the `.env` file.
-So normally, it returns `None` but you can easily inject a *password* into the `REDIS_PASS`
+So normally, it returns `None` but you can easily inject a _password_ into the `REDIS_PASS`
 variable from the shell. Assuming that you've set up your `venv` and installed the
 dependencies, you can test it by copying the contents of the above code snippet in file
 called `configs.py` and running the commands below:
@@ -300,11 +300,11 @@ The nested `Config` class inside `ProdConfig` defines an attribute `env_prefix` 
 `FactoryConfig` is the controller class that dictates which config class should be activated
 based on the environment state defined as `ENV_STATE` in the `.env` file. If it finds
 `ENV_STATE="dev"` then the control flow statements in the `FactoryConfig` class will
-activate the development configs *(DevConfig)*. Similarly, if `ENV_STATE="prod"` is found
-then the control flow will activate the production configs *(ProdConfig)*. Since the
-current environment state is `ENV_STATE="dev"`, when you run the code, it prints an instance
-of the activated `DevConfig` class. This way, you can assign different values to the same
-variable based on different *environment contexts*.
+activate the development configs _(DevConfig)_. Similarly, if `ENV_STATE="prod"` is found
+then the control flow will activate the production configs _(ProdConfig)_. Since the current
+environment state is `ENV_STATE="dev"`, when you run the code, it prints an instance of the
+activated `DevConfig` class. This way, you can assign different values to the same variable
+based on different _environment contexts_.
 
 You can also dynamically change the environment by changing the value of `ENV_STATE` on your
 shell. Run:
@@ -370,9 +370,9 @@ VAR_A=33 VAR_B=22.0
 
 The modular design demonstrated above is easy to maintain and extend in my opinion.
 Previously, for simplicity, I've defined only two environment scopes; development and
-production. Let's say you want to add the configs for your *staging environment*.
+production. Let's say you want to add the configs for your _staging environment_.
 
-* First you'll need to add those *staging* variables to the `.env` file.
+-   First you'll need to add those _staging_ variables to the `.env` file.
 
 ```txt
 ...
@@ -384,9 +384,9 @@ STAGE_REDIS_PORT="6000"
 
 ```
 
-* Then you've to create a class named `StageConfig` that inherits from the `GlobalConfig`
-class. The architecture of the class is  similar to that of the `DevConfig` or `ProdConfig`
-class.
+-   Then you've to create a class named `StageConfig` that inherits from the `GlobalConfig`
+    class. The architecture of the class is similar to that of the `DevConfig` or
+    `ProdConfig` class.
 
 ```python
 # configs.py
@@ -403,9 +403,9 @@ class StageConfig(GlobalConfig):
 ...
 ```
 
-* Finally, you'll need to insert an `ENV_STATE` logic into the control flow of the
-`FactoryConfig` class. See how I've appended another if-else block to the previous (prod)
-block.
+-   Finally, you'll need to insert an `ENV_STATE` logic into the control flow of the
+    `FactoryConfig` class. See how I've appended another if-else block to the previous
+    (prod) block.
 
 ```python
 # configs.py
@@ -451,5 +451,8 @@ an elegant solution to a very icky problem. Your mileage will definitely vary.
 [^5]: [Pydantic](https://github.com/samuelcolvin/pydantic)
 [^6]: [python-dotenv](https://github.com/theskumar/python-dotenv)
 [^7]: [PEP-484](https://www.python.org/dev/peps/pep-0484/)
-[^8]: [Settings management with pydantic](https://pydantic-docs.helpmanual.io/usage/settings/) [^8]
+[^8]:
+    [Settings management with pydantic](https://pydantic-docs.helpmanual.io/usage/settings/)
+    [^8]
+
 [^9]: [Flask config management](https://flask.palletsprojects.com/en/1.1.x/config/) [^9]

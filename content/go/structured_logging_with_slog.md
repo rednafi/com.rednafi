@@ -67,9 +67,9 @@ means you don't need to create a `Logger` instance by hand just to start logging
 already seen how we can use these top-level functions to send different levels of logs to
 the stdout.
 
-Each log entry has an associated severity level which is represented by an integer. The
-more severe the log level is, the higher the value of the integer will be. The default
-logger only emits `LevelInfo` or higher levels of log messages. Predefined levels have the
+Each log entry has an associated severity level which is represented by an integer. The more
+severe the log level is, the higher the value of the integer will be. The default logger
+only emits `LevelInfo` or higher levels of log messages. Predefined levels have the
 following values:
 
 ```go
@@ -144,9 +144,9 @@ This prints:
 
 ## Changing log levels
 
-You've already seen that the default logger only prints log messages of level `Info` and
-up. We'll need to define a custom log handler to change the default log level. Here's an
-example that enables printing `Debug` messages:
+You've already seen that the default logger only prints log messages of level `Info` and up.
+We'll need to define a custom log handler to change the default log level. Here's an example
+that enables printing `Debug` messages:
 
 ```go
 var programLevel = new(slog.LevelVar) // Info by default
@@ -261,8 +261,8 @@ slog.SetDefault(slog.New(h2))
 slog.Info("an info message")
 ```
 
-Running this will print the following. The `time` key no longer exists on the second
-log record:
+Running this will print the following. The `time` key no longer exists on the second log
+record:
 
 ```txt
 {
@@ -311,7 +311,7 @@ calls.
 ## Grouping log attributes
 
 You can group the log attributes for better organization. Adding a group makes the attribute
-keys of a log record qualified by the group name. What *qualify* means here can vary
+keys of a log record qualified by the group name. What _qualify_ means here can vary
 depending on whether you're using a `TextHandler` or a `JSONHandler`. Here's an example that
 demonstrates both:
 
@@ -431,7 +431,7 @@ func main() {
 ```
 
 The `TeeWriter` struct associates stdout and a file handle. It implements a custom `Write`
-method to write to both streams, enabling *teeing* of output. In `main()`, a `TeeWriter`
+method to write to both streams, enabling _teeing_ of output. In `main()`, a `TeeWriter`
 instance is created with stdout and a file. A pointer to `TeeWriter` is then passed to the
 `TextHandler`. Next, the `TextHandler` is used to create a new `Logger`, so when the
 `Logger` logs, the messages go through the `TextHandler`'s `TeeWriter` and are written to

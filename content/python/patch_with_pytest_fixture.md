@@ -234,23 +234,23 @@ execute the logic each time the fixture gets executed. It's similar to how teard
 
 This approach has the following advantages:
 
-* It appeases the DRY gods.
+-   It appeases the DRY gods.
 
-* You won't have to wrap your tests in a class to avoid patching the same objects multiple
-times.
+-   You won't have to wrap your tests in a class to avoid patching the same objects multiple
+    times.
 
-* This makes the *mocked dependency* usage more composable. In a test, you can pick and
-choose which dependencies you need in their mocked form and which dependencies you don't
-want to be mocked. If you don't want a particular dependency to be mocked in a test,
-then don't pass the corresponding fixture as an argument of the test function.
+-   This makes the _mocked dependency_ usage more composable. In a test, you can pick and
+    choose which dependencies you need in their mocked form and which dependencies you don't
+    want to be mocked. If you don't want a particular dependency to be mocked in a test,
+    then don't pass the corresponding fixture as an argument of the test function.
 
-* If some of your mocked dependencies don't vary much during their test lifetime, you
-can change the `scope` of the fixture to speed up the overall execution. By default,
-fixtures run in `function` scope; that means, the fixture (mocking) will be executed
-once per test function. This behavior can be changed via using the `scope` parameter of
-the `@pytest.fixture(scope=...)` decorator. Other allowed scopes are `module` and
-`session`. **Module** scope means, the fixture will be executed once per test module and
-**session** scope means, the fixture will run once per Pytest session.
+-   If some of your mocked dependencies don't vary much during their test lifetime, you can
+    change the `scope` of the fixture to speed up the overall execution. By default,
+    fixtures run in `function` scope; that means, the fixture (mocking) will be executed
+    once per test function. This behavior can be changed via using the `scope` parameter of
+    the `@pytest.fixture(scope=...)` decorator. Other allowed scopes are `module` and
+    `session`. **Module** scope means, the fixture will be executed once per test module and
+    **session** scope means, the fixture will run once per Pytest session.
 
 ## Another practical example
 
@@ -349,5 +349,10 @@ also its demerits. Since the target functions get mocked and stay mocked through
 module, it can subtly create coupling between your test functions if you aren't careful.
 
 [^1]: [HTTPx](https://www.python-httpx.org/)
-[^2]: [Test async code with pytest-asyncio](https://github.com/rednafi/reflections/issues/73) [^2]
-[^3]: [Unittest mock — mock object library](https://docs.python.org/3/library/unittest.mock.html) [^3]
+[^2]:
+    [Test async code with pytest-asyncio](https://github.com/rednafi/reflections/issues/73)
+    [^2]
+
+[^3]:
+    [Unittest mock — mock object library](https://docs.python.org/3/library/unittest.mock.html)
+    [^3]

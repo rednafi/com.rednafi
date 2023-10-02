@@ -5,7 +5,7 @@ tags:
     - Python
 ---
 
-***Updated on 2022-02-13***: *Change import style of `functools.singledispatch`.*
+**_Updated on 2022-02-13_**: _Change import style of `functools.singledispatch`._
 
 Recently, I was refactoring a portion of a Python function that somewhat looked like this:
 
@@ -54,9 +54,9 @@ design generic functions and refactor the icky code above.
 
 ## Singledispatch
 
-Python fairly recently added partial support for function overloading in *Python 3.4*. They
-did this by adding a neat little decorator to the *functools* module called
-`singledispatch`.  In *Python 3.8*, there is another decorator for methods called
+Python fairly recently added partial support for function overloading in _Python 3.4_. They
+did this by adding a neat little decorator to the _functools_ module called
+`singledispatch`. In _Python 3.8_, there is another decorator for methods called
 `singledispatchmethod`. This decorator will transform your regular function into a single
 dispatch generic function.
 
@@ -244,5 +244,8 @@ Running this will print out the same output as before:
 
 [^1]: [Parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
 [^2]: [PEP-443](https://peps.python.org/pep-0443/)
-[^3]: [Transform a function into a single dispatch generic function](https://docs.python.org/3/library/functools.html#functools.singledispatch) [^3]
+[^3]:
+    [Transform a function into a single dispatch generic function](https://docs.python.org/3/library/functools.html#functools.singledispatch)
+    [^3]
+
 [^4]: [Function overloading](https://en.wikipedia.org/wiki/Function_overloading) [^4]

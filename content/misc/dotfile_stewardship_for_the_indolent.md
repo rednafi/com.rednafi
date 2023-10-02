@@ -20,8 +20,8 @@ made sure that I didn't need to do it very often. So I never paid much attention
 
 But recently, I came across GNU stow[^1] and realized that people have been using it for
 years to manage their configs. I tried it and found that it works perfectly for what I need.
-It's a nifty little tool written in perl that allows you to store all of your config
-files in a git repository and symlink them to the targeted directories. The tool is pretty
+It's a nifty little tool written in perl that allows you to store all of your config files
+in a git repository and symlink them to the targeted directories. The tool is pretty
 versatile and you can do a lot more than just dotfile management. But for this purpose, only
 two commands will do. The workflow roughly goes like this:
 
@@ -56,19 +56,19 @@ stow -v -R -t ~ pkg1
 
 Here:
 
-* `-v (or --verbose)` makes stow run in verbose mode. When you use `-v`, stow will list the
-symlinks it creates or updates, making it easier to see the changes it's making.
+-   `-v (or --verbose)` makes stow run in verbose mode. When you use `-v`, stow will list
+    the symlinks it creates or updates, making it easier to see the changes it's making.
 
-* `-R (or --restow)` tells stow to restow the packages. It's useful when you've already
-stowed the packages previously, and want to reapply them. The `-R` flag ensures that stow
-re-symlinks files, even if they already exist. This makes each run idempotent and you won't
-have to worry about polluting your workspace with straggler links.
+-   `-R (or --restow)` tells stow to restow the packages. It's useful when you've already
+    stowed the packages previously, and want to reapply them. The `-R` flag ensures that
+    stow re-symlinks files, even if they already exist. This makes each run idempotent and
+    you won't have to worry about polluting your workspace with straggler links.
 
-* `-t <target> (or --target=<target>)` specifies the target directory where stow should
-create symlinks. The default target directory is the parent of `$pwd`. In the above command,
-`-t ~` is used to set the home directory as the destination.
+-   `-t <target> (or --target=<target>)` specifies the target directory where stow should
+    create symlinks. The default target directory is the parent of `$pwd`. In the above
+    command, `-t ~` is used to set the home directory as the destination.
 
-* `<pkg1>` is the package name you want to stow.
+-   `<pkg1>` is the package name you want to stow.
 
 For a more concrete example, let's say, your source repo `~/canvas/dot` has two packages
 named `git` and `zsh` where the former contains `.gitconfig` and the latter houses `.zshrc`

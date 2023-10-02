@@ -7,8 +7,8 @@ tags:
 ---
 
 The 100k context window of Claude 2[^1] has been a huge boon for me since now I can paste a
-moderately complex problem to the chat window and ask questions about it. In that spirit,
-it recently refactored some pretty gnarly conditional logic for me in such an elegant manner
+moderately complex problem to the chat window and ask questions about it. In that spirit, it
+recently refactored some pretty gnarly conditional logic for me in such an elegant manner
 that it absolutely blew me away. Now, I know how bitmasks[^2] work and am aware of the
 existence of `enum.Flag`[^3] in Python. However, it never crossed my mind that flags can be
 leveraged to trim conditional branches in such a clever manner that Claude illustrated. But
@@ -33,14 +33,14 @@ class Client:
 The business logic requires that the system must abide by the following rules while sending
 notifications:
 
-* If only `email` is populated, send an email.
-* If only `url` is populated, send a webhook.
-* If only `address` is populated, send a postal mail.
-* If `email` and `url` are populated, send an email and a webhook.
-* If `email` and `address` are populated, only send an email.
-* If `url` and `address` are populated, only send a webhook.
-* If all three are populated, send both an email and a webhook.
-* At least one attribute must be populated, or it's an error.
+-   If only `email` is populated, send an email.
+-   If only `url` is populated, send a webhook.
+-   If only `address` is populated, send a postal mail.
+-   If `email` and `url` are populated, send an email and a webhook.
+-   If `email` and `address` are populated, only send an email.
+-   If `url` and `address` are populated, only send a webhook.
+-   If all three are populated, send both an email and a webhook.
+-   At least one attribute must be populated, or it's an error.
 
 Notice how the business logic wants to minimize sending notifications via postal mail.
 Postal mails are expensive and will only be sent if `address` is the only attribute on the
@@ -83,15 +83,15 @@ def notify(client: Client) -> None:
 ```
 
 Whoa! Lots of if-else branches for such a simple scenario. Since there are 3 attributes in
-the complete *set*, we have to make sure we're writing `2^3=8` branches to cover all the
-possible *subsets*. For 4, 5, 6 ... attributes, the number of branches will increase as
-powers of 2: `2^4=16`, `2^5=32`, `2^6=64` ... and so on. Then our tests will need to be
-able to verify each of these branches. We can try to apply De Morgan's law to simplify
-some of the negation logic.
+the complete _set_, we have to make sure we're writing `2^3=8` branches to cover all the
+possible _subsets_. For 4, 5, 6 ... attributes, the number of branches will increase as
+powers of 2: `2^4=16`, `2^5=32`, `2^6=64` ... and so on. Then our tests will need to be able
+to verify each of these branches. We can try to apply De Morgan's law to simplify some of
+the negation logic.
 
-> *De Morgan's laws allow us to take the negation of a conditional statement and distribute
+> _De Morgan's laws allow us to take the negation of a conditional statement and distribute
 > it across the operators, changing ANDs to ORs and vice versa, and flipping the negation of
-> each component. This can help simplify complex boolean logic statements.*
+> each component. This can help simplify complex boolean logic statements._
 
 So this:
 
@@ -116,26 +116,26 @@ Bitwise operations allow manipulating numbers at the individual bit level. This 
 for compactly storing and accessing data, performing fast calculations, and implementing
 low-level algorithms. Here's a list of bitwise operations:
 
-* **Bitwise AND (&)**: Takes two numbers and performs the logical AND operation on each pair
-of corresponding bits. Returns a number where a bit is 1 only if that bit is 1 in both input
-numbers.
+-   **Bitwise AND (&)**: Takes two numbers and performs the logical AND operation on each
+    pair of corresponding bits. Returns a number where a bit is 1 only if that bit is 1 in
+    both input numbers.
 
-* **Bitwise OR (|)**: Takes two numbers and performs the logical OR operation on each pair
-of corresponding bits. Returns a number where a bit is 1 if that bit is 1 in either or both
-input numbers.
+-   **Bitwise OR (|)**: Takes two numbers and performs the logical OR operation on each pair
+    of corresponding bits. Returns a number where a bit is 1 if that bit is 1 in either or
+    both input numbers.
 
-* **Bitwise XOR (^)**: Takes two numbers and performs the logical XOR (exclusive OR)
-operation on each pair of corresponding bits. Returns a number where a bit is 1 if that bit
-is 1 in exactly one of the input numbers (but not both).
+-   **Bitwise XOR (^)**: Takes two numbers and performs the logical XOR (exclusive OR)
+    operation on each pair of corresponding bits. Returns a number where a bit is 1 if that
+    bit is 1 in exactly one of the input numbers (but not both).
 
-* **Bitwise NOT (~)**: Takes a single number and flips all its bits.
+-   **Bitwise NOT (~)**: Takes a single number and flips all its bits.
 
-* **Left shift (<<)**: Shifts the bits of a number to the left by a specified number of
-positions. Zeros are shifted in on the right. Equivalent to multiplying by `2^n` where `n`
-is the number of positions shifted.
+-   **Left shift (<<)**: Shifts the bits of a number to the left by a specified number of
+    positions. Zeros are shifted in on the right. Equivalent to multiplying by `2^n` where
+    `n` is the number of positions shifted.
 
-* **Right shift (>>)**: Shifts the bits of a number to the right by a specified number of
-positions. Zeros are shifted in on the left. Equivalent to integer division by `2^n`.
+-   **Right shift (>>)**: Shifts the bits of a number to the right by a specified number of
+    positions. Zeros are shifted in on the left. Equivalent to integer division by `2^n`.
 
 Here's an example displaying these operators:
 
@@ -184,29 +184,29 @@ And toggle an option on or off using XOR:
 STYLE ^= BOLD  # Toggles BOLD bit on/off
 ```
 
-You can do a ton of other cool stuff with bitwise operations and bitmasks. However, this
-is pretty much all we need to know to curtail the twisted conditional branching
-necessitated by the business logic. Check out this incredibly in-depth article[^4] from Real
-Python on this topic if you want to dig deeper into bitwise operations.
+You can do a ton of other cool stuff with bitwise operations and bitmasks. However, this is
+pretty much all we need to know to curtail the twisted conditional branching necessitated by
+the business logic. Check out this incredibly in-depth article[^4] from Real Python on this
+topic if you want to dig deeper into bitwise operations.
 
 ## Pruning conditional branches with flags
 
 With all the intros and primers out of the way, we can now start working towards making the
 `notify` function more tractable and testable. We'll do that in 3 phases:
 
-* First, we're gonna define a flag-type enum called `NotifyStatus` which will house all the
-valid states our notification system can be in. Any state that's not explicitly defined as
-an enum variant is invalid.
+-   First, we're gonna define a flag-type enum called `NotifyStatus` which will house all
+    the valid states our notification system can be in. Any state that's not explicitly
+    defined as an enum variant is invalid.
 
-* Second, we'll write a function named `get_notify_status` that'll take in a `Client` object
-as input, apply the business logic and return the appropriate `NotifyStatus` enum variant.
-This function won't be responsible for dispatching the actual notification handlers; rather,
-it'll just map the attribute values of the `Client` instance to a fitting enum variant. We
-do this to keep the core business logic devoid of any external dependencies—following Gary
-Bernhardt's functional core, imperative shell[^5] ethos.
+-   Second, we'll write a function named `get_notify_status` that'll take in a `Client`
+    object as input, apply the business logic and return the appropriate `NotifyStatus` enum
+    variant. This function won't be responsible for dispatching the actual notification
+    handlers; rather, it'll just map the attribute values of the `Client` instance to a
+    fitting enum variant. We do this to keep the core business logic devoid of any external
+    dependencies—following Gary Bernhardt's functional core, imperative shell[^5] ethos.
 
-* Finally, we'll define the `notify` function that'll just accept the enum variant returned
-by the previous function and invoke the desired notification handlers.
+-   Finally, we'll define the `notify` function that'll just accept the enum variant
+    returned by the previous function and invoke the desired notification handlers.
 
 The `NotifyStatus` enum is defined as follows:
 
@@ -293,4 +293,5 @@ conditional statements that we started with. Not too shabby, eh?
 [^2]: [Bitmasks](https://stackoverflow.com/questions/10493411/what-is-bit-masking)
 [^3]: [enum.Flag](https://docs.python.org/3/library/enum.html#enum.Flag)
 [^4]: [Python bitwise operators](https://realpython.com/python-bitwise-operators/)
-[^5]: [Functional core, imperative shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell)
+[^5]:
+    [Functional core, imperative shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell)

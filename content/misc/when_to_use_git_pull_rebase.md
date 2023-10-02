@@ -9,10 +9,10 @@ tags:
 Whenever your local branch diverges from the remote branch, you can't directly pull from the
 remote branch and merge it into the local branch. This can happen when, for example:
 
-* You checkout from the `main` branch to work on a feature in a branch named `alice`.
-* When you're done, you merge `alice` into `main`.
-* After that, if you try to pull the `main` branch from remote again and the content of the
-`main` branch changes by this time, you'll encounter a merge error.
+-   You checkout from the `main` branch to work on a feature in a branch named `alice`.
+-   When you're done, you merge `alice` into `main`.
+-   After that, if you try to pull the `main` branch from remote again and the content of
+    the `main` branch changes by this time, you'll encounter a merge error.
 
 ## Reproduce the issue
 
@@ -57,8 +57,8 @@ hint: invocation.
 fatal: Need to specify how to reconcile divergent branches.
 ```
 
-This means that the history of your local `main` branch and the remote `main` branch
-have diverged and they aren't reconciliable.
+This means that the history of your local `main` branch and the remote `main` branch have
+diverged and they aren't reconciliable.
 
 ## Solution
 
@@ -71,7 +71,13 @@ git pull --rebase
 This will rebase your local `main` by adding your local commits on top of the remote
 commits.
 
-[^1]: [When should I use git pull --rebase](https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase) [^1]
-[^2]: [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase) [^2]
+[^1]:
+    [When should I use git pull --rebase](https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase)
+    [^1]
 
-[image_1]: https://user-images.githubusercontent.com/30027932/179367132-de85b59e-aa1c-477e-b3b2-89593f3a8b4c.png
+[^2]:
+    [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase)
+    [^2]
+
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/179367132-de85b59e-aa1c-477e-b3b2-89593f3a8b4c.png

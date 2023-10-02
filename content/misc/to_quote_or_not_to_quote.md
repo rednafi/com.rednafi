@@ -112,4 +112,5 @@ to apply `cat` on a file that's literally named `$file` which is most likely not
 want.
 
 [^1]: [Grug brained developer](https://grugbrain.dev/)
-[^2]: [Why is $(...) preferred over `...` (backticks)?](http://mywiki.wooledge.org/BashFAQ/082)
+[^2]:
+    [Why is $(...) preferred over `...` (backticks)?](http://mywiki.wooledge.org/BashFAQ/082)

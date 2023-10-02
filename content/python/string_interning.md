@@ -7,7 +7,7 @@ tags:
 
 I was reading the source code[^1] of the reference implementation of "PEP-661: Sentinel
 Values"[^2] and discovered an optimization technique known as **String interning**. Modern
-programming languages like Java, Python, PHP, Ruby, Julia, etc, performs *string interning*
+programming languages like Java, Python, PHP, Ruby, Julia, etc, performs _string interning_
 to make their string operations more performant.
 
 ## String interning
@@ -52,8 +52,8 @@ This will print `False` on the console and the strings are not interned.
 
 ## Explicit string interning
 
-Python's `sys` module in the standard library has a routine called `intern` that you can
-use to intern even large strings. For example:
+Python's `sys` module in the standard library has a routine called `intern` that you can use
+to intern even large strings. For example:
 
 ```python
 # src.py
@@ -145,7 +145,9 @@ t3 = time.perf_counter()
 
 print(f"Interned dict creation & access: {t1-t0} seconds")
 print(f"Non-interned dict creation & access: {t3-t2} seconds")
-print(f"Non-interned creation & access is {(t3-t2)/(t1-t0)} times slower")
+print(
+    f"Non-interned creation & access is {(t3-t2)/(t1-t0)} times slower"
+)
 ```
 
 This prints:
@@ -156,9 +158,9 @@ Non-interned dict creation & access: 0.048660025000572205 seconds
 Non-interned creation & access is 33.25750840409036 times slower
 ```
 
-The above script creates and accesses a dictionary with interned and non-interned keys
-10000 times. The time difference is quite huge. Non-interned dict creation and accession are
-in fact, 33 times slower than its interned counterpart.
+The above script creates and accesses a dictionary with interned and non-interned keys 10000
+times. The time difference is quite huge. Non-interned dict creation and accession are in
+fact, 33 times slower than its interned counterpart.
 
 We can circumnavigate this limitation by using explicit string interning via the `sys`
 module as follows:
@@ -210,8 +212,13 @@ Explicitly interned creation & access is 1.1264793204711423 times slower
 Here, implicitly and explicitly interned dict creation and key access are almost equally
 fast.
 
-[^1]: [String interning in PEP-661's implementation](https://github.com/taleinat/python-stdlib-sentinels/blob/main/sentinels/sentinels.py)
+[^1]:
+    [String interning in PEP-661's implementation](https://github.com/taleinat/python-stdlib-sentinels/blob/main/sentinels/sentinels.py)
+
 [^2]: [PEP-661 – Sentinel Values](https://hugovk-peps.readthedocs.io/en/latest/pep-0661/#)
-[^3]: [PyObject](https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537)
+[^3]:
+    [PyObject](https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537)
+
 [^4]: [String interning in Python](https://arpitbhayani.me/blogs/string-interning) [^4]
-[^5]: [Python docs: `sys.intern`](https://docs.python.org/3/library/sys.html#sys.intern) [^5]
+[^5]:
+    [Python docs: `sys.intern`](https://docs.python.org/3/library/sys.html#sys.intern) [^5]

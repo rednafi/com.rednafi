@@ -6,31 +6,31 @@ tags:
     - API
 ---
 
-***Updated on 2023-09-11***: *Fix broken URLs.*
+**_Updated on 2023-09-11_**: _Fix broken URLs._
 
 Recently, I was working with MapBox's[^1] Route optimization API[^2]. Basically, it tries to
 solve the traveling salesman problem[^3] where you provide the API with coordinates of
 multiple places and it returns a duration-optimized route between those locations. This is a
 perfect usecase where Redis[^4] caching can come handy. Redis is a fast and lightweight
 in-memory database with additional persistence options; making it a perfect candidate for
-the task at hand. Here, caching can save you from making redundant API requests and also,
-it can dramatically improve the response time as well.
+the task at hand. Here, caching can save you from making redundant API requests and also, it
+can dramatically improve the response time as well.
 
 I found that in my country, the optimized routes returned by the API do not change
 dramatically for at least for a couple of hours. So the workflow will look something like
 this:
 
-* Caching the API response in Redis using the key-value data structure. Here the requested
-coordinate-string will be the key and the response will be the corresponding value.
-* Setting a timeout on the records.
-* Serving new requests from cache if the records exist.
-* Only send a new request to MapBox API if the response is not cached and then add that
-response to cache.
+-   Caching the API response in Redis using the key-value data structure. Here the requested
+    coordinate-string will be the key and the response will be the corresponding value.
+-   Setting a timeout on the records.
+-   Serving new requests from cache if the records exist.
+-   Only send a new request to MapBox API if the response is not cached and then add that
+    response to cache.
 
 ## Setting up Redis & RedisInsight
 
-To proceed with the above workflow, you'll need to install and setup Redis database on
-your system. For monitoring the database, I'll be using RedisInsight[^5]. The easiest way to
+To proceed with the above workflow, you'll need to install and setup Redis database on your
+system. For monitoring the database, I'll be using RedisInsight[^5]. The easiest way to
 setup Redis and RedisInsight is through Docker[^6]. Here's a docker-compose that you can use
 to setup everything with a single command.
 
@@ -152,7 +152,9 @@ def get_routes_from_api(coordinates: str) -> dict:
     """Data from mapbox api."""
 
     with httpx.Client() as client:
-        base_url = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        base_url = (
+            "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        )
 
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
@@ -168,8 +170,8 @@ def get_routes_from_api(coordinates: str) -> dict:
 The above code uses Python's httpx[^7] library to make the get request. Httpx is almost a
 drop-in replacement for the ubiquitous requests[^8] library but way faster and has async
 support. Here, I've used context manager `httpx.Client()` for better resource management
-while making the `get` request. You can read more about context managers and how to use
-them for hassle free resource management here[^9].
+while making the `get` request. You can read more about context managers and how to use them
+for hassle free resource management here[^9].
 
 The `base_url` is the base url of the route optimization API and the you'll need to provide
 your own access token in the `access_token` field. Notice, how the `url` variable builds up
@@ -210,9 +212,9 @@ After that the key and its associated value get deleted automatically.
 
 ### The central orchestration
 
-The `route_optima` function is the primary agent that orchestrates and executes the
-caching and returning of responses against requests. It roughly follows the execution
-flow shown below.
+The `route_optima` function is the primary agent that orchestrates and executes the caching
+and returning of responses against requests. It roughly follows the execution flow shown
+below.
 
 ![route_optima flowchart][image_2]
 
@@ -248,8 +250,8 @@ def route_optima(coordinates: str) -> dict:
 
 ### Exposing as an API
 
-This part of the code wraps the original Route Optimization API and exposes that as a
-new endpoint. I've used FastAPI[^10] to build the wrapper API. Doing this also hides the
+This part of the code wraps the original Route Optimization API and exposes that as a new
+endpoint. I've used FastAPI[^10] to build the wrapper API. Doing this also hides the
 underlying details of authentication and the actual endpoint of the MapBox API.
 
 ```python
@@ -308,7 +310,9 @@ def get_routes_from_api(coordinates: str) -> dict:
     """Data from mapbox api."""
 
     with httpx.Client() as client:
-        base_url = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        base_url = (
+            "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        )
 
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
@@ -501,12 +505,14 @@ You can find the complete source code of the app [here][^11].
 ## Disclaimer
 
 This app has been made for demonstration purpose only. So it might not reflect the best
-practices of production ready applications. Using APIs without authentication like this
-is not recommended.
+practices of production ready applications. Using APIs without authentication like this is
+not recommended.
 
 [^1]: [Mapbox](https://www.mapbox.com/)
 [^2]: [Route optimization API](https://docs.mapbox.com/api/navigation/#optimization)
-[^3]: [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+[^3]:
+    [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+
 [^4]: [Redis](https://redis.io/)
 [^5]: [RedisInsight](https://redislabs.com/redisinsight/)
 [^6]: [Dockjer](https://www.docker.com/)
@@ -516,7 +522,11 @@ is not recommended.
 [^10]: [FastAPI](https://fastapi.tiangolo.com/)
 [^11]: [HTTP request caching with Redis](https://github.com/rednafi/redis-request-caching)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/82731781-f30b1b00-9d2a-11ea-8c72-62a4753bc5f9.png
-[image_2]: https://user-images.githubusercontent.com/30027932/82735908-1ba10e00-9d47-11ea-9e86-ac1fbc63628f.png
-[image_3]: https://user-images.githubusercontent.com/30027932/82763854-6a74a380-9e2c-11ea-998d-066d25461eca.png
-[image_4]: https://user-images.githubusercontent.com/30027932/82763965-2f26a480-9e2d-11ea-906b-63c1d25c08a8.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/82731781-f30b1b00-9d2a-11ea-8c72-62a4753bc5f9.png
+[image_2]:
+    https://user-images.githubusercontent.com/30027932/82735908-1ba10e00-9d47-11ea-9e86-ac1fbc63628f.png
+[image_3]:
+    https://user-images.githubusercontent.com/30027932/82763854-6a74a380-9e2c-11ea-998d-066d25461eca.png
+[image_4]:
+    https://user-images.githubusercontent.com/30027932/82763965-2f26a480-9e2d-11ea-906b-63c1d25c08a8.png

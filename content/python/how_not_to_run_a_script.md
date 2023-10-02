@@ -85,7 +85,7 @@ This will not raise the import error and return the following output:
 '/home/rednafi/canvas/personal/reflections/.venv/lib/python3.10/site-packages']
 ```
 
-Here, the first entry denotes the root directory from where the script is being run
-from. Voila, problem solved!
+Here, the first entry denotes the root directory from where the script is being run from.
+Voila, problem solved!
 
 [^1]: [Don't run python my/script.py](https://www.youtube.com/watch?v=hgCVIa5qQhM) [^1]

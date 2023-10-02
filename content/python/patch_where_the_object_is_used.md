@@ -12,8 +12,8 @@ that there might be an aphorism on the practice.
 
 > Patch where the object is used; not where it's defined.
 
-To understand it, consider the example below. Here, you have a module containing a
-function that fetches data from some fictitious database.
+To understand it, consider the example below. Here, you have a module containing a function
+that fetches data from some fictitious database.
 
 ```python
 # db.py
@@ -127,5 +127,7 @@ def test_process(mock_get_data):
 
 This time, when you run the tests, pytest doesn't complain.
 
-[^1]: [Why your mock doesn’t work]( https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
+[^1]:
+    [Why your mock doesn’t work](https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
+
 [^2]: [pytest](https://docs.pytest.org/en/latest/)

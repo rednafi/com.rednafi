@@ -9,8 +9,8 @@ tags:
 One of my favorite pastimes these days is to set BingChat to creative mode, ask it to teach
 me a trick about topic X, and then write a short blog post about it to reinforce my
 understanding. Some of the things it comes up with are absolutely delightful. In the spirit
-of that, I asked it *to teach me a Shell trick that I can use to mimic maps or dictionaries
-in a shell environment*. I didn't even know what I was expecting.
+of that, I asked it _to teach me a Shell trick that I can use to mimic maps or dictionaries
+in a shell environment_. I didn't even know what I was expecting.
 
 It didn't disappoint and introduced me to the idea of associative arrays in Bash. This data
 structure is basically the Bash equivalent of a map.
@@ -203,7 +203,18 @@ flag takes advantage of the `Content-Disposition` header in the HTTP response to
 the filename. We include the `-L` flag to follow redirects, and the `-s` flag to silence
 curl's progress output.
 
-[^1]: [Advanced Bash scripting guide – devconnected](https://devconnected.com/advanced-bash-scripting-guide/) [^1]
-[^2]: [Advanced Bash scripting techniques for Linux administrators](https://tecadmin.net/advanced-bash-scripting-techniques/) [^2]
-[^3]: [Useful Bash command line tips and tricks examples – part 1 - Linux config](https://linuxconfig.org/useful-bash-command-line-tips-and-tricks-examples-part-1) [^3]
-[^4]: [3 command line games for learning Bash the fun way](https://opensource.com/article/19/10/learn-bash-command-line-games) [^4]
+[^1]:
+    [Advanced Bash scripting guide – devconnected](https://devconnected.com/advanced-bash-scripting-guide/)
+    [^1]
+
+[^2]:
+    [Advanced Bash scripting techniques for Linux administrators](https://tecadmin.net/advanced-bash-scripting-techniques/)
+    [^2]
+
+[^3]:
+    [Useful Bash command line tips and tricks examples – part 1 - Linux config](https://linuxconfig.org/useful-bash-command-line-tips-and-tricks-examples-part-1)
+    [^3]
+
+[^4]:
+    [3 command line games for learning Bash the fun way](https://opensource.com/article/19/10/learn-bash-command-line-games)
+    [^4]

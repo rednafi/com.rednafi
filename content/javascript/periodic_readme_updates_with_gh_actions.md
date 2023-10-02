@@ -19,15 +19,15 @@ update the readme file. However, I wanted to make a simpler version of it from s
 can be extended for periodically updating any markdown file in any repo, just not the
 profile readme. So, here's the plan:
 
-* A custom GitHub Action workflow will periodically run a nodejs script.
-* The script will then:
-  * Grab the XML index[^5] of this blog that you're reading.
-  * Parse the XML content and extract the URLs and publication dates of 5 most recent
-    articles.
-  * Update the associated markdown table with the extracted content on the profile's
-    `README.md` file.
-* Finally, the workflow will commit the changes and push them to the profile repo. You can
-see the final outcome here[^6].
+-   A custom GitHub Action workflow will periodically run a nodejs script.
+-   The script will then:
+    -   Grab the XML index[^5] of this blog that you're reading.
+    -   Parse the XML content and extract the URLs and publication dates of 5 most recent
+        articles.
+    -   Update the associated markdown table with the extracted content on the profile's
+        `README.md` file.
+-   Finally, the workflow will commit the changes and push them to the profile repo. You can
+    see the final outcome here[^6].
 
 Here's the script that performs the above steps:
 
@@ -101,14 +101,13 @@ getRssData()
   });
 ```
 
-The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML parsing, and
-the built-in `fs` module's `promises` for handling file system operations.
+The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML parsing, and the
+built-in `fs` module's `promises` for handling file system operations.
 
-Next, it defines an async function `getRssData` responsible for fetching the XML data
-from the [https://rednafi.com/index.html] URL. It extracts the blog URLs and publication
-dates, and returns the parsed data as a list of objects. Another async function,
-`writeOutputFile`, writes the parsed XML content as a markdown table and saves it to the
-`README.md` file.
+Next, it defines an async function `getRssData` responsible for fetching the XML data from
+the [https://rednafi.com/index.html] URL. It extracts the blog URLs and publication dates,
+and returns the parsed data as a list of objects. Another async function, `writeOutputFile`,
+writes the parsed XML content as a markdown table and saves it to the `README.md` file.
 
 The script is executed by the following GitHub Action workflow every day at 0:00 UTC. Before
 the CI runs, make sure you create a new Action Secret[^7] named `ACCESS_TOKEN` that houses
@@ -197,12 +196,19 @@ I'm quite satisfied with the final output:
 
 [^1]: [Blog](https://rednafi.com/)
 [^2]: [GitHub profile landing page](https://github.com/rednafi/)
-[^3]: [Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
+[^3]:
+    [Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
+
 [^4]: [Blog post workflow](https://github.com/gautamkrishnar/blog-post-workflow)
 [^5]: [Blog index](https://rednafi.com/index.xml)
 [^6]: [Profile repository](https://github.com/rednafi/rednafi)
-[^7]: [Action secrets](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28)
-[^8]: [Personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+[^7]:
+    [Action secrets](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28)
+
+[^8]:
+    [Personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
 [^9]: [Workflow directory](https://github.com/rednafi/rednafi/tree/master/.github/workflows)
 
-[image_1]: https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png

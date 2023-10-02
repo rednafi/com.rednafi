@@ -19,11 +19,11 @@ that majority of them preferred **Sentence case** where you'd only capitalize th
 letter of the first word of a sentence and then the capitilization of words would conform to
 the usual grammatical rules. So instead of this:
 
-> *Dataclasses in Python Eliminates Class Initialization Boilerplates.*
+> _Dataclasses in Python Eliminates Class Initialization Boilerplates._
 
 you'd do this:
 
-> *Dataclasses in Python eliminates class initialization boilerplates.*
+> _Dataclasses in Python eliminates class initialization boilerplates._
 
 This allows me not to waste those few precious seconds thinking about the rules of upper
 casing and whether or not sentences with technical words in them will look awkward. Also, it
@@ -32,14 +32,14 @@ the eccentricity of title casing:
 
 ![weird case massacring a sentence][image_1]
 
-*Sentence case everywhere* is the general trend I'm seeing on the technical blogs of some of
+_Sentence case everywhere_ is the general trend I'm seeing on the technical blogs of some of
 the big players on the internet:
 
-* [Django docs]
-* [Dropbox blog]
-* [GitHub blog]
-* [Twitter blog]
-* [GitLab blog]
+-   [Django docs]
+-   [Dropbox blog]
+-   [GitHub blog]
+-   [Twitter blog]
+-   [GitLab blog]
 
 One thing that I'll admit is, at first it just doesn't look right to me for a title to have
 sentence casing. Also, I'm not too conviced to adopt sentence case in technical papers.
@@ -54,7 +54,9 @@ worry about.
 
 [^1]: [Title Capitalization & Title Case Converter Tool](https://capitalizemytitle.com/)
 [^2]: [Asking the Twitter folks](https://twitter.com/rednafi/status/1506949630587637762)
-[^3]: [For the love of sentence casing](https://twitter.com/robsmallshire/status/1506980088532905998)
+[^3]:
+    [For the love of sentence casing](https://twitter.com/robsmallshire/status/1506980088532905998)
+
 [^4]: [The Economist](https://www.economist.com/)
 
 [django docs]: https://docs.djangoproject.com/en/dev/
@@ -62,5 +64,5 @@ worry about.
 [github blog]: https://github.blog
 [twitter blog]: https://blog.twitter.com
 [gitlab blog]: https://about.gitlab.com/blog/
-
-[image_1]: https://user-images.githubusercontent.com/30027932/160216618-36a76272-06f8-4e74-bacb-6ca7a80c009b.png
+[image_1]:
+    https://user-images.githubusercontent.com/30027932/160216618-36a76272-06f8-4e74-bacb-6ca7a80c009b.png

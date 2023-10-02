@@ -45,9 +45,9 @@ Let's have a look at a few more examples of performing the same tasks using `os.
 
 Say you want to achieve the following goals:
 
-* There is a file named `file.txt` in your current directory and you want to create the path
-for another file named `file_another.txt` in the same directory.
-* Then you want to save the absolute path of `file_another.txt` in a new variable.
+-   There is a file named `file.txt` in your current directory and you want to create the
+    path for another file named `file_another.txt` in the same directory.
+-   Then you want to save the absolute path of `file_another.txt` in a new variable.
 
 Let's see how you'd usually do this via the `os` module.
 
@@ -76,8 +76,8 @@ print("file_another_path:", file_another_path)
 You can use the usual string methods to transform the paths but generally, that's not a good
 idea. So, instead of joining two paths with `+` like regular strings, you should use
 `os.path.join()` to join the components of a path. This is because different operating
-systems do not define paths in the same way. Windows uses `"\"` while Mac and *nix based
-OSes use `"/"` as a separator.  Joining with `os.path.join()` ensures correct path separator
+systems do not define paths in the same way. Windows uses `"\"` while Mac and \*nix based
+OSes use `"/"` as a separator. Joining with `os.path.join()` ensures correct path separator
 on the corresponding operating system. Pathlib module uses `"/"` operator overloading and
 make this a little less painful.
 
@@ -106,8 +106,8 @@ The `resolve` method finds out the absolute path of the file. From there you can
 
 Here’s a piece of code that:
 
-* Tries to make a `src/stuff/` directory when it already exists.
-* Renames a file in the `src` directory called  `.config` to `.stuffconfig`.
+-   Tries to make a `src/stuff/` directory when it already exists.
+-   Renames a file in the `src` directory called `.config` to `.stuffconfig`.
 
 ```python
 import os
@@ -130,8 +130,8 @@ Path("src/.config").rename("src/.stuffconfig")
 >>> PosixPath('src/.stuffconfig')
 ```
 
-Notice the output where the renamed file path is printed. It's not a simple string, rather
-a `PosixPath` object that indicates the type of host system (Linux in this case). You can
+Notice the output where the renamed file path is printed. It's not a simple string, rather a
+`PosixPath` object that indicates the type of host system (Linux in this case). You can
 almost always use stringified path values and the Path objects interchangeably.
 
 ## Listing specific types of files in a directory
@@ -458,7 +458,7 @@ file_path.is_absolute()
 >>> False
 ```
 
-#### Path.joinpath(*other)
+#### Path.joinpath(\*other)
 
 This method is used to combine multiple components into a complete path. This can be used as
 an alternative to `"/"` operator for joining path components.
@@ -640,13 +640,13 @@ Creates a new directory at this given path.
 
 **Parameters:**
 
-* **mode:**(*str*) Posix permissions (mimicking the POSIX mkdir -p command)
+-   **mode:**(_str_) Posix permissions (mimicking the POSIX mkdir -p command)
 
-* **parents:**(*boolean*) If parents is `True`, any missing parents of this path are created
-as needed. Otherwise, if the parent is absent, `FileNotFoundError` is raised.
+-   **parents:**(_boolean_) If parents is `True`, any missing parents of this path are
+    created as needed. Otherwise, if the parent is absent, `FileNotFoundError` is raised.
 
-* **exist_ok:** (*boolean*) If `False`, FileExistsError is raised if the target directory
-already exists. If `True`, FileExistsError is ignored.
+-   **exist_ok:** (_boolean_) If `False`, FileExistsError is raised if the target directory
+    already exists. If `True`, FileExistsError is ignored.
 
 ```python
 from pathlib import Path
@@ -745,8 +745,16 @@ The ability to manipulate paths in an OO way and not having to rummage through t
 `os` or `shutil` module can make path manipulation a lot less painful.
 
 [^1]: [Replace os.path with pathlib](https://code.djangoproject.com/ticket/29983)
-[^2]: [pathlib - Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html) [^2]
-[^3]: [Python 3's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/) [^3]
-[^4]: [Why you should be using pathlib](https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded) [^4]
+[^2]:
+    [pathlib - Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
+    [^2]
+
+[^3]:
+    [Python 3's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/)
+    [^3]
+
+[^4]:
+    [Why you should be using pathlib](https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded)
+    [^4]
 
 [image_1]: https://docs.python.org/3/_images/pathlib-inheritance.png

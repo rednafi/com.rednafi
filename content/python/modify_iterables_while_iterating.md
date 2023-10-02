@@ -143,8 +143,8 @@ Running the script prints:
 Notice, how the iterator now visits all the elements and the final list contains the odd
 elements as expected.
 
-Another way you can solve this is—by copying the list `l` before iterating. But this can
-be expensive if `l` is large:
+Another way you can solve this is—by copying the list `l` before iterating. But this can be
+expensive if `l` is large:
 
 ```python
 # src.py
@@ -229,4 +229,6 @@ Running the snippet prints:
 
 Voila, the key-value pairs of the even numbers have been removed successfully!
 
-[^1]: [How to modify a list while iterating - Anthony Sottile](https://www.youtube.com/watch?v=JXis-BKRDFY) [^1]
+[^1]:
+    [How to modify a list while iterating - Anthony Sottile](https://www.youtube.com/watch?v=JXis-BKRDFY)
+    [^1]

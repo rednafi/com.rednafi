@@ -27,33 +27,33 @@ indexing requests with sitemap submission.
 
 All you've to do is:
 
-* List out the URLs that need to be indexed.
-* Fulfill the prerequisites[^6] and download the private key JSON file required
-to make requests to the API. From the docs:
+-   List out the URLs that need to be indexed.
+-   Fulfill the prerequisites[^6] and download the private key JSON file required to make
+    requests to the API. From the docs:
 
-    > *Every call to the Indexing API must be authenticated with an OAuth token that you
-    get in exchange for your private key. Each token is good for a span of time. Google
-    provides API client libraries to get OAuth tokens for a number of languages.*
+                > *Every call to the Indexing API must be authenticated with an OAuth token that you
+                get in exchange for your private key. Each token is good for a span of time. Google
+                provides API client libraries to get OAuth tokens for a number of languages.*
 
-    The private key file will look like this:
+                The private key file will look like this:
 
-    ```json
-    {
-      "type": "service_account",
-      "project_id": "...",
-      "private_key_id": "...",
-      "private_key": "...",
-      "client_email": "...",
-      "client_id": "...",
-      "auth_uri": "...",
-      "token_uri": "...",
-      "auth_provider_x509_cert_url": "...",
-      "client_x509_cert_url": "...",
-      "universe_domain": "..."
-    }
-    ```
+                ```json
+                {
+                  "type": "service_account",
+                  "project_id": "...",
+                  "private_key_id": "...",
+                  "private_key": "...",
+                  "client_email": "...",
+                  "client_id": "...",
+                  "auth_uri": "...",
+                  "token_uri": "...",
+                  "auth_provider_x509_cert_url": "...",
+                  "client_x509_cert_url": "...",
+                  "universe_domain": "..."
+                }
+                ```
 
-* Use an API client to make the requests.
+-   Use an API client to make the requests.
 
 In my case, this site's sitemap[^3] lists out all the URLs as follows:
 
@@ -198,6 +198,8 @@ But you can request more quota[^7] if you need it.
 [^2]: [rednafi.com](/)
 [^3]: [sitemap.xml](/sitemap.xml)
 [^4]: [Google search console](https://search.google.com/search-console/about)
-[^5]: [Turnaround time of the indexing API is shorter than sitemap submission](https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps)
-[^6]: [Indexing API]( https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+[^5]:
+    [Turnaround time of the indexing API is shorter than sitemap submission](https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps)
+
+[^6]: [Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
 [^7]: [Quota](https://developers.google.com/search/apis/indexing-api/v3/quota-pricing)

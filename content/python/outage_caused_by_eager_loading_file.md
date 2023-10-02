@@ -27,11 +27,11 @@ the world for sure. Also, this is often the preferred way of dealing with image 
 blobs. However, overzealously loading file content is only okay as long as the file size is
 smaller than the volatile memory of the working system.
 
-*Moreover, you'll need to be extra careful if you're accepting files from users and running
+_Moreover, you'll need to be extra careful if you're accepting files from users and running
 further procedures on the content of those files. Indiscriminantly loading up the full
 content into memory can be dangerous as it can cause OOM errors and crash the working
 process if the system runs out of memory while processing a large file. This simple overlook
-was the root cause of a major production incident at my workplace today.*
+was the root cause of a major production incident at my workplace today._
 
 The affected part of our primary Django monolith asks the users to upload a CSV file to a
 panel, runs some procedures on the content of the file, and displays the transformed rows in
@@ -51,10 +51,10 @@ attention since no one was uploading file that our server instances couln't hand
 storing the incoming file in a `models.FileField` type attribute of a Django model. When a
 user uploads a CSV file, we'd:
 
-* Open the file in binary mode via the `open(filepath, "rb")` callable.
-* Buffer the whole file in memory and transform the binary content into a unicode string.
-* Pass the stringified file-like object to `csv.DictReader` to load that as a CSV file.
-* Apply transformation on the rows line by line and render the HTML table.
+-   Open the file in binary mode via the `open(filepath, "rb")` callable.
+-   Buffer the whole file in memory and transform the binary content into a unicode string.
+-   Pass the stringified file-like object to `csv.DictReader` to load that as a CSV file.
+-   Apply transformation on the rows line by line and render the HTML table.
 
 This is how the code looks:
 
@@ -134,4 +134,6 @@ sequentially process them.
 
 [^1]: [open](https://peps.python.org/pep-3116/#the-open-built-in-function)
 [^2]: [New I/O - PEP-3116](https://peps.python.org/pep-3116/)
-[^3]: [How to use python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract) [^3]
+[^3]:
+    [How to use python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract)
+    [^3]

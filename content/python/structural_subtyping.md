@@ -115,9 +115,9 @@ if __name__ == "__main__":
     print(contains(haystack, needle))
 ```
 
-In this snippet, we're declaring `haystack` to be a `dict` and then passing a `set` to
-the function parameter. If you try to run this function, it'll happily print `True`.
-However, if you run mypy[^2] against this file, it'll complain as follows:
+In this snippet, we're declaring `haystack` to be a `dict` and then passing a `set` to the
+function parameter. If you try to run this function, it'll happily print `True`. However, if
+you run mypy[^2] against this file, it'll complain as follows:
 
 ```txt
 src.py:17: error: Argument 1 to "find" has incompatible type "Set[int]"; expected
@@ -147,8 +147,8 @@ def contains(haystack: dict | set, needle: T) -> bool:
 
 This will make mypy happy. However, it's still not bulletproof. If you try to pass a `list`
 object as the value of `haystack`, mypy will complain again. So, nominal typing can get a
-bit tedious in this kind of situation, as you'd have to explicitly tell the
-type checker about every type that a variable can expect. There's a better way!
+bit tedious in this kind of situation, as you'd have to explicitly tell the type checker
+about every type that a variable can expect. There's a better way!
 
 Enter structural subtyping[^3]. We know that the value of `haystack` can be anything that
 has the `__contains__` method. So, instead of explicitly defining the name of all the
@@ -400,5 +400,9 @@ earlier Python versions, going as far back as Python 3.7.
 
 [^1]: [Interface - Go playground](https://go.dev/play/p/RG82v5Ubdlc)
 [^2]: [mypy](https://mypy.readthedocs.io/en/stable/)
-[^3]: [Nominal vs structural subtyping](https://www.python.org/dev/peps/pep-0544/#nominal-vs-structural-subtyping)
-[^4]: [PEP 544 -- Protocols: Structural subtyping (static duck typing)](https://www.python.org/dev/peps/pep-0544/) [^4]
+[^3]:
+    [Nominal vs structural subtyping](https://www.python.org/dev/peps/pep-0544/#nominal-vs-structural-subtyping)
+
+[^4]:
+    [PEP 544 -- Protocols: Structural subtyping (static duck typing)](https://www.python.org/dev/peps/pep-0544/)
+    [^4]

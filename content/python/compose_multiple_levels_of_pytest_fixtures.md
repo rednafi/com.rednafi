@@ -163,5 +163,7 @@ fixture gets executed only once per test session. This time, if you run the test
 tests should pass successfully. We have successfully composed two different levels of
 fixture functions!
 
-[^1]: [Python testing with pytest - Brian Okken](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)
+[^1]:
+    [Python testing with pytest - Brian Okken](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)
+
 [^2]: [Pytest reverse](https://github.com/adamchainz/pytest-reverse)

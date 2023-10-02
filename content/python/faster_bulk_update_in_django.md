@@ -123,7 +123,8 @@ def main():
     # Split the users into chunks for each process to work on. This returns
     # [[USER_0, USER_1, USER_2, ...], [USER_3, USER_4, USER_5, ...], ...]
     user_chunks = (
-        users[i : i + CHUNK_SIZE] for i in range(0, len(users), CHUNK_SIZE)
+        users[i : i + CHUNK_SIZE]
+        for i in range(0, len(users), CHUNK_SIZE)
     )
 
     # Close the connection before forking.
@@ -147,13 +148,17 @@ def main():
     # as expected.
     print("Updated usernames:")
     print("===================")
-    for username in User.objects.values_list("username", flat=True)[:5]:
+    for username in User.objects.values_list("username", flat=True)[
+        :5
+    ]:
         print(username)
 
 
 def update_users(user_chunk):
     # The batch_size determines how many records will be saved at once.
-    User.objects.bulk_update(user_chunk, ["username"], batch_size=CHUNK_SIZE)
+    User.objects.bulk_update(
+        user_chunk, ["username"], batch_size=CHUNK_SIZE
+    )
 
 
 if __name__ == "__main__":
@@ -191,5 +196,10 @@ Whoa! This updated the records in under 2.5 seconds. Quite a bit of performance 
 > support concurrent writes from multiple processes. Trying to run the second script with
 > SQLite backend will incur a database error.
 
-[^1]: [Django bulk_update](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update) [^1]
-[^2]: [Using a pool of forked workers](https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers) [^2]
+[^1]:
+    [Django bulk_update](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update)
+    [^1]
+
+[^2]:
+    [Using a pool of forked workers](https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers)
+    [^2]
