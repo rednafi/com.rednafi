@@ -31,27 +31,27 @@ All you've to do is:
 -   Fulfill the prerequisites[^6] and download the private key JSON file required to make
     requests to the API. From the docs:
 
-                > *Every call to the Indexing API must be authenticated with an OAuth token that you
-                get in exchange for your private key. Each token is good for a span of time. Google
-                provides API client libraries to get OAuth tokens for a number of languages.*
+    > _Every call to the Indexing API must be authenticated with an OAuth token that you get
+    > in exchange for your private key. Each token is good for a span of time. Google
+    > provides API client libraries to get OAuth tokens for a number of languages._
 
-                The private key file will look like this:
+    The private key file will look like this:
 
-                ```json
-                {
-                  "type": "service_account",
-                  "project_id": "...",
-                  "private_key_id": "...",
-                  "private_key": "...",
-                  "client_email": "...",
-                  "client_id": "...",
-                  "auth_uri": "...",
-                  "token_uri": "...",
-                  "auth_provider_x509_cert_url": "...",
-                  "client_x509_cert_url": "...",
-                  "universe_domain": "..."
-                }
-                ```
+    ```json
+    {
+      "type": "service_account",
+      "project_id": "...",
+      "private_key_id": "...",
+      "private_key": "...",
+      "client_email": "...",
+      "client_id": "...",
+      "auth_uri": "...",
+      "token_uri": "...",
+      "auth_provider_x509_cert_url": "...",
+      "client_x509_cert_url": "...",
+      "universe_domain": "..."
+    }
+    ```
 
 -   Use an API client to make the requests.
 
