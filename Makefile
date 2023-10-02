@@ -1,6 +1,8 @@
 .PHONY: init
 init:
 	@git submodule update --init --recursive
+	@command -v pre-commit || brew install pre-commit
+	@pre-commit install
 
 
 .PHONY: lint
