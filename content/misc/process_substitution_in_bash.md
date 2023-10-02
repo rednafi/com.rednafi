@@ -70,18 +70,18 @@ named pipe or file descriptor is substituted into the original command line.
 This is different from the plain-old `stdin` or `stdout` redirection. Here's how:
 
 * **Input**
-    * *Plain redirection*: When using plain stdin redirection (`<`), you can redirect input
+  * *Plain redirection*: When using plain stdin redirection (`<`), you can redirect input
     from a file, for example, `< input.txt`. The command reads the content of the file as
     standard input (stdin).
-    * *Process substitution*: With process substitution, you can use the output of a command
+  * *Process substitution*: With process substitution, you can use the output of a command
     as input. For example, `command < <(echo "input")`. Here, the output of the `echo`
     command is treated as a file-like object and used as the input to `command`.
 
 * **Output**
-    * *Plain redirection*: Using plain stdout redirection (`>` or `>>`), you can redirect
+  * *Plain redirection*: Using plain stdout redirection (`>` or `>>`), you can redirect
     the output (stdout) of a command to a file, for example, `command > output.txt`. The
     command's output is written to the specified file.
-    * *Process substitution*: With process substitution, you can use the output of a command
+  * *Process substitution*: With process substitution, you can use the output of a command
     as output. For example, `command >(process_output)`. Here, the output of `command` is
     treated as a file-like output, and it is passed as input to the `process_output` command
     or operation.
@@ -189,6 +189,5 @@ The file-like objects containing the sorted output from the two process substitu
 then passed as arguments to the `comm` command. Then `comm` compares the input files line by
 line and generates three columns of output: lines unique to the first input, lines unique to
 the second input, and lines common to both inputs.
-
 
 [^1]: [Process substitution](https://tldp.org/LDP/abs/html/process-sub.html) [^1]

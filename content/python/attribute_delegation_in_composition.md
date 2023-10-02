@@ -51,7 +51,7 @@ print(car.engine.sound)
 
 This will print the following:
 
-```
+```txt
 $ python src.py
 w16
 vroom
@@ -109,7 +109,7 @@ print(car.noise())  # Method 'noise' is in the 'Engine' instance
 
 This will print:
 
-```
+```txt
 $ python src.py
 w16
 vroom

@@ -20,7 +20,8 @@ I found that in my country, the optimized routes returned by the API do not chan
 dramatically for at least for a couple of hours. So the workflow will look something like
 this:
 
-* Caching the API response in Redis using the key-value data structure. Here the requested coordinate-string will be the key and the response will be the corresponding value.
+* Caching the API response in Redis using the key-value data structure. Here the requested
+coordinate-string will be the key and the response will be the corresponding value.
 * Setting a timeout on the records.
 * Serving new requests from cache if the records exist.
 * Only send a new request to MapBox API if the response is not cached and then add that
@@ -156,8 +157,10 @@ def get_routes_from_api(coordinates: str) -> dict:
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
 
-        url = f"{base_url}/{coordinates}?geometries={geometries}&access_token={access_token}"
-
+        url = (
+            f"{base_url}/{coordinates}?geometries={geometries}"
+            f"&access_token={access_token}"
+        )
         response = client.get(url)
         return response.json()
 ```
@@ -310,8 +313,10 @@ def get_routes_from_api(coordinates: str) -> dict:
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
 
-        url = f"{base_url}/{coordinates}?geometries={geometries}&access_token={access_token}"
-
+        url = (
+            f"{base_url}/{coordinates}?geometries={geometries}"
+            f"&access_token={access_token}"
+        )
         response = client.get(url)
         return response.json()
 
@@ -498,7 +503,6 @@ You can find the complete source code of the app [here][^11].
 This app has been made for demonstration purpose only. So it might not reflect the best
 practices of production ready applications. Using APIs without authentication like this
 is not recommended.
-
 
 [^1]: [Mapbox](https://www.mapbox.com/)
 [^2]: [Route optimization API](https://docs.mapbox.com/api/navigation/#optimization)

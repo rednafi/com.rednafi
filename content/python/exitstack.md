@@ -259,7 +259,6 @@ granular patching and unpatching during tests, the context manager approach give
 control than its decorator counterpart. In this case, `ExitStack` can help you avoid
 multiple nestings just like in the previous section:
 
-
 ```python
 # src.py
 from __future__ import annotations

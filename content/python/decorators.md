@@ -355,7 +355,6 @@ help(print)
 This introspection works similarly for functions that you defined yourself. I'll be using
 the previously defined `hello` function.
 
-
 ```python
 hello.__name__
 ```
@@ -1252,7 +1251,6 @@ If you run the server and hit the `http://localhost:5000/` url, it'll greet you 
 HTTP request on the terminal. Moreover, if you inspect the `logger_list`, you'll find the
 registered logger there. You'll find a lot more real life usage of decorators in the Flask
 framework.
-
 
 [^1]: [Python Cookbook - David Beazley](https://realpython.com/asins/1449340377/)
 [^2]: [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/) [^2]

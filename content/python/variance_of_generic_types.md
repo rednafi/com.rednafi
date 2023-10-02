@@ -15,8 +15,7 @@ variance while going through PEP-483.
 > A generic type is a class or interface that is parameterized over types. Variance refers
 > to how subtyping between the generic types relates to subtyping between their parameters'
 > types.
-
-
+>
 > Throughout this text, the notation `T2 <: T1` denotes `T2` is a subtype of `T1`. A subtype
 > always lives in the pointy end.
 
@@ -211,7 +210,6 @@ covariant or contravariant as well. However:
 > Remember that variance is a property of the generic types; not their parameter types.
 
 Here's how you can mark types as covariant, contravariant, or invariant:
-
 
 ```python
 from __future__ import annotations

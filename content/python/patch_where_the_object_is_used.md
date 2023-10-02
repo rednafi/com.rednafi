@@ -127,6 +127,5 @@ def test_process(mock_get_data):
 
 This time, when you run the tests, pytest doesn't complain.
 
-
 [^1]: [Why your mock doesn’t work]( https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
 [^2]: [pytest](https://docs.pytest.org/en/latest/)

@@ -49,7 +49,7 @@ print(type(a))
 print(type(int))
 ```
 
-```
+```txt
 <class 'int'>
 <class 'type'>
 ```
@@ -69,7 +69,7 @@ print(type(a))
 print(type(Foo))
 ```
 
-```
+```txt
 <class '__main__.Foo'>
 <class 'type'>
 ```
@@ -88,7 +88,7 @@ Let's apply `type` on `type`:
 print(type(type))
 ```
 
-```
+```txt
 <class 'type'>
 ```
 
@@ -110,7 +110,7 @@ print(isinstance(Foo, type))
 print(isinstance(type, type))
 ```
 
-```
+```txt
 <class 'type'>
 <class 'type'>
 <class 'type'>
@@ -158,7 +158,7 @@ class A(metaclass=PrintMeta):
     pass
 ```
 
-```
+```txt
 Name of this class is A
 ```
 
@@ -899,7 +899,7 @@ print(calc.mul(3, 4))
 print(calc.div(4, 5))
 ```
 
-```
+```txt
 3
 -1
 12
@@ -1065,7 +1065,6 @@ done so.
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on them
 is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 
-
 [^1]: [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer))
 [^2]: [decorators](/python/decorators)
 [^3]: [dataclasses](/python/dataclasses)
@@ -1075,6 +1074,5 @@ is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 [^7]: [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php) [^7]
 [^8]: [When to use metaclasses in Python](https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/) [^8]
 [^9]: [A primer on Python metaclasses]( https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/) [^9]
-
 
 [image_1]: https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg

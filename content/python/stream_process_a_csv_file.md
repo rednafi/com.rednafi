@@ -216,6 +216,5 @@ wait for 2 seconds after printing every row. By increasing the number of process
 speed up the consumption rate. Also, if the consumer tasks are lightweight, you can open
 multiple threads to consume them.
 
-
 [^1]: [HTTPx](https://www.python-httpx.org/)
 [^2]: [Streaming responses](https://www.python-httpx.org/quickstart/#streaming-responses)

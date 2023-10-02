@@ -103,7 +103,6 @@ Each message must end with double newline characters `("\n\n")`. Yep, this is pa
 protocol. The server can send multiple messages in a single HTTP response, and each message
 will be treated as a separate event by the client.
 
-
 ## A simple example
 
 In this section, I'll prop up a simple HTTP streaming server with starlette[^5] and collect
@@ -562,9 +561,11 @@ the server has triggered a background job. Once the job finishes after 5 seconds
 shows a message:
 
 <video
-    src="https://user-images.githubusercontent.com/30027932/229604497-0a0b058f-32dd-4219-a68f-9cd35b250334.mov"
-    controls="controls"
-    style="max-width: 730px;">
+  src="https://user-images.githubusercontent.com/
+30027932/229604497-0a0b058f-32dd-4219-a68f-9cd35b250334.mov"
+  controls="controls"
+  style="max-width: 730px"
+  alt="server sent events demo">
 </video>
 
 Notice, how the server pushes the result of the task automatically once it finishes.
@@ -581,7 +582,6 @@ some cases, a large number of SSE connections can overload the server, leading t
 performance issues. However, this can be mitigated by taking advantage of connection
 multiplexing in HTTP/2.
 
-
 [^1]: [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
 [^2]: [channels](https://channels.readthedocs.io/en/stable/)
 [^3]: [SSE](https://en.wikipedia.org/wiki/Server-sent_events)
@@ -589,4 +589,3 @@ multiplexing in HTTP/2.
 [^5]: [starlette](https://www.starlette.io/)
 [^6]: [celery](https://docs.celeryq.dev/en/stable/getting-started/introduction.html)
 [^7]: [Using server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) [^7]
-[^8]: [SSE vs WebSockets vs Long Polling. Martin Chaov. JS Fest 2018](https://www.youtube.com/watch?v=n9mRjkQg3VE&t=2834s)

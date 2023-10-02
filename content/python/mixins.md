@@ -114,6 +114,7 @@ print(c.div(5, 6))
 20
 0.8333333333333334
 ```
+
 Now, you might be wondering why you even need all of these boilerplate code and inheritance
 when you can directly define the concrete `Calc` class and call it a day.
 
@@ -180,7 +181,8 @@ INFO:root:Operation: Division, Arguments: (5, 6)
 0.8333333333333334
 ```
 
-In the above class, I've defined another class called `CalcLog` that basically extends the functionalities of the previously defined `Calc` class. Here, I've inherited from the
+In the above class, I've defined another class called `CalcLog` that basically extends the
+functionalities of the previously defined `Calc` class. Here, I've inherited from the
 informal interface `ICalc` and implemented all the methods with additional info logging
 capability.
 
@@ -1578,6 +1580,5 @@ object.
 [^7]: [Implementing an interface in Python - Real Python](https://realpython.com/python-interface/) [^7]
 [^8]: [What is a mixin, and why are they useful? - Stackoverflow](https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful) [^8]
 [^9]: [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556) [^9]
-
 
 [image_1]: https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png

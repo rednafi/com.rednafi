@@ -1,4 +1,4 @@
-name: Prettify code
+name: Lint check
 
 on: push
 
@@ -11,19 +11,13 @@ jobs:
         # Make sure the actual branch is checked out when running on pull requests
         ref: ${{ github.head_ref }}
 
-    - name: Prettify code
+    - name: Run prettier on JS and CSS files
       uses: creyD/prettier_action@v4.3
       with:
-          prettier_options: --write **/*.{js,css}
+          prettier_options: --check **/*.{js,css}
 
-    - name: Commit files
-      run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -am "Lint" || true
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - name: markdownlint-cli
+      uses: nosborn/github-action-markdown-cli@v3.3.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+        files: */**/*.md
+        config_file: .markdownlint.jsonc

@@ -71,7 +71,7 @@ django-extensions==3.2.1
 
 The application dependencies are defined in the `requirements.txt` file:
 
-```
+```txt
 django==4.1.5
 ```
 
@@ -234,7 +234,6 @@ created and they appear in the view:
 
 ![display created objects in jupyter notebook][image_3]
 
-
 [^1]: [ipykernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
 [^2]: [jupyter](https://jupyter.org/)
 [^3]: [django-extensions](https://django-extensions.readthedocs.io/en/latest/)
@@ -242,7 +241,6 @@ created and they appear in the view:
 [^5]: [Docker](https://www.docker.com/)
 [^6]: [docker-compose](https://docs.docker.com/compose/)
 [^7]: [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container) [^7]
-
 
 [image_1]: https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
 [image_2]: https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png

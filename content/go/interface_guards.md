@@ -82,7 +82,6 @@ Neat, but don't abuse this. Effective Go warns[^6]:
 > declarations are only used when there are no static conversions already present in the
 > code, which is a rare event.*
 
-
 [^1]: [Interface checks - Effective Go](https://go.dev/doc/effective_go#interfaces)
 [^2]: [nils in Go](https://go101.org/article/nil.html)
 [^3]: [Check interface compliance - Uber style guide](https://github.com/uber-go/guide/blob/master/style.md#verify-interface-compliance)

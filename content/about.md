@@ -20,14 +20,12 @@ databases, and API design. In his spare time, he is an open-source contributor, 
 content consumer, and serves as a vociferous pontificator of software systems on his
 website, [rednafi.com].
 
-
 ## Gateways
 
 * [rss]
 * [github]
 * [twitter]
 * [mastodon]
-
 
 [rednafi.com]: /
 [writer]: /archives/

@@ -36,6 +36,7 @@ to make requests to the API. From the docs:
     provides API client libraries to get OAuth tokens for a number of languages.*
 
     The private key file will look like this:
+
     ```json
     {
       "type": "service_account",
@@ -192,7 +193,6 @@ The response from the API is then logged into the console.
 
 One thing to keep in mind is that by default, the daily request quota per project is 200.
 But you can request more quota[^7] if you need it.
-
 
 [^1]: [rednafi.github.io](https://rednafi.github.io)
 [^2]: [rednafi.com](/)

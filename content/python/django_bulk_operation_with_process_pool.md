@@ -110,9 +110,11 @@ snippet will also show a progress bar as the processes start chewing through the
 
 You can also try experimenting with `ThreadPoolExecutor`, `executor.map`, and `chunksize`. I
 didn't choose `executor.map` because it's tricky to show the progress bar with `map`. Also,
-I encountered some `psycopg2` errors in a PostgreSQL database whenever I switched to the `ThreadPoolExecutor`. Another gotcha is that `psycopg` can complain about closed cursors and
+I encountered some `psycopg2` errors in a PostgreSQL database whenever I switched to the
+`ThreadPoolExecutor`. Another gotcha is that `psycopg` can complain about closed cursors and
 closing the database connection before running each process is a way to avoid that. Notice
-that the script above runs `django.db.connections.close_all()` before entering into the `ProcessPoolExecutor` context manager.
+that the script above runs `django.db.connections.close_all()` before entering into the
+`ProcessPoolExecutor` context manager.
 
 This appoach will run the `pre_save` and `post_save` signals which allows me to take
 advantage of these hooks without losing the ability of being able to perform concurrent row
@@ -126,7 +128,6 @@ benchmark before adding concurrency to your workflow.
 
 Also, this approach primarily targets ad-hoc scripts and tasks. I don't recommend forking
 multiple processes in your views or forms since Python processes aren't cheap.
-
 
 [^1]: [Caveats of bulk_create](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-create)
 [^2]: [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) [^2]

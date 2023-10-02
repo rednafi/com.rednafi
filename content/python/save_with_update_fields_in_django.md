@@ -39,6 +39,7 @@ In [7]: user_0.save()
 In [8]: connection.queries
 
 ```
+
 This will print:
 
 ```txt
@@ -149,6 +150,7 @@ User.save(): 1.86s
 User.save(update_fields=[...]): 1.77s
 User.save(update_fields=[...] is 1.05x faster than User.save()
 ```
+
 You can see that `User.save(updated_fields=[...])` is a tad bit faster than plain
 `User.save`.
 

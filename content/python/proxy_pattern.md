@@ -49,7 +49,7 @@ secured_door = SecuredDoor()
 secured_door.open_method()
 ```
 
-```
+```txt
 >>> Adding security measure to the method of <__main__.Door object at 0x7f9dab3b6670>
 ```
 
@@ -126,7 +126,7 @@ def division(a: Number, b: Number) -> float:
 print(division(1.9, 2))
 ```
 
-```
+```txt
 >>> 0.95
 ```
 
@@ -177,7 +177,7 @@ klass = ProxyDivision()
 print(klass.div(2, 0))
 ```
 
-```
+```txt
 >>> ERROR:root:Argument b cannot be 0
     None
 ```
@@ -272,7 +272,7 @@ if __name__ == "__main__":
     print(klass.job_b("nafi"))
 ```
 
-```
+```txt
 >>> I'm extending job_a for user red
     None
     I'm extending job_b for user nafi
@@ -283,7 +283,8 @@ It's evident from the above workflow that you'll need to define an `Interface` c
 Python provides abstract base classes as `ABC` in the `abc` module. Abstract class
 `Interface` inherits from `ABC` and defines all the methods that the concrete class will
 have to implement later. `Concrete` class inherits from the interface and implements all the
-methods defined in it. Notice how each method in the `Interface` class is decorated with the `@abstractmethod` decorator. If your knowledge on decorator is fuzzy, then checkout this[^5]
+methods defined in it. Notice how each method in the `Interface` class is decorated with the
+`@abstractmethod` decorator. If your knowledge on decorator is fuzzy, then checkout this[^5]
 post on Python decorators. The `@abstractmethod` decorator turns a normal method into an
 abstract method which means that the method is nothing but a blueprint of the required
 methods that the concrete subclass will have to implement later. You can't directly
@@ -525,7 +526,6 @@ this OOP-cursed additional layers of abstraction can make your code subjectively
 So use the pattern wisely. On the flip side, proxy pattern can come in handy when you need
 to extend the functionality of some class arbitrarily as it can work a gateway to the El
 Dorado of loose coupling.
-
 
 [^1]: [Composition](https://realpython.com/inheritance-composition-python/#composition-in-python)
 [^2]: [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)

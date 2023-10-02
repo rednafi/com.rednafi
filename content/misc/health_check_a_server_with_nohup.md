@@ -65,7 +65,6 @@ considered successful. This will break the loop and the script will be terminate
 keep retrying 20 times with a 1 second interval between each subsequent request before
 giving up. A failed health check will cause the script to terminate with `exit 1` status.
 
-
 [^1]: [EdgeDB](https://www.edgedb.com/)
 [^2]: [FastAPI](https://fastapi.tiangolo.com/)
 [^3]: [What's the difference between nohup and ampersand](https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand) [^3]

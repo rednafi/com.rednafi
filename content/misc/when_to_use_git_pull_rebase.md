@@ -56,6 +56,7 @@ hint: or --ff-only on the command line to override the configured default per
 hint: invocation.
 fatal: Need to specify how to reconcile divergent branches.
 ```
+
 This means that the history of your local `main` branch and the remote `main` branch
 have diverged and they aren't reconciliable.
 
@@ -69,7 +70,6 @@ git pull --rebase
 
 This will rebase your local `main` by adding your local commits on top of the remote
 commits.
-
 
 [^1]: [When should I use git pull --rebase](https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase) [^1]
 [^2]: [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase) [^2]

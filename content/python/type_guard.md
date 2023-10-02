@@ -163,7 +163,6 @@ this is mostly a convention and not enforced by any means.
 
 User-defined type guards can be generic functions, as shown in this example:
 
-
 ```python
 from __future__ import annotations
 
@@ -200,7 +199,6 @@ container `Sequence[T]`. The first parameter is the input type that the type che
 focus on, and the second parameter denotes the default types that are allowed inside the
 output list. Running the snippet will print `jupiter` and `mars` in the console and mypy
 will also be happy with the types.
-
 
 [^1]: [PEP 647 -- User-defined type guards](https://www.python.org/dev/peps/pep-0647/) [^1]
 [^2]: [Python type hints - how to narrow types with TypeGuard — Adam Johnson](https://adamj.eu/tech/2021/06/09/python-type-hints-how-to-narrow-types-with-typeguard/) [^2]

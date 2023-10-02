@@ -155,8 +155,6 @@ Now, we could also make the work in the `serving_actions` non-blocking by spinni
 thread or process and doing the work there. However, for the task that I was tackling,
 simply running the function in a blocking manner was enough.
 
-
 [^1]: [socketserver](https://docs.python.org/3/library/socketserver.html)
-
 
 [image_1]: https://user-images.githubusercontent.com/30027932/221395153-5044d50e-e12d-45f4-b816-5416f69d0308.png

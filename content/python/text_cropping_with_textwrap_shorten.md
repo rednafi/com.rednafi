@@ -29,7 +29,7 @@ def crop(text: str, limit: int) -> str:
 
 For example, if `text` looks like this—
 
-```
+```txt
 "A quick brown fox jumps over the lazy dog."
 ```
 
@@ -157,6 +157,5 @@ class TestCrop(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 ```
-
 
 [^1]: [textwrap.shorten](https://docs.python.org/3/library/textwrap.html#textwrap.shorten)

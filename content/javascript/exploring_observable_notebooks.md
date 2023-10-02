@@ -164,8 +164,12 @@ separate HTML tables.
 
 Here's a gif of it in action:
 
-<video width="100%" height="350" controls>
-  <source src="https://user-images.githubusercontent.com/30027932/231012563-375e07b6-9366-460b-9714-495b83a70b08.mov" type="video/mp4">
+<video width="100%" height="350" controls alt="observable notebook">
+  <source
+    src="https://user-images.githubusercontent.com/
+30027932/231012563-375e07b6-9366-460b-9714-495b83a70b08.mov"
+    type="video/mp4"
+  />
 </video>
 
 Click on the following thumbnail to take the notebook for a spin:

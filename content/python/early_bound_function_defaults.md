@@ -209,6 +209,5 @@ def foo(bar, baz => []):
 The default parameter `baz` will be late-bound and will produce similar results that we've
 seen in the last solution.
 
-
 [^1]: [PEP-671](https://www.python.org/dev/peps/pep-0671)
 [^2]: [Mutable default arguments - The hitchhiker’s guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments) [^2]

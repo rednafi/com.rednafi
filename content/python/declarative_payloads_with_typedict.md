@@ -50,10 +50,11 @@ if __name__ == "__main__":
     save_to_cache(payload)
 ```
 
-Here, the `get_payload` function constructs a payload that gets stored in a Redis DB in the `save_to_cache` function. The `get_payload` function returns a dict that denotes a contrived
+Here, the `get_payload` function constructs a payload that gets stored in a Redis DB in the
+`save_to_cache` function. The `get_payload` function returns a dict that denotes a contrived
 payload containing the data of an imaginary zoo. To execute the above snippet, you'll need
-to spin up a Redis database first. You can use Docker[^1] to do so.
-Install and configure Docker on your system and run:
+to spin up a Redis database first. You can use Docker[^1] to do so. Install and configure
+Docker on your system and run:
 
 ```sh
 docker run -d -p 6379:6379 redis:alpine

@@ -41,7 +41,7 @@ print(f"{Color.BLUE.value=}")
 
 Running the script will print:
 
-```
+```txt
 Color.RED=<Color.RED: 'Red'>
 Color.GREEN.name='GREEN'
 Color.BLUE.value='Blue'
@@ -53,7 +53,6 @@ How'd you rewrite this if you needed multiple values attached to a single enum m
 Suppose, in the above case, along with the color title, you also need to save the hex codes
 and short descriptions of the colors. One way you can achieve this is via the assignment of
 an immutable container as the value of an enum member:
-
 
 ```python
 # src.py
@@ -84,7 +83,7 @@ for c in Color:
 
 It prints:
 
-```
+```txt
 title=Red, hex_code=#ff0000, description=Ruby Red
 title=Green, hex_code=#00ff00, description=Guava Green
 title=Blue, hex_code=#0000ff, description=Baby Blue
@@ -95,7 +94,6 @@ middle of the tuple assigned to an enum member. Also, it's hard to reason throug
 you've to keep the semantic meanings of the index positions in your working memory. A better
 thing to do is to rewrite the enum in a way that'll allow you to access different elements
 of the member values by their attribute names. Let's do it:
-
 
 ```python
 from __future__ import annotations
@@ -158,7 +156,7 @@ for c in Color:
 
 This will print:
 
-```
+```txt
 Color.RED.value='Red'
 Color.BLUE.hex_code='#0000ff'
 Color.GREEN.description='Guava Green'

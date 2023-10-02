@@ -173,7 +173,6 @@ def call_os_execvp() -> NoReturn:
     os.execvp("echo", ("echo", "hi"))
 ```
 
-
 [^1]: [Using None](https://www.python.org/dev/peps/pep-0484/#using-none)
 [^2]: [Python return annotations: NoReturn vs None (intermediate) anthony explains #007](https://www.youtube.com/watch?v=-zH0qqDtd4w) [^2]
 [^3]: [Python type hints - what’s the point of NoReturn? - Adam Johnson](https://adamj.eu/tech/2021/05/20/python-type-hints-whats-the-point-of-noreturn/) [^3]

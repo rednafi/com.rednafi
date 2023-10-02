@@ -168,7 +168,7 @@ is hatch[^5]. Mostly because it follows the latest standards formalized by the a
 PEPs. From the FAQ section of the hatch docs:
 
 > *Q: What is the risk of lock-in?*
-
+>
 > *A: Not much! Other than the plugin system, everything uses Python's established
 > standards by default. Project metadata is based entirely on PEP-621[^6]/PEP-631[^8], the
 > build system is compatible with PEP-517[^9]/PEP-660[^10], versioning uses the scheme
@@ -195,7 +195,6 @@ src
 ```
 
 The content of `cli.py` looks like this:
-
 
 ```python
 import click

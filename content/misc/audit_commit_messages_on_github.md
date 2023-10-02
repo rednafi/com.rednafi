@@ -16,11 +16,11 @@ The process roughly goes like this:
 doc update, this step can be skipped.
 * Referring to the issue in every commit message as you start working on the feature:
 
-    * Appending `#refs <issue-number>` to every commit message. This will attach the commit
+  * Appending `#refs <issue-number>` to every commit message. This will attach the commit
     to the concerning issue on the GitHub UI.
-    * Appending `#closes <issue-number>` to the final commit message when the feature is
+  * Appending `#closes <issue-number>` to the final commit message when the feature is
     complete.
-    * If you need to refer to an issue after it's closed, you can still do that by appending
+  * If you need to refer to an issue after it's closed, you can still do that by appending
     `#refs <issue-number>` to the commit message.
 
     So a commit message should look similar to `Feature foo, refs #120` or
@@ -207,7 +207,6 @@ run a single job at a time.
 * A **reusable** workflow can be called from another workflow file.
 
 The docs have more information on the terminologies[^7].
-
 
 [^1]: [How I build a feature - Simon Willison](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/)
 [^2]: [Example issue that reflects the pattern explained here](https://github.com/rednafi/reflections/issues/170)

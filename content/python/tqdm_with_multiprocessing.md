@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
 This will print:
 
-```
+```txt
 0%|                                                 | 0/100 [00:00<?, ?it/s]
 14
 1%|▌                                                | 1/100 [00:01<01:39,  1.00s/it]
@@ -105,6 +105,5 @@ This will print:
 ...
 100%|██████████████████████████████████████████████████████| 100/100 [00:04<00:00]
 ```
-
 
 [^1]: [Using tqdm with multiprocessing](https://stackoverflow.com/questions/58560686/using-tqdm-with-multiprocessing) [^1]

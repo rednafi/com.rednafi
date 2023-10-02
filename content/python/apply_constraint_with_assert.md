@@ -112,7 +112,7 @@ approach has a small caveat. Python has a flag that allows you to disable `asser
 statements in a script. You can disable the assertions in the snippet above by running the
 script with the `-OO` flag:
 
-```
+```sh
 python -00 src.py
 ```
 

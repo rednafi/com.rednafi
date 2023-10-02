@@ -60,6 +60,4 @@ this manner that requires a layer of security. Protocols like DANE and DNSSEC ai
 some of these concerns but their adoption is spotty at best. Still, I found the idea of
 using DNS records as a simple database quite clever!
 
-
 [^1]: [Use DNS TXT to share information](https://news.ycombinator.com/item?id=36754366)
-[^2]: [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035)

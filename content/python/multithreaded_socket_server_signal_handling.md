@@ -249,7 +249,8 @@ Apart from a few extra methods that perform logging and signal handling, the ove
 structure of this server is similar to the vanilla multithreaded server from the previous
 section. In the `RequestHandler`, we have defined a custom
 `notify_clients_when_server_is_interrupted` method that notifies all clients whenever the
-server receives an interruption signal. This is a custom method that's not defined in the `BaseRequestHandler` class. The notify method logs the status of the interruption signal and
+server receives an interruption signal. This is a custom method that's not defined in the
+`BaseRequestHandler` class. The notify method logs the status of the interruption signal and
 then sends a `SHUTDOWN` message to the clients. Afterward, it closes the client connection.
 
 The `setup` method extends the eponymous method from the `BaseRequestHandler` class and
@@ -370,7 +371,6 @@ three other handled signals. You see that the server acknowledges the interrupti
 gives the clients enough time to disconnect, then shut itself down in a graceful manner:
 
 ![error handling in multi-threaded socket server][image_2]
-
 
 [^1]: [TIME_WAIT](https://totozhang.github.io/2016-01-31-tcp-timewait-status/)
 [^2]: [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)

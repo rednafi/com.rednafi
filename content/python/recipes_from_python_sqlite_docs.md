@@ -17,7 +17,6 @@ out while grokking them.
 To execute individual statements, you'll need to use the `cursor_obj.execute(statement)`
 primitive.
 
-
 ```python
 # src.py
 import sqlite3
@@ -161,7 +160,6 @@ define an aggregate function, we'll need to write a class with two methods—`st
 `finalize` where `step` will return the value of an intermediary progression step and
 `finalize` will return the final result. Below, you can see that the aggregate function
 returns a single value in the output.
-
 
 ```python
 # src.py
@@ -554,6 +552,7 @@ with conn:
     result = c.execute("select * from colors;").fetchall()
     print(result)
 ```
+
 ```txt
 [
     {'name': 'red', 'hex': '#ff0000'},
@@ -575,7 +574,6 @@ In the following example, I've reused the script from the previous section and j
 the custom row factory callback with `sqlite3.Row`. In the output, you'll see that the `Row`
 object not only allows us to access the value of a column by `row[column_name]` syntax but
 also let us convert the representation of the final result.
-
 
 ```python
 # src.py
@@ -631,7 +629,6 @@ blue #0000ff
 ]
 ```
 
-
 ### Via text factory
 
 If you need to apply a common transformation callback to multiple text columns, the
@@ -680,9 +677,9 @@ collation callback can be registered with the
 the name of the collation rule and the `collation_callback` determines how the string
 comparison should be done. The callback accepts two string values as arguments and returns:
 
-*  1 if the first is ordered higher than the second
+* 1 if the first is ordered higher than the second
 * -1 if the first is ordered lower than the second
-*  0 if they are ordered equal
+* 0 if they are ordered equal
 
 Then you can use the collation rules with an order by clause as follows:
 
@@ -732,12 +729,12 @@ with conn:
 During debugging, I often find it helpful to be able to trace all the SQL statements running
 under a certain connection. This becomes even more useful in a multiprocessing environment
 where each process opens a new connection to the DB and runs its own sets of SQL queries. We
-can leverage the `connection_obj.set_trace_callback` method to trace the statements. The `set_trace_callback` method accepts a callable that takes a single argument and `sqlite3`
+can leverage the `connection_obj.set_trace_callback` method to trace the statements. The
+`set_trace_callback` method accepts a callable that takes a single argument and `sqlite3`
 module passes the currently running statement to the callback every time it invokes it.
 Notice how the output prints all the statements executed by SQLite behind the scene. This
 also reveals that `cursor_obj.executemany` wraps up multiple statements in a transaction and
 runs them in an atomic manner.
-
 
 ```python
 # src.py
@@ -794,7 +791,6 @@ For demonstration purposes, I'm using an in-memory DB and backing that up in ano
 file as well. One advantage of this approach is that your data is not loaded into memory at
 once, rather it's streamed iteratively from the main DB to the backup DB.
 
-
 ```python
 # src.py
 import sqlite3
@@ -843,7 +839,6 @@ the progress. You can set the value of the `progress` parameter to `-1` if you w
 the entire source database into memory and copy everything to the destination in a single
 pass. Also, in this example, the `progress` hook just prints the progress of the copied
 pages.
-
 
 ```python
 # src.py
@@ -909,7 +904,6 @@ is helpful when the DB you're working with is small and you want to leverage the
 performance benefits that come with an in-memory DB. The workflow is almost exactly the same
 as before and the only difference is that the destination connection object points to an
 in-memory DB instead of an on-disk one.
-
 
 ```python
 # src.py
@@ -998,7 +992,7 @@ with conn_src:
     print(f"Number of rows in dst: {result[0]}")
 ```
 
-```
+```txt
 Number of rows in dst: 3
 ```
 

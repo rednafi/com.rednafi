@@ -24,4 +24,3 @@ command -v which python3.12
 ```
 
 [^1]: [Debian's which hunt](https://lwn.net/Articles/874049/)
-[^2]: [Which is not POSIX](https://hynek.me/til/which-not-posix/)

@@ -57,7 +57,6 @@ Here's an ASCII art that demonstrates the grossly simplified end-to-end workflow
                 +----------------------------------------+
 ```
 
-
 The diagram shows a load balancer receiving client requests on port 8080. It distributes the
 requests between the backends, sending each request either to a backend running on port 8081
 or 8082. The selected backend processes the incoming request and returns a response through

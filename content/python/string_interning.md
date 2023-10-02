@@ -210,7 +210,6 @@ Explicitly interned creation & access is 1.1264793204711423 times slower
 Here, implicitly and explicitly interned dict creation and key access are almost equally
 fast.
 
-
 [^1]: [String interning in PEP-661's implementation](https://github.com/taleinat/python-stdlib-sentinels/blob/main/sentinels/sentinels.py)
 [^2]: [PEP-661 – Sentinel Values](https://hugovk-peps.readthedocs.io/en/latest/pep-0661/#)
 [^3]: [PyObject](https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537)

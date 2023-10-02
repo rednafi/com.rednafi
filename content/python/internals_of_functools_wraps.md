@@ -183,7 +183,6 @@ function as a decorator.
 You can also directly use the `update_wrapper` function to get the same result should you
 choose to do so. Here's how to do it:
 
-
 ```python
 # src.py
 from functools import update_wrapper

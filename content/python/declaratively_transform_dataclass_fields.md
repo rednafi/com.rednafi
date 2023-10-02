@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
 Running the script will print the following:
 
-```
+```txt
 WebhookPayload(
     url='https//:httpbin.org/post',
     request_payload='{"hello": "world"}',

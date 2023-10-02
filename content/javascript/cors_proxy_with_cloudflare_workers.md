@@ -32,8 +32,8 @@ fetch("https://mozilla.org")
   });
 ```
 
-This snippet will attempt to make a `GET` request from https://rednafi.com to
-https://mozilla.org. However, the client's CORS policy won't allow you to make an AJAX
+This snippet will attempt to make a `GET` request from <https://rednafi.com> to
+<https://mozilla.org>. However, the client's CORS policy won't allow you to make an AJAX
 request like this and load external resources into the current site. On your console, you'll
 see an error message like this:
 
@@ -68,7 +68,7 @@ handy.
 This way, you can bypass the same-origin policy of browsers and access resources from
 different domains. I usually use free proxies like cors.sh[^4] to bypass CORS restrictions.
 You can drop this snippet to your browser's console and this time it'll allow you to load
-the contents of https://mozilla.org from https://rednafi.com:
+the contents of <https://mozilla.org> from <https://rednafi.com>:
 
 ```js
 // Notice how we're prepending CORS URL before the target URL
@@ -192,6 +192,7 @@ using create-cloudflare version 2.0.7
 │
 ╰ See you again soon!
 ```
+
 </details>
 
 Running the interactive session will create the following directory structure:
@@ -420,6 +421,5 @@ Secrets[^10] of your proxy server's repository. Here's the complete workflow[^11
 [^9]: [Cloudflare API Key](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
 [^10]: [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 [^11]: [CI](https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml)
-
 
 [image_1]: https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png

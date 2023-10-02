@@ -112,7 +112,6 @@ python -m venv .venv && source .venv/bin/activate && python
 
 Running `asdf uninstall python <python-version>` will do the trick.
 
-
 [^1]: [deadsnake](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)
 [^2]: [nvm](https://github.com/nvm-sh/nvm)
 [^3]: [Download Go]( https://go.dev/dl/)

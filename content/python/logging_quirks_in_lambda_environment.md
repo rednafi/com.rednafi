@@ -105,7 +105,6 @@ local and Lambda environment and won't suffer from any side effects like message
 duplication. It'll also make sure that the pre-configured formatting of the log message is
 kept intact.
 
-
 [^1]: [AWS Lambda](https://aws.amazon.com/lambda/)
 [^2]: [Cloudwatch](https://aws.amazon.com/cloudwatch/)
 [^3]: [Serverless framework](https://www.serverless.com/)

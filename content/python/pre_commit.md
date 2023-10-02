@@ -18,13 +18,13 @@ automatically separate them by sections and type.
     It parses specified files for global level import lines and puts them all at the top of
     the file grouped together by the type of import:
 
-    - Future
-    - Python Standard Library
-    - Third Party
-    - Current Python Project
-    - Explicitly Local (. before import, as in: `from . import x`)
-    - Custom Separate Sections (Defined by `forced_separate` list in the configuration file)
-    - Custom Sections (Defined by `sections` list in configuration file)
+  * Future
+  * Python Standard Library
+  * Third Party
+  * Current Python Project
+  * Explicitly Local (. before import, as in: `from . import x`)
+  * Custom Separate Sections (Defined by `forced_separate` list in the configuration file)
+  * Custom Sections (Defined by `sections` list in configuration file)
 
     Inside each section, the imports are sorted alphabetically. This also automatically
     removes duplicate python imports, and wraps long from imports to the specified line
@@ -188,11 +188,9 @@ This should apply the pre-commit hooks to your code base harmoniously. From now 
 each commit, the hooks will make sure that your code complies with the rules imposed by the
 linters.
 
-
 [^1]: [pre-commit hooks](https://pre-commit.com/#introduction)
 [^2]: [mccabe script](https://github.com/PyCQA/mccabe)
 [^3]: [PEP-8](https://www.python.org/dev/peps/pep-0008/)
-
 
 [isort]: https://github.com/timothycrosley/isort
 [black]: https://github.com/psf/black

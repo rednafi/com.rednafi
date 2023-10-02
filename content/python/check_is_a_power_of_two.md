@@ -34,7 +34,7 @@ integer is a power of `2` or not. Also, it's a tad bit faster.
 
 For example:
 
-```
+```txt
 >>> bin(2)
 '0b10'
 >>> bin(4)

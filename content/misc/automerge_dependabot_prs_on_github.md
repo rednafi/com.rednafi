@@ -19,9 +19,9 @@ While many of these prototypes become full-fledged projects, most end up being j
 journies. One common theme among all of these endeavors is that I always include
 instructions in the `readme.md` on how to get the project up and running—no matter how small
 it is. Also, I tend to configure a rudimentary CI pipeline that runs the linters and tests.
-GitHub Actions and Dependabot[^1] make it simple to configure a basic CI workflow. Dependabot
-keeps the dependencies fresh and makes pull requests automatically when there's a new
-version of a dependency used in a project.
+GitHub Actions and Dependabot[^1] make it simple to configure a basic CI workflow.
+Dependabot keeps the dependencies fresh and makes pull requests automatically when there's a
+new version of a dependency used in a project.
 
 Things can get quickly out of hand if you've got a large collection of repos where the
 automated CI runs periodically. Every now and then, I get a sizable volume of PRs in these

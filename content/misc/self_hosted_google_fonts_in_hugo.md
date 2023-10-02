@@ -82,7 +82,6 @@ the rest. Notice there's no `/static` prefix in the font's path. Find this blog'
 `header-override.css`[^6] if you're facing any trouble while doing it. Serve your website
 locally and ensure that the fonts are being loaded and displayed correctly. Deploy!
 
-
 [^1]: [Site source](https://github.com/rednafi/rednafi.com/)
 [^2]: [Hugo](https://gohugo.io/)
 [^3]: [GitHub Pages](https://pages.github.com/)

@@ -28,7 +28,6 @@ validator in totally innocuous ways.
 Here's a simpler example of a validation descriptor that tracks the instances it's applied
 to:
 
-
 ```python
 class Within:
     # The instances are tracked here

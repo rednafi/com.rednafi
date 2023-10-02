@@ -93,5 +93,4 @@ otherwise, Mypy will complain and in this case, the snippet will also raise a `T
 runtime. Mypy is statically catching a bug that'd otherwise appear in runtime, how
 convenient!
 
-
 [^1]: [What's the difference between a constrained TypeVar and a Union?](https://stackoverflow.com/questions/58903906/whats-the-difference-between-a-constrained-typevar-and-a-union) [^1]

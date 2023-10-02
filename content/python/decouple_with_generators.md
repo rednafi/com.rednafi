@@ -76,6 +76,7 @@ infinite_counter(1, 2)
 # 5
 # ...
 ```
+
 You can override the value of `consumer` with any callable and make the function more
 flexible. However, applying multiple consumers will still be hairy. Doing this with
 generators is cleaner. Here's how you'd transform the above script to take advantage of
@@ -130,7 +131,7 @@ word `xps`:
 tail -f /var/logs/syslog | grep xps
 ```
 
-```
+```txt
 Apr  3 04:42:21 xps slack.desktop[4613]: [04/03/22, 04:42:21:859]
 ...
 ```
@@ -232,6 +233,7 @@ the following command on the CLI prompt:
 ```sh
 127.0.0.1:6379> lpush default hello world
 ```
+
 The above script should print the following:
 
 ```txt
@@ -241,7 +243,6 @@ queue_name='default', content='world'
 
 This allows you to define multiple consumers and run them in separate threads/processes
 without the producer ever knowing about their existence at all.
-
 
 [^1]: [Generator tricks for systems programmers — David Beazley](https://www.dabeaz.com/generators/Generators.pdf)
 [^2]: [SRP](https://en.wikipedia.org/wiki/Single-responsibility_principle)

@@ -125,7 +125,6 @@ However, I wouldn't go about and mindlessly refactor any exception handling logi
 come across to follow this pattern. You might find it useful if you need to handle
 exceptions in a recoverable fashion and need additional type safety around the logic.
 
-
 [^1]: [An error-handling model influenced by the Rust programming language](https://github.com/psf/black/blob/main/src/black/rusty.py)
 [^2]: [Recoverable errors with result](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
 [^3]: [More rusty error handling in Black](https://github.com/psf/black/blob/6417c99bfdbdc057e4a10aeff9967a751f4f85e9/src/black/trans.py#L61)

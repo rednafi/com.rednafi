@@ -465,7 +465,6 @@ language like Python, you can't always escape inheritance, nor should you try to
 > *Yet behold, it need not be the customary stratagem that thou graspest at each moment
 > thine heart yearns to commune code amidst classes.*
 
-
 [^1]: [Template pattern](https://refactoring.guru/design-patterns/template-method/python/example)
 [^2]: [Composition over inheritance - Brandon Rhodes](https://python-patterns.guide/gang-of-four/composition-over-inheritance/)
 [^3]: [Subclassing, composition, Python, and you - Hynek Schlawack](https://www.youtube.com/watch?v=k8MT5liCQ7g)

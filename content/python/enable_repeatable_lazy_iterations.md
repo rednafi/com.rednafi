@@ -129,5 +129,4 @@ generator that the loop can consume.
 This is more convenient than having to repeatedly call a generator function if your API
 needs to consume a generator multiple times.
 
-
 [^1]: [Effective Python - Brett Slatkin](https://effectivepython.com/)

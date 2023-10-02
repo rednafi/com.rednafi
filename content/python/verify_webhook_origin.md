@@ -127,6 +127,7 @@ Here, I've implemented a simple POST API that:
 X-Payload-Signature-256: \
     sha-256=e863e1f6370b60981bbbcbc2da3313321e65eaaac36f9d1262af415965df9320
 ```
+
 * After hashing, the sender sends the payload to the receiver via HTTP POST request. Here,
 I'm using HTTPx to send the request to the receiver. For demonstration purposes, I'm
 assuming that the receiver endpoint is `localhost:6000/receive-webhook`.
@@ -263,7 +264,6 @@ content-type: application/json
 
 The reciver will return a HTTP 400 error code if it can't verify the payload. Once you're
 done, kill the running servers with `sudo pkill uvicorn` command.
-
 
 [^1]: [Securing your webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks)
 [^2]: [Sentry hook resources](https://docs.sentry.io/product/integrations/integration-platform/webhooks/#sentry-hook-resource)

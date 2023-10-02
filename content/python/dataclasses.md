@@ -53,7 +53,7 @@ point = CartesianPoint(1, 2, 3)
 print(point)
 ```
 
-```
+```txt
 >>> CartesianPoint(x=1, y=2, z=3)
 ```
 
@@ -154,7 +154,7 @@ point_2 = CartesianPoint(1, 2, 5)
 print(point_1 == point_2)
 ```
 
-```
+```txt
 >>> False
 ```
 
@@ -179,7 +179,7 @@ point_2 = CartesianPoint(1, 2, 5)
 print(point_1 > point_2)
 ```
 
-```
+```txt
 >>> True
 ```
 
@@ -269,7 +269,6 @@ class CartesianPoint:
 If you try to mutate the any of the attributes of the above class, it will raise
 `FrozenInstanceError`.
 
-
 ```python
 point = CartesianPoint(2, 4, 6)
 point.x = 23
@@ -316,14 +315,13 @@ point = CartesianPoint(0, 0, 0)
 print({f"{point}": "origin"})
 ```
 
-```
+```txt
 >>> {'CartesianPoint(x=0, y=0, z=0)': 'origin'}
 ```
 
 ## Converting instances to dicts
 
 The `asdict()` function converts a dataclass instance to a dict of its fields.
-
 
 ```python
 from dataclasses import dataclass, asdict
@@ -332,7 +330,7 @@ point = CartesianPoint(1, 5, 6)
 print(asdict(point))
 ```
 
-```
+```txt
 >>> {'x': 1, 'y': 5, 'z': 6}
 ```
 
@@ -468,7 +466,6 @@ True
 ```
 
 Below is the same class refactored using dataclass.
-
 
 ```python
 from dataclasses import dataclass, field

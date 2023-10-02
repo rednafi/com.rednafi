@@ -40,12 +40,10 @@ on:
   schedule:
     - cron: "0 1 * * *"
 
-
 # Cancel any running workflow if the CI gets triggered again.
 concurrency:
-      group: ${{ github.head_ref || github.run_id }}
-      cancel-in-progress: true
-
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   run-tests:
@@ -57,12 +55,12 @@ jobs:
         os: [ubuntu-latest, macos-latest]
 
         # Multiple Python versions.
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.10", "3.11", "3.12"]
         include:
-        - os: ubuntu-latest
-          path: ~/.cache/pip # Cache location on Ubuntu
-        - os: macos-latest
-          path: ~/Library/Caches/pip # Cache location on MacOS
+          - os: ubuntu-latest
+            path: ~/.cache/pip # Cache location on Ubuntu
+          - os: macos-latest
+            path: ~/Library/Caches/pip # Cache location on MacOS
 
     steps:
       # Checkout to the codebase.
@@ -77,7 +75,11 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.path }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}-${{ hashFiles('**/requirements-dev.txt') }}
+          key: >
+            ${{ runner.os }}
+            -pip-
+            ${{ hashFiles('**/requirements.txt') }}
+            -${{ hashFiles('**/requirements-dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 

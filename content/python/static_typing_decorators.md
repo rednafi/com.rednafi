@@ -63,7 +63,6 @@ issue. Later on, these were introduced in Python 3.10. The former is required to
 add type hints to any decorator while the latter is needed to type annotate decorators that
 change wrapped functions' signatures.
 
-
 > If you're not on Python 3.10+, you can import `ParamSpec` and `Concatenate` from the
 > `typing_extensions` module. The package gets automatically installed with Mypy.
 
@@ -125,7 +124,6 @@ with the type checker.
 Consider this `inject_logger` decorator, that adds a logger instance to the decorated
 function. It sort of acts how Django injects the `request` instances into the **view**
 functions. Here's the typed version of that:
-
 
 ```python
 # src.py
@@ -208,7 +206,6 @@ Parameter 1: type "Logger" cannot be assigned to type "int"
 "Logger" is incompatible with "int" (reportGeneralTypeIssues)
 ./src.py:83:12 - error: Cannot access member "warning" for type "int"
 ```
-
 
 [^1]: [PEP 612 -- Parameter specification variables](https://www.python.org/dev/peps/pep-0612/)
 [^2]: [pyright](https://github.com/microsoft/pyright)

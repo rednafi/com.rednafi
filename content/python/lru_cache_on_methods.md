@@ -183,7 +183,6 @@ references and the GC needs to do some special magic to clear the memory. In rea
 Python interpreter will clean this up for you in the background without you having to call
 the GC.
 
-
 ## The self dilemma
 
 Even after applying the solution above, a weird thing happens in the case of instance
@@ -292,7 +291,6 @@ class Foo:
     def __del__(self) -> None:
         print("Deleting instance ...")
 ```
-
 
 [^1]: [LRU cache key](https://github.com/python/cpython/blob/8882b30dab237c8b460cb8d18cecc8b8d031da25/Lib/functools.py#L448)
 [^2]: [functools.lru_cache - Python Docs](https://docs.python.org/3/library/functools.html#functools.lru_cache) [^2]

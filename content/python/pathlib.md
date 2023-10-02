@@ -119,7 +119,6 @@ os.rename("src/.config", "src/.stuffconfig")
 
 Here is the same thing done using the `pathlib` module:
 
-
 ```python
 from pathlib import Path
 
@@ -745,11 +744,9 @@ while working with paths in different operating systems.
 The ability to manipulate paths in an OO way and not having to rummage through the massive
 `os` or `shutil` module can make path manipulation a lot less painful.
 
-
 [^1]: [Replace os.path with pathlib](https://code.djangoproject.com/ticket/29983)
 [^2]: [pathlib - Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html) [^2]
 [^3]: [Python 3's pathlib Module: Taming the File System](https://realpython.com/python-pathlib/) [^3]
 [^4]: [Why you should be using pathlib](https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded) [^4]
-
 
 [image_1]: https://docs.python.org/3/_images/pathlib-inheritance.png

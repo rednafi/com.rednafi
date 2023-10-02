@@ -467,7 +467,6 @@ sequentially run a compute intensive hash algorithm multiple times. Then another
 will again run the primary function multiple times. Let's run the function sequentially
 first.
 
-
 ```python
 import hashlib
 

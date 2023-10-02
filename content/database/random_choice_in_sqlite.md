@@ -64,6 +64,7 @@ select json_extract(
     '["Columbus", "Cincinnati", "Dayton", "Toledo"]', '$[2]'
 )
 ```
+
 ```txt
 Dayton
 ```

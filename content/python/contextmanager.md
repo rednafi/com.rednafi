@@ -163,7 +163,6 @@ def custom_file_write(filename, mode, content):
 
 Using the function like this should return:
 
-
 ```python
 print(custom_file_write("file.txt", "wt", "jello"))
 ```
@@ -264,7 +263,6 @@ def ab(a, b):
 
 This can be used as:
 
-
 ```python
 with ab(a, b) as AB:
     print("Inside the composite context manager:", AB)
@@ -292,7 +290,6 @@ def ab(cms, args):
     with ExitStack() as stack:
         yield [stack.enter_context(cm(arg)) for cm, arg in zip(cms, args)]
 ```
-
 
 ```python
 with ab((a, b), ("A", "B")) as AB:
@@ -402,7 +399,6 @@ Now use this in a function where these exceptions occur.
 def div(a, b):
     return a // b
 ```
-
 
 ```python
 div("b", 0)

@@ -122,5 +122,4 @@ def make_requests(
 
 Running this script will yield the same result as before.
 
-
 [^1]: [How to use tqdm with multithreading?](https://stackoverflow.com/questions/63826035/how-to-use-tqdm-with-multithreading) [^1]

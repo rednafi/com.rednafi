@@ -242,7 +242,6 @@ Running this will print out the same output as before:
 2. [Function overloading]
 3. [Parametric polymorphism]
 
-
 [^1]: [Parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism)
 [^2]: [PEP-443](https://peps.python.org/pep-0443/)
 [^3]: [Transform a function into a single dispatch generic function](https://docs.python.org/3/library/functools.html#functools.singledispatch) [^3]

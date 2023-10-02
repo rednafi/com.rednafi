@@ -31,7 +31,7 @@ print(getsizeof(l))
 
 This returns:
 
-```
+```txt
 56
 ```
 
@@ -54,6 +54,7 @@ l.append(0)
 
 print(getsizeof(l))
 ```
+
 This returns:
 
 ```txt
@@ -83,6 +84,7 @@ This prints:
 ```txt
 88
 ```
+
 Adding a fifth element to the above list will increase the size of the list by 32 bytes (can
 be different in other implementations) again:
 
@@ -142,6 +144,7 @@ l = [None] * size
 for i in range(size):
     l[i] = i
 ```
+
 This is quite a bit faster than the previous snippet:
 
 ```python

@@ -37,7 +37,7 @@ print(Planets.choices)
 
 If you run the script, you'll see the following output:
 
-```
+```txt
 $ python3.8 src.py
 [('EARTH', 'earth'), ('MARS', 'mars')]
 ```
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
 Running this will print out the following:
 
-```
+```txt
 $ python src.py
 ..
 ----------------------------------------------------------------------

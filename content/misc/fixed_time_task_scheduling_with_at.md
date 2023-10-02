@@ -79,7 +79,6 @@ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.atrun.plist
 This will start the `atrun` daemon. Or enable it for future bootups by modifying
 `/System/Library/LaunchDaemons/com.apple.atrun.plist` to have:
 
-
 ```txt
 ...
 <key>Enabled</key>
@@ -338,7 +337,7 @@ Now, from a different console panel, you can schedule a remote task as follows:
 ```sh
 curl -X POST -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
-  --data "{\"command\": \"echo \\\"ping -c 5 rednafi.com >> foo.txt\\\" | at now + 1 minute\"}" \
+  --data "{\"command\":\"echo 'ping -c 5 rednafi.com >> foo.txt' | at now +1min\"}" \
   http://localhost:3000/run-command
 ```
 
@@ -352,11 +351,13 @@ In my case, I needed to POST a payload at a certain time in the future:
 
 ```sh
 curl -X POST -H "Authorization: Bearer some-token" \
-  -H "Content-Type: application/json" \
-  --data "{\"command\": \"echo \\\"curl -X POST https://webhook.site/d667acd3-477f-453c-9375-0dcbb51703bd -H 'Content-Type: application/json' -data '{"hello": "world"}'\\\" | at now + 1 minute\"}" \
-  http://localhost:3000/run-command
+     -H "Content-Type: application/json" \
+     --data "{\"command\":\"echo \\\"curl -X POST \
+     https://webhook.site/d667acd3-477f-453c-9375-0dcbb51703bd \
+     -H 'Content-Type: application/json' --data \
+     '{\\\"hello\\\": \\\"world\\\"}'\\\" | at now +1min\"}" \
+     http://localhost:3000/run-command
 ```
-
 
 [^1]: [Bard](https://bard.google.com/)
 [^2]: [A hacky way to schedule jobs remotely](#a-hacky-way-to-schedule-jobs-remotely)

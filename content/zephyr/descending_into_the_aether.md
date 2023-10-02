@@ -6,7 +6,8 @@ tags:
 ---
 
 <img
-    src="https://user-images.githubusercontent.com/30027932/252213261-01adc640-3bcf-46d8-8f40-dc506e0cb493.jpg"
+    src="https://user-images.githubusercontent.com/
+30027932/252213261-01adc640-3bcf-46d8-8f40-dc506e0cb493.jpg"
     alt="Macbook Air M2 15 inch"
 width="800px">
 </img>
@@ -70,7 +71,6 @@ the reigning champion in that department for years. The 16" MBP already has grea
 battery life, and the Air matches that with a smaller battery due to having less
 powerful but more efficient internals. Overall, even considering my recency bias[^2], this
 is certainly one of—if not the most—prudent tech purchases that I made this year!
-
 
 [^1]: [ENIAC](https://en.wikipedia.org/wiki/ENIAC)
 [^2]: [Recency Bias](https://en.wikipedia.org/wiki/Recency_bias)

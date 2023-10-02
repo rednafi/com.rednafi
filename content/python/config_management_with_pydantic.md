@@ -270,7 +270,8 @@ Notice how your injected `REDIS_PASS` has appeared in the printed config class i
 Although I injected `DEV_REDIS_PASS` into the environment variable, it appeared as
 `REDIS_PASS` inside the `DevConfig` instance. This is convenient because you won't need to
 change the name of the variables in your codebase when you change the environment. To
-understand why it printed an instance of the `DevConfig` class, refer to the [FactoryConfig](#factoryconfig) section.
+understand why it printed an instance of the `DevConfig` class, refer to the
+[FactoryConfig](#factoryconfig) section.
 
 #### DevConfig
 
@@ -442,7 +443,6 @@ This will print out an instance of the class `StageConfig`.
 
 The above workflow works perfectly for my usage scenario. So subjectively, I feel like it's
 an elegant solution to a very icky problem. Your mileage will definitely vary.
-
 
 [^1]: [Flask](https://github.com/pallets/flask)
 [^2]: [FastAPI](https://github.com/tiangolo/fastapi)

@@ -51,7 +51,6 @@ Postal mails are expensive and will only be sent if `address` is the only attrib
 The `notify` function takes in a `Client` object and sprouts a few conditional branches to
 send notifications while maintaining the business constraints.
 
-
 ```python
 def notify(client: Client) -> None:
     """Apply business logic and invoke the desired notification handlers."""
@@ -289,7 +288,6 @@ business logic is neatly tucked inside the `get_notify_status` routine, and the
 also means that if a new notification channel pops up, all we'll need to do is update three
 flat constructs and write the corresponding tests instead of battling with the twisted
 conditional statements that we started with. Not too shabby, eh?
-
 
 [^1]: [Claude 2](https://www.anthropic.com/index/claude-2)
 [^2]: [Bitmasks](https://stackoverflow.com/questions/10493411/what-is-bit-masking)
