@@ -1,8 +1,13 @@
 .PHONY: init
 init:
 	@git submodule update --init --recursive
-	@command -v pre-commit || brew install pre-commit
+ifndef CI
+	@command -v pre-commit > /dev/null || brew install pre-commit
 	@pre-commit install
+else ifeq ($(CI),false)
+	@command -v pre-commit > /dev/null || brew install pre-commit
+	@pre-commit install
+endif
 
 
 .PHONY: lint
