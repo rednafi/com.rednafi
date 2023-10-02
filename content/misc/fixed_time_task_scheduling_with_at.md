@@ -30,7 +30,7 @@ The command `at` in UNIX is used to schedule one-time jobs or commands to be exe
 specific time in the future. Internally, the system maintains a queue that adds a new entry
 when a job is scheduled, and once it gets executed, the job is removed from the queue.
 
-> **_NOTE:_** > _By default, the jobs will be scheduled using the targeted machine's local
+> **_NOTE:_** _By default, the jobs will be scheduled using the targeted machine's local
 > timezone._
 
 ## Prerequisites
