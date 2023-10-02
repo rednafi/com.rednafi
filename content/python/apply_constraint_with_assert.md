@@ -130,5 +130,4 @@ optimization flag.
     [Caveats of using asserts to enforce constraints](https://twitter.com/rednafi/status/1546010546297659392)
 
 [^4]:
-    [Usage of assert in the FastAPI
-    codebase](<https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications>.
+    [Usage of assert in the FastAPI codebase](https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications)
