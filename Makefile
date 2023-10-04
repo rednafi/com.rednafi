@@ -11,7 +11,7 @@ init:
 	@pre-commit install
 
 	@$(call PRINT_STEP,creating python venv)
-	@python3.11 -m venv .venv
+	@python3.12 -m venv .venv
 
 	@$(call PRINT_STEP,updating python dependencies)
 	@.venv/bin/pip install pip-tools

@@ -1,3 +1,6 @@
+public/
+static/
+layouts/
 themes/
 
 # Ignore
@@ -7,3 +10,4 @@ themes/
 .prettierignore
 .git*
 .hugo*
+Brew*
