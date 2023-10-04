@@ -27,6 +27,7 @@ ifeq ($(CI),)
 	@$(call PRINT_STEP,initialization complete)
 endif
 
+
 .PHONY: lint
 lint:
 	@pre-commit run --all-files

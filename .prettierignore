@@ -11,3 +11,5 @@ themes/
 .git*
 .hugo*
 Brew*
+pyproject*
+requirements*

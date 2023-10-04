@@ -1,0 +1,20 @@
+[project]
+requires-python = ">=3.12"
+name = "rednafi.com"
+version = "0.0.0"
+
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "mypy",
+    "pip-tools",
+    "pytest",
+    "pytest-cov",
+    "ruff"
+]
+
+# Even for an application, specifying a build backend is required.
+# Otherwise, pip-compile command will give you an obscure error.
+[tool.setuptools.packages.find]
+where = ["."]  # ["."] by default
