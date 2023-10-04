@@ -1,13 +1,27 @@
+define PRINT_STEP
+	@echo "$$(tput setaf 6)$$(tput bold):> $1 $$(tput sgr0)"
+endef
+
 .PHONY: init
 init:
-	@git submodule update --init --recursive
-ifndef CI
-	@command -v pre-commit > /dev/null || brew install pre-commit
+	@$(call PRINT_STEP,installing brew dependencies)
+	@brew bundle --force
+
+	@$(call PRINT_STEP,installing pre-commit hooks)
 	@pre-commit install
-else ifeq ($(CI),false)
-	@command -v pre-commit > /dev/null || brew install pre-commit
-	@pre-commit install
-endif
+
+	@$(call PRINT_STEP,creating python venv)
+	@python3.11 -m venv .venv
+
+	@$(call PRINT_STEP,updating python dependencies)
+	@.venv/bin/pip install pip-tools
+	@.venv/bin/pip-compile \
+		--config pyproject.toml --extra dev --output-file requirements-dev.txt
+
+	@$(call PRINT_STEP,installing python dependencies)
+	@.venv/bin/pip install -r requirements-dev.txt
+
+	@$(call PRINT_STEP,initialization complete)
 
 
 .PHONY: lint
