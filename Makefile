@@ -6,7 +6,7 @@ endef
 init:
 	@git submodule update --init --recursive
 
-ifndef CI
+ifeq ($(CI),)
 	@$(call PRINT_STEP,installing brew dependencies)
 	@brew bundle --force
 
