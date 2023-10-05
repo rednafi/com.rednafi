@@ -270,7 +270,7 @@
   "system": {
     "macos": {
       "sonoma": {
-        "HOMEBREW_VERSION": "4.1.14-13-gd0eef12",
+        "HOMEBREW_VERSION": "4.1.14-43-gfac3e99",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
         "CLT": "14.3.1.0.1.1683849156",
