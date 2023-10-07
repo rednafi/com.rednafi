@@ -55,13 +55,13 @@ it suffers from a few issues:
 -   Links scattered throughout your documents can make updates cumbersome.
 -   Reusing a link elsewhere will require multiple copy-pastes.
 -   Placing several [links][reference link] [side][reference link] by [side][reference link]
-    can feel awkward, and URL styles like the blue coloring or underlining might make things
-    distracting.
+    can feel awkward, and URL styling like the blue highlighting or underlining makes things
+    noisy.
 -   To add a reference section, you'll have to create a separate segment at the bottom of
     your page and duplicate the URLs.
 -   On mobile devices, accidentally tapping a URL can promptly redirect readers away from
     your content, potentially against their intention.
--   Enforcing a line width limit can be challenging due to lengthy URLs.
+-   Enforcing a line width limit can be challenging due to lengthy inlined URLs.
 
 The reference link approach solves some of these issues since you won't have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows
@@ -70,9 +70,9 @@ line width at 92 characters and the formatter works better when it doesn't have 
 around multiple long inline URLs.
 
 This is certainly better than using inline links, but it still suffers from all the other
-issues that plague the former approach. You'll still have to repeat the URLs if you intend
-to create a reference section, and juxtaposing multiple links remains awkward. Also,
-accidental misclicks that take you to a different page are still an issue.
+issues that plague the former approach. Creating a reference section still requires some
+repetition, and juxtaposing multiple links remains awkward. Also, accidental misclicks that
+take you to a different page remains an issue.
 
 The footnote-style reference link comes to the rescue. It keeps the document clean by moving
 all URLs to the bottom in a dedicated reference section. The small superscript numbers don't
@@ -87,7 +87,7 @@ Moreover, adding multiple links to the same target is straightforward since you 
 the footnote numbers like this[^3][^4]. Plus, you don't have to manually create a separate
 reference section; it automatically gets created for you as you start adding footnotes. See
 the reference section in this post and click on the backref links to go back to the origin.
-Most parsers like Github flavored markdown[^5] now support footnotes out of the box.
+Most parsers like GitHub flavored markdown[^5] now support footnotes out of the box.
 
 Recently, I've spent an entire evening converting almost all of the inline links on this
 site into footnote style references in a semi-automated manner. I still use reference links
