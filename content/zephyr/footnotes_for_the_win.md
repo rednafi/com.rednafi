@@ -49,25 +49,25 @@ There are a few ways you can add URLs to your markdown documents:
     to the corresponding backref link that lives with other backrefs at the tail of the
     page.
 
-The inline link approach is the most prevalent one and is also the easiest one to write. But
-it suffers from a few issues:
+The inline link approach is the most prevalent one as it's also the easiest one to write.
+But it suffers from a few issues:
 
 -   Links scattered throughout your documents can make updates cumbersome.
--   Reusing a link elsewhere will require multiple copy-pastes.
+-   Reusing a link elsewhere requires multiple copy-pastes.
 -   Placing several [links][reference link] [side][reference link] by [side][reference link]
-    can feel awkward, and URL styling like the blue highlighting or underlining makes things
+    can feel awkward, and URL stylings like blue highlighting or underlining make things
     noisy.
--   To add a reference section, you'll have to create a separate segment at the bottom of
-    your page and duplicate the URLs.
--   On mobile devices, accidentally tapping a URL can promptly redirect readers away from
-    your content, potentially against their intention.
+-   To add a reference section, you'll have to create a separate segment, usually at the
+    bottom of your page, and duplicate the URLs.
+-   On mobile devices, accidentally fat-fingering a URL can promptly redirect readers away
+    from your content, potentially against their intention.
 -   Enforcing a line width limit can be challenging due to lengthy inlined URLs.
 
-The reference link approach solves some of these issues since you won't have to scatter the
+The reference link approach solves some of these issues since you won’t have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows
-you to use a markdown formatter to enforce maximum line width. I use prettier[^2] to cap the
-line width at 92 characters and the formatter works better when it doesn't have to shimmy
-around multiple long inline URLs.
+you to use a markdown formatter to enforce a maximum line width. I use prettier[^2] to cap
+the line width at 92 characters and the formatter works better when it doesn't have to
+shimmy around multiple long inline URLs.
 
 This is certainly better than using inline links, but it still suffers from all the other
 issues that plague the former approach. Creating a reference section still requires some
@@ -83,7 +83,7 @@ concomitant URL or jump back to the origin by tapping on the backref (↩︎) sy
 reference section also allows you to provide more context on each link, like a title or
 description.
 
-Moreover, adding multiple links to the same target is straightforward since you simply add
+Moreover, adding multiple links to the same origin is straightforward since you simply add
 the footnote numbers like this[^3][^4]. Plus, you don't have to manually create a separate
 reference section; it automatically gets created for you as you start adding footnotes. See
 the reference section in this post and click on the backref links to go back to the origin.
