@@ -21,7 +21,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar—a wandering autodidact with a flair for ones and zeros. I
+    Hi, I'm Redowan Delowar—a wandering sciolist with a flair for ones and zeros. I
     learn, write, and tweet about Python, Go, SQL, and the broader landscape of software in
     general.
   keywords:
@@ -98,7 +98,7 @@ params:
       </a>
     Content: >
       <div class="bio-text">
-        A wandering autodidact with a flair for ones and zeros. I
+        A wandering sciolist with a flair for ones and zeros. I
         <a class="secondary-urls" href="/tags">learn</a>,
         <a class="secondary-urls" href="/archives">write</a>, and
         <a class="secondary-urls" href="https://twitter.com/rednafi">tweet</a> about
