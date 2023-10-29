@@ -36,7 +36,7 @@ My tab completion looks like this:
 
 ```txt
 rednafi@air:~/canvas/rednafi.com
-$ ,docker-prune-containers
+$ ,
 ,brclr                    ,clear-cache              ,docker-prune-containers  ,redis
 ,brpre                    ,docker-nuke              ,docker-prune-images      ,www
 ```
