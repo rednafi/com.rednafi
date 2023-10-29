@@ -14,11 +14,14 @@ system commands. Plus, often I even forget the initials of a script's name and s
 terminal while the blinking cursor facepalms at my stupidity.
 
 I was watching this amazing talk[^3] by Brandon Rhodes that proposes quite an elegant
-solution to this problem. It goes like this: all your scripts should start with a character
-as a prefix that doesn't have a special meaning in the shell environment. Another
-requirement is that no other system command should start with your chosen character. That
-way, when you type the prefix character and hit tab, only your custom scripts should appear
-and nothing else. This works with your aliases too!
+solution to this problem. It goes like this:
+
+> _All your scripts should start with a character as a prefix that doesn't have any special
+> meaning in the shell environment. Another requirement is that no other system command
+> should start with your chosen character._
+
+That way, when you type the prefix character and hit tab, only your custom scripts should
+appear and nothing else. This works with your aliases too!
 
 The dilemma here is picking the right character that meets both of the requirements.
 Luckily, Brandon did the research for us. Turns out, the shell environment uses pretty much
