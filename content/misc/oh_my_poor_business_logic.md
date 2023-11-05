@@ -34,9 +34,9 @@ counts, or the number of feature tickets as performance measurements. This often
 the creation of needless tickets and kickstarts the vicious PR cycle where developers
 endlessly debate the best practices, micro-optimizations, gratuitous niceties, and
 everything else other than the core business logic. If working on the business logic isn't
-rewarded, why should anyone spend their time on that? It's probably better to introduce a
-dead letter queue to the callpath of an RPC instead of just writing a retry decorator and
-monitoring if that works or not.
+rewarded, why should anyone focus on making that better? Obviously it's more profitable to
+introduce a dead letter queue to the callpath of an RPC instead of just writing a retry
+decorator and monitoring if that works or not.
 
 Now that microservices are no longer in vogue, and numerous companies have been burnt by
 adopting the Netflix way of working, despite not having that level of revenue or manpower,
