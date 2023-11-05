@@ -219,6 +219,9 @@ fast.
 [^3]:
     [PyObject](https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537)
 
-[^4]: [String interning in Python](https://arpitbhayani.me/blogs/string-interning) [^4]
+[^4]:
+    [String interning in Python](https://arpitbhayani.me/blogs/string-interning-python/)
+    [^4]
+
 [^5]:
     [Python docs: `sys.intern`](https://docs.python.org/3/library/sys.html#sys.intern) [^5]
