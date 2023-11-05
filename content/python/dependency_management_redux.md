@@ -290,7 +290,7 @@ pip install ".[dev]"
 Hatch also provides a `hatch publish` command to upload the package to PyPI. For a complete
 reference, check out how I shipped another CLI[^14] following this workflow.
 
-[^1]: [distutils](https://docs.python.org/3/library/distutils.html)
+[^1]: [distutils](https://docs.python.org/3.11/distutils/)
 [^2]: [conda](https://docs.conda.io/en/latest/)
 [^3]: [pip](https://pip.pypa.io/en/stable/)
 [^4]: [pip-tools](https://pip-tools.readthedocs.io/en/latest/)
