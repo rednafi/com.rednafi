@@ -6,7 +6,7 @@ tags:
     - TIL
 ---
 
-I'm one of those people who'll sit in front of a computer for hours, fiddling with
+I'm one of those people who will sit in front of a computer for hours, fiddling with
 algorithms or debugging performance issues, yet won't spend 10 minutes to improve their
 workflows. While I usually get away with this, every now and then, my inertia slithers back
 to bite me. The latest episode was me realizing how tedious it is to move config files

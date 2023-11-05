@@ -7,7 +7,7 @@ tags:
 ---
 
 Python makes it freakishly easy to load the whole content of any file into memory and
-process it afterward. This is one of the first things that's taught to people who're new to
+process it afterward. This is one of the first things that's taught to people who are new to
 the language. While the following snippet might be frowned upon by many, it's definitely not
 uncommon:
 
