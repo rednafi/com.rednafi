@@ -30,7 +30,7 @@ bored people to dream of becoming architecture astronauts by introducing absurdl
 tools to solve imaginary problems.
 
 The situation exacerbates when companies start introducing useless metrics like LOCs, PR
-counts, or the number of feature tickets as to quantify developer productivity. This often
+counts, or the number of feature tickets to quantify developer productivity. This often
 leads to the creation of needless tickets and kickstarts the vicious PR cycle where
 developers endlessly debate the best practices, micro-optimizations, gratuitous niceties,
 and everything else other than the core business logic. If working on the business logic
