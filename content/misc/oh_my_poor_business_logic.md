@@ -30,19 +30,19 @@ bored people to dream of becoming architecture astronauts by introducing absurdl
 tools to solve imaginary problems.
 
 The situation exacerbates when companies start introducing useless metrics like LOCs, PR
-counts, or the number of feature tickets as performance measurements. This often leads to
-the creation of needless tickets and kickstarts the vicious PR cycle where developers
-endlessly debate the best practices, micro-optimizations, gratuitous niceties, and
-everything else other than the core business logic. If working on the business logic isn't
-rewarded, why should anyone focus on making that better? Obviously it's more profitable to
-introduce a dead letter queue to the callpath of an RPC instead of just writing a retry
-decorator and monitoring if that works or not.
+counts, or the number of feature tickets as to quantify developer productivity. This often
+leads to the creation of needless tickets and kickstarts the vicious PR cycle where
+developers endlessly debate the best practices, micro-optimizations, gratuitous niceties,
+and everything else other than the core business logic. If working on the business logic
+isn't rewarded, why should anyone focus on making that better? Obviously it's more
+profitable to introduce a dead letter queue to the callpath of an RPC instead of just
+writing a retry decorator and monitoring if that works or not.
 
 Now that microservices are no longer in vogue, and numerous companies have been burnt by
 adopting the Netflix way of working, despite not having that level of revenue or manpower,
 there's no shortage of articles[^2] on how bad it is to adopt SoA when a PostgreSQL-backed
 Django monolith would probably do the job. Also, how terrible GraphQL is when a simple
-denormalized secondary index would do the trick, or how the high churn rate of JavaScript
+denormalized secondary index would suffice, or how the high churn rate of JavaScript
 frontend frameworks has wasted time, effort, and money. However, few of them mention how
 organizational structures and policies force people to take that route.
 
