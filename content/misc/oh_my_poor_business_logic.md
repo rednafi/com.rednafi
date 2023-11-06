@@ -46,11 +46,11 @@ denormalized secondary index would suffice, or how the high churn rate of JavaSc
 frontend frameworks has wasted time, effort, and money. However, few of them mention how
 organizational structures and policies force people to take that route.
 
-There must be a middle ground where the developers can focus on the core business logic that
-yields the most value without incurring technical debt that makes development a nightmare. I
-don't have an answer for that; neither have I worked at a company that found the perfect
-balance. Plus, I'm not a technical lead, manager, or a business owner. So if you're one of
-them, go figure!
+There must be a middle ground where developers can focus on the core business logic that
+yields the most value without incurring technical debt and making the development process a
+nightmare. I don't have an answer for that, nor have I worked at a company that found the
+perfect balance. Plus, I'm not a technical lead, manager, or business owner. So if you are
+one of them, I'd love to hear how you or your organization plan to tackle this!
 
 [^1]: [Resume-driven development](https://arxiv.org/abs/2101.12703)
 [^2]: [The costs of microservices](https://robertovitillo.com/costs-of-microservices/)
