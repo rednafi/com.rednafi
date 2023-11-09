@@ -97,15 +97,8 @@ params:
       </svg>
       </a>
     Content: >
-      <div class="bio-text">
-        A wandering sciolist with a flair for ones and zeros. I
-        <a class="secondary-urls" href="/tags">learn</a>,
-        <a class="secondary-urls" href="/archives">write</a>, and
-        <a class="secondary-urls" href="https://twitter.com/rednafi">tweet</a> about
-        <a class="secondary-urls" href="/tags/python">Python</a>,
-        <a class="secondary-urls" href="/tags/go">Go</a>,
-        <a class="secondary-urls" href="/tags/database">SQL</a>, and the broader
-        <a class="secondary-urls" href="/zephyr">landscape</a> of software in general.
+      <div>
+        ...and this is the graveyard for my musings on software.
       </div>
 
   socialIcons:
