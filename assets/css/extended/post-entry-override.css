@@ -1,5 +1,5 @@
 .first-entry {
-  min-height: 210px;
+  min-height: 150px;
   text-align: left;
   margin: 0.5rem;
 }
@@ -15,14 +15,4 @@
 .entry-content {
   font-size: 15px;
   line-height: 1.5;
-}
-.bio-text {
-  margin-top: 0.4rem;
-}
-.secondary-urls {
-  margin-top: 0.4rem;
-  color: var(--secondary-urls);
-}
-.secondary-urls a {
-  color: var(--secondary-urls);
 }

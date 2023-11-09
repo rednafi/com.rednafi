@@ -35,8 +35,11 @@
 
     <!-- Add links to recent posts starts -->
     <h2>Recent posts</h2>
-    {{- range first 10 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+    {{- $current := . }}
+    {{- range first 11 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+      {{- if ne . $current }}
+        <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
     {{- end }}
     <!-- Add links to recent posts ends -->
   </div>
