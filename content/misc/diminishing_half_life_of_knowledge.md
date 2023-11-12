@@ -7,9 +7,10 @@ tags:
 
 Ever been in a situation where you landed a software engineering job with a particular tech
 stack, mastered it, switched to another company with a different stack, nailed that too, and
-then found yourself in a third company that used the original stack? Now, you feel like your
-skills in that initial stack have atrophied over the years, making it a bit of a struggle to
-catch up with the latest changes.
+then found yourself in a third company that used the original stack? Now, you suddenly sense
+that your hard-earned acumen in that initial stack has not only atrophied over the years but
+also a portion, or all of it, has become irrelevant, making it a bit of a struggle to catch
+up with the latest changes.
 
 After graduation, I switched gears from electrical to software engineering. I started out as
 a junior data scientist at an e-commerce startup. There, I juggled tasks like training
@@ -45,10 +46,10 @@ is through continuous learning and getting better at managing the onslaught of i
 I don't have a prescriptive solution for this. I wrote this text to start a discussion
 around a feeling I previously struggled with but didn't know how to label. So far, engaging
 with the OSS community on topics I find exciting, taking meticulous notes, tracking my
-learning progress, and writing about them have helped me stay relevant. However, this
-approach isn't bulletproof and is quite susceptible to lack of motivation at the tail end of
-a 40-hour workweek. If you've experienced something similar and found a solution that worked
-for you to some extent, I'd love to hear about it!
+learning progress, adopting boring technology, and writing about them have helped me stay
+relevant. However, this approach isn't bulletproof and is quite susceptible to lack of
+motivation at the tail end of a 40-hour workweek. If you've experienced something similar
+and found a solution that worked for you to some extent, I'd love to hear about it!
 
 [^1]: [Half-life of knowledge](https://en.wikipedia.org/wiki/Half-life_of_knowledge)
 [^2]: [Fritz Machlup](https://en.wikipedia.org/wiki/Fritz_Machlup)
