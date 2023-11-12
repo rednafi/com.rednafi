@@ -38,7 +38,7 @@ Turns out this manifestation of stochastic knowledge decay is a well-studied phe
 term half-life of knowledge[^1] was coined in 1962 by economist Fritz Machlup[^2] to
 represent the amount of time that has to elapse before half of the knowledge or facts in a
 particular area is superseded or shown to be untrue. It's named after the half-life of decay
-in radioactive materials. This article[^2] on the IEEE Spectrum dives deep into the concept
+in radioactive materials. This article[^3] on the IEEE Spectrum dives deep into the concept
 and reflects upon its effect on the industry. It postulates that the half-life of
 engineering knowledge is shrinking faster than ever before and the only way to tackle this
 is through continuous learning and getting better at managing the onslaught of information.
