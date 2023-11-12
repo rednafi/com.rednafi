@@ -1,6 +1,6 @@
 ---
 title: The diminishing half-life of knowledge
-date: 2023-11-11
+date: 2023-11-12
 tags:
     - Meta
 ---
