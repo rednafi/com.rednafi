@@ -17,7 +17,7 @@ resilient software systems.
 
 He focuses on system architecture, performance tuning, networking, data analysis, databases,
 and API design. In his spare time, he is an open-source contributor, a long-form content
-consumer, and serves as a clamorous pontificator of software lifecycle on his website,
+consumer, and serves as a clamorous pontificator of software ecology on his website,
 [rednafi.com].
 
 ## Gateways
