@@ -51,7 +51,7 @@ serve as an unapologetic critique of the overarching software landscape on this 
 -   [Dan Luu]
 -   [Drew DeVault's blog]
 -   [Fabien Sanglard's website]
--   [Fasterthanlime (fasterthanlime)]
+-   [Fasterthanlime (Amos Wenger)]
 -   [Harmful stuff]
 -   [Joel on software]
 -   [Julia Evans]
