@@ -136,6 +136,10 @@ params:
     minMatchCharLength: 2
     keys: ["title", "tags", "permalink", "summary", "content"]
 
+  # Custom
+  noRecentPosts: # Don't print recents posts sections in these pages
+    - /about/
+
 menu:
   main:
     - identifier: search
