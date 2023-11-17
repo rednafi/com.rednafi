@@ -91,7 +91,7 @@ serve as an unapologetic critique of the overarching software landscape on this 
 [dan luu]: https://danluu.com/
 [drew devault's blog]: https://drewdevault.com/
 [fabien sanglard's website]: https://fabiensanglard.net/
-[fasterthanlime (fasterthanlime)]: https://fasterthanli.me/
+[fasterthanlime (amos wenger)]: https://fasterthanli.me/
 [harmful stuff]: https://harmful.cat-v.org/
 [joel on software]: https://www.joelonsoftware.com/
 [julia evans]: https://jvns.ca/
