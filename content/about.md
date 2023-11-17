@@ -10,7 +10,7 @@ ShowShareButtons: false
 
 ## Self
 
-Hey there, my fellow nightcrawlers! I'm Redowan Delowar, also known as "rednafi" on most
+Hey there, fellow nightcrawlers! I'm Redowan Delowar, also known as "rednafi" on most
 platforms.
 
 Circa 2018, a glitch in the matrix zapped me to pivot from electrical engineering to data
