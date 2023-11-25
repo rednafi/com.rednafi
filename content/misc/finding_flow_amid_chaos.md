@@ -39,5 +39,5 @@ and your coworkers.
 
 I'm yet to discover the unicorn's horn that'll allow me to deftly toggle between meetings
 and in-zone work without having to dodge a few anxiety attacks during work hours. Whether
-you're a manager or an individual contributor, if you have a story of how your current or
-previous team tackled this issue or have a better idea, I'd love to hear about it!
+you're a manager or an IC, if you have a story of how your current or previous team tackled
+this issue or have a better idea, I'd love to hear about it!
