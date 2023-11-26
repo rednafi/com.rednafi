@@ -15,8 +15,7 @@ platforms.
 
 Circa 2018, a glitch in the matrix zapped me to pivot from electrical engineering to data
 science, eventually finding my footing in backend software development. I'm a [tinkerer],
-[writer], and a wanderer in the realm of designing and developing resilient software
-systems.
+[writer], and wanderer in the realm of designing and developing resilient software systems.
 
 I enjoy working on system architecture, networking, data analysis, databases, and API
 design. In my spare time, I'm an open-source contributor, a long-form content consumer, and
