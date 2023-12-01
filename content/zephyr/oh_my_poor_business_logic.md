@@ -3,6 +3,8 @@ title: Oh my poor business logic
 date: 2023-11-05
 tags:
     - Meta
+aliases:
+    - /misc/oh_my_poor_business_logic
 ---
 
 Adopting existing tools that work, applying them to the business problems at hand, and

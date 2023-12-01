@@ -72,8 +72,8 @@ serve as an unapologetic critique of the overarching software landscape on this 
 
 <!-- Greatest hits -->
 
-[oh my poor business logic]: /misc/oh_my_poor_business_logic/
-[the diminishing half-life of knowledge]: /misc/diminishing_half_life_of_knowledge/
+[oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
+[the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
 [an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
 [writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
 [escaping the template pattern hellscape in Python]: /python/escape_template_pattern/
