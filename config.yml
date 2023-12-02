@@ -21,7 +21,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar—a wandering sciolist with a flair for ones and zeros. I
+    Hi, I'm Redowan Delowar—a wandering dilettante with a flair for ones and zeros. I
     learn, write, and tweet about Python, Go, SQL, and the broader landscape of software in
     general.
   keywords:
@@ -36,6 +36,7 @@ params:
       Golang,
       Shell,
       Database,
+      Software Engineering,
     ]
   author: "Redowan Delowar"
   images: ["/images/home/cover.webp"]
@@ -200,3 +201,11 @@ outputs:
     - HTML
     - RSS
     - JSON # is necessary
+
+Copyright: |
+  <div style='text-align: center; display: flex; align-items: center; justify-content: center;'>
+    <a href='https://webring.xxiivv.com' target='_blank'>webring</a>&nbsp;
+    <img src='https://raw.githubusercontent.com/XXIIVV/webring/main/icon.black.svg'
+    alt='webring' style='width: 18px; height: 18px; vertical-align: middle;'>&nbsp;
+    <a href='/' target='_blank'>rednafi</a>
+  </div>
