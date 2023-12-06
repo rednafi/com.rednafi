@@ -66,11 +66,9 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      - name: Fix permissions
+      - name: Copy static files (bandaid, remove later)
         run: |
-          chmod -c -R +rX "./public" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
+          cp -r static/* public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
