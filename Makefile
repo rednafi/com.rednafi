@@ -5,6 +5,7 @@ endef
 .PHONY: init
 init:
 	@git submodule update --init --recursive
+	@npm install
 
 ifeq ($(CI),)
 	@$(call PRINT_STEP,installing brew dependencies)
@@ -37,6 +38,7 @@ lint:
 update:
 	@git submodule update --remote --merge
 	@pre-commit autoupdate -j 4
+	@npm update
 
 
 .PHONY: devserver

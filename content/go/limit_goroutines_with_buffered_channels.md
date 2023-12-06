@@ -42,6 +42,9 @@ func main() {
 }
 ```
 
+<codapi-snippet sandbox="go" editor="basic">
+</codapi-snippet>
+
 We're sending the webhook request in the `worker` function. It takes an integer ID for
 bookkeeping and a pointer to a `WaitGroup` instance for synchronization. Once it finishes
 making the request, it signals the `WaitGroup` with `wg.Done()`. In the `main` function, we
@@ -73,7 +76,7 @@ func worker(id int, sem chan struct{}, wg *sync.WaitGroup) {
 
     // Do work
     fmt.Printf("Worker %d: Semaphore acquired, running\n", id)
-    time.Sleep(1 * time.Second)
+    time.Sleep(10 * time.Millisecond)
 
     // Release semaphore
     <-sem
@@ -83,7 +86,7 @@ func worker(id int, sem chan struct{}, wg *sync.WaitGroup) {
 func main() {
     nWorkers := 10      // Total number of goroutines
     maxConcurrency := 2 // Allowed to run at the same time
-    batchInterval := 3 * time.Second // Delay between each batch of 2 goros
+    batchInterval := 50 * time.Millisecond // Delay between each batch of 2 goros
 
     // Create a buffered channel with a capacity of maxConcurrency
     sem := make(chan struct{}, maxConcurrency)
@@ -106,6 +109,9 @@ func main() {
     fmt.Println("All workers have completed")
 }
 ```
+
+<codapi-snippet sandbox="go" editor="basic">
+</codapi-snippet>
 
 The clever bit here is the buffered channel named `sem` which acts as a semaphore to limit
 concurrency. We set its capacity to the max number of goroutines we want running at once, in
@@ -169,3 +175,6 @@ briefly.
 [^4]:
     [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty)
     [^4]
+
+<link rel="stylesheet" href="/modules/codapi/snippet.css"/>
+<script defer src="/modules/codapi/snippet.js"></script>
