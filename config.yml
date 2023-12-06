@@ -202,6 +202,11 @@ outputs:
     - RSS
     - JSON # is necessary
 
+module:
+  mounts:
+    - source: node_modules/@antonz/codapi/dist
+      target: static/modules/codapi
+
 Copyright: |
   <div style='text-align: center; display: flex; align-items: center; justify-content: center;'>
     <a href='https://webring.xxiivv.com/#rednafi' target='_blank' rel='noopener'>webring</a>&nbsp;
