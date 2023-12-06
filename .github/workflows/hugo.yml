@@ -41,9 +41,6 @@ jobs:
           _linux-amd64.deb\
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb"
 
-      - name: Install Dart Sass Embedded
-        run: sudo snap install dart-sass-embedded
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -69,6 +66,12 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "./public" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
@@ -84,4 +87,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3
