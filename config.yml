@@ -206,6 +206,8 @@ module:
   mounts:
     - source: node_modules/@antonz/codapi/dist
       target: static/modules/codapi
+    - source: static
+      target: static
 
 Copyright: |
   <div style='text-align: center; display: flex; align-items: center; justify-content: center;'>

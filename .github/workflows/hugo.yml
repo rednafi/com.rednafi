@@ -66,10 +66,6 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      - name: Copy static files (bandaid, remove later)
-        run: |
-          cp -r static/* public
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
