@@ -209,10 +209,3 @@ module:
     - source: static
       target: static
 
-Copyright: |
-  <div style='text-align: center; display: flex; align-items: center; justify-content: center;'>
-    <a href='https://webring.xxiivv.com/#rednafi' target='_blank' rel='noopener'>webring</a>&nbsp;
-    <img src='https://webring.xxiivv.com/icon.black.svg'
-    alt='XXIIVV webring' style='width: 18px; height: 18px; vertical-align: middle;'>&nbsp;
-    <a href='/'>rednafi</a>
-  </div>
