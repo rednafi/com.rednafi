@@ -9,9 +9,24 @@ Data classes are containers for your data—not behavior. The delineation is rig
 the name. Yet, I see state-mutating methods getting crammed into data classes and polluting
 their semantics all the time. While this text will primarily talk about data classes in
 Python, the message remains valid for any language that supports data classes and allows you
-to add state-mutating methods to them, e.g., Kotlin, Swift, etc.
+to add state-mutating methods to them, e.g., Kotlin, Swift, etc. By state-mutating method, I
+mean a method that chages the attribute value during runtime. For instance:
 
-Every time I spot a data class decked out with methods, I feel like I'm looking at the
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+
+    def make_older(by=1) -> None:
+        self.age += by
+```
+
+In this case, calling the `make_older` method will change the value of `age` in-place.
+
+Every time I spot a data class decked out with such methods, I feel like I'm looking at the
 penguin with an elephant head[^1] from the Family Guy. Whenever I traverse down to see how
 the instances of the class are being used, more often than not, I find them being treated
 just like regular mutable class instances with fancy `repr`s. But if you only need a nice
