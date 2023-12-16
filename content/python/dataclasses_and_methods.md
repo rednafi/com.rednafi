@@ -51,13 +51,16 @@ leverage sum types[^5] to emulate ADTs[^6] like this (using PEP-695[^7] generic 
 ```python
 from dataclasses import dataclass
 
+
 @dataclass(slots=True)
 class Barcode[T: str | int]:
     code: T
 
+
 @dataclass(slots=True)
-class Sku[T: str | int]: # Stock Keeping Unit
+class Sku[T: str | int]:  # Stock Keeping Unit
     code: T
+
 
 type ProductId = Barcode | Sku | None
 ```
