@@ -10,10 +10,11 @@ the name. Yet, I see state-mutating methods getting crammed into data classes an
 their semantics all the time. While this text will primarily talk about data classes in
 Python, the message remains valid for any language that supports data classes and allows you
 to add state-mutating methods to them, e.g., Kotlin, Swift, etc. By state-mutating method, I
-mean a method that chages the attribute value during runtime. For instance:
+mean a method that chages attribute values during runtime. For instance:
 
 ```python
 from dataclasses import dataclass
+
 
 @dataclass
 class Person:
