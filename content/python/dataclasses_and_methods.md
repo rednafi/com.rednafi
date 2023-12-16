@@ -84,8 +84,8 @@ type ProductId = Barcode | Sku | None
 
 But it only works if your data containers don't exhibit any behavior. Here the data classes
 are just labels for values in a set that can contain the instances of the classes. Adding
-state-mutating methods to either Barcode or Sku would break the semantics of how these types
-can be composed.
+state-mutating methods to either `Barcode` or `Sku` would break the semantics of how these
+types can be composed.
 
 I still think it's okay if you need to validate the data class attributes in a
 `__post_init__` method or override the `__eq__` or `__hash__` for some reason. Read-only
