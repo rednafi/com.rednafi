@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-Data classes are containers for your data—not behavior. The delineation is right in the
-name. Yet, I see state-mutating methods getting crammed into data classes and polluting
+Data classes are containers for your data—not behavior. The delineation is right there in
+the name. Yet, I see state-mutating methods getting crammed into data classes and polluting
 their semantics all the time. While this text will primarily talk about data classes in
 Python, the message remains valid for any language that supports data classes and allows you
 to add state-mutating methods to them, e.g., Kotlin, Swift, etc.
@@ -43,10 +43,11 @@ it a day. But in either case, if I need to add a method that mutates the attribu
 class instance, I reconsider whether a data class is the right abstraction for the problem
 at hand. The necessity to add a state-mutating method is an indicator that you need a
 regular OO class. You'll signal incorrect intent to the reader if you keep using data
-classes for this.
+classes in this context.
 
-Dataclasses are also good for domain modeling with types. With the help of mypy, you can
-leverage sum types[^5] to emulate ADTs[^6] like this (using PEP-695[^7] generic syntax):
+Dataclasses are also great candidates for domain modeling with types. With the help of mypy,
+you can leverage sum types[^5] to emulate ADTs[^6] as follows (using PEP-695[^7] generic
+syntax):
 
 ```python
 from dataclasses import dataclass
@@ -65,19 +66,19 @@ class Sku[T: str | int]:  # Stock Keeping Unit
 type ProductId = Barcode | Sku | None
 ```
 
-But this only works if your data containers don't have any behavior. Here the data classes
+But it only works if your data containers don't exhibit any behavior. Here the data classes
 are just labels for values in a set that can contain the instances of the classes. Adding
 state-mutating methods to either Barcode or Sku would break the semantics of how these types
 can be composed.
 
 I still think it's okay if you need to validate the data class attributes in a
 `__post_init__` method or override the `__eq__` or `__hash__` for some reason. Read-only
-methods are also acceptable because they don't exhibit the traditional OO behavior of
-modifying state. Comparing two data class instances that have read-only methods is not as
-awkward as comparing data class instances with methods that mutate state. So if you need to
-slap a method on a data class, write a function and pass the instance as a parameter or
-write a normal class with a repr. This way, the reader won't have to wonder whether your
-data containers have some hidden behavior attached to them or not.
+methods are also acceptable since they don't do in-place state modification. Comparing two
+data class instances that have read-only methods is not as awkward as comparing data class
+instances with methods that mutate attributes. So if you need to slap a method on a data
+class, write a function and pass the instance as a parameter or write a normal class with a
+repr and add the method there. This way, the reader won't have to wonder whether your data
+containers have some hidden behavior attached to them or not.
 
 [^1]: [Penguin with an elephant head – Family Guy](https://i.imgflip.com/3gb0nh.jpg?a472776)
 [^2]:
