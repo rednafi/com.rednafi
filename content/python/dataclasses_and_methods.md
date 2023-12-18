@@ -21,7 +21,7 @@ class Person:
     name: str
     age: int
 
-    def make_older(by=1) -> None:
+    def make_older(by: int = 1) -> None:
         self.age += by
 ```
 
