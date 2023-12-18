@@ -34,7 +34,7 @@ just like regular mutable class instances with fancy `repr`s. But if you only ne
 `repr` for your large OO class, adding a `__repr__` to the class definition is not that
 difficult. Why pay the price for building heavier data class instances only for that?
 
-In Python, data classes are considerably slower[^2] to instantiate compared to vanilla
+In Python, data classes are considerably slower[^2] to define and import compared to vanilla
 classes. However, they serve a different purpose than your typical run-of-the-mill classes.
 When you decorate a class with the `@dataclass` decorator without changing any of the
 default parameters, Python automatically generates `__init__`, `__eq__`, and `__repr__`
