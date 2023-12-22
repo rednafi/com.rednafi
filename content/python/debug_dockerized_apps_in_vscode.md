@@ -9,10 +9,9 @@ tags:
 Despite using VSCode as my primary editor, I never really bothered to set up the native
 debugger to step through application code running inside Docker containers. Configuring the
 debugger to work with individual files, libraries, or natively running servers is
-trivial[^1]. So, I use the debugger in those cases and just resort back to my terminal for
+trivial[^1]. So, I use the it in those cases and just resort back to my terminal for
 debugging containerized apps running locally. However, after seeing a colleague's workflow
-in a pair-programming session, I wanted to configure the debugger to be able to use it
-inside containers.
+in a pair-programming session, I wanted to configure the debugger to cover this scenario.
 
 I'm documenting this to save my future self from banging his head against the wall.
 
