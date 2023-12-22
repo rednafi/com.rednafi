@@ -13,19 +13,20 @@ trivial[^1]. So, I use the it in those cases and just resort back to my terminal
 debugging containerized apps running locally. However, after seeing a colleague's workflow
 in a pair-programming session, I wanted to configure the debugger to cover this scenario.
 
-I'm documenting this to save my future self from banging his head against the wall.
+I'm documenting this to save my future self from banging his head against the wall trying to
+figure this out again.
 
 ## Desiderata
 
-I want to start a web app with `docker compose up` and connect VSCode debugger to it by
-clicking the debugger button on the UI. For this to work, along with the webserver, we'll
-need to expose a debug server from the app container which the debugger can connect to.
+I want to start a web app with `docker compose up` and connect the VSCode debugger to it
+from the UI. For this to work, along with the webserver, we'll need to expose a debug server
+from the app container which the debugger can connect to.
 
 ## App layout
 
 For demonstration, I'll go with a simple containerized starlette[^2] app served with
-uvicorn[^3]. However, the strategy will be similar for any web app. Here's the directory
-structure:
+uvicorn[^3]. However, the strategy will be similar for any web app. Here's the app's
+directory structure:
 
 ```txt
 src
@@ -89,15 +90,16 @@ services:
 
 ## Add launch.json
 
-Now in the `.vscode` folder of the project's root directory, add a file named `launch.json`.
-Create the folder if it doesn't exist. You can also do this part manually, to do so:
+Now, in the `.vscode` folder of the project's root directory, add a file named
+`launch.json`. Create the folder if it doesn't exist. You can also do this part manually, to
+do so:
 
 -   Click on the debugger button and then click on _create a launch.json file_.
 -   Select the _Python_ debugger.
 -   Finally, select the _Remote Attach_ debug config.
 
 However, if you dislike clicking around, here's the full content of `launch.json` for you to
-copy and paste:
+copy and paste (into `$PWD/.vscode/launch.json`):
 
 ```json
 {
@@ -123,8 +125,9 @@ copy and paste:
 }
 ```
 
-This instructs the VSCode debugger to attach to a debug server running on `localhost` via
-port `5678`. In the next section, you'll see how to run the debug server in a container.
+This instructs the VSCode debugger to attach to a debug server running on `localhost`
+through port `5678`. The next section will elaborate on how to run the debug server in a
+container.
 
 The configuration will vary depending on your project and each project needs to be
 configured individually. The official doc[^4] lists out the supported application types with
@@ -134,8 +137,8 @@ tracking the entire `.vscode` directory via source control is probably a good id
 ## Add docker-compose.debug.yml
 
 Next up, we'll need to update the `command` section of `services.web` in the
-`docker-compose.yml` to expose a debug server that the VScode debugger can connect to. The
-debugpy[^5] tool from Microsoft allows us to do exactly that.
+`docker-compose.yml` to expose the debug server. The debugpy[^5] tool from Microsoft allows
+us to do exactly that.
 
 However, instead of changing the `docker-compose.yml` file for debugging, we can add a
 separate file for it named `docker-compose.debug.yml`. Here's the content of it:
@@ -164,12 +167,11 @@ services:
 Here:
 
 -   `sh -c`: Selects the shell inside the Docker container.
--   `pip install debugpy -t /tmp`: Installs the `debugpy` Python debugger into the temporary
-    directory (`/tmp`) of the container.
--   `python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678`: Runs the `debugpy`
-    debugger, configured to wait for a client connection and listen on all network
-    interfaces at port 5678.
--   `-m uvicorn main:app --host 0.0.0.0 --port 8000`: Starts an Uvicorn server hosting the
+-   `pip install debugpy -t /tmp`: Installs the `debugpy` tool into the `/tmp` directory of
+    the container.
+-   `python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678`: Runs `debugpy`, sets it
+    to wait for a client connection, and listen on all network interfaces at port 5678.
+-   `-m uvicorn main:app --host 0.0.0.0 --port 8000`: Starts an uvicorn server hosting the
     application defined in `main:app`, making it accessible on all network interfaces at
     port 8000.
 
