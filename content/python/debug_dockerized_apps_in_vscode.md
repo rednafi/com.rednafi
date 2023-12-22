@@ -11,10 +11,11 @@ debugger to step through application code running inside Docker containers. Conf
 debugger to work with individual files, libraries, or natively running servers is
 trivial[^1]. So, I use the it in those cases and just resort back to my terminal for
 debugging containerized apps running locally. However, after seeing a colleague's workflow
-in a pair-programming session, I wanted to configure the debugger to cover this scenario.
+in a pair-programming session, I wanted to configure the debugger to cover this scenario
+too.
 
 I'm documenting this to save my future self from banging his head against the wall trying to
-figure this out again.
+figure it out again.
 
 ## Desiderata
 
@@ -45,7 +46,7 @@ from starlette.responses import JSONResponse
 from starlette.routing import Route
 
 
-async def homepage(request):
+async def homepage(request) -> JSONResponse:
     return JSONResponse({"hello": "world"})
 
 
@@ -91,7 +92,7 @@ services:
 ## Add launch.json
 
 Now, in the `.vscode` folder of the project's root directory, add a file named
-`launch.json`. Create the folder if it doesn't exist. You can also do this part manually, to
+`launch.json`. Create the folder if it doesn't exist. You can also do this part manually; to
 do so:
 
 -   Click on the debugger button and then click on _create a launch.json file_.
@@ -129,16 +130,16 @@ This instructs the VSCode debugger to attach to a debug server running on `local
 through port `5678`. The next section will elaborate on how to run the debug server in a
 container.
 
-The configuration will vary depending on your project and each project needs to be
-configured individually. The official doc[^4] lists out the supported application types with
-example launch configurations. To avoid having to reconfigure the same app repetitively,
-tracking the entire `.vscode` directory via source control is probably a good idea.
+Launch configuration will vary depending on your project and each project needs to be set up
+individually. The official doc[^4] lists out all the supported application types with
+example configurations. To avoid having to reconfigure the same app repetitively, tracking
+the entire `.vscode` directory via source control is probably a good idea.
 
 ## Add docker-compose.debug.yml
 
 Next up, we'll need to update the `command` section of `services.web` in the
-`docker-compose.yml` to expose the debug server. The debugpy[^5] tool from Microsoft allows
-us to do exactly that.
+`docker-compose.yml` to expose the debug server. The debugpy[^5] tool from Microsoft does
+that for us.
 
 However, instead of changing the `docker-compose.yml` file for debugging, we can add a
 separate file for it named `docker-compose.debug.yml`. Here's the content of it:
