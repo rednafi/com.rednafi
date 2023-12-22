@@ -185,7 +185,6 @@ docker compose -f docker-compose.debug.yml up
 Now click on the debugger button and select the `Python: Remote attach` profile to start
 debugging.
 
-
 Hack away!
 
 [^1]:
