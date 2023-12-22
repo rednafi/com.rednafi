@@ -170,7 +170,7 @@ Here:
 -   `pip install debugpy -t /tmp`: Installs the `debugpy` tool into the `/tmp` directory of
     the container.
 -   `python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678`: Runs `debugpy`, sets it
-    to wait for a client connection, and listen on all network interfaces at port 5678.
+    to wait for a client connection and listen on all network interfaces at port 5678.
 -   `-m uvicorn main:app --host 0.0.0.0 --port 8000`: Starts an uvicorn server hosting the
     application defined in `main:app`, making it accessible on all network interfaces at
     port 8000.
