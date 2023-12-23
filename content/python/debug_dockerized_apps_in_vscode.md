@@ -185,9 +185,10 @@ docker compose -f docker-compose.debug.yml up
 ```
 
 Now click on the debugger button and select the `Python: Remote attach` profile to start
-debugging.
+debugging. Hack away!
 
-Hack away!
+_P.S.: An altruist on Reddit brought to my attention that a more elaborate version of this,
+with prettier screenshots, can be found in the official documentation[^6]._
 
 [^1]:
     [Python debugging in VS Code](https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection)
@@ -198,3 +199,5 @@ Hack away!
     [Debug Python within a container](https://code.visualstudio.com/docs/containers/debug-python)
 
 [^5]: [debugpy](https://github.com/microsoft/debugpy/tree/main/src/debugpy)
+[^6]:
+    [Python in a container](https://code.visualstudio.com/docs/containers/quickstart-python)
