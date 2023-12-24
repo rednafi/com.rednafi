@@ -50,10 +50,10 @@ serve as an unapologetic critique of the overarching software landscape on this 
 -   [Dan Luu]
 -   [Drew DeVault's blog]
 -   [Fabien Sanglard's website]
--   [Fasterthanlime (Amos Wenger)]
 -   [Harmful stuff]
 -   [Joel on software]
 -   [Julia Evans]
+-   [Preslav Rachev]
 -   [Simon Willison’s weblog]
 
 <!-- Self -->
@@ -94,4 +94,5 @@ serve as an unapologetic critique of the overarching software landscape on this 
 [harmful stuff]: https://harmful.cat-v.org/
 [joel on software]: https://www.joelonsoftware.com/
 [julia evans]: https://jvns.ca/
+[preslav rachev]: https://preslav.me/
 [simon willison’s weblog]: https://simonwillison.net/
