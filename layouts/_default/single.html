@@ -33,6 +33,11 @@
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
 
+    <!-- Add mermaid min js file -->
+    {{ if (.Params.mermaid) }}
+    {{ partial "mermaid.html" }}
+    {{ end }}
+
     <!-- Custom logic: add links to recent posts starts -->
     {{- $current := . }}
     {{- $excludeUrls := site.Params.noRecentPosts }}
