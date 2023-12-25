@@ -28,15 +28,17 @@ The key function of CGI scripts was to handle data from web forms, process it, a
 generate an appropriate response. The server then takes this response and displays it on a
 new web page. Here's how the process might look:
 
-{{< mermaid >}} sequenceDiagram participant U as Client participant S as Server participant
-C as CGI Script
+{{< mermaid >}}
+sequenceDiagram
+    participant U as Client
+    participant S as Server
+    participant C as CGI Script
 
     U->>S: Post request with a dynamic field value
     S->>C: Execute the CGI script in a new process
     Note right of C: CGI script receives the value
     C-->>S: Process and return result
     S-->>U: Respond with result
-
 {{< /mermaid >}}
 
 ## How to build one
@@ -145,5 +147,4 @@ multiple requests more effectively, optimizing resource use and response times.
 
 Fin!
 
-[^1]:
-    [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
+[^1]: [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
