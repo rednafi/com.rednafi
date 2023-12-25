@@ -28,6 +28,8 @@ The key function of CGI scripts was to handle data from web forms, process it, a
 generate an appropriate response. The server then takes this response and displays it on a
 new web page. Here's how the process might look:
 
+<!-- prettier-ignore-start -->
+
 {{< mermaid >}}
 sequenceDiagram
     participant U as Client
@@ -40,6 +42,8 @@ sequenceDiagram
     C-->>S: Process and return result
     S-->>U: Respond with result
 {{< /mermaid >}}
+
+<!-- prettier-ignore-end -->
 
 ## How to build one
 
@@ -147,4 +151,5 @@ multiple requests more effectively, optimizing resource use and response times.
 
 Fin!
 
-[^1]: [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
+[^1]:
+    [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
