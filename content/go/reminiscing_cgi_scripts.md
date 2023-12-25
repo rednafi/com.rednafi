@@ -52,12 +52,12 @@ even Bash. However, they can also be written in a static language where the serv
 execute the compiled binary. For this demo, we're going to write the server in Go, but the
 CGI script itself will be written in Bash.
 
-Here's the streamlined plan:
+Here's the plan:
 
 -   Set up a basic HTTP server in Go.
 -   The server will await an HTTP POST request containing a form field called `name`.
 -   Upon receiving the request, the server will extract the value of `name`.
--   A Bash CGI script is then called with the value of `name`, outputting `Hello {name}` in
+-   A Bash CGI script is then called with the value of `name`, outputting `Hello <name>` in
     HTML.
 -   The server will then return this HTML response to the client.
 
@@ -102,8 +102,8 @@ func main() {
 ```
 
 Upon every new request, the server above will execute a CGI script written in Bash. Name the
-script as `cgi-script.sh` and place it in the same directory as the server's `main.go` file.
-Here's how it looks:
+shell script as `cgi-script.sh` and place it in the same directory as the server's `main.go`
+file. Here's how it looks:
 
 ```sh
 #!/bin/bash
