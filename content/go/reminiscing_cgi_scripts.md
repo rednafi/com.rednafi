@@ -151,10 +151,10 @@ process spawning, and solutions like FastCGI utilize persistent process pools to
 overhead of creating new processes. Nevertheless, you still incur the VM startup cost for
 each request when using interpreted languages like Python or Ruby.
 
-Modern web servers and frameworks, such as Flask, Django, or Go servers, have addressed
-these inefficiencies by maintaining persistent server processes. This, along with the
-advantage of not having to bear the VM startup cost, has led people to opt for these
-alternatives.
+Modern application servers like Uvicorn, Gunicorn, Puma, Unicorn or even Go's standard
+server have addressed these inefficiencies by maintaining persistent server processes. This,
+along with the advantage of not having to bear the VM startup cost, has led people to opt
+for these alternatives.
 
 Another concern worth considering is the evident security issues associated with CGI
 scripts. Even in our simple example, the Bash script accepts any value for the `name`
