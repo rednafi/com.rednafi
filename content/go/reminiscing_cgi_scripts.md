@@ -140,10 +140,11 @@ This returns the following response:
 
 ## Why they didn't catch on
 
-The primary reasons CGI scripts fell out of favor are related to performance and
+The primary reasons CGI scripts fell out of favor are somewhat related to performance and
 scalability. When a CGI script is executed, it initiates a new process for each request.
 This approach, while straightforward, becomes increasingly inefficient as the volume of web
-traffic grows.
+traffic grows. Although spawning processes have become quite a bit faster in the modern
+Linux kernel, you'd still have to pay the interpreter startup cost in every request.
 
 Modern web servers and frameworks, such as Flask, Django, or Go servers, address these
 inefficiencies by maintaining persistent server processes. This design allows them to handle
