@@ -76,7 +76,7 @@ import (
 )
 
 // Leaving out all the error handling for brevity
-func handler(w http.ResponseWriter, r *http.Request) {
+func handle(w http.ResponseWriter, r *http.Request) {
 
     // ParseForm parses the raw query from the URL and updates r.Form.
     r.ParseForm()
@@ -95,11 +95,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    http.HandleFunc("/", handler)
+    http.HandleFunc("/", handle)
     fmt.Println("Server started on :8080")
     http.ListenAndServe(":8080", nil)
 }
 ```
+
+You could also opt for the `cgi` module from the standard library to write the server, but
+it abstracts out several steps that I intended to showcase.
 
 Upon every new request, the server above will execute a CGI script written in Bash. Name the
 shell script as `cgi-script.sh` and place it in the same directory as the server's `main.go`
