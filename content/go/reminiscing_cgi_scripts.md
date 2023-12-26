@@ -45,7 +45,7 @@ sequenceDiagram
 
 <!-- prettier-ignore-end -->
 
-## How to build one
+## How to write one
 
 CGI scripts are usually written in dynamic scripting languages like Perl, Ruby, Python, or
 even Bash. However, they can also be written in a static language where the server will need
