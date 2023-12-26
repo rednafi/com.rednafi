@@ -141,14 +141,20 @@ This returns the following response:
 ## Why they didn't catch on
 
 The primary reasons CGI scripts fell out of favor are somewhat related to performance and
-scalability. When a CGI script is executed, it initiates a new process for each request.
-This approach, while straightforward, becomes increasingly inefficient as the volume of web
+security. When a CGI script is executed, it initiates a new process for each request. This
+approach, while straightforward, becomes increasingly inefficient as the volume of web
 traffic grows. Although spawning processes have become quite a bit faster in the modern
 Linux kernel, you'd still have to pay the interpreter startup cost in every request.
 
 Modern web servers and frameworks, such as Flask, Django, or Go servers, address these
 inefficiencies by maintaining persistent server processes. This design allows them to handle
 multiple requests more effectively, optimizing resource use and response times.
+
+Another show stopper is the obvious security issues that lurk behind CGI scripts. Even in
+our simple example, the Bash script accepts any value for `name` and passes that directly to
+the response. Sure, we could sanitize it manually before passing it onto the next step but
+many of these steps are automatically handled for you by pretty much any modern web
+framework.
 
 Fin!
 
