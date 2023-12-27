@@ -160,8 +160,10 @@ Another concern worth considering is the evident security issues associated with
 scripts. Even in our simple example, the Bash script accepts any value for the `name`
 parameter and passes it directly to the response. This exposes a significant vulnerability
 to injection attacks. While it's possible to manually sanitize the input before passing it
-to the next step, it's reassuring to know that many of these security steps are
-automatically handled for you by almost any modern web framework. Fin!
+to the next step, many of these security steps are automatically handled for you by almost
+any modern web framework.
+
+Fin!
 
 [^1]:
     [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
