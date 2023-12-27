@@ -54,8 +54,6 @@ execute the compiled binary. For this demo, we're going to write the server in G
 
 Here's the plan:
 
-Here is your text with improved grammar:
-
 -   Set up a basic HTTP server in Go.
 -   The server will await an HTTP POST request containing a form field called `name`.
 -   Upon receiving the request, the server will extract the value of `name`.
