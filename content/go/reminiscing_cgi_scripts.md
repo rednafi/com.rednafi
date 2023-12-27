@@ -71,9 +71,9 @@ for clarity.
 package main
 
 import (
-	"net/http"
-	"net/http/cgi"
-	"os/exec"
+    "net/http"
+    "net/http/cgi"
+    "os/exec"
 )
 
 // Leaves out error handling for clarity
