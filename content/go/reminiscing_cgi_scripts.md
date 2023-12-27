@@ -49,17 +49,20 @@ sequenceDiagram
 
 CGI scripts are usually written in dynamic scripting languages like Perl, Ruby, Python, or
 even Bash. However, they can also be written in a static language where the server will need
-execute the compiled binary. For this demo, we're going to write the server in Go, but the
-CGI script itself will be written in Bash.
+execute the compiled binary. For this demo, we're going to write the server in Go using the
+`cgi` stdlib, but the CGI script itself will be written in Bash.
 
 Here's the plan:
+
+Here is your text with improved grammar:
 
 -   Set up a basic HTTP server in Go.
 -   The server will await an HTTP POST request containing a form field called `name`.
 -   Upon receiving the request, the server will extract the value of `name`.
--   A Bash CGI script is then called with the value of `name`, outputting `Hello <name>` in
-    HTML.
--   The server will then return this HTML response to the client.
+-   Next, it'll set the `$name` environment variable for the current process.
+-   A Bash CGI script is invoked, which uses the `$name` environment variable to echo an
+    HTML-formatted dynamic message.
+-   Finally, the server will then return this HTML response to the client.
 
 The server lives in a single `main.go` script. I'm leaving out Go's verbose error handling
 for clarity.
@@ -68,41 +71,31 @@ for clarity.
 package main
 
 import (
-    "fmt"
-    "net/http"
-    "os"
-    "os/exec"
-    "path/filepath"
+	"net/http"
+	"net/http/cgi"
+	"os/exec"
 )
 
-// Leaving out all the error handling for brevity
-func handle(w http.ResponseWriter, r *http.Request) {
+// Leaves out error handling for clarity
+func cgiHandler(w http.ResponseWriter, r *http.Request) {
+	// Parse name from post request
+	r.ParseForm()
+	name := r.FormValue("name")
 
-    // ParseForm parses the raw query from the URL and updates r.Form.
-    r.ParseForm()
-    name := r.FormValue("name")
+	// Execute the CGI script with the name as an environment variable
+	cmd := exec.Command("cgi-script.sh")
+	cmd.Env = append(cmd.Env, "name="+name)
 
-    // Get the current working directory
-    cwd, _ := os.Getwd()
-    scriptPath := filepath.Join(cwd, "cgi-script.sh")
-
-    // Execute the script with the name as an argument
-    out, _ := exec.Command(scriptPath, name).Output()
-
-    // Set the content type and write the output to the response
-    w.Header().Set("Content-Type", "text/html")
-    w.Write(out)
+	// Serve the CGI script
+	handler := cgi.Handler{Path: cmd.Path, Dir: cmd.Dir, Env: cmd.Env}
+	handler.ServeHTTP(w, r)
 }
 
 func main() {
-    http.HandleFunc("/", handle)
-    fmt.Println("Server started on :8080")
-    http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", cgiHandler)
+	http.ListenAndServe("localhost:8080", nil)
 }
 ```
-
-You could also opt for the `cgi` module from the standard library to write the server, but
-it abstracts out several steps that I intended to showcase.
 
 Upon every new request, the server above will execute a CGI script written in Bash. Name the
 shell script as `cgi-script.sh` and place it in the same directory as the server's `main.go`
@@ -111,19 +104,20 @@ file. Here's how it looks:
 ```sh
 #!/bin/bash
 
-# Stop upon error
 set -euo pipefail
 
-# Get the name argument
-name=$1
+name=$name
 
-# Output HTML
-echo "<html><body>Hello ${name}</body></html>"
+echo "Content-type: text/html"
+echo ""
+echo '<html><body>'
+echo "Hello $name, greetings from bash!"
+echo '</body></html>'
 ```
 
-The script just accepts `name` as an argument, sets the `Content-Type` header, injects the
-dynamically passed value of `name`, and echos the out the HTML response. The server then
-just relays it back to the client. To test this:
+The script just reads `name` from the environment variable, sets the `Content-Type` header,
+injects the value of `name` into the message, and echos the out the final HTML response. The
+server then just relays it back to the client. To test this:
 
 -   Run the server with `go run main.go`.
 -   Set the permission of the CGI script:
@@ -138,7 +132,9 @@ just relays it back to the client. To test this:
 This returns the following response:
 
 ```txt
-<html><body>Hello Redowan</body></html>
+<html><body>
+Hello Redowan, greetings from bash!
+</body></html>
 ```
 
 ## Why they didn't catch on
