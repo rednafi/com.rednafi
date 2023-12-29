@@ -25,36 +25,25 @@ serve as an unapologetic critique of the overarching software landscape on this 
 ## Gateways
 
 -   [email]
--   [rss]
 -   [github]
--   [twitter]
+-   [linkedin]
 -   [mastodon]
+-   [rss]
+-   [twitter]
 
 ## Greatest hits
 
 -   [Oh my poor business logic]
 -   [The diminishing half-life of knowledge]
 -   [An ode to the neo-grotesque web]
--   [Writing on well-trodden topics]
+-   [Reminiscing CGI scripts]
 -   [Escaping the template pattern hellscape in Python]
 -   [Dotfiles stewardship for the indolent]
 -   [Configuring options in Go]
 -   [Recipes from Python SQLite docs]
 -   [Limit goroutines with buffered channels]
 -   [Pesky little scripts]
-
-## Blogroll
-
--   [Anton Zhiyanov]
--   [Brandon Rhodes]
--   [Dan Luu]
--   [Drew DeVault's blog]
--   [Fabien Sanglard's website]
--   [Harmful stuff]
--   [Joel on software]
--   [Julia Evans]
--   [Preslav Rachev]
--   [Simon Willison’s weblog]
+-   [Debugging dockerized Python apps in VSCode]
 
 <!-- Self -->
 
@@ -65,16 +54,18 @@ serve as an unapologetic critique of the overarching software landscape on this 
 <!-- Geteways -->
 
 [email]: mailto:redowan.nafi@gmail.com
-[rss]: https://rednafi.com/index.xml
 [github]: https://github.com/rednafi
-[twitter]: https://twitter.com/rednafi
+[linkedin]: https://www.linkedin.com/in/redowan/
 [mastodon]: https://fosstodon.org/@rednafi
+[rss]: https://rednafi.com/index.xml
+[twitter]: https://twitter.com/rednafi
 
 <!-- Greatest hits -->
 
 [oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
 [the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
 [an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
+[reminiscing cgi scripts]: /go/reminiscing_cgi_scripts
 [writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
 [escaping the template pattern hellscape in Python]: /python/escape_template_pattern/
 [dotfiles stewardship for the indolent]: /misc/dotfile_stewardship_for_the_indolent/
@@ -82,17 +73,4 @@ serve as an unapologetic critique of the overarching software landscape on this 
 [recipes from python sqlite docs]: /python/recipes_from_python_sqlite_docs/
 [limit goroutines with buffered channels]: /go/limit_goroutines_with_buffered_channels/
 [pesky little scripts]: /misc/pesky_little_scripts/
-
-<!-- Blogroll -->
-
-[anton zhiyanov]: https://antonz.org/
-[brandon rhodes]: https://rhodesmill.org/brandon/
-[dan luu]: https://danluu.com/
-[drew devault's blog]: https://drewdevault.com/
-[fabien sanglard's website]: https://fabiensanglard.net/
-[fasterthanlime (amos wenger)]: https://fasterthanli.me/
-[harmful stuff]: https://harmful.cat-v.org/
-[joel on software]: https://www.joelonsoftware.com/
-[julia evans]: https://jvns.ca/
-[preslav rachev]: https://preslav.me/
-[simon willison’s weblog]: https://simonwillison.net/
+[debugging dockerized python apps in vscode]: /python/debug_dockerized_apps_in_vscode
