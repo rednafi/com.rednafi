@@ -24,7 +24,7 @@ WIP...
 -   [Good vibrations - Fabien Sanglard]
 -   [All you may need is HTML - Fabien Sanglard]
 
-## Book
+## Books
 
 WIP...
 
