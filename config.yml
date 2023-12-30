@@ -26,17 +26,20 @@ params:
     general.
   keywords:
     [
+      Redowan,
+      Nafi,
+      Delowar,
       Redowan Delowar,
       Redowan Nafi,
+      Nafi Redowan,
+      Delowar Redowan,
       rednafi,
-      Blog,
       Python,
-      DevOps,
       Go,
       Golang,
       Shell,
-      Database,
-      Software Engineering,
+      Software,
+      Engineering,
     ]
   author: "Redowan Delowar"
   images: ["/images/home/cover.webp"]
