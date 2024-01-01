@@ -26,10 +26,10 @@ it's more common than I'd like to admit.
 
 The fallout? Discussing a feature or onboarding new people became a pain since explaining
 any part of the system required going down the rabbit hole of finding the concomitant entry
-point and traversing all its branches. More often than not, the documents weren't even
-linked properly, so figuring out which RFCs, ADRs, Epics, or Jira Issues were associated
-with what feature was a frustrating exercise. Also, they'd quickly go outdated since keeping
-all of them up to date was a full-time job itself!
+point and traversing its branches. More often than not, the documents weren't even linked
+properly, so figuring out which RFCs, ADRs, Epics, or Jira Issues were associated with what
+feature was a frustrating exercise. Also, they'd quickly go outdated since keeping all of
+them up to date was a full-time job itself!
 
 This cultural shift doesn't happen in a day. People, in general, love reading books, blogs,
 or Hacker News discussions about the engineering practices in FAANG companies and mean well
