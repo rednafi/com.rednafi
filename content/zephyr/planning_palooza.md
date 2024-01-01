@@ -5,7 +5,7 @@ tags:
     - Meta
 ---
 
-When I started my career with a tightly-knit team of six engineers at a small e-commerce
+When I started my career in a tightly-knit team of six engineers at a small e-commerce
 company, I was struck by the remarkable efficiency of having a centralized hub for all of
 our documents used for planning. We used a single Trello board with four columns—Todo,
 Doing, Q/A, Done—where the tickets were grouped by feature tags. We'd use a dummy ticket as
