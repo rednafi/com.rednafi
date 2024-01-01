@@ -19,7 +19,7 @@ was surprisingly low.
 
 A few years down the line, I was fortunate enough to land gigs at larger companies with
 bigger teams and more corporate structures. What caught me off guard was the chaotic state
-of planning documents. They were scattered everywhere—RFCs[^1], ADRs[^3], Epics, Jira
+of planning documents. They were scattered everywhere—RFCs[^1], ADRs[^2], Epics, Jira
 Issues, Subtasks, Design Docs[^3], you name it. Often, a single team juggles all these
 formats to plan and record their work. I'm not claiming every workplace is like this, but
 it's more common than I'd like to admit.
