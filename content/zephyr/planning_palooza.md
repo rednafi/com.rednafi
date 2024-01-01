@@ -6,7 +6,7 @@ tags:
 ---
 
 When I started my career in a tightly-knit team of six engineers at a small e-commerce
-company, I was struck by the remarkable efficiency of having a centralized hub for all of
+startup, I was struck by the remarkable efficiency of having a centralized hub for all of
 our documents used for planning. We used a single Trello board with four columns—Todo,
 Doing, Q/A, Done—where the tickets were grouped by feature tags. We'd leverage a dummy
 ticket as an epic to sketch out the full plan for a feature and link related tickets to it.
