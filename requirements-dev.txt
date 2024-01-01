@@ -13,7 +13,9 @@ click==8.1.7
     #   black
     #   pip-tools
 coverage[toml]==7.3.2
-    # via pytest-cov
+    # via
+    #   coverage
+    #   pytest-cov
 iniconfig==2.0.0
     # via pytest
 mypy==1.5.1
