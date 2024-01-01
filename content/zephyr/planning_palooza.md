@@ -53,8 +53,11 @@ navigate back to the corresponding Task and Epic from the GitHub Issue with a si
 Whatever the strategy may be, I find it incredibly hard to justify the necessity to fragment
 these documents behind obscure names and waste time endlessly bikeshedding about whether
 ADRs should be written before RFCs or vice versa. I wonder, who benefits from all this?
+
+Fin!
+
 [^1]:
-[Companies Using RFCs or Design Docs and Examples of These - Gergely Orosz](https://blog.pragmaticengineer.com/rfcs-and-design-docs/)
+    [Companies Using RFCs or Design Docs and Examples of These - Gergely Orosz](https://blog.pragmaticengineer.com/rfcs-and-design-docs/)
 
 [^2]: [Architectural Decision Records (ADRs)](https://adr.github.io/)
 [^3]:
