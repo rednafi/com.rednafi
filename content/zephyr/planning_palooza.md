@@ -35,7 +35,7 @@ This cultural shift doesn't happen in a day. People, in general, love reading bo
 or Hacker News discussions about the engineering practices in FAANG companies and mean well
 when they try to slowly incorporate these insights into their current teams. But let this
 osmosis continue for a few years without any oversight, and you'll end up in a labyrinth of
-documents, encumbered by stiff structures and other enterprise fluff.
+documents, encumbered by stiff structures and other enterprise-y fluff.
 
 Sometimes I wonder if all these theatrics are actually necessary to do the job. Hundreds of
 people work on OSS projects where GitHub Issues and Projects are used to coordinate work.
