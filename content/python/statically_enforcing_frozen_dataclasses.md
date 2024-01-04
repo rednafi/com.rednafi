@@ -138,4 +138,4 @@ Fin!
 [^2]: [attrs](https://www.attrs.org/en/stable/)
 [^3]: [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/)
 [^4]:
-    [How to properly type annotate a dataclass wrapped in functools.partial?](https://stackoverflow.com/questions/77754655/how-to-properly-type-annotate-a-dataclass-wrapped-in-functools-partial)
+    [How to statically enforce frozen data classes in Python?](https://stackoverflow.com/questions/77754655/how-to-statically-enforce-frozen-data-classes-in-python)
