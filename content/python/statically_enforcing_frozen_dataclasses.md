@@ -128,7 +128,9 @@ Voilà!
 
 I struggled to figure this one out myself, and LLMs were of no help. So, I ended up posting
 a question[^4] on Stack Overflow, where someone pointed out how to use `dataclass_transform`
-to achieve this. Fin!
+to achieve this.
+
+Fin!
 
 [^1]:
     [Zero-overhead frozen attrs classes - Tin Tvrtković](https://threeofwands.com/attra-iv-zero-overhead-frozen-attrs-classes/)
