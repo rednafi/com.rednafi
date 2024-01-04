@@ -45,9 +45,7 @@ start_time = time.perf_counter()
 result = slow_adder.calculate(1, 2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(
-    f"Calculation took {end_time-start_time} seconds, result: {result}."
-)
+print(f"Calculation took {end_time-start_time} seconds, result: {result}.")
 
 
 start_time = time.perf_counter()
@@ -55,9 +53,7 @@ start_time = time.perf_counter()
 result = slow_adder.calculate(1, 2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(
-    f"Calculation took {end_time-start_time} seconds, result: {result}."
-)
+print(f"Calculation took {end_time-start_time} seconds, result: {result}.")
 ```
 
 Here, I've created a simple `SlowAdder` class that accepts a `delay` value; then it sleeps
@@ -256,9 +252,7 @@ start_time = time.perf_counter()
 result = foo_1.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(
-    f"Calculation took {end_time - start_time} seconds, result: {result}."
-)
+print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
 
 
 start_time = time.perf_counter()
@@ -266,9 +260,7 @@ start_time = time.perf_counter()
 result = foo_2.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(
-    f"Calculation took {end_time - start_time} seconds, result: {result}."
-)
+print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
 ```
 
 You can inspect the garbage collection behavior here:

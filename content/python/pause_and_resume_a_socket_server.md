@@ -69,16 +69,12 @@ class ThreadingTCPServer(socketserver.ThreadingTCPServer):
 
     def service_actions(self) -> None:
         if time.monotonic() - self._start_time > self._timeout:
-            logging.info(
-                "Server paused, something else is running..."
-            )
+            logging.info("Server paused, something else is running...")
             self._start_time = time.monotonic()
 
 
 if __name__ == "__main__":
-    with ThreadingTCPServer(
-        ("localhost", 9999), RequestHandler
-    ) as server:
+    with ThreadingTCPServer(("localhost", 9999), RequestHandler) as server:
         server.serve_forever()
 ```
 

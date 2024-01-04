@@ -145,9 +145,7 @@ t3 = time.perf_counter()
 
 print(f"Interned dict creation & access: {t1-t0} seconds")
 print(f"Non-interned dict creation & access: {t3-t2} seconds")
-print(
-    f"Non-interned creation & access is {(t3-t2)/(t1-t0)} times slower"
-)
+print(f"Non-interned creation & access is {(t3-t2)/(t1-t0)} times slower")
 ```
 
 This prints:

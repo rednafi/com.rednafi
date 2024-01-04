@@ -69,9 +69,7 @@ with conn:
         ("b", 2.0),
         ("c", 3.0),
     )
-    c.executemany(
-        "insert into stat (cat, score) values (?, ?);", data
-    )
+    c.executemany("insert into stat (cat, score) values (?, ?);", data)
     result = c.execute("""select * from stat;""").fetchall()
 
     print(result)
@@ -658,9 +656,7 @@ conn.text_factory = lambda x: color_map.get(x.decode("utf-8"), x)
 with conn:
     c.execute("create table if not exists colors (name text);")
 
-    c.execute(
-        "insert into colors (name) values (?);", ("το κόκκινο",)
-    )
+    c.execute("insert into colors (name) values (?);", ("το κόκκινο",))
     c.execute("insert into colors (name) values (?);", ("সবুজ",))
 
     result = c.execute("select * from colors;").fetchall()
@@ -890,9 +886,7 @@ with ExitStack() as stack:
     conn_src.backup(conn_dst, pages=1, progress=progress)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute(
-        "select count(*) from colors;"
-    ).fetchone()
+    result = conn_dst.execute("select count(*) from colors;").fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 
@@ -945,9 +939,7 @@ with conn_src:
     conn_src.backup(conn_dst)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute(
-        "select count(*) from colors;"
-    ).fetchone()
+    result = conn_dst.execute("select count(*) from colors;").fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 
@@ -995,9 +987,7 @@ with conn_src:
     conn_src.backup(conn_dst)
 
     # Ensure that the backup is complete.
-    result = conn_dst.execute(
-        "select count(*) from colors;"
-    ).fetchone()
+    result = conn_dst.execute("select count(*) from colors;").fetchone()
     print(f"Number of rows in dst: {result[0]}")
 ```
 

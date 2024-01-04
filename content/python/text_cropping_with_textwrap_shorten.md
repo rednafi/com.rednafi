@@ -132,9 +132,7 @@ def crop(text: str, limit: int) -> str:
 
 class TestCrop(unittest.TestCase):
     def setUp(self):
-        self.text = (
-            "This is an example of speech synthesis in English."
-        )
+        self.text = "This is an example of speech synthesis in English."
         self.text_complex = """
         wrap(), fill() and shorten() work by creating a TextWrapper instance
         and calling a single method on it.

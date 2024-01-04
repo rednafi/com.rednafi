@@ -19,7 +19,7 @@ repos:
         additional_dependencies:
           - black==23.9.1
         args:
-          - -l 70
+          - -l 79
         verbose: true
         entry: bash -c 'blacken-docs "$@" || true' --
 

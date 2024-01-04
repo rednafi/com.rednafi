@@ -317,9 +317,7 @@ def background() -> str:
 async def index(request: Request) -> Response:
     task_id = background.apply_async(queue="default")
     logging.info("Task id: %s", task_id)
-    response = templates.TemplateResponse(
-        "index.html", {"request": request}
-    )
+    response = templates.TemplateResponse("index.html", {"request": request})
     response.set_cookie("task_id", task_id)
     return response
 
@@ -330,9 +328,7 @@ async def task_status(request: Request) -> StreamingResponse:
     async def stream() -> AsyncGenerator[str, None]:
         task = AsyncResult(task_id, app=celery_app)
         logging.info("Task state: %s", task.state)
-        attempt = (
-            0  # Give up and close the connection after 10 attempts.
-        )
+        attempt = 0  # Give up and close the connection after 10 attempts.
         while True:
             data = {
                 "state": task.state,
@@ -351,9 +347,7 @@ async def task_status(request: Request) -> StreamingResponse:
             # Give up after 10 attempts to avoid dangling connections.
             if attempt > 10:
                 data["state"] = "UNFINISHED"
-                data[
-                    "result"
-                ] = "Task is taking too long to complete."
+                data["result"] = "Task is taking too long to complete."
                 yield f"data: {json.dumps(data)}\n\n"
                 break
 

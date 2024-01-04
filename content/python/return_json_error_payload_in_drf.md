@@ -77,9 +77,7 @@ class JSONErrorMiddleware:
             {
                 "error": {
                     "status_code": status_code,
-                    "message": self.status_code_description[
-                        status_code
-                    ],
+                    "message": self.status_code_description[status_code],
                     "detail": {"url": request.get_full_path()},
                 }
             },

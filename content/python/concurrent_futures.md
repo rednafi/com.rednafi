@@ -161,9 +161,7 @@ import concurrent.futures
 
 
 with concurrent.futures.Executor() as executor:
-    futures = {
-        executor.submit(perform, task): task for task in get_tasks()
-    }
+    futures = {executor.submit(perform, task): task for task in get_tasks()}
 
     for fut in concurrent.futures.as_completed(futures):
         original_task = futures[fut]
@@ -183,9 +181,7 @@ import concurrent.futures
 
 
 with concurrent.futures.Executor() as executor:
-    for arg, res in zip(
-        get_tasks(), executor.map(perform, get_tasks())
-    ):
+    for arg, res in zip(get_tasks(), executor.map(perform, get_tasks())):
         print(f"The result of {arg} is {res}")
 ```
 
@@ -570,17 +566,13 @@ from concurrent.futures import ThreadPoolExecutor
 
 def wait_on_b():
     time.sleep(5)
-    print(
-        b.result()
-    )  # b will never complete because it is waiting on a.
+    print(b.result())  # b will never complete because it is waiting on a.
     return 5
 
 
 def wait_on_a():
     time.sleep(5)
-    print(
-        a.result()
-    )  # a will never complete because it is waiting on b.
+    print(a.result())  # a will never complete because it is waiting on b.
     return 6
 
 
@@ -706,9 +698,7 @@ def is_prime(n):
 @timeit
 def main():
     with ThreadPoolExecutor(max_workers=13) as executor:
-        for number, prime in zip(
-            PRIMES, executor.map(is_prime, num_list)
-        ):
+        for number, prime in zip(PRIMES, executor.map(is_prime, num_list)):
             print(f"{number} is prime: {prime}")
 
 
@@ -752,9 +742,7 @@ def is_prime(n):
 @timeit
 def main():
     with ProcessPoolExecutor(max_workers=13) as executor:
-        for number, prime in zip(
-            PRIMES, executor.map(is_prime, num_list)
-        ):
+        for number, prime in zip(PRIMES, executor.map(is_prime, num_list)):
             print(f"{number} is prime: {prime}")
 
 
