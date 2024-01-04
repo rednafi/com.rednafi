@@ -50,9 +50,7 @@ error types of a callable respectively. These two generics were then combined in
 ...
 
 
-def div(
-    dividend: int, divisor: int
-) -> Result[int, ZeroDivisionError]:
+def div(dividend: int, divisor: int) -> Result[int, ZeroDivisionError]:
     if divisor == 0:
         return Err(ZeroDivisionError("Zero division error occurred!"))
 

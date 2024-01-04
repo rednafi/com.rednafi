@@ -57,9 +57,7 @@ def dedup(it: Iterable) -> list:
 
     # Here, 'or' allows us to add the item to 'seen' when it doesn't
     # already exist there in a single line.
-    return [
-        item for item in it if not (item in seen or seen_add(item))
-    ]
+    return [item for item in it if not (item in seen or seen_add(item))]
 ```
 
 ## Dedup with ordered dict

@@ -148,14 +148,9 @@ product_ids = [4, 2, 1, 3, 5]
 products = Product.objects.all()
 
 preferred = Case(
-    *(
-        When(id=id, then=pos)
-        for pos, id in enumerate(product_ids, start=1)
-    )
+    *(When(id=id, then=pos) for pos, id in enumerate(product_ids, start=1))
 )
-products_sorted = products.filter(id__in=product_ids).order_by(
-    preferred
-)
+products_sorted = products.filter(id__in=product_ids).order_by(preferred)
 ```
 
 Printing the queryset will return the following output:
@@ -215,9 +210,7 @@ preferred = Case(
         for pos, id in enumerate(order_ids, start=1)
     )
 )
-products_sorted = products.filter(order__id__in=order_ids).order_by(
-    preferred
-)
+products_sorted = products.filter(order__id__in=order_ids).order_by(preferred)
 ```
 
 Here's what the `Product` and `Order` models look like:

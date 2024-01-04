@@ -468,9 +468,7 @@ def timer(func):
         ret = func(*args, **kwargs)
         end_time = perf_counter()
         run_time = end_time - start_time
-        print(
-            f"Finished running {func.__name__} in {run_time:.4f} seconds."
-        )
+        print(f"Finished running {func.__name__} in {run_time:.4f} seconds.")
         return ret
 
     return wrapper
@@ -589,9 +587,7 @@ def short_summary():
 
 @validate_summary
 def long_summary():
-    return {
-        "summary": "This is a long summary that exceeds character limit."
-    }
+    return {"summary": "This is a long summary that exceeds character limit."}
 
 
 print(short_summary())

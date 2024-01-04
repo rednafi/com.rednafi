@@ -42,9 +42,7 @@ class SecuredDoor:
         self._klass = Door()
 
     def open_method(self) -> None:
-        print(
-            f"Adding security measure to the method of {self._klass}"
-        )
+        print(f"Adding security measure to the method of {self._klass}")
 
 
 secured_door = SecuredDoor()

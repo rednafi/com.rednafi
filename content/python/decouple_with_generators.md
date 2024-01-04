@@ -93,9 +93,7 @@ from collections.abc import Generator
 
 
 # Producer.
-def infinite_counter(
-    start: int, step: int
-) -> Generator[int, None, None]:
+def infinite_counter(start: int, step: int) -> Generator[int, None, None]:
     i = start
     while True:
         time.sleep(1)  # Not to flood stdout

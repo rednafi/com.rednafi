@@ -35,14 +35,10 @@ class FrozenData:
 
 
 # Measure instantiation time for NormalData
-normal_time = timeit.timeit(
-    lambda: NormalData(1, 2, 3), number=1_000_000
-)
+normal_time = timeit.timeit(lambda: NormalData(1, 2, 3), number=1_000_000)
 
 # Measure instantiation time for FrozenData
-frozen_time = timeit.timeit(
-    lambda: FrozenData(1, 2, 3), number=1_000_000
-)
+frozen_time = timeit.timeit(lambda: FrozenData(1, 2, 3), number=1_000_000)
 
 print(f"Normal data class: {normal_time}")
 print(f"Frozen data class: {frozen_time}")

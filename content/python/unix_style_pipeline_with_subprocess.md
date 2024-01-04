@@ -18,9 +18,7 @@ strings, starts the subprocess, waits for it to finish, and then returns a
 import subprocess
 
 # Here, result is an instance of CompletedProcess
-result = subprocess.run(
-    ["ls", "-lah"], capture_output=True, encoding="utf-8"
-)
+result = subprocess.run(["ls", "-lah"], capture_output=True, encoding="utf-8")
 
 # No exception means clean exit
 result.check_returncode()

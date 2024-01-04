@@ -24,9 +24,7 @@ from __future__ import annotations
 from collections.abc import Generator
 
 
-def get_numbers(
-    start: int, end: int, step: int
-) -> Generator[int, None, None]:
+def get_numbers(start: int, end: int, step: int) -> Generator[int, None, None]:
     yield from range(start, end, step)
 ```
 

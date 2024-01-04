@@ -417,9 +417,7 @@ class AttrsListMeta(type):
         attrs_names_ordered = sorted(attrs_names)
         classdict["__attrs_ordered__"] = attrs_names_ordered
 
-        return super().__new__(
-            metacls, cls, bases, classdict, **kwargs
-        )
+        return super().__new__(metacls, cls, bases, classdict, **kwargs)
 
 
 class A(metaclass=AttrsListMeta):
@@ -600,9 +598,7 @@ def timefunc(func):
         ret = func(*args, **kwargs)
         end_time = time.time()
         run_time = end_time - start_time
-        print(
-            f"Executing {func.__qualname__} took {run_time} seconds."
-        )
+        print(f"Executing {func.__qualname__} took {run_time} seconds.")
         return ret
 
     return wrapper
@@ -614,9 +610,7 @@ class TimerMeta(type):
 
         # key is attribute name and val is attribute value in attribute dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(
-                val
-            ):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, timefunc(val))
         return new_cls
 
@@ -711,9 +705,7 @@ class DebugMeta(type):
 
         # key is attribute name and val is attribute value in the attrs dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(
-                val
-            ):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, debug(val))
         return new_cls
 
@@ -776,9 +768,7 @@ class ExceptionMeta(type):
 
         # key is attribute name and val is attribute value in attribute dict
         for key, val in classdict.items():
-            if inspect.isfunction(val) or inspect.ismethoddescriptor(
-                val
-            ):
+            if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, exc_handler(val))
         return new_cls
 
