@@ -388,7 +388,13 @@ See the deployed service in action (might not be available later):
 $ seq 200 | xargs -n 1 -P 100 bash -c 'curl -s 34.138.11.32/greetings | jq'
 ```
 
-Find the complete source code here[^5].
+This will print the same output as the local service.
+
+Nginx uses the leaky bucket algorithm to enforce the rate limiting, where requests arrive at
+the bucket at various rates and leave the bucket at fixed rate. I had fun reading about it
+here[^5].
+
+Find the complete implemention[^6] on GitHub.
 
 Fin!
 
@@ -402,4 +408,5 @@ Fin!
 [^4]:
     [Rate limiting with Nginx and Nginx plus](https://www.nginx.com/blog/rate-limiting-nginx/)
 
-[^5]: [Complete implementation](https://github.com/rednafi/nginx-ratelimit)
+[^5]: [Leaky bucket](https://en.wikipedia.org/wiki/Leaky_bucket)
+[^6]: [Complete implementation](https://github.com/rednafi/nginx-ratelimit)
