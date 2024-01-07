@@ -182,9 +182,9 @@ The `http` block contains directives that apply to HTTP/S traffic.
     ```nginx
     include /etc/nginx/conf.d/*.conf;
     ```
-    This directive instructs Nginx to include additional server configurations--like
-    `default.conf`--from the `/etc/nginx/conf.d/` directory. This modular approach allows
-    for better organization and management of server configurations.
+    This directive instructs Nginx to include additional server configurations—like
+    `default.conf`—from the `/etc/nginx/conf.d/` directory. This modular approach allows for
+    better organization and management of server configurations.
 
 ### default.conf
 
