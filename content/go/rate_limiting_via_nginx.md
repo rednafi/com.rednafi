@@ -12,15 +12,15 @@ it seemed to be the simplest route.
 
 Plus, I didn't want to muck around with load balancer configurations, and there's no
 shortage of libraries that allow me to do this quickly in the app. However, this turned out
-to be a bad idea. In the event of a DDoS or thundering herd incident, even if the app
-rejects the influx of inbound requests, the app server workers still have to do a minimal
-amount of work.
+to be a bad idea. In the event of a DDoS[^1] or thundering herd[^2] incident, even if the
+app rejects the influx of inbound requests, the app server workers still have to do a
+minimal amount of work.
 
 Also, ideally, rate limiting is an infrastructure concern; your app should be oblivious to
 it. Implementing rate limiting in a layer in front of your app prevents rogue requests from
 even reaching the app server in the event of an incident. So, I decided to spend some time
-investigating how to do it at the load balancer layer. Nginx[^1] makes it quite
-manageable[^2] without much fuss and the system was already using it as a reverse proxy.
+investigating how to do it at the load balancer layer. Nginx[^3] makes it quite
+manageable[^4] without much fuss and the system was already using it as a reverse proxy.
 
 For the initial pass, I chose to go with the default Nginx settings, avoiding any additional
 components like a Redis layer for centralized rate limiting.
@@ -388,12 +388,18 @@ See the deployed service in action (might not be available later):
 $ seq 200 | xargs -n 1 -P 100 bash -c 'curl -s 34.138.11.32/greetings | jq'
 ```
 
-Find the complete source code here[^3].
+Find the complete source code here[^5].
 
 Fin!
 
-[^1]: [Nginx](https://www.nginx.com/)
+[^1]:
+    [What is a DDoS attack?](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/)
+
 [^2]:
+    [The “thundering herd” problem - Nick Groenen](https://nick.groenen.me/notes/thundering-herd/)
+
+[^3]: [Nginx](https://www.nginx.com/)
+[^4]:
     [Rate limiting with Nginx and Nginx plus](https://www.nginx.com/blog/rate-limiting-nginx/)
 
-[^3]: [Complete implementation](https://github.com/rednafi/nginx-ratelimit)
+[^5]: [Complete implementation](https://github.com/rednafi/nginx-ratelimit)
