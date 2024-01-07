@@ -346,7 +346,7 @@ request to the backend `app`. The custom Nginx configuration volumes are mounted
 Navigate to the `app` directory and start the system with the following command:
 
 ```sh
-docker compose up -d
+$ docker compose up -d
 ```
 
 Now make 200 concurrent `curl` requests to see the rate limiter in action:
