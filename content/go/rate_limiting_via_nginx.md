@@ -346,13 +346,13 @@ request to the backend `app`. The custom Nginx configuration volumes are mounted
 Navigate to the `app` directory and start the system with the following command:
 
 ```sh
-$ docker compose up -d
+docker compose up -d
 ```
 
 Now make 200 concurrent `curl` requests to see the rate limiter in action:
 
 ```sh
-$ seq 200 | xargs -n 1 -P 100 bash -c 'curl -s location/greetings | jq'
+seq 200 | xargs -n 1 -P 100 bash -c 'curl -s location/greetings | jq'
 ```
 
 This returns:
@@ -385,7 +385,7 @@ This returns:
 See the deployed service in action (might not be available later):
 
 ```sh
-$ seq 200 | xargs -n 1 -P 100 bash -c 'curl -s 34.138.11.32/greetings | jq'
+seq 200 | xargs -n 1 -P 100 bash -c 'curl -s 34.138.11.32/greetings | jq'
 ```
 
 This will print the same output as the local service.
