@@ -114,13 +114,13 @@ While the type checker is satisfied when you pass the `*args` and `**kwargs` as
 foo(*args, **kwargs)
 ```
 
-But it'll complain if you don't pass all the keyword arguments:
+it'll complain if you don't pass all the keyword arguments:
 
 ```python
 foo(*args, key1=1)  # error: Missing named argument "key2" for "foo"
 ```
 
-To make all the keywords optional, you could turn off the `total` flag in the typed-dict
+To make all of the keywords optional, you could turn off the `total` flag in the typed-dict
 definition:
 
 ```python {hl_lines=2}
@@ -144,6 +144,9 @@ class Kw(TypedDict):
 
 # ...
 ```
+
+This will let you pass an incomplete set of optional keyword arguments without the type
+checker yelling at you.
 
 Fin!
 
