@@ -34,7 +34,7 @@ def foo(*args: tuple[int, str], **kwargs: dict[str, bool | None]) -> None:
 
 Here, the type checker sees each positional argument as a tuple of an integer and a string.
 Plus, it considers each keyword argument as a dictionary where the keys are strings and the
-values are either booleans or None.
+values are either booleans or `None`.
 
 With the previous annotation, `mypy` will reject this:
 
