@@ -22,10 +22,10 @@ This implies that `args` is a tuple where all the elements are integers, and `kw
 dictionary where the keys are strings and the values are booleans.
 
 On the flip side, you couldn't annotate `*args` and `**kwargs` properly if the values of the
-positional and keyword arguments had different types. In those cases, you'd have to fallback
-to `Any`, which beats the purpose.
+positional and keyword arguments had different types. In those cases, you'd have to fall
+back to `Any`, which defeats the purpose.
 
-Consider this:
+Consider this example:
 
 ```python
 def foo(*args: tuple[int, str], **kwargs: dict[str, bool | None]) -> None:
@@ -53,14 +53,14 @@ expected "dict[str, bool | None]"  [arg-type]
 Instead, it'll accept the following:
 
 ```python
-foo((1, "hello"), (2, "world"), kw1={"key1": 1, "key2": False})
+foo((1, "hello"), kw1={"key1": 1, "key2": False})
 ```
 
 You probably wanted to represent the former while the type checker wants the latter.
 
 To annotate the second instance correctly, you'll need to leverage bits of PEP-589[^1],
-PEP-646[^2], and PEP-692[^3]. We'll use `Unpack` and `TypedDict` from the `typing` module to
-achieve this. Here's how:
+PEP-646[^2], PEP-655[^3], and PEP-692[^4]. We'll use `Unpack` and `TypedDict` from the
+`typing` module to achieve this. Here's how:
 
 ```python
 from typing import TypedDict, Unpack  # Python 3.12+
@@ -74,7 +74,7 @@ class Kw(TypedDict):
 
 
 def foo(*args: Unpack[tuple[int, str]], **kwargs: Unpack[Kw]) -> None:
-    pass
+    ...
 
 
 args = (1, "hello")
@@ -83,20 +83,14 @@ kwargs: Kw = {"key1": 1, "key2": False}
 foo(*args, **kwargs)  # Ok
 ```
 
-`TypedDict` was added in Python 3.8 to allow you to annotate heterogenous dictionaries. If
-all the values of a dictionary has the same type, you can simply use `dict[str, T]` to
-annotate it. However, `TypedDict` covers the cases where all the keys of a dictionary are
-strings but the type of the values vary.
+`TypedDict` was introduced in Python 3.8 to allow you to annotate heterogeneous
+dictionaries. If all the values of a dictionary have the same type, you can simply use
+`dict[str, T]` to annotate it. However, `TypedDict` covers the case where all the keys of a
+dictionary are strings but the type of the values varies.
 
-The following dictionary
+The following example shows how you might annotate a heterogeneous dictionary:
 
-```python
-movies = {"name": "Mad Max", "year": 2015}
-```
-
-can be typed as such:
-
-```python
+```python {hl_lines=9}
 from typing import TypedDict
 
 
@@ -111,27 +105,26 @@ movies: Movie = {"name": "Mad Max", "year": 2015}
 `Unpack` marks an object as having been unpacked.
 
 Using `TypedDict` with `Unpack` allows us to communicate with the type checker so that each
-positional and keyword aren't mistakenly assumed as a tuple and a dictionary respectively.
+positional and keyword argument isn't mistakenly assumed as a tuple and a dictionary
+respectively.
 
-While the type checker is satisfied when you pass the `**args` and `**kwargs` as
+While the type checker is satisfied when you pass the `*args` and `**kwargs` as
 
 ```python
 foo(*args, **kwargs)
 ```
 
-But it'll complain if you don't pass all the keword arguments:
+But it'll complain if you don't pass all the keyword arguments:
 
 ```python
 foo(*args, key1=1)  # error: Missing named argument "key2" for "foo"
 ```
 
-To make all the keywords optional, could turn off the `total` flag in the typed-dict
+To make all the keywords optional, you could turn off the `total` flag in the typed-dict
 definition:
 
-```python {hl_lines=3}
+```python {hl_lines=2}
 # ...
-
-
 class Kw(TypedDict, total=False):
     key1: int
     key2: str
@@ -142,10 +135,8 @@ class Kw(TypedDict, total=False):
 
 Or you could mark specific keywords as optional with `typing.NotRequired`:
 
-```python {hl_lines=6}
+```python {hl_lines=4}
 # ...
-
-
 class Kw(TypedDict):
     key1: int
     key2: NotRequired[str]
@@ -156,6 +147,12 @@ class Kw(TypedDict):
 
 Fin!
 
-[^1]: [](https://peps.python.org/pep-0589/)
-[^2]: [](https://peps.python.org/pep-0646/)
-[^3]: [](https://peps.python.org/pep-0692/)
+[^1]:
+    [PEP 589 – TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://peps.python.org/pep-0589/)
+
+[^2]: [PEP 646 – Variadic Generics](https://peps.python.org/pep-0646/)
+[^3]:
+    [PEP 655 – Marking individual TypedDict items as required or potentially-missing](https://peps.python.org/pep-0655/)
+
+[^4]:
+    [PEP 692 – Using TypedDict for more precise \*\*kwargs typing](https://peps.python.org/pep-0692/)
