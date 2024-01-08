@@ -5,6 +5,10 @@
 #    pip-compile --extra=dev --output-file=requirements-dev.txt
 #
 black==23.9.1
+    # via
+    #   blacken-docs
+    #   rednafi.com (pyproject.toml)
+blacken-docs==1.16.0
     # via rednafi.com (pyproject.toml)
 build==1.0.3
     # via pip-tools
