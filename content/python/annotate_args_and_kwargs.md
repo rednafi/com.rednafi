@@ -62,7 +62,7 @@ To annotate the second instance correctly, you'll need to leverage bits of PEP-5
 PEP-646[^2], PEP-655[^3], and PEP-692[^4]. We'll use `Unpack` and `TypedDict` from the
 `typing` module to achieve this. Here's how:
 
-```python
+```python {hl_lines=11}
 from typing import TypedDict, Unpack  # Python 3.12+
 
 # from typing_extensions import TypedDict, Unpack # < Python 3.12
