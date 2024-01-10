@@ -23,11 +23,9 @@ hiker who loves incessantly bikeshedding about techo-dystopianism.
 
 ## Work
 
-I've worked across three continents—Asia, North America, and Europe—in that order.
-
 Currently, I'm based in Berlin and working at [Wolt].
 
-Before this, I was exploring the healthtech industry in the US at [Dendisoftware] and the
+Prior to that, I was exploring the healthtech industry in the US at [Dendisoftware] and the
 fintech sector in Bangladesh at [ShopUp].
 
 ## Gateways
