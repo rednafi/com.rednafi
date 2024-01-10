@@ -13,14 +13,22 @@ ShowShareButtons: false
 Hey there, fellow nightcrawlers! I'm Redowan Delowar, also known as "rednafi" on most
 platforms.
 
-Circa 2018, a glitch in the matrix zapped me to pivot from electrical engineering to data
-science, eventually finding my footing in backend software development. I'm a [tinkerer],
-[writer], and wanderer in the realm of designing and developing resilient software systems.
+Circa 2018, a glitch in the matrix zapped me from electrical engineering to data science,
+eventually finding my footing in backend software development. I'm a [tinkerer], [writer],
+and wanderer in the realm of designing and developing resilient software systems.
 
-I enjoy working on system architecture, networking, data analysis, databases, and API
-design. In my spare time, I'm an open-source contributor, a long-form content consumer, and
-serve as an unapologetic critique of the overarching software landscape on this website,
-[rednafi.com].
+I enjoy working on system architecture, networking, data analysis, and API design. In my
+spare time, I'm an open-source contributor, a long-form content reader, and an obsessive
+hiker who loves incessantly bikeshedding about techo-dystopianism.
+
+## Work
+
+I've worked across three continents—Asia, North America, and Europe—in that order.
+
+Currently, I'm based in Berlin and working at [Wolt].
+
+Before this, I was exploring the healthtech industry in the US at [Dendisoftware] and the
+fintech sector in Bangladesh at [ShopUp].
 
 ## Gateways
 
@@ -51,6 +59,12 @@ serve as an unapologetic critique of the overarching software landscape on this 
 [rednafi.com]: /
 [writer]: /archives/
 [tinkerer]: /tags/til/
+
+<!-- Work -->
+
+[wolt]: https://wolt.com
+[dendisoftware]: https://dendisoftware.com
+[shopup]: https://shopup.org
 
 <!-- Geteways -->
 
