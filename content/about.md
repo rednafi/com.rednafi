@@ -35,6 +35,7 @@ serve as an unapologetic critique of the overarching software landscape on this 
 
 -   [Oh my poor business logic]
 -   [The diminishing half-life of knowledge]
+-   [Annotating args and kwargs in Python]
 -   [An ode to the neo-grotesque web]
 -   [Reminiscing CGI scripts]
 -   [Escaping the template pattern hellscape in Python]
@@ -64,6 +65,7 @@ serve as an unapologetic critique of the overarching software landscape on this 
 
 [oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
 [the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
+[annotating args and kwargs in python]: /python/annotate_args_and_kwargs
 [an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
 [reminiscing cgi scripts]: /go/reminiscing_cgi_scripts
 [writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
