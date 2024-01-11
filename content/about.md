@@ -10,16 +10,16 @@ ShowShareButtons: false
 
 ## Self
 
-Hey there, fellow nightcrawlers! I'm Redowan Delowar, also known as "rednafi" on most
-platforms.
+Ahoy, fellow nightcrawlers! I'm Redowan Delowar, also known as "rednafi" on most platforms.
 
-Circa 2018, a glitch in the matrix zapped me from electrical engineering to data science,
-eventually finding my footing in backend software development. I'm a [tinkerer], [writer],
-and wanderer in the realm of designing and developing resilient software systems.
+Circa 2018, a glitch in the matrix slingshotted me from electrical engineering to data
+science, eventually leading to my osmosis into backend software development. I'm a
+[tinkerer], [writer], and wanderer in the realm of designing and developing resilient
+software systems.
 
 I enjoy working on system architecture, networking, data analysis, and API design. In my
 spare time, I'm an open-source contributor, a long-form content reader, and an obsessive
-hiker who loves incessantly bikeshedding about techo-dystopianism.
+hiker who loves to rant about our increasingly techno-maximalist dystopian world.
 
 ## Work
 
