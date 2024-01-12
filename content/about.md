@@ -19,7 +19,7 @@ software systems.
 
 I enjoy working on system architecture, networking, data analysis, and API design. In my
 spare time, I'm an open-source contributor, a long-form content reader, and an obsessive
-hiker who loves to rant about our increasingly techno-maximalist dystopian world.
+hiker who loves to rant about our increasingly techno-maximalist world.
 
 ## Work
 
@@ -27,6 +27,17 @@ Currently, I'm based in Berlin and working at [Wolt].
 
 Prior to that, I was exploring the healthtech industry in the US at [Dendisoftware] and the
 fintech sector in Bangladesh at [ShopUp].
+
+## Tech stack
+
+I prefer lean and stable tools that allow me to build things quickly without much theatrics.
+
+Python, Go, Django, Flask, FastAPI, PostgreSQL, SQLite, and MongoDB are among the subsets of
+tools that I really enjoy working with.
+
+For infrastructure, I like to take the least fancy route—setting up a VPC, configuring Nginx
+and SSL with Ansible, and then publishing Dockerized services. But I'm also comfortable
+working with GCP or AWS.
 
 ## Gateways
 
