@@ -22,8 +22,8 @@ or this:
 
 ```js
 fetch("https://dummyjson.com/products/1")
-.then(res => res.json())
-.then(json => console.log(json.id, json.type, json.description))
+  .then((res) => res.json())
+  .then((json) => console.log(json.id, json.type, json.description));
 ```
 
 In both cases, running the snippets will return:
@@ -272,8 +272,7 @@ In the JS land, you can adopt TypeScript and zod[^4] to achieve a similar result
 
 ```ts
 // index.ts
-
-import { z } from 'zod';
+import { z } from "zod";
 
 const ProductSchema = z.object({
   id: z.number(),
@@ -285,8 +284,8 @@ const ProductSchema = z.object({
 type Product = z.infer<typeof ProductSchema>;
 
 fetch("https://dummyjson.com/products/1")
-  .then(response => response.json())
-  .then(data => ProductSchema.parse(data))
+  .then((response) => response.json())
+  .then((data) => ProductSchema.parse(data))
   .then((product: Product) => {
     console.log(product.id, product.title, product.description);
   });
