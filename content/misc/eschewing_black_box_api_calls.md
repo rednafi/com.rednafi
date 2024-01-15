@@ -204,14 +204,21 @@ payload structure, but also applies runtime validation to guarantee operational 
 As a bonus, you can use a tool like this[^3] to generate pydantic classes from JSON:
 
 ```python
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Product(BaseModel):
     id: int
     title: str
     description: str
-    # Other fields can be added if needed
+    price: int
+    discount_percentage: float = Field(alias="discountPercentage")
+    rating: float
+    stock: int
+    brand: str
+    category: str
+    thumbnail: str
+    images: list[str]
 ```
 
 You can project your response onto the JSON with `Product(**response.json())` and get a rich
