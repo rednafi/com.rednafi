@@ -135,7 +135,7 @@ type Product struct {
 ```
 
 While this is less work than having to mimic the whole structure of the JSON output in the
-struct definition, it's still not winning any brevity competition against the Python and JS
+struct definition, it's still not winning any medals for brevity against the Python and JS
 examples.
 
 Dynamically processing a JSON payload is nice as long as you're working on a throwaway
@@ -221,8 +221,8 @@ class Product(BaseModel):
     images: list[str]
 ```
 
-You can project your response onto the JSON with `Product(**response.json())` and get a rich
-object that also validates the incoming values. This will also work the same way with
+You can project your response onto the data class with `Product(**response.json())` and get
+a rich object that also validates the incoming values. This will also work the same way with
 partially defined classes:
 
 ```python
