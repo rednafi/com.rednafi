@@ -66,7 +66,7 @@ returns:
 }
 ```
 
-This is how you'd call the same API endpoint in Go. I'm using this json-to-go[^1] service to
+This is how you'd call the API endpoint in Go. I'm using this json-to-go[^1] service to
 generate the Go struct instead of handwriting it:
 
 ```go
@@ -134,23 +134,24 @@ type Product struct {
 // ... same as before
 ```
 
-While this is less work than having to mimic the whole structure of the JSON output in the
+While this is less work than having to emulate the whole structure of the JSON output in the
 struct definition, it's still not winning any medals for brevity against the Python and JS
 snippets.
 
 Dynamically processing a JSON payload is nice as long as you're working on a throwaway
-script. Anything more, it becomes a headache since the reader won't have any idea about what
-the API response looks like without looking at the documentation or traces.
+script. Anything more, it becomes a headache since the readers won't have any idea about
+what the API response looks like without looking at the documentation or traces.
 
-Also, type safety is an issue. Since the imperative examples don't assume the structure of
-the response, you'll be surprised with a runtime error if you've made an incorrect
-assumption about the response structure. Sure, having to write a struct is a chore, but the
-free documentation and the type safety are things that you don't get with the black box API
+Also, type safety is an issue. Since the imperative workflow doesn't assume the structure of
+the response, you'll be surprised with a runtime error if you make an incorrect assumption
+about the response structure. Sure, having to write a struct is a chore, but the free
+documentation and the type safety are things that you don't get with the black box API
 calls.
 
 Statically typed languages force you to maintain good hygiene while working with JSON
 payloads. Declaratively embedding the payload structure directly into the codebase is
-immensely beneficial. But how do you do that in a language like Python?
+immensely beneficial; it reduces the out-of-band knowledge required to understand the code
+and adds type safety as a cheery on top. But how do you do that in a language like Python?
 
 If you want to go with what's in the standard library, you can handroll a dataclass like
 this and project the return payload onto it:
