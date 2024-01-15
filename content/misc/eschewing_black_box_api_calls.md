@@ -161,6 +161,7 @@ this and project the return payload onto it:
 from dataclasses import dataclass
 from typing import Self
 
+
 @dataclass(slots=True)
 class Product:
     id: int
@@ -180,6 +181,7 @@ class Product:
         # This is needed to reconcile the snake_case and camelCase variables
         discount_percentage = d.pop("discountPercentage", None)
         return cls(discount_percentage=discount_percentage, **d)
+
 
 # ...
 ```
@@ -204,13 +206,12 @@ As a bonus, you can use a tool like this[^3] to generate pydantic classes from J
 ```python
 from pydantic import BaseModel
 
+
 class Product(BaseModel):
     id: int
     title: str
     description: str
-    # Other fields can be
-
- added if needed
+    # Other fields can be added if needed
 ```
 
 You can project your response onto the JSON with `Product(**response.json())` and get a rich
@@ -222,13 +223,14 @@ partially defined classes:
 
 from pydantic import BaseModel
 
+
 class Product(BaseModel):
     id: int
     title: str
     description: str
 
-# ...
 
+# ...
 ```
 
 Here's a complete example:
@@ -238,11 +240,13 @@ import httpx
 from pydantic import BaseModel
 import asyncio
 
+
 # Partially defined Pydantic model to represent the response
 class Product(BaseModel):
     id: int
     title: str
     description: str
+
 
 async def main() -> None:
     async with httpx.AsyncClient() as client:
@@ -251,6 +255,7 @@ async def main() -> None:
         data = response.json()
         product = Product(**data)
         print(product.id, product.title, product.description)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
