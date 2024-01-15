@@ -295,7 +295,7 @@ I find the added verbosity for type safety and readability well worth it.
 
 Fin!
 
-[^1]: https://mholt.github.io/json-to-go/
-[^2]: https://docs.pydantic.dev/latest/
-[^3]: https://jsontopydantic.com/
-[^4]: https://github.com/colinhacks/zod
+[^1]: [json-to-go](https://mholt.github.io/json-to-go/)
+[^2]: [pydantic](https://docs.pydantic.dev/latest/)
+[^3]: [json-to-pydantic](https://jsontopydantic.com/)
+[^4]: [zod](https://github.com/colinhacks/zod)
