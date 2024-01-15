@@ -32,10 +32,10 @@ In both cases, running the snippets will return:
 1 'iPhone 9' 'An apple mobile which is nothing like apple'
 ```
 
-Unless you work with a statically typed language that enforces more constraints, it's hard
-to appreciate how incredibly convenient it is to be able to call and use an API endpoint
-without having to deal with types or knowing anything about its payload structure. You can
-treat the API response as a black box and deal with everything in runtime.
+Unless you've worked with a statically typed language that enforces more constraints, it's
+hard to appreciate how incredibly convenient it is to be able to call and use an API
+endpoint without having to deal with types or knowing anything about its payload structure.
+You can treat the API response as a black box and deal with everything in runtime.
 
 For example, Go wouldn't even allow you to do so in such a loosey-goosey way. To consume the
 API, you'd need to create a struct in the essence of the return payload and then unmarshal
@@ -136,7 +136,7 @@ type Product struct {
 
 While this is less work than having to mimic the whole structure of the JSON output in the
 struct definition, it's still not winning any medals for brevity against the Python and JS
-examples.
+snippets.
 
 Dynamically processing a JSON payload is nice as long as you're working on a throwaway
 script. Anything more, it becomes a headache since the reader won't have any idea about what
@@ -222,7 +222,7 @@ class Product(BaseModel):
 ```
 
 You can project your response onto the data class with `Product(**response.json())` and get
-a rich object that also validates the incoming values. This will also work the same way with
+a rich object that also validates the incoming values. This will work the same way with
 partially defined classes:
 
 ```python
