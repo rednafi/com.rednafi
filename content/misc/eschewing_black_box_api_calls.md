@@ -151,7 +151,7 @@ calls.
 Statically typed languages force you to maintain good hygiene while working with JSON
 payloads. Declaratively embedding the payload structure directly into the codebase is
 immensely beneficial; it reduces the out-of-band knowledge required to understand the code
-and adds type safety as a cheery on top. But how do you do that in a language like Python?
+and adds type safety as a cherry on top. But how do you do that in a language like Python?
 
 If you want to go with what's in the standard library, you can handroll a dataclass like
 this and project the return payload onto it:
