@@ -292,7 +292,7 @@ fetch("https://dummyjson.com/products/1")
   });
 ```
 
-I find the added verbosity for type safety and readability well worth it.
+I don't mind the added verbosity if it leads to better readability and type safety.
 
 Fin!
 
