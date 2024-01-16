@@ -25,6 +25,10 @@
   color: var(--code-color) !important;
 }
 
+.post-content pre code {
+  background: var(--code-bg) !important;
+}
+
 .toc {
   font-size: 0.9em;
 }
