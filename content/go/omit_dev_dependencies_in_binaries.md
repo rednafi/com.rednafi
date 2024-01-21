@@ -140,7 +140,7 @@ However, this will most likely fail if any of your dev dependencies aren't impor
 
 Here's an example[^4] of this pattern in the wild from the Kubernetes repo.
 
-While it works, I'd still prefer to have a proper solution to this instead of a hack. Fin!
+While it works, I'd still prefer to have a proper solution instead of a hack. Fin!
 
 [^1]: [link-patrol](https://github.com/rednafi/link-patrol)
 [^2]: [golangci-lint](https://github.com/golangci/golangci-lint)
