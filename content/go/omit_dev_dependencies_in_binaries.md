@@ -12,7 +12,7 @@ dependencies explicitly for better reproducibility.
 
 While working on a new CLI tool[^1] for checking dead URLs in markdown files, I came across
 this neat convention: you can specify dev dependencies in a `tools.go` file and then exclude
-them while building the binary using a build flag.
+them while building the binary using a build tag.
 
 Here's how it works. Let's say our project `foo` currently has the following structure:
 
