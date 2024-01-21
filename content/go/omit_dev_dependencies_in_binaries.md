@@ -46,7 +46,7 @@ commands serially:
 
 ```sh
 go mod init example.com/foo   # creates the go.mod and go.sum files
-go mod tidy                   # installs the app dependency
+go mod tidy                   # installs the app dependencies
 ```
 
 Now, let's say we want to add the following dev dependencies: golangci-lint[^2] to lint the
@@ -55,10 +55,10 @@ directly anywhere, they aren't tracked by the build toolchain.
 
 But we can leverage the following workflow:
 
--   Add a file typically named `tools.go` in the root directory.
+-   Place a `tools.go` file in the root directory.
 -   Import the dev dependencies in that file.
--   Run `go mod tidy` to track them via `go.mod` and `go.sum`.
--   Instruct the build tool not to include them in the binary by adding a build tag.
+-   Run `go mod tidy` to track both app and dev dependencies via `go.mod` and `go.sum`.
+-   Specify a build tag in `tools.go` to exclude the dev dependencies from the binary.
 
 In this case, `tools.go` looks as follows:
 
