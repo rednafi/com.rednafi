@@ -198,7 +198,7 @@ def patch_env_vars(request: FixtureRequest) -> Iterator[Settings]:
         expected_type = getattr(settings, key).__class__
         if not isinstance(val, expected_type):
             raise ValueError(
-                f"Invalid type for {key}: {val.__class__} instead"
+                f"Invalid type for {key}: {val.__class__} instead "
                 "of {expected_type}"
             )
         setattr(settings, key, val)
