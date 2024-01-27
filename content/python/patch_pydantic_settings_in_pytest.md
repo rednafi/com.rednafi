@@ -177,7 +177,7 @@ from pytest import FixtureRequest
 
 
 @pytest.fixture
-def patch_env_vars(request: FixtureRequest) -> Iterator[Settings]:
+def patch_settings(request: FixtureRequest) -> Iterator[Settings]:
     # Make a copy of the original settings
     original_settings = settings.model_copy()
 
@@ -209,7 +209,7 @@ def patch_env_vars(request: FixtureRequest) -> Iterator[Settings]:
     settings.__dict__.update(original_settings.__dict__)
 ```
 
-Here, `patch_env_var` is a parametrizable fixture where you can optionally pass values via
+Here, `patch_settings` is a parametrizable fixture where you can optionally pass values via
 `pytest.mark.parametrize` to override certain config attributes. If you don't override
 anything, the fixture sets the attributes of the `Setting` instance to their default values
 defined in the class.
@@ -225,7 +225,7 @@ after a test ends.
 You can use the fixture like this:
 
 ```python
-def test_read_env(patch_env_vars: Settings) -> None:
+def test_read_env(patch_settings: Settings) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
     assert env_var_1 == "default_value"
     assert env_var_2 == 123
@@ -233,18 +233,18 @@ def test_read_env(patch_env_vars: Settings) -> None:
 
 
 @pytest.mark.parametrize(
-    "patch_env_vars",
+    "patch_settings",
     [
         {"env_var_1": "patched_value", "env_var_2": 456},
         {"env_var_2": 459},
     ],
     indirect=True,
 )
-def test_read_env_override(patch_env_vars: Settings) -> None:
+def test_read_env_override(patch_settings: Settings) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
-    assert env_var_1 == patch_env_vars.env_var_1
-    assert env_var_2 == patch_env_vars.env_var_2
-    assert env_var_3 is patch_env_vars.env_var_3
+    assert env_var_1 == patch_settings.env_var_1
+    assert env_var_2 == patch_settings.env_var_2
+    assert env_var_3 is patch_settings.env_var_3
 ```
 
 In the first case, we're not overriding anything. So the tests will use the `Settings`
