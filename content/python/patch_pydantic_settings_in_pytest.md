@@ -11,7 +11,7 @@ the 1.0 era. When pydantic 2.0 was released, the settings portion became a separ
 called `pydantic_settings`[^2].
 
 It does two things that I love: it automatically reads the environment variables from the
-`.env` file and allows you to declaratively convert string values to their desired types
+`.env` file and allows you to declaratively convert the string values to their desired types
 like integers, booleans, etc.
 
 Plus, it lets you override the variables defined in `.env` by exporting them in your shell.
@@ -115,7 +115,7 @@ env_var_2=42
 env_var_3=True
 ```
 
-Fantastic but now, testing the `read_env` function becomes tricky. Normally, you'd try to
+Fantastic! But now, testing the `read_env` function becomes tricky. Normally, you'd try to
 patch the environment variables in a pytest fixture and then test the values like this:
 
 ```python
@@ -198,7 +198,8 @@ def patch_env_vars(request: FixtureRequest) -> Iterator[Settings]:
         expected_type = getattr(settings, key).__class__
         if not isinstance(val, expected_type):
             raise ValueError(
-                f"Invalid type for {key}: {val.__class__} instead of {expected_type}"
+                f"Invalid type for {key}: {val.__class__} instead"
+                "of {expected_type}"
             )
         setattr(settings, key, val)
 
@@ -224,7 +225,7 @@ after a test ends.
 You can use the fixture like this:
 
 ```python
-def test_read_env(patch_env_vars):
+def test_read_env(patch_env_vars: Settings) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
     assert env_var_1 == "default_value"
     assert env_var_2 == 123
@@ -239,7 +240,7 @@ def test_read_env(patch_env_vars):
     ],
     indirect=True,
 )
-def test_read_env_override(patch_env_vars):
+def test_read_env_override(patch_env_vars: Settings) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
     assert env_var_1 == patch_env_vars.env_var_1
     assert env_var_2 == patch_env_vars.env_var_2
