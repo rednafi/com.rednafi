@@ -35,9 +35,8 @@ implicitly pulls config values from both the environment file and shell, testing
 using those values can easily become flaky. Also, it's usually frowned upon if your unit
 tests depend on environment variables in general.
 
-Consider this common instantiation workflow of the settings class:
-
-Here, we have the following app structure:
+Consider this common instantiation workflow of the settings class. Here, we have the
+following app structure:
 
 ```txt
 .
