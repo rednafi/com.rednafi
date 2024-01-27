@@ -1,12 +1,12 @@
 ---
-title: Parametrized fixtures in Pytest
+title: Parametrized fixtures in pytest
 date: 2022-03-10
 tags:
     - Python
     - Testing
 ---
 
-While most of my Pytest fixtures don't react to the dynamically-passed values of function
+While most of my pytest fixtures don't react to the dynamically-passed values of function
 parameters, there have been situations where I've definitely felt the need for that.
 Consider this example:
 
@@ -122,7 +122,7 @@ In this case, the fixture `create_file` takes an additional parameter called `fi
 then yields the directory path and the file path; just as the first snippet. Later on, in
 the `test_file_creation` function, the desired values of the `filename` parameter is
 injected into the fixture via the `@pytest.mark.parametrize` decorator. In the above
-snippet, Pytest runs the fixture 3 times and creates the desired files in 3 passes—just like
+snippet, pytest runs the fixture 3 times and creates the desired files in 3 passes—just like
 how a normal function call would behave.
 
 [^1]:

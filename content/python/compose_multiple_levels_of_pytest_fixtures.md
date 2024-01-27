@@ -1,5 +1,5 @@
 ---
-title: Compose multiple levels of fixtures in Pytest
+title: Compose multiple levels of fixtures in pytest
 date: 2022-07-21
 tags:
     - Python

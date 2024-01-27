@@ -98,7 +98,7 @@ jobs:
           echo "Checking flake8 formatting..."
           python3 -m flake8 .
 
-      # Run the tests via Pytest.
+      # Run the tests via pytest.
       - name: Run the tests
         run: |
           pytest -v -s

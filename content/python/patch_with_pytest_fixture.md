@@ -6,7 +6,7 @@ tags:
     - Testing
 ---
 
-In Python, even though I adore writing tests in a functional manner via Pytest, I still have
+In Python, even though I adore writing tests in a functional manner via pytest, I still have
 a soft corner for the tools provided in the `unittest.mock` module. I like the fact it's
 baked into the standard library and is quite flexible. Moreover, I'm yet to see another
 `mock` library in any other language or in the Python ecosystem that allows you to mock your
@@ -250,7 +250,7 @@ This approach has the following advantages:
     once per test function. This behavior can be changed via using the `scope` parameter of
     the `@pytest.fixture(scope=...)` decorator. Other allowed scopes are `module` and
     `session`. **Module** scope means, the fixture will be executed once per test module and
-    **session** scope means, the fixture will run once per Pytest session.
+    **session** scope means, the fixture will run once per pytest session.
 
 ## Another practical example
 
