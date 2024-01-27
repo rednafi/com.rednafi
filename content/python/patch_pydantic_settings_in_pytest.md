@@ -122,6 +122,7 @@ patch the environment variables in a pytest fixture and then test the values lik
 # tests/test_main.py
 
 import os
+from collections.abc import Iterator
 from unittest.mock import patch
 
 import pytest
@@ -129,7 +130,7 @@ from src.main import read_env
 
 
 @pytest.fixture
-def patch_env_vars():
+def patch_env_vars() -> Iterator[None]:
     with patch.dict(
         os.environ,
         {
@@ -141,7 +142,7 @@ def patch_env_vars():
         yield
 
 
-def test_read_env(patch_env_vars):
+def test_read_env(patch_env_vars: None) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
     assert env_var_1 == "test_env_var_1"
     assert env_var_2 == 456
