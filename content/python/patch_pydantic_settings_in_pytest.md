@@ -161,8 +161,8 @@ surprised at how many apps with 7+ figure ARR initialize their config classes li
 So patching the environment variables doesn't work, what does?
 
 The idea is to let pydantic do its magic and then reset the attributes of the `Settings`
-class to their default values in a fixture. We also want the user of the fixture to be able
-to override the values of some or all of the environment variables if necessary.
+instance to their default values in a fixture. We also want the user of the fixture to be
+able to override the values of some or all of the environment variables if necessary.
 
 Here's what has worked well for me:
 
