@@ -28,17 +28,6 @@ Currently, I'm based in Berlin and working at [Wolt].
 Prior to that, I was exploring the healthtech industry in the US at [Dendisoftware] and the
 fintech sector in Bangladesh at [ShopUp].
 
-## Tech stack
-
-I prefer lean and stable tools that allow me to build things quickly without much theatrics.
-
-Python, Go, Django, Flask, FastAPI, PostgreSQL, SQLite, and MongoDB are among the subsets of
-tools that I really enjoy working with.
-
-For infrastructure, I like to take the least fancy route—setting up a VPC, configuring Nginx
-and SSL with Ansible, and then publishing Dockerized services. But I'm also comfortable
-working with GCP or AWS.
-
 ## Gateways
 
 -   [email]
@@ -46,6 +35,7 @@ working with GCP or AWS.
 -   [linkedin]
 -   [mastodon]
 -   [rss]
+-   [stackoverflow]
 -   [twitter]
 
 ## Greatest hits
@@ -79,9 +69,10 @@ working with GCP or AWS.
 
 [email]: mailto:redowan.nafi@gmail.com
 [github]: https://github.com/rednafi
-[linkedin]: https://www.linkedin.com/in/redowan/
+[linkedin]: https://www.linkedin.com/in/rednafi/
 [mastodon]: https://fosstodon.org/@rednafi
 [rss]: https://rednafi.com/index.xml
+[stackoverflow]: https://stackoverflow.com/
 [twitter]: https://twitter.com/rednafi
 
 <!-- Greatest hits -->

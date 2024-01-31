@@ -10,50 +10,16 @@ ShowShareButtons: false
 
 ## Software
 
-#### $ uname -v | fold -w 60
+### Tech stack
 
-```txt
-Darwin Kernel Version 23.1.0: Mon Oct  9 21:28:31 PDT 2023;
-root:xnu-10002.41.9~6/RELEASE_ARM64_T8112
-```
+I prefer lean and stable tools that allow me to build things quickly without much theatrics.
 
-#### $ for editor in code micro nano; do whereis $editor; done
+Python, Go, Django, Flask, FastAPI, PostgreSQL, SQLite, and MongoDB are among the subsets of
+tools that I really enjoy working with.
 
-```txt
-code: /opt/homebrew/bin/code
-micro: /opt/homebrew/bin/micro /opt/homebrew/share/man/man1/micro.1
-nano: /usr/bin/nano /usr/share/man/man1/nano.1
-```
-
-#### $ echo $SHELL
-
-```txt
-/bin/zsh
-```
-
-#### $ brew leaves | xargs -n 3 | column -t
-
-```txt
-bash         curl        fzf
-gh           git         git-lfs
-go           htop        hugo
-jq           kubectx     libevent
-libgit2      libxft      libxinerama
-micro        minikube    neofetch
-oxipng       pkg-config  prettier
-python@3.11  pyyaml      shellcheck
-stow         telnet      tree
-utf8proc     virtualenv  watch
-z3           zsh
-```
-
-#### $ brew list --cask | xargs -n 3 | column -t
-
-```txt
-aldente             firefox   font-jetbrains-mono
-google-chrome       orbstack  slack
-visual-studio-code
-```
+For infrastructure, I like to take the least fancy route—setting up a VPC, configuring Nginx
+and SSL with Ansible, and then publishing Dockerized services. But I'm also comfortable
+working with GCP or AWS.
 
 ## Hardware
 
