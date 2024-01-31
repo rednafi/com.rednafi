@@ -7,7 +7,7 @@ tags:
 ---
 
 Despite moonlighting as a gopher for a while, the syntax for type assertion and switches
-trips me up whenever I need to go for one of them.
+still trips me up every time I need to go for one of them.
 
 So, to avoid digging through the docs or crafting stodgy LLM prompts multiple times, I
 decided to jot this down in a gobyexample[^1] style for the next run.
