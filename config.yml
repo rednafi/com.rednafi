@@ -109,7 +109,7 @@ params:
     - name: twitter
       url: "https://twitter.com/rednafi"
     - name: stackoverflow
-      url: "https://stackoverflow.com/users/8963300/redowan-delowar"
+      url: "https://stackoverflow.com/users/8963300/rednafi"
     - name: github
       url: "https://github.com/rednafi"
 
