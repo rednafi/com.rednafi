@@ -6,8 +6,8 @@ tags:
     - TIL
 ---
 
-Despite moonlighting as a gopher for a while, the syntax for type assertion and switches
-still trips me up every time I need to go for one of them.
+Despite moonlighting as a gopher for a while, the syntax for type assertion and type
+switches still trips me up every time I need to go for one of them.
 
 So, to avoid digging through the docs or crafting stodgy LLM prompts multiple times, I
 decided to jot this down in a gobyexample[^1] style for the next run.
@@ -50,7 +50,7 @@ var i interface{} = "Hello"
 f := i.(float64) // This triggers a panic
 ```
 
-Wrong assertions, like converting a string to a float64, cause runtime panics.
+Wrong assertions, like attempting to convert a string to a float64, cause runtime panics.
 
 ## Type switches
 
@@ -87,7 +87,8 @@ case string:
 }
 ```
 
-This code converts `[]byte` to a string and prints `hello`.
+Notice how we're assinging `v` to `i.(type)` and then reusing the extracted value in the
+case statements. The snippet converts `[]byte` to a string and prints `hello`.
 
 ### Handling multiple types in a type switch case
 
