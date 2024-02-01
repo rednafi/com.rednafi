@@ -103,10 +103,10 @@ case string:
 }
 ```
 
-Notice how we're assinging `v` to `i.(type)` and then reusing the extracted value in the
-case statements. The snippet converts `[]byte` to a string and prints `hello`.
+Notice how we're assinging variable `v` to `i.(type)` and then reusing the extracted value
+in the case statements. The snippet converts `[]byte` to a string and prints `hello`.
 
-### Handling multiple types in a type switch case
+### Handling multiple types
 
 ```go
 var i interface{} = 2.5
@@ -121,7 +121,7 @@ case string:
 
 The `case T1, T2` syntax works like an OR relationship, outputting `i is a number`.
 
-### Addressing composite types in a type switch case
+### Addressing composite types
 
 ```go
 var i interface{} = map[string]bool{"hello": true, "world": false}
