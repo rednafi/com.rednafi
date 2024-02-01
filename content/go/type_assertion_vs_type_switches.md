@@ -21,7 +21,7 @@ get the dynamic type of an interface. The syntax is `x.(T)`, where `x` is an int
 ### Basic usage
 
 ```go
-var i interface{} = "Hello"
+var i interface{} = "Hello" // or use `any` as an alias for `interface{}`
 
 s := i.(string)
 fmt.Println(s)
