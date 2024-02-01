@@ -42,6 +42,22 @@ if v, ok := i.(int); ok {
 This code checks if `i` is an `int` and prints its value if so. The value of `ok` will be
 `false` if `i` isn't an integer and nothing will be printed to the console.
 
+## Checking composite types and values
+
+```go
+var i interface{} = []string{"apple", "banana", "cherry"}
+
+if v, ok := i.([]string); ok {
+    fmt.Println("Slice of strings:", v)
+}
+```
+
+This will print `Slice of strings: [apple banana cherry]` to the console.
+
+Similar to primitive types, you can also perform type assertions with composite types. In
+the example above, we check whether the variable `i`, which is of an interface type, holds a
+value of the type 'slice of strings'.
+
 ### Handling failures
 
 ```go
@@ -104,6 +120,25 @@ case string:
 ```
 
 The `case T1, T2` syntax works like an OR relationship, outputting `i is a number`.
+
+### Addressing composite types in a type switch case
+
+```go
+var i interface{} = map[string]bool{"hello": true, "world": false}
+
+switch i.(type) {
+case map[string]bool:
+    fmt.Println("i is a map:", i)
+case []string:
+    fmt.Println("i is a slice:", i)
+default:
+    fmt.Println("unknown type")
+}
+```
+
+Similar to primitive types, you can check for composite types in the case statement of a
+type switch. Here, we're checking whether `i` is a `map[string]bool` or not. Running this
+will output `i is a map: map[hello:true world:false]`.
 
 ## Similarities and differences
 
