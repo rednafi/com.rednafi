@@ -183,15 +183,6 @@ func main() {
 
 Running it will give you the same output as before.
 
-```txt
-Function called with a: 42 and b: 100
-Retrying function call, attempt: 1, error: some error
-Function called with a: 42 and b: 100
-Retrying function call, attempt: 2, error: some error
-Function called with a: 42 and b: 100
-Function execution failed: some error
-```
-
 Notice how `someFunc` is wrapped in a `wrappedFunc` where `wrappedFunc` has the signature
 that `Retry` expects. Then inside, the `someFunc` function is called with the appropriate
 arguments. This type of adaptation gymnastics is necessary to make the process acceptably
@@ -225,9 +216,9 @@ func Retry(
 }
 ```
 
-Calling this version is much easier since the signature of the closure function that `Retry`
-accepts is static. So you won't need to adapt your retry call whenever the signature of the
-wrapped function changes. You'd call it as follows:
+Now, calling `Retry` is much easier since the signature of the closure function it accepts
+is static. So you won't need to adapt your retry call whenever the signature of the wrapped
+function changes. You'd call it as follows:
 
 ```go
 func main() {
@@ -252,7 +243,7 @@ func main() {
 }
 ```
 
-Running this will give you the same output as before.
+The runtime behavior of this version is the same as the ones before.
 
 Fin!
 
