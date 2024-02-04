@@ -14,8 +14,8 @@ Here's a rudimentary `Retry` function that does the following:
 
 -   It takes in another function that accepts arbitrary arguments.
 -   Then tries to execute the wrapped function.
--   If the function returns an error after execution, it retries the underlying function `n`
-    times with some backoff.
+-   If the wrapped function returns an error after execution, `Retry` attempts to run the
+    underlying function `n` times with some backoff.
 
 The following implementation leverages the `reflections` module to achieve the above goals.
 We're intentionally avoiding complex retry logic for brevity:
