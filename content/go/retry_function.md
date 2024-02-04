@@ -1,14 +1,14 @@
 ---
-title: Generic retry function in Go
+title: Retry function in Go
 date: 2024-02-04
 tags:
     - Go
     - TIL
+aliases: /go/generic_retry_function
 ---
 
-Writing a retry function in Go usually involves mucking around with reflections and doing
-some metaprogramming magic. It's fun to write, but whenever I come back to the code a few
-months later, I always cringe at the mess.
+I used to go for reflection whenever I needed a `Retry` function in Go. It's fun to write,
+but gets messy quite quickly.
 
 Here's a rudimentary `Retry` function that does the following:
 
@@ -36,21 +36,22 @@ func Retry(fn interface{}, args []interface{}, maxRetry int,
 
     for attempt := 0; attempt < maxRetry; attempt++ {
         result := fnVal.Call(argVals)
-        if errVal := result[len(result)-1]; !errVal.IsNil() {
-            if attempt == maxRetry-1 {
-                return result, errVal.Interface().(error)
-            }
-            time.Sleep(backoff)
-            if backoff < maxBackoff {
-                backoff *= 2
-            }
-            fmt.Printf(
-                "Retrying function call, attempt: %d, error: %v\n",
-                attempt+1, errVal,
-            )
-        } else {
+        errVal := result[len(result)-1]
+
+        if errVal.IsNil() {
             return result, nil
         }
+        if attempt == maxRetry-1 {
+            return result, errVal.Interface().(error)
+        }
+        time.Sleep(backoff)
+        if backoff < maxBackoff {
+            backoff *= 2
+        }
+        fmt.Printf(
+            "Retrying function call, attempt: %d, error: %v\n",
+            attempt+1, errVal,
+        )
     }
     return nil, fmt.Errorf("retry: max retries reached without success")
 }
@@ -77,16 +78,14 @@ func main() {
         fmt.Printf("Function called with a: %d and b: %d\n", a, b)
         return 42, errors.New("some error")
     }
-
     result, err := Retry(
         someFunc, []interface{}{42, 100}, 3, 1*time.Second, 4*time.Second,
     )
-
     if err != nil {
         fmt.Println("Function execution failed:", err)
-    } else {
-        fmt.Println("Function executed successfully:", result[0])
+        return
     }
+    fmt.Println("Function executed successfully:", result[0])
 }
 ```
 
@@ -112,30 +111,30 @@ trading off some flexibility for shorter and more type-safe code. Here's how:
 
 ```go
 // Define a generic function type that can return an error
-type Func[T any] func(args ...any) (T, error)
+type Func[T any] func() (T, error)
 
 func Retry[T any](
     fn Func[T], args []any, maxRetry int,
-    backoff, maxBackoff time.Duration) (T, error) {
+    startBackoff, maxBackoff time.Duration) (T, error) {
 
     var zero T // Zero value for the function's return type
 
     for attempt := 0; attempt < maxRetry; attempt++ {
         result, err := fn(args...)
-        if err != nil {
-            if attempt == maxRetry-1 {
-                return zero, err // Return with error after max retries
-            }
-            fmt.Printf(
-                "Retrying function call, attempt: %d, error: %v\n",
-                attempt+1, err,
-            )
-            time.Sleep(backoff)
-            if backoff < maxBackoff {
-                backoff *= 2
-            }
-        } else {
-            return result, nil // Successful call without error
+
+        if err == nil {
+            return result, nil
+        }
+        if attempt == maxRetry-1 {
+            return zero, err // Return with error after max retries
+        }
+        fmt.Printf(
+            "Retrying function call, attempt: %d, error: %v\n",
+            attempt+1, err,
+        )
+        time.Sleep(startBackoff)
+        if startBackoff < maxBackoff {
+            startBackoff *= 2
         }
     }
     return zero, fmt.Errorf("retry: max retries reached without success")
@@ -167,15 +166,12 @@ func main() {
         fmt.Printf("Function called with a: %d and b: %d\n", a, b)
         return 42, errors.New("some error")
     }
-
     wrappedFunc := func(args ...any) (any, error) {
         return someFunc(args[0].(int), args[1].(int))
     }
-
     result, err := Retry(
         wrappedFunc, []interface{}{42, 100}, 3, 1*time.Second, 4*time.Second,
     )
-
     if err != nil {
         fmt.Println("Function execution failed:", err)
     } else {
@@ -199,6 +195,62 @@ Notice how `someFunc` is wrapped in a `wrappedFunc` where `wrappedFunc` has the 
 that `Retry` expects. Then inside, the `someFunc` function is called with the appropriate
 arguments. This type of adaptation gymnastics is necessary to make the process acceptably
 type-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the
-same result. Also, the generic version is a tad bit more performant!
+same result. Also, the generic version is a tad bit more performant.
+
+After this blog went live, Anton Zhiyanov[^1] pointed out on Twitter that there's a
+closure-based approach that's even simpler and eliminates the need for generics. The
+implementation looks like this:
+
+```go
+func Retry(
+    fn func() error, maxRetry int,
+    startBackoff, maxBackoff time.Duration) {
+
+    for attempt := 0; ; attempt++ {
+        if err := fn(); err == nil {
+            return
+        }
+
+        if attempt == maxRetry-1 {
+            return
+        }
+
+        fmt.Printf("Retrying after %s\n", startBackoff)
+        time.Sleep(startBackoff)
+        if startBackoff < maxBackoff {
+            startBackoff *= 2
+        }
+    }
+}
+```
+
+Calling this version is much easier since the signature of the closure function that `Retry`
+accepts is static. So you won't need to adapt your retry call whenever the signature of the
+wrapped function changes. You'd call it as follows:
+
+```go
+func main() {
+    someFunc := func(a, b int) (int, error) {
+        fmt.Printf("Function called with a: %d and b: %d\n", a, b)
+        return 42, errors.New("some error")
+    }
+
+    var res int
+    var err error
+
+    Retry(
+        func() error {
+            res, err = someFunc(42, 100)
+            return err
+        },
+        3, 1*time.Second,
+        4*time.Second,
+    )
+
+    fmt.Println(res, err)
+}
+```
+
+Running this will give you the same output as before.
 
 Fin!
