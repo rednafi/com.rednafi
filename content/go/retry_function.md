@@ -198,7 +198,7 @@ arguments. This type of adaptation gymnastics is necessary to make the process a
 type-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the
 same result. Also, the generic version is a tad bit more performant.
 
-After this blog went live, Anton Zhiyanov[^1] pointed out on Twitter[^2] that there's a
+After this entry went live, Anton Zhiyanov[^1] pointed out on Twitter[^2] that there's a
 closure-based approach that's even simpler and eliminates the need for generics. The
 implementation looks like this:
 
