@@ -56,9 +56,9 @@ func Retry(fn interface{}, args []interface{}, maxRetry int,
 }
 ```
 
-The Retry function uses reflection to call a function passed as an `interface{}`. It handles
-the function's arguments, which are given in an `interface{}` slice. This approach allows us
-to run functions with varied signatures. Reflection, using
+The `Retry` function uses reflection to call a function passed as an `interface{}`. It
+handles the function's arguments, which are given in an `interface{}` slice. This approach
+allows us to run functions with varied signatures. Reflection, using
 `reflect.ValueOf(fn).Call(argVals)`, dynamically invokes the target function. It converts
 its arguments from `interface{}` to `reflect.Value` types.
 
@@ -197,7 +197,7 @@ Function execution failed: some error
 
 Notice how `someFunc` is wrapped in a `wrappedFunc` where `wrappedFunc` has the signature
 that `Retry` expects. Then inside, the `someFunc` function is called with the appropriate
-arguments. This type of adaptation gymnastic is necessary to make the process acceptably
+arguments. This type of adaptation gymnastics is necessary to make the process acceptably
 type-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the
 same result. Also, the generic version is a tad bit more performant!
 
