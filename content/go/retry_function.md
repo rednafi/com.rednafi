@@ -197,7 +197,7 @@ arguments. This type of adaptation gymnastics is necessary to make the process a
 type-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the
 same result. Also, the generic version is a tad bit more performant.
 
-After this blog went live, Anton Zhiyanov[^1] pointed out on Twitter that there's a
+After this blog went live, Anton Zhiyanov[^1] pointed out on Twitter[^2] that there's a
 closure-based approach that's even simpler and eliminates the need for generics. The
 implementation looks like this:
 
@@ -254,3 +254,6 @@ func main() {
 Running this will give you the same output as before.
 
 Fin!
+
+[^1]: [Anton Zhiyanov](https://antonz.org/)
+[^2]: [Discussions on Twitter](https://twitter.com/ohmypy/status/1754105508863393835)
