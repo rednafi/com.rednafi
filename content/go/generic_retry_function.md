@@ -101,14 +101,14 @@ Function called with a: 42 and b: 100
 Function execution failed: some error
 ```
 
-This isn't too terrible for a reflection infested code snippet. However, now that Go has
+This isn't too terrible for a reflection-infested code snippet. However, now that Go has
 generics, I wanted to see if I could leverage that to avoid metaprogramming. While
 reflection is powerful, it's quite easy to run buggy code that causes runtime panics. Plus,
 the compiler can't do many of the type checks when the underlying code leverages the dynamic
 features.
 
 Turns out, there's a way to write the same functionality with generics if you don't mind
-trading off some flexibility for shorter and more type safe code. Here's how:
+trading off some flexibility for shorter and more type-safe code. Here's how:
 
 ```go
 // Define a generic function type that can return an error
@@ -197,8 +197,8 @@ Function execution failed: some error
 
 Notice how `someFunc` is wrapped in a `wrappedFunc` where `wrappedFunc` has the signature
 that `Retry` expects. Then inside, the `someFunc` function is called with the appropriate
-arguments. This type adaptation gymnastic is necessary to make the process acceptably type
-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the same
-result. Also, the generic version is a tad bit more performant!
+arguments. This type of adaptation gymnastic is necessary to make the process acceptably
+type-safe. Personally, I don't mind it if it means I get to avoid reflections to achieve the
+same result. Also, the generic version is a tad bit more performant!
 
 Fin!
