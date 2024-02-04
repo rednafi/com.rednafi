@@ -145,7 +145,7 @@ func Retry[T any](
 Functionally, the generic implementation works the same way as the previous one. However, it
 has a few limitations:
 
--   The generic `Retry` function assumes that the wrapped function will alwasy return the
+-   The generic `Retry` function assumes that the wrapped function will always return the
     result as the first value and error as the second. This works well since it's a common
     Go idiom, but the reflection version could dynamically handle different return value
     patterns.
