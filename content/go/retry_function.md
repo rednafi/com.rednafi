@@ -21,7 +21,8 @@ The following implementation leverages the `reflections` module to achieve the a
 We're intentionally avoiding complex retry logic for brevity:
 
 ```go
-func Retry(fn interface{}, args []interface{}, maxRetry int,
+func Retry(
+    fn interface{}, args []interface{}, maxRetry int,
     backoff, maxBackoff time.Duration) ([]reflect.Value, error) {
 
     fnVal := reflect.ValueOf(fn)
@@ -203,8 +204,8 @@ implementation looks like this:
 
 ```go
 func Retry(
-    fn func() error, maxRetry int,
-    startBackoff, maxBackoff time.Duration) {
+    fn func() error,
+    maxRetry int, startBackoff, maxBackoff time.Duration) {
 
     for attempt := 0; ; attempt++ {
         if err := fn(); err == nil {
