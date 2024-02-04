@@ -17,13 +17,13 @@ Here's a rudimentary `Retry` function that does the following:
 -   If the wrapped function returns an error after execution, `Retry` attempts to run the
     underlying function `n` times with some backoff.
 
-The following implementation leverages the `reflections` module to achieve the above goals.
+The following implementation leverages the `reflect` module to achieve the above goals.
 We're intentionally avoiding complex retry logic for brevity:
 
 ```go
 func Retry(
     fn interface{}, args []interface{}, maxRetry int,
-    backoff, maxBackoff time.Duration) ([]reflect.Value, error) {
+    startBackoff, maxBackoff time.Duration) ([]reflect.Value, error) {
 
     fnVal := reflect.ValueOf(fn)
     if fnVal.Kind() != reflect.Func {
@@ -45,9 +45,9 @@ func Retry(
         if attempt == maxRetry-1 {
             return result, errVal.Interface().(error)
         }
-        time.Sleep(backoff)
-        if backoff < maxBackoff {
-            backoff *= 2
+        time.Sleep(startBackoff)
+        if startBackoff < maxBackoff {
+            startBackoff *= 2
         }
         fmt.Printf(
             "Retrying function call, attempt: %d, error: %v\n",
