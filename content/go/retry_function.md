@@ -155,10 +155,6 @@ has a few limitations:
     signature. So you have to create a thin wrapper function to adapt the signatures. This
     wrapper function is necessary to make the process somewhat type-safe.
 
--   With reflection, `Retry` can call functions with varied argument types since it works
-    with empty interfaces. The generic version needs the argument types to match. So there
-    may be cases where you have to do more work to adapt the arguments.
-
 Here's how you'd use the generic `Retry` function:
 
 ```go
