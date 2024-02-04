@@ -7,7 +7,7 @@ tags:
 aliases: /go/generic_retry_function
 ---
 
-I used to go for reflection whenever I needed a `Retry` function in Go. It's fun to write,
+I used reach for reflection whenever I needed a `Retry` function in Go. It's fun to write,
 but gets messy quite quickly.
 
 Here's a rudimentary `Retry` function that does the following:
