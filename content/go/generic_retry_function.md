@@ -21,32 +21,38 @@ The following implementation leverages the `reflections` module to achieve the a
 We're intentionally avoiding complex retry logic for brevity:
 
 ```go
-// Define a generic function type that can return an error
-type Func[T any] func(args ...any) (T, error)
+func Retry(fn interface{}, args []interface{}, maxRetry int,
+    backoff, maxBackoff time.Duration) ([]reflect.Value, error) {
 
-func Retry[T any](
-    fn Func[T], args []any, maxRetry int,
-    startBackoff, maxBackoff time.Duration) (T, error) {
-    var zero T // Zero value for the function's return type
+    fnVal := reflect.ValueOf(fn)
+    if fnVal.Kind() != reflect.Func {
+        return nil, errors.New("retry: function type required")
+    }
+
+    argVals := make([]reflect.Value, len(args))
+    for i, arg := range args {
+        argVals[i] = reflect.ValueOf(arg)
+    }
+
     for attempt := 0; attempt < maxRetry; attempt++ {
-        result, err := fn(args...)
-        if err != nil {
+        result := fnVal.Call(argVals)
+        if errVal := result[len(result)-1]; !errVal.IsNil() {
             if attempt == maxRetry-1 {
-                return zero, err // Return with error after max retries
+                return result, errVal.Interface().(error)
+            }
+            time.Sleep(backoff)
+            if backoff < maxBackoff {
+                backoff *= 2
             }
             fmt.Printf(
                 "Retrying function call, attempt: %d, error: %v\n",
-				attempt+1, err,
+                attempt+1, errVal,
             )
-            time.Sleep(startBackoff)
-            if startBackoff < maxBackoff {
-                startBackoff *= 2
-            }
         } else {
-            return result, nil // Successful call without error
+            return result, nil
         }
     }
-    return zero, fmt.Errorf("retry: max retries reached without success")
+    return nil, fmt.Errorf("retry: max retries reached without success")
 }
 ```
 
