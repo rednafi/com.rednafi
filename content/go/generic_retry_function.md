@@ -12,7 +12,7 @@ months later, I always cringe at the mess.
 
 Here's a rudimentary `Retry` function that does the following:
 
--   It takes in another function with arbitrary arguments.
+-   It takes in another function that accepts arbitrary arguments.
 -   Then it tries to execute the wrapped function.
 -   If the function returns an error after execution, it retries the underlying function `n`
     times with some backoff.
