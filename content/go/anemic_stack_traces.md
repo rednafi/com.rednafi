@@ -179,11 +179,13 @@ location of the error, `Err` is the original error we're wrapping, and finally t
 boolean is be used to control the verbosity of error messages.
 
 Then the `Error()` method on the struct builds either a rudimentary stack trace or a
-prettier error message depending on the value of the `debug` flag. The `Error` struct can be
+prettier error message depending on the value of the `Debug` flag. The `Error` struct can be
 constructed with the following constructor function:
 
 ```go
-func NewError(op string, path string, err error, debug bool) *Error {
+var Debug bool // Flag to control output verbosity
+
+func NewError(op string, path string, err error) *Error {
     _, file, line, ok := runtime.Caller(1)
 
     if !ok {
@@ -197,7 +199,7 @@ func NewError(op string, path string, err error, debug bool) *Error {
         LineNo:   line,
         FileName: file,
         Err:      err,
-        Debug:    debug,
+        Debug:    Debug,  // Populate from the global flag
     }
 }
 ```
@@ -206,47 +208,46 @@ This uses the `runtime` package to add the location data of the caller. It'll be
 the `copyFile` function as follows:
 
 ```go
-func copyFile(src, dst string, debug bool) error {
-    // Open the source file for reading.
+func copyFile(src, dst string) error {
+    // Open the source file for reading
     sourceFile, err := os.Open(src)
     if err != nil {
-        return NewError("os.Open", src, err, debug)
+        return NewError("os.Open", src, err)
     }
     defer sourceFile.Close()
 
-    // Create the destination file for writing.
+    // Create the destination file for writing
     destFile, err := os.Create(dst)
     if err != nil {
-        return NewError("os.Create", dst, err, debug)
+        return NewError("os.Create", dst, err)
     }
     defer destFile.Close()
 
-    // Copy the contents from source to destination file.
+    // Copy the contents from source to destination file
     _, err = io.Copy(destFile, sourceFile)
     if err != nil {
-        return NewError("io.Copy", dst, err, debug)
+        return NewError("io.Copy", dst, err)
     }
 
-    // Ensure that the destination file's content is successfully written.
+    // Ensure that the destination file's content is successfully written
     err = destFile.Sync()
     if err != nil {
-        return NewError("destFile.Sync", dst, err, debug)
+        return NewError("destFile.Sync", dst, err)
     }
 
     return nil
 }
 ```
 
-You can turn on the `debug` flag to print the stack trace in the `main` function:
+You can turn on the `Debug` flag to print the stack trace in the `main` function:
 
 ```go
 func main() {
-    // Define the source and destination file paths.
     src := "/path/to/source/file"
     dst := "/path/to/destination/file"
+    Debug = true         // Set the Debug flag
 
-    // Call fileCopy and handle any errors.
-    err := copyFile(src, dst, true)
+    err := copyFile(src, dst)
     if err != nil {
         fmt.Fprintf(os.Stderr, "%v\n", err)
         os.Exit(1)
@@ -264,7 +265,7 @@ os.Open: /path/to/source/file: open /path/to/source/file: no such file or direct
 exit status 1
 ```
 
-Toggling `debug` to `false` and running the snippet will return:
+Toggling `Debug` to `false` and running the snippet will return:
 
 ```txt
 os.Open: /path/to/source/file:
@@ -278,12 +279,12 @@ You can add even more context to this error in different calling locations like 
 sourceFile, err := os.Open(src)
     if err != nil {
         return fmt.Errorf(
-            "more context: %w", NewError("os.Open", src, err, debug),
+            "more context: %w", NewError("os.Open", src, err),
         )
     }
 ```
 
-It'll be pretty-printed like this when `debug` is `false`:
+It'll be pretty-printed like this when `Debug` is `false`:
 
 ```fmt
 more ctx: os.Open: /path/to/source/file:
