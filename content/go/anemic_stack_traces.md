@@ -131,8 +131,8 @@ If you keep the previous `main` function unchanged and run it, you'll get the fo
 output:
 
 ```go
-Error copying file: cannot open source file: \
-open path/to/source/file: no such file or directory
+Error copying file: cannot open source file: open path/to/source/file:
+no such file or directory
 exit status 1
 ```
 
@@ -198,8 +198,8 @@ func NewError(op string, path string, err error, debug bool) *Error {
 }
 ```
 
-This uses the `runtime` package to add the location data of the caller. This will be called
-in the `copyFile` function as follows:
+This uses the `runtime` package to add the location data of the caller. It'll be called in
+the `copyFile` function as follows:
 
 ```go
 func copyFile(src, dst string, debug bool) error {
