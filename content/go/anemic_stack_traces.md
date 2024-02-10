@@ -235,6 +235,25 @@ func copyFile(src, dst string, debug bool) error {
 
 You can turn on the `debug` flag to print the stack trace in the `main` function:
 
+```go
+func main() {
+    // Define the source and destination file paths.
+    src := "/path/to/source/file"
+    dst := "/path/to/destination/file"
+
+    // Call fileCopy and handle any errors.
+    err := copyFile(src, dst, true)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "%v\n", err)
+        os.Exit(1)
+    }
+
+    fmt.Println("File copied successfully.")
+}
+```
+
+The output will be:
+
 ```txt
 os.Open: /path/to/source/file: open /path/to/source/file: no such file or directory
         /Users/rednafi/canvas/rednafi.com/main.go:54
