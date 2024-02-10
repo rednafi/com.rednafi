@@ -178,8 +178,8 @@ originates from, `Path` is the file path, `LineNo` and `FileName` denote the pre
 location of the error, `Err` is the original error we're wrapping, and finally the `debug`
 boolean is be used to control the verbosity of error messages.
 
-Then the `Error()` method on the struct builds a either a rudimentary stack trace or a
-prettier error message depending on the value of `debug` flag. The `Error` struct can be
+Then the `Error()` method on the struct builds either a rudimentary stack trace or a
+prettier error message depending on the value of the `debug` flag. The `Error` struct can be
 constructed with the following constructor function:
 
 ```go
@@ -296,8 +296,8 @@ to enable more elaborate error tracing.
 
 However, this isn't a proper stack in the sense that it only unwinds errors one level deep.
 But it can be extended to recursively build the full error trace if needed. The Upspin[^2]
-repo demonstrates a few techniques on how to do so. But for this particular case, one level
-deep stack is borderline overkill.
+repo demonstrates a few techniques on how to do so. But for this particular case, anything
+more than a level deep stack is borderline overkill.
 
 Here's the complete working example[^3].
 
