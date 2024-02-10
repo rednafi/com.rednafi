@@ -143,6 +143,10 @@ relays whatever comes out of `copyFile` and logs the error message.
 How would you make the error message prettier without losing context? Also, how would you
 attach file names and line numbers to make debugging easier?
 
+The debugging part isn't an issue in languages that support stack traces, this is usually
+taken care of automatically. Now, whether that's a good thing or a bad thing is a discussion
+for another day.
+
 We can define a custom error struct to represent a generic error in the package that houses
 `copyFile`.
 
