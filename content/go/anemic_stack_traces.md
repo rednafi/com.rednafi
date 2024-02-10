@@ -276,7 +276,7 @@ But it can be extended to recursively build the full error trace if needed. The 
 repo demonstrates a few techniques on how to do so. But for this particular case, one level
 deep stack is borderline overkill.
 
-Here's the complete working example[^2].
+Here's the complete working example[^3].
 
 Fin!
 
@@ -286,4 +286,4 @@ Fin!
 [^2]:
     [Upspin's error package](https://github.com/upspin/upspin/blob/master/errors/errors.go)
 
-[^2]: [Complete example](https://gist.github.com/rednafi/d090a16ba6ddd19c7fe8bdaae746205c)
+[^3]: [Complete example](https://gist.github.com/rednafi/d090a16ba6ddd19c7fe8bdaae746205c)
