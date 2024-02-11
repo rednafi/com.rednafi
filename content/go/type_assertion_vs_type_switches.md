@@ -250,7 +250,7 @@ func main() {
     case interface{ bar() }:
         fmt.Println("thing implements bar method:", v)
     default:
-        panic("none of them")
+        panic("thing doesn't implement bar method")
     }
 }
 ```
