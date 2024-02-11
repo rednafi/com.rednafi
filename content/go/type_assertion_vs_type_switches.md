@@ -14,9 +14,12 @@ decided to jot this down in a gobyexample[^1] style for the next run.
 
 ## Type assertion
 
-Type assertion in Go lets you access an interface's underlying concrete type. It's a way to
-get the dynamic type of an interface variable. The syntax is `i.(T)`, where `i` is a
-variable of interface type and `T` is the type you're asserting.
+Type assertion in Go allows you to access an interface variable's underlying concrete type.
+After a successful assertion, the variable of interface type is converted to the concrete
+type to which it is asserted.
+
+The syntax is `i.(T)`, where `i` is a variable of interface type and `T` is the type you are
+asserting.
 
 ### Basic usage
 
@@ -29,7 +32,7 @@ fmt.Println(s)
 
 Here, `s` gets the type `string`, and the program outputs `Hello`.
 
-### Checking types and values
+### Asserting primitive types and values
 
 ```go
 var i interface{} = 42
@@ -42,7 +45,7 @@ if v, ok := i.(int); ok {
 This code checks if `i` is an `int` and prints its value if so. The value of `ok` will be
 `false` if `i` isn't an integer and nothing will be printed to the console.
 
-## Checking composite types and values
+### Asserting composite types and values
 
 ```go
 var i interface{} = []string{"apple", "banana", "cherry"}
@@ -57,6 +60,34 @@ This will print `slice of strings: [apple banana cherry]` to the console.
 Similar to primitive types, you can also perform type assertions with composite types. In
 the example above, we check whether the variable `i`, which is of an interface type, holds a
 value of the type 'slice of strings'.
+
+### Asserting other interfaces
+
+```go
+type fooer interface{ foo() }
+type barer interface{ bar() }
+type foobarer interface { fooer; barer }
+
+type thing struct{}
+
+func (t *thing) foo() {}
+func (t *thing) bar() {}
+
+var i foobarer = &thing{}
+
+func main() {
+    if v, ok := i.(fooer); ok {
+        fmt.Println("i satiesfies fooer:", v)
+    }
+}
+```
+
+Type assertion can also be used to convert the type of an interface variable to another
+interface type. Here struct `i` implements both `foo()` and `bar()` methods; satisfying the
+`foobarer` interface.
+
+Then in the `main` function, we check whether `i` satisfies `fooer` interface and print a
+message if it does. Running this snippet will print `i satiesfies fooer: &{}`.
 
 ### Handling failures
 
@@ -140,6 +171,40 @@ Similar to primitive types, you can check for composite types in the case statem
 type switch. Here, we're checking whether `i` is a `map[string]bool` or not. Running this
 will output `i is a map`.
 
+### Comparing against interface types
+
+```go
+type fooer interface{ foo() }
+type barer interface{ bar() }
+type foobarer interface { fooer; barer }
+
+type thing struct{}
+
+func (t *thing) foo() {}
+func (t *thing) bar() {}
+
+var i foobarer = &thing{}
+
+func main() {
+    switch v := i.(type) {
+    case fooer:
+        fmt.Println("fooer:", v)
+    case barer:
+        fmt.Println("barer:", v)
+    case foobarer:
+        fmt.Println("foobarer:", v)
+    default:
+        panic("none of them")
+    }
+}
+```
+
+Type switches can be also used to compare an interface variable with another interface type.
+This example is similar to the type assertion one where we're checking whether `i` satisfies
+`fooer`, `barer` or `foobarer` interface. In this case, `i` satisfies all three of them but
+the case statement will stop after the first successful check. So it prints `fooer: &{}` and
+bails.
+
 ## Similarities and differences
 
 ### Similarities
@@ -150,7 +215,8 @@ will output `i is a map`.
 ### Differences
 
 -   Type assertions check a single type, while type switches handle multiple types.
--   Type assertion uses `i.(T)`, type switch uses a switch statement with `i.(type)`.
+-   Type assertion uses `i.(T)`, type switch uses a switch statement with literal
+    `i.(type)`.
 -   Type assertions can panic or return a success boolean, type switches handle mismatches
     more gracefully.
 -   Type assertions are good when you're sure of the type. Type switches are more versatile
