@@ -16,7 +16,7 @@ decided to jot this down in a gobyexample[^1] style for the next run.
 
 Type assertion in Go lets you access an interface's underlying concrete type. It's a way to
 get the dynamic type of an interface variable. The syntax is `i.(T)`, where `i` is a
-variable with interface type and `T` is the type you're asserting.
+variable of interface type and `T` is the type you're asserting.
 
 ### Basic usage
 
@@ -150,7 +150,7 @@ will output `i is a map`.
 ### Differences
 
 -   Type assertions check a single type, while type switches handle multiple types.
--   Type assertion uses `x.(T)`, type switch uses a switch statement with `i.(type)`.
+-   Type assertion uses `i.(T)`, type switch uses a switch statement with `i.(type)`.
 -   Type assertions can panic or return a success boolean, type switches handle mismatches
     more gracefully.
 -   Type assertions are good when you're sure of the type. Type switches are more versatile
