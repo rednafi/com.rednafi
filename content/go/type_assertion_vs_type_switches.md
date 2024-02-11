@@ -15,8 +15,8 @@ decided to jot this down in a gobyexample[^1] style for the next run.
 ## Type assertion
 
 Type assertion in Go lets you access an interface's underlying concrete type. It's a way to
-get the dynamic type of an interface. The syntax is `x.(T)`, where `x` is an interface and
-`T` is the type you're asserting.
+get the dynamic type of an interface variable. The syntax is `i.(T)`, where `i` is a
+variable with interface type and `T` is the type you're asserting.
 
 ### Basic usage
 
@@ -70,8 +70,8 @@ Wrong assertions, like attempting to convert a string to a float64, cause runtim
 
 ## Type switches
 
-Type switches let you compare an interface's type against several types. It's similar to a
-regular switch statement, but focuses on types.
+Type switches let you compare an interface variable's type against several types. It's
+similar to a regular switch statement, but focuses on types.
 
 ### Basic usage
 
