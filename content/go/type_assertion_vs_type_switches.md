@@ -16,7 +16,7 @@ decided to jot this down in a gobyexample[^1] style for the next run.
 
 Type assertion in Go allows you to access an interface variable's underlying concrete type.
 After a successful assertion, the variable of interface type is converted to the concrete
-type to which it is asserted.
+type to which it's asserted.
 
 The syntax is `i.(T)`, where `i` is a variable of interface type and `T` is the type you are
 asserting.
@@ -88,6 +88,34 @@ interface type. Here struct `i` implements both `foo()` and `bar()` methods; sat
 
 Then in the `main` function, we check whether `i` satisfies `fooer` interface and print a
 message if it does. Running this snippet will print `i satiesfies fooer: &{}`.
+
+### Dynamically checking for certain methods
+
+```go
+type fooer interface{ foo() }
+
+type thing struct{}
+
+func (t *thing) foo() {}
+func (t *thing) bar() {}
+
+func main() {
+    var i fooer = &thing{}
+
+    if v, ok := i.(interface{ bar() }); ok {
+        fmt.Println("thing implements bar method:", v)
+    }
+}
+```
+
+Type assertion can be used to dynamically check if an interface variable implements a
+certain method. This can come in handy when you want to know if an interface variable has a
+certain method right before invoking it.
+
+Here, the `thing` struct implements both `foo` and `bar` but the `fooer` interface only
+needs the `foo()` method to be implemented. However, we can check dynamically whether `i`
+also implements the `bar()` method using anonymous interface definition. Running this prints
+`thing implements bar method: &{}`
 
 ### Handling failures
 
@@ -204,6 +232,36 @@ This example is similar to the type assertion one where we're checking whether `
 `fooer`, `barer` or `foobarer` interface. In this case, `i` satisfies all three of them but
 the case statement will stop after the first successful check. So it prints `fooer: &{}` and
 bails.
+
+### Dynamically checking for certain methods
+
+```go
+type fooer interface{ foo() }
+
+type thing struct{}
+
+func (t *thing) foo() {}
+func (t *thing) bar() {}
+
+func main() {
+	var i fooer = &thing{}
+
+	switch v := i.(type) {
+	case interface{ bar() }:
+		fmt.Println("thing implements bar method:", v)
+	default:
+		panic("none of them")
+	}
+}
+```
+
+Similar to type assertion, within a type switch, anonymous interface definition can be used
+to dynamically check if an interface variable implements some method.
+
+The `thing` struct implements both `foo()` and `bar()` methods. However, the `fooer`
+interface only requires it to implement `foo()`. The type switch dynamically checks whether
+`i` also implements the method `bar()`. Running this will print
+`thing implements bar method: &{}`.
 
 ## Similarities and differences
 
