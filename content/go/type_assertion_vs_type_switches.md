@@ -32,7 +32,7 @@ fmt.Println(s)
 
 Here, `s` gets the type `string`, and the program outputs `Hello`.
 
-### Asserting primitive types and values
+### Asserting primitive types
 
 ```go
 var i interface{} = 42
@@ -45,7 +45,7 @@ if v, ok := i.(int); ok {
 This code checks if `i` is an `int` and prints its value if so. The value of `ok` will be
 `false` if `i` isn't an integer and nothing will be printed to the console.
 
-### Asserting composite types and values
+### Asserting composite types
 
 ```go
 var i interface{} = []string{"apple", "banana", "cherry"}
@@ -61,7 +61,7 @@ Similar to primitive types, you can also perform type assertions with composite 
 the example above, we check whether the variable `i`, which is of an interface type, holds a
 value of the type 'slice of strings'.
 
-### Asserting other interfaces
+### Asserting other interface types
 
 ```go
 type fooer interface{ foo() }
@@ -171,7 +171,7 @@ Similar to primitive types, you can check for composite types in the case statem
 type switch. Here, we're checking whether `i` is a `map[string]bool` or not. Running this
 will output `i is a map`.
 
-### Comparing against interface types
+### Comparing against other interface types
 
 ```go
 type fooer interface{ foo() }
