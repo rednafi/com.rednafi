@@ -244,14 +244,14 @@ func (t *thing) foo() {}
 func (t *thing) bar() {}
 
 func main() {
-	var i fooer = &thing{}
+    var i fooer = &thing{}
 
-	switch v := i.(type) {
-	case interface{ bar() }:
-		fmt.Println("thing implements bar method:", v)
-	default:
-		panic("none of them")
-	}
+    switch v := i.(type) {
+    case interface{ bar() }:
+        fmt.Println("thing implements bar method:", v)
+    default:
+        panic("none of them")
+    }
 }
 ```
 
