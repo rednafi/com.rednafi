@@ -1,6 +1,6 @@
 ---
 title: Strategy pattern in Go
-date: 2024-02-16
+date: 2024-02-17
 tags:
     - Go
     - TIL
