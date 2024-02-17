@@ -212,8 +212,9 @@ decoupled in this case; one has no knowledge of the existence of the other.
 And voila, you're done!
 
 _Update: The original Go example used struct types rather than function types to meet the
-`Formatter` interface requirements. A Redditor suggested the current approach with a custom
-function type._
+`Formatter` interface requirements. In this particular case, a function type makes things
+simpler. However if your formatter needs to do multiple things then a struct with multiple
+method is probably going to be better._
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
 [^2]:
