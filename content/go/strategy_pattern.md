@@ -133,10 +133,10 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-The same thing can be achived in a more functional[^4] manner as well.
+Same thing can be achived in a more functional[^4] manner as well.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
-solution in a language like Go where there's no concept of classes or explicit interface
+solution in a language like Go where there's no concept of a class or explicit interface
 implementation? This wasn't clear to me from the get-go until I started playing with the
 language a little more and digging through OSS codebase with GitHub code search.
 
@@ -208,18 +208,20 @@ And voila, you're done.
 
 Now, how would you solve the method-sharing problem in Go? What if we needed a common method
 `Header` that prints a header before displaying the message in both of the concrete types?
+We could just define a `Header` function and call it inside the `Output` methods to print
+the header. But let's say, for the sake of argument, we want to share some functionalities
+across multiple concrete types.
 
 We could duplicate the method implementation and define `Header` on each of the
-`TextFormatter` and `JSONFormatter` types along with the `Output` method. But that's
-duplicate work. Also, how can we enforce the existence of the `Header` method on each type
-in the compile time without duplicating the implementation?
+`TextFormatter` and `JSONFormatter` types along with the `Output` method. But that
+introduces redundant duplication.
 
 In Ruby, we could just implement the common method in the interface class; the interface
-class isn't anything special and we can add methods there. Then all the downstream classes
+class isn't anything special, and we can add methods there. Then all the downstream classes
 will automatically inherit the method. But if we wanted to avoid inheritance, we could also
 define another strategy class wrapping the common method and pass that to `Display`.
 
-But in Go, we can do some type embedding shenanigans to ensure compile time check and avoid
+But in Go, we can do some type embedding shenanigans to ensure compile-time check and avoid
 method duplication. Here's the implementation:
 
 ```go
