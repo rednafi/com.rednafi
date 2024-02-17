@@ -213,7 +213,7 @@ And voila, you're done!
 
 _Update: The original Go example used struct types rather than a function type to meet the
 `Formatter` interface requirements. In this particular case, the function type makes things
-simpler. However if your formatter needs to do multiple things, then a struct with multiple
+simpler. However if your strategy needs to do multiple things, then a struct with multiple
 methods is probably going to be better._
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
