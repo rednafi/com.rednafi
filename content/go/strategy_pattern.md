@@ -183,34 +183,25 @@ of any type that implements the `Formatter` interface. Next, it calls the `Outpu
 Also, notice that we aren't handling the "unknown formatter" case explicitly because now
 it'll be a compile time error if an unknown formatter is passed to the caller.
 
-```go
-// main.go
-
-// Display prints the output of a Formatter.
-func Display(f Formatter) {
-    fmt.Println(f.Output())
-}
-```
-
 Then you'll define your strategies and pass them to the `Display` function as follows:
 
 ```go
 func main() {
-	message := "Hello, World!"
+    message := "Hello, World!"
 
     // Each strategy needs to be wrapped in OutputFunc so that the
     // underlying function satisfies the Formatter interface.
-	TextFormatted := OutputFunc(func (message string) string {
-		return message
-	})
+    TextFormatted := OutputFunc(func (message string) string {
+        return message
+    })
 
-	JSONFormatted := OutputFunc(func (message string) string {
-		jsonData, _ := json.Marshal(map[string]string{"message": message})
-		return string(jsonData)
-	})
+    JSONFormatted := OutputFunc(func (message string) string {
+        jsonData, _ := json.Marshal(map[string]string{"message": message})
+        return string(jsonData)
+    })
 
-	Display(message, TextFormatted) // Prints "Hello, World!"
-	Display(message, JSONFormatted) // Prints "{"message":"Hello, World!"}"
+    Display(message, TextFormatted) // Prints "Hello, World!"
+    Display(message, JSONFormatted) // Prints "{"message":"Hello, World!"}"
 }
 ```
 
