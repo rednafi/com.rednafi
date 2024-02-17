@@ -149,7 +149,7 @@ fewer lines of code. Here's how:
 
 // Formatter interface defines a method for outputting messages
 type Formatter interface {
-	Output(message string) string
+    Output(message string) string
 }
 
 // OutputFunc is a function type that matches the signature of the Output
@@ -158,7 +158,7 @@ type OutputFunc func(message string) string
 
 // Output method makes OutputFunc satisfy the Formatter interface
 func (f OutputFunc) Output(message string) string {
-	return f(message)
+    return f(message)
 }
 ```
 
@@ -172,7 +172,7 @@ The display function will look as follows:
 
 ```go
 func Display(message string, format Formatter) {
-	fmt.Println(format.Output(message))
+    fmt.Println(format.Output(message))
 }
 ```
 
