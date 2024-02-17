@@ -97,7 +97,7 @@ interface. This interface requires the downstream classes to implement the `outp
 The `output` methods of the respective formatters know how to format and print the messages.
 
 The `display` function simply takes a `message` and a `formatter`, and calls
-`formatter.output(message)` without knowing the anything about what the formatter does.
+`formatter.output(message)` without knowing anything about what the formatter does.
 
 ```rb
 # main.rb
@@ -132,8 +132,8 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-Same thing can be achived in a more functional[^4] manner as well and we'll see that in the
-Go example.
+The same thing can be achieved in a more functional[^4] manner as well and we'll see that in
+the Go example.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
 solution in a language like Go where there's no concept of a class or explicit interface
@@ -180,7 +180,7 @@ of any type that implements the `Formatter` interface. Next, it calls the `Outpu
 `format` without having any knowledge of what that does, achieving polymorphism.
 
 Also, notice that we aren't handling the "unknown formatter" case explicitly because now
-it'll be a compile time error if an unknown formatter is passed to the caller.
+it'll be a compile-time error if an unknown formatter is passed to the caller.
 
 Then you'll define your strategies and pass them to the `Display` function as follows:
 
@@ -206,15 +206,15 @@ func main() {
 
 We're defining each formatting strategy as a function and casting it to the `OutputFunc` so
 that it satisfies the `Formatter` interface. Then we just pass the message and the strategy
-instance to the `Display` function as before. Notice that how your data and strategies are
+instance to the `Display` function as before. Notice how your data and strategies are
 decoupled in this case; one has no knowledge of the existence of the other.
 
 And voila, you're done!
 
-_Update: The original Go example used struct types rather than function types to meet the
-`Formatter` interface requirements. In this particular case, a function type makes things
-simpler. However if your formatter needs to do multiple things then a struct with multiple
-method is probably going to be better._
+_Update: The original Go example used struct types rather than a function type to meet the
+`Formatter` interface requirements. In this particular case, the function type makes things
+simpler. However if your formatter needs to do multiple things, then a struct with multiple
+methods is probably going to be better._
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
 [^2]:
@@ -224,6 +224,6 @@ method is probably going to be better._
     [Strategy pattern in Ruby](https://refactoring.guru/design-patterns/strategy/ruby/example)
 
 [^4]:
-    All of this festivities can be avoided in languages that support first-class functions.
+    All of these festivities can be avoided in languages that support first-class functions.
     You could just define your strategies as functions and pass them to the caller during
     runtime; same idea, different implementation.
