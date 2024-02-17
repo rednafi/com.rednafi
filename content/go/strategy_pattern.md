@@ -25,7 +25,7 @@ set of methods to solve a problem, each method wrapped in its own class. This wa
 swap out these methods easily without messing with the rest of your code, making it simple
 to adjust behaviors on the fly.
 
-Let's say you're writing a `display` service that prints a message as either plain text or
+Let's say you're writing a `display` service that prints a message in either plain text or
 JSON formats. Imperatively you could do this:
 
 ```rb
@@ -96,9 +96,8 @@ Here, the `TextFormatter` and `JsonFormatter` classes implement the `MessageForm
 interface. This interface requires the downstream classes to implement the `output` method.
 The `output` methods of the respective formatters know how to format and print the messages.
 
-The `display` function can then just accept a `message` and a `formatter` instance and run
-`formatter.output(message)` while remaining completely ignorant of what each formatter does.
-This enables polymorphism.
+The `display` function simply takes a `message` and a `formatter`, and calls
+`formatter.output(message)` without knowing the anything about what the formatter does.
 
 ```rb
 # main.rb
@@ -133,13 +132,13 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-Same thing can be achived in a more functional[^4] manner as well and we'll leverage that in
-the Go example.
+Same thing can be achived in a more functional[^4] manner as well and we'll see that in the
+Go example.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
 solution in a language like Go where there's no concept of a class or explicit interface
 implementation? This wasn't clear to me from the get-go until I started playing with the
-language a little more and digging through OSS codebase with GitHub code search.
+language a little more and digging through some OSS codebases.
 
 Turns out, in Go, you can do the same thing using interfaces and custom types, and with even
 fewer lines of code. Here's how:
@@ -178,7 +177,7 @@ func Display(message string, format Formatter) {
 
 Similar to the Ruby example, the `Display` function intakes a string message and an object
 of any type that implements the `Formatter` interface. Next, it calls the `Output` method on
-`format` without having any knowledge of what that does; achieving polymorphism.
+`format` without having any knowledge of what that does, achieving polymorphism.
 
 Also, notice that we aren't handling the "unknown formatter" case explicitly because now
 it'll be a compile time error if an unknown formatter is passed to the caller.
@@ -205,9 +204,9 @@ func main() {
 }
 ```
 
-We're defining each formatting strategy as a function and casting that to the `OutputFunc`
-so that it satisfies the `Formatter` interface. Then we just pass the message and the
-strategy to the `Display` function as before. Notice that how your data and strategies are
+We're defining each formatting strategy as a function and casting it to the `OutputFunc` so
+that it satisfies the `Formatter` interface. Then we just pass the message and the strategy
+instance to the `Display` function as before. Notice that how your data and strategies are
 decoupled in this case; one has no knowledge of the existence of the other.
 
 And voila, you're done!
