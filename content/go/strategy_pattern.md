@@ -113,7 +113,7 @@ def display(message, formatter)
 end
 ```
 
-Finally, in runtime, you can instantiate the strategy classes and pass them explicitly to
+Finally, at runtime, you can instantiate the strategy classes and pass them explicitly to
 the `display` function as necessary:
 
 ```rb
@@ -132,8 +132,8 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-The same thing can be achieved in a more functional[^4] manner as well and we'll see that in
-the Go example.
+The same thing can be achieved in a more functional[^4] manner and we'll see that in the Go
+example.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
 solution in a language like Go where there's no concept of a class or explicit interface
@@ -161,7 +161,7 @@ func (f OutputFunc) Output(message string) string {
 }
 ```
 
-Above, we're defining a `Formatter` interface that contains only a single method `Output()`.
+Above, we're defining a `Formatter` interface that contains only a single method `Output`.
 Then we define an `OutputFunc` type that implements the `Output` method on the function to
 satisfy the `Formatter` interface. We could opt in for a struct type here instead of
 defining a function type but since we don't need to hold any state, a function type keeps
@@ -175,14 +175,14 @@ func Display(message string, format Formatter) {
 }
 ```
 
-Similar to the Ruby example, the `Display` function intakes a string message and an object
-of any type that implements the `Formatter` interface. Next, it calls the `Output` method on
-`format` without having any knowledge of what that does, achieving polymorphism.
+Similar to the Ruby example, `Display` intakes a string message and an object of any type
+that implements the `Formatter` interface. Next, it calls the `Output` method on `format`
+without having any knowledge of what that does, achieving polymorphism.
 
 Also, notice that we aren't handling the "unknown formatter" case explicitly because now
 it'll be a compile-time error if an unknown formatter is passed to the caller.
 
-Then you'll define your strategies and pass them to the `Display` function as follows:
+Next, you'll define your strategies and pass them to the `Display` function as follows:
 
 ```go
 func main() {
@@ -206,7 +206,7 @@ func main() {
 
 We're defining each formatting strategy as a function and casting it to the `OutputFunc` so
 that it satisfies the `Formatter` interface. Then we just pass the message and the strategy
-instance to the `Display` function as before. Notice how your data and strategies are
+instance to the `Display` function as before. Notice how your data and strategies are also
 decoupled in this case; one has no knowledge of the existence of the other.
 
 And voila, you're done!
