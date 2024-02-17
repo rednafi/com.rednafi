@@ -133,14 +133,15 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-Same thing can be achived in a more functional[^4] manner as well.
+Same thing can be achived in a more functional[^4] manner as well and we'll leverage that in
+the Go example.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
 solution in a language like Go where there's no concept of a class or explicit interface
 implementation? This wasn't clear to me from the get-go until I started playing with the
 language a little more and digging through OSS codebase with GitHub code search.
 
-Turns out, in Go, you can do the same thing using interfaces and structs, and with even
+Turns out, in Go, you can do the same thing using interfaces and custom types, and with even
 fewer lines of code. Here's how:
 
 ```go
@@ -148,39 +149,39 @@ fewer lines of code. Here's how:
 
 // Formatter interface defines a method for outputting messages
 type Formatter interface {
-    Output() string
+	Output(message string) string
 }
 
-// TextFormatter for plain text messages
-type TextFormatter struct {
-    Message string
-}
+// OutputFunc is a function type that matches the signature of the Output
+// method in the Formatter interface
+type OutputFunc func(message string) string
 
-func (t *TextFormatter) Output() string {
-    return t.Message
-}
-
-// JSONFormatter for JSON-encoded messages
-type JSONFormatter struct {
-    Message string
-}
-
-func (j *JSONFormatter) Output() string {
-    jsonData, _ := json.Marshal(map[string]string{"message": j.Message})
-    return string(jsonData)
+// Output method makes OutputFunc satisfy the Formatter interface
+func (f OutputFunc) Output(message string) string {
+	return f(message)
 }
 ```
 
 Above, we're defining a `Formatter` interface that contains only a single method `Output()`.
-Then we define the two concrete strategy types `TextFormatter` and `JSONFormatter` and
-implement the `Output()` method on both of them to implicitly satisfy the `Formatter`
-interface. The `Output` method on the concrete types knows how to print the message in
-plaintext or JSON format respectively.
+Then we define an `OutputFunc` type that implements the `Output` method on the function to
+satisfy the `Formatter` interface. We could opt in for a struct type here instead of
+defining a function type but since we don't need to hold any state, a function type keeps
+things concise.
 
-The `Display` function intakes an object of any type that implements the `Formatter`
-interface and calls `Output` on it; just like the Ruby example. Notice that we aren't
-handling the "unknown formatter" case explicitly because now it'll be a compile time error
-if an unknown formatter is passed to the caller.
+The display function will look as follows:
+
+```go
+func Display(message string, format Formatter) {
+	fmt.Println(format.Output(message))
+}
+```
+
+Similar to the Ruby example, the `Display` function intakes a string message and an object
+of any type that implements the `Formatter` interface. Next, it calls the `Output` method on
+`format` without having any knowledge of what that does; achieving polymorphism.
+
+Also, notice that we aren't handling the "unknown formatter" case explicitly because now
+it'll be a compile time error if an unknown formatter is passed to the caller.
 
 ```go
 // main.go
@@ -191,119 +192,38 @@ func Display(f Formatter) {
 }
 ```
 
-Then you'd initialize the structs and pass the strategy objects to the `Display` function as
-follows:
+Then you'll define your strategies and pass them to the `Display` function as follows:
 
 ```go
 func main() {
-    t := &TextFormatter{Message: "Hello, World!"}
-    j := &JSONFormatter{Message: "Hello, World!"}
+	message := "Hello, World!"
 
-    Display(t) // Prints "Hello, World!"
-    Display(j) // Prints "{"message":"Hello, World!"}"
+    // Each strategy needs to be wrapped in OutputFunc so that the
+    // underlying function satisfies the Formatter interface.
+	TextFormatted := OutputFunc(func (message string) string {
+		return message
+	})
+
+	JSONFormatted := OutputFunc(func (message string) string {
+		jsonData, _ := json.Marshal(map[string]string{"message": message})
+		return string(jsonData)
+	})
+
+	Display(message, TextFormatted) // Prints "Hello, World!"
+	Display(message, JSONFormatted) // Prints "{"message":"Hello, World!"}"
 }
 ```
 
-And voila, you're done.
+We're defining each formatting strategy as a function and casting that to the `OutputFunc`
+so that it satisfies the `Formatter` interface. Then we just pass the message and the
+strategy to the `Display` function as before. Notice that how your data and strategies are
+decoupled in this case; one has no knowledge of the existence of the other.
 
-Now, how would you solve the method-sharing problem in Go? What if we needed a common method
-`Header` that prints a header before displaying the message in both of the concrete types?
-We could just define a `Header` function and call it inside the `Output` methods to print
-the header. But let's say, for the sake of argument, we want to share some functionalities
-across multiple concrete types.
+And voila, you're done!
 
-We could duplicate the method implementation and define `Header` on each of the
-`TextFormatter` and `JSONFormatter` types along with the `Output` method. But that
-introduces redundant duplication.
-
-In Ruby, we could just implement the common method in the interface class; the interface
-class isn't anything special, and we can add methods there. Then all the downstream classes
-will automatically inherit the method. But if we wanted to avoid inheritance, we could also
-define another strategy class wrapping the common method and pass that to `Display`.
-
-But in Go, we can do some type embedding shenanigans to ensure compile-time check and avoid
-method duplication. Here's the implementation:
-
-```go
-package main
-
-import (
-    "encoding/json"
-    "fmt"
-)
-
-// Formatter interface defines a method for outputting messages
-type Formatter interface {
-    Output() string
-}
-
-// CommonFormatter wraps a Formatter and provides a Header method.
-// This struct now is responsible for providing a common header functionality
-// without requiring each concrete formatter to implement it.
-type CommonFormatter struct {
-    Formatter
-}
-
-// Header returns a common header string
-func (c *CommonFormatter) Header() string {
-    return "Common Header:"
-}
-
-// TextFormatter for plain text messages
-type TextFormatter struct {
-    Message string
-}
-
-// Output returns the message as plain text
-func (t *TextFormatter) Output() string {
-    return t.Message
-}
-
-// JSONFormatter for JSON-encoded messages
-type JSONFormatter struct {
-    Message string
-}
-
-// Output returns the message as a JSON string
-func (j *JSONFormatter) Output() string {
-    jsonData, _ := json.Marshal(map[string]string{"message": j.Message})
-    return string(jsonData)
-}
-
-// Display prints the header and output of a Formatter wrapped by CommonFormatter
-func Display(c *CommonFormatter) {
-    fmt.Println(c.Header()) // Call Header on CommonFormatter
-    fmt.Println(c.Output()) // Call Output on the embedded Formatter
-}
-
-func main() {
-    t := &CommonFormatter{Formatter: &TextFormatter{Message: "Hello, World!"}}
-    j := &CommonFormatter{Formatter: &JSONFormatter{Message: "Hello, World!"}}
-
-    Display(t)
-    Display(j)
-}
-```
-
-Running this will print:
-
-```txt
-Common Header:
-Hello, World!
-Common Header:
-{"message":"Hello, World!"}
-```
-
-The final snippet shows how to share a `Header` method among different types by using a
-struct to embed an interface. Here, the `CommonFormatter` struct embeds the `Formatter`
-interface, which means both `TextFormatter` and `JSONFormatter` can use the `Header` method
-directly. This setup lets these types get a common function without having to write it
-multiple times.
-
-While this is convenient, it isn't inheritance by any means. The common `Head` method on the
-`CommonFormatter` type can't operate on the attributes of the embedded `TextFormatter` or
-`JSONFormatter` types without doing some runtime introspections or generic tricks. If you
-need that, it's probably easier to define the method on the concrete classes anyway!
+_Update: The original Go example used struct types rather than function types to meet the
+`Formatter` interface requirements. A Redditor suggested the current approach with a custom
+function type._
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
 [^2]:
