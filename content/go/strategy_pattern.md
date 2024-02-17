@@ -300,11 +300,10 @@ interface, which means both `TextFormatter` and `JSONFormatter` can use the `Hea
 directly. This setup lets these types get a common function without having to write it
 multiple times.
 
-While this is quite convenient, it isn't inheritance by any means. The common `Head` method
-on the `CommonFormatter` type can't operate on the attributes of the embedded
-`TextFormatter` or `JSONFormatter` types without doing some runtime introspections or
-generic tricks. If you need that, it's probably easier to define the method on the concrete
-classes anyway!
+While this is convenient, it isn't inheritance by any means. The common `Head` method on the
+`CommonFormatter` type can't operate on the attributes of the embedded `TextFormatter` or
+`JSONFormatter` types without doing some runtime introspections or generic tricks. If you
+need that, it's probably easier to define the method on the concrete classes anyway!
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
 [^2]:
