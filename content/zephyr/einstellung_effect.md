@@ -60,7 +60,7 @@ Java, while remaining completely oblivious to my own stance. In each of these in
 accumulated experience and acquired predispositions actively resisted adopting different
 ways of solving problems.
 
-It's natural for us to acquire new skills by mapping them with what we actually know, and
+It's natural for us to acquire new skills by mapping them with what we already know, and
 that's true for any skill—whether it's learning to cook a new dish or writing in an
 unfamiliar programming language. But at the same time, as we grow older, we actively need to
 strain against the tide to learn to learn like kids. Because without it, we are nothing but
