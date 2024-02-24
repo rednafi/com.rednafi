@@ -17,8 +17,8 @@ because the hoop aims to prevent any change in the surrounding magnetic field. T
 Law: the hoop consistently acts to maintain the magnetic field's status quo, reacting
 against the motion that initiated the change.
 
-In my experience, is how knowledge works as well. The very thing that made you good at what
-you do often prevents you from getting better.
+In my experience, knowledge works like this as well. The very thing that made you good at
+what you do often prevents you from getting better.
 
 The first decent program I ever wrote was a simulation in MATLAB during my sophomore year.
 Since then, I've switched career gears a few times and picked up a few programming languages
