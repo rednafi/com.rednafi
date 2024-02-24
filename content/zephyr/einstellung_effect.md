@@ -15,7 +15,9 @@ hoop, the hoop generates a magnetic field that pushes the magnet away. Conversel
 pull the magnet away, the hoop creates a magnetic field that pulls it back. This occurs
 because the hoop aims to prevent any change in the surrounding magnetic field. That's Lenz's
 Law: the hoop consistently acts to maintain the magnetic field's status quo, reacting
-against the motion that initiated the change.
+against the motion that's the cause of the existence of the magnetic flux in the first
+place. Generators leverage this principle to convert mechanical motion into electrical
+energy.
 
 In my experience, knowledge works like this as well. The very thing that made you good at
 what you do often prevents you from getting better.
@@ -37,7 +39,7 @@ accumulated over time, prevents you from acquiring new knowledge and adopting ne
 thinking. Turns out, there's one for that—the Einstellung effect[^2]. Einstellung is a
 German word for "attitude" or "setting." It describes a situation where we stick to a
 familiar way of thinking or solving problems, which can stop us from seeing or seeking
-easier or better solutions. This only gets worse as we start growing older and becoming more
+easier or better solutions. This only gets worse as we start growing older or becoming more
 experienced in a narrow slice of a highly specialized domain.
 
 To put it more concretely, when I learned my first proper programming language, Python, it
@@ -53,8 +55,10 @@ It was only when I started to learn Go that I became aware of the warts of Pytho
 it just isn't the right tool to solve the problem at hand. Despite Go's fame for being
 simple, I had to read a few books, solve a few koans, and build a few tools before I got
 confident in solving problems with it. One reason why it took longer is because I was trying
-to emulate Python idioms inside Go while at the same time bashing people who write Go like
-Java, completely being oblivious to my own stance.
+to emulate Python idioms inside Go while at the same time bashing people who'd write Go like
+Java, completely being oblivious to my own stance. In each of these instances, my
+accumulated experience and acquired predispositions actively resisted against adopting a
+different ways of solving problems.
 
 It's natural for us to acquire new skills by mapping them with what we actually know, and
 that's true for any skill—whether it's learning to cook a new dish or write in an unfamiliar
