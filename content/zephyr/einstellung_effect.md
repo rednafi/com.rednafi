@@ -30,7 +30,7 @@ Sure, picking up a new tool or library in a familiar language has become second 
 so has the tendency to keep doing the same thing I'm somewhat good at, slightly differently,
 and falling into the false lull of growth. This can be perilous in the sense that, unless
 you actively fight it, after a decade, you might find yourself in a situation where you
-actually have only one year's worth of experience repeated 10 times.
+actually have only a year's worth of experience repeated ten times.
 
 I've been looking for a phrase to label the situation where the curse of knowledge,
 accumulated over time, prevents you from acquiring new knowledge and adopting new ways of
@@ -59,8 +59,9 @@ Java, completely being oblivious to my own stance.
 It's natural for us to acquire new skills by mapping them with what we actually know, and
 that's true for any skill—whether it's learning to cook a new dish or write in an unfamiliar
 programming language. But at the same time, as we grow older, we actively need to strain
-against the tide to learn to learn like kids. Because without it, we're nothing but
-simulacra wasting the gift of consciousness, spellbound by the allure of mimicry!
+against the tide to learn to learn like kids. Because without it, we are nothing but
+simulacra acting as conscious exotica[^3], spellbound by the allure of mimicry!
 
 [^1]: [Lenz's law](https://www.youtube.com/watch?v=QwUq8xM_8bY)
 [^2]: [Einstellung effect](https://en.wikipedia.org/wiki/Einstellung_effect)
+[^3]: [Simulacra acting as conscious exotica](https://arxiv.org/abs/2402.12422)
