@@ -43,27 +43,27 @@ easier or better solutions. This only gets worse as we start growing older or be
 experienced in a narrow slice of a highly specialized domain.
 
 To put it more concretely, when I learned my first proper programming language, Python, it
-was much easier for me to pick up the syntax, semantics, and the culture around it since all
+was much easier for me to pick up the syntax, semantics, and culture around it since all
 that knowledge was basically getting dumped into an empty slate. When I had to pick up some
 JavaScript for work, it was still relatively easy since I started to compare the features of
 the language with the one I knew and worked my way up. However, the time it took for me to
-get comfortable in the JS world wasn't that shorter since I was begrudgingly resisting
+get comfortable in the JS world wasn't that short since I was begrudgingly resisting
 learning about the warts of the language and complaining about how nice Python's type system
 was compared to this mess!
 
 It was only when I started to learn Go that I became aware of the warts of Python and when
-it just isn't the right tool to solve the problem at hand. Despite Go's fame for being
+it just wasn't the right tool to solve the problem at hand. Despite Go's fame for being
 simple, I had to read a few books, solve a few koans, and build a few tools before I got
 confident in solving problems with it. One reason why it took longer is because I was trying
 to emulate Python idioms inside Go while at the same time bashing people who'd write Go like
-Java, completely being oblivious to my own stance. In each of these instances, my
-accumulated experience and acquired predispositions actively resisted against adopting a
-different ways of solving problems.
+Java, while remaining completely oblivious to my own stance. In each of these instances, my
+accumulated experience and acquired predispositions actively resisted adopting different
+ways of solving problems.
 
 It's natural for us to acquire new skills by mapping them with what we actually know, and
-that's true for any skill—whether it's learning to cook a new dish or write in an unfamiliar
-programming language. But at the same time, as we grow older, we actively need to strain
-against the tide to learn to learn like kids. Because without it, we are nothing but
+that's true for any skill—whether it's learning to cook a new dish or writing in an
+unfamiliar programming language. But at the same time, as we grow older, we actively need to
+strain against the tide to learn to learn like kids. Because without it, we are nothing but
 simulacra acting as conscious exotica[^3], spellbound by the allure of mimicry!
 
 [^1]: [Lenz's law](https://www.youtube.com/watch?v=QwUq8xM_8bY)
