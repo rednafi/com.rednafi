@@ -5,8 +5,8 @@ tags:
     - Meta
 ---
 
-In 9th grade, when I first learned about Lenz's Law in Physics class, I was fascinated by
-its implications. It states:
+In 9th grade, when I first learned about Lenz's Law[^1] in Physics class, I was fascinated
+by its implications. It states:
 
 > _The direction of an induced current will always oppose the motion causing it._
 
@@ -34,7 +34,7 @@ actually have only one year's worth of experience repeated 10 times.
 
 I've been looking for a phrase to label the situation where the curse of knowledge,
 accumulated over time, prevents you from acquiring new knowledge and adopting new ways of
-thinking. Turns out, there's one for that—the Einstellung effect[^1]. Einstellung is a
+thinking. Turns out, there's one for that—the Einstellung effect[^2]. Einstellung is a
 German word for "attitude" or "setting." It describes a situation where we stick to a
 familiar way of thinking or solving problems, which can stop us from seeing or seeking
 easier or better solutions. This only gets worse as we start growing older and becoming more
@@ -62,4 +62,5 @@ programming language. But at the same time, as we grow older, we actively need t
 against the tide to learn to learn like kids. Because without it, we're nothing but
 simulacra wasting the gift of consciousness, spellbound by the allure of mimicry!
 
-[^1]: [Einstellung effect](https://en.wikipedia.org/wiki/Einstellung_effect)
+[^1]: [Lenz's law](https://www.youtube.com/watch?v=QwUq8xM_8bY)
+[^2]: [Einstellung effect](https://en.wikipedia.org/wiki/Einstellung_effect)
