@@ -34,7 +34,7 @@ and falling into the false lull of growth. This can be perilous in the sense tha
 you actively fight it, after a decade, you might find yourself in a situation where you
 actually have only a year's worth of experience repeated ten times.
 
-I've been looking for a phrase to label the situation where the curse of knowledge,
+I've been looking for a phrase to label the dilemma where the curse of knowledge,
 accumulated over time, prevents you from acquiring new knowledge and adopting new ways of
 thinking. Turns out, there's one for that—the Einstellung effect[^2]. Einstellung is a
 German word for "attitude" or "setting." It describes a situation where we stick to a
