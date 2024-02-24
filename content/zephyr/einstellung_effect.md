@@ -56,7 +56,7 @@ it just wasn't the right tool to solve the problem at hand. Despite Go's fame fo
 simple, I had to read a few books, solve a few koans, and build a few tools before I got
 confident in solving problems with it. One reason why it took longer is because I was trying
 to emulate Python idioms inside Go while at the same time bashing people who'd write Go like
-Java, while remaining completely oblivious to my own stance. In each of these instances, my
+Java, while remaining blissfully unaware of my own stance. In each of these instances, my
 accumulated experience and acquired predispositions actively resisted adopting different
 ways of solving problems.
 
