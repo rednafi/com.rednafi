@@ -4,7 +4,7 @@
 body {
   font-family: "Inter Variable", "Helvetica Neue", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.55;
   letter-spacing: -0.01rem;
   word-break: break-word;
   background: var(--theme);
