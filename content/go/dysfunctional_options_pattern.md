@@ -29,7 +29,7 @@ be passed to some other function to configure its behavior. For example:
 ```go
 package src
 
-struct Config {
+type Config struct {
     // Required
     foo, bar string
 
@@ -72,7 +72,7 @@ private. For instance:
 ```go
 package src
 
-struct config { // Notice that the struct is now private
+type config struct { // Notice that the struct is now private
     // Required
     foo, bar string
 
@@ -85,7 +85,7 @@ func NewConfig(foo, bar string, fizz, bazz int) config {
     return config{foo, bar, fizz, bazz}
 }
 
-func Do(config config){}
+func Do(c config){}
 ```
 
 The API consumers will now use `NewConfig` to configure the `Do` function as follows:
@@ -97,10 +97,10 @@ import (".../src")
 
 func main() {
     // Initialize the config with the NewConfig factory
-    config := &src.NewConfig("hello", "world", 0, 42)
+    c := &src.NewConfig("hello", "world", 0, 42)
 
     // Call Do with the initialized Config struct
-    Do(config)
+    Do(c)
 }
 ```
 
@@ -119,23 +119,74 @@ Here's how you can build your API to leverage the pattern:
 ```go
 package src
 
-struct config {
-    // Required
-    foo, bar string
+type config struct {
+	// Required
+	foo, bar string
 
-    // Optional
-    fizz, bazz int
+	// Optional
+	fizz, bazz int
 }
 
-type option func()
+type option func(*config)
 
-// Public factory function
-func NewConfig(foo, bar string, fizz, bazz int) config {
-    return config{foo, bar, fizz, bazz}
+// Each optional option will have its own public method
+func WithFizz(fizz int) option {
+	return func(c *config) {
+		c.fizz = fizz
+	}
 }
 
-func Do(config config){}
+func WithBazz(bazz int) option {
+	return func(c *config) {
+		c.bazz = bazz
+	}
+}
+
+// The optional
+func NewConfig(foo, bar string, opts ...option) config {
+	// First fill in the required options
+	c := config{foo, bar, 10, 100}
+
+	// Now fill in the optional options
+	for _, opt := range opts {
+		opt(&c)
+	}
+	return c
+}
+
+func Do(c config) {}
 ```
+
+Then you'd use it as follows:
+
+```go
+package main
+
+import (".../src")
+
+func main() {
+	c := NewConfig("hello", "world", src.WithFizz(1), src.WithBazz(2))
+	src.Do(c)
+}
+```
+
+The functional options pattern relies on functions that modify the configuration struct's
+state. These modifier functions, or option functions, are defined to accept a pointer to the
+configuration struct `*config` and then directly alter its fields. This direct manipulation
+is possible because the option functions are closures, which means they capture and modify
+the variables from their enclosing scope, in this case, the `config` instance.
+
+In the `NewConfig` factory, the variadic parameter `opts ...option` allows for an arbitrary
+number of option functions to be passed. Here, `opts` represents the optional configurations
+that the users can override if they want to.
+
+The `NewConfig` function iterates over this slice of option functions, invoking each one
+with the `&c` argument, which is a pointer to the newly created `config` instance. The
+config instance is created with the default values and the users can use the `With*`
+functions to override them.
+
+That's a lot of work to allow users to configure some options. Allowing default arguments in
+function would've made this entirely redundant.
 
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
