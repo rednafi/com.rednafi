@@ -3,6 +3,7 @@ title: Dysfunctional options pattern in Go
 date: 2024-03-05
 tags:
     - Go
+drafts: true
 ---
 
 Ever since Rob Pike published the text on the functional options pattern[^1], there's been
