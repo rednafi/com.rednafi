@@ -9,12 +9,12 @@ Ever since Rob Pike published the text on the functional options pattern[^1], th
 no shortage of blogs, talks, or comments on how it improves or obfuscates configuration
 ergonomics.
 
-While the necessity of such a pattern is quite evident in a language that lacks keyword
+While the necessity of such a pattern is quite evident in a language that lacks default
 arguments in functions, more often than not, it needlessly complicates things. The situation
 gets worse if you have to maintain a public API where multiple configurations are controlled
 in this manner.
 
-However, the pattern solves a valid problem and it definitly has its place. Otherwise it
+However, the pattern solves a valid problem and it definitely has its place. Otherwise, it
 wouldn't have been picked up by pretty much every other library[^2][^3].
 
 If you have no idea what I'm talking about, you might want to give my previous write-up on
@@ -48,13 +48,13 @@ Then the `Config` struct will be imported by your API users, initialized, and pa
 ```go
 package main
 
-import (".../src")
+import ".../src"
 
 func main() {
     // Initialize the config and pass it to the Do function
     config := &src.Config{
-        foo: "hello"
-        bar: "world"
+        foo: "hello",
+        bar: "world",
         fizz: 0,
         bazz: 42,
     }
@@ -85,7 +85,7 @@ func NewConfig(foo, bar string, fizz, bazz int) config {
     return config{foo, bar, fizz, bazz}
 }
 
-func Do(c config){}
+func Do(c *config){}
 ```
 
 The API consumers will now use `NewConfig` to configure the `Do` function as follows:
@@ -93,7 +93,7 @@ The API consumers will now use `NewConfig` to configure the `Do` function as fol
 ```go
 package main
 
-import (".../src")
+import ".../src"
 
 func main() {
     // Initialize the config with the NewConfig factory
@@ -120,41 +120,40 @@ Here's how you can build your API to leverage the pattern:
 package src
 
 type config struct {
-	// Required
-	foo, bar string
+    // Required
+    foo, bar string
 
-	// Optional
-	fizz, bazz int
+    // Optional
+    fizz, bazz int
 }
 
 type option func(*config)
 
-// Each optional option will have its own public method
+// Each optional option will have its own public function
 func WithFizz(fizz int) option {
-	return func(c *config) {
-		c.fizz = fizz
-	}
+    return func(c *config) {
+        c.fizz = fizz
+    }
 }
 
 func WithBazz(bazz int) option {
-	return func(c *config) {
-		c.bazz = bazz
-	}
+    return func(c *config) {
+        c.bazz = bazz
+    }
 }
 
-// The optional
 func NewConfig(foo, bar string, opts ...option) config {
-	// First fill in the required options
-	c := config{foo, bar, 10, 100}
+    // First fill in the options with default values
+    c := config{foo, bar, 10, 100}
 
-	// Now fill in the optional options
-	for _, opt := range opts {
-		opt(&c)
-	}
-	return c
+    // Now allow users to override the optional options
+    for _, opt := range opts {
+        opt(&c)
+    }
+    return c
 }
 
-func Do(c config) {}
+func Do(c *config) {}
 ```
 
 Then you'd use it as follows:
@@ -162,19 +161,20 @@ Then you'd use it as follows:
 ```go
 package main
 
-import (".../src")
+import ".../src"
 
 func main() {
-	c := NewConfig("hello", "world", src.WithFizz(1), src.WithBazz(2))
-	src.Do(c)
+    c := &NewConfig("hello", "world", src.WithFizz(1), src.WithBazz(2))
+    src.Do(c)
 }
 ```
 
 The functional options pattern relies on functions that modify the configuration struct's
 state. These modifier functions, or option functions, are defined to accept a pointer to the
 configuration struct `*config` and then directly alter its fields. This direct manipulation
-is possible because the option functions are closures, which means they capture and modify
-the variables from their enclosing scope, in this case, the `config` instance.
+is possible because the option functions are closures, which means they capture and
+
+modify the variables from their enclosing scope, in this case, the `config` instance.
 
 In the `NewConfig` factory, the variadic parameter `opts ...option` allows for an arbitrary
 number of option functions to be passed. Here, `opts` represents the optional configurations
@@ -182,11 +182,60 @@ that the users can override if they want to.
 
 The `NewConfig` function iterates over this slice of option functions, invoking each one
 with the `&c` argument, which is a pointer to the newly created `config` instance. The
-config instance is created with the default values and the users can use the `With*`
-functions to override them.
+config instance is created with default values, and the users can use the `With*` functions
+to override them.
 
-That's a lot of work to allow users to configure some options. Allowing default arguments in
-function would've made this entirely redundant.
+That's a lot of work to allow users to configure some options. It's quite slow as well.
+Allowing default arguments in functions would've made this entirely redundant. Your config
+factory could just set the default values from the keyword arguments and let the users to
+override the desired options while calling the factory function.
+
+Recently, I've been using a fluent-style API to manage configurations that doesn't require
+so many layers of indirections. Let's call it dysfunctional options pattern.
+
+## Dysfunctional options pattern
+
+```go
+package src
+
+type config struct {
+    // Required
+    foo, bar string
+
+    // Optional
+    fizz, bazz int
+}
+
+// Each optional option will have its own public method
+func (c *config) WithFizz(fizz int) *config {
+    c.fizz = fizz
+    return c
+}
+
+func (c *config) WithBazz(bazz int) *config {
+    c.bazz = bazz
+    return c
+}
+
+// The only accept the required options as params
+func NewConfig(foo, bar string) *config {
+    // First fill in the options with default values
+    return &config{foo, bar, 10, 100}
+}
+
+func Do(c *config) {}
+```
+
+```go
+package main
+
+import ".../src"
+
+func main() {
+    c := NewConfig("hello", "world").WithFizz(0).WithBazz(42)
+    Do(c)
+}
+```
 
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
