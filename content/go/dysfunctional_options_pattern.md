@@ -23,9 +23,9 @@ configuring options[^4] a read.
 
 ## Functional options pattern
 
-As a recap, here's how the functional options pattern works. Let's say you need to allow the
-users of your API to configure something. You can expose a struct from your package that'll
-be passed to some other function to configure its behavior. For example:
+As a recap, here's how the functional options pattern works. Let's say, you need to allow
+the users of your API to configure something. You can expose a struct from your package
+that'll be passed to some other function to tune its behavior. For example:
 
 ```go
 package src
@@ -89,7 +89,8 @@ func NewConfig(foo, bar string, fizz, bazz int) config {
 func Do(c *config){}
 ```
 
-The API consumers will now use `NewConfig` to configure the `Do` function as follows:
+The API consumers will now use `NewConfig` to produce a configuration and then pass the
+struct instance to the `Do` function as follows:
 
 ```go
 package main
@@ -105,15 +106,16 @@ func main() {
 }
 ```
 
-This is better and avoids exposing how things work internally. However, what happens if you
-need to let your users customize a lot of settings? That means your configure struct will
-end up with many options, leading the `NewConfig` function to require numerous arguments.
+This approach is better as it keeps the internal machinery hidden from users. However, it
+doesn't allow for setting default values for some configuration attributes; all must be set
+explicitly. What if your users want to override the value of many attributes? This leads
+your configuration struct to be overloaded with options, making the `NewConfig` function
+demand numerous positional arguments.
 
-This isn't ideal for the users of your API, as they'll have to provide all these options as
-arguments to the `NewConfig` factory. You might consider initializing `config` with some
-default values, allowing users the option to override them. But, since Go doesn't support
-default values for function arguments, we need something like the functional options
-pattern.
+This setup isn't user-friendly, as it forces API users to explicitly pass all these options
+to the `NewConfig` factory. Ideally, you'd initialize `config` with some default values,
+offering users the chance to override them. But, Go doesn't support default values for
+function arguments, which leads us to the functional options pattern.
 
 Here's how you can build your API to leverage the pattern:
 
@@ -130,7 +132,8 @@ type config struct {
 
 type option func(*config)
 
-// Each optional option will have its own public function
+// The value of each optional configuration attribute can be overridden with
+// an associated function
 func WithFizz(fizz int) option {
     return func(c *config) {
         c.fizz = fizz
@@ -173,9 +176,8 @@ func main() {
 The functional options pattern relies on functions that modify the configuration struct's
 state. These modifier functions, or option functions, are defined to accept a pointer to the
 configuration struct `*config` and then directly alter its fields. This direct manipulation
-is possible because the option functions are closures, which means they capture and
-
-modify the variables from their enclosing scope, in this case, the `config` instance.
+is possible because the option functions are closures, which means they capture and modify
+the variables from their enclosing scope, in this case, the `config` instance.
 
 In the `NewConfig` factory, the variadic parameter `opts ...option` allows for an arbitrary
 number of option functions to be passed. Here, `opts` represents the optional configurations
@@ -186,13 +188,29 @@ with the `&c` argument, which is a pointer to the newly created `config` instanc
 config instance is created with default values, and the users can use the `With*` functions
 to override them.
 
-That's a lot of work to allow users to configure some options. It's quite slow as well.
-Allowing default arguments in functions would've made this entirely redundant. Your config
-factory could just set the default values from the keyword arguments and let the users to
-override the desired options while calling the factory function.
+## Curse of indirection
 
-Recently, I've been using a fluent-style API to manage configurations that doesn't require
-so many layers of indirections. Let's call it dysfunctional options pattern.
+That's a fair bit of indirection just to allow API users to configure some options. I don't
+know about you, but multi-layered higher order functions hurt my tiny brain. It's quite slow
+as well.
+
+All this complexity could've been avoided if Go allowed default arguments in functions. Your
+configuration factory could just set the default values from the keyword arguments and allow
+the users to override the desired options while calling the function.
+
+Also, the multiple layers of indirection hurt API discoverability. While calling the
+factory, your users need to know which package-scoped function they'll need to call to
+override some configuration attribute. Hovering your IDE's cursor over the return value of
+the factory function isn't much helpful since the the modifier functions live in the package
+level.
+
+So if you need to configure multiple structs in this manner, their respective package level
+modifier makes it even harder for the user to know which function they'll need to use to
+update certain configuration attribute.
+
+Recently, I've spontaneously stumbled upon a fluent-style API to manage configurations that
+doesn't require so many layers of indirection. Let's call it the dysfunctional options
+pattern.
 
 ## Dysfunctional options pattern
 
