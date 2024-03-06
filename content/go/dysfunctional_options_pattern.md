@@ -66,8 +66,8 @@ func main() {
 
 This is one way of doing that, but it's generally discouraged since it requires you to
 expose the internals of your API to the users. So instead, a library usually exposes a
-factory function that'll do the struct initialization while keeping the struct and the
-fields private. For instance:
+factory function that'll do the struct initialization while keeping the struct and fields
+private. For instance:
 
 ```go
 package src
@@ -107,14 +107,15 @@ func main() {
 
 This approach is better as it keeps the internal machinery hidden from users. However, it
 doesn't allow for setting default values for some configuration attributes; all must be set
-explicitly. What if your users want to override the value of multiple attributes? This leads
-your configuration struct to be overloaded with options, making the `NewConfig` function
-demand numerous positional arguments.
+explicitly. What if your users want to override the values of multiple attributes? This
+leads your configuration struct to be overloaded with options, making the `NewConfig`
+function demand numerous positional arguments.
 
 This setup isn't user-friendly, as it forces API users to explicitly pass all these options
 to the `NewConfig` factory. Ideally, you'd initialize `config` with some default values,
-offering users the chance to override them. But, Go doesn't support default values for
-function arguments, which leads us to the functional options pattern.
+offering users a chance to override them. But, Go doesn't support default values for
+function arguments, which compels us to be creative and come up with different workarounds.
+Functional options pattern is one of them.
 
 Here's how you can build your API to leverage the pattern:
 
@@ -149,7 +150,7 @@ func NewConfig(foo, bar string, opts ...option) config {
     // First fill in the options with default values
     c := config{foo, bar, 10, 100}
 
-    // Now allow users to override the optional options
+    // Now allow users to override the optional configuration attributes
     for _, opt := range opts {
         opt(&c)
     }
@@ -208,8 +209,8 @@ respective package-level modifiers make it even harder for the user to know whic
 they'll need to use to update a certain configuration attribute.
 
 Recently, I've spontaneously stumbled upon a fluent-style API to manage configurations that
-doesn't require so many layers of indirection. Let's call it the dysfunctional options
-pattern.
+doesn't require so many layers of indirection and lets you expose optional configuration
+attributes. Let's call it dysfunctional options pattern.
 
 ## Dysfunctional options pattern
 
@@ -227,7 +228,7 @@ type config struct {
     fizz, bazz int
 }
 
-// Each optional option will have its own public method
+// Each optional configuration attribute will have its own public method
 func (c *config) WithFizz(fizz int) *config {
     c.fizz = fizz
     return c
@@ -238,7 +239,7 @@ func (c *config) WithBazz(bazz int) *config {
     return c
 }
 
-// The only accept the required options as params
+// This only accepts the required options as params
 func NewConfig(foo, bar string) *config {
     // First fill in the options with default values
     return &config{foo, bar, 10, 100}
@@ -255,6 +256,8 @@ package main
 import ".../src"
 
 func main() {
+    // Initialize the struct with only the required options and then chain
+    // the option methods to update the optional configuration attributes
     c := src.NewConfig("hello", "world").WithFizz(0).WithBazz(42)
     src.Do(c)
 }
@@ -264,10 +267,10 @@ Similar to the previous pattern, we have modifiers here too. However, instead of
 higher order functions, the modifiers are methods on `config` and return a pointer to the
 struct.
 
-The `NewConfig` factory function instantiate the `config` struct with some default values
-and returns the struct pointer like the modifiers. This allows us to fluently call the
-`WithFizz` and `WithBazz` modifiers on the returned value of `NewConfig` and update the
-values of the optional configuration attributes.
+The `NewConfig` factory function instantiates the `config` struct with some default values
+and returns the struct pointer like the modifiers. This enables us to chain the `WithFizz`
+and `WithBazz` modifiers on the returned value of `NewConfig` and update the values of the
+optional configuration attributes.
 
 Apart from simplicity and the lack of magic, you can hover over the return type of the
 factory and immediately know about the supported modifier methods.
