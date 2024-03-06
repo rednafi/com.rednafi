@@ -1,6 +1,6 @@
 ---
 title: Dysfunctional options pattern in Go
-date: 2024-03-05
+date: 2024-03-06
 tags:
     - Go
 ---
