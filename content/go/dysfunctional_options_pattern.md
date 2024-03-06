@@ -273,7 +273,7 @@ Apart from simplicity and the lack of magic, you can hover over the return type 
 factory and immediately know about the supported modifier methods.
 
 I did a rudimentary benchmark[^5] of the two approaches and was surprised that the second
-one was roughly ~76x faster!
+one was roughly ~76x faster! Here's an example[^6] of the pattern in the wild.
 
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
@@ -287,3 +287,6 @@ one was roughly ~76x faster!
 [^4]: [Configuring options in Go](/go/configure_options)
 [^5]:
     [Benchmarking functional vs dysfunctional options pattern](https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a)
+
+[^6]:
+    [Dysfunctional options pattern in the wild](https://github.com/rednafi/fork-sweeper/blob/80e1f7c76a2efcb7d1b65d6b12303c590bb74c2c/src/cli.go#L172)
