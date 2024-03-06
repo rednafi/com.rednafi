@@ -14,7 +14,7 @@ arguments in functions, more often than not, it needlessly complicates things. T
 gets worse if you have to maintain a public API where multiple configurations are controlled
 in this manner.
 
-However, the pattern solves a valid problem and it definitely has its place. Otherwise, it
+However, the pattern solves a valid problem and definitely has its place. Otherwise, it
 wouldn't have been picked up by pretty much every other library[^2][^3].
 
 If you have no idea what I'm talking about, you might want to give my previous write-up on
@@ -42,8 +42,8 @@ func Do(config *Config) {
 }
 ```
 
-Then the `Config` struct will be imported by your API users, initialized, and passed to the
-`Do` function:
+Then the `Config` struct will be imported, initialized, and passed to the `Do` function by
+your API users:
 
 ```go
 package main
@@ -60,7 +60,7 @@ func main() {
     }
 
     // Call Do with the initialized Config struct
-    Do(config)
+    src.Do(config)
 }
 ```
 
@@ -101,7 +101,7 @@ func main() {
     c := &src.NewConfig("hello", "world", 0, 42)
 
     // Call Do with the initialized Config struct
-    Do(c)
+    src.Do(c)
 }
 ```
 
@@ -167,7 +167,7 @@ package main
 import ".../src"
 
 func main() {
-    c := &NewConfig("hello", "world", src.WithFizz(1), src.WithBazz(2))
+    c := &src.NewConfig("hello", "world", src.WithFizz(1), src.WithBazz(2))
     src.Do(c)
 }
 ```
@@ -255,8 +255,8 @@ package main
 import ".../src"
 
 func main() {
-    c := NewConfig("hello", "world").WithFizz(0).WithBazz(42)
-    Do(c)
+    c := src.NewConfig("hello", "world").WithFizz(0).WithBazz(42)
+    src.Do(c)
 }
 ```
 
