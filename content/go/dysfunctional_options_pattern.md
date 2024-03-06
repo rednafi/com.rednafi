@@ -3,7 +3,6 @@ title: Dysfunctional options pattern in Go
 date: 2024-03-05
 tags:
     - Go
-drafts: true
 ---
 
 Ever since Rob Pike published the text on the functional options pattern[^1], there's been
@@ -32,10 +31,10 @@ package src
 
 type Config struct {
     // Required
-    foo, bar string
+    Foo, Bar string
 
     // Optional
-    fizz, bazz int
+    Fizz, Bazz int
 }
 
 func Do(config *Config) {
@@ -54,10 +53,10 @@ import ".../src"
 func main() {
     // Initialize the config and pass it to the Do function
     config := &src.Config{
-        foo: "hello",
-        bar: "world",
-        fizz: 0,
-        bazz: 42,
+        Foo: "hello",
+        Bar: "world",
+        Fizz: 0,
+        Bazz: 42,
     }
 
     // Call Do with the initialized Config struct
@@ -66,14 +65,14 @@ func main() {
 ```
 
 This is one way of doing that, but it's generally discouraged since it requires you to
-expose the internals of your API to the users. So instead, the library usually exposes a
-factory function that'll do the struct initialization while keeping the struct itself
-private. For instance:
+expose the internals of your API to the users. So instead, a library usually exposes a
+factory function that'll do the struct initialization while keeping the struct and the
+fields private. For instance:
 
 ```go
 package src
 
-type config struct { // Notice that the struct is now private
+type config struct { // Notice that the struct and fields are now private
     // Required
     foo, bar string
 
@@ -108,7 +107,7 @@ func main() {
 
 This approach is better as it keeps the internal machinery hidden from users. However, it
 doesn't allow for setting default values for some configuration attributes; all must be set
-explicitly. What if your users want to override the value of many attributes? This leads
+explicitly. What if your users want to override the value of multiple attributes? This leads
 your configuration struct to be overloaded with options, making the `NewConfig` function
 demand numerous positional arguments.
 
@@ -173,8 +172,8 @@ func main() {
 }
 ```
 
-The functional options pattern relies on functions that modify the configuration struct's
-state. These modifier functions, or option functions, are defined to accept a pointer to the
+Functional options pattern relies on functions that modify the configuration struct's state.
+These modifier functions, or option functions, are defined to accept a pointer to the
 configuration struct `*config` and then directly alter its fields. This direct manipulation
 is possible because the option functions are closures, which means they capture and modify
 the variables from their enclosing scope, in this case, the `config` instance.
@@ -191,28 +190,31 @@ to override them.
 ## Curse of indirection
 
 That's a fair bit of indirection just to allow API users to configure some options. I don't
-know about you, but multi-layered higher order functions hurt my tiny brain. It's quite slow
-as well.
+know about you, but multi-layered higher-order functions hurt my brain. It's quite slow as
+well.
 
-All this complexity could've been avoided if Go allowed default arguments in functions. Your
-configuration factory could just set the default values from the keyword arguments and allow
-the users to override the desired options while calling the function.
+All this complexity could have been avoided if Go allowed default arguments in functions.
+Your configuration factory could simply grab the default values from the keyword arguments
+and pass them to the underlying struct. The idea that supporting default arguments in
+functions would lead to a parameter explosion seems unfounded, especially when the
+alternative requires gymnastics like the functional option pattern.
 
-Also, the multiple layers of indirection hurt API discoverability. While calling the
-factory, your users need to know which package-scoped function they'll need to call to
-override some configuration attribute. Hovering your IDE's cursor over the return value of
-the factory function isn't much helpful since the the modifier functions live in the package
-level.
+Also, the multiple layers of indirection hinder API discoverability. Trying to discover
+modifier functions by hovering your cursor over the factory function's return value in the
+IDE won't be very helpful, as these functions are defined at the package level.
 
-So if you need to configure multiple structs in this manner, their respective package level
-modifier makes it even harder for the user to know which function they'll need to use to
-update certain configuration attribute.
+So, if you need to configure multiple structs in this manner, the explosion of their
+respective package-level modifiers make it even harder for the user to know which function
+they'll need to use to update a certain configuration attribute.
 
 Recently, I've spontaneously stumbled upon a fluent-style API to manage configurations that
 doesn't require so many layers of indirection. Let's call it the dysfunctional options
 pattern.
 
 ## Dysfunctional options pattern
+
+The idea is quite similar to how the API with functional options pattern is constructed.
+Here's the complete implementation:
 
 ```go
 package src
@@ -245,6 +247,8 @@ func NewConfig(foo, bar string) *config {
 func Do(c *config) {}
 ```
 
+You'd use the API as follows:
+
 ```go
 package main
 
@@ -256,6 +260,21 @@ func main() {
 }
 ```
 
+Similar to the previous pattern, we have modifiers here too. However, instead of being
+higher order functions, the modifiers are methods on `config` and return a pointer to the
+struct.
+
+The `NewConfig` factory function instantiate the `config` struct with some default values
+and returns the struct pointer like the modifiers. This allows us to fluently call the
+`WithFizz` and `WithBazz` modifiers on the returned value of `NewConfig` and update the
+values of the optional configuration attributes.
+
+Apart from simplicity and the lack of magic, you can hover over the return type of the
+factory and immediately know about the supported modifier methods.
+
+I did a rudimentary benchmark[^5] of the two approaches and was surprised that the second
+one was roughly ~76x faster!
+
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
 
@@ -266,3 +285,5 @@ func main() {
     [Function options pattern in elastic search agent](https://github.com/elastic/elastic-agent/blob/4aeba5b3fcf0d72924c70ff2127996a817b83a23/pkg/testing/fetcher_http.go)
 
 [^4]: [Configuring options in Go](/go/configure_options)
+[^5]:
+    [Benchmarking functional vs dysfunctional options pattern](https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a)
