@@ -273,7 +273,9 @@ Apart from simplicity and the lack of magic, you can hover over the return type 
 factory and immediately know about the supported modifier methods.
 
 I did a rudimentary benchmark[^5] of the two approaches and was surprised that the second
-one was roughly ~76x faster! Here's an example[^6] of the pattern in the wild.
+one was roughly ~76x faster on Go 1.22!
+
+Here's an example[^6] of the pattern in the wild.
 
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
