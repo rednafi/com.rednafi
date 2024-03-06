@@ -109,7 +109,7 @@ This approach is better as it keeps the internal machinery hidden from users. Ho
 doesn't allow for setting default values for some configuration attributes; all must be set
 explicitly. What if your users want to override the values of multiple attributes? This
 leads your configuration struct to be overloaded with options, making the `NewConfig`
-function demand numerous positional arguments.
+function demands numerous positional arguments.
 
 This setup isn't user-friendly, as it forces API users to explicitly pass all these options
 to the `NewConfig` factory. Ideally, you'd initialize `config` with some default values,
@@ -209,8 +209,8 @@ respective package-level modifiers make it even harder for the user to know whic
 they'll need to use to update a certain configuration attribute.
 
 Recently, I've spontaneously stumbled upon a fluent-style API to manage configurations that
-doesn't require so many layers of indirection and lets you expose optional configuration
-attributes. Let's call it dysfunctional options pattern.
+don't require so many layers of indirection and lets you expose optional configuration
+attributes. Let's call it **dysfunctional options pattern**.
 
 ## Dysfunctional options pattern
 
