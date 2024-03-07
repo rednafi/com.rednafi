@@ -280,6 +280,10 @@ one was roughly ~76x faster on Go 1.22!
 
 Here's an example[^6] of the pattern in the wild.
 
+_P.S. This is indeed a lightweight spin on what OO languages call the builder pattern.
+However, I didn't call it that because there's no mandatory `.Build()` method to be called
+at the end of the method chain._
+
 [^1]:
     [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
 
