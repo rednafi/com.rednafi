@@ -17,7 +17,7 @@ Typically, the CORS issue I encounter boils down to:
 
 -   A backend service that accepts requests only from a list of specified domains.
 -   A new frontend service or some other client trying to access it from a different domain
-    that's not on the server's allow list. Consequently, the server rejects it with an HTTP
+    that's not on the server's allowlist. Consequently, the server rejects it with an HTTP
     4xx error.
 
 Here's a list of some commonly found headers associated with CORS:
@@ -140,7 +140,7 @@ Here, the server only allows requests from two particular domains:
 can make a preflight OPTIONS request to check if the server will permit the subsequent POST
 request.
 
-If the client is on a domain that's not on the allow list, the server will reject the
+If the client is on a domain that's not on the allowlist, the server will reject the
 request.
 
 You can run the server with `go run main.go` and then, from another console, try making a
