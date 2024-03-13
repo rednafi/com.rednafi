@@ -22,7 +22,7 @@ Typically, the CORS issue I encounter boils down to:
 
 Here's a list of some commonly found headers associated with CORS:
 
-**Request Headers**
+**Request headers**
 
 -   `Origin`: indicates the origin of the request
 -   `Access-Control-Request-Method`: used in preflight[^3] to specify the method of the
@@ -30,7 +30,7 @@ Here's a list of some commonly found headers associated with CORS:
 -   `Access-Control-Request-Headers`: used in preflight to specify headers that will be used
     in the actual request
 
-**Response Headers**
+**Response headers**
 
 -   `Access-Control-Allow-Origin`: specifies the origins that are allowed to access the
     resource
@@ -167,7 +167,7 @@ follows:
 
 ```sh
 curl -i -X OPTIONS http://localhost:7676/hello \
-     -H 'Origin: http://allowed-origin-1.com'
+        -H 'Origin: http://allowed-origin-1.com'
 ```
 
 This time, the preflight request will succeed:
