@@ -184,14 +184,14 @@ Content-Length: 0
 Notice that the `Access-Control-Allow-Methods` header also specifies the methods allowed on
 this endpoint.
 
-If you make a preflight request with an origin not on the server's allow list, you will
+If you make a preflight request with an origin not on the server's allowlist, you will
 encounter a 4xx error again.
 
 ```sh
 curl -i -X OPTIONS http://localhost:7676/hello -H 'Origin: http://notallowed.com'
 ```
 
-The return message indicates that requests from `http://notallowed.com` is blocked by CORS
+The return message indicates that requests from `http://notallowed.com` are blocked by CORS
 control:
 
 ```txt
@@ -227,7 +227,7 @@ Like the preflight request, you need to pass the expected origin in the header.
 
 So, if your frontend cannot access the backend and the browser console indicates that CORS
 control is blocking the request, you'll likely need to add the new domain to your server's
-allow list. Then makes sure that the client is passing the desired origin in the header. In
+allowlist. Then make sure that the client is passing the desired origin in the header. In
 the case of a browser, this should be automatically handled for you.
 
 Use the preflight request commands to test that the server is only allowing access from the
