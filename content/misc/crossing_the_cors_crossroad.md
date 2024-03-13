@@ -191,6 +191,9 @@ encounter a 4xx error again.
 curl -i -X OPTIONS http://localhost:7676/hello -H 'Origin: http://notallowed.com'
 ```
 
+The return message indicates that requests from `http://notallowed.com` is blocked by CORS
+control:
+
 ```txt
 HTTP/1.1 403 Forbidden
 Content-Type: text/plain; charset=utf-8
