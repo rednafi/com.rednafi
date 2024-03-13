@@ -225,9 +225,10 @@ Origin not allowed
 
 Like the preflight request, you need to pass the expected origin in the header.
 
-So, if your frontend cannot access the backend and the browser console indicates a CORS
-issue, you likely need to add the new domain to your server code, and the client should
-automatically handle the rest.
+So, if your frontend cannot access the backend and the browser console indicates that CORS
+control is blocking the request, you'll likely need to add the new domain to your server's
+allow list. Then makes sure that the client is passing the desired origin in the header. In
+the case of a browser, this should be automatically handled for you.
 
 Use the preflight request commands to test that the server is only allowing access from the
 whitelisted domain while blocking everything else.
