@@ -12,8 +12,8 @@ conditional HTTP headers like `If-Match` or `If-None-Match`. However, their inte
 feel a bit confusing at times.
 
 Every time I need to tackle this, I end up spending some time browsing through the relevant
-MDN docs[^1][^2][^3] just to jog my memory. At this point, I've done it enough times to
-justify spending the time to write this.
+MDN docs[^1][^2][^3] to jog my memory. At this point, I've done it enough times to justify
+spending the time to write this.
 
 ## Caching the response of a `GET` endpoint
 
@@ -22,11 +22,11 @@ The basic workflow goes as follows:
 -   The client makes a `GET` request to the server.
 -   The server responds with a `200 OK` status, including the content requested and an
     `ETag` header.
--   The client caches the response locally, along with the `ETag` value.
+-   The client caches the response and the `ETag` value.
 -   For subsequent requests to the same resource, the client includes the `If-None-Match`
     header with the `ETag` value it has cached.
--   The server checks if the `ETag` value sent by the client matches the current version of
-    the resource.
+-   The server regenerates the `ETag` independently and checks if the `ETag` value sent by
+    the client matches the generated one.
     -   If they match, the server responds with a `304 Not Modified` status, indicating that
         the client's cached version is still valid, and the client serves the resource from
         the cache.
@@ -98,15 +98,13 @@ gh: HTTP 304
 ```
 
 This means that the cached response in the client is still valid and it doesn’t need to
-refetch that from the server. So, the client can be coded to serve the cached data to the
-users when asked for.
+refetch that from the server. So, the client can be coded to serve the previously cached
+data to the users when asked for.
 
 A few key points to keep in mind:
 
 -   Always wrap your `ETag` values in double quotes when sending them with the
-    `If-None-Match` header,
-
-just as the spec says[^6].
+    `If-None-Match` header, just as the spec says[^6].
 
 -   Using the `If-None-Match` header to pass the `ETag` value means that the client request
     is considered successful when the `ETag` value from the client doesn't match that of the
@@ -241,11 +239,11 @@ all of your HTTP `GET` requests can be cached from the client-side without repet
 ## One thing to look out for
 
 While writing a cache-enabled server, make sure the system is set up so that the server
-always sends back the same ETag for the same content, even when there are multiple servers
+always sends back the same `ETag` for the same content, even when there are multiple servers
 working behind a load balancer. If these servers give out different ETags for the same
 content, it can mess up how clients cache that content.
 
-Clients use ETags to decide if content has changed. If the ETag value hasn’t changed, they
+Clients use ETags to decide if content has changed. If the `ETag` value hasn’t changed, they
 know the content is the same and don't download it again, saving bandwidth and speeding up
 access. But if ETags are inconsistent across servers, clients might download content they
 already have, wasting bandwidth and slowing things down.
