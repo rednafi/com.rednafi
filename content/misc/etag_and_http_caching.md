@@ -1,6 +1,6 @@
 ---
 title: ETag and HTTP caching
-date: 2024-04-06
+date: 2024-04-10
 tags:
     - API
     - Go
