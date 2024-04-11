@@ -197,8 +197,8 @@ func main() {
     and updates the ETag. When this happens, the client knows that the existing cache is
     still warm and can be served without any changes to it.
 
-You can run the server by running `go run main.go` and from a different console start making
-requests to it like this:
+You can spin up the server by running `go run main.go` and from a different console start
+making requests to it like this:
 
 ```sh
 curl -i  http://localhost:8080/foo
