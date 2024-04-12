@@ -71,7 +71,7 @@ Etag: W/"b8fdfabd59aed6e0e602dd140c0a0ff48a665cac791dede458c5109bf4bf9463"
 
 I've truncated the response body and omitted the headers that aren't relevant to this
 discussion. You can see that the HTTP status code is `200 OK` and the server has included an
-ETag header.
+`ETag` header.
 
 The `W/` prefix indicates that a weak validator[^5] is used to validate the content of the
 cache. Using a weak validator means when the server compares the response payload to
@@ -194,17 +194,17 @@ func main() {
 
 -   If the ETags match, indicating no significant content change, the server replies with a
     `304 Not Modified` status. Otherwise, it sends the content again with a `200 OK` status
-    and updates the ETag. When this happens, the client knows that the existing cache is
+    and updates the `ETag`. When this happens, the client knows that the existing cache is
     still warm and can be served without any changes to it.
 
-You can spin up the server by running `go run main.go` and from a different console start
+You can spin up the server by running `go run main.go` and from a different console, start
 making requests to it like this:
 
 ```sh
 curl -i  http://localhost:8080/foo
 ```
 
-This will return the ETag header along with the JSON response:
+This will return the `ETag` header along with the JSON response:
 
 ```txt
 HTTP/1.1 200 OK
