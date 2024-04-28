@@ -104,7 +104,7 @@ the inbound value is `int | float` but in the `else` branch, I was expecting it 
 because the truthy `if` condition has already filtered out the `int | float`. But instead,
 we get `str | int | float` as the narrowed type. While there might be a valid reason behind
 this design choice, the resulting behavior with union types made `TypeGuard` fairly useless
-for most of the cases I wanted to use it for.
+for cases I wanted to use it for.
 
 `TypeIs` has been introduced via PEP-742[^3] to fix exactly that. The PEP agrees that people
 might find the current behavior of `TypeGuard` a bit unexpected and introducing another
