@@ -108,7 +108,7 @@ for cases I wanted to use it for.
 
 `TypeIs` has been introduced via PEP-742[^3] to fix exactly that. The PEP agrees that people
 might find the current behavior of `TypeGuard` a bit unexpected and introducing another
-construct with a slightly different behavior doesn't make thing any less confusing.
+construct with a slightly different behavior doesn't make things any less confusing.
 
 > We acknowledge that this leads to an unfortunate situation where there are two constructs
 > with a similar purpose and similar semantics. We believe that users are more likely to
