@@ -40,7 +40,8 @@ This works well for 99% of cases, but occasionally, you need to check an incomin
 thoroughly to determine its type and want to take action based on the narrowed type. In
 those cases, just using `isinstance` may not be sufficient. So, you need to factor out the
 complex type checking logic into a separate function and return a boolean depending on
-whether an inbound value satisfies all the criteria to be of the expected type. For example:
+whether the inbound value satisfies all the criteria to be of the expected type. For
+example:
 
 ```python
 from typing import TypedDict, TypeGuard
