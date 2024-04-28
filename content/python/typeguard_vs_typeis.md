@@ -1,5 +1,5 @@
 ---
-title: TypeIs Does What I Thought TypeGuard Would Do in Python
+title: TypeIs does what I thought TypeGuard would do in Python
 date: 2024-04-27
 tags:
     - Python
