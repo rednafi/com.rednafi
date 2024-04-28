@@ -134,7 +134,7 @@ def is_number(value: object) -> TypeIs[int | float | complex]:
 
 
 def pretty_print(val: str | int | float | complex) -> None:
-    if is_number(val):  # assert_type(val, int, float, complex)
+    if is_number(val):  # assert_type(val, int | float | complex)
         print(val)
     else:  # assert_type(val, str)
         print("Not a number!")
