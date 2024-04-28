@@ -69,8 +69,8 @@ def print_age(val: dict) -> None:
 ```
 
 Here, `is_person` first checks that the inbound dictionary conforms to the structure of the
-`Person` typeddict and then verifies that the `name` is at least 1 character long and the
-`age` is between 0 and 150.
+`Person` typeddict and then verifies that `name` is at least 1 character long and `age` is
+between 0 and 150.
 
 This is a bit more involved than just checking the type with `isinstance` and the type
 checker needs a little more help from the user. Although the return type of the `is_person`
