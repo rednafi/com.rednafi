@@ -80,7 +80,7 @@ underlying type of `val` is `Person`.
 
 You can see more examples of `TypeGuard` in PEP-647[^2].
 
-All good, however, I find the behavior of `TypeGuard` a bit unintuitive whenever I need to
+All good. However, I find the behavior of `TypeGuard` a bit unintuitive whenever I need to
 couple it with union types. For example:
 
 ```python
