@@ -84,7 +84,7 @@ All good. However, I find the behavior of `TypeGuard` a bit unintuitive whenever
 couple it with union types. For example:
 
 ```python
-from typing import assert_never, assert_type, Any, TypeGuard
+from typing import Any, TypeGuard
 
 
 def is_non_zero_number(val: Any) -> TypeGuard[int | float]:
