@@ -110,11 +110,11 @@ for cases I wanted to use it for.
 might find the current behavior of `TypeGuard` a bit unexpected and introducing another
 construct with a slightly different behavior doesn't make things any less confusing.
 
-> We acknowledge that this leads to an unfortunate situation where there are two constructs
+> _We acknowledge that this leads to an unfortunate situation where there are two constructs
 > with a similar purpose and similar semantics. We believe that users are more likely to
 > want the behavior of `TypeIs`, the new form proposed in this PEP, and therefore we
 > recommend that documentation emphasize `TypeIs` over `TypeGuard` as a more commonly
-> applicable tool.
+> applicable tool._
 
 `TypeGuard` and `TypeIs` have similar semantics, except, the latter can narrow the type in
 both the `if` and `else` branches of a conditional. Here's another example with a union type
