@@ -65,7 +65,7 @@ message SearchRequest {
 
 I'm using proto3 syntax, and you can find more about that on the official guide[^3]. Next,
 you can install the gRPC tools for your preferred programming language to generate the
-interface code that'll be used to serialize and deserialize the messages.
+interfacing code that'll be used to serialize and deserialize the messages.
 
 Here's how it looks in Python:
 
@@ -92,7 +92,7 @@ Here's how it looks in Python:
 
 ## Serialize and publish
 
-Once you have the contracts in place and have generated the interface code, here's how you
+Once you have the contracts in place and have generated the interfacing code, here's how you
 can serialize a message payload before publishing it to an event stream:
 
 ```python
@@ -170,7 +170,7 @@ if __name__ == "__main__":
     print(search_request)
 ```
 
-You can even save the proto files in a common repo, generate the interface code
+You can even save the proto files in a common repo, generate the interfacing code
 automatically for multiple languages, and package them up via CI whenever some changes are
 merged into the main branch. Then the services can just update those protocol packages and
 use the serializers and deserializers as needed.
