@@ -165,7 +165,7 @@ def consume(message: SearchRequest) -> None:
 
 
 if __name__ == "__main__":
-    serialized_message = consume()
+    serialized_message = get_message()
     search_request = deserialize(serialized_message)
     consume(search_request)
 ```
