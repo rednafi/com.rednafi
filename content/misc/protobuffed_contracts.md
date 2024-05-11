@@ -175,6 +175,6 @@ automatically for multiple languages, and package them up via CI whenever some c
 merged into the main branch. Then the services can just update those protocol packages and
 use the serializers and deserializers as needed.
 
-[^1]: https://protobuf.dev/
-[^2]: https://grpc.io/
-[^3]: https://protobuf.dev/programming-guides/proto3/
+[^1]: [Protobuf](https://protobuf.dev/)
+[^2]: [GRPC](https://grpc.io/)
+[^3]: [Proto3 syntax](https://protobuf.dev/programming-guides/proto3/)
