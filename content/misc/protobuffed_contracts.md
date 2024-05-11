@@ -167,7 +167,7 @@ def consume(message: SearchRequest) -> None:
 if __name__ == "__main__":
     serialized_message = consume()
     search_request = deserialize(serialized_message)
-    print(search_request)
+    consume(search_request)
 ```
 
 You can even save the proto files in a common repo, generate the interfacing code
