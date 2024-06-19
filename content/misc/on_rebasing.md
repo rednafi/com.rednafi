@@ -198,9 +198,7 @@ After the first comment, you can put in the message for all the combined commits
 
 Add pip caching to the CI      # <- message for the combined commits
 
-# This is the 1st commit message:
-
-# ... the rest of the content remains the same
+# ... you can remove rest of the content
 ```
 
 If you close this file, you'll see a message on your console indicating that the rebase has
