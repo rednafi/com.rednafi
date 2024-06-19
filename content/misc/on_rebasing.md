@@ -28,7 +28,7 @@ commits is just one of the many things that you can do with the rebase command. 
 wanted to document my daily rebasing workflow where I mostly rename, squash, or fixup
 commits.
 
-## Assumptions
+## A few assumptions
 
 Broadly speaking, there are two common types of rebasing: rebasing a feature branch onto the
 main branch and interactive rebasing on the feature branch itself. The workflow assumes a
