@@ -54,10 +54,8 @@ Let's say I want to start working on a new feature. Here's how I usually go abou
    necessary, and then rebase the `feat_branch` onto the latest changes of `main` with:
 
     ```sh
-    git checkout main && git pull && git checkout - && git rebase main
+    git pull --rebase origin main
     ```
-
-    Here, `git checkout -` switches back to the `feat_branch` from `main`.
 
 4. Push the changes to the remote repository with `git push origin HEAD` and send a PR
    against `main` for review.
