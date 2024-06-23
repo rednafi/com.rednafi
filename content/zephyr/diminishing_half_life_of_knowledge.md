@@ -3,8 +3,6 @@ title: The diminishing half-life of knowledge
 date: 2023-11-12
 tags:
     - Meta
-aliases:
-    - /misc/diminishing_half_life_of_knowledge
 ---
 
 Ever been in a situation where you landed a software engineering job with a particular tech
