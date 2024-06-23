@@ -278,3 +278,5 @@ Fin!
 
 [^2]:
     [Git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
+
+[^3]: [Hackernews discussion](https://news.ycombinator.com/item?id=40742628)[^3]
