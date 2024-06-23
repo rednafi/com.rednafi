@@ -19,6 +19,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  robotsNoIndex: false
   title: Redowan's Reflections
   description: >-
     Hi, I'm Redowan Delowar—a wandering dilettante with a flair for ones and zeros. I
@@ -203,10 +204,16 @@ markup:
       xhtml: false
 
 outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON # is necessary
+  home: ["HTML", "RSS", "JSON"]
+  page: ["HTML"]
+  section: ["HTML", "RSS"]
+  taxonomy: ["HTML", "RSS"]
+  term: ["HTML", "RSS"]
+
+security:
+  funcs:
+    getenv:
+      - "^HUGO_"
 
 module:
   mounts:

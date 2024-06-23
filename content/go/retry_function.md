@@ -4,7 +4,6 @@ date: 2024-02-04
 tags:
     - Go
     - TIL
-aliases: /go/generic_retry_function
 ---
 
 I used reach for reflection whenever I needed a `Retry` function in Go. It's fun to write,
