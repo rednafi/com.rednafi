@@ -48,7 +48,7 @@ fintech sector in Bangladesh at [ShopUp].
 -   [Recipes from Python SQLite docs]
 -   [Limit goroutines with buffered channels]
 -   [Pesky little scripts]
--   [Debugging dockerized Python apps in VSCode]
+-   [I kind of like rebasing]
 
 <!-- Self -->
 
@@ -86,4 +86,4 @@ fintech sector in Bangladesh at [ShopUp].
 [recipes from python sqlite docs]: /python/recipes_from_python_sqlite_docs/
 [limit goroutines with buffered channels]: /go/limit_goroutines_with_buffered_channels/
 [pesky little scripts]: /misc/pesky_little_scripts/
-[debugging dockerized python apps in vscode]: /python/debug_dockerized_apps_in_vscode
+[i kind of like rebasing]: /misc/on_rebasing/
