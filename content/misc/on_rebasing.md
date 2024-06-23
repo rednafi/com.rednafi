@@ -81,7 +81,7 @@ Actions. In these cases, I tend to make quick changes, commit with a message lik
 on that branch looks like this:
 
 ```sh
-git log main..@ --oneline --graph
+git log @ ^main --oneline --graph
 ```
 
 This command instructs git to show only the commits that exist on `feat_branch` but not on
@@ -211,7 +211,7 @@ Successfully rebased and updated refs/heads/feat_branch.
 Now running `git log` will show that the messy commit has been squashed into one.
 
 ```sh
-git log main..@ --oneline --graph
+git log @ ^main --oneline --graph
 ```
 
 This displays:
@@ -230,7 +230,7 @@ I can get the number of all the new commits on a feature branch by counting the 
 `git log` as follows:
 
 ```sh
-git log main..@ --oneline | wc -l
+git log @ ^main --oneline | wc -l
 ```
 
 Then you can use the number from the output of the previous command to rebase `n` number of
