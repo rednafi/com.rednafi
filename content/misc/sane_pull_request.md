@@ -7,8 +7,8 @@ tags:
 
 One of the reasons why I'm a big advocate of rebasing and cleaning up feature branches, even
 when the changes get squash-merged to the mainline, is that it makes the PR reviewer's life
-a little easier. I've written about my rebase workflow before[^1] and learned a lot from the
-Hacker News discussion[^2] around it.
+a little easier. I've written about my rebase workflow before[^1] and learned a few new
+things from the Hacker News discussion[^2] around it.
 
 While there's been no shortage of text on why and how to craft atomic commits[^3], I often
 find those discussions focus too much on VCS hygiene, and the main benefit gets lost in the
