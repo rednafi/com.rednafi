@@ -61,8 +61,8 @@ OSS work, but these steps have been helpful while working on a large shared repo
 
     ![feature preview][image_3]
 
--   Keep the PR in draft state until it's ready to be reviewed. I'm not a fan of getting a
-    notification to review some work only to find that it's not ready yet.
+-   Keeping the PR in draft state until it's ready to be reviewed. I'm not a fan of getting
+    a notification to review some work only to find that it's not ready yet.
 
 [^1]: [I kind of like rebasing](/misc/on_rebasing)
 
