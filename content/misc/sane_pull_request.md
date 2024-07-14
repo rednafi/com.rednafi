@@ -50,6 +50,8 @@ OSS work, but these steps have been helpful while working on a large shared repo
 -   Annotated comments from the author on the PR are great. I wish they'd take up less space
     and there was a way to collapse them individually.
 
+    ![annotated comments][image_2]
+
 -   Each PR must be connected to either an Issue or a Jira ticket, depending on how the team
     works.
 
@@ -57,7 +59,7 @@ OSS work, but these steps have been helpful while working on a large shared repo
     easier for me when I do the review. Being able to see that the changes work as intended
     without running the code has its benefits.
 
-    ![feature preview][image_2]
+    ![feature preview][image_3]
 
 -   Keep the PR in draft state until it's ready to be reviewed. I'm not a fan of getting a
     notification to review some work only to find that it's not ready yet.
@@ -75,4 +77,5 @@ OSS work, but these steps have been helpful while working on a large shared repo
 [^5]: [The perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/)
 
 [image_1]: https://github.com/user-attachments/assets/dfaafa0a-efff-4216-800d-64715ff65ea6
-[image_2]: https://github.com/user-attachments/assets/c308f9a5-ea0b-4e76-a85c-bd508ecc9940
+[image_2]: https://github.com/user-attachments/assets/1c33bdba-aaab-4979-a57b-5dc6f84d88da
+[image_3]: https://github.com/user-attachments/assets/c308f9a5-ea0b-4e76-a85c-bd508ecc9940
