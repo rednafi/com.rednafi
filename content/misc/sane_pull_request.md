@@ -35,9 +35,9 @@ OSS work, but these steps have been helpful while working on a large shared repo
 
     ![commit filter][image_1]
 
--   To avoid the above, I often rebase my feature branch after a messy development workflow
-    and divide the changes into a few commits clustered around the core implementation,
-    tests, documentation, dependency upgrades, and occasional refactoring.
+-   To make diff filtering better, I often rebase my feature branch after a messy
+    development workflow and divide the changes into a few commits clustered around the core
+    implementation, tests, documentation, dependency upgrades, and occasional refactoring.
 
 -   Rebasing all the changes into a single commit is okay if the change is small, but for
     bigger changes, this does more harm than good.
