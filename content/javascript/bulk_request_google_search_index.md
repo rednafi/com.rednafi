@@ -21,9 +21,9 @@ sitemap via Google Search Console[^4], I'd have to make individual indexing requ
 each URL to encourage faster indexing. The problem is, I've got quite a bit of content on
 this site, and it'll take forever for me to click through all the links and request indexing
 that way. Naturally, I looked for a way to do this programmatically. Luckily, I found out
-that there's an [indexing API] that allows you to make bulk indexing requests
-programmatically. This has one big advantage—Google responds[^5] to API requests faster than
-indexing requests with sitemap submission.
+that there's an [indexing API] that allows you to make bulk indexing requests programmatically.
+This has one big advantage—Google responds[^5] to API requests faster than indexing requests
+with sitemap submission.
 
 All you've to do is:
 
@@ -195,11 +195,16 @@ One thing to keep in mind is that by default, the daily request quota per projec
 But you can request more quota[^7] if you need it.
 
 [^1]: [rednafi.github.io](https://rednafi.github.io)
+
 [^2]: [rednafi.com](/)
+
 [^3]: [sitemap.xml](/sitemap.xml)
+
 [^4]: [Google search console](https://search.google.com/search-console/about)
+
 [^5]:
     [Turnaround time of the indexing API is shorter than sitemap submission](https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps)
 
 [^6]: [Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+
 [^7]: [Quota](https://developers.google.com/search/apis/indexing-api/v3/quota-pricing)

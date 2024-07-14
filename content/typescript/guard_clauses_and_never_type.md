@@ -198,6 +198,7 @@ else:
     [^1]
 
 [^2]: [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never) [^2]
+
 [^3]:
     [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html)
     [^3]

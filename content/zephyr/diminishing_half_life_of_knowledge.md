@@ -52,6 +52,8 @@ motivation at the tail end of a 40-hour workweek. If you've experienced somethin
 and found a solution that worked for you to some extent, I'd love to hear about it!
 
 [^1]: [Half-life of knowledge](https://en.wikipedia.org/wiki/Half-life_of_knowledge)
+
 [^2]: [Fritz Machlup](https://en.wikipedia.org/wiki/Fritz_Machlup)
+
 [^3]:
     [Half-life of knowledge pressures employers to seek out young engineers](https://spectrum.ieee.org/an-engineering-career-only-a-young-persons-game)

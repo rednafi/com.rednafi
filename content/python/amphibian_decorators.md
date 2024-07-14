@@ -110,8 +110,11 @@ Also, typing a decorator that returns either a sync or async callable based on t
 flow is tricky.
 
 [^1]: [Starlette](https://www.starlette.io/)
+
 [^2]: [HTTPx](https://www.python-httpx.org/)
+
 [^3]: [Locust](http://docs.locust.io/en/stable/api.html#locust.tag)
+
 [^4]:
     [Amphibian decorator in Starlette's source code](https://github.com/encode/starlette/blob/424351cb231c67798a65c091b0b7d42790f5e444/starlette/authentication.py#L19)
     [^4]

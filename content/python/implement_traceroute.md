@@ -260,6 +260,7 @@ Hop  IP Address          Hostname                                          Time 
 ```
 
 [^1]: [Storytelling with traceroute](https://www.youtube.com/watch?v=xW_ALxfop7Y)
+
 [^2]:
     [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
 

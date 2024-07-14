@@ -176,10 +176,12 @@ see this:
 Much nicer!
 
 [^1]: [API guidelines - Microsoft](https://github.com/microsoft/api-guidelines)
+
 [^2]:
     [Error payload](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples)
 
 [^3]: [DRF example](https://www.django-rest-framework.org/#example)
+
 [^4]:
     [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling)
     [^4]

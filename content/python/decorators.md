@@ -1253,6 +1253,7 @@ registered logger there. You'll find a lot more real life usage of decorators in
 framework.
 
 [^1]: [Python Cookbook - David Beazley](https://realpython.com/asins/1449340377/)
+
 [^2]:
     [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/)
     [^2]

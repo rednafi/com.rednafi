@@ -445,12 +445,19 @@ The above workflow works perfectly for my usage scenario. So subjectively, I fee
 an elegant solution to a very icky problem. Your mileage will definitely vary.
 
 [^1]: [Flask](https://github.com/pallets/flask)
+
 [^2]: [FastAPI](https://github.com/tiangolo/fastapi)
+
 [^3]: [Dynaconf](https://github.com/rochacbruno/dynaconf)
+
 [^4]: [environ-config](https://github.com/hynek/environ-config)
+
 [^5]: [Pydantic](https://github.com/samuelcolvin/pydantic)
+
 [^6]: [python-dotenv](https://github.com/theskumar/python-dotenv)
+
 [^7]: [PEP-484](https://www.python.org/dev/peps/pep-0484/)
+
 [^8]:
     [Settings management with pydantic](https://pydantic-docs.helpmanual.io/usage/settings/)
     [^8]
