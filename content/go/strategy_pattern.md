@@ -217,6 +217,7 @@ simpler. However, if your strategy needs to do multiple things, then a struct wi
 methods is probably going to be better._
 
 [^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
+
 [^2]:
     [Template method pattern in Ruby](https://refactoring.guru/design-patterns/template-method/ruby/example)
 

@@ -40,7 +40,10 @@ something. For me, the aim is to uphold a meticulous record of my odyssey, my ow
 notebook[^4], and this post is but another page within!
 
 [^1]: [slog docs](https://pkg.go.dev/golang.org/x/exp/slog)
+
 [^2]: [Structured logging with slog](/go/structured_logging_with_slog)
+
 [^3]: [Avoid template pattern in Python](/python/escape_template_pattern)
+
 [^4]:
     [Leonardo da Vinci's notebook](https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks)

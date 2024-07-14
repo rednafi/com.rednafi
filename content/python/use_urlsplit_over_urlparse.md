@@ -89,4 +89,5 @@ real codebase but it can matter if you are parsing URLs in a critical hot path.
     [python: don't use urlparse - Anthony Sottile](https://www.youtube.com/watch?v=ABJvdsIANds)
 
 [^2]: [urlparse](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse)
+
 [^3]: [urlsplit](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlsplit)

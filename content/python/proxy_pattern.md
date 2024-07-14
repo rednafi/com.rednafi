@@ -514,9 +514,8 @@ The output basically prints out the results returned by the `get_headers` and `g
 methods. Also notice, how I picked the endpoint arguments to simulate caching. The
 `Cache Info:` on the third line of the output shows when data is served from the cache.
 Here, `hits=0` means data is served directly from the external API. However, if you inspect
-the later outputs, you'll see when the query arguments get repeated ([1, 2, 3, 1, 2, 3]),
-`Cache Info:` will show higher hit counts. This means that the data is being served from the
-cache.
+the later outputs, you'll see when the query arguments get repeated ([1, 2, 3, 1, 2, 3]), `Cache Info:`
+will show higher hit counts. This means that the data is being served from the cache.
 
 ## Should you use it?
 
@@ -535,9 +534,13 @@ Dorado of loose coupling.
     [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
 
 [^3]: [Structural pattern](https://en.wikipedia.org/wiki/Structural_pattern)
+
 [^4]: [Single Responsibility Principle](https://stackify.com/solid-design-principles/)
+
 [^5]: [Python decorators](/python/decorators)
+
 [^6]: [HTTPx](https://github.com/encode/httpx)
+
 [^7]:
     [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py)
     [^7]

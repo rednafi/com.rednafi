@@ -291,20 +291,32 @@ Hatch also provides a `hatch publish` command to upload the package to PyPI. For
 reference, check out how I shipped another CLI[^14] following this workflow.
 
 [^1]: [distutils](https://docs.python.org/3.11/distutils/)
+
 [^2]: [conda](https://docs.conda.io/en/latest/)
+
 [^3]: [pip](https://pip.pypa.io/en/stable/)
+
 [^4]: [pip-tools](https://pip-tools.readthedocs.io/en/latest/)
+
 [^5]: [hatch](https://hatch.pypa.io/latest/)
+
 [^6]: [PEP-621](https://peps.python.org/pep-0621/)
+
 [^7]:
     [Example application - fastapi-nano](https://github.com/rednafi/fastapi-nano/blob/master/pyproject.toml)
 
 [^8]: [PEP-631](https://peps.python.org/pep-0631/)
+
 [^9]: [PEP-517](https://peps.python.org/pep-0517/)
+
 [^10]: [PEP-660](https://peps.python.org/pep-0660/)
+
 [^11]: [PEP-440](https://peps.python.org/pep-0440/)
+
 [^12]: [PEP-508](https://peps.python.org/pep-0508/)
+
 [^13]: [PEP-665](https://peps.python.org/pep-0665/)
+
 [^14]:
     [Example library - rubric](https://github.com/rednafi/rubric/blob/main/pyproject.toml)
 

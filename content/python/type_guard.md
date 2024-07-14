@@ -202,6 +202,7 @@ output list. Running the snippet will print `jupiter` and `mars` in the console 
 will also be happy with the types.
 
 [^1]: [PEP 647 -- User-defined type guards](https://www.python.org/dev/peps/pep-0647/) [^1]
+
 [^2]:
     [Python type hints - how to narrow types with TypeGuard — Adam Johnson](https://adamj.eu/tech/2021/06/09/python-type-hints-how-to-narrow-types-with-typeguard/)
     [^2]
