@@ -11,7 +11,7 @@ several commands using a here document[^1] in bash. The simplified version looks
 
 ```sh
 # SSH into the remote machine and run a bunch of commands to deploy the service
-ssh $SSH_USER@$SSH_HOST << EOF
+ssh $SSH_USER@$SSH_HOST <<EOF
     # Go to the work directory
     cd $WORK_DIR
 
