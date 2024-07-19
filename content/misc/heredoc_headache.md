@@ -154,5 +154,4 @@ desirable here. The backslash defers it so that it runs on the remote instead.
     [Service deployment steps - with here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
 
 [^3]:
-
-[Service deployment steps - no here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
+    [Service deployment steps - no here-doc](https://github.com/rednafi/serve-init/blob/54b9b0fc94030eb4b9749fd4a5823a8867545f6a/.github/workflows/ci.yml#L86-L113)
