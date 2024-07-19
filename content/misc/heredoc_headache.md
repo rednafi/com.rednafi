@@ -26,7 +26,7 @@ ssh $SSH_USER@$SSH_HOST << EOF
 EOF
 ```
 
-The fully working version can be found on GitHub[^1].
+The fully working version can be found on GitHub[^2].
 
 Here, environment variables like `SSH_USER`, `SSH_HOST`, and `APP_AUTH_TOKEN` are defined in
 the surrounding local scope of the CI. The variables then get propagated to the remote
@@ -153,5 +153,6 @@ desirable here. The backslash defers it so that it runs on the remote instead.
 [^2]:
     [Service deployment steps - with here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
 
-[3]:
+[^3]:
+
 [Service deployment steps - no here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
