@@ -94,7 +94,7 @@ permanently in the remote shell.
 To fix it, you could pipe the value into a file and load it in the remote shell like this:
 
 ```sh
-ssh ubuntu@hetzner <<EOF
+ssh $SSH_USER@$SSH_HOST <<EOF
     echo "export FOO=$FOO" > /tmp/.env
     source /tmp/.env
     echo \$FOO
