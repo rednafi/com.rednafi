@@ -99,11 +99,11 @@ You can also set user or group ownership while copying a file:
 install -D -m 644 -o root -g root seed.db /var/lib/app/seed.db
 ```
 
-This copies `seed.db` to the destination, creates the directory if necessary, and sets the
-file ownership to the root user and group.
+This command copies `seed.db` to the destination, creates the directory if needed, and sets
+the file ownership to root user and group with `-o` and `-g` flags respectively.
 
-It's a neat tool that does one thing and does it right. There are a few other options you
-can read about in the man pages, but I haven't needed anything beyond the above.
+There are a few other options you can read about in the man pages, but I haven't needed
+anything beyond the above.
 
 [^1]:
     [Search for "install -D" on GitHub](https://github.com/search?q=%22install+-D%22++language%3Ash+NOT+npm&type=code)
