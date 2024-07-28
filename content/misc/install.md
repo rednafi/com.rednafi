@@ -9,7 +9,7 @@ tags:
 TIL about the `install` command on \*nix systems. A quick GitHub search for the term brought
 up a ton of matches[^1]. I'm surprised I just found out about it now.
 
-Often, I need to:
+Often, in shell scripts I need to:
 
 -   Create a directory hierarchy
 -   Copy a config or binary file to the new directory
