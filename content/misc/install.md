@@ -55,9 +55,9 @@ Change: 2024-07-28 20:51:42.793907876 +0200
 Birth: 2024-07-28 20:51:42.793765043 +0200
 ```
 
-The `-D` flag directs `install` to create the destination directory if it doesn't exist, and
-the `-m` flag sets file permissions. The result is the same as the three lines of commands
-before.
+The `-D` flag directs `install` to create the destination directories if they don't exist,
+and the `-m` flag sets file permissions. The result is the same as the three lines of
+commands before.
 
 It's common for Makefiles in C/C++ projects to install binaries like this:
 
@@ -65,9 +65,9 @@ It's common for Makefiles in C/C++ projects to install binaries like this:
 install -D -m 744 app_bin /usr/local/bin/app_bin
 ```
 
-This copies `app_bin` to `/usr/local/bin`, creates the parent directory if necessary, and
-sets permissions so only the current user has read, write, and execute permissions, while
-others have read-only access.
+It copies `app_bin` to `/usr/local/bin`, creates the parent directory hierarchy if
+necessary, and sets permissions on the binary so only the current user has read, write, and
+execute permissions, while others have read-only access.
 
 You can also set directory permissions:
 
@@ -75,7 +75,8 @@ You can also set directory permissions:
 install -d -m 600 foo/bar/bazz
 ```
 
-This creates the directory hierarchy:
+This creates the directory hierarchy first and then sets the permission. Here's how they
+look:
 
 ```sh
 tree foo
@@ -91,7 +92,8 @@ foo
 3 directories, 0 files
 ```
 
-Then you can copy and set file permissions with another `install` command if needed.
+Then you can copy a file to the destination and set file permissions with another `install`
+command if needed.
 
 You can also set user or group ownership while copying a file:
 
@@ -99,8 +101,8 @@ You can also set user or group ownership while copying a file:
 install -D -m 644 -o root -g root seed.db /var/lib/app/seed.db
 ```
 
-This command copies `seed.db` to the destination, creates the directory if needed, and sets
-the file ownership to root user and group with `-o` and `-g` flags respectively.
+This command copies `seed.db` to the destination, creates the directory if needed, and gives
+access to the root user and group with the `-o` and `-g` flags, respectively.
 
 There are a few other options you can read about in the man pages, but I haven't needed
 anything beyond the above.
