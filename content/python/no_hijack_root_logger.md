@@ -159,8 +159,8 @@ strongly warns against this:
 If you're looking for a real-life example of how to minimally configure your library's
 logger, check out the httpx[^3] codebase. The logging behavior is well-documented here.
 
-You can reconfigure the logger easily in your application code while making a request with
-the httpx client as follows:
+You can easily reconfigure the httpx logger in your application code while making an HTTP
+request like this:
 
 ```python
 # Your application code
