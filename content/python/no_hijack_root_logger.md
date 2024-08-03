@@ -82,10 +82,10 @@ against doing so:
 > or impossible for the application developer to configure the logging verbosity or handlers
 > of your library as they wish._
 
-Solving this is quite straightforward. You should avoid using the root logger in your
-library code. Instead, instantiate your own logger instance and configure it with your
-heart's content. This way, your users get to keep using the root logger as they like, and
-they can also tap into the library’s log messages whenever they need to.
+Solving this is quite straightforward. Avoid using the root logger in your library code.
+Instead, instantiate your own logger instance and configure it with your heart's content.
+This way, your users get to keep using the root logger as they like, and they can also tap
+into the library’s log messages whenever they need to.
 
 Here's how to achieve that in the library:
 
@@ -111,7 +111,7 @@ INFO:root:This is an info message from the application.
 ```
 
 This setup also lets the application code access and adjust the library's logger to suit its
-needs. Here’s how you can do that in the `main.py` file:
+needs. Here’s how it can be done in the `main.py` file:
 
 ```python
 # main.py
