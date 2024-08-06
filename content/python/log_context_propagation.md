@@ -49,9 +49,9 @@ async def work() -> None:
 
 I'm using Starlette[^2] syntax for the above pseudocode, but this is valid for any generic
 ASGI web app. The `view` procedure collects contextual information like `user_id` and
-`platform` from the request header. Then it tags the log statements before and after calling
-the `work` function using the `extra` fields in the logger calls. This way, the log messages
-have contextual info attached to them.
+`platform` from the request headers. Then it tags the log statements before and after
+calling the `work` function using the `extra` fields in the logger calls. This way, the log
+messages have contextual info attached to them.
 
 However, the `work` procedure also generates a log message, and that won't get tagged here.
 We may be tempted to pass the contextual information to the `work` subroutine and use them
@@ -61,8 +61,8 @@ verbose. Plus, it's quite easy to forget to do so, which will leave you with log
 way to query them.
 
 It turns out middlewares allow us to tag log statements in a way where we won't need to
-manually propagate the contextual information throughout the call chain. To demonstrate
-that, here's a simple `get` endpoint server written in Starlette that'll just return a
+manually propagate the contextual information throughout the call chain. To demonstrate how
+to do it, here's a simple `get` endpoint server written in Starlette that'll just return a
 canned response after logging a few things. The app structure looks as follows:
 
 ```txt
@@ -90,7 +90,7 @@ statements in JSON where each message will look as follows:
 }
 ```
 
-Here's the configuration logic in the `log.py` file:
+Here's the log configuration logic:
 
 ```python
 # log.py
@@ -124,38 +124,38 @@ class ContextFilter(logging.Filter):
         self.context.update(kwargs)
 
     def filter(self, record: logging.LogRecord) -> bool:
-        record.timestamp = int(time.time() * 1000)
         record.tags = self.context
         return True
 
 
 # Set up logger
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.INFO)  # Set the default logging level
 
-# Set up handler with formatter
-handler = logging.StreamHandler()
-handler.setFormatter(JsonFormatter())
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)  # Set the logging level for the handler
 
-# Set up context filter
-context_filter = ContextFilter()
-handler.addFilter(context_filter)
+context_filter = ContextFilter()  # Set filter
+console_handler.addFilter(context_filter)
+logger.addFilter(context_filter)
 
-# Add handler to logger
-logger.addHandler(handler)
+json_formatter = JsonFormatter()  # Set formatter
+console_handler.setFormatter(json_formatter)
+
+logger.addHandler(console_handler)  # Add handler to logger
 ```
 
 Since this is application code, it's okay to configure the root logger. We define a
 `JsonFormatter` that formats log statements by including the message, the current timestamp
-in milliseconds, and any additional tags. If `timestamp` or `tags` are not provided, the
+in milliseconds, and any additional tags. If `timestamp` or `tags` aren't provided, the
 formatter uses the current time and an empty dictionary.
 
-The `ContextFilter` class defines a `set_context` method to set contextual values in the
-middleware (explained in the next section). The `filter` method in `ContextFilter` updates
-the contextual information dynamically each time the logger emits a message, ensuring every
-log entry includes relevant context like user ID or platform information. Finally, we set up
-a custom handler, attach the `JsonFormatter` and `ContextFilter` to it, and add this handler
-to the root logger instance.
+The `ContextFilter` class defines a `set_context` method to set arbitrary contextual values
+in the middleware (explained in the next section). The `filter` method in `ContextFilter`
+updates the contextual information dynamically each time the logger emits a message,
+ensuring every log entry includes relevant context like user ID or platform information.
+Finally, we set up a custom handler, attach the `JsonFormatter` and `ContextFilter` to it,
+and add this handler to the root logger instance.
 
 ## Write a middleware that tags the log statements automatically
 
@@ -165,22 +165,28 @@ so that all the log messages within a request-response cycle get automatically t
 ```python
 # middleware.py
 
+from collections.abc import Callable, Awaitable
+import logging
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
-import logging
 from svc.log import ContextFilter
+from starlette.types import ASGIApp
 
 
 class LogContextMiddleware(BaseHTTPMiddleware):
-    def __init__(self, app):
+    def __init__(self, app: ASGIApp) -> None:
         super().__init__(app)
         self.logger = logging.getLogger()
         self.context_filter = next(
             f for f in self.logger.filters if isinstance(f, ContextFilter)
         )
 
-    async def dispatch(self, request: Request, call_next) -> Response:
+    async def dispatch(
+        self,
+        request: Request,
+        call_next: Callable[[Request], Awaitable[Response]],
+    ) -> Response:
         # Extract user information from the request (headers or parameters)
         user_id = request.headers.get("Svc-User-ID", "unknown")
         platform = request.headers.get("Svc-Platform", "unknown")
@@ -260,12 +266,7 @@ from starlette.middleware import Middleware
 
 middlewares = [Middleware(LogContextMiddleware)]
 
-app = Starlette(
-    routes=[
-        Route("/", view),
-    ],
-    middleware=middlewares,
-)
+app = Starlette(routes=[Route("/", view)], middleware=middlewares)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
