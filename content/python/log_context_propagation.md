@@ -9,27 +9,29 @@ tags:
 Let's say you have a web app that emits log messages from different layers. Your log shipper
 collects and sends these messages to a destination like Datadog where you can query them.
 One common requirement is to tag the log messages with some common attributes, which you can
-use later to query specific log messages.
+use later to query them.
 
-In distributed tracing, this is usually known as context propagation[^1], where you're
-attaching some contextual information to your log messages that you can use later to query
-them. However, if you have to collect the context at each layer of your application and pass
-it manually to the downstream ones, that'd make the whole logging process quite painful.
+In distributed tracing, this tagging is usually known as context propagation[^1], where
+you're attaching some contextual information to your log messages that you can use later for
+query purposes. However, if you have to collect the context at each layer of your
+application and pass it manually to the downstream ones, that'd make the whole logging
+process quite painful.
+
 Suppose you have a web view for an endpoint that calls another function to do something:
 
 ```python
-# view.py
-
-
 async def view(request: Request) -> JSONResponse:
     # Collect contextual info from the header
     user_id = request.headers.get("Svc-User-Id")
     platform = request.headers.get("Svc-Platform")
 
+    # Log the request with context
     logger.info(
         "Request started", extra={"user_id": user_id, "platform": platform}
     )
     await work()
+
+    # Log the response too
     logger.info(
         "Request ended", extra={"user_id": user_id, "platform": platform}
     )
@@ -42,23 +44,23 @@ async def work() -> None:
     logger.info("Work done after 1 second")
 ```
 
-I'm using Starlette[^2] for the above pseudocode, but this is valid for any generic ASGI web
-app. The `view` procedure collects contextual information like `user_id` and `platform` from
-the request header. Then it tags the log statements before and after calling the `work`
-function by using the `extra` fields in the logger calls. This way, the log messages have
-contextual info attached to them.
+I'm using Starlette[^2] syntax for the above pseudocode, but this is valid for any generic
+ASGI web app. The `view` procedure collects contextual information like `user_id` and
+`platform` from the request header. Then it tags the log statements before and after calling
+the `work` function using the `extra` fields in the logger calls. This way, the log messages
+have contextual info attached to them.
 
-However, the `work` procedure also generates a log message, and that won't be tagged here.
+However, the `work` procedure also generates a log message, and that won't get tagged here.
 We may be tempted to pass the contextual information to the `work` subroutine and use them
-to tag the logs, but that quickly becomes repetitive and cumbersome. Passing a bunch of
+to tag the logs, but that quickly gets repetitive and cumbersome. Passing a bunch of
 arguments to a function just so it can tag some log messages also makes things unnecessarily
 verbose. Plus, it's quite easy to forget to do so, which will leave you with logs with no
 way to query them.
 
 It turns out middlewares allow us to tag log statements in a way where we won't need to
-propagate the contextual information throughout the call chain. To demonstrate that, here's
-a simple `get` endpoint server written in Starlette that'll just return a canned response
-after logging a few things. The app structure looks as follows:
+manually propagate the contextual information throughout the call chain. To demonstrate
+that, here's a simple `get` endpoint server written in Starlette that'll just return a
+canned response after logging a few things. The app structure looks as follows:
 
 ```txt
 svc
@@ -85,10 +87,11 @@ statements in JSON where each message will look as follows:
 }
 ```
 
-He stash the configuration logic in the `log.py` file:
+Here's the configuration logic in the `log.py` file:
 
 ```python
 # log.py
+
 import logging
 import json
 import time
@@ -243,6 +246,8 @@ The logging configuration and middleware can be wired up in the `main.py` functi
 this:
 
 ```python
+# main.py
+
 from starlette.routing import Route
 import uvicorn
 from starlette.applications import Starlette
