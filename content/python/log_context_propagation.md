@@ -237,7 +237,7 @@ we're not passing the log context anywhere explicitly. The middleware will ensur
 request and response logs are always emitted and all the logs, including the one coming out
 of the `work` function, are tagged with the contextual information.
 
-## Wire Everything Together
+## Wire everything together
 
 The logging configuration and middleware can be wired up in the `main.py` function like
 this:
