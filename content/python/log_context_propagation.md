@@ -1,9 +1,11 @@
 ---
+
 title: Log context propagation in Python ASGI apps
 date: 2024-08-06
 tags:
     - Python
     - API
+
 ---
 
 Let's say you have a web app that emits log messages from different layers. Your log shipper
@@ -144,7 +146,7 @@ logger.addHandler(handler)
 
 Since this is application code, it's okay to configure the root logger. We define a
 `JsonFormatter` that formats log statements by including the message, the current timestamp
-in milliseconds, and any additional tags. If a `timestamp` or `tags` are not provided, the
+in milliseconds, and any additional tags. If `timestamp` or `tags` are not provided, the
 formatter uses the current time and an empty dictionary.
 
 The `ContextFilter` class defines a `set_context` method to set contextual values in the
