@@ -31,6 +31,7 @@ async def view(request: Request) -> JSONResponse:
     logger.info(
         "Request started", extra={"user_id": user_id, "platform": platform}
     )
+
     await work()
 
     # Log the response too
