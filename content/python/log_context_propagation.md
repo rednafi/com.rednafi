@@ -271,7 +271,7 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
-To instantiate the logger config, we import the `log.py` in the `__init__.py` module:
+To instantiate the logger config, we import `log.py` in the `__init__.py` module:
 
 ```python
 # __init__.py
