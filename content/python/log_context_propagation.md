@@ -285,7 +285,7 @@ Now the application can be started with:
 python -m svc.main
 ```
 
-And then we can make a request to the server as follows:
+And then we can make a request to the server:
 
 ```sh
 curl http://localhost:8000/ -H 'Svc-User-Id: 1234' -H 'Svc-Platform: ios'
