@@ -251,8 +251,7 @@ of the `work` function, are tagged with the contextual information.
 
 ## Wire everything together
 
-The logging configuration and middleware can be wired up in the `main.py` function like
-this:
+The logging configuration and middleware can be wired up like this:
 
 ```python
 # main.py
