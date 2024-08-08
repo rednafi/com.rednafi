@@ -145,8 +145,6 @@ params:
   noRecentPosts: # Don't print recents posts sections in these pages
     - /about/
     - /blogroll/
-    - /reads/
-    - /uses/
 
 menu:
   main:
@@ -223,7 +221,5 @@ module:
       target: static
 
 copyright: "
-  <a href='/blogroll'>blogroll</a> •
-  <a href='/reads'>reads</a> •
-  <a href='/uses'>uses</a>
+  <a href='/blogroll'>blogroll</a>
   "
