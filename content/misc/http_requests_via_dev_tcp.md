@@ -14,7 +14,7 @@ while writing a health check script that needed to make a TCP request to a servi
 The following script opens a TCP connection and makes a simple GET request to `example.com`:
 
 ```sh
-#! /bin/bash
+#!/bin/bash
 
 # Open a TCP connection to example.com on port 80 and assign file descriptor 3
 # The exec command keeps /dev/fd/3 open throughout the lifetime of the script
@@ -82,7 +82,8 @@ readonly HEALTH_PATH="/"
 exec 3<>"/dev/tcp/${HOST}/${PORT}"
 
 # Send the HTTP GET request to the server
-echo -e "GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" >&3
+echo -e \
+    "GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" >&3
 
 # Read the HTTP status from the server's response
 HTTP_STATUS="$(head -n 1 <&3 | awk '{print $2}')"
