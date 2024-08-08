@@ -5,7 +5,6 @@ date: 2024-08-08
 tags:
     - TIL
     - Shell
-
 ---
 
 I learned this neat Bash trick today where you can make a raw HTTP request using the
