@@ -17,6 +17,7 @@ The following script opens a TCP connection and makes a simple GET request to `e
 #! /bin/bash
 
 # Open a TCP connection to example.com on port 80 and assign file descriptor 3
+# 3<> enables bidirectional read-write
 exec 3<>/dev/tcp/example.com/80
 
 # Send the HTTP GET request to the server
@@ -43,7 +44,7 @@ cleaner. Without it, we would need to redirect input and output directly to
 `/dev/tcp/example.com/80` for each read and write operation, making the script more
 cumbersome and harder to read.
 
-This is a Bash-specific trick and won't work in other shells like zsh or fish. It also
+This is a Bash-specific trick and won't work in other shells like Zsh or Fish. It also
 allows you to open UDP connections in the same manner. The Bash manpage explains the usage
 like this:
 
@@ -65,23 +66,27 @@ sidecar container that just runs a single health check process, keeping things s
 ```sh
 #!/bin/bash
 
-HOST="example.com"
-PORT=80
-HEALTH_PATH="/"
+# Enable bash strict mode
+set -euo pipefail
+
+# Constants
+readonly HOST="example.com"
+readonly PORT=80
+readonly HEALTH_PATH="/"
 
 # Open a TCP connection to the specified host and port
-exec 3<>/dev/tcp/$HOST/$PORT
+exec 3<>"/dev/tcp/${HOST}/${PORT}"
 
 # Send the HTTP GET request to the server
-echo -e "GET $HEALTH_PATH HTTP/1.1\r\nHost: $HOST\r\nConnection: close\r\n\r\n" >&3
+echo -e "GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" >&3
 
 # Read the HTTP status from the server's response
-HTTP_STATUS=$(head -n 1 <&3 | awk '{print $2}')
-if [ "$HTTP_STATUS" == "200" ]; then
+HTTP_STATUS="$(head -n 1 <&3 | awk '{print $2}')"
+if [[ "${HTTP_STATUS}" == "200" ]]; then
     echo "Service is healthy."
     exit 0
 else
-    echo "Service is not healthy. HTTP status: $HTTP_STATUS"
+    echo "Service is not healthy. HTTP status: ${HTTP_STATUS}"
     exit 1
 fi
 
