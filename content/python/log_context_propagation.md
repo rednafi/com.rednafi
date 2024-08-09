@@ -16,8 +16,8 @@ use later to query them.
 In distributed tracing, this tagging is usually known as context propagation[^1], where
 you're attaching some contextual information to your log messages that you can use later for
 query purposes. However, if you have to collect the context at each layer of your
-application and pass it manually to the downstream ones, that'd make the whole logging
-process quite painful.
+application and pass it manually to the downstream ones, that'd make the whole process quite
+painful.
 
 Suppose you have a web view for an endpoint that calls another function to do something:
 
@@ -39,12 +39,12 @@ async def view(request: Request) -> JSONResponse:
         "Request ended", extra={"user_id": user_id, "platform": platform}
     )
 
-    return JSONResponse({"message": "Did some work!"})
+    return JSONResponse({"message": "Work, work work!"})
 
 
 async def work() -> None:
     await asyncio.sleep(1)
-    logger.info("Work done after 1 second")
+    logger.info("Work done")
 ```
 
 I'm using Starlette[^2] syntax for the above pseudocode, but this is valid for any generic
@@ -55,15 +55,15 @@ messages have contextual info attached to them.
 
 However, the `work` procedure also generates a log message, and that won't get tagged here.
 We may be tempted to pass the contextual information to the `work` subroutine and use them
-to tag the logs, but that quickly gets repetitive and cumbersome. Passing a bunch of
+to tag the logs, but that'll quickly get repetitive and cumbersome. Passing a bunch of
 arguments to a function just so it can tag some log messages also makes things unnecessarily
-verbose. Plus, it's quite easy to forget to do so, which will leave you with logs with no
-way to query them.
+verbose. Plus, it's quite easy to forget to do so, which will leave you with orphan logs
+with no way to query them.
 
-It turns out middlewares allow us to tag log statements in a way where we won't need to
-manually propagate the contextual information throughout the call chain. To demonstrate how
-to do it, here's a simple `get` endpoint server written in Starlette that'll just return a
-canned response after logging a few things. The app structure looks as follows:
+It turns out we can write a simple middleware to tag log statements in a way where we won't
+need to manually propagate the contextual information throughout the call chain. To
+demonstrate that, here's a simple `get` endpoint server written in Starlette that'll just
+return a canned response after logging a few events. The app structure looks as follows:
 
 ```txt
 svc
@@ -95,67 +95,99 @@ Here's the log configuration logic:
 ```python
 # log.py
 
-import logging
+import contextvars
 import json
+import logging
 import time
-from typing import Any
+
+# Set up the context variable with default values
+default_context = {"user_id": "unknown", "platform": "unknown"}
+log_context_var = contextvars.ContextVar(
+    "log_context",
+    default=default_context.copy(),
+)
 
 
-class JsonFormatter(logging.Formatter):
-    def format(self, record: logging.LogRecord) -> str:
-        log_record = {
+# Custom log formatter
+class ContextAwareJsonFormatter(logging.Formatter):
+    def format(self, record):
+        log_data = {
             "message": record.getMessage(),
-            # Defaults to current time in milliseconds if not set
-            "timestamp": record.__dict__.get(
-                "timestamp", int(time.time() * 1000)
-            ),
-            # Defaults to empty dict if not set
-            "tags": record.__dict__.get("tags", {}),
+            # Add millisecond precision timestamp
+            "timestamp": int(time.time() * 1000),
+            # Get the context from the context variable in a concurreny-safe way
+            # The context will be set in the middleware, so .get() will always return
+            # the current context
+            "tags": log_context_var.get(),
         }
-        return json.dumps(log_record)
+        return json.dumps(log_data)
 
 
-class ContextFilter(logging.Filter):
-    def __init__(self) -> None:
-        super().__init__()
-        self.context = {}
-
-    def set_context(self, **kwargs: Any) -> None:
-        self.context.update(kwargs)
-
-    def filter(self, record: logging.LogRecord) -> bool:
-        record.tags = self.context
-        return True
-
-
-# Set up logger
+# Set up the logger
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)  # Set the default logging level
+logger.setLevel(logging.INFO)
 
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)  # Set the logging level for the handler
-
-context_filter = ContextFilter()  # Set filter
-console_handler.addFilter(context_filter)
-logger.addFilter(context_filter)
-
-json_formatter = JsonFormatter()  # Set formatter
-console_handler.setFormatter(json_formatter)
-
-logger.addHandler(console_handler)  # Add handler to logger
+handler = logging.StreamHandler()
+formatter = ContextAwareJsonFormatter()
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 ```
 
-Since this is application code, it's okay to configure the root logger. We define a
-`JsonFormatter` that formats log statements by including the message, the current timestamp
-in milliseconds, and any additional tags. If `timestamp` or `tags` aren't provided, the
-formatter uses the current time and an empty dictionary.
+Here's the log configuration logic:
 
-The `ContextFilter` class defines a `set_context` method to set arbitrary contextual values
-in the middleware (explained in the next section). The `filter` method in `ContextFilter`
-updates the contextual information dynamically each time the logger emits a message,
-ensuring every log entry includes relevant context like user ID or platform information.
-Finally, we set up a custom handler, attach the `JsonFormatter` and `ContextFilter` to it,
-and add this handler to the root logger instance.
+```python
+# log.py
+
+import contextvars
+import json
+import logging
+import time
+
+# Set up the context variable with default values
+default_context = {"user_id": "unknown", "platform": "unknown"}
+log_context_var = contextvars.ContextVar(
+    "log_context",
+    default=default_context.copy(),
+)
+
+
+# Custom log formatter
+class ContextAwareJsonFormatter(logging.Formatter):
+    def format(self, record):
+        log_data = {
+            "message": record.getMessage(),
+            # Add millisecond precision timestamp
+            "timestamp": int(time.time() * 1000),
+            # Get the context from the context variable in a concurrency-safe way
+            # The context will be set in the middleware, so .get() will always return
+            # the current context
+            "tags": log_context_var.get(),
+        }
+        return json.dumps(log_data)
+
+
+# Set up the logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+handler = logging.StreamHandler()
+formatter = ContextAwareJsonFormatter()
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+```
+
+The `contextvars` module manages context information across asynchronous tasks, preventing
+context leakage between requests. We use a `log_context_var` context variable to store user
+ID and platform information, ensuring each log entry includes relevant context for the
+request.
+
+The `ContextAwareJsonFormatter` formats log statements to include the message, timestamp in
+milliseconds, and context tags. The context is retrieved using `log_context_var.get()`,
+ensuring concurrency-safe access. The context variable is set in the middleware, so
+`log_context_var.get()` always returns the current context for each request.
+
+Next, we set up a `StreamHandler`, attach the `ContextAwareJsonFormatter` to it, and add the
+handler to the root logger.
 
 ## Write a middleware that tags the log statements automatically
 
@@ -165,59 +197,54 @@ so that all the log messages within a request-response cycle get automatically t
 ```python
 # middleware.py
 
-from collections.abc import Callable, Awaitable
 import logging
+from collections.abc import Awaitable, Callable
+
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
-from svc.log import ContextFilter
-from starlette.types import ASGIApp
+
+from svc.log import default_context, log_context_var
 
 
+# Middleware for setting log context
 class LogContextMiddleware(BaseHTTPMiddleware):
-    def __init__(self, app: ASGIApp) -> None:
-        super().__init__(app)
-        self.logger = logging.getLogger()
-        self.context_filter = next(
-            f for f in self.logger.filters if isinstance(f, ContextFilter)
-        )
-
     async def dispatch(
         self,
         request: Request,
         call_next: Callable[[Request], Awaitable[Response]],
     ) -> Response:
-        # Extract user information from the request (headers or parameters)
-        user_id = request.headers.get("Svc-User-ID", "unknown")
-        platform = request.headers.get("Svc-Platform", "unknown")
+        context = default_context.copy()
+        user_id = request.headers.get("Svc-User-Id")
+        platform = request.headers.get("Svc-Platform")
 
-        # Set context in the logger
-        self.context_filter.set_context(user_id=user_id, platform=platform)
+        if user_id:
+            context["user_id"] = user_id
+        if platform:
+            context["platform"] = platform
 
-        # Log the incoming request
-        self.logger.info("Handling request")
+        # Hydrate the log context
+        token = log_context_var.set(context)
 
-        response = await call_next(request)
-
-        # Log the outgoing response
-        self.logger.info("Finished handling request")
-
-        # Clear context after request is handled
-        self.context_filter.set_context(**{})
+        try:
+            logging.info("From middleware: request started")
+            response = await call_next(request)
+            logging.info("From middleware: request ended")
+        finally:
+            # Reset the context after the request is processed
+            log_context_var.reset(token)
 
         return response
 ```
 
-The `LogContextMiddleware` class inherits from `starlette.BaseHTTPMiddleware` and
-initializes with the application. It fetches the root logger and the `ContextFilter`
-instance during initialization.
+The `LogContextMiddleware` class inherits from `starlette.BaseHTTPMiddleware` and get
+initialized with the application.
 
 The `dispatch` method is called automatically for each request. It extracts `user_id` and
-`platform` from the request headers and sets these values in the `ContextFilter` to tag log
-messages. Now the middleware logs the incoming request, processes it, logs the outgoing
-response, and then clears the context so that we don't leak the context information across
-requests. This way, our view won't need to be peppered with repetitive request and response
-logging.
+`platform` from the request headers and sets these values in the `log_context_var` to tag
+log messages. Then it logs the incoming request, processes it, logs the outgoing response,
+and then clears the context so that we don't leak the context information across requests.
+This way, our view function won't need to be peppered with repetitive log statements.
 
 ## Write the simplified view
 
@@ -230,18 +257,20 @@ this now:
 
 import asyncio
 import logging
+
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
 
 async def view(request: Request) -> JSONResponse:
     await work()
-    return JSONResponse({"message": "Did some work!"})
+    logging.info("From view function: work finished")
+    return JSONResponse({"message": f"Work work work!!!"})
 
 
 async def work() -> None:
+    logging.info("From work function: work started")
     await asyncio.sleep(1)
-    logging.info("Work done after 1 second")
 ```
 
 Notice there's no repetitive request-response log statements in the `view` function, and
@@ -256,12 +285,13 @@ The logging configuration and middleware can be wired up like this:
 ```python
 # main.py
 
-from starlette.routing import Route
 import uvicorn
 from starlette.applications import Starlette
+from starlette.middleware import Middleware
+from starlette.routing import Route
+
 from svc.middleware import LogContextMiddleware
 from svc.view import view
-from starlette.middleware import Middleware
 
 middlewares = [Middleware(LogContextMiddleware)]
 
@@ -293,42 +323,60 @@ curl http://localhost:8000/ -H 'Svc-User-Id: 1234' -H 'Svc-Platform: ios'
 
 On the server, the request will emit the following log messages:
 
-```txt
-INFO:     Started server process [92156]
+```plaintext
+INFO:     Started server process [41848]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 {
-  "message": "Handling request",
-  "timestamp": 1722968949312,
+  "message": "From middleware: request started",
+  "timestamp": 1723166008113,
   "tags": {
     "user_id": "1234",
     "platform": "ios"
   }
 }
 {
-  "message": "Work done after 1 second",
-  "timestamp": 1722968950313,
+  "message": "From work function: work started",
+  "timestamp": 1723166008113,
   "tags": {
     "user_id": "1234",
     "platform": "ios"
   }
 }
 {
-  "message": "Finished handling request",
-  "timestamp": 1722968950313,
+  "message": "From view function: work finished",
+  "timestamp": 1723166009114,
   "tags": {
     "user_id": "1234",
     "platform": "ios"
   }
 }
-INFO:     127.0.0.1:64863 - "GET / HTTP/1.1" 200 OK
+{
+  "message": "From middleware: request ended",
+  "timestamp": 1723166009115,
+  "tags": {
+    "user_id": "1234",
+    "platform": "ios"
+  }
+}
+INFO:     127.0.0.1:54780 - "GET / HTTP/1.1" 200 OK
 ```
 
 And we're done. You can find the fully working code in this GitHub gist[^3].
+
+_Note: The previous version[^4] of this example wasn't concurrency safe and used a shared
+logger filter, leaking context information during concurrent requests. This was pointed out
+in this [GitHub comment](^5)._
 
 [^1]: [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
 
 [^2]: [Starlette](https://www.starlette.io/)
 
 [^3]: [Complete example](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142)
+
+[^4]:
+    [Previous version of this example](https://web.archive.org/web/20240806220817/https://rednafi.com/python/log_context_propagation/)
+
+[^5]:
+    [GitHub discussion on context leaking in log statements](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142?permalink_comment_id=5148207#gistcomment-5148207)
