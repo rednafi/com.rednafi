@@ -203,7 +203,7 @@ class LogContextMiddleware(BaseHTTPMiddleware):
         return response
 ```
 
-The `LogContextMiddleware` class inherits from `starlette.BaseHTTPMiddleware` and get
+The `LogContextMiddleware` class inherits from `starlette.BaseHTTPMiddleware` and gets
 initialized with the application.
 
 The `dispatch` method is called automatically for each request. It extracts `user_id` and
