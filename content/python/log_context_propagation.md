@@ -133,49 +133,6 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 ```
 
-Here's the log configuration logic:
-
-```python
-# log.py
-
-import contextvars
-import json
-import logging
-import time
-
-# Set up the context variable with default values
-default_context = {"user_id": "unknown", "platform": "unknown"}
-log_context_var = contextvars.ContextVar(
-    "log_context",
-    default=default_context.copy(),
-)
-
-
-# Custom log formatter
-class ContextAwareJsonFormatter(logging.Formatter):
-    def format(self, record):
-        log_data = {
-            "message": record.getMessage(),
-            # Add millisecond precision timestamp
-            "timestamp": int(time.time() * 1000),
-            # Get the context from the context variable in a concurrency-safe way
-            # The context will be set in the middleware, so .get() will always return
-            # the current context
-            "tags": log_context_var.get(),
-        }
-        return json.dumps(log_data)
-
-
-# Set up the logger
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-
-handler = logging.StreamHandler()
-formatter = ContextAwareJsonFormatter()
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-```
-
 The `contextvars` module manages context information across asynchronous tasks, preventing
 context leakage between requests. We use a `log_context_var` context variable to store user
 ID and platform information, ensuring each log entry includes relevant context for the
