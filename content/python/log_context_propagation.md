@@ -214,21 +214,30 @@ class LogContextMiddleware(BaseHTTPMiddleware):
         request: Request,
         call_next: Callable[[Request], Awaitable[Response]],
     ) -> Response:
+        # Copy the default context so that we're not sharing anything
+        # between requests
         context = default_context.copy()
+
+        # Collect the contextual information from request headers
         user_id = request.headers.get("Svc-User-Id")
         platform = request.headers.get("Svc-Platform")
 
+        # Update the context
         if user_id:
             context["user_id"] = user_id
         if platform:
             context["platform"] = platform
 
-        # Hydrate the log context
+        # Set the log_context_var context variable
         token = log_context_var.set(context)
 
         try:
+            # Log before making request
             logging.info("From middleware: request started")
+
             response = await call_next(request)
+
+            # Log after making request
             logging.info("From middleware: request ended")
         finally:
             # Reset the context after the request is processed
