@@ -367,7 +367,7 @@ And we're done. You can find the fully working code in this GitHub gist[^3].
 
 _Note: The previous version[^4] of this example wasn't concurrency safe and used a shared
 logger filter, leaking context information during concurrent requests. This was pointed out
-in this [GitHub comment](^5)._
+in this GitHub comment[^5]._
 
 [^1]: [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
 
