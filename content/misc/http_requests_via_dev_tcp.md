@@ -83,11 +83,16 @@ exec 3<>"/dev/tcp/${HOST}/${PORT}"
 
 # Send the HTTP GET request to the server
 echo -e \
-    "GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" >&3
+    "GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" \
+    >&3
 
 # Read the HTTP status from the server's response
 read -r HTTP_RESPONSE <&3
-HTTP_STATUS=$(echo "${HTTP_RESPONSE}" | grep -o "HTTP/1.1 [0-9]*" | cut -d ' ' -f 2)
+HTTP_STATUS=$(
+    echo "${HTTP_RESPONSE}" \
+    | grep -o "HTTP/1.1 [0-9]*" \
+    | cut -d ' ' -f 2
+)
 
 if [[ "${HTTP_STATUS}" == "200" ]]; then
     echo "Service is healthy."
