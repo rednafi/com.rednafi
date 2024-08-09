@@ -379,4 +379,4 @@ in this [GitHub comment](^5)._
     [Previous version of this example](https://web.archive.org/web/20240806220817/https://rednafi.com/python/log_context_propagation/)
 
 [^5]:
-    [GitHub discussion on context leaking in log statements](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142?permalink_comment_id=5148207#gistcomment-5148207)
+    [GitHub discussion on context leakage in log statements](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142?permalink_comment_id=5148207#gistcomment-5148207)
