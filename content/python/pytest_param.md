@@ -7,9 +7,9 @@ tags:
     - TIL
 ---
 
-I love `@pytest.mark.parametrize`—so much so that I sometimes shoehorn my tests to fit into
-it. But the default style of writing tests with `parametrize` can quickly turn into an
-unreadable mess when the test complexity grows. For example:
+I love `@pytest.mark.parametrize`[^1]—so much so that I sometimes shoehorn my tests to fit
+into it. But the default style of writing tests with `parametrize` can quickly turn into an
+unreadable mess as the test complexity grows. For example:
 
 ```python
 import pytest
@@ -80,7 +80,8 @@ def test_polarify(x: float, y: float, expected: tuple[float, float]) -> None:
 This works, but mentally associating the IDs with the examples is cumbersome, and it doesn't
 make things any easier to read.
 
-TIL, `pytest.param` gives you a better syntax and more control to achieve the same. Observe:
+TIL, `pytest.param`[^2] gives you a better syntax and more control to achieve the same.
+Observe:
 
 ```python
 # ... polarify implementation hasn't changed.
@@ -207,3 +208,9 @@ In the last block, `pytest.param` bundles test data with execution conditions. W
 `xfail` to mark a test as expected to fail, while `skipif` skips tests based on conditions.
 This keeps all the logic for handling test cases, including failures and skips, directly
 alongside the test data.
+
+[^1]:
+    [pytest.mark.parametrize](https://docs.pytest.org/en/7.1.x/how-to/parametrize.html#parametrize-basics)
+
+[^2]:
+    [pytest.param](https://docs.pytest.org/en/7.1.x/reference/reference.html?highlight=param#pytest-param)
