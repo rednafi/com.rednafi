@@ -151,7 +151,7 @@ case in a single dictionary. Notice:
         ),
     ],
 )
-def test_polarify(kwargs: dict[str, float]) -> None:
+def test_polarify(kwargs: dict[str, Any]) -> None:
     # Extract expected from kwargs
     expected = kwargs.pop("expected")
     # Unpack the remaining kwargs to the polarify function
@@ -196,7 +196,7 @@ started to take advantage of recently:
         ),
     ],
 )
-def test_polarify(kwargs: dict[str, float]) -> None:
+def test_polarify(kwargs: dict[str, Any]) -> None:
     # Extract expected from kwargs
     expected = kwargs.pop("expected")
     # Unpack the remaining kwargs to the polarify function
