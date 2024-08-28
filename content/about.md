@@ -9,13 +9,28 @@ ShowShareButtons: false
 ---
 
 <div style="text-align: center;">
-    <figure style="margin: auto;">
-        <img src="https://github.com/user-attachments/assets/90f0c3a5-5363-4695-8591-f296aa89a4e6" alt="Description" style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
+    <figure style="margin: auto; overflow: hidden;">
+        <img src="https://github.com/user-attachments/assets/90f0c3a5-5363-4695-8591-f296aa89a4e6"
+             alt="Description"
+             style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto; opacity: 0; animation: fadeIn 1s ease-in-out forwards;">
         <figcaption style="color: #808080; font-style: italic; font-weight: normal;">
             The last stop in the Trójmiasto refrain: Gdynia, Poland.
         </figcaption>
     </figure>
 </div>
+
+<style>
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+</style>
 
 Ahoy, fellow daywalkers! I'm Redowan Delowar, also known as 'rednafi' on most platforms.
 
