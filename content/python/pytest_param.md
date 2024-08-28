@@ -1,11 +1,10 @@
 ---
-
 title: Taming parametrize with pytest.param
 date: 2024-08-28
 tags:
     - Python
     - Testing
-
+    - TIL
 ---
 
 I love `@pytest.mark.parametrize`—so much so that I sometimes shoehorn my tests to fit into
