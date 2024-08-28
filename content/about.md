@@ -34,15 +34,14 @@ I'm currently based in Berlin, working at [Wolt]. Before this, I was exploring t
 healthtech industry in the US with [Dendisoftware] and the fintech segment in Southeast
 Asia.
 
-## Gateways
+## Contact
 
 -   [Email]
 -   [GitHub]
 -   [LinkedIn]
--   [RSS]
 -   [Twitter]
 
-## Greatest hits
+## Magnum opus
 
 -   [Oh my poor business logic]
 -   [The diminishing half-life of knowledge]
@@ -68,12 +67,11 @@ Asia.
 [wolt]: https://wolt.com
 [dendisoftware]: https://dendisoftware.com
 
-<!-- Geteways -->
+<!-- Contact -->
 
 [email]: mailto:redowan.nafi@gmail.com
 [github]: https://github.com/rednafi
 [linkedin]: https://www.linkedin.com/in/rednafi/
-[rss]: https://rednafi.com/index.xml
 [twitter]: https://twitter.com/rednafi
 
 <!-- Greatest hits -->
