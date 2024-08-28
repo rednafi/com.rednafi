@@ -22,9 +22,7 @@ params:
   robotsNoIndex: false
   title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar—a wandering dilettante with a flair for ones and zeros. I
-    learn, write, and tweet about Python, Go, SQL, and the broader landscape of software in
-    general.
+    Hi, I'm Redowan Delowar—a roving amateur with a flair for 1s & 0s. I explore, write, and share insights on Python, Go, SQL, devops, and the broader software landscape.
   keywords:
     [
       Redowan,
