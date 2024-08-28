@@ -10,7 +10,7 @@ ShowShareButtons: false
 
 <div style="text-align: center;">
     <figure style="margin: auto;">
-        <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/30027932/362440242-cdb672e7-7c02-4fcf-adc8-ac41b698b423.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240828%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240828T202737Z&X-Amz-Expires=300&X-Amz-Signature=a15611c534444d816aa0a1aafd1776cd4b270a7ce2504c77cffdf23b57e7a81a&X-Amz-SignedHeaders=host&actor_id=30027932&key_id=0&repo_id=632263578"
+        <img src="https://github.com/user-attachments/assets/cdb672e7-7c02-4fcf-adc8-ac41b698b423"
              alt="The last stop in the Trójmiasto refrain: Gdynia, Poland."
              class="loading"
              style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
