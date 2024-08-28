@@ -212,5 +212,4 @@ alongside the test data.
 [^1]:
     [pytest.mark.parametrize](https://docs.pytest.org/en/7.1.x/how-to/parametrize.html#parametrize-basics)
 
-[^2]:
-    [pytest.param](https://docs.pytest.org/en/7.1.x/reference/reference.html?highlight=param#pytest-param)
+[^2]: [pytest.param](https://docs.pytest.org/en/7.1.x/reference/reference.html#pytest-param)
