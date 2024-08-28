@@ -11,7 +11,7 @@ ShowShareButtons: false
 <div style="text-align: center;">
     <figure style="margin: auto;">
         <img src="https://github.com/user-attachments/assets/cdb672e7-7c02-4fcf-adc8-ac41b698b423"
-             alt="The last stop in the Trójmiasto refrain: Gdynia, Poland."
+             alt="Profile picture"
              class="loading"
              style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
         <figcaption style="color: #808080; font-style: italic; font-weight: normal;">
