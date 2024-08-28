@@ -43,18 +43,20 @@
     {{- $excludeUrls := site.Params.noRecentPosts }}
     {{- if not (in $excludeUrls .RelPermalink) }}
       <h2>Recent posts</h2>
-      {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
-      {{- $.Scratch.Set "count" 0 }}
-      {{- range $pages }}
-        {{- if lt ($.Scratch.Get "count") 10 }}
-          {{- if ne . $current }}
-            {{- if not (in $excludeUrls .RelPermalink) }}
-              <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-              {{- $.Scratch.Add "count" 1 }}
+      <ul>
+        {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
+        {{- $.Scratch.Set "count" 0 }}
+        {{- range $pages }}
+          {{- if lt ($.Scratch.Get "count") 10 }}
+            {{- if ne . $current }}
+              {{- if not (in $excludeUrls .RelPermalink) }}
+                <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+                {{- $.Scratch.Add "count" 1 }}
+              {{- end }}
             {{- end }}
           {{- end }}
         {{- end }}
-      {{- end }}
+      </ul>
     {{- end }}
     <!-- Custom logic: add links to recent posts ends -->
   </div>
