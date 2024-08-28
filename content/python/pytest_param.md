@@ -33,7 +33,7 @@ def polarify(x: float, y: float) -> tuple[float, float]:
     ],
 )
 def test_polarify(x: float, y: float, expected: tuple[float, float]) -> None:
-    # pytest.approx helps us to ignore floating point discrepancies
+    # pytest.approx helps us ignore floating point discrepancies
     assert polarify(x, y) == pytest.approx(expected)
 ```
 
@@ -73,7 +73,7 @@ I used to set custom test IDs like below to be able to run individual test cases
     ],
 )
 def test_polarify(x: float, y: float, expected: tuple[float, float]) -> None:
-    # pytest.approx helps us to ignore floating point discrepancies
+    # pytest.approx helps us ignore floating point discrepancies
     assert polarify(x, y) == pytest.approx(expected)
 ```
 
@@ -101,7 +101,7 @@ TIL, `pytest.param` gives you a better syntax and more control to achieve the sa
     ],
 )
 def test_polarify(x: float, y: float, expected: tuple[float, float]) -> None:
-    # pytest.approx helps us to ignore floating point discrepancies
+    # pytest.approx helps us ignore floating point discrepancies
     assert polarify(x, y) == pytest.approx(expected)
 ```
 
