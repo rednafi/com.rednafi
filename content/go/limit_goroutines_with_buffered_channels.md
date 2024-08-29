@@ -168,12 +168,10 @@ ergonomic. Here's a pointer[^2] on how to do so. Effective Go also mentions[^3] 
 briefly.
 
 [^1]: [Limit concurrency with semaphore](/python/limit_concurrency_with_semaphore)
-
 [^2]:
     [Go concurrency pattern: semaphore](https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d)
 
 [^3]: [Effective Go - channels](https://go.dev/doc/effective_go#channels)
-
 [^4]:
     [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty)
     [^4]

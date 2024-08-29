@@ -118,9 +118,7 @@ before passing it to the CSV reader. The `io.TextIOWrapper` class does exactly t
 the file object is in text mode, we pass it to the CSV reader and do further processing.
 
 [^1]: [AWS s3](https://aws.amazon.com/s3/)
-
 [^2]: [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
-
 [^3]:
     [NamedTemporaryFile](https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile)
 

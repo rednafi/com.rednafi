@@ -105,7 +105,6 @@ the least complex one to understand. While the third one is better than the firs
 it's a gratuitously complex way of doing something so trivial.
 
 [^1]: [Ned Bachelder's tweet](https://twitter.com/nedbat/status/1487084661163626506)
-
 [^2]:
     [The second solution came out of a comment on the same tweet](https://twitter.com/__mharrison__/status/1487087733633781766/photo/1)
     [^2]

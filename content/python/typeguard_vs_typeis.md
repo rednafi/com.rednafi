@@ -160,10 +160,7 @@ def istraceback(object: object) -> TypeIs[TracebackType]: ...
 ```
 
 [^1]: [Type narrowing](https://mypy.readthedocs.io/en/latest/type_narrowing.html)
-
 [^2]: [PEP 647 – User-Defined Type Guards](https://peps.python.org/pep-0647/)
-
 [^3]: [PEP 742 – Narrowing types with TypeIs](https://peps.python.org/pep-0742/)
-
 [^4]:
     [Typeshed stubs taking advantage of TypeIs](https://github.com/python/typeshed/blob/bdf75023dfe3930deac1c6b4e269770427b106c4/stdlib/inspect.pyi)

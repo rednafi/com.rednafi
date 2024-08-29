@@ -410,20 +410,14 @@ For this to work, you'll need to create a Cloudflare API key[^9] and add it to t
 Secrets[^10] of your proxy server's repository. Here's the complete workflow[^11] file.
 
 [^1]: [Cloudflare Workers](https://workers.cloudflare.com/)
-
 [^2]: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-
 [^3]:
     [Let's talk about CORS](https://medium.com/bigcommerce-developer-blog/lets-talk-about-cors-84800c726919)
 
 [^4]: [cors.sh](https://cors.sh/)
-
 [^5]: [CORS proxy](https://httptoolkit.com/blog/cors-proxies)
-
 [^6]: [Complete implementation](https://github.com/rednafi/cors-proxy)
-
 [^7]: [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
-
 [^8]:
     [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
 

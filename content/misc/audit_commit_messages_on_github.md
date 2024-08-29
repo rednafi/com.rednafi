@@ -216,7 +216,6 @@ The docs have more information on the terminologies[^7].
     [Worflows directory of this blog](https://github.com/rednafi/reflections/tree/master/.github/workflows)
 
 [^4]: [Automerge Dependabot PRs on GitHub](/misc/automerge_dependabot_prs_on_github/)
-
 [^5]:
     [Reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
 

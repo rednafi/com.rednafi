@@ -235,17 +235,11 @@ created and they appear in the view:
 ![display created objects in jupyter notebook][image_3]
 
 [^1]: [ipykernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
-
 [^2]: [jupyter](https://jupyter.org/)
-
 [^3]: [django-extensions](https://django-extensions.readthedocs.io/en/latest/)
-
 [^4]: [example-app](https://github.com/rednafi/django-jupyter)
-
 [^5]: [Docker](https://www.docker.com/)
-
 [^6]: [docker-compose](https://docs.docker.com/compose/)
-
 [^7]:
     [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container)
     [^7]

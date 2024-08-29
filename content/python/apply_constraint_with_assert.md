@@ -126,7 +126,6 @@ optimization flag.
     [Usage of assert in the Starlette codebase](https://github.com/encode/starlette/blob/14ef6bbbd6c5f03f0e1222a0a1b33ccc3a5f04cf/starlette/applications.py#L63)
 
 [^2]: [Starlette](https://github.com/encode/starlette)
-
 [^3]:
     [Caveats of using asserts to enforce constraints](https://twitter.com/rednafi/status/1546010546297659392)
 

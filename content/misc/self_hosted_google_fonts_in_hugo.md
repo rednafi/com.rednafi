@@ -83,16 +83,12 @@ the rest. Notice there's no `/static` prefix in the font's path. Find this blog'
 locally and ensure that the fonts are being loaded and displayed correctly. Deploy!
 
 [^1]: [Site source](https://github.com/rednafi/rednafi.com/)
-
 [^2]: [Hugo](https://gohugo.io/)
-
 [^3]: [GitHub Pages](https://pages.github.com/)
-
 [^4]:
     [Google Fonts GDPR violation](https://rewis.io/urteile/urteil/lhm-20-01-2022-3-o-1749320/)
 
 [^5]: [Webfont helper tool](https://gwfh.mranftl.com/fonts)
-
 [^6]:
     [Header CSS](https://github.com/rednafi/rednafi.com/blob/main/assets/css/extended/header-override.css)
 

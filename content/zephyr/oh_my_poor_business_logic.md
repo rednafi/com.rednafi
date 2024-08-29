@@ -53,5 +53,4 @@ perfect balance. Plus, I’m not a technical lead, manager, or business owner. S
 one of them, I’d love to hear how you or your organization plans to tackle this.
 
 [^1]: [Resume-driven development](https://arxiv.org/abs/2101.12703)
-
 [^2]: [The costs of microservices](https://robertovitillo.com/costs-of-microservices/)

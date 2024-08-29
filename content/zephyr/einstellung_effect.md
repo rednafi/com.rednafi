@@ -67,7 +67,5 @@ strain against the tide to learn to learn like kids. Because without it, we are 
 simulacra acting as conscious exotica[^3], spellbound by the allure of mimicry!
 
 [^1]: [Lenz's law](https://www.youtube.com/watch?v=QwUq8xM_8bY)
-
 [^2]: [Einstellung effect](https://en.wikipedia.org/wiki/Einstellung_effect)
-
 [^3]: [Simulacra acting as conscious exotica](https://arxiv.org/abs/2402.12422)

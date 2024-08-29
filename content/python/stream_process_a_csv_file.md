@@ -217,5 +217,4 @@ speed up the consumption rate. Also, if the consumer tasks are lightweight, you 
 multiple threads to consume them.
 
 [^1]: [HTTPx](https://www.python-httpx.org/)
-
 [^2]: [Streaming responses](https://www.python-httpx.org/quickstart/#streaming-responses)

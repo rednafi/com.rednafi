@@ -1060,5 +1060,4 @@ with conn:
 ```
 
 [^1]: [sqlite3](https://docs.python.org/3/library/sqlite3.html)
-
 [^2]: [SQLite actions](https://www.sqlite.org/c3ref/constlist.html)

@@ -106,11 +106,8 @@ duplication. It'll also make sure that the pre-configured formatting of the log 
 kept intact.
 
 [^1]: [AWS Lambda](https://aws.amazon.com/lambda/)
-
 [^2]: [Cloudwatch](https://aws.amazon.com/cloudwatch/)
-
 [^3]: [Serverless framework](https://www.serverless.com/)
-
 [^4]:
     [Lambda Python Runtime Interface Client](https://github.com/aws/aws-lambda-python-runtime-interface-client)
 

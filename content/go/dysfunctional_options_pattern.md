@@ -294,7 +294,6 @@ at the end of the method chain._
     [Function options pattern in elastic search agent](https://github.com/elastic/elastic-agent/blob/4aeba5b3fcf0d72924c70ff2127996a817b83a23/pkg/testing/fetcher_http.go)
 
 [^4]: [Configuring options in Go](/go/configure_options)
-
 [^5]:
     [Benchmarking functional vs dysfunctional options pattern](https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a)
 
