@@ -1,0 +1,11 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range site.RegularPages -}}
+  {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
+    {{- $title := .Title | htmlUnescape | plainify -}}
+    {{- $content := .Plain | htmlUnescape | plainify -}}
+    {{- $summary := .Summary | htmlUnescape | plainify -}}
+    {{- $.Scratch.Add "index" (dict "title" $title "content" $content "permalink" .Permalink "summary" $summary) -}}
+  {{- end }}
+{{- end -}}
+{{ $json := $.Scratch.Get "index" | jsonify }}
+{{ $json | safeJS }}

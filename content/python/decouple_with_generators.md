@@ -248,9 +248,6 @@ without the producer ever knowing about their existence at all.
     [Generator tricks for systems programmers — David Beazley](https://www.dabeaz.com/generators/Generators.pdf)
 
 [^2]: [SRP](https://en.wikipedia.org/wiki/Single-responsibility_principle)
-
 [^3]: [Redis](https://redis.io/)
-
 [^4]: [Redis CLI](https://redis.io/docs/ui/cli/)
-
 [^5]: [Docker](https://www.docker.com/)

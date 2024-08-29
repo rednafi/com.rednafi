@@ -527,7 +527,6 @@ True
 ```
 
 [^1]: [Type annotations](https://docs.python.org/3/library/typing.html)
-
 [^2]:
     [Python dataclasses - official docs](https://docs.python.org/3/library/dataclasses.html)
     [^2]

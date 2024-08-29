@@ -154,7 +154,6 @@ Fin!
     [PEP 589 – TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://peps.python.org/pep-0589/)
 
 [^2]: [PEP 646 – Variadic Generics](https://peps.python.org/pep-0646/)
-
 [^3]:
     [PEP 655 – Marking individual TypedDict items as required or potentially-missing](https://peps.python.org/pep-0655/)
 

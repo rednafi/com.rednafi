@@ -143,10 +143,7 @@ Here's an example[^4] of this pattern in the wild from the Kubernetes repo.
 While it works, I'd still prefer to have a proper solution instead of a hack. Fin!
 
 [^1]: [link-patrol](https://github.com/rednafi/link-patrol)
-
 [^2]: [golangci-lint](https://github.com/golangci/golangci-lint)
-
 [^3]: [gofumpt](https://github.com/mvdan/gofumpt)
-
 [^4]:
     [tools.go in the kubernetes repo](https://github.com/kubernetes/kubernetes/blob/master/hack/tools/tools.go)

@@ -48,7 +48,5 @@ All my aliases start with `,` too so that they also appear in the list with the 
 scripts. Fin!
 
 [^1]: [GNU stow](https://www.gnu.org/software/stow/)
-
 [^2]: [Dotfile stewardship for the indolent](/misc/dotfile_stewardship_for_the_indolent)
-
 [^3]: [Activation energy — Brandon Rhodes](https://www.youtube.com/watch?v=pybtvFFRYFs)

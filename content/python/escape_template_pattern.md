@@ -482,17 +482,11 @@ language like Python, you can't always escape inheritance, nor should you try to
     [Sequence docs](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)
 
 [^7]: [God objects](https://blog.devgenius.io/code-smell-14-god-objects-b84b75b702)
-
 [^8]: [Webhook](https://zapier.com/blog/what-are-webhooks/)
-
 [^9]: [Structural subtyping](https://rednafi.com/python/structural_subtyping/)
-
 [^10]: [Mypy](https://mypy-lang.org/)
-
 [^11]: [I want a new duck - Glyph](https://blog.glyph.im/2020/07/new-duck.html)
-
 [^12]: [Strategy pattern](https://refactoring.guru/design-patterns/strategy/python/example)
-
 [^13]:
     [End of object inheritance - Augie Fackler, Nathaniel Manista](https://www.youtube.com/watch?v=3MNVP9-hglc)
     [^13]

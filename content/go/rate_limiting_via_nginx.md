@@ -405,10 +405,8 @@ Fin!
     [The “thundering herd” problem - Nick Groenen](https://nick.groenen.me/notes/thundering-herd/)
 
 [^3]: [Nginx](https://www.nginx.com/)
-
 [^4]:
     [Rate limiting with Nginx and Nginx plus](https://www.nginx.com/blog/rate-limiting-nginx/)
 
 [^5]: [Leaky bucket](https://en.wikipedia.org/wiki/Leaky_bucket)
-
 [^6]: [Complete implementation](https://github.com/rednafi/nginx-ratelimit)

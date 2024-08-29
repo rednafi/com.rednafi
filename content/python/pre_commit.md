@@ -189,9 +189,7 @@ each commit, the hooks will make sure that your code complies with the rules imp
 linters.
 
 [^1]: [pre-commit hooks](https://pre-commit.com/#introduction)
-
 [^2]: [mccabe script](https://github.com/PyCQA/mccabe)
-
 [^3]: [PEP-8](https://www.python.org/dev/peps/pep-0008/)
 
 [isort]: https://github.com/timothycrosley/isort

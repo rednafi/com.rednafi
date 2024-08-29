@@ -290,12 +290,8 @@ flat constructs and write the corresponding tests instead of battling with the t
 conditional statements that we started with. Not too shabby, eh?
 
 [^1]: [Claude 2](https://www.anthropic.com/index/claude-2)
-
 [^2]: [Bitmasks](https://stackoverflow.com/questions/10493411/what-is-bit-masking)
-
 [^3]: [enum.Flag](https://docs.python.org/3/library/enum.html#enum.Flag)
-
 [^4]: [Python bitwise operators](https://realpython.com/python-bitwise-operators/)
-
 [^5]:
     [Functional core, imperative shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell)

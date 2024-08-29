@@ -97,7 +97,6 @@ repr and add the method there. This way, the reader won't have to wonder whether
 containers have some hidden behavior attached to them or not.
 
 [^1]: [Penguin with an elephant head – Family Guy](https://i.imgflip.com/3gb0nh.jpg?a472776)
-
 [^2]:
     [Improving data classes startup performance](https://discuss.python.org/t/improving-dataclasses-startup-performance/15442/20)
 
@@ -108,7 +107,6 @@ containers have some hidden behavior attached to them or not.
     [Frozen data classes are slower](https://docs.python.org/3.12/library/dataclasses.html#frozen-instances)
 
 [^5]: [Sum types](https://fsharpforfunandprofit.com/posts/discriminated-unions/)
-
 [^6]:
     [Algebraic Data Types in (typed) Python](https://threeofwands.com/algebraic-data-types-in-python/)
 
