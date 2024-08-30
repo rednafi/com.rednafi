@@ -4,7 +4,16 @@
     {{- $title := .Title | htmlUnescape | plainify -}}
     {{- $content := .Plain | htmlUnescape | plainify -}}
     {{- $summary := .Summary | htmlUnescape | plainify -}}
-    {{- $.Scratch.Add "index" (dict "title" $title "content" $content "permalink" .Permalink "summary" $summary) -}}
+    {{- $publishDate := .PublishDate.Format "2006-01-02" -}}
+    {{- $tags := .Params.tags | default (slice) -}}
+    {{- $.Scratch.Add "index" (dict
+        "title" $title
+        "content" $content
+        "permalink" .Permalink
+        "summary" $summary
+        "publishDate" $publishDate
+        "tags" $tags
+    ) -}}
   {{- end }}
 {{- end -}}
 {{ $json := $.Scratch.Get "index" | jsonify }}
