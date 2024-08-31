@@ -272,5 +272,7 @@ done, kill the running servers with `sudo pkill uvicorn` command.
     [Sentry hook resources](https://docs.sentry.io/product/integrations/integration-platform/webhooks/#sentry-hook-resource)
 
 [^3]: [Timing attack](https://en.wikipedia.org/wiki/Timing_attack)
+
 [^4]: [HTTPx](https://www.python-httpx.org/)
+
 [^5]: [Uvicorn](https://www.uvicorn.org/)

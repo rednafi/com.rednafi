@@ -149,6 +149,7 @@ Without the backslash, the `$(...)` will be expanded on the local machine, which
 desirable here. The backslash defers it so that it runs on the remote instead.
 
 [^1]: [Here documents](https://tldp.org/LDP/abs/html/here-docs.html)
+
 [^2]:
     [Service deployment steps - with here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
 

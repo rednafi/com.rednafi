@@ -53,11 +53,11 @@ on the receiving end.
 
 However, there are some limitations to this approach. [RFC 1035] says that the total size of
 a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual text
-value in a single TXT record is 255 bytes or characters. This doesn't give us much room to
-tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks,
-injection issues, cache poisoning, and DoS. So I'd refrain from transferring any data in
-this manner that requires a layer of security. Protocols like DANE and DNSSEC aim to address
-some of these concerns but their adoption is spotty at best. Still, I found the idea of
-using DNS records as a simple database quite clever!
+value in a single TXT record is 255 bytes or characters. This doesn't give us much room to tunnel
+large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks, injection
+issues, cache poisoning, and DoS. So I'd refrain from transferring any data in this manner that
+requires a layer of security. Protocols like DANE and DNSSEC aim to address some of these concerns
+but their adoption is spotty at best. Still, I found the idea of using DNS records as a simple
+database quite clever!
 
 [^1]: [Use DNS TXT to share information](https://news.ycombinator.com/item?id=36754366)

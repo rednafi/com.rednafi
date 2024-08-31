@@ -26,6 +26,8 @@ following files:
 -   `script/console` – opens a console
 
 [^1]: [typesystem](https://github.com/encode/typesystem)
+
 [^2]: [Scripts without extension](https://github.com/encode/typesystem/tree/master/scripts)
+
 [^3]:
     [Scripts to rule them all - GitHub Blog](https://github.com/github/scripts-to-rule-them-all)

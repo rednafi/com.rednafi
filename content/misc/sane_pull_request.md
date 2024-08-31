@@ -65,7 +65,9 @@ OSS work, but these steps have been helpful while working on a large shared repo
     a notification to review some work only to find that it's not ready yet.
 
 [^1]: [I kind of like rebasing](/misc/on_rebasing)
+
 [^2]: [HN discussion on my rebasing workflow](https://news.ycombinator.com/item?id=40742628)
+
 [^3]:
     [Make atomic git commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/)
 
