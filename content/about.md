@@ -10,7 +10,7 @@ ShowShareButtons: false
 
 <div style="text-align: center;">
     <figure style="margin: auto;">
-        <img src="https://github.com/user-attachments/assets/cdb672e7-7c02-4fcf-adc8-ac41b698b423"
+        <img src="https://i.imgur.com/K8IRG36.jpeg"
              alt="Profile picture"
              class="loading"
              style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">

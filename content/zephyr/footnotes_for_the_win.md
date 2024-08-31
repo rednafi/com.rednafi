@@ -2,7 +2,7 @@
 title: Footnotes for the win
 date: 2023-10-07
 tags:
-    - Meta
+    - Essay
 ---
 
 There are a few ways you can add URLs to your markdown documents:

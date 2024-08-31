@@ -2,7 +2,7 @@
 title: Notes on exit interviews
 date: 2023-08-07
 tags:
-    - Meta
+    - Essay
 ---
 
 If you're a manager, then there's no shortage of information for you on how to conduct exit

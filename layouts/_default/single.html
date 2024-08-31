@@ -38,27 +38,48 @@
     {{ partial "mermaid.html" }}
     {{ end }}
 
-    <!-- Custom logic: add links to recent posts starts -->
-    {{- $current := . }}
-    {{- $excludeUrls := site.Params.noRecentPosts }}
-    {{- if not (in $excludeUrls .RelPermalink) }}
-      <h2>Recent posts</h2>
-      <ul>
-        {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
-        {{- $.Scratch.Set "count" 0 }}
-        {{- range $pages }}
-          {{- if lt ($.Scratch.Get "count") 10 }}
-            {{- if ne . $current }}
-              {{- if not (in $excludeUrls .RelPermalink) }}
-                <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-                {{- $.Scratch.Add "count" 1 }}
-              {{- end }}
-            {{- end }}
+<!-- Custom logic: add links to recent posts starts -->
+{{- $current := . }}
+{{- $excludeUrls := site.Params.noRecentPosts }}
+{{- $exclude := false }}
+
+{{- range $excludeUrls }}
+  {{- if strings.HasPrefix $current.RelPermalink . }}
+    {{- $exclude = true }}
+  {{- end }}
+{{- end }}
+
+{{- if not $exclude }}
+  <h2>Recent posts</h2>
+  <ul>
+    {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
+    {{- $.Scratch.Set "count" 0 }}
+
+    {{- range $pages }}
+      {{- $page := . }} <!-- Save the current page context -->
+      {{- $pageExclude := false }}
+
+      {{- range $excludeUrls }}
+        {{- if strings.HasPrefix $page.RelPermalink . }} <!-- Use $page to ensure proper context -->
+          {{- $pageExclude = true }}
+        {{- end }}
+      {{- end }}
+
+      {{- if not $pageExclude }}
+        {{- if lt ($.Scratch.Get "count") 10 }}
+          {{- if ne $page $current }}
+            <li><a href="{{ $page.Permalink }}">{{ $page.LinkTitle }}</a></li>
+            {{- $.Scratch.Add "count" 1 }}
           {{- end }}
         {{- end }}
-      </ul>
+      {{- end }}
+
     {{- end }}
-    <!-- Custom logic: add links to recent posts ends -->
+  </ul>
+{{- end }}
+<!-- Custom logic: add links to recent posts ends -->
+</div>
+
   </div>
   {{- end }}
 

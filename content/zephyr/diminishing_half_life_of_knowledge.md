@@ -2,7 +2,7 @@
 title: The diminishing half-life of knowledge
 date: 2023-11-12
 tags:
-    - Meta
+    - Essay
 ---
 
 Ever been in a situation where you landed a software engineering job with a particular tech

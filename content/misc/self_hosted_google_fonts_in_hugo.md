@@ -2,7 +2,6 @@
 title: Self-hosted Google Fonts in Hugo
 date: 2023-09-14
 tags:
-    - Meta
     - TIL
 ---
 

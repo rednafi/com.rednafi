@@ -143,28 +143,34 @@ params:
   noRecentPosts: # Don't print recents posts sections in these pages
     - /about/
     - /blogroll/
+    - /feed/
 
 menu:
   main:
+    - identifier: feed
+      name: feed
+      url: /feed/2024
+      weight: 1
+
     - identifier: search
       name: search
       url: /search/
-      weight: 1
+      weight: 2
 
     - identifier: tags
       name: tags
       url: /tags/
-      weight: 2
-
-    - identifier: archives
-      name: archives
-      url: /archives/
       weight: 3
+
+    - identifier: archive
+      name: archive
+      url: /archive/
+      weight: 4
 
     - identifier: about
       name: about
       url: /about/
-      weight: 4
+      weight: 5
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true

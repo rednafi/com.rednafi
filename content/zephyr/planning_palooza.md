@@ -2,7 +2,7 @@
 title: Planning palooza
 date: 2024-01-01
 tags:
-    - Meta
+    - Essay
 ---
 
 When I started my career in a tightly-knit team of six engineers at a small e-commerce

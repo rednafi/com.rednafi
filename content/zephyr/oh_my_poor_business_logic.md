@@ -2,7 +2,7 @@
 title: Oh my poor business logic
 date: 2023-11-05
 tags:
-    - Meta
+    - Essay
 ---
 
 Adopting existing tools that work, applying them to the business problems at hand, and
