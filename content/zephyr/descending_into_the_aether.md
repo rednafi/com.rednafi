@@ -2,7 +2,7 @@
 title: Descending into the aether
 date: 2023-07-09
 tags:
-    - Meta
+    - Essay
 ---
 
 <img

@@ -2,7 +2,7 @@
 title: Finding flow amid chaos
 date: 2023-11-25
 tags:
-    - Meta
+    - Essay
 ---
 
 Despite being an IC for the bulk of my career, finding my groove amidst the daily torrent of

@@ -2,7 +2,7 @@
 title: Writing on well-trodden topics
 date: 2023-08-14
 tags:
-    - Meta
+    - Essay
 ---
 
 I enjoy writing about software—the things I learn, the tools I use, and the work I do. Owing

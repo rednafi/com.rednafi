@@ -2,7 +2,7 @@
 title: An ode to the neo-grotesque web
 date: 2023-09-18
 tags:
-    - Meta
+    - Essay
 ---
 
 Every once in a while, I love browsing the Wayback Machine[^1] to catch a glimpse of the

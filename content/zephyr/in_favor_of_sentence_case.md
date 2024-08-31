@@ -2,7 +2,7 @@
 title: In favor of sentence case
 date: 2022-03-26
 tags:
-    - Meta
+    - Essay
 ---
 
 Up until now, I've always preferred **Title Case** to demarcate titles and section headers

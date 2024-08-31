@@ -2,7 +2,7 @@
 title: Einstellung effect
 date: 2024-02-24
 tags:
-    - Meta
+    - Essay
 ---
 
 In 9th grade, when I first learned about Lenz's Law[^1] in Physics class, I was fascinated
