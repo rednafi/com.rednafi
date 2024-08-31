@@ -188,7 +188,9 @@ The `__new__` method in the `Config` class validates the `var` before constructi
 instance of the class. The `Self` type makes it easy to annotate the method.
 
 [^1]: [PEP 673 -- Self Type](https://www.python.org/dev/peps/pep-0673/)
+
 [^2]: [typing_extensions](https://typing.readthedocs.io/)
+
 [^3]:
     [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1491187805636407298)
     [^3]

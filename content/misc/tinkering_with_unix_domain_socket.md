@@ -366,8 +366,11 @@ the HTML page:
 ![reverse proxy access][image_2]
 
 [^1]: [Docker engine API](https://docs.docker.com/engine/api/latest/)
+
 [^2]: [Uvicorn](https://www.uvicorn.org/)
+
 [^3]: [Starlette](https://www.starlette.io/)
+
 [^4]:
     [Understanding sockets](https://www.digitalocean.com/community/tutorials/understanding-sockets)
     [^4]

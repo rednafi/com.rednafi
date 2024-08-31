@@ -257,4 +257,5 @@ probability of spooky actions at a distance.
 Fin!
 
 [^1]: [pydantic](https://docs.pydantic.dev/latest/)
+
 [^2]: [pydantic_settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)

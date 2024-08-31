@@ -1571,9 +1571,13 @@ working directory. You can inspect the database with any database viewer and fin
 key-value pairs there. Everything else is the same as a built-in dictionary object.
 
 [^1]: [decorators](/python/decorators)
+
 [^2]: [metaclass](/python/metaclasses)
+
 [^3]: [werkzeug](https://werkzeug.palletsprojects.com/en/latest/)
+
 [^4]: [flask](https://flask.palletsprojects.com/)
+
 [^5]:
     [Mixins in the requests library](https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60)
 
