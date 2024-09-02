@@ -73,8 +73,7 @@ if TYPE_CHECKING:
     T = TypeVar("T")
 
     @dataclass_transform(frozen_default=True)
-    def frozen(cls: type[T]) -> type[T]:
-        ...
+    def frozen(cls: type[T]) -> type[T]: ...
 
 else:
     frozen = dataclass  # or dataclass(slots=True) for even faster performance

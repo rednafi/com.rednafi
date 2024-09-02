@@ -160,8 +160,7 @@ def deserialize(serialized_message: str) -> SearchRequest:
     return search_request
 
 
-def consume(message: SearchRequest) -> None:
-    ...
+def consume(message: SearchRequest) -> None: ...
 
 
 if __name__ == "__main__":

@@ -349,16 +349,13 @@ class Message:
 
 
 class Retriever(Protocol):
-    def get_message(self, message: Message) -> dict[str, str]:
-        ...
+    def get_message(self, message: Message) -> dict[str, str]: ...
 
-    def get_url(self) -> str:
-        ...
+    def get_url(self) -> str: ...
 
 
 class Dispatcher(Protocol):
-    def dispatch(self, url: str, data: dict[str, str]) -> None:
-        ...
+    def dispatch(self, url: str, data: dict[str, str]) -> None: ...
 
 
 class HookRetriever:

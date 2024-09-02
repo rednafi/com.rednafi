@@ -251,8 +251,7 @@ functions, like this:
 
 ```python
 @deco
-def func():
-    ...
+def func(): ...
 
 
 # Now call your decorated function just like a normal one
