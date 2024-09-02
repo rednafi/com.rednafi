@@ -138,7 +138,7 @@ to mock responses easily. It provides a context manager to define how specific r
 should be handled, returning custom responses. This avoids the need to manually patch
 methods like `post` in `httpx.AsyncClient`.
 
-## Test with a stub client
+## Testing with a stub client
 
 The previous strategy wouldn’t work if you want to change your HTTP client since respx is
 coupled with httpx. As an alternative, you could rewrite `make_request` to parametrize the
