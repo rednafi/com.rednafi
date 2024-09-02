@@ -9,7 +9,7 @@ tags:
 
 ---
 
-Here’s a Python snippet that makes an HTTP POST request:
+Here's a Python snippet that makes an HTTP POST request:
 
 ```python
 # script.py
@@ -99,9 +99,9 @@ async def test_make_request_ok() -> None:
         assert response == expected_json
 ```
 
-That’s quite a bit of work just to test a simple HTTP request. The mocking gets pretty hairy
-as the complexity of your HTTP calls increases. One way to reduce this complexity is by
-using a library like respx[^2] that handles the patching for you.
+That's quite a bit of work just to test a simple HTTP request. The mocking gets pretty hairy
+as the complexity of your HTTP calls increases. One way to cut down the mess is by using a
+library like respx[^2] that handles the patching for you.
 
 ## Simplifying mocks with respx
 
@@ -133,19 +133,19 @@ async def test_make_request_ok() -> None:
         assert response == expected_json
 ```
 
-Much cleaner. Here, respx intercepts HTTP requests made by httpx during tests, allowing you
-to mock responses easily. It provides a context manager to define how specific requests
-should be handled, returning custom responses. This avoids the need to manually patch
+Much cleaner. During tests, respx intercepts HTTP requests made by httpx, allowing you to
+test against canned responses. The library provides a context manager that acts like an
+httpx client, so you can set the expected response. This removes the need to manually patch
 methods like `post` in `httpx.AsyncClient`.
 
 ## Testing with a stub client
 
-The previous strategy wouldn’t work if you want to change your HTTP client since respx is
+The previous strategy wouldn't work if you want to change your HTTP client since respx is
 coupled with httpx. As an alternative, you could rewrite `make_request` to parametrize the
-HTTP client, pass a stub object during the test, and test against it. This eliminates the
+HTTP client, pass a stub object during the test, and assert against it. This eliminates the
 need to write fragile mocking sludges or depend on an external mocking library.
 
-Here’s how you’d change the code:
+Here's how you'd change the code:
 
 ```python
 # script.py
@@ -212,7 +212,7 @@ Much better!
 
 ## Integration testing with a test server
 
-One thing I’ve picked up from writing Go is that it’s often just easier to perform
+One thing I've picked up from writing Go is that it's often just easier to perform
 integration tests on these I/O-bound functions. That is, you can spin up a server that
 returns a canned response and then test your code against it to assert if it's getting the
 expected output.
@@ -246,12 +246,12 @@ async def test_make_request() -> None:
         assert response == {"key_1": "value_1", "key_2": "value_2"}
 ```
 
-In the above test, we’re using starlette[^3] to define a simple ASGI server that returns our
+In the above test, we're using starlette[^3] to define a simple ASGI server that returns our
 expected response. Then we set up the `httpx.AsyncClient` so it makes the request against
 the test server instead of making an external network call. Finally, we call the
 `make_request` function and assert the expected payload.
 
-Sure, you could set up the server with the standard library’s `http` module, but that code
+Sure, you could set up the server with the standard library's `http` module, but that code
 doesn't look half as pretty.
 
 [^1]: [httpx](https://www.python-httpx.org/)
