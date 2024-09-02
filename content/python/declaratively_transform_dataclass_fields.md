@@ -30,8 +30,7 @@ class WebhookPayload:
     response_payload: dict
     status_code: int
 
-    def to_dynamodb_item(self) -> None:
-        ...
+    def to_dynamodb_item(self) -> None: ...
 ```
 
 The above class defines the structure of a payload that'll be saved in a DynamoDB table. To
@@ -105,8 +104,7 @@ class WebhookPayload:
             # Here's where the magic happens!
             setattr(self, field, json.dumps(getattr(self, field)))
 
-    def to_dynamodb_item(self) -> dict[str, Any]:
-        ...
+    def to_dynamodb_item(self) -> dict[str, Any]: ...
 
 
 if __name__ == "__main__":

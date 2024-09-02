@@ -25,6 +25,7 @@ consuming the entire iterable of 100 elements.
 
 Tqdm progress bar will be updated after every `MAX_WORKERS*CHUNK_SIZE` iterations.
 """
+
 # src.py
 
 

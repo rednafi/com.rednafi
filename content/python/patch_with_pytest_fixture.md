@@ -148,11 +148,9 @@ from unittest.mock import patch
 @patch("src.dep_1", return_value=42, autospec=True)
 @patch("src.dep_2", return_value=42, autospec=True)
 class TestFunc:
-    def test_func_error(self):
-        ...
+    def test_func_error(self): ...
 
-    def test_func_ok(self):
-        ...
+    def test_func_ok(self): ...
 ```
 
 The above solution forces us to write `unittest` style OOP-driven tests and I'd like to

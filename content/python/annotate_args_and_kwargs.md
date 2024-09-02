@@ -14,8 +14,7 @@ precisely before. For example, if all the positional and keyword arguments of a 
 the same type, you could do this:
 
 ```python
-def foo(*args: int, **kwargs: bool) -> None:
-    ...
+def foo(*args: int, **kwargs: bool) -> None: ...
 ```
 
 This implies that `args` is a tuple where all the elements are integers, and `kwargs` is a
@@ -28,8 +27,7 @@ back to `Any`, which defeats the purpose.
 Consider this example:
 
 ```python
-def foo(*args: tuple[int, str], **kwargs: dict[str, bool | None]) -> None:
-    ...
+def foo(*args: tuple[int, str], **kwargs: dict[str, bool | None]) -> None: ...
 ```
 
 Here, the type checker sees each positional argument as a tuple of an integer and a string.
@@ -73,8 +71,7 @@ class Kw(TypedDict):
     key2: bool
 
 
-def foo(*args: Unpack[tuple[int, str]], **kwargs: Unpack[Kw]) -> None:
-    ...
+def foo(*args: Unpack[tuple[int, str]], **kwargs: Unpack[Kw]) -> None: ...
 
 
 args = (1, "hello")

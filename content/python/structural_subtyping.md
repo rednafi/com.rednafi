@@ -167,8 +167,7 @@ T = TypeVar("T")
 
 @runtime_checkable
 class ProtoHaystack(Protocol):
-    def __contains__(self, obj) -> bool:
-        ...
+    def __contains__(self, obj) -> bool: ...
 
 
 def find(haystack: ProtoHaystack, needle: T) -> bool:
@@ -285,16 +284,13 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class ProtoFoo(Protocol):
-    def bar(self) -> str:
-        ...
+    def bar(self) -> str: ...
 
     @classmethod
-    def baz(cls) -> str:
-        ...
+    def baz(cls) -> str: ...
 
     @property
-    def qux(self) -> str:
-        ...
+    def qux(self) -> str: ...
 
 
 class Foo:
@@ -351,8 +347,7 @@ class ProtoPayload(Protocol):
     message: str
 
     @property
-    def json(self):
-        ...
+    def json(self): ...
 
 
 @dataclass

@@ -93,9 +93,7 @@ Observe:
         pytest.param(0, 0, (0, 0), id="origin"),
         pytest.param(1, 0, (1, 0), id="positive_x_axis"),
         pytest.param(0, 1, (1, 1.5707963267948966), id="positive_y_axis"),
-        pytest.param(
-            1, 1, (2**0.5, 0.7853981633974483), id="first_quadrant"
-        ),
+        pytest.param(1, 1, (2**0.5, 0.7853981633974483), id="first_quadrant"),
         pytest.param(
             -1, -1, (2**0.5, -2.356194490192345), id="third_quadrant"
         ),
