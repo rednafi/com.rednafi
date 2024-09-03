@@ -193,13 +193,10 @@ with prettier screenshots, can be found in the official documentation[^6]._
     [Python debugging in VS Code](https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection)
 
 [^2]: [starlette](https://www.starlette.io/)
-
 [^3]: [uvicorn](https://www.uvicorn.org/)
-
 [^4]:
     [Debug Python within a container](https://code.visualstudio.com/docs/containers/debug-python)
 
 [^5]: [debugpy](https://github.com/microsoft/debugpy/tree/main/src/debugpy)
-
 [^6]:
     [Python in a container](https://code.visualstudio.com/docs/containers/quickstart-python)

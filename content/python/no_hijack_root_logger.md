@@ -204,6 +204,5 @@ httpx - INFO - HTTP Request: GET https://httpbin.org/get "HTTP/1.1 200 OK"
     [Root logger](https://docs.python.org/3/library/logging.html#:~:text=Logged%20messages%20to%20the%20module%2Dlevel%20logger%20get%20forwarded%20to%20handlers%20of%20loggers%20in%20higher%2Dlevel%20modules%2C%20all%20the%20way%20up%20to%20the%20highest%2Dlevel%20logger%20known%20as%20the%20root%20logger%3B%20this%20approach%20is%20known%20as%20hierarchical%20logging)
 
 [^2]: [Logging how-to](https://docs.python.org/3/howto/logging.html)
-
 [^3]:
     [Logging in httpx](https://github.com/search?q=repo%3Aencode%2Fhttpx%20logging&type=code)

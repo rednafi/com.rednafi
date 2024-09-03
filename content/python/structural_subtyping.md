@@ -394,9 +394,7 @@ you're using `from __future__ import annotations`, you'll be able to run all of 
 earlier Python versions, going as far back as Python 3.7.
 
 [^1]: [Interface - Go playground](https://go.dev/play/p/RG82v5Ubdlc)
-
 [^2]: [mypy](https://mypy.readthedocs.io/en/stable/)
-
 [^3]:
     [Nominal vs structural subtyping](https://www.python.org/dev/peps/pep-0544/#nominal-vs-structural-subtyping)
 

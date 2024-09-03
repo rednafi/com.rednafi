@@ -135,8 +135,6 @@ Fin!
     [Zero-overhead frozen attrs classes - Tin Tvrtković](https://threeofwands.com/attra-iv-zero-overhead-frozen-attrs-classes/)
 
 [^2]: [attrs](https://www.attrs.org/en/stable/)
-
 [^3]: [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/)
-
 [^4]:
     [How to statically enforce frozen data classes in Python?](https://stackoverflow.com/questions/77754655/how-to-statically-enforce-frozen-data-classes-in-python)

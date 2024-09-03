@@ -257,7 +257,6 @@ make: *** [Makefile:134: mypy] Error 1
 Sweet type safety without being too strict about missing fields!
 
 [^1]: [Docker](https://www.docker.com/)
-
 [^2]:
     [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/)
     [^2]

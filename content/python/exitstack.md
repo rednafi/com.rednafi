@@ -331,5 +331,4 @@ manager. However, `ExitStack` allows me here to do it without creating additiona
 `with` blocks.
 
 [^1]: [ExitStack](https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack)
-
 [^2]: [GitHub code search](https://github.com/search?l=Python&q=ExitStack&type=Code)

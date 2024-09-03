@@ -347,7 +347,6 @@ also its demerits. Since the target functions get mocked and stay mocked through
 module, it can subtly create coupling between your test functions if you aren't careful.
 
 [^1]: [HTTPx](https://www.python-httpx.org/)
-
 [^2]:
     [Test async code with pytest-asyncio](https://github.com/rednafi/reflections/issues/73)
     [^2]

@@ -95,7 +95,6 @@ we're keeping track of the size of the already downloaded bytes in the
 `downloaded_content_length` variable and raising an error if the size exceeds 10MB. Sweet!
 
 [^1]: [HTTPx](https://www.python-httpx.org/)
-
 [^2]:
     [Streaming download with HTTPx](https://www.python-httpx.org/advanced/#monitoring-download-progress)
     [^2]

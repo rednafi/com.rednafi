@@ -745,7 +745,6 @@ The ability to manipulate paths in an OO way and not having to rummage through t
 `os` or `shutil` module can make path manipulation a lot less painful.
 
 [^1]: [Replace os.path with pathlib](https://code.djangoproject.com/ticket/29983)
-
 [^2]:
     [pathlib - Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
     [^2]

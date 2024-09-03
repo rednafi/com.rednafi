@@ -175,7 +175,5 @@ merged into the main branch. Then the services can just update those protocol pa
 use the serializers and deserializers as needed.
 
 [^1]: [Protobuf](https://protobuf.dev/)
-
 [^2]: [GRPC](https://grpc.io/)
-
 [^3]: [Proto3 syntax](https://protobuf.dev/programming-guides/proto3/)

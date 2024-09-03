@@ -582,17 +582,11 @@ from only supporting unidirectional communication, they suffer from a few other 
     multiplexing in HTTP/2.
 
 [^1]: [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
-
 [^2]: [channels](https://channels.readthedocs.io/en/stable/)
-
 [^3]: [SSE](https://en.wikipedia.org/wiki/Server-sent_events)
-
 [^4]: [SSE vs WebSockets](https://germano.dev/sse-websockets/)
-
 [^5]: [starlette](https://www.starlette.io/)
-
 [^6]: [celery](https://docs.celeryq.dev/en/stable/getting-started/introduction.html)
-
 [^7]:
     [Using server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
     [^7]
