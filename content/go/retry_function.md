@@ -243,5 +243,4 @@ The runtime behavior of this version is the same as the ones before.
 Fin!
 
 [^1]: [Anton Zhiyanov](https://antonz.org/)
-
 [^2]: [Discussions on Twitter](https://twitter.com/ohmypy/status/1754105508863393835)

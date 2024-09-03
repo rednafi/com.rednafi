@@ -74,7 +74,6 @@ src.py .                                              [100%]
 ```
 
 [^1]: [freezegun](https://github.com/spulec/freezegun)
-
 [^2]:
     [Python test using mock with datetime.utcnow — Stackoverflow](https://stackoverflow.com/questions/57671585/python-test-using-mock-with-datetime-utcnow)
     [^2]

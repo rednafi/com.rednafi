@@ -505,26 +505,17 @@ practices of production ready applications. Using APIs without authentication li
 not recommended.
 
 [^1]: [Mapbox](https://www.mapbox.com/)
-
 [^2]: [Route optimization API](https://docs.mapbox.com/api/navigation/#optimization)
-
 [^3]:
     [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
 
 [^4]: [Redis](https://redis.io/)
-
 [^5]: [RedisInsight](https://redislabs.com/redisinsight/)
-
 [^6]: [Dockjer](https://www.docker.com/)
-
 [^7]: [HTTPx](https://github.com/encode/httpx)
-
 [^8]: [requests](https://github.com/psf/requests)
-
 [^9]: [contextmanager](/python/contextmanager)
-
 [^10]: [FastAPI](https://fastapi.tiangolo.com/)
-
 [^11]: [HTTP request caching with Redis](https://github.com/rednafi/redis-request-caching)
 
 [image_1]:

@@ -60,6 +60,5 @@ Fin!
     [Companies Using RFCs or Design Docs and Examples of These - Gergely Orosz](https://blog.pragmaticengineer.com/rfcs-and-design-docs/)
 
 [^2]: [Architectural Decision Records (ADRs)](https://adr.github.io/)
-
 [^3]:
     [Design docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)

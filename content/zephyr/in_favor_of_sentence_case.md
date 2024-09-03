@@ -53,9 +53,7 @@ from now on. I'm quite happy with the results so far and it's definitely one les
 worry about.
 
 [^1]: [Title Capitalization & Title Case Converter Tool](https://capitalizemytitle.com/)
-
 [^2]: [Asking the Twitter folks](https://twitter.com/rednafi/status/1506949630587637762)
-
 [^3]:
     [For the love of sentence casing](https://twitter.com/robsmallshire/status/1506980088532905998)
 

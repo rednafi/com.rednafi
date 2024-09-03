@@ -195,18 +195,13 @@ I'm quite satisfied with the final output:
 ![periodic readme update][image_1]
 
 [^1]: [Blog](https://rednafi.com/)
-
 [^2]: [GitHub profile landing page](https://github.com/rednafi/)
-
 [^3]:
     [Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
 
 [^4]: [Blog post workflow](https://github.com/gautamkrishnar/blog-post-workflow)
-
 [^5]: [Blog index](https://rednafi.com/index.xml)
-
 [^6]: [Profile repository](https://github.com/rednafi/rednafi)
-
 [^7]:
     [Action secrets](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28)
 

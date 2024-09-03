@@ -75,6 +75,5 @@ if __name__ == "__main__":
 ```
 
 [^1]: [My tweet on the hack](https://twitter.com/rednafi/status/1484326191687696391/photo/1)
-
 [^2]:
     [A better solution by Raymond Hettinger](https://twitter.com/raymondh/status/1483948152906522625)

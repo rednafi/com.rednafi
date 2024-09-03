@@ -71,5 +71,4 @@ efficient internals. Overall, even considering my recency bias[^2], this is cert
 of—if not the most—prudent tech purchases that I made this year!
 
 [^1]: [ENIAC](https://en.wikipedia.org/wiki/ENIAC)
-
 [^2]: [Recency Bias](https://en.wikipedia.org/wiki/Recency_bias)

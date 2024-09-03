@@ -202,8 +202,9 @@ class StubAsyncClient(AsyncClient):
 async def test_make_request_ok() -> None:
     url = "https://httpbin.org/post"
     headers = {"Content-Type": "application/json"}
-    client = StubAsyncClient(headers=headers)
-    response_data = await make_request(url, client)
+
+    async with StubAsyncClient(headers=headers) as client:
+        response_data = await make_request(url, client)
 
     assert response_data == {"key_1": "value_1", "key_2": "value_2"}
 ```
@@ -255,7 +256,5 @@ Sure, you could set up the server with the standard library's `http` module, but
 doesn't look half as pretty.
 
 [^1]: [httpx](https://www.python-httpx.org/)
-
 [^2]: [respx](https://lundberg.github.io/respx/)
-
 [^3]: [starlette](https://www.starlette.io/)

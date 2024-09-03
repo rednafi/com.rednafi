@@ -297,9 +297,6 @@ I don't mind the added verbosity if it leads to better readability and type safe
 Fin!
 
 [^1]: [json-to-go](https://mholt.github.io/json-to-go/)
-
 [^2]: [pydantic](https://docs.pydantic.dev/latest/)
-
 [^3]: [json-to-pydantic](https://jsontopydantic.com/)
-
 [^4]: [zod](https://github.com/colinhacks/zod)

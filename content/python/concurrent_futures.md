@@ -770,7 +770,6 @@ with complicated code that performs worse than the naive solution.
 -   [Adventures in Python with concurrent.futures]
 
 [^1]: [GIL](https://wiki.python.org/moin/GlobalInterpreterLock)
-
 [^2]:
     [PEP-255](https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation)
 
@@ -779,7 +778,6 @@ with complicated code that performs worse than the naive solution.
     [^3]
 
 [^4]: [easy concurrency in python](http://pljung.de/posts/easy-concurrency-in-python/) [^4]
-
 [^5]:
     [Adventures in python with concurrent.futures](https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/)
     [^5]
