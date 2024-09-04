@@ -174,6 +174,7 @@ def call_os_execvp() -> NoReturn:
 ```
 
 [^1]: [Using None](https://www.python.org/dev/peps/pep-0484/#using-none)
+
 [^2]:
     [Python return annotations: NoReturn vs None (intermediate) anthony explains #007](https://www.youtube.com/watch?v=-zH0qqDtd4w)
     [^2]

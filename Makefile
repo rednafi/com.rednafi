@@ -28,6 +28,7 @@ endif
 
 lint:
 	@pre-commit run --all-files
+	@prettier --write .
 
 
 update:

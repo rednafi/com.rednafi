@@ -373,6 +373,7 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 ![error handling in multi-threaded socket server][image_2]
 
 [^1]: [TIME_WAIT](https://totozhang.github.io/2016-01-31-tcp-timewait-status/)
+
 [^2]:
     [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)
 

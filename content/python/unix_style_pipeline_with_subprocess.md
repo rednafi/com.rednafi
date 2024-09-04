@@ -222,4 +222,5 @@ Finally, the `procs` list is iterated through and `proc.communicate()` is called
 stripped, and printed to the console.
 
 [^1]: [subprocess](https://docs.python.org/3/library/subprocess)
+
 [^2]: [Effective Python - Item 52 - Brett Slatkin](https://effectivepython.com/) [^2]

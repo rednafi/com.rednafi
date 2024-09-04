@@ -336,8 +336,11 @@ logger filter, leaking context information during concurrent requests. This was 
 in this GitHub comment[^5]._
 
 [^1]: [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
+
 [^2]: [Starlette](https://www.starlette.io/)
+
 [^3]: [Complete example](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142)
+
 [^4]:
     [Previous version of this example](https://web.archive.org/web/20240806220817/https://rednafi.com/python/log_context_propagation/)
 

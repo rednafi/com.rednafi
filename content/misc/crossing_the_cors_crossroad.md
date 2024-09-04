@@ -234,6 +234,8 @@ Use the preflight request commands to test that the server is only allowing acce
 whitelisted domain while blocking everything else.
 
 [^1]: [CORS - mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
 [^2]: [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
+
 [^3]:
     [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
