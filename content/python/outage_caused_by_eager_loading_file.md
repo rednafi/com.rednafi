@@ -133,7 +133,9 @@ buffering is going on here and we can lazily ask for new rows from the `reader` 
 sequentially process them.
 
 [^1]: [open](https://peps.python.org/pep-3116/#the-open-built-in-function)
+
 [^2]: [New I/O - PEP-3116](https://peps.python.org/pep-3116/)
+
 [^3]:
     [How to use python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract)
     [^3]

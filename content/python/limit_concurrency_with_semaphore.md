@@ -246,7 +246,9 @@ if __name__ == "__main__":
 ```
 
 [^1]: [asyncio](https://docs.python.org/3/library/asyncio.html)
+
 [^2]: [HTTPx](https://www.python-httpx.org/)
+
 [^3]:
     [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py)
     [^3]

@@ -96,13 +96,17 @@ subjectively look less distracting compared to underlined or highlighted URLs. A
 prettier's[^2] job has become easier too!
 
 [^1]: https://example.com
+
 [^2]: https://prettier.io/
+
 [^3]: Footnotes with extra texts <https://rednafi.com>
+
 [^4]:
     Multiple footnotes are less distracting than multiple side-by-side URLs
     <https://rednafi.com/index>
 
 [^5]: [GitHub flavored markdown](https://github.github.com/gfm/)
+
 [^6]:
     [Checkout the raw markdown file of this post](https://github.com/rednafi/rednafi.com/blob/main/content/zephyr/footnotes_for_the_win.md)
 

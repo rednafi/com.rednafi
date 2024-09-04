@@ -252,11 +252,14 @@ This inconsistency also means servers end up dealing with more requests for cont
 clients could have just used from their cache if ETags were consistent.
 
 [^1]: [Etag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)
+
 [^2]: [If-Match - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)
+
 [^3]:
     [If-None-Match - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
 
 [^4]: [GitHub CLI](https://cli.github.com/)
+
 [^5]:
     [Weak validation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#weak_validation)
 

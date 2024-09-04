@@ -360,11 +360,14 @@ curl -X POST -H "Authorization: Bearer some-token" \
 ```
 
 [^1]: [Bard](https://bard.google.com/)
+
 [^2]: [A hacky way to schedule jobs remotely](#a-hacky-way-to-schedule-jobs-remotely)
+
 [^3]:
     [System Integrity Protection (SIP)](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection)
 
 [^4]: [Making "at" work on macOS](https://unix.stackexchange.com/a/478840/383934)
+
 [^5]: ["at" command in Linux](https://linuxize.com/post/at-command-in-linux/) [^5]
 
 [image_1]:

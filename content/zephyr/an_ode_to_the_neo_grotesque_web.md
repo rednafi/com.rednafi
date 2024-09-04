@@ -61,11 +61,16 @@ for their money. As long as the pages wrap on your phone, what's there to compla
 Ugly can still be beautiful. Excrement contains nutrients. All hail the neo-grotesque web!
 
 [^1]: [Wayback machine](http://web.archive.org/)
+
 [^2]: [Rob Pike's blog](https://commandcenter.blogspot.com/)
+
 [^3]: [Peter Norvig's blog](https://www.norvig.com/)
+
 [^4]: [Stripe website](https://stripe.com/)
+
 [^5]:
     [Brutalism in web design](https://designlab.com/blog/examples-brutalism-in-web-design/)
 
 [^6]: <https://motherfuckingwebsite.com/>
+
 [^7]: [Craigslist](https://www.craigslist.org/about/sites)

@@ -124,8 +124,11 @@ updates:
 ```
 
 [^1]: [Dependabot](https://github.com/dependabot)
+
 [^2]: [pip-tools](https://github.com/jazzband/pip-tools)
+
 [^3]: [setuptools](https://github.com/pypa/setuptools)
+
 [^4]:
     [An active version of the above workflow](https://github.com/rednafi/stress-test-locust/blob/master/.github/workflows/build_test.yml)
     [^4]

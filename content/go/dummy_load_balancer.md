@@ -291,7 +291,9 @@ Hello from backend server on :8082
 Notice how the client requests are handled by different backends in an interleaving manner.
 
 [^1]: [Nginx](https://www.nginx.com/)
+
 [^2]: [Caddy](https://caddyserver.com/)
+
 [^3]:
     [Selecting backend server in a round robin fashion](/go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion)
 

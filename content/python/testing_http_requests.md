@@ -256,5 +256,7 @@ Sure, you could set up the server with the standard library's `http` module, but
 doesn't look half as pretty.
 
 [^1]: [httpx](https://www.python-httpx.org/)
+
 [^2]: [respx](https://lundberg.github.io/respx/)
+
 [^3]: [starlette](https://www.starlette.io/)

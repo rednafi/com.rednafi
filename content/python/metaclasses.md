@@ -1066,8 +1066,11 @@ This article assumes familiarity with decorators, dataclasses etc. If your knowl
 is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 
 [^1]: [Tim Peters](<https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)>)
+
 [^2]: [decorators](/python/decorators)
+
 [^3]: [dataclasses](/python/dataclasses)
+
 [^4]:
     [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/)
     [^4]
@@ -1077,6 +1080,7 @@ is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
     [^5]
 
 [^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
+
 [^7]:
     [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php)
     [^7]

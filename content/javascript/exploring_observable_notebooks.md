@@ -177,6 +177,7 @@ Click on the following thumbnail to take the notebook for a spin:
 [![observable thumbnail][image_1]][observable notebook]
 
 [^1]: [ObservableHQ](https://observablehq.com/)
+
 [^2]: [Observable notebook] [^2]
 
 [image_1]:
