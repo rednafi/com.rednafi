@@ -41,6 +41,18 @@ Asia.
 -   [LinkedIn]
 -   [Twitter]
 
+## Behind the blog
+
+[Hugo] is the static site generator that powers this blog. I use the [Papermod] theme with
+some custom CSS. The site is hosted on GitHub Pages and served through a custom domain
+registered from Cloudflare. The primary font is Inter, and the code examples use JetBrains
+Mono.
+
+GitHub Actions deploys the site automatically with each commit. Static assets are hosted via
+GitHub Issues—yes, I know, it's lazy. I use VSCode to write in markdown and commit to the
+repo. The CI takes care of everything else. You can find all the source code and content
+[here].
+
 ## Magnum opus
 
 -   [Oh my poor business logic]
@@ -73,6 +85,12 @@ Asia.
 [github]: https://github.com/rednafi
 [linkedin]: https://www.linkedin.com/in/rednafi/
 [twitter]: https://twitter.com/rednafi
+
+<!-- Behind the blog -->
+
+[hugo]: https://gohugo.io
+[papermod]: https://github.com/adityatelange/hugo-PaperMod
+[here]: https://github.com/rednafi/rednafi.com
 
 <!-- Greatest hits -->
 
