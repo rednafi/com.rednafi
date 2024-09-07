@@ -22,7 +22,8 @@ params:
   robotsNoIndex: false
   title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar—a software engineer and a roving amateur with a flair for words and wires.
+    Hi, I'm Redowan Delowar—a software engineer and a roving amateur with a flair for words
+    and wires.
   keywords:
     [
       "Redowan Delowar",
@@ -71,18 +72,18 @@ params:
     - go
 
   assets:
-    favicon: "/images/home/favicon.webp"
-    favicon16x16: "/images/home/favicon.webp"
-    favicon32x32: "/images/home/favicon.webp"
-    apple_touch_icon: "/images/home/favicon.webp"
-    safari_pinned_tab: "/images/home/favicon.webp"
+    favicon: "https://blob.rednafi.com/static/images/home/favicon.webp"
+    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon.webp"
+    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.webp"
+    apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
+    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.webp"
 
     disableFingerprinting: true
     disableHLJS: true
 
   label:
     text: "Redowan's Reflections"
-    icon: "/images/home/favicon.webp"
+    icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
     iconHeight: 23
     iconWidth: 23
 
@@ -121,7 +122,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: "/images/home/cover.webp"
+    image: "https://blob.rednafi.com/static/images/home/cover.webp"
 
   # for search
   # https://fusejs.io/api/options.html
