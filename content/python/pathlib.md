@@ -758,4 +758,4 @@ The ability to manipulate paths in an OO way and not having to rummage through t
     [Why you should be using pathlib](https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/#The_os_module_is_crowded)
     [^4]
 
-[image_1]: https://docs.python.org/3/_images/pathlib-inheritance.png
+[image_1]: https://blob.rednafi.com/static/images/pathlib/img_1.png

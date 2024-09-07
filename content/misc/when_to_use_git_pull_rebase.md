@@ -80,4 +80,4 @@ commits.
     [^2]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/179367132-de85b59e-aa1c-477e-b3b2-89593f3a8b4c.png
+    https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png

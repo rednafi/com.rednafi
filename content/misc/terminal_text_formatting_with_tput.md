@@ -130,6 +130,6 @@ On my terminal, it prints this nice color palette:
 [^1]: [Escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/233862459-4035a81d-d2e9-40a7-9fe3-c68775c5e19c.png
+    https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/233863008-32dbb414-f94f-4644-899f-1211bc38ec02.png
+    https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_2.png

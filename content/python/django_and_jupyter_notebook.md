@@ -251,8 +251,8 @@ created and they appear in the view:
     [^7]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/212461413-8c12d7a0-8023-47ff-8820-2b398e69631c.png
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/212461652-9d4c23b7-a8c9-47b4-9d56-884b11306324.png
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
 [image_3]:
-    https://user-images.githubusercontent.com/30027932/212461809-ef67edbb-71cd-4d23-a2af-0a6c7039a78c.png
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png

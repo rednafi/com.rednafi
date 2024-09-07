@@ -181,5 +181,5 @@ Click on the following thumbnail to take the notebook for a spin:
 [^2]: [Observable notebook] [^2]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/231017828-91745232-d7ea-4573-86f6-341007fdc816.png
+    https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
 [observable notebook]: https://observablehq.com/@rednafi/compare-two-csv-files

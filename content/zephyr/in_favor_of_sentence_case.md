@@ -67,4 +67,4 @@ worry about.
 [twitter blog]: https://blog.twitter.com
 [gitlab blog]: https://about.gitlab.com/blog/
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/160216618-36a76272-06f8-4e74-bacb-6ca7a80c009b.png
+    https://blob.rednafi.com/static/images/in_favor_of_sentence_case/img_1.png

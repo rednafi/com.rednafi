@@ -436,4 +436,4 @@ Secrets[^10] of your proxy server's repository. Here's the complete workflow[^11
 [^11]: [CI](https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/239760346-1077fb7d-1aa0-4b67-bbf4-a87cad519d1a.png
+    https://blob.rednafi.com/static/images/cors_proxy_with_cloudflare_workers/img_1.png

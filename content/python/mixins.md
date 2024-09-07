@@ -1599,4 +1599,4 @@ key-value pairs there. Everything else is the same as a built-in dictionary obje
     [^9]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/86243108-96bbd680-bbc7-11ea-9ddb-9fe46b4a17a1.png
+    https://blob.rednafi.com/static/images/mixins/img_1.png

@@ -76,6 +76,6 @@ OSS work, but these steps have been helpful while working on a large shared repo
 
 [^5]: [The perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/)
 
-[image_1]: https://github.com/user-attachments/assets/dfaafa0a-efff-4216-800d-64715ff65ea6
-[image_2]: https://github.com/user-attachments/assets/1c33bdba-aaab-4979-a57b-5dc6f84d88da
-[image_3]: https://github.com/user-attachments/assets/c308f9a5-ea0b-4e76-a85c-bd508ecc9940
+[image_1]: https://blob.rednafi.com/static/images/sane_pull_request/img_1.png
+[image_2]: https://blob.rednafi.com/static/images/sane_pull_request/img_2.png
+[image_3]: https://blob.rednafi.com/static/images/sane_pull_request/img_3.png

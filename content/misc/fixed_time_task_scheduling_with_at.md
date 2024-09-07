@@ -371,6 +371,6 @@ curl -X POST -H "Authorization: Bearer some-token" \
 [^5]: ["at" command in Linux](https://linuxize.com/post/at-command-in-linux/) [^5]
 
 [image_1]:
-    https://github.com/rednafi/rednafi.com/assets/30027932/a6d775a6-b547-4ad4-80b2-e517288cc697
+    https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_1.png
 [image_2]:
-    https://github.com/rednafi/rednafi.com/assets/30027932/e1e61f38-e35f-40df-a9bf-31ae651283f0
+    https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_2.png

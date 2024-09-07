@@ -216,4 +216,4 @@ I'm quite satisfied with the final output:
 [^9]: [Workflow directory](https://github.com/rednafi/rednafi/tree/master/.github/workflows)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/236664302-a9c7964f-034c-4df1-8eee-af4e8fd7ee6a.png
+    https://blob.rednafi.com/static/images/periodic_readme_updates_with_gh_actions/img_1.png

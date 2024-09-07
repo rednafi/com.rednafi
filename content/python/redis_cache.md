@@ -528,10 +528,10 @@ not recommended.
 [^11]: [HTTP request caching with Redis](https://github.com/rednafi/redis-request-caching)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/82731781-f30b1b00-9d2a-11ea-8c72-62a4753bc5f9.png
+    https://blob.rednafi.com/static/images/redis_cache/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/82735908-1ba10e00-9d47-11ea-9e86-ac1fbc63628f.png
+    https://blob.rednafi.com/static/images/redis_cache/img_2.png
 [image_3]:
-    https://user-images.githubusercontent.com/30027932/82763854-6a74a380-9e2c-11ea-998d-066d25461eca.png
+    https://blob.rednafi.com/static/images/redis_cache/img_3.png
 [image_4]:
-    https://user-images.githubusercontent.com/30027932/82763965-2f26a480-9e2d-11ea-906b-63c1d25c08a8.png
+    https://blob.rednafi.com/static/images/redis_cache/img_4.png

@@ -227,4 +227,4 @@ The docs have more information on the terminologies[^7].
     [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/194779762-2000b766-3efa-421c-be77-757233e1e8f2.png
+    https://blob.rednafi.com/static/images/audit_commit_messages_on_github/img_1.png

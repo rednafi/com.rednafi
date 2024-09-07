@@ -109,10 +109,10 @@ branch.
 [think-async]: https://github.com/rednafi/think-async
 [epilog]: https://github.com/rednafi/epilog
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/178368689-4766f2d3-86ed-4287-b058-6edfeecba66a.png
+    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/177646826-f07b6ad0-9df7-42cd-ab70-c74a1ec31059.png
+    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_2.png
 [image_3]:
-    https://user-images.githubusercontent.com/30027932/177646967-36ba6b6d-861f-44d6-9a91-b5f5f3a3ce45.png
+    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_3.png
 [image_4]:
-    https://user-images.githubusercontent.com/30027932/177647370-012d0162-d80b-4f12-9ac7-b7a6da024735.png
+    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_4.png

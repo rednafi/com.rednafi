@@ -96,4 +96,4 @@ locally and ensure that the fonts are being loaded and displayed correctly. Depl
     [Header CSS](https://github.com/rednafi/rednafi.com/blob/main/assets/css/extended/header-override.css)
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/267879992-c61a4008-d05f-45f4-9cee-ca7435bd2459.png
+    https://blob.rednafi.com/static/images/self_hosted_google_fonts_in_hugo/img_1.png
