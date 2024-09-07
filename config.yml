@@ -22,23 +22,21 @@ params:
   robotsNoIndex: false
   title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar—a roving amateur with a flair for 1s & 0s. I explore, write, and share insights on Python, Go, SQL, devops, and the broader software landscape.
+    Redowan Delowar—a roving amateur with a flair for 1s and 0s.
   keywords:
     [
-      Redowan,
-      Nafi,
-      Delowar,
-      Redowan Delowar,
-      Redowan Nafi,
-      Nafi Redowan,
-      Delowar Redowan,
-      rednafi,
-      Python,
-      Go,
-      Golang,
-      Shell,
-      Software,
-      Engineering,
+      "Redowan Delowar",
+      "Redowan Nafi",
+      "Rednafi",
+      "Blog",
+      "Python",
+      "Devops",
+      "Go",
+      "Golang",
+      "API",
+      "Networking",
+      "Database",
+      "Software Engineering"
     ]
   author: "Redowan Delowar"
   images: ["/images/home/cover.webp"]
@@ -90,18 +88,15 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: Hi, I'm [Redowan](/about)
-      <a href="/index.xml" title="RSS" aria-label="RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round" height="23">
-      <path d="M4 11a9 9 0 0 1 9 9" />
-      <path d="M4 4a16 16 0 0 1 16 16" />
-      <circle cx="5" cy="19" r="1" />
-      </svg>
-      </a>
+    Title:
+      Hi, I'm [Redowan](/about) <a href="/index.xml" title="RSS" aria-label="RSS"> <svg
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      height="23"> <path d="M4 11a9 9 0 0 1 9 9" /> <path d="M4 4a16 16 0 0 1 16 16" />
+      <circle cx="5" cy="19" r="1" /> </svg> </a>
     Content: >
       <div>
-        ...and this is the graveyard for my musings on software.
+        A roving amateur with a flair for 1s and 0s.
       </div>
 
   socialIcons:

@@ -1,24 +1,27 @@
 {
-  "proseWrap": "preserve",
   "semi": false,
   "singleQuote": false,
   "useTabs": false,
   "tabWidth": 2,
-  "trailingComma": "all",
+  "trailingComma": "none",
   "printWidth": 92,
-  "overrides": [
-    {
-      "files": "**/*.md",
-      "options": {
-        "tabWidth": 4,
-        "useTabs": false,
-        "singleQuote": false,
-        "trailingComma": "all",
-        "arrowParens": "avoid",
-        "printWidth": 92,
-        "proseWrap": "always",
-        "embeddedLanguageFormatting": "off"
+  "proseWrap": "always",
+  "arrowParens": "always",
+  "embeddedLanguageFormatting": "off",
+  "overrides":
+    [
+      {
+        "files": "**/*.md",
+        "options":
+          {
+            "tabWidth": 4,
+            "singleQuote": false,
+            "trailingComma": "all",
+            "arrowParens": "avoid",
+            "printWidth": 92,
+            "proseWrap": "always",
+            "embeddedLanguageFormatting": "off"
+          }
       }
-    }
-  ]
+    ]
 }
