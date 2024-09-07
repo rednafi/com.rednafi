@@ -30,9 +30,9 @@ time, I moonlight as a reader, writer, hiker, and a pathological minimalist.
 
 ## Work
 
-I'm currently based in Berlin, working at [Wolt]. Before this, I was exploring the
-healthtech industry in the US with [Dendisoftware] and the fintech segment in Southeast
-Asia.
+I'm currently based in Berlin and working at [Wolt] as a software engineer. Before this, I
+was exploring the healthtech industry in the US with [Dendisoftware] and the fintech segment
+in Southeast Asia.
 
 ## Contact
 
