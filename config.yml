@@ -22,7 +22,7 @@ params:
   robotsNoIndex: false
   title: Redowan's Reflections
   description: >-
-    Redowan Delowar—a roving amateur with a flair for 1s and 0s.
+    Hi, I'm Redowan Delowar—a software engineer and a roving amateur with a flair for words and wires.
   keywords:
     [
       "Redowan Delowar",
@@ -96,7 +96,7 @@ params:
       <circle cx="5" cy="19" r="1" /> </svg> </a>
     Content: >
       <div>
-        A roving amateur with a flair for 1s and 0s.
+        A software engineer and a roving amateur with a flair for words and wires.
       </div>
 
   socialIcons:
