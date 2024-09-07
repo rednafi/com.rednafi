@@ -1094,4 +1094,4 @@ is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
     [^9]
 
 [image_1]:
-    https://media.geeksforgeeks.org/wp-content/uploads/metaclass-hierarchy-Page-1-1024x370.jpeg
+    https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg

@@ -380,6 +380,6 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 [^3]: [socketserver](https://docs.python.org/3/library/socketserver.html) [^3]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/221752665-a6a1584d-e7bf-48b4-93a4-7679bc915682.png
+    https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/222344540-ace10d97-81f5-47d4-bf83-4ec505a72f74.png
+    https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_2.png

@@ -380,6 +380,6 @@ the HTML page:
     [^5]
 
 [image_1]:
-    https://user-images.githubusercontent.com/30027932/224576411-d29e1a0b-94b5-49bc-b60d-00a7fb8c7637.png
+    https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_1.png
 [image_2]:
-    https://user-images.githubusercontent.com/30027932/224606293-66ddd2f4-0737-464f-93ee-ce88ea3a7dcc.png
+    https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_2.png

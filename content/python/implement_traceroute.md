@@ -268,4 +268,4 @@ Hop  IP Address          Hostname                                          Time 
     [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
 
 [image_1]:
-    https://github.com/rednafi/rednafi.com/assets/30027932/6aaca23e-5b54-4b83-aafa-3b3f39bee82b
+    https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
