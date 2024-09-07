@@ -10,7 +10,7 @@ ShowShareButtons: false
 
 <div style="text-align: center;">
     <figure style="margin: auto;">
-        <img src="https://i.imgur.com/K8IRG36.jpeg"
+        <img src="https://blob.rednafi.com/static/images/about/profile.jpg"
              alt="Profile picture"
              class="loading"
              style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
