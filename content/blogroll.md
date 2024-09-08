@@ -8,27 +8,56 @@ hideMeta: true
 ShowShareButtons: false
 ---
 
-1.  [Anton Zhiyanov]
-2.  [Brandon Rhodes]
-3.  [Dan Luu]
-4.  [Drew DeVault's blog]
-5.  [Fabien Sanglard's website]
-6.  [Harmful stuff]
-7.  [Joel on software]
-8.  [Julia Evans]
-9.  [Preslav Rachev]
-10. [Simon Willison’s weblog]
+Here's a non-exhaustive list of blogs I enjoy reading.
+
+| Blogroll                                                           |
+|--------------------------------------------------------------------|
+| **A**                                                              |
+| ↳ [Anton Zhiyanov]                                                 |
+|                                                                    |
+| **B**                                                              |
+| ↳ [Brandon Rhodes]                                                 |
+| ↳ [Brandur]                                                        |
+|                                                                    |
+| **C**                                                              |
+| ↳ [Charity Majors]                                                 |
+|                                                                    |
+| **D**                                                              |
+| ↳ [Dan Luu]                                                        |
+| ↳ [Drew DeVault's Blog]                                            |
+|                                                                    |
+| **F**                                                              |
+| ↳ [Fabien Sanglard's Website]                                      |
+|                                                                    |
+| **H**                                                              |
+| ↳ [Harmful Stuff]                                                  |
+| ↳ [Hynek Schlawack]                                                |
+|                                                                    |
+| **J**                                                              |
+| ↳ [Joel on Software]                                               |
+| ↳ [John Gruber]                                                    |
+| ↳ [Julia Evans]                                                    |
+|                                                                    |
+| **P**                                                              |
+| ↳ [Preslav Rachev]                                                 |
+|                                                                    |
+| **S**                                                              |
+| ↳ [Simon Willison’s Weblog]                                        |
+
 
 <!-- Blogroll -->
 
-[anton zhiyanov]: https://antonz.org/
-[brandon rhodes]: https://rhodesmill.org/brandon/
-[dan luu]: https://danluu.com/
-[drew devault's blog]: https://drewdevault.com/
-[fabien sanglard's website]: https://fabiensanglard.net/
-[fasterthanlime (amos wenger)]: https://fasterthanli.me/
-[harmful stuff]: https://harmful.cat-v.org/
-[joel on software]: https://www.joelonsoftware.com/
-[julia evans]: https://jvns.ca/
-[preslav rachev]: https://preslav.me/
-[simon willison’s weblog]: https://simonwillison.net/
+[Anton Zhiyanov]: https://antonz.org/
+[Brandon Rhodes]: https://rhodesmill.org/brandon/
+[Brandur]: https://brandur.org/
+[Charity Majors]: https://charity.wtf
+[Dan Luu]: https://danluu.com/
+[Drew DeVault's blog]: https://drewdevault.com/
+[Fabien Sanglard's website]: https://fabiensanglard.net/
+[Harmful stuff]: https://harmful.cat-v.org/
+[Hynek Schlawack]: https://hynek.me/
+[Joel on software]: https://www.joelonsoftware.com/
+[John Gruber]: https://daringfireball.net/
+[Julia Evans]: https://jvns.ca/
+[Preslav Rachev]: https://preslav.me/
+[Simon Willison’s weblog]: https://simonwillison.net/
