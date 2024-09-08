@@ -10,40 +10,44 @@ ShowShareButtons: false
 
 Here's a non-exhaustive list of blogs I enjoy reading.
 
-| Blogroll                                                           |
-|--------------------------------------------------------------------|
-| **A**                                                              |
-| ↳ [Anton Zhiyanov]                                                 |
-|                                                                    |
-| **B**                                                              |
-| ↳ [Brandon Rhodes]                                                 |
-| ↳ [Brandur]                                                        |
-|                                                                    |
-| **C**                                                              |
-| ↳ [Charity Majors]                                                 |
-|                                                                    |
-| **D**                                                              |
-| ↳ [Dan Luu]                                                        |
-| ↳ [Drew DeVault's Blog]                                            |
-|                                                                    |
-| **F**                                                              |
-| ↳ [Fabien Sanglard's Website]                                      |
-|                                                                    |
-| **H**                                                              |
-| ↳ [Harmful Stuff]                                                  |
-| ↳ [Hynek Schlawack]                                                |
-|                                                                    |
-| **J**                                                              |
-| ↳ [Joel on Software]                                               |
-| ↳ [John Gruber]                                                    |
-| ↳ [Julia Evans]                                                    |
-|                                                                    |
-| **P**                                                              |
-| ↳ [Preslav Rachev]                                                 |
-|                                                                    |
-| **S**                                                              |
-| ↳ [Simon Willison’s Weblog]                                        |
+-   [Anton Zhiyanov]
 
+---
+
+-   [Brandon Rhodes]
+-   [Brandur]
+
+---
+
+-   [Charity Majors]
+
+---
+
+-   [Dan Luu]
+-   [Drew DeVault's Blog]
+
+---
+
+-   [Fabien Sanglard's Website]
+
+---
+
+-   [Harmful Stuff]
+-   [Hynek Schlawack]
+
+---
+
+-   [Joel on Software]
+-   [John Gruber]
+-   [Julia Evans]
+
+---
+
+-   [Preslav Rachev]
+
+---
+
+-   [Simon Willison’s Weblog]
 
 <!-- Blogroll -->
 
