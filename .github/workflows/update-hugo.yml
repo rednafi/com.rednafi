@@ -12,6 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          # Otherwise, the token used is the GITHUB_TOKEN, instead of your personal
+          # access token
+          persist-credentials: false
+          # Otherwise, there would be errors pushing refs to the destination repository
           fetch-depth: 0
 
       - name: Cache npm dependencies
@@ -76,5 +80,10 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git commit -am "Update Hugo version to ${LATEST_HUGO_VERSION}"
-          git push \
-            https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/rednafi/rednafi.com.git main
+
+      - name: Push changes
+        if: success() && env.hugo_update_needed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
+          branch: ${{ github.ref }}
