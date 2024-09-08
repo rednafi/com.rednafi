@@ -1598,5 +1598,4 @@ key-value pairs there. Everything else is the same as a built-in dictionary obje
     [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556)
     [^9]
 
-[image_1]:
-    https://blob.rednafi.com/static/images/mixins/img_1.png
+[image_1]: https://blob.rednafi.com/static/images/mixins/img_1.png

@@ -79,5 +79,4 @@ commits.
     [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase)
     [^2]
 
-[image_1]:
-    https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png
+[image_1]: https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png

@@ -1093,5 +1093,4 @@ is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
     [A primer on Python metaclasses](https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/)
     [^9]
 
-[image_1]:
-    https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg
+[image_1]: https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg

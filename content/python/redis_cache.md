@@ -527,11 +527,7 @@ not recommended.
 
 [^11]: [HTTP request caching with Redis](https://github.com/rednafi/redis-request-caching)
 
-[image_1]:
-    https://blob.rednafi.com/static/images/redis_cache/img_1.png
-[image_2]:
-    https://blob.rednafi.com/static/images/redis_cache/img_2.png
-[image_3]:
-    https://blob.rednafi.com/static/images/redis_cache/img_3.png
-[image_4]:
-    https://blob.rednafi.com/static/images/redis_cache/img_4.png
+[image_1]: https://blob.rednafi.com/static/images/redis_cache/img_1.png
+[image_2]: https://blob.rednafi.com/static/images/redis_cache/img_2.png
+[image_3]: https://blob.rednafi.com/static/images/redis_cache/img_3.png
+[image_4]: https://blob.rednafi.com/static/images/redis_cache/img_4.png

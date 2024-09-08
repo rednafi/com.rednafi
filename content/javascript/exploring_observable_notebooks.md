@@ -180,6 +180,5 @@ Click on the following thumbnail to take the notebook for a spin:
 
 [^2]: [Observable notebook] [^2]
 
-[image_1]:
-    https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
+[image_1]: https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
 [observable notebook]: https://observablehq.com/@rednafi/compare-two-csv-files
