@@ -16,7 +16,7 @@ article list stayed up to date.
 There are plenty of fancy GitHub Action workflows[^4] that allow you to add your site's URL
 to the CI file and it'll periodically fetch the most recent content from the source and
 update the readme file. However, I wanted to make a simpler version of it from scratch which
-can be extended for periodically updating any markdown file in any repo, just not the
+can be extended for periodically updating any Markdown file in any repo, just not the
 profile readme. So, here's the plan:
 
 -   A custom GitHub Action workflow will periodically run a nodejs script.
@@ -24,7 +24,7 @@ profile readme. So, here's the plan:
     -   Grab the XML index[^5] of this blog that you're reading.
     -   Parse the XML content and extract the URLs and publication dates of 5 most recent
         articles.
-    -   Update the associated markdown table with the extracted content on the profile's
+    -   Update the associated Markdown table with the extracted content on the profile's
         `README.md` file.
 -   Finally, the workflow will commit the changes and push them to the profile repo. You can
     see the final outcome here[^6].
@@ -107,7 +107,7 @@ built-in `fs` module's `promises` for handling file system operations.
 Next, it defines an async function `getRssData` responsible for fetching the XML data from
 the [https://rednafi.com/index.html] URL. It extracts the blog URLs and publication dates,
 and returns the parsed data as a list of objects. Another async function, `writeOutputFile`,
-writes the parsed XML content as a markdown table and saves it to the `README.md` file.
+writes the parsed XML content as a Markdown table and saves it to the `README.md` file.
 
 The script is executed by the following GitHub Action workflow every day at 0:00 UTC. Before
 the CI runs, make sure you create a new Action Secret[^7] named `ACCESS_TOKEN` that houses

@@ -10,7 +10,7 @@ As of now, unlike Python or NodeJS, Go doesn't allow you to specify your develop
 dependencies separately from those of the application. However, I like to specify the dev
 dependencies explicitly for better reproducibility.
 
-While working on a new CLI tool[^1] for checking dead URLs in markdown files, I came across
+While working on a new CLI tool[^1] for checking dead URLs in Markdown files, I came across
 this neat convention: you can specify dev dependencies in a `tools.go` file and then exclude
 them while building the binary using a build tag.
 
