@@ -70,10 +70,11 @@ jobs:
           hugo --gc --minify
         continue-on-error: false
 
-      - name: Commit changes if build succeeds
+      - name: Commit version update
         if: success() && env.hugo_update_needed == 'true'
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git commit -am "Update Hugo version to $LATEST_HUGO_VERSION"
-          git push
+          git commit -am "Update Hugo version to ${LATEST_HUGO_VERSION}"
+          git push \
+            https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/rednafi/rednafi.com.git main
