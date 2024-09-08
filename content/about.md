@@ -48,8 +48,8 @@ some custom CSS. The site is hosted on GitHub Pages and served through a custom 
 registered with Cloudflare. The primary font is Inter, and the code examples use JetBrains
 Mono.
 
-GitHub Actions deploys the site automatically with each commit to the main branch. Static
-assets are hosted on Cloudflare [R2]. I use [VSCode] to write in Markdown and commit to the
+GitHub Actions deploys the site automatically with each commit to the mainline. Static
+assets are hosted on Cloudflare [R2]. I use VSCode to write in Markdown and commit to the
 repo. The CI takes care of everything else. You can find all the source code and content
 [here].
 
