@@ -45,11 +45,11 @@ in Southeast Asia.
 
 [Hugo] is the static site generator that powers this blog. I use the [Papermod] theme with
 some custom CSS. The site is hosted on GitHub Pages and served through a custom domain
-registered from Cloudflare. The primary font is Inter, and the code examples use JetBrains
+registered with Cloudflare. The primary font is Inter, and the code examples use JetBrains
 Mono.
 
-GitHub Actions deploys the site automatically with each commit. Static assets are hosted via
-GitHub Issues—yes, I know, it's lazy. I use VSCode to write in markdown and commit to the
+GitHub Actions deploys the site automatically with each commit to the main branch. Static
+assets are hosted on Cloudflare [R2]. I use [VSCode] to write in markdown and commit to the
 repo. The CI takes care of everything else. You can find all the source code and content
 [here].
 
@@ -91,6 +91,7 @@ repo. The CI takes care of everything else. You can find all the source code and
 [hugo]: https://gohugo.io
 [papermod]: https://github.com/adityatelange/hugo-PaperMod
 [here]: https://github.com/rednafi/rednafi.com
+[r2]: https://www.cloudflare.com/developer-platform/r2/
 
 <!-- Greatest hits -->
 

@@ -250,9 +250,6 @@ created and they appear in the view:
     [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container)
     [^7]
 
-[image_1]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
-[image_2]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
-[image_3]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png
+[image_1]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
+[image_2]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
+[image_3]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png

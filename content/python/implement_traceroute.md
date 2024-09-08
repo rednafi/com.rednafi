@@ -267,5 +267,4 @@ Hop  IP Address          Hostname                                          Time 
 [^3]:
     [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
 
-[image_1]:
-    https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+[image_1]: https://blob.rednafi.com/static/images/implement_traceroute/img_1.png

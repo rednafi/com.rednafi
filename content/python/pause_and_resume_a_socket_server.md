@@ -157,5 +157,4 @@ simply running the function in a blocking manner was enough.
 
 [^1]: [socketserver](https://docs.python.org/3/library/socketserver.html)
 
-[image_1]:
-    https://blob.rednafi.com/static/images/pause_and_resume_a_socket_server/img_1.png
+[image_1]: https://blob.rednafi.com/static/images/pause_and_resume_a_socket_server/img_1.png
