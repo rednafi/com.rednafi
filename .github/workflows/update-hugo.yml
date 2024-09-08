@@ -1,0 +1,69 @@
+name: Update Hugo version
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Runs every Monday at midnight
+  workflow_dispatch:
+
+jobs:
+  check-and-update-hugo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get current Hugo version
+        id: get_current_hugo_version
+        run: |
+          current_version=$(grep 'HUGO_VERSION:' .github/workflows/ci.yml | awk '{print $2}')
+          echo "Current Hugo version is ${current_version}"
+          echo "CURRENT_HUGO_VERSION=${current_version}" >> "${GITHUB_ENV}"
+
+      - name: Fetch latest Hugo version
+        id: fetch_latest_hugo_version
+        run: |
+          latest_version=$(curl --silent "https://api.github.com/repos/gohugoio/hugo/releases/latest" \
+            | jq -r .tag_name | sed 's/v//')
+          echo "Latest Hugo version is ${latest_version}"
+          echo "LATEST_HUGO_VERSION=${latest_version}" >> "${GITHUB_ENV}"
+
+      - name: Check if update is needed
+        id: check_update
+        run: |
+          if [[ "${LATEST_HUGO_VERSION}" == "${CURRENT_HUGO_VERSION}" ]]; then
+            echo "Hugo is up to date. No update needed."
+            echo "hugo_update_needed=false" >> "${GITHUB_ENV}"
+            exit 0
+          else
+            echo "Hugo needs updating from ${CURRENT_HUGO_VERSION} to ${LATEST_HUGO_VERSION}."
+            echo "hugo_update_needed=true" >> "${GITHUB_ENV}"
+          fi
+
+      - name: Update Hugo version in ci.yml
+        if: env.hugo_update_needed == 'true'
+        run: |
+          sed -i "s/HUGO_VERSION: ${CURRENT_HUGO_VERSION}/HUGO_VERSION: ${LATEST_HUGO_VERSION}/g" \
+            .github/workflows/ci.yml
+
+      - name: Install updated Hugo version
+        if: env.hugo_update_needed == 'true'
+        run: |
+          wget -O hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${{ env.LATEST_HUGO_VERSION }}/\
+            hugo_extended_${{ env.LATEST_HUGO_VERSION }}_Linux-64bit.deb"
+          sudo dpkg -i hugo.deb
+
+      - name: Build site with updated Hugo
+        if: env.hugo_update_needed == 'true'
+        run: |
+          hugo --gc --minify
+        continue-on-error: false
+
+      - name: Commit changes if build succeeds
+        if: success() && env.hugo_update_needed == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit -am "Update Hugo version to $LATEST_HUGO_VERSION"
+          git push

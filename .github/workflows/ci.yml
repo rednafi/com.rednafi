@@ -47,6 +47,14 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
