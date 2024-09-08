@@ -5,7 +5,7 @@ tags:
     - Essay
 ---
 
-There are a few ways you can add URLs to your markdown documents:
+There are a few ways you can add URLs to your Markdown documents:
 
 -   Inline links
 
@@ -65,7 +65,7 @@ But it suffers from a few issues:
 
 The reference link approach solves some of these issues since you won’t have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows
-you to use a markdown formatter to enforce a maximum line width. I use prettier[^2] to cap
+you to use a Markdown formatter to enforce a maximum line width. I use prettier[^2] to cap
 the line width at 92 characters and the formatter works better when it doesn't have to
 shimmy around multiple long inline URLs.
 
@@ -87,7 +87,7 @@ Moreover, adding multiple links to the same origin is straightforward since you 
 the footnote numbers like this[^3][^4]. Plus, you don't have to manually create a separate
 reference section; it automatically gets created for you as you start adding footnotes. See
 the reference section in this post and click on the backref links to go back to the origin.
-Most parsers like GitHub flavored markdown[^5] now support footnotes out of the box.
+Most parsers like GitHub flavored Markdown[^5] now support footnotes out of the box.
 
 Recently, I've spent an entire evening converting almost all of the inline links on this
 site into footnote style references in a semi-automated manner. I still use reference links
@@ -105,9 +105,9 @@ prettier's[^2] job has become easier too!
     Multiple footnotes are less distracting than multiple side-by-side URLs
     <https://rednafi.com/index>
 
-[^5]: [GitHub flavored markdown](https://github.github.com/gfm/)
+[^5]: [GitHub flavored Markdown](https://github.github.com/gfm/)
 
 [^6]:
-    [Checkout the raw markdown file of this post](https://github.com/rednafi/rednafi.com/blob/main/content/zephyr/footnotes_for_the_win.md)
+    [Checkout the raw Markdown file of this post](https://github.com/rednafi/rednafi.com/blob/main/content/zephyr/footnotes_for_the_win.md)
 
 [reference link]: https://example.com

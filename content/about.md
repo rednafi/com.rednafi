@@ -49,7 +49,7 @@ registered with Cloudflare. The primary font is Inter, and the code examples use
 Mono.
 
 GitHub Actions deploys the site automatically with each commit to the main branch. Static
-assets are hosted on Cloudflare [R2]. I use [VSCode] to write in markdown and commit to the
+assets are hosted on Cloudflare [R2]. I use [VSCode] to write in Markdown and commit to the
 repo. The CI takes care of everything else. You can find all the source code and content
 [here].
 
