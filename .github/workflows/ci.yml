@@ -68,7 +68,8 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          make init
+          git submodule update --init --recursive
+          npm ci || true
           hugo \
             --gc \
             --minify \

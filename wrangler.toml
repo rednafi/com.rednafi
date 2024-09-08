@@ -1,0 +1,7 @@
+name = "r2-uploader"
+account_id = "f2c208344e8adb0cf3ea1e48dccf7218"
+
+[[r2_buckets]]
+binding = "blog"
+bucket_name = "blog"
+preview_bucket_name = "blog"

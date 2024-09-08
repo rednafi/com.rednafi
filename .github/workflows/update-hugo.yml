@@ -69,8 +69,8 @@ jobs:
       - name: Build site with updated Hugo
         if: env.hugo_update_needed == 'true'
         run: |
-          npm ci || true
           git submodule update --init --recursive
+          npm ci || true
           hugo --gc --minify
         continue-on-error: false
 
