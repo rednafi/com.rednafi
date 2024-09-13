@@ -338,7 +338,7 @@ syntax I use the most, with real examples.
     ls non_existing_file > /dev/null 2>&1
     ```
 
--   Print and discard stdout and stderr (not sure why would you ever need this):
+-   Print and discard stdout and stderr (not sure why you would ever need this):
 
     ```sh
     command | tee /dev/null
