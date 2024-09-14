@@ -29,6 +29,7 @@ devserver:
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
 upload-static:
+	oxipng -o 6 -r static/images/
 	find static -type f | while read filepath; do \
 		key=$$(echo "$$filepath" | sed 's|^|blog/|'); \
 		wrangler r2 object put $$key --file "$$filepath"; \
