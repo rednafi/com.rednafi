@@ -76,11 +76,11 @@ with the Wrangler[^12] CLI. The Makefile in the repo has a single command named
 
 ```make
 upload-static:
-	oxipng -o 6 -r static/images/
-	find static -type f | while read filepath; do \
-		key=$$(echo "$$filepath" | sed 's|^|blog/|'); \
-		wrangler r2 object put $$key --file "$$filepath"; \
-	done
+    oxipng -o 6 -r static/images/
+    find static -type f | while read filepath; do \
+        key=$$(echo "$$filepath" | sed 's|^|blog/|'); \
+        wrangler r2 object put $$key --file "$$filepath"; \
+    done
 ```
 
 I just put the screenshots and images in the `/static/images/<blog-name>/*.png` path, update
