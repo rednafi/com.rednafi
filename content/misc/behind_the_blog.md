@@ -51,7 +51,7 @@ that way.
 
 ## Cloudflare Cache and R2
 
-I'm a huge fan of Cloudflare and oftent try to shoehorn their offerings into my projects.
+I'm a huge fan of Cloudflare and often try to shoehorn their offerings into my projects.
 Since my domain is registered with them, setting up their proxy with my domain's DNS and
 turning on caching took just a few minutes. Their caching layer absorbs most of the traffic,
 and less than 10% of the requests hit the origin server. Plus, having the proxy layer gives
