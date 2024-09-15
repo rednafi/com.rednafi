@@ -3,7 +3,8 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-regular.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-regular.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -11,7 +12,8 @@
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 400;
-  src: url("https://blob.rednafi.com/static/fonts/jetbrains-mono-v18-latin-regular.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/jetbrains-mono-v18-latin-regular.woff2")
+    format("woff2");
 }
 
 /* Load less critical fonts lazily */
@@ -20,7 +22,8 @@
   font-family: "Inter";
   font-style: italic;
   font-weight: 400;
-  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-italic.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-italic.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -28,7 +31,8 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-700.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-700.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -36,7 +40,8 @@
   font-family: "Inter";
   font-style: italic;
   font-weight: 700;
-  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-700italic.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/inter-v18-latin-700italic.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -44,7 +49,8 @@
   font-family: "JetBrains Mono";
   font-style: italic;
   font-weight: 400;
-  src: url("https://blob.rednafi.com/static/fonts/jetbrains-mono-v18-latin-italic.woff2") format("woff2");
+  src: url("https://blob.rednafi.com/static/fonts/jetbrains-mono-v18-latin-italic.woff2")
+    format("woff2");
 }
 
 .logo a img {

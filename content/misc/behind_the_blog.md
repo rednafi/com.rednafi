@@ -10,9 +10,9 @@ give in to the trend of starting a blog, adding one overly enthusiastic entry ab
 stack behind it, and then vanishing into the ether.
 
 I was somewhat successful at that and wanted to write something I can link to when people
-are curious about the machinery that drives this site. The good thing is that the technology
-stack is simple and hasn't changed much over the years as I've refrained from tinkering with
-it unless absolutely necessary.
+are curious about the machinery that drives this site. The good thing is that the tech stack
+is simple and has remained stable over the years since I've only made changes when
+absolutely necessary.
 
 ## Markdown
 
@@ -22,57 +22,56 @@ Blacken-docs[^3] to fix line length and code formatting.
 
 ## Hugo
 
-Hugo[^4] is the static site generator that converts the Markdown files into HTML. I went
-with it because I needed something that generates the site almost instantly, even with a ton
-of content. I don't get to write Go professionally, and messing around with Hugo templates
-or its source code is a good excuse to play with some Go.
+Hugo[^4] is the static site generator that turns the Markdown files into HTML. I chose it
+because I needed something that can build the site quickly, even with lots of content. It
+lets me hot reload the server and check my changes as I write. Plus, I don’t get to write Go
+at work, so messing with Hugo templates or its source code gives me a reason to play around
+with Go.
 
-Initially, I tried some JS-based SSGs and abandoned them quickly because I found myself
-struggling to keep up with the pace at which the community likes to reinvent tooling. I use
-the Papermod[^5] theme and tweaked the CSS here and there over the years. Papermod takes
-care of all the pesky SEO stuff that I like to tell myself I don't care about at all.
+I initially tried some JS-based SSGs but dropped them pretty quickly because I couldn’t keep
+up with the constant tooling changes in the JavaScript universe. I use the Papermod[^5]
+theme and have tweaked the CSS over time. Papermod handles the SEO stuff, which I like to
+pretend I don’t care about.
 
 ## GitHub Issues
 
-I use GitHub Issues[^6] to brainstorm ideas for a new piece and record my writings. Usually,
-I go about collecting ideas over the week, record them in Issues, and write something over
-the weekend. This workflow was heavily inspired by Simon Willison's text on his work
-process[^7].
+I use GitHub Issues[^6] to brainstorm ideas and keep track of my writing. I usually gather
+ideas throughout the week, log them in Issues, and then write something over the weekend.
+This workflow is heavily inspired by Simon Willison's piece on his work process[^7].
 
 ![github issues as a research notebook][image_1]
 
 ## GitHub Actions and GitHub Pages
 
-Once I push the content to the mainline, GitHub Actions[^8] kicks in, checks linter
-conformity, builds the site, and pushes it to GitHub Pages[^9]. There's nothing to maintain,
-and I don't need to worry about scaling when some of my writing appears on the front page of
-Hacker News. Apart from the domain, maintaining this site costs me nothing, and I intend to
-maintain the status quo.
+Once I push content to the main branch, GitHub Actions[^8] automatically runs, checks the
+linter, builds the site, and deploys it to GitHub Pages[^9]. There's nothing to maintain,
+and I don’t have to worry about scaling, even if one of my posts hits the front page of
+Hacker News. Aside from the domain, this site costs me nothing to run, and I plan to keep it
+that way.
 
 ## Cloudflare Cache and R2
 
-I'm a huge fan of Cloudflare and often try to shoehorn their offerings into my projects.
-Since my domain is registered with them, it took me a minute to set up their proxy with my
-domain's DNS and turn on caching. Their caching layer absorbs the majority of the traffic,
-and on average, less than 10% of the requests reach the origin server. One added bonus of
-having the proxy layer is that I have access to more accurate analytics.
+I'm a huge fan of Cloudflare and oftent try to shoehorn their offerings into my projects.
+Since my domain is registered with them, setting up their proxy with my domain's DNS and
+turning on caching took just a few minutes. Their caching layer absorbs most of the traffic,
+and less than 10% of the requests hit the origin server. Plus, having the proxy layer gives
+me access to more accurate analytics.
 
 ![cloudflare cache analytics][image_2]
 
-Static assets like images, CSS, JS, and other artifacts live on Cloudflare R2[^10]. I used
-to use GitHub Issues to host my images and served the CSS and JS from the origin. I've
-recently changed that to use R2, which allows me to manage everything from a single place
-without worrying about cost. Their free version is incredibly generous as there is no egress
-bandwidth fee, and because of the caching layer, I don't use much of the allocated quota.
-It's fantastic!
+Static assets like images, CSS, JS, and other files are stored on Cloudflare R2[^10]. I used
+to host my images with GitHub Issues and serve CSS and JS from the origin, but I recently
+switched everything to R2. Now I can manage it all from one place without worrying about
+costs. Their free plan is super generous—there's no egress bandwidth fee, and because of
+caching, I barely use any of the quota. It's fantastic!
 
 ![cloudflare r2][image_3]
 
 ## Oxipng
 
-Oxipng[^11] is used to compress the images before uploading them to Cloudflare R2 bucket
-with the Wrangler[^12] CLI. The Makefile in the repo has a single command named
-`upload-static`, that does all of this in a single pass.
+Oxipng[^11] is used to compress images before uploading them to the Cloudflare R2 bucket
+with the Wrangler[^12] CLI. The Makefile in the repo has a single command called
+`upload-static` that handles everything in one go.
 
 ```make
 upload-static:
@@ -83,18 +82,18 @@ upload-static:
     done
 ```
 
-I just put the screenshots and images in the `/static/images/<blog-name>/*.png` path, update
-the references in the relevant Markdown file, and run `make upload-static` before pushing
-the changes to the repo.
+I just drop the screenshots and images into `/static/images/<blog-name>/*.png`, update the
+references in the Markdown file, and run `make upload-static` before pushing the changes to
+the repo.
 
 ## Google Analytics
 
-I'm still using Google Analytics[^13], which I don't like much. Cloudflare already gives me
-more accurate insight into the traffic, but the free version doesn't allow me to see which
-page is getting how many hits. I might bite the bullet in the future and just pay Cloudflare
-to be able to remove intrusive and heavy analytics scripts from the site.
+I'm still using Google Analytics[^13], even though I’m not a huge fan. Cloudflare already
+gives me better traffic insights, but the free version doesn’t show how many hits each page
+gets. At some point, I might just pay for Cloudflare’s upgraded plan so I can get rid of the
+bulky, intrusive analytics scripts for good.
 
-Everything is publicly available[^14] on GitHub.
+The source code and content for this site are all publicly available[^14] on GitHub.
 
 [^1]: [Pre-commit](https://pre-commit.com/)
 
