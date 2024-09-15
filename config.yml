@@ -40,7 +40,7 @@ params:
       "Software Engineering"
     ]
   author: "Redowan Delowar"
-  images: ["/images/home/cover.webp"]
+  images: ["https://blob.rednafi.com/static/images/home/cover.webp"]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
