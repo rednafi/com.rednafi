@@ -40,7 +40,7 @@ params:
       "Software Engineering"
     ]
   author: "Redowan Delowar"
-  images: ["https://blob.rednafi.com/static/images/home/cover.webp"]
+  images: ["https://blob.rednafi.com/static/images/home/cover.png"]
   DateFormat: "January 2, 2006"
   defaultTheme: light # dark, light
   disableThemeToggle: true
@@ -122,7 +122,7 @@ params:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
-    image: "https://blob.rednafi.com/static/images/home/cover.webp"
+    image: "https://blob.rednafi.com/static/images/home/cover.png"
 
   # for search
   # https://fusejs.io/api/options.html
