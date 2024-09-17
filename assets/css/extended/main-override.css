@@ -5,9 +5,9 @@ body {
   font-family: "Inter", "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 1.55;
-  letter-spacing: -0.01rem;
   word-break: break-word;
   background: var(--theme);
+  font-weight: 400 !important;
 }
 .page-header h1 {
   font-size: 26px;
