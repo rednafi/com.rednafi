@@ -57,17 +57,10 @@
 .logo a {
   font-family: "Inter", sans-serif;
   font-size: 20px;
-  font-weight: 700; /* Explicit bold for logo text */
+  font-weight: 700 !important; /* Explicit bold for logo text */
 }
 
-/* Ensure regular font weight is used globally */
-body {
-  font-family: "Inter", sans-serif;
-  font-weight: 400; /* Explicitly regular font */
-}
-
-/* Code blocks use regular JetBrains Mono font */
-code {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 400; /* Ensure regular weight for code font */
+#menu .active {
+  font-weight: 400 !important;
+  border-bottom: 2px solid currentColor;
 }
