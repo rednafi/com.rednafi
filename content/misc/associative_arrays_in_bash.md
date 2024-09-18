@@ -19,14 +19,14 @@ First, we have our usual arrays which are containers that can store multiple val
 by numbers. Associative arrays are similar, but they use strings as keys instead of numbers.
 For example, if you want to store the names of some fruits in a regular array, you can use:
 
-```bash
+```sh
 fruits=(apple banana cherry)
 ```
 
 This will create an array called fruits with three elements. You can access the elements by
 using the index number inside brackets, such as:
 
-```bash
+```sh
 echo ${fruits[0]}
 ```
 
@@ -38,7 +38,7 @@ apple
 
 You can also use a range of indices to get a slice of the array, such as:
 
-```bash
+```sh
 echo ${fruits[@]:1:2}
 ```
 
@@ -50,7 +50,7 @@ banana cherry
 
 Moreover, you can use `*` or `@` to get all the elements of the array, such as:
 
-```bash
+```sh
 echo ${fruits[*]}
 ```
 
@@ -64,8 +64,17 @@ Associative arrays are declared with the `declare -A` command, and then assigned
 using the `=` operator and brackets. For example, if you want to store the prices of some
 fruits in an associative array, you can use:
 
-```bash
+```sh
 declare -A prices
+
+prices=([apple]=1.00 [banana]=0.50 [cherry]=2.00)
+```
+
+Or you can create the key-value pairs in place like this:
+
+```sh
+declare -A prices
+
 prices[apple]=1.00
 prices[banana]=0.50
 prices[cherry]=2.00
@@ -74,7 +83,7 @@ prices[cherry]=2.00
 This will create an associative array called `prices` with three key-value pairs. You can
 access the values by using the keys inside brackets, such as:
 
-```bash
+```sh
 echo ${prices[apple]}
 ```
 
@@ -88,7 +97,7 @@ Similar to regular arrays, you can use `*` or `@` to get all the keys or values 
 associative array. Run the following command to get all the keys of the `prices` associative
 array:
 
-```bash
+```sh
 echo ${!prices[*]}
 ```
 
@@ -100,7 +109,7 @@ apple banana cherry
 
 To get the values, run:
 
-```bash
+```sh
 echo ${prices[@]}
 ```
 
@@ -114,7 +123,7 @@ Arrays and associative arrays can be useful when you want to store and manipulat
 data structures in bash. You can use them to perform arithmetic operations, string
 operations, or loop over them with for or while commands. For example, you can use:
 
-```bash
+```sh
 for fruit in ${!prices[*]}; do
     echo "$fruit costs ${prices[$fruit]}";
 done
@@ -139,25 +148,23 @@ cherry costs 2.00
 Here's a script that downloads three famous RFCs using cURL. We're using an associative
 array for bookkeeping purposes.
 
-```bash
+```sh
 #!/usr/bin/env bash
 
 set -euo pipefail
 
-declare -A rfc_urls
-
-base_url="https://www.rfc-editor.org/rfc"
-
-rfc_urls["http-error"]="${base_url}/rfc7808.txt"
-rfc_urls["http-one"]="${base_url}/rfc7231.txt"
-rfc_urls["datetime-format"]="${base_url}/rfc3339.txt"
+declare -A rfc_urls=(
+    [http-error]="https://www.rfc-editor.org/rfc/rfc7808.txt"
+    [http-one]="https://www.rfc-editor.org/rfc/rfc7231.txt"
+    [datetime-format]="https://www.rfc-editor.org/rfc/rfc3339.txt"
+)
 
 echo "======================"
 echo "start downloading rfcs"
 echo "======================"
 echo ""
 
-for key in ${!rfc_urls[*]}; do
+for key in "${!rfc_urls[@]}"; do
     value=${rfc_urls[$key]}
     echo "Downloading rfcs ${key}: ${value}"
     curl -OJLs "${value}"
