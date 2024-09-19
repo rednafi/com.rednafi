@@ -47,7 +47,7 @@ params:
   ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
+  ShowCodeCopyButtons: true
   ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
