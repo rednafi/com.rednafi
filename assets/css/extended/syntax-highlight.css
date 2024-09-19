@@ -38,8 +38,7 @@
 .chroma .kr,
 .chroma .kt,
 .chroma .kc, /* Keyword.Constant */
-.chroma .kv  /* Keyword.Variable */
-{
+.chroma .kv  /* Keyword.Variable */ {
   color: #00008b; /* Dark blue */
   font-weight: normal;
 }
@@ -56,8 +55,7 @@
 
 /* NameVariable */
 .chroma .nv,
-.chroma .nl /* Name.Label */
-{
+.chroma .nl /* Name.Label */ {
   color: #2e2e2e; /* Default text color */
 }
 
@@ -113,8 +111,7 @@
 .chroma .sx,
 .chroma .s1,
 .chroma .ss,
-.chroma .se /* LiteralString.Escape */
-{
+.chroma .se /* LiteralString.Escape */ {
   color: #006400; /* Dark green */
 }
 
@@ -125,16 +122,14 @@
 .chroma .mh,
 .chroma .mo,
 .chroma .mb,
-.chroma .il /* LiteralNumber.Integer.Long */
-{
+.chroma .il /* LiteralNumber.Integer.Long */ {
   color: #00688b; /* Dark cyan */
 }
 
 /* Operator */
 .chroma .o,
 .chroma .ow,
-.chroma .ol /* Operator.Like */
-{
+.chroma .ol /* Operator.Like */ {
   color: #000000; /* Black */
 }
 
@@ -148,9 +143,8 @@
 .chroma .cpf,
 .chroma .cbl /* Comment.Hashbang */,
 .chroma .cdo /* Comment.Multiline */,
-.chroma .cni /* Comment.Special */
-{
-  color: #808080; /* Gray */
+.chroma .cni /* Comment.Special */ {
+  color: #666666; /* Darker gray for better contrast */
   font-style: italic;
 }
 
