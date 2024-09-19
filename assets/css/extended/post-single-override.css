@@ -44,13 +44,12 @@ h3:hover .anchor,
 h4:hover .anchor,
 h5:hover .anchor,
 h6:hover .anchor {
-    display: inline-flex;
-    color: var(--secondary);
-    margin-inline-start: 8px;
-    font-weight: 400 !important;
-    user-select: none;
+  display: inline-flex;
+  color: var(--secondary);
+  margin-inline-start: 8px;
+  font-weight: 400 !important;
+  user-select: none;
 }
-
 
 .post-content img {
   border-radius: 4px;
@@ -60,8 +59,6 @@ h6:hover .anchor {
 .post-content img[src*="#center"] {
   margin: 1rem auto;
 }
-
-
 
 /* Add [] to footnote-ref and remove url underline */
 a.footnote-ref {
