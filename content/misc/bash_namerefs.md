@@ -1,6 +1,6 @@
 ---
 title: Bash namerefs for dynamic variable referencing
-date: 2024-09-19
+date: 2024-09-20
 tags:
   - Shell
   - TIL
