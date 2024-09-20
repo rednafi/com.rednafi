@@ -1,3 +1,11 @@
+---
+title: Bash namerefs for dynamic variable referencing
+date: 2024-09-19
+tags:
+  - Shell
+  - TIL
+---
+
 While going through a script at work today, I came across Bash's `nameref` feature. It uses
 `declare -n ref="$1"` to set up a variable that allows you to reference another variable by
 name—kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
