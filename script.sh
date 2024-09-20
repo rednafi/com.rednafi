@@ -1,20 +1,39 @@
 #!/usr/bin/env bash
 
-# Declare multiple arrays
-dataset1=(1 2 3 4 5)
-dataset2=(10 20 30 40 50)
-dataset3=(100 200 300 400 500)
-
-# Function to calculate the sum of an array
-sum_array() {
-    local sum=0
-    for element in "$@"; do
-        sum=$((sum + element))
-    done
-    echo "Sum: $sum"
+# Generic setter function
+set_var() {
+    local var_name="$1"
+    local value="$2"
+    declare -n ref="$var_name"
+    ref="$value"
 }
 
-# Process each dataset
-sum_array "${dataset1[@]}"
-sum_array "${dataset2[@]}"
-sum_array "${dataset3[@]}"
+# Generic getter function
+get_var() {
+    local var_name="$1"
+    declare -n ref="$var_name"
+    echo "$ref"
+}
+
+# Usage Example
+
+env="production"  # Could be passed as an argument to the script
+
+# Define default variables
+db_host="localhost"
+db_port=5432
+db_user="admin"
+db_pass="secret"
+
+# Set different values based on the environment
+if [[ "$env" == "production" ]]; then
+  set_var "db_host" "prod.db.example.com"
+  set_var "db_user" "prod_admin"
+elif [[ "$env" == "staging" ]]; then
+  set_var "db_host" "staging.db.example.com"
+  set_var "db_user" "staging_admin"
+fi
+
+# Retrieve and display values
+echo "Using Database: $(get_var "db_host")"
+echo "Database User: $(get_var "db_user")"
