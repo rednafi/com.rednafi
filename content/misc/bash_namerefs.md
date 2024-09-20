@@ -1,11 +1,3 @@
----
-title: Bash namerefs for dynamic variable referencing
-date: 2024-09-19
-tags:
-  - Shell
-  - TIL
----
-
 While going through a script at work today, I came across Bash's `nameref` feature. It uses
 `declare -n ref="$1"` to set up a variable that allows you to reference another variable by
 name—kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
@@ -262,6 +254,73 @@ In this example:
 
 Doing this with `eval` isn't pretty. I'll leave that as an exercise for you if you like to
 torment yourself.
+
+## Implementing generic setter and getter functions
+
+Building on the earlier examples, you can use namerefs to create generic setter and getter
+functions, making it easier to manage configuration variables or environment settings in
+scripts.
+
+Here's an example:
+
+```sh
+#!/usr/bin/env bash
+
+# Generic setter function
+set_var() {
+    local var_name="$1"
+    local value="$2"
+    declare -n ref="$var_name"
+    ref="$value"
+}
+
+# Generic getter function
+get_var() {
+    local var_name="$1"
+    declare -n ref="$var_name"
+    echo "$ref"
+}
+
+# Usage example
+
+env="staging"  # Can be passed as an argument to the script
+
+# Define default variables
+db_host="localhost"
+db_port=5432
+db_user="admin"
+db_pass="secret"
+
+# Set different values based on the environment
+if [[ "$env" == "production" ]]; then
+  set_var "db_host" "prod.db.example.com"
+  set_var "db_user" "prod_admin"
+elif [[ "$env" == "staging" ]]; then
+  set_var "db_host" "staging.db.example.com"
+  set_var "db_user" "staging_admin"
+fi
+
+# Retrieve and display values
+echo "Using Database: $(get_var "db_host")"
+echo "Database User: $(get_var "db_user")"
+```
+
+To keep things simple, the `env` variable isn't a CLI argument. Based on whether `env` is
+set to staging or production, the script will print the relevant database values.
+
+For `staging`, you'll see:
+
+```txt
+Using Database: staging.db.example.com
+Database User: staging_admin
+```
+
+For `production`:
+
+```txt
+Using Database: prod.db.example.com
+Database User: prod_admin
+```
 
 Oh, one extra thing: nameref was introduced in Bash 4.3, so you might run into problems if
 you're using an ancient version like the one shipped with macOS.
