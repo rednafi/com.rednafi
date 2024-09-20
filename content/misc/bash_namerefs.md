@@ -8,12 +8,12 @@ tags:
 
 While going through a script at work today, I came across Bash's `nameref` feature. It uses
 `declare -n ref="$1"` to set up a variable that allows you to reference another variable by
-name—kind of like pass-by-reference in C. I'm pretty sure I've seen it before but probably
-just skimmed over it.
+name—kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
+probably just skimmed over it.
 
-But as I dug into the man page[^1], I realized there's a gap in my understanding of how
-variable references actually work in Bash—probably because I never gave it the proper
-respect and just got by cobbling together scripts.
+As I dug into the man page[^1], I realized there's a gap in my understanding of how variable
+references actually work in Bash—probably because I never gave it proper attention and just
+got by cobbling together scripts.
 
 ## Namerefs
 
@@ -58,9 +58,8 @@ Hello from nameref!
 ```
 
 By running the `create_ref` function, we can dynamically update the value of
-`$original_var`, which lives outside of it. Notice that the function doesn't even need to
-know the existence of `$original_var`; it will work on any variable name provided, making it
-generic.
+`$original_var`, which exists outside of it. Notice that the function doesn't even need to
+know about `$original_var`; it works on any variable name provided, making it generic.
 
 In this script:
 
@@ -71,7 +70,7 @@ In this script:
 -   By setting `ref="Hello from nameref!"`, we indirectly update `original_var`.
 -   Finally, we print `original_var` to see the updated value.
 
-Without the nameref, you could achieve the same thing with this `eval` (read evil) trick:
+Without the nameref, you could achieve the same thing with this `eval` (read: evil) trick:
 
 ```sh
 #!/usr/bin/env bash
@@ -93,9 +92,9 @@ create_ref original_var
 echo "$original_var"
 ```
 
-This achieves the same result as before. The `eval "$var_name=\"$new_value\""` is
-dynamically updating the `$original_var` variable through `$var_name`. However, `eval` can
-be risky for security, and the nameref approach looks much cleaner syntactically.
+This achieves the same result. The `eval "$var_name=\"$new_value\""` dynamically updates the
+`$original_var` variable through `$var_name`. However, `eval` can be risky for security, and
+the nameref approach looks much cleaner syntactically.
 
 ## Managing multiple arrays
 
@@ -177,7 +176,35 @@ sum_array dataset2
 sum_array dataset3
 ```
 
-This approach is more complex, less secure, and harder to read in general.
+This approach is more complex, less secure, and harder to read in general. But the above
+`eval` example was a bit contrived to make it look bad. You can achieve the same thing
+without `eval` or nameref in this particular case like this:
+
+```sh
+#!/usr/bin/env bash
+
+# Declare multiple arrays
+dataset1=(1 2 3 4 5)
+dataset2=(10 20 30 40 50)
+dataset3=(100 200 300 400 500)
+
+# Function to calculate the sum of an array
+sum_array() {
+    local sum=0
+    for element in "$@"; do
+        sum=$((sum + element))
+    done
+    echo "Sum: $sum"
+}
+
+# Process each dataset
+sum_array "${dataset1[@]}"
+sum_array "${dataset2[@]}"
+sum_array "${dataset3[@]}"
+```
+
+Here, instead of passing the name of the dataset arrays as strings, we pass the elements of
+the array to the function and add them. But I digress!
 
 ## Associative arrays and nested references
 
@@ -231,13 +258,13 @@ In this example:
 -   Using `declare -n info="$info_name"`, we create a nameref `info` pointing to
     `user_info`.
 -   We update the specified key in the array.
--   Finally, we echo out the updated user information.
+-   Finally, we echo the updated user information.
 
-Doing this with `eval` isn't pretty. I'll leave that as a reader's exercise if you like to
+Doing this with `eval` isn't pretty. I'll leave that as an exercise for you if you like to
 torment yourself.
 
-Oh, one extra thing. Nameref was introduced in Bash 4.3. So you might be surprised if you
-try run in on an ancient version like the one shipped with MacOS.
+Oh, one extra thing: nameref was introduced in Bash 4.3, so you might run into problems if
+you're using an ancient version like the one shipped with macOS.
 
 [^1]:
     [Shell Builtin Commands - Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
