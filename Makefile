@@ -1,9 +1,11 @@
+# Make all the rules since we don't use make as a build tool
+.PHONY: $(MAKECMDGOALS)
+
 SHELL := /bin/bash -ex
 MAKEFLAGS += --silent
 
 # Define packages as a space-separated list
-BREW_PACKAGES := gh hugo pre-commit prettier python@3.12 uv
-
+BREW_PACKAGES := gh hugo prettier uv
 
 init:
 	git submodule update --init --recursive
@@ -13,16 +15,16 @@ init:
 		brew list $$pkg &>/dev/null || brew install $$pkg; \
 	done
 	uv venv -p 3.12
-	. .venv/bin/activate
+	uv tool install pre-commit
 	uv pip install black blacken-docs mypy pytest pytest-cov ruff
 
 lint:
-	pre-commit run --all-files
+	uvx pre-commit run --all-files
 	prettier --write .
 
 update:
 	git submodule update --remote --merge
-	pre-commit autoupdate -j 4
+	uvx pre-commit autoupdate -j 4
 	npm update
 
 devserver:
