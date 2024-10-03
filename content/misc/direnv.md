@@ -11,7 +11,7 @@ intercepts commands when you use the shell or when a prompt runs. That's why, ot
 occasional dabbling, I've mostly stayed away from tools like `asdf` or `pyenv` and instead
 stick to `apt` or `brew` for managing my binary installs, depending on the OS.
 
-Recently, though, I've started seeing many people I admire praising `direnv`:
+Recently, though, I've started seeing many people I admire extolling `direnv`:
 
 > _If you're old-school like me, my `.envrc` looks like this:_
 >
