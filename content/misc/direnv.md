@@ -239,9 +239,14 @@ It shows that the local `.venv` is active:
 
 No more worrying about mucking up my global Python installation while running some commands.
 
-Finally, the `source_env` directive allows you to source one `.envrc` file into another.
-Let's say you have some common, non-secret variables in an `.envrc.local` file and want to
-reuse them in `.envrc`.
+Another neat directive is `source_up`, which lets you inherit environment variables from the
+parent directory. Normally, when you move into a child directory, direnv unloads the parent
+directory's environment variables. But with the `source_up` directive in your `.envrc`,
+it'll keep those variables around in the child directory.
+
+Then there's the `source_env` directive, which lets you pull one `.envrc` file into another.
+So, if you’ve got some common, non-secret variables in an `.envrc.local` file, you can
+easily reuse them in your `.envrc`.
 
 Here's an example `.envrc.local` file:
 
