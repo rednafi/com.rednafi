@@ -7,9 +7,9 @@ Tags:
 ---
 
 I'm not really a fan of shims—code that automatically performs actions as a side effect or
-intercepts commands when you use the shell or when a prompt runs. That's mainly why I've
-stayed away from tools like `asdf` or `pyenv`, and instead stick to `apt` or `brew` for
-managing my binary installs, depending on the OS.
+intercepts commands when you use the shell or when a prompt runs. That's why, other than the
+occasional dabbling, I've mostly stayed away from tools like `asdf` or `pyenv` and instead
+stick to `apt` or `brew` for managing my binary installs, depending on the OS.
 
 Recently, though, I've started seeing many people I admire praising `direnv`:
 
