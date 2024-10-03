@@ -7,7 +7,7 @@ Tags:
 ---
 
 I'm not really a fan of shims—code that automatically performs actions as a side effect or
-intercepts actions when you use the shell or when a prompt runs. That's mainly why I've
+intercepts commands when you use the shell or when a prompt runs. That's mainly why I've
 stayed away from tools like `asdf` or `pyenv`, and instead stick to `apt` or `brew` for
 managing my binary installs, depending on the OS.
 
