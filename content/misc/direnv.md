@@ -76,13 +76,13 @@ prompt. If found and authorized, it loads the file into a bash sub-shell and app
 environment variables to the current shell.
 
 It supports hooks for common shells like Bash, Zsh, Tcsh, and Fish, allowing you to manage
-project-specific environment variables without cluttering your `~/.profile`. Since it’s a
+project-specific environment variables without cluttering your `~/.profile`. Since it's a
 fast, single static executable, direnv runs seamlessly and is language-agnostic, meaning you
 can easily use it alongside tools like `rbenv`, `pyenv`, and `phpenv`.
 
 You might argue that `source .env` works just fine, but it's an extra step to remember.
-Also, having the ability to automatically run arbitrary project-specific commands is a nice
-bonus.
+Also, being able to communicate the project-specific environment commands and variables, and
+having them sourced automatically, is a nice bonus.
 
 ## Why .envrc file and not just a plain .env file
 
@@ -97,14 +97,14 @@ It's such a simple idea that opens up many possibilities.
 
 ## How I use it
 
-Here are a few things I’m using it for:
+Here are a few things I'm using it for:
 
 -   Automatically loading environment variables from a `.env` file.
 -   Loading different sets of values for the same environment keys, e.g., local vs. staging
     values.
 -   Activating the virtual environment when I enter the directory of a Python project.
 
-Let’s say you want to load your environment variables automatically when you `cd` into a
+Let's say you want to load your environment variables automatically when you `cd` into a
 directory and have them removed from the shell environment when you leave it. Suppose the
 project directory looks like this:
 
@@ -208,10 +208,10 @@ direnv: unloading
 ```
 
 You can do a lot more with the idea, but going overboard with environment variables can be
-risky. You don’t want to accidentally load something into the environment you didn't intend
+risky. You don't want to accidentally load something into the environment you didn't intend
 to. Keeping it simple with sane defaults is the way to go.
 
-Like Hynek, I’ve adopted `uv`[^4] in my Python workflow, and now my default `.envrc` has
+Like Hynek, I've adopted `uv`[^4] in my Python workflow, and now my default `.envrc` has
 these two commands:
 
 ```sh
@@ -236,10 +236,10 @@ It shows that the local `.venv` is active:
 No more worrying about messing up my global Python installation while running some commands.
 
 Finally, the `source_env` directive allows you to source one `.envrc` file into another.
-Let’s say you have some common, non-secret variables in an `.envrc.local` file and want to
+Let's say you have some common, non-secret variables in an `.envrc.local` file and want to
 reuse them in `.envrc`.
 
-Here’s an example `.envrc.local` file:
+Here's an example `.envrc.local` file:
 
 ```txt
 export API_URL="http://localhost:5222"
@@ -254,7 +254,11 @@ source_env .envrc.local
 # Other commands and variables go here
 ```
 
-I haven’t used `source_env` much yet, but I love the possibilities it unlocks!
+I haven't used `source_env` much yet, but I love the possibilities it unlocks.
+
+The biggest reason I've adopted it everywhere is that it lets me share my shell environment
+variables and the magic commands without having anything stashed away in my `~/.zshrc` or
+`~/.zshenv`, so there's no need for out-of-band communication.
 
 [^1]: [Hynek on Twitter](https://x.com/hynek/status/1838076629249044533)
 
