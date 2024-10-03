@@ -87,7 +87,7 @@ having them sourced automatically, is a nice bonus.
 ## Why .envrc file and not just a plain .env file
 
 This was the first question that came to my mind: why not just use a `.env` file? Why
-introduce another configuration file? Grokking the docs helped clarify.
+introduce another configuration file? Grokking the docs clarified things.
 
 The `.envrc` file is treated like a shell script, where you can also list arbitrary shell
 commands that you want to be executed when you enter a project directory. You can't do that
@@ -131,7 +131,7 @@ BAR="bar-staging"
 
 The `.envrc` file can have just one command to load the default `.env` file:
 
-```txt
+```sh
 dotenv
 ```
 
@@ -237,7 +237,7 @@ It shows that the local `.venv` is active:
 /Users/rednafi/canvas/rednafi.com/.venv
 ```
 
-No more worrying about messing up my global Python installation while running some commands.
+No more worrying about mucking up my global Python installation while running some commands.
 
 Finally, the `source_env` directive allows you to source one `.envrc` file into another.
 Let's say you have some common, non-secret variables in an `.envrc.local` file and want to
@@ -245,14 +245,14 @@ reuse them in `.envrc`.
 
 Here's an example `.envrc.local` file:
 
-```txt
+```sh
 export API_URL="http://localhost:5222"
 export DATABASE_URL="postgres://localhost:5432/project-db"
 ```
 
-You can import this into the `.envrc` file like this:
+You can import `.env.local` into the `.envrc` file like this:
 
-```
+```sh
 source_env .envrc.local
 
 # Other commands and variables go here
