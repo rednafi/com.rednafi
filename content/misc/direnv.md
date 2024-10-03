@@ -166,12 +166,16 @@ If you want to load different variables depending on the environment, you can ad
 following shell script to the `.envrc` file:
 
 ```sh
-case "$ENVIRONMENT" in
-  staging)
-    [ -f .env.staging ] && dotenv .env.staging
+case "${ENVIRONMENT}" in
+  "staging")
+    if [[ -f ".env.staging" ]]; then
+      dotenv .env.staging
+    fi
     ;;
   *)
-    [ -f .env ] && dotenv
+    if [[ -f ".env" ]]; then
+      dotenv
+    fi
     ;;
 esac
 ```
