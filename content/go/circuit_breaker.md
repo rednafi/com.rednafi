@@ -91,14 +91,14 @@ type circuitBreaker struct {
 This struct includes:
 
 -   `mu`: A mutex to ensure thread-safe access to the circuit breaker.
--   `state`: The current state of the circuit breaker (`Closed`, `Open`, or `Half-Open`).
+-   `state`: The current state of the circuit breaker (`Closed`, `Open`, or `HalfOpen`).
 -   `failureCount`: The current count of consecutive failures.
 -   `lastFailureTime`: The timestamp of the last failure.
--   `halfOpenSuccessCount`: The number of successful requests in the Half-Open state.
+-   `halfOpenSuccessCount`: The number of successful requests in the `HalfOpen` state.
 -   `failureThreshold`: The number of consecutive failures allowed before opening the
     circuit.
--   `recoveryTime`: The cool-down period before the circuit breaker transitions from Open to
-    Half-Open.
+-   `recoveryTime`: The cool-down period before the circuit breaker transitions from `Open` to
+    `HalfOpen`.
 -   `halfOpenMaxRequests`: The maximum number of successful requests needed to close the
     circuit.
 -   `timeout`: The maximum duration to wait for a request to complete.
@@ -159,7 +159,7 @@ call to the appropriate handler based on the current state.
 
 ### Handling closed states
 
-In the **Closed** state, all requests are allowed to pass through. We monitor the requests
+In the `Closed` state, all requests are allowed to pass through. We monitor the requests
 for failures to decide when to trip the circuit breaker.
 
 ```go
@@ -194,13 +194,13 @@ In this function:
 -   If the function call fails, we increment the `failureCount` and update
     `lastFailureTime`.
 -   If the `failureCount` reaches the `failureThreshold`, we transition the circuit to the
-    **Open** state.
--   If the function call succeeds, we reset the circuit breaker to the **Closed** state by
+    `Open` state.
+-   If the function call succeeds, we reset the circuit breaker to the `Closed` state by
     calling `resetCircuit`.
 
 #### Resetting the breaker
 
-When a request succeeds, we reset the failure count and keep the circuit in the **Closed**
+When a request succeeds, we reset the failure count and keep the circuit in the `Closed`
 state.
 
 ```go
@@ -214,7 +214,7 @@ func (cb *circuitBreaker) resetCircuit() {
 
 ### Handling open states
 
-In the **Open** state, all requests are blocked to prevent further strain on the failing
+In the `Open` state, all requests are blocked to prevent further strain on the failing
 service. We check if the recovery period has expired before transitioning to the
 **Half-Open** state.
 
@@ -237,12 +237,12 @@ func (cb *circuitBreaker) handleOpenState() (any, error) {
 Here:
 
 -   We check if the recovery period (`recoveryTime`) has passed since the last failure.
--   If it has, we transition to the **Half-Open** state and reset the counters.
+-   If it has, we transition to the `HalfOpen` state and reset the counters.
 -   If not, we block the request and return an error immediately.
 
 ### Handling half-open states
 
-In the **Half-Open** state, we allow a limited number of requests to test if the service has
+In the `HalfOpen` state, we allow a limited number of requests to test if the service has
 recovered.
 
 ```go
@@ -274,10 +274,10 @@ func (cb *circuitBreaker) handleHalfOpenState(
 In this function:
 
 -   We attempt to execute the provided function `fn`.
--   If the function call fails, we transition back to the **Open** state.
+-   If the function call fails, we transition back to the `Open` state.
 -   If the function call succeeds, we increment `halfOpenSuccessCount`.
 -   Once the success count reaches `halfOpenMaxRequests`, we reset the circuit breaker to
-    the **Closed** state.
+    the `Closed` state.
 
 ### Running functions with timeout
 
