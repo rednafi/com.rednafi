@@ -1,5 +1,5 @@
 ---
-title: Writing a circuit breaker in Go from scratch
+title: Writing a circuit breaker in Go
 date: 2024-10-06
 tags:
     - Networking
