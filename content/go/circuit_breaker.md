@@ -103,7 +103,7 @@ This struct includes:
     circuit.
 -   `timeout`: The maximum duration to wait for a request to complete.
 
-### Initializing the circuit breaker
+### Initializing the breaker
 
 Next, we provide a constructor function to initialize a new `circuitBreaker` instance.
 
@@ -198,7 +198,7 @@ In this function:
 -   If the function call succeeds, we reset the circuit breaker to the **Closed** state by
     calling `resetCircuit`.
 
-#### Resetting the circuit breaker
+#### Resetting the breaker
 
 When a request succeeds, we reset the failure count and keep the circuit in the **Closed**
 state.
@@ -399,7 +399,7 @@ One limitation of Go generics is that you can't use type parameters with methods
 receiver. This means you can't define a method like
 `func (cb *CircuitBreaker[T]) Call(fn func() (T, error)) (T, error)`.
 
-Due to this constraint, we have to use workarounds such as using `any` (an alias for
+For this, we have to use workarounds such as using `any` (an alias for
 `interface{}`) as the return type in our function signatures. While this sacrifices some
 type safety, it allows us to create a flexible circuit breaker that can handle functions
 returning different types.
