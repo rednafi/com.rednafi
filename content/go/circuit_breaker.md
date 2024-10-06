@@ -9,7 +9,7 @@ mermaid: true
 
 Besides retries, circuit breakers[^1] are probably one of the most commonly employed
 resilience patterns in distributed systems. While writing a retry routine is pretty
-straightforward, implementing a circuit breaker requires a bit more effort.
+simple, implementing a circuit breaker needs a little bit of work.
 
 I realized that I usually just go for off-the-shelf libraries for circuit breaking and
 haven't written one from scratch before. So, this is an attempt to create a sloppy one in
