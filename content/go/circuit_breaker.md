@@ -216,7 +216,7 @@ func (cb *circuitBreaker) resetCircuit() {
 
 In the `Open` state, all requests are blocked to prevent further strain on the failing
 service. We check if the recovery period has expired before transitioning to the
-**Half-Open** state.
+`HalfOpen` state.
 
 ```go
 // handleOpenState blocks requests if recovery time hasn't passed
