@@ -19,8 +19,8 @@ init:
 	uv pip install black blacken-docs mypy pytest pytest-cov ruff
 
 lint:
-	uvx pre-commit run --all-files
-	prettier --write .
+	git diff --name-only --diff-filter=ACMRT | xargs -r uvx pre-commit run --files
+	git diff --name-only --diff-filter=ACMRT | xargs -r prettier --write
 
 update:
 	git submodule update --remote --merge
@@ -29,8 +29,6 @@ update:
 
 devserver:
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
-
-
 
 upload-static:
 	oxipng -o 6 -r static/images/
