@@ -8,8 +8,8 @@ mermaid: true
 ---
 
 Besides retries, circuit breakers[^1] are probably one of the most commonly employed
-resilience patterns in distributed systems. While writing a retry routine is pretty
-simple, implementing a circuit breaker needs a little bit of work.
+resilience patterns in distributed systems. While writing a retry routine is pretty simple,
+implementing a circuit breaker needs a little bit of work.
 
 I realized that I usually just go for off-the-shelf libraries for circuit breaking and
 haven't written one from scratch before. So, this is an attempt to create a sloppy one in
@@ -97,8 +97,8 @@ This struct includes:
 -   `halfOpenSuccessCount`: The number of successful requests in the `HalfOpen` state.
 -   `failureThreshold`: The number of consecutive failures allowed before opening the
     circuit.
--   `recoveryTime`: The cool-down period before the circuit breaker transitions from `Open` to
-    `HalfOpen`.
+-   `recoveryTime`: The cool-down period before the circuit breaker transitions from `Open`
+    to `HalfOpen`.
 -   `halfOpenMaxRequests`: The maximum number of successful requests needed to close the
     circuit.
 -   `timeout`: The maximum duration to wait for a request to complete.
@@ -159,8 +159,8 @@ call to the appropriate handler based on the current state.
 
 ### Handling closed states
 
-In the `Closed` state, all requests are allowed to pass through. We monitor the requests
-for failures to decide when to trip the circuit breaker.
+In the `Closed` state, all requests are allowed to pass through. We monitor the requests for
+failures to decide when to trip the circuit breaker.
 
 ```go
 // handleClosedState executes the function and monitors failures
@@ -215,8 +215,8 @@ func (cb *circuitBreaker) resetCircuit() {
 ### Handling open states
 
 In the `Open` state, all requests are blocked to prevent further strain on the failing
-service. We check if the recovery period has expired before transitioning to the
-`HalfOpen` state.
+service. We check if the recovery period has expired before transitioning to the `HalfOpen`
+state.
 
 ```go
 // handleOpenState blocks requests if recovery time hasn't passed
@@ -399,10 +399,9 @@ One limitation of Go generics is that you can't use type parameters with methods
 receiver. This means you can't define a method like
 `func (cb *CircuitBreaker[T]) Call(fn func() (T, error)) (T, error)`.
 
-For this, we have to use workarounds such as using `any` (an alias for
-`interface{}`) as the return type in our function signatures. While this sacrifices some
-type safety, it allows us to create a flexible circuit breaker that can handle functions
-returning different types.
+For this, we have to use workarounds such as using `any` (an alias for `interface{}`) as the
+return type in our function signatures. While this sacrifices some type safety, it allows us
+to create a flexible circuit breaker that can handle functions returning different types.
 
 ## Handling incompatible function signatures
 
