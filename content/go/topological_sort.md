@@ -215,6 +215,34 @@ func TopologicalSortBatch(graph *Graph) {
 -   `GetReady` retrieves the next batch of tasks to process.
 -   `Done` marks tasks as finished, allowing dependent tasks to be processed next.
 
+### Using the sorter
+
+You can use the API as follows:
+
+```go
+g := NewGraph()
+
+// Define task dependencies
+g.AddEdge("A", "B")      // B depends on A
+g.AddEdge("A", "C")      // C depends on A
+g.AddEdge("B", "D")      // D depends on B
+g.AddEdge("C", "D")      // D depends on C
+
+// Perform topological sort in batches
+TopologicalSortBatch(g)
+```
+
+This will return:
+
+```txt
+Next batch: [A]
+Next batch: [B C]
+Next batch: [D]
+```
+
+Here, A needs to run first. B and C can run in parallel after A finishes, and only then can
+D run.
+
 ## Complete example
 
 Here's the full implementation, heavily annotated for clarity:
@@ -295,6 +323,7 @@ func TopologicalSortBatch(graph *Graph) {
     }
 }
 
+// Usage
 func main() {
     g := NewGraph()
 
@@ -307,14 +336,6 @@ func main() {
     // Perform topological sort in batches
     TopologicalSortBatch(g)
 }
-```
-
-When you run the program, it outputs the batches of tasks that can be executed in parallel:
-
-```txt
-Next batch: [A]
-Next batch: [B C]
-Next batch: [D]
 ```
 
 This can be used to make custom task orchestrator. Here's an example[^1].
