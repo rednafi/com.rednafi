@@ -233,6 +233,12 @@ services:
 
 ## Build cache mounts
 
+Got it! Here’s the full section with bullet points explaining the options for both commands:
+
+---
+
+## Build cache mounts
+
 Build cache mounts[^4] help speed up Docker image builds by caching intermediate files like
 package downloads or compiled artifacts. They're used during the build process and aren't
 part of the final container image.
@@ -244,6 +250,13 @@ RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && apt-get install -y curl
 ```
 
+Here’s what each option does:
+
+-   `--mount=type=cache`: Defines a cache mount that stores the files from the `apt-get`
+    commands to speed up future builds by reusing the downloaded packages.
+-   `target=/var/cache/apt`: Specifies the location inside the container where the cache
+    will be stored during the build process.
+
 In my Python projects, I cache my dependencies and install them with `uv` like this:
 
 ```dockerfile
@@ -253,9 +266,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --no-install-project --locked --no-dev
 ```
 
-> **Note:** Build cache mounts are only available during the image build process and are not
-> present in the final image. They're defined in the `Dockerfile` and aren't applicable in
-> `docker-compose` files or regular `docker run` commands.
+The cache mount at `/root/.cache/uv` caches dependencies so they aren't re-downloaded during
+future builds if nothing changes. The bind mounts provide access to `uv.lock` and
+`pyproject.toml` from the host, ensuring the container reads these config files during the
+build. This way, any changes to these files are picked up, while the cached dependencies are
+reused unless the configurations require updates.
 
 [^1]: [Volume mounts](https://docs.docker.com/storage/volumes/)
 
