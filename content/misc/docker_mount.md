@@ -15,9 +15,9 @@ Here's my attempt to disentangle some of my most-used mount commands.
 
 ## Volume mounts
 
-Volume mounts let you store data outside the container in a location managed by Docker. The
-data persists even after the container stops. On non-Linux systems, volume mounts are faster
-than bind mounts because data doesn’t need to cross the virtualization boundary.
+Volume mounts[^1] let you store data outside the container in a location managed by Docker.
+The data persists even after the container stops. On non-Linux systems, volume mounts are
+faster than bind mounts because data doesn’t need to cross the virtualization boundary.
 
 ### The `-v` option
 
@@ -99,7 +99,7 @@ I prefer the new style because it reduces ambiguity and makes the configuration 
 
 ## Bind mounts
 
-Bind mounts let you directly mount a file or directory from the host into the container.
+Bind mounts[^2] let you directly mount a file or directory from the host into the container.
 This is especially useful in development when you want the container to have access to your
 code or data.
 
@@ -169,7 +169,7 @@ services:
 
 ## Tmpfs mounts
 
-Tmpfs mounts store data in the host's memory, not on disk. This makes them ideal for
+Tmpfs mounts[^3] store data in the host's memory, not on disk. This makes them ideal for
 temporary storage that doesn’t need to persist after the container stops. They’re great for
 things like caches or scratch space.
 
@@ -233,7 +233,7 @@ services:
 
 ## Build cache mounts
 
-Build cache mounts help speed up Docker image builds by caching intermediate files like
+Build cache mounts[^4] help speed up Docker image builds by caching intermediate files like
 package downloads or compiled artifacts. They're used during the build process and aren't
 part of the final container image.
 
@@ -252,3 +252,15 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --no-install-project --locked --no-dev
 ```
+
+> **Note:** Build cache mounts are only available during the image build process and are not
+> present in the final image. They're defined in the `Dockerfile` and aren't applicable in
+> `docker-compose` files or regular `docker run` commands.
+
+[^1]: [Volume mounts](https://docs.docker.com/storage/volumes/)
+
+[^2]: [Bind mounts](https://docs.docker.com/storage/bind-mounts/)
+
+[^3]: [Tmpfs mounts](https://docs.docker.com/storage/tmpfs/)
+
+[^4]: [Build cache mounts](https://docs.docker.com/build/cache/optimize/#use-cache-mounts)
