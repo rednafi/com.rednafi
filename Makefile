@@ -19,8 +19,8 @@ init:
 	uv pip install black blacken-docs mypy pytest pytest-cov ruff
 
 lint:
-	git diff --name-only --diff-filter=ACMRT | xargs -r uvx pre-commit run --files
-	git diff --name-only --diff-filter=ACMRT | xargs -r prettier --write
+	git status --porcelain | awk '{print $$2}' | xargs -r uvx pre-commit run --files
+	git status --porcelain | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
 
 update:
 	git submodule update --remote --merge
