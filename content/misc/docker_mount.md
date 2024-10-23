@@ -233,12 +233,6 @@ services:
 
 ## Build cache mounts
 
-Got it! Here’s the full section with bullet points explaining the options for both commands:
-
----
-
-## Build cache mounts
-
 Build cache mounts[^4] help speed up Docker image builds by caching intermediate files like
 package downloads or compiled artifacts. They're used during the build process and aren't
 part of the final container image.
