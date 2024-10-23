@@ -260,11 +260,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --no-install-project --locked --no-dev
 ```
 
-The cache mount at `/root/.cache/uv` caches dependencies so they aren't re-downloaded during
-future builds if nothing changes. The bind mounts provide access to `uv.lock` and
-`pyproject.toml` from the host, ensuring the container reads these config files during the
-build. This way, any changes to these files are picked up, while the cached dependencies are
-reused unless the configurations require updates.
+Above, the cache mount at `/root/.cache/uv` saves dependencies so they don't need to be
+re-downloaded in future builds if nothing changes. The bind mounts provide access to
+`uv.lock` and `pyproject.toml` from the host, allowing the container to read these config
+files during the build. Any changes to the files are picked up, while cached dependencies
+are reused unless the configurations have been updated.
 
 [^1]: [Volume mounts](https://docs.docker.com/storage/volumes/)
 
