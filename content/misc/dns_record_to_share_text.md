@@ -17,12 +17,12 @@ with a base64 encoded message containing the poem **A Poison Tree** by William B
 message can now be queried and decoded with the following shell command:
 
 ```sh
-dig +short _poem.rednafi.com TXT | sed 's/"//g' | base64 --decode
+dig +short _poem.rednafi.com TXT | sed 's/[\" ]//g' | base64 -d
 ```
 
 The command uses `dig` to query a TXT DNS record for `_poem.rednafi.com`, removes any double
-quotes from the record value via `sed`, and then decodes the base64-encoded value via
-`base64` to retrieve the original plaintext message that was stored in the TXT record.
+quotes and spaces from the record value via `sed`, and then decodes the base64-encoded value
+via `base64` to retrieve the original plaintext message that was stored in the TXT record.
 Running this will return the decoded content of the record:
 
 ```txt
