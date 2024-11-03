@@ -9,8 +9,8 @@ This morning, someone on Twitter pointed me to PEP 562[^1], which introduces `__
 and `__dir__` at the module level. While `__dir__` helps control which attributes are
 printed when calling `dir(module)`, `__getattr__` is the more interesting addition.
 
-The `__getattr__` method in a module behaves similarly to how it works in a Python class.
-For example:
+The `__getattr__` method in a module works similarly to how it does in a Python class. For
+example:
 
 ```python
 class Cat:
@@ -28,9 +28,9 @@ cat.voice  # Prints "meow!!"
 cat.something_else
 ```
 
-In this class, `__getattr__` defines what happens when specific attributes are accessed.
-Plus, this lets you manage how missing attributes behave. Since Python 3.7, you can also
-define `__getattr__` at the module level to handle attribute access on the module itself.
+In this class, `__getattr__` defines what happens when specific attributes are accessed,
+allowing you to manage how missing attributes behave. Since Python 3.7, you can also define
+`__getattr__` at the module level to handle attribute access on the module itself.
 
 For instance, if you have a module `my_module.py`:
 
@@ -61,15 +61,15 @@ print(my_module.non_existent)  # Raises AttributeError
 ```
 
 If an attribute isn't found through the regular lookup (using `object.__getattribute__`),
-Python will then look for `__getattr__` in the module's `__dict__`. If found, it calls
+Python will look for `__getattr__` in the module's `__dict__`. If found, it calls
 `__getattr__` with the attribute name and returns the result. But if you're looking up a
-name directly as a module global, it bypasses `__getattr__`. This design prevents
-performance issues that would arise from repeatedly invoking `__getattr__` for built-in or
-common attributes.
+name directly as a module global, it bypasses `__getattr__`. This prevents performance
+issues that would arise from repeatedly invoking `__getattr__` for built-in or common
+attributes.
 
 One practical use for module-level `__getattr__` is lazy-loading heavy dependencies to
-improve startup performance. Imagine you have a module that relies on a large library, but
-you don't need it immediately at import.
+improve startup performance. Imagine you have a module that relies on a large library but
+don't need it immediately at import.
 
 ```python
 # heavy_module.py
@@ -94,9 +94,9 @@ access `heavy_module.np` does it trigger the import:
 
 import heavy_module
 
-# NumPy hasn’t been imported yet.
+# NumPy hasn't been imported yet.
 
-# Code that doesn’t need NumPy...
+# Code that doesn't need NumPy...
 
 # Now we need NumPy
 arr = heavy_module.np.array([1, 2, 3])
@@ -111,8 +111,8 @@ This approach is handy in scenarios like CLIs where you want to keep startup qui
 example, if you need to initialize a database connection but only for specific commands, you
 can defer the setup until needed.
 
-Here's an example with SQLite (though SQLite connections are quick, imagine some slowpoke
-here):
+Here's an example with SQLite (though SQLite connections are quick, imagine a slower
+connection here):
 
 ```python
 # db_module.py
@@ -133,9 +133,9 @@ def __getattr__(name: str) -> sqlite3.Connection:
     raise AttributeError(f"Module {__name__} has no attribute {name}")
 ```
 
-In this setup, nothing will be instantiated when you import the `db_module`. The connection
-is only is only initialized on the first access of `db_module.connection`. Later calls use
-the cached `_connection`, making subsequent access fast.
+In this setup, nothing is instantiated when you import `db_module`. The connection is only
+initialized on the first access of `db_module.connection`. Later calls use the cached
+`_connection`, making subsequent access fast.
 
 Here's how you might use it in a CLI:
 
@@ -175,10 +175,10 @@ When you run `python cli.py greet`, the CLI starts quickly since it doesn't init
 database connection. But running `python cli.py show_data` accesses `db_module.connection`,
 which triggers the connection setup.
 
-Now, this could also be achieved by defining a function that initializes the database
-connection and caches it for subsequent calls. However, using module-level `__getattr__` can
-be more convenient if you have multiple global variables that require expensive calculations
-or initializations. Instead of writing separate functions for each variable, you can handle
+This could also be achieved by defining a function that initializes the database connection
+and caches it for subsequent calls. However, using module-level `__getattr__` can be more
+convenient if you have multiple global variables that require expensive calculations or
+initializations. Instead of writing separate functions for each variable, you can handle
 them all within the `__getattr__` method.
 
 [^1]: [PEP 562 – Module `__getattr__` and `__dir__`](https://peps.python.org/pep-0562/)
