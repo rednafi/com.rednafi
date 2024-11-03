@@ -3,6 +3,7 @@ title: Quicker startup with module-level __getattr__
 date: 2024-11-03
 tags:
     - Python
+    - TIL
 ---
 
 This morning, someone on Twitter pointed me to PEP 562[^1], which introduces `__getattr__`
