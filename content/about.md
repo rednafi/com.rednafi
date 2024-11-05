@@ -15,7 +15,7 @@ ShowShareButtons: false
              class="loading"
              style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
         <figcaption style="color: #808080; font-style: italic; font-weight: normal;">
-            The last stop in the Trójmiasto refrain: Gdynia, Poland.
+            Gdynia, Poland
         </figcaption>
     </figure>
 </div>
@@ -41,10 +41,13 @@ in Southeast Asia.
 -   [LinkedIn]
 -   [Twitter]
 
-## Behind the blog
+## Colophon
 
-[Hugo] powers this blog. I use the [Papermod] theme with some custom CSS. You can find more
-about the stack, deployment, and writing process [here].
+[Hugo] powers this blog. It's rocking the [Papermod] theme with some handrolled CSS flair. I
+write in plain markdown and push the [content] to GitHub, triggering the [GitHub Actions] CI,
+which then deploys the site to [GitHub Pages].
+
+Learn more about the stack, deployment, and writing process [here].
 
 ## Magnum opus
 
@@ -79,11 +82,14 @@ about the stack, deployment, and writing process [here].
 [linkedin]: https://www.linkedin.com/in/rednafi/
 [twitter]: https://twitter.com/rednafi
 
-<!-- Behind the blog -->
+<!-- Colophon -->
 
 [hugo]: https://gohugo.io
 [papermod]: https://github.com/adityatelange/hugo-PaperMod
 [here]: /misc/behind_the_blog
+[content]: https://github.com/rednafi/rednafi.com
+[github actions]: https://docs.github.com/en/actions
+[github pages]: https://pages.github.com/
 
 <!-- Greatest hits -->
 
