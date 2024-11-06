@@ -100,8 +100,7 @@ In these cases, the order of `@override` doesn't matter; you can put it before o
 `property` decorator, and it'll still work. I personally prefer keeping it as the outermost
 decorator.
 
-While I usually favor composition over inheritance, sometimes inheritance is unavoidable in
-Python. Recently, I've been gradually adding the `@override` decorator to my code, as it not
-only prevents typos but also alerts me if an upstream method name changes.
+I've been gradually adding the `@override` decorator to my code, as it not only prevents
+typos but also alerts me if an upstream method name changes.
 
 [^1]: [PEP 698 – Override decorator for static typing](https://peps.python.org/pep-0698/)
