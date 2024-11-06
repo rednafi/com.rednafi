@@ -17,7 +17,7 @@ Here's my attempt to disentangle some of my most-used mount commands.
 
 Volume mounts[^1] let you store data outside the container in a location managed by Docker.
 The data persists even after the container stops. On non-Linux systems, volume mounts are
-faster than bind mounts because data doesn’t need to cross the virtualization boundary.
+faster than bind mounts because data doesn't need to cross the virtualization boundary.
 
 ### The `-v` option
 
@@ -28,12 +28,12 @@ For example:
 docker run -v myvolume:/usr/share/nginx/html:ro nginx
 ```
 
-Here’s what each part means:
+Here's what each part means:
 
 -   `myvolume`: The name of the Docker-managed volume on the host.
 -   `/usr/share/nginx/html`: The mount point inside the container.
--   `:ro`: Mounts the volume as read-only inside the container. The host can still write
-    to the volume, but the container cannot.
+-   `:ro`: Mounts the volume as read-only inside the container. The host can still write to
+    the volume, but the container cannot.
 
 The general syntax is:
 
@@ -170,7 +170,7 @@ services:
 ## Tmpfs mounts
 
 Tmpfs mounts[^3] store data in the host's memory, not on disk. This makes them ideal for
-temporary storage that doesn’t need to persist after the container stops. They’re great for
+temporary storage that doesn't need to persist after the container stops. They're great for
 things like caches or scratch space.
 
 ### The `--tmpfs` option
@@ -194,14 +194,13 @@ docker run \
     --mount type=tmpfs,target=/app/tmp,tmpfs-size=64m,tmpfs-mode=1777 nginx
 ```
 
-Here’s what each part means:
+Here's what each part means:
 
 -   `type=tmpfs`: Specifies that this is a tmpfs mount, using the host's memory.
--   `target=/app/tmp`: The directory inside the container where the tmpfs mount is
-    mounted.
+-   `target=/app/tmp`: The directory inside the container where the tmpfs mount is mounted.
 -   `tmpfs-size=64m`: Limits the size of the tmpfs mount to 64 MB.
--   `tmpfs-mode=1777`: Sets permissions for the tmpfs mount (1777 grants read, write,
-    and execute permissions to everyone).
+-   `tmpfs-mode=1777`: Sets permissions for the tmpfs mount (1777 grants read, write, and
+    execute permissions to everyone).
 
 ### In `docker-compose.yml`
 
@@ -244,7 +243,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && apt-get install -y curl
 ```
 
-Here’s what each option does:
+Here's what each option does:
 
 -   `--mount=type=cache`: Defines a cache mount that stores the files from the `apt-get`
     commands to speed up future builds by reusing the downloaded packages.

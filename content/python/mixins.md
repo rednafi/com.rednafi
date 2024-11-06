@@ -56,7 +56,7 @@ architect interfaces, they can be segmented into two primary categories.
 
 ## Informal interfaces
 
-Informal interfaces are classes which define methods that can be overridden, but there’s no
+Informal interfaces are classes which define methods that can be overridden, but there's no
 strict enforcement.
 
 Let's write an informal interface for a simple calculator class:
@@ -514,8 +514,8 @@ combinations of toppings to spruce up the flavors quickly. However, making the t
 from scratch would be a lengthy process and doing it over an over again can ruin the fun of
 baking.
 
-While creating software, there’s sometimes a limit to the depth we should go. When pieces of
-what we’d like to achieve have already been executed well by others, it makes a lot of sense
+While creating software, there's sometimes a limit to the depth we should go. When pieces of
+what we'd like to achieve have already been executed well by others, it makes a lot of sense
 to reuse them. One way to achieve modularity and reusability in object-oriented programming
 is through a concept called a mixin. Different languages implement the concept of mixin in
 different ways. In Python, mixins are supported via multiple inheritance.

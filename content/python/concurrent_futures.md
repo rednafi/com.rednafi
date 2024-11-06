@@ -87,7 +87,7 @@ Similar to `map(func, *iterables)` except:
 -   func is executed asynchronously and several calls to func may be made concurrently.
 
     The returned iterator raises a `concurrent.futures.TimeoutError` if `__next__()` is
-    called and the result isn’t available after timeout seconds from the original call to
+    called and the result isn't available after timeout seconds from the original call to
     `Executor.map()`. Timeout can be an `int` or a `float`. If timeout is not specified or
     `None`, there is no limit to the wait time.
 
@@ -142,14 +142,14 @@ with concurrent.futures.Executor() as executor:
 Here you start by creating an Executor, which manages all the tasks that are running—either
 in separate processes or threads. Using the with statement creates a context manager, which
 ensures any stray threads or processes get cleaned up via calling the `executor.shutdown()`
-method implicitly when you’re done.
+method implicitly when you're done.
 
 In real code, you'd would need to replace the `Executor` with `ThreadPoolExecutor` or a
 `ProcessPoolExecutor` depending on the nature of the callables. Then a set comprehension has
 been used here to start all the tasks. The `executor.submit()` method schedules each task.
 This creates a Future object, which represents the task to be done. Once all the tasks have
 been scheduled, the method `concurrent.futures_as_completed()` is called, which yields the
-futures as they’re done – that is, as each task completes. The `fut.result()` method gives
+futures as they're done – that is, as each task completes. The `fut.result()` method gives
 you the return value of `perform(task)`, or throws an exception in case of failure.
 
 The `executor.submit()` method schedules the tasks asynchronously and doesn't hold any

@@ -553,7 +553,7 @@ error.
 
 ### Validation & runtime checks
 
-Python’s type system is strongly typed, but very dynamic. For all its benefits, this means
+Python's type system is strongly typed, but very dynamic. For all its benefits, this means
 some bugs can try to creep in, which more statically typed languages (like Java) would catch
 at compile time. Looking beyond even that, you may want to enforce more sophisticated,
 custom checks on data going in or out. Decorators can let you easily handle all of this, and
@@ -561,7 +561,7 @@ apply it to many functions at once.
 
 Imagine this: you have a set of functions, each returning a dictionary, which (among other
 fields) includes a field called “summary.” The value of this summary must not be more than
-30 characters long; if violated, that’s an error. Here is a decorator that raises a
+30 characters long; if violated, that's an error. Here is a decorator that raises a
 `ValueError` if that happens:
 
 ```python
@@ -854,7 +854,7 @@ with arguments or not:
 
 If `joinby` has been called without arguments, the decorated function will be passed in as
 `_func`. If it has been called with arguments, then `_func` will be None. The \* in the
-argument list means that the remaining arguments can’t be called as positional arguments.
+argument list means that the remaining arguments can't be called as positional arguments.
 This time you can use `joinby` with or without arguments and function `hello` and `greet`
 above demonstrate that.
 

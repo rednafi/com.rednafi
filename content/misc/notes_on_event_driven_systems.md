@@ -43,20 +43,20 @@ it.
 This shift is powerful because it frees services from having to know about each other. In
 this model, the kitchen doesn't wait for the order processing service to send a direct HTTP
 request. Instead, it listens for an event that triggers its response without direct
-integration. _"You’ve removed that runtime coupling because producers and consumers no
+integration. _"You've removed that runtime coupling because producers and consumers no
 longer need to know each other exist."_ By decoupling systems, event-driven architecture
 improves fault tolerance, scalability, and flexibility.
 
 ## The nature of an event
 
 At the core of event-driven systems is the concept of an event. An event is _"an immutable
-fact. It’s something that’s happened in the past. It cannot be changed."_ When an event is
-published, it’s a record of something that has already occurred, like _"order confirmed"_ or
+fact. It's something that's happened in the past. It cannot be changed."_ When an event is
+published, it's a record of something that has already occurred, like _"order confirmed"_ or
 _"pizza boxed."_ Events are simple, factual, and unchangeable.
 
 The analogy of a light switch brings this to life: _"You hit the light switch, and that
-raises a light switched-on event. You can’t un-switch on a light."_ To turn the light off,
-you generate a new event—_“light switched-off"_—but you don’t undo the original. This
+raises a light switched-on event. You can't un-switch on a light."_ To turn the light off,
+you generate a new event—_“light switched-off"_—but you don't undo the original. This
 principle of immutability ensures that events in the system are reliable and unambiguous,
 forming the foundation for how systems react.
 
@@ -70,10 +70,10 @@ clocked in.'"_ These are business-level events that reflect the narrative of the
 not just low-level system changes.
 
 In contrast, event-based systems simply react to any change, such as a file being added to
-S3 or a button being clicked in a UI. _"We’ve been building event-based systems for years...
-that doesn’t make it event-driven."_ The difference is significant because event-driven
+S3 or a button being clicked in a UI. _"We've been building event-based systems for years...
+that doesn't make it event-driven."_ The difference is significant because event-driven
 systems align technical architecture with business needs, creating a more meaningful,
-coherent system where the events reflect the organization’s core processes.
+coherent system where the events reflect the organization's core processes.
 
 ## Fat vs. sparse events
 
@@ -92,7 +92,7 @@ that data, the risk of breaking something grows.
 
 In contrast, sparse events are lightweight but require callbacks to get additional
 information. Initially, this might seem more efficient, but as more services join the
-system, the number of callbacks increases exponentially. _"Now you’ve got this potentially
+system, the number of callbacks increases exponentially. _"Now you've got this potentially
 infinite number of downstream services that are all making calls back to get more
 information."_ The result is a more tightly coupled system, albeit in a different form.
 
@@ -107,9 +107,9 @@ The core of event-driven architecture lies in the publish-subscribe pattern, fac
 an event broker. _"At its core, an event-driven architecture is made up of three parts: You
 have a producer, a consumer, and some kind of event broker in the middle."_ The producer
 generates the event, the broker routes it, and the consumer processes it. The beauty of this
-system is that producers and consumers don’t need to know about each other’s existence.
+system is that producers and consumers don't need to know about each other's existence.
 
-_"The first thing you’ll notice is that the producer and the consumer here have no idea each
+_"The first thing you'll notice is that the producer and the consumer here have no idea each
 other exists—the communication is managed by the broker."_ This decoupling makes the system
 more flexible and scalable. A consumer can be added or removed without impacting the
 producer. The broker ensures that events are delivered, allowing the system to continue
@@ -118,32 +118,32 @@ functioning smoothly even as it evolves.
 However, one responsibility remains: _"The schema of your event—the format of that event—is
 the biggest part of the coupling that you will see in event-driven architecture."_ While
 runtime coupling is removed, semantic coupling still exists. Producers must ensure that the
-event schema doesn’t change in ways that break existing consumers.
+event schema doesn't change in ways that break existing consumers.
 
 ## Handling constraints and governance
 
 In event-driven systems, the responsibility for handling constraints shifts from the
 producer to the consumer. Producers generate events as quickly as they can, without worrying
-about the load on consumers. _"As a producer, it’s not your responsibility to care about how
-your events are used... that’s the subscriber's responsibility."_ Consumers must handle
-their own ingestion rates and ensure they don’t get overloaded.
+about the load on consumers. _"As a producer, it's not your responsibility to care about how
+your events are used... that's the subscriber's responsibility."_ Consumers must handle
+their own ingestion rates and ensure they don't get overloaded.
 
 Governance plays a critical role in managing these systems, particularly as they evolve.
-When changes are made to event schemas, it’s essential to communicate those changes to all
-consumers. _"Governance is really important with event-driven architecture because you’ve
-got these systems that just don’t care about each other."_ One effective method for managing
+When changes are made to event schemas, it's essential to communicate those changes to all
+consumers. _"Governance is really important with event-driven architecture because you've
+got these systems that just don't care about each other."_ One effective method for managing
 this is through Request for Comments (RFCs), which allow for collaborative discussion before
 any changes are implemented.
 
 _"Rather than just publishing an event and hoping for the best, introducing governance
 ensures that events remain consistent and understandable across teams."_ This helps prevent
-breaking changes that could take down systems you didn’t even know were relying on your
+breaking changes that could take down systems you didn't even know were relying on your
 events.
 
 ## Metadata-data pattern for evolvability
 
 To enhance the evolvability of an event-driven system, East recommends using the
-metadata-data pattern. This pattern separates the event’s core data from its metadata,
+metadata-data pattern. This pattern separates the event's core data from its metadata,
 allowing for greater flexibility. _"Splitting your event down into a metadata section and
 the data section helps you to stay evolvable."_ The data contains the specifics of the
 event, while the metadata includes information like _"event type,"_ _"event ID,"_ and
@@ -163,7 +163,7 @@ real-time. But in an event-driven system, updates propagate over time. _"Eventua
 time, these systems will converge on the same view of the world."_ This is a shift in
 mindset for many developers used to strong consistency.
 
-To illustrate this, consider a card payment: _"When you make a card transaction, all you’re
+To illustrate this, consider a card payment: _"When you make a card transaction, all you're
 doing is making a theoretical guarantee that, at some point in the future, that money is
 going to move from your bank account to theirs."_ While the system is eventually consistent,
 the end result will be correct, just not immediately. Event-driven architecture functions
@@ -174,25 +174,25 @@ similarly—updates happen asynchronously, and systems eventually reach a consis
 Not every system can fully adopt event-driven architecture, and many still rely on
 HTTP-based communication. To integrate these systems into an event-driven world, you need a
 middle layer. For example, if your loyalty point service is being replaced by a third-party
-SaaS product that only supports an HTTP API, you’d still have a service managing that
+SaaS product that only supports an HTTP API, you'd still have a service managing that
 integration. This service listens for events and translates them into HTTP requests for
-systems that aren’t event-driven.
+systems that aren't event-driven.
 
 To handle differences in response times and reliability between HTTP-based and event-driven
 systems, introducing a queue or intermediary storage is crucial. _"Introducing this queue
 means you can keep this amount of durability... you can process to the third-party API as
 and when you need to."_ This queue adds resilience, allowing your system to continue
-functioning smoothly, even when interacting with external services that don’t follow
+functioning smoothly, even when interacting with external services that don't follow
 event-driven principles.
 
 ## Asynchronous commands
 
-Commands in an event-driven system don’t always need to be synchronous. Instead of waiting
+Commands in an event-driven system don't always need to be synchronous. Instead of waiting
 for an immediate response, systems can issue commands asynchronously, allowing for greater
 flexibility and non-blocking workflows. _"You want to send an email, but you might not
 necessarily want it to be completely request-response."_
 
-An asynchronous command might still send a request to a service, but the response isn’t
+An asynchronous command might still send a request to a service, but the response isn't
 required to continue processing. This allows systems like the email notification service to
 handle requests at its own pace, rather than blocking the core order processing service.
 _"Your email service can still expose an endpoint, but as opposed to that being an
