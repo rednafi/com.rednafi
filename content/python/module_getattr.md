@@ -1,5 +1,5 @@
 ---
-title: Quicker startup with module-level \_\_getattr\_\_
+title: Quicker startup with module-level getattr
 date: 2024-11-03
 tags:
     - Python
