@@ -1,5 +1,5 @@
 ---
-title: Use '__init_subclass__' hook to validate subclasses in Python
+title: Use __init_subclass__ hook to validate subclasses in Python
 date: 2021-11-20
 tags:
     - Python
