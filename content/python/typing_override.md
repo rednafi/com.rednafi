@@ -96,12 +96,12 @@ class Cat(Animal):
         return "Mammal"
 ```
 
-In these cases, the order of `@override` doesn't matter; you can place it before or after
-the `property` decorator, and it'll still work. Personally, I like to keep it as the
-outermost decorator in the stack.
+In these cases, the order of `@override` doesn't matter; you can put it before or after the
+`property` decorator, and it'll still work. I personally prefer keeping it as the outermost
+decorator.
 
-While I tend to prefer composition over inheritance most of the time, some times it's
-impossible to avoid the paradigm and lately, I've found myself adding this decorator for
-saner debugging.
+While I usually favor composition over inheritance, sometimes inheritance is unavoidable in
+Python. Recently, I've been gradually adding the `@override` decorator to my code, as it not
+only prevents typos but also alerts me if an upstream method name changes.
 
 [^1]: [PEP 698 – Override decorator for static typing](https://peps.python.org/pep-0698/)
