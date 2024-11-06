@@ -6,8 +6,6 @@ tags:
     - TIL
 ---
 
-Got it. Original tone, no changes:
-
 Although I've been using Python 3.12 in production for nearly a year, one neat feature in
 the typing module that escaped me was the `@override` decorator. Proposed in PEP-698[^1],
 it's been hanging out in `typing_extensions` for a while. This is one of those small
