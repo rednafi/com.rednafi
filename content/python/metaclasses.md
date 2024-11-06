@@ -14,13 +14,13 @@ often considered an arcane art that's beyond the grasp of the plebeians. Heck, e
 Peters[^1] advices you to tread carefully while dealing with these.
 
 > Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder
-> whether you need them, you don’t (the people who actually need them know with certainty
-> that they need them, and don’t need an explanation about why).
+> whether you need them, you don't (the people who actually need them know with certainty
+> that they need them, and don't need an explanation about why).
 
 Metaclasses are an esoteric OOP concept, lurking behind virtually all Python code. Every
 Python class that you create is attached to a default metaclass and Python cleverly
 abstracts away all the meta-magics. So, you're indirectly using them all the time whether
-you are aware of it or not. For the most part, you don’t need to be aware of it. Most Python
+you are aware of it or not. For the most part, you don't need to be aware of it. Most Python
 programmers rarely, if ever, have to think about metaclasses. This makes metaclasses
 exciting for me and I want to explore them in this post to formulate my own judgement.
 
@@ -184,13 +184,13 @@ These are the methods to override in your custom metaclass to give your classes 
 different from that of `type`. The following example shows the default behaviors of these
 special methods and their execution order.
 
-> Some people immediately think of `__init__`, and I’ve occasionally called it “the
-> constructor” myself; but in actuality, as its name indicates, it’s an initializer and by
-> the time it’s invoked, the object has already been created, seeing as it’s passed in as
+> Some people immediately think of `__init__`, and I've occasionally called it “the
+> constructor” myself; but in actuality, as its name indicates, it's an initializer and by
+> the time it's invoked, the object has already been created, seeing as it's passed in as
 > self. The real constructor is a far less famous function: `__new__`. The reason you might
-> never hear about it or use it—is that allocation doesn’t mean that much in Python, which
-> manages memory for you. So if you do override `__new__`, it’d be just like your
-> `__init__`—except you’ll have to call into Python to actually create the object, and then
+> never hear about it or use it—is that allocation doesn't mean that much in Python, which
+> manages memory for you. So if you do override `__new__`, it'd be just like your
+> `__init__`—except you'll have to call into Python to actually create the object, and then
 > return that object afterward.
 
 ```python
@@ -284,7 +284,7 @@ mutate and change the behavior of your target class.
 
 ## Metaclass conflicts
 
-Note that the metaclass argument is singular – you can’t attach more than one metaclass to a
+Note that the metaclass argument is singular – you can't attach more than one metaclass to a
 class. However, through multiple inheritance you can accidentally end up with more than one
 metaclass, and this produces a conflict which must be resolved.
 

@@ -180,5 +180,5 @@ def call_os_execvp() -> NoReturn:
     [^2]
 
 [^3]:
-    [Python type hints - what’s the point of NoReturn? - Adam Johnson](https://adamj.eu/tech/2021/05/20/python-type-hints-whats-the-point-of-noreturn/)
+    [Python type hints - what's the point of NoReturn? - Adam Johnson](https://adamj.eu/tech/2021/05/20/python-type-hints-whats-the-point-of-noreturn/)
     [^3]

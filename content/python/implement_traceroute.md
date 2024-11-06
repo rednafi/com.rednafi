@@ -15,8 +15,8 @@ for the packet to reach each stop along the way.
 
 It's useful when you want to know more about how your computer connects to other computers
 on the internet. For example, if you want to visit a website, your computer sends a request
-to the website’s server, which is another computer that hosts the website. But the request
-doesn’t go directly from your computer to the server. It has to pass through several other
+to the website's server, which is another computer that hosts the website. But the request
+doesn't go directly from your computer to the server. It has to pass through several other
 devices, such as routers, that help direct the traffic on the internet. These devices are
 called hops. Traceroute shows you the list of hops that your request goes through, and how
 long it takes for each hop to respond. This can help you troubleshoot network problems, such

@@ -24,14 +24,14 @@ Blacken-docs[^3] to fix line length and code formatting.
 
 Hugo[^4] is the static site generator that turns the Markdown files into HTML. I chose it
 because I needed something that can build the site quickly, even with lots of content. It
-lets me hot reload the server and check my changes as I write. Plus, I don’t get to write Go
+lets me hot reload the server and check my changes as I write. Plus, I don't get to write Go
 at work, so messing with Hugo templates or its source code gives me a reason to play around
 with Go.
 
-I initially tried some JS-based SSGs but dropped them pretty quickly because I couldn’t keep
+I initially tried some JS-based SSGs but dropped them pretty quickly because I couldn't keep
 up with the constant tooling changes in the JavaScript universe. I use the Papermod[^5]
 theme and have tweaked the CSS over time. Papermod handles the SEO stuff, which I like to
-pretend I don’t care about.
+pretend I don't care about.
 
 ## GitHub Issues
 
@@ -45,7 +45,7 @@ This workflow is heavily inspired by Simon Willison's piece on his work process[
 
 Once I push content to the main branch, GitHub Actions[^8] automatically runs, checks the
 linter, builds the site, and deploys it to GitHub Pages[^9]. There's nothing to maintain,
-and I don’t have to worry about scaling, even if one of my posts hits the front page of
+and I don't have to worry about scaling, even if one of my posts hits the front page of
 Hacker News. Aside from the domain, this site costs me nothing to run, and I plan to keep it
 that way.
 
@@ -88,9 +88,9 @@ the repo.
 
 ## Google Analytics
 
-I'm still using Google Analytics[^13], even though I’m not a huge fan. Cloudflare already
-gives me better traffic insights, but the free version doesn’t show how many hits each page
-gets. At some point, I might just pay for Cloudflare’s upgraded plan so I can get rid of the
+I'm still using Google Analytics[^13], even though I'm not a huge fan. Cloudflare already
+gives me better traffic insights, but the free version doesn't show how many hits each page
+gets. At some point, I might just pay for Cloudflare's upgraded plan so I can get rid of the
 bulky, intrusive analytics scripts for good.
 
 The source code and content for this site are all publicly available[^14] on GitHub.
