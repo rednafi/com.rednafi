@@ -78,14 +78,14 @@ against doing so:
 
 > _It is strongly advised that you do not log to the root logger in your library. Instead,
 > use a logger with a unique and easily identifiable name, such as the **name** for your
-> library’s top-level package or module. Logging to the root logger will make it difficult
+> library's top-level package or module. Logging to the root logger will make it difficult
 > or impossible for the application developer to configure the logging verbosity or handlers
 > of your library as they wish._
 
 Solving this is quite straightforward. Avoid using the root logger in your library code.
 Instead, instantiate your own logger instance and configure it with your heart's content.
 This way, your users get to keep using the root logger as they like, and they can also tap
-into the library’s log messages whenever they need to.
+into the library's log messages whenever they need to.
 
 Here's how to achieve that in the library:
 
@@ -111,7 +111,7 @@ INFO:root:This is an info message from the application.
 ```
 
 This setup also lets the application code access and adjust the library's logger to suit its
-needs. Here’s how it can be done in the `main.py` file:
+needs. Here's how it can be done in the `main.py` file:
 
 ```python
 # main.py
@@ -145,15 +145,15 @@ well.
 This allows the application code to retrieve and customize the logger as needed. Note that
 calling `getLogger` with the same name always retrieves the same logger instance.
 
-Also, you should avoid adding any handlers to your library’s logger. Doing so can complicate
+Also, you should avoid adding any handlers to your library's logger. Doing so can complicate
 things for users who may want to attach their own handlers. The logging how-to guide
 strongly warns against this:
 
 > _It is strongly advised that you do not add any handlers other than `NullHandler` to your
-> library’s loggers. This is because the configuration of handlers is the prerogative of the
+> library's loggers. This is because the configuration of handlers is the prerogative of the
 > application developer who uses your library. The application developer knows their target
 > audience and what handlers are most appropriate for their application: if you add handlers
-> ‘under the hood’, you might well interfere with their ability to carry out unit tests and
+> ‘under the hood', you might well interfere with their ability to carry out unit tests and
 > deliver logs which suit their requirements._
 
 If you're looking for a real-life example of how to minimally configure your library's

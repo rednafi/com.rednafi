@@ -501,7 +501,7 @@ None
 
 Another great use case for context managers is making parameters persistent across multiple
 HTTP requests. Python's `requests` library has a `Session` object that will let you easily
-achieve this. So, if you’re making several requests to the same host, the underlying TCP
+achieve this. So, if you're making several requests to the same host, the underlying TCP
 connection will be reused, which can result in a significant performance increase. The
 following example is taken directly from the official docs of the requests[^1] library.
 Let's persist some cookies across requests.

@@ -63,7 +63,7 @@ But it suffers from a few issues:
     from your content, potentially against their intention.
 -   Enforcing a line width limit can be challenging due to lengthy inlined URLs.
 
-The reference link approach solves some of these issues since you won’t have to scatter the
+The reference link approach solves some of these issues since you won't have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows
 you to use a Markdown formatter to enforce a maximum line width. I use prettier[^2] to cap
 the line width at 92 characters and the formatter works better when it doesn't have to

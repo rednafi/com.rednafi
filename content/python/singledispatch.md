@@ -65,7 +65,7 @@ dispatch generic function.
 > dispatch algorithm. When the implementation is chosen based on the type of a single
 > argument, this is known as single dispatch.
 
-As PEP-443[^2] said, singledispatch only happens based on the first argument’s type. Let’s
+As PEP-443[^2] said, singledispatch only happens based on the first argument's type. Let's
 take a look at an example to see how this works!
 
 ### Example-1: Singledispatch with built-in argument type
