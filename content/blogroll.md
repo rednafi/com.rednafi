@@ -47,7 +47,7 @@ Here's a non-exhaustive list of blogs I enjoy reading.
 
 ---
 
--   [Simon Willison’s Weblog]
+-   [Simon Willison's Weblog]
 
 <!-- Blogroll -->
 
@@ -64,4 +64,4 @@ Here's a non-exhaustive list of blogs I enjoy reading.
 [John Gruber]: https://daringfireball.net/
 [Julia Evans]: https://jvns.ca/
 [Preslav Rachev]: https://preslav.me/
-[Simon Willison’s weblog]: https://simonwillison.net/
+[Simon Willison's weblog]: https://simonwillison.net/

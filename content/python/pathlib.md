@@ -104,7 +104,7 @@ The `resolve` method finds out the absolute path of the file. From there you can
 
 ## Making directories & renaming files
 
-Here’s a piece of code that:
+Here's a piece of code that:
 
 -   Tries to make a `src/stuff/` directory when it already exists.
 -   Renames a file in the `src` directory called `.config` to `.stuffconfig`.

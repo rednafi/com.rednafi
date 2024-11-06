@@ -6,7 +6,7 @@ tags:
     - Testing
 ---
 
-I was reading Ned Bachelder's blog "Why your mock doesn’t work"[^1] and it triggered an
+I was reading Ned Bachelder's blog "Why your mock doesn't work"[^1] and it triggered an
 epiphany in me about a testing pattern that I've been using for a while without being aware
 that there might be an aphorism on the practice.
 
@@ -128,6 +128,6 @@ def test_process(mock_get_data):
 This time, when you run the tests, pytest doesn't complain.
 
 [^1]:
-    [Why your mock doesn’t work](https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
+    [Why your mock doesn't work](https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
 
 [^2]: [pytest](https://docs.pytest.org/en/latest/)

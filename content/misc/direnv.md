@@ -245,7 +245,7 @@ directory's environment variables. But with the `source_up` directive in your `.
 it'll keep those variables around in the child directory.
 
 Then there's the `source_env` directive, which lets you pull one `.envrc` file into another.
-So, if you’ve got some common, non-secret variables in an `.envrc.local` file, you can
+So, if you've got some common, non-secret variables in an `.envrc.local` file, you can
 easily reuse them in your `.envrc`.
 
 Here's an example `.envrc.local` file:

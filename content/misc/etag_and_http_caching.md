@@ -97,7 +97,7 @@ Etag: "b8fdfabd59aed6e0e602dd140c0a0ff48a665cac791dede458c5109bf4bf9463"
 gh: HTTP 304
 ```
 
-This means that the cached response in the client is still valid and it doesn’t need to
+This means that the cached response in the client is still valid and it doesn't need to
 refetch that from the server. So, the client can be coded to serve the previously cached
 data to the users when asked for.
 
@@ -243,7 +243,7 @@ always sends back the same `ETag` for the same content, even when there are mult
 working behind a load balancer. If these servers give out different ETags for the same
 content, it can mess up how clients cache that content.
 
-Clients use ETags to decide if content has changed. If the `ETag` value hasn’t changed, they
+Clients use ETags to decide if content has changed. If the `ETag` value hasn't changed, they
 know the content is the same and don't download it again, saving bandwidth and speeding up
 access. But if ETags are inconsistent across servers, clients might download content they
 already have, wasting bandwidth and slowing things down.
