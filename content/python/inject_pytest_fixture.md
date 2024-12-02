@@ -1,5 +1,5 @@
 ---
-title: Injecting Pytest Fixtures Without Cluttering Test Function Signatures
+title: Injecting Pytest fixtures without cluttering test tunction signatures
 date: 2024-12-02
 tags:
   - Python
