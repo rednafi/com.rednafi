@@ -6,9 +6,9 @@ tags:
   - TIL
 ---
 
-Sometimes, when writing test functions in Pytest, I find myself using fixtures that the test
-function doesn't directly reference. Instead, Pytest runs the fixture, and the test function
-implicitly leverages its side effects. For example:
+Sometimes, when writing tests in Pytest, I find myself using fixtures that the test
+function/method doesn't directly reference. Instead, Pytest runs the fixture, and the test
+function implicitly leverages its side effects. For example:
 
 ```python
 import os
