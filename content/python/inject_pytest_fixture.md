@@ -1,0 +1,79 @@
+---
+title: Injecting Pytest Fixtures Without Cluttering Test Function Signatures
+date: 2024-12-02
+tags:
+  - Python
+  - TIL
+---
+
+Sometimes, when writing test functions in Pytest, I need to use fixtures that the test
+function doesn't directly reference. Instead, Pytest runs the fixture, and the test function
+implicitly leverages its side effects. For example:
+
+```python
+import os
+from collections.abc import Iterator
+from unittest.mock import Mock, patch
+import pytest
+
+
+# Define an implicit environment mock fixture that patches os.environ
+@pytest.fixture
+def mock_env() -> Iterator[None]:
+    with patch.dict("os.environ", {"IMPLICIT_KEY": "IMPLICIT_VALUE"}):
+        yield
+
+
+# Define an explicit service mock fixture
+@pytest.fixture
+def mock_svc() -> Mock:
+    service = Mock()
+    service.process.return_value = "Explicit Mocked Response"
+    return service
+
+
+# IDEs tend to dim out unused parameters like mock_env
+def test_stuff(mock_svc: Mock, mock_env: Mock) -> None:
+    # Use the explicit mock
+    response = mock_svc.process()
+    assert response == "Explicit Mocked Response"
+    mock_svc.process.assert_called_once()
+
+    # Assert the environment variable patched by mock_env
+    assert os.environ["IMPLICIT_KEY"] == "IMPLICIT_VALUE"
+```
+
+In the `test_stuff` function above, we directly use the `mock_svc` fixture but not
+`mock_env`. Instead, we expect Pytest to run `mock_env`, which modifies the environment
+variables. This works, but IDEs often mark `mock_env` as an unused parameter and dims it
+out.
+
+One way to avoid this is by marking the `mock_env` fixture with
+`@pytest.fixture(autouse=True)` and omitting it from the test function's parameters.
+However, I prefer not to use `autouse=True` because it can make reasoning about tests
+harder.
+
+TIL that you can use `@pytest.mark.usefixtures` to inject these implicit fixtures without
+cluttering the test function signature or using `autouse`. Here's the same test marked with
+`usefixtures`:
+
+```python
+# ... same as above
+
+
+@pytest.mark.usefixtures("mock_env")
+def test_stuff(mock_svc: Mock) -> None:
+    # Use the explicit mock
+    response = mock_svc.process()
+    assert response == "Explicit Mocked Response"
+    mock_svc.process.assert_called_once()
+
+    # Assert the environment variable patched by mock_env
+    assert os.environ["IMPLICIT_KEY"] == "IMPLICIT_VALUE"
+```
+
+Now, the `mock_env` fixture is applied without cluttering the test function's signature, and
+no more greyed-out unused parameter warnings! The `usefixtures` marker also accepts multiple
+fixtures as variadic arguments: `@pytest.mark.usefixtures("fixture_a", "fixture_b")`.
+
+Fin!
