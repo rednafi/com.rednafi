@@ -53,9 +53,9 @@ One way to avoid this is by marking the `mock_env` fixture with
 However, I prefer not to use `autouse=True` because it can make reasoning about tests
 harder.
 
-TIL that you can use `@pytest.mark.usefixtures` to inject these implicit fixtures without
-cluttering the test function signature or using `autouse`. Here's the same test marked with
-`usefixtures`:
+TIL that you can use `@pytest.mark.usefixtures`[^1] to inject these implicit fixtures
+without cluttering the test function signature or using `autouse`. Here's the same test
+marked with `usefixtures`:
 
 ```python
 # ... same as above
@@ -77,3 +77,6 @@ no more greyed-out unused parameter warnings! The `usefixtures` marker also acce
 fixtures as variadic arguments: `@pytest.mark.usefixtures("fixture_a", "fixture_b")`.
 
 Fin!
+
+[^1]:
+    [Use fixtures in classes and modules with usefixtures](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
