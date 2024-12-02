@@ -6,7 +6,7 @@ tags:
   - TIL
 ---
 
-Sometimes, when writing test functions in Pytest, I need to use fixtures that the test
+Sometimes, when writing test functions in Pytest, I find myself using fixtures that the test
 function doesn't directly reference. Instead, Pytest runs the fixture, and the test function
 implicitly leverages its side effects. For example:
 
