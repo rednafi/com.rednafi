@@ -76,7 +76,13 @@ Now, the `mock_env` fixture is applied without cluttering the test function's si
 no more greyed-out unused parameter warnings! The `usefixtures` marker also accepts multiple
 fixtures as variadic arguments: `@pytest.mark.usefixtures("fixture_a", "fixture_b")`.
 
+One thing to keep in mind is that it won’t work if you try to mark another fixture with the
+`usefixtures` decorator. The pytest documentation includes a warning[^2] about this.
+
 Fin!
 
 [^1]:
-    [Use fixtures in classes and modules with usefixtures](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
+    [Use fixtures in classes and modules with usefixtures — Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
+
+[^2]:
+    [The usefixutre mark has no effect on fixtures — Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures:~:text=usefixtures%20%3D%20cleandir-,Warning,-Note%20this%20mark)
