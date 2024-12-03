@@ -82,7 +82,7 @@ One thing to keep in mind is that it won’t work if you try to mark another fix
 Fin!
 
 [^1]:
-    [Use fixtures in classes and modules with usefixtures — Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
+    [Use fixtures in classes and modules with usefixtures - Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
 
 [^2]:
-    [The usefixutre mark has no effect on fixtures — Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures:~:text=usefixtures%20%3D%20cleandir-,Warning,-Note%20this%20mark)
+    [The usefixutre mark has no effect on fixtures - Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures:~:text=usefixtures%20%3D%20cleandir-,Warning,-Note%20this%20mark)
