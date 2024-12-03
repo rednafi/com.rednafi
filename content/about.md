@@ -39,7 +39,7 @@ in Southeast Asia.
 -   [Email]
 -   [GitHub]
 -   [LinkedIn]
--   [Twitter]
+-   [Bluesky]
 
 ## Colophon
 
@@ -80,7 +80,7 @@ Learn more about the stack, deployment, and writing process [here].
 [email]: mailto:redowan.nafi@gmail.com
 [github]: https://github.com/rednafi
 [linkedin]: https://www.linkedin.com/in/rednafi/
-[twitter]: https://twitter.com/rednafi
+[bluesky]: https://bsky.app/profile/rednafi.com
 
 <!-- Colophon -->
 
