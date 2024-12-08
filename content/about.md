@@ -49,7 +49,7 @@ which then deploys the site to [GitHub Pages].
 
 Learn more about the stack, deployment, and writing process [here].
 
-## Magnum opus
+## Greatest hits
 
 -   [Oh my poor business logic]
 -   [The diminishing half-life of knowledge]
