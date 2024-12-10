@@ -3,6 +3,7 @@ title: Pick a side
 date: 2024-12-09
 tags:
     - Essay
+draft: true
 ---
 
 A lot of the time, I see beginners and junior engineers struggling with the decision of
