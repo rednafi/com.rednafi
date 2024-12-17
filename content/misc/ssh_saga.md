@@ -155,7 +155,7 @@ These settings ensure that only trusted keys with modern crypto algorithms can c
 
 ## Bringing it all together
 
-Here's a quick summary of the steps:
+Here's a quick summary of setting up SSH connection to a new machine:
 
 1. Generate a key pair on your local machine.
 2. Copy the public key to the `authorized_keys` file on the VM.
