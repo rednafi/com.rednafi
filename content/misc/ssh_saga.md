@@ -8,12 +8,12 @@ Tags:
 Setting up SSH access to a new VM usually follows the same routine: generate a key pair,
 copy it to the VM, tweak some configs, confirm the host's identity, and maybe set up an
 agent to avoid typing passphrases all day. Tools like cloud-init and Ansible handle most of
-this for me now, so I rarely think about it. But I realized I don't fully understand how all
-the parts work together.
+the setup for me now, so I rarely think about it. But I realized I don't fully understand
+how all the parts work together.
 
-This post gives an overview of what happens when you type `ssh user@host`. It covers key
-pairs, `authorized_keys`, `sshd_config`, `~/.ssh/config`, `known_hosts`, and how they all
-connect.
+This post attempts to give an overview of what happens when you type `ssh user@host`. It
+covers key pairs, `authorized_keys`, `sshd_config`, `~/.ssh/config`, `known_hosts`, and how
+they all fit together.
 
 ## A new VM in the void
 
