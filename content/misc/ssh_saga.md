@@ -158,12 +158,17 @@ These settings ensure that only trusted keys with modern crypto algorithms can c
 Here's a quick summary of the steps:
 
 1. Generate a key pair on your local machine.
-2. Copy the public key from local to `authorized_keys` on the VM.
-3. Configure `sshd_config` on the VM to enable key-based authentication.
-4. Use `~/.ssh/config` on your local machine to simplify SSH commands (e.g., `ssh myvm`
+2. Copy the public key to the `authorized_keys` file on the VM.
+3. Configure `sshd_config` on the VM to allow key-based authentication.
+4. Set up `~/.ssh/config` on your local machine to simplify SSH commands (e.g., `ssh myvm`
    instead of `ssh <vm-ip>`).
-5. Verify the server's identity via `known_hosts` on your local machine.
-6. Use `ssh-agent` to cache your key locally and avoid typing the passphrase every time.
+5. Confirm the server's identity and save it to `known_hosts` on your local machine.
+6. Use `ssh-agent` on your local machine to cache your private key and avoid typing the
+   passphrase repeatedly.
+7. Enable agent forwarding in your SSH config to connect through intermediary servers
+   without copying keys.
+8. Harden `sshd_config` on the VM to enforce modern crypto algorithms and stricter security
+   policies.
 
 ```txt
           ┌──────────────────────┐
