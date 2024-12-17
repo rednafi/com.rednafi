@@ -171,22 +171,22 @@ Here's a quick summary of setting up SSH connection to a new machine:
    policies.
 
 ```txt
-          ┌──────────────────────┐
-          │      LOCAL           │
-          │  ~/.ssh/config       │
-          │  ~/.ssh/id_*         │
-          │  ~/.ssh/known_hosts  │
-          │  ssh-agent           │
-          └───▲───────┬──────────┘
-              │       │
-              │       │ SSH Connection (Port 22)
-              │       │
-              │       │
-              │       ▼
-          ┌────────────────────────┐
-          │     REMOTE             │
-          │ /etc/ssh/sshd_config   │
-          │ ~/.ssh/authorized_keys │
-          │ sshd daemon            │
-          └────────────────────────┘
+┌──────────────────────┐
+│      LOCAL           │
+│  ~/.ssh/config       │
+│  ~/.ssh/id_*         │
+│  ~/.ssh/known_hosts  │
+│  ssh-agent           │
+└───▲───────┬──────────┘
+    │       │
+    │       │ SSH Connection (Port 22)
+    │       │
+    │       │
+    │       ▼
+┌────────────────────────┐
+│     REMOTE             │
+│ /etc/ssh/sshd_config   │
+│ ~/.ssh/authorized_keys │
+│ sshd daemon            │
+└────────────────────────┘
 ```
