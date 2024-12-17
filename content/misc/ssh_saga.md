@@ -164,7 +164,7 @@ Here's a quick summary of the steps:
 1. Generate a key pair locally.
 2. Add the public key to `authorized_keys` on the VM.
 3. Configure `sshd_config` for key-based authentication.
-4. Use `~/.ssh/config` to simplify connections.
+4. Use `~/.ssh/config` so that you can run `ssh myvm` instead of `ssh <vm-ip>`.
 5. Verify the server's identity via `known_hosts`.
 6. Use `ssh-agent` to avoid typing ssh pass on every invocation.
 
