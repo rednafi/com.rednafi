@@ -75,7 +75,8 @@ On the VM, under the user's home directory:
 ```sh
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... user@local" >> ~/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... user@local" \
+    >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
@@ -165,7 +166,7 @@ Here's a quick summary of the steps:
 3. Configure `sshd_config` for key-based authentication.
 4. Use `~/.ssh/config` to simplify connections.
 5. Verify the server's identity via `known_hosts`.
-6. Use `ssh-agent` for convenience.
+6. Use `ssh-agent` to avoid typing ssh pass on every invocation.
 
 ```txt
           ┌──────────────────────┐
