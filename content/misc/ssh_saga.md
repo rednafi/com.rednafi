@@ -11,13 +11,9 @@ agent to avoid typing passphrases all day. Tools like cloud-init and Ansible han
 this for me now, so I rarely think about it. But I realized I don't fully understand how all
 the parts work together.
 
-Explaining the interplay between the SSH client, `sshd` on the server, `ssh-agent` on the
-client, and config files scattered across both machines turned out to be a bit more involved
-than I expected.
-
-This post attempts to give an overview of what happens when you type `ssh user@host`,
-covering key pairs, `authorized_keys`, `sshd_config`, `~/.ssh/config`, `known_hosts`, and
-how they connect.
+This post gives an overview of what happens when you type `ssh user@host`. It covers key
+pairs, `authorized_keys`, `sshd_config`, `~/.ssh/config`, `known_hosts`, and how they all
+connect.
 
 ## A new VM in the void
 
