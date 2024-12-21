@@ -1,6 +1,5 @@
 baseURL: "https://rednafi.com"
 title: Redowan's Reflections
-paginate: 20
 theme: PaperMod
 pluralizelisttitles: false
 
@@ -16,6 +15,9 @@ taxonomies:
 minify:
   disableXML: true
   minifyOutput: true
+
+pagination:
+  pagerSize: 20
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -189,7 +191,7 @@ markup:
       typographer: true
     parser:
       attribute:
-        block: false
+        block: true
         title: true
       autoHeadingID: true
       autoHeadingIDType: github
