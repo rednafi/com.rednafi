@@ -45,7 +45,7 @@ func (lw *LoggingWriter) Write(data []byte) (int, error) {
 }
 ```
 
-You can use it like this:
+Here's how to use it:
 
 ```go
 func main() {
@@ -143,7 +143,7 @@ func (af AuthFunc) Authenticate(username, password string) (bool, error) {
 The `AuthFunc` type implements the `Authenticate` method by calling itself with the provided
 arguments. This lets you create mock implementations inline in your tests.
 
-Here's how you can use it in a test:
+Here's how to use it in a test:
 
 ```go
 func TestLogin(t *testing.T) {
@@ -159,7 +159,7 @@ func TestLogin(t *testing.T) {
 }
 ```
 
-This is how you can use it in application code:
+And in application code:
 
 ```go
 func main() {
@@ -196,7 +196,7 @@ func LoggingMiddleware(next http.Handler) http.Handler {
 `http.HandlerFunc` converts functions into HTTP handlers. The logging middleware wraps the
 next handler and adds timing and logging.
 
-This is how you can use it:
+We use it as follows:
 
 ```go
 func main() {
@@ -262,7 +262,7 @@ func (rf RetryFunc) Retry(fn func() error) error {
 `RetryFunc` converts functions with the matching signature into a `Retryer`, letting you
 swap retry strategies or create test versions.
 
-You can use it like this:
+We use it as such:
 
 ```go
 func main() {
