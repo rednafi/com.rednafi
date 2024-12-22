@@ -23,7 +23,6 @@ interface to create a writer that logs some stats before saving data to an in-me
 The standard library defines `io.Writer` like this:
 
 ```go
-// Writer is the interface that wraps the basic Write method.
 type Writer interface {
     Write(p []byte) (n int, err error)
 }
@@ -38,7 +37,6 @@ type LoggingWriter struct {
     w io.Writer
 }
 
-// Write logs the number of bytes and writes them to the underlying writer.
 func (lw *LoggingWriter) Write(data []byte) (int, error) {
     fmt.Printf("LoggingWriter: Writing %d bytes\n", len(data))
     return lw.w.Write(data)
