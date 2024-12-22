@@ -50,6 +50,9 @@
 {{- end }}
 
 {{- if not $exclude }}
+  <div align="center">
+    — ⁂ —
+  </div>
   <h2>Recent posts</h2>
   <ul>
     {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
