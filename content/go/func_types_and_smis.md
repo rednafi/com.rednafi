@@ -12,8 +12,8 @@ reason about. The standard library is packed with SMIs like `io.Reader`, `io.Wri
 One cool thing about SMIs is that you don't always need to create a full-blown struct with a
 method to satisfy the interface. You can define a function type, attach the interface method
 to it, and use it right away. This approach works well when there's no state to maintain, so
-the extra struct becomes unnecessary. However, I find the syntax for this a bit obtuse. So,
-I'm jotting down a few examples here to reference later.
+the extra struct becomes unnecessary. However, I find the syntax for this a bit abstruce.
+So, I'm jotting down a few examples here to reference later.
 
 ## Using a struct to implement an interface
 
