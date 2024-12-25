@@ -31,27 +31,27 @@ copy the contents from source to destination.
 ```go
 func copyFile(src, dst string) error {
     // Open the source file for reading
-    sourceFile, err := os.Open(src)
+    srcFile, err := os.Open(src)
     if err != nil {
         return err
     }
-    defer sourceFile.Close()
+    defer srcFile.Close()
 
     // Create the destination file for writing
-    destFile, err := os.Create(dst)
+    dstFile, err := os.Create(dst)
     if err != nil {
         return err
     }
-    defer destFile.Close()
+    defer dstFile.Close()
 
     // Copy the contents from source to destination file
-    _, err = io.Copy(destFile, sourceFile)
+    _, err = io.Copy(dstFile, srcFile)
     if err != nil {
         return err
     }
 
     // Ensure that the destination file's content is successfully written
-    err = destFile.Sync()
+    err = dstFile.Sync()
     if err != nil {
         return err
     }
@@ -98,24 +98,24 @@ just log it verbatim as before. So, `copyFile` can be rewritten as follows:
 
 ```go
 func copyFile(src, dst string) error {
-    sourceFile, err := os.Open(src)
+    srcFile, err := os.Open(src)
     if err != nil {
         return fmt.Errorf("cannot open source file: %w", err)
     }
-    defer sourceFile.Close()
+    defer srcFile.Close()
 
-    destFile, err := os.Create(dst)
+    dstFile, err := os.Create(dst)
     if err != nil {
         return fmt.Errorf("cannot create destination file: %w", err)
     }
-    defer destFile.Close()
+    defer dstFile.Close()
 
-    _, err = io.Copy(destFile, sourceFile)
+    _, err = io.Copy(dstFile, srcFile)
     if err != nil {
         return fmt.Errorf("cannot copy file contents: %w", err)
     }
 
-    err = destFile.Sync()
+    err = dstFile.Sync()
     if err != nil {
         return fmt.Errorf("cannot sync destination file: %w", err)
     }
@@ -210,29 +210,29 @@ the `copyFile` function as follows:
 ```go
 func copyFile(src, dst string) error {
     // Open the source file for reading
-    sourceFile, err := os.Open(src)
+    srcFile, err := os.Open(src)
     if err != nil {
         return NewError("os.Open", src, err)
     }
-    defer sourceFile.Close()
+    defer srcFile.Close()
 
     // Create the destination file for writing
-    destFile, err := os.Create(dst)
+    dstFile, err := os.Create(dst)
     if err != nil {
         return NewError("os.Create", dst, err)
     }
-    defer destFile.Close()
+    defer dstFile.Close()
 
     // Copy the contents from source to destination file
-    _, err = io.Copy(destFile, sourceFile)
+    _, err = io.Copy(dstFile, srcFile)
     if err != nil {
         return NewError("io.Copy", dst, err)
     }
 
     // Ensure that the destination file's content is successfully written
-    err = destFile.Sync()
+    err = dstFile.Sync()
     if err != nil {
-        return NewError("destFile.Sync", dst, err)
+        return NewError("dstFile.Sync", dst, err)
     }
 
     return nil
@@ -276,7 +276,7 @@ exit status 1
 You can add even more context to this error in different calling locations like this:
 
 ```go
-sourceFile, err := os.Open(src)
+srcFile, err := os.Open(src)
     if err != nil {
         return fmt.Errorf(
             "more context: %w", NewError("os.Open", src, err),
