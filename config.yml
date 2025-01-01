@@ -145,7 +145,7 @@ menu:
   main:
     - identifier: feed
       name: feed
-      url: /feed/2024
+      url: /feed/2025
       weight: 1
 
     - identifier: search
@@ -221,5 +221,6 @@ module:
       target: static
 
 copyright: "
-  <a href='/blogroll'>blogroll</a>
+  <a href='/blogroll'>blogroll</a> •
+  <a href='/feed'>feed</a>
   "
