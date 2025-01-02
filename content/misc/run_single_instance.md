@@ -81,8 +81,8 @@ successful, the script sets up a `trap` to remove the directory on exit and cont
 main logic. If `mkdir` fails, it means another instance of the process is running, and the
 script exits with a message.
 
-This works almost as nicely as the `flock` version. But I rarely write scripts for non-Linux
-environments, so either works!
+This is almost as effective as the `flock` version. Since I rarely write scripts for
+non-Linux environments, either option is fine!
 
 ## With Python
 
