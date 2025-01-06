@@ -89,15 +89,19 @@ feed. Also, the client-side search functionality allows me to look for a particu
 without having to maintain any extra infra.
 
 This solution is simple and has been working well for me. I started it in August last year,
-and the 2024 page already has enough entries to make me feel good when I reviewed them at
-the end of the year.
-
+and the 2024 page[^5] already has enough entries to make me feel good when I reviewed them
+at the end of the year.
 
 [^1]: [Behind the blog](/misc/behind_the_blog)
+
 [^2]:
     [My approach to running a link blog - Simon Willison](https://simonwillison.net/2024/Dec/22/link-blog/)
+
 [^3]: [Feed detail view](/feed/2025)
+
 [^4]: [Feed list view](/feed)
+
+[^5]: [Feed 2024](/feed/2024)
 
 [img_1]: https://blob.rednafi.com/static/images/link_blog/img_1.png
 [img_2]: https://blob.rednafi.com/static/images/link_blog/img_2.png
