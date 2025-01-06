@@ -2,7 +2,7 @@
 title: Behind the blog
 date: 2024-09-14
 tags:
-  - Essays
+  - Essay
 ---
 
 When I started writing here about five years ago, I made a promise to myself that I wouldn't
