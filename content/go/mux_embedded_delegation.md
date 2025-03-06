@@ -213,7 +213,7 @@ func (cm *CustomMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-This keeps all the request modifications in a single, easy-to-follow `ServeHTTP` method.
+This keeps all the request modifications in a single `ServeHTTP` method.
 
 ## Mixing the two approaches
 
