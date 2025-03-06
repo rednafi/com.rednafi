@@ -8,7 +8,12 @@ tags:
 
 Middleware is usually the go-to pattern in Go HTTP servers for tweaking request behavior.
 Typically, you wrap your base handler with layers of middleware—one might log every request,
-while another intercepts specific routes like `/special` to serve up a custom response.
+while another intercepts specific routes like `/special` to serve a custom response.
+
+However, I often find the indirections introduced by this pattern a bit hard to read and
+debug. I recently came across the embedded delegation pattern while browsing the Gin[^1]
+repo. Here, I explore both patterns and explain why I usually start with delegation whenever
+I need to modify HTTP requests in my Go services.
 
 ## Middleware stacking
 
@@ -73,7 +78,7 @@ the server logs will look like this:
 ```
 
 Stacking middleware functions like `middleware3(middleware2(middleware1(mux)))` can get
-messy when you have many of them. That’s why people usually write a wrapper function to
+messy when you have many of them. That's why people usually write a wrapper function to
 apply the middlewares to the mux:
 
 ```go
@@ -94,7 +99,7 @@ func applyMiddleware(
 each one wraps the next properly. This avoids deep nesting like
 `middleware3(middleware2(middleware1(mux)))` and keeps the middleware chain tidy.
 
-You’d then use it like this:
+You'd then use it like this:
 
 ```go
 func main() {
@@ -116,7 +121,7 @@ While this is the canonical way to handle request-response modifications in Go, 
 sometimes be hard to reason about, especially when debugging or dealing with many middleware
 layers.
 
-There’s another way to achieve the same result without dealing with a soup of nested
+There's another way to achieve the same result without dealing with a soup of nested
 functions. The next section talks about that.
 
 ## Embedded delegation
@@ -124,9 +129,9 @@ functions. The next section talks about that.
 Embedded delegation (or the delegation pattern) means you embed the standard HTTP
 multiplexer inside your own struct and override its `ServeHTTP` method.
 
-It’s a bit like inheritance—overriding a method in a subclass to add extra functionality and
-then delegating the call to the original method. Although Go doesn’t have a class hierarchy,
-you can still delegate responsibilities to the embedded type’s method.
+It's a bit like inheritance—overriding a method in a subclass to add extra functionality and
+then delegating the call to the original method. Although Go doesn't have a class hierarchy,
+you can still delegate responsibilities to the embedded type's method.
 
 The following example implements the same behavior—logging every request and intercepting
 the `/special` route—directly within a custom mux:
@@ -213,7 +218,7 @@ This keeps all the request modifications in a single, easy-to-follow `ServeHTTP`
 ## Mixing the two approaches
 
 You can also mix both techniques. For example, you might use direct delegation for special
-route handling and then wrap the resulting handler with middleware for logging. Here’s how a
+route handling and then wrap the resulting handler with middleware for logging. Here's how a
 hybrid solution might look:
 
 ```go
@@ -264,6 +269,9 @@ In this hybrid approach, the specialized behavior (intercepting the `/special` p
 handled via direct delegation, while logging stays modular as middleware. This gives you the
 best of both worlds.
 
-I usually start with the embedded delegation pattern and gradually introduce the middleware
-pattern if the complexity grows. It's easier to adopt middleware pattern if you start with
-delegation than the other way around.
+I usually start with the embedded delegation and gradually introduce the middleware pattern
+if I need it later. It's easier to adopt the middleware pattern if you start with delegation
+than the other way around.
+
+[^1]:
+    [Gin](https://github.com/gin-gonic/gin/blob/3b28645dc95d58e0df36b8aff7a6c64f7c0ca5e9/gin.go#L94)
