@@ -63,7 +63,7 @@ to see that. But most of the time, you don't need to worry about this at all.
 ## Reusing buffers in streaming
 
 The second issue is correctness. When reading from a stream, you usually call `Read`
-multiple times to get all the data. If `Read` returned a fresh slice every time, you’d have
+multiple times to get all the data. If `Read` returned a fresh slice every time, you'd have
 no control over memory usage across calls. Worse, you couldn't efficiently handle partial
 reads, making buffer management unpredictable.
 

@@ -240,7 +240,7 @@ Now, running the script will print:
 Notification sent: This is a single notification message
 ```
 
-Since this sends a notification only once, the rate limiting isn’t apparent yet, but it’s
+Since this sends a notification only once, the rate limiting isn't apparent yet, but it's
 working under the hood and will kick in if any limit is exceeded. To see it in action, you
 can attempt to send multiple notifications in a tight loop.
 

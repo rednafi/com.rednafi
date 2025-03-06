@@ -25,7 +25,7 @@ type slice struct {
 }
 ```
 
-When you create a slice from an array or another slice, Go doesn’t copy the data—it simply
+When you create a slice from an array or another slice, Go doesn't copy the data—it simply
 points to a section of the existing array.
 
 ```
@@ -37,7 +37,7 @@ Slice Header              Underlying Array
 +-------------+
 ```
 
-This makes slices efficient. Passing a slice by value doesn’t mean copying all its
+This makes slices efficient. Passing a slice by value doesn't mean copying all its
 elements—only the small slice struct gets copied, while the data stays where it is. But this
 behavior is also the source of much confusion. The next sections cover some common pitfalls.
 
@@ -107,7 +107,7 @@ slice = append(slice, 4) // -> new pointer p2, slice: [1 2 3 4]
 
 The same behavior applies when passing a slice to a function. If the function modifies
 elements within the allocated capacity, those changes persist and are visible from outside
-the function. But if `append` triggers a reallocation inside the function, the caller’s
+the function. But if `append` triggers a reallocation inside the function, the caller's
 slice remains unchanged.
 
 ```go
@@ -131,7 +131,7 @@ modifySlice(mySlice)
 // (the "100" appended is not in mySlice)
 ```
 
-**Solution:** If `append` inside a function reallocates memory, the caller won’t see the
+**Solution:** If `append` inside a function reallocates memory, the caller won't see the
 change. To make it explicit, return the modified slice and reassign it.
 
 ```go
