@@ -1,5 +1,5 @@
 ---
-title: Embedded delegation vs stacked middleware in Go
+title: Stacked middleware vs embedded delegation in Go
 date: 2025-03-06
 tags:
   - Go
