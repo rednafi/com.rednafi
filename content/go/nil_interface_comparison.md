@@ -159,6 +159,30 @@ This type assertion trick only works when you know the underlying type of the in
 value. If the type might vary, consider using the reflect package to examine the underlying
 value.
 
+### Writing a generic nil checker with reflect
+
+The following function introspects any variable and checks whether it's nil:
+
+```go
+func isNil(i any) bool {
+    if i == nil {
+        return true
+    }
+    // Note: Arrays are not nilable, so we don't check for reflect.Array.
+    switch reflect.TypeOf(i).Kind() {
+    case reflect.Ptr, reflect.Map, reflect.Chan, reflect.Slice, reflect.Func:
+        return reflect.ValueOf(i).IsNil()
+    }
+    return false
+}
+```
+
+The switch on `.Kind()` is necessary because directly calling `reflect.ValueOf().IsNil()` on
+a non-pointer value will cause a panic.
+
+Calling this function on any value, including an interface, reliably checks whether it's
+nil.
+
 Fin!
 
 [^1]: [Go data structures: interfaces](https://research.swtch.com/interfaces)
