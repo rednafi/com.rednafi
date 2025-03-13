@@ -117,8 +117,8 @@ still present.
 
 ### Using type assertions for reliable nil checks
 
-In cases where an interface variable might hold a nil pointer, comparing the interface
-directly to nil may not yield the expected result.
+In cases where an interface variable might hold a nil pointer, we've seen that comparing the
+interface directly to nil may not yield the expected result.
 
 A type assertion can help extract the underlying value so that you can perform a more
 reliable nil check. This approach is especially useful when you know the expected underlying
@@ -157,9 +157,9 @@ Here, we assert that `r` holds a value of type `*myReader`. If the assertion suc
 the interface variable holds a nil pointer—even though the interface itself is not nil due
 to its dynamic type.
 
-This type assertion trick works best when you know the underlying type of the interface
-value. If the type might vary, you might consider using the reflect package to examine the
-underlying value.
+This type assertion trick only works when you know the underlying type of the interface
+value. If the type might vary, consider using the reflect package to examine the underlying
+value.
 
 Fin!
 
