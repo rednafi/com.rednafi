@@ -92,13 +92,12 @@ are `nil`, the interface compares equal to nil.
 ### Assigning a nil pointer to an interface variable
 
 ```go
-var p *int           // p is a nil pointer of type *int
-var r io.Reader = p  // The static type of r is io.Reader
-                     // The dynamic type of r is *int
-                     // The dynamic value of r is nil
+var b *bytes.Buffer    // b is a nil pointer of type *bytes.Buffer
+var r io.Reader = b    // The static type of r is io.Reader.
+                       // The dynamic type of r is *bytes.Buffer.
+                       // The dynamic value of r is nil.
 
-// Since the dynamic type is *int and the dynamic value is nil,
-// r == nil evaluates to false
+// Although b is nil, r != nil because r holds type information (*bytes.Buffer).
 if r == nil {
     fmt.Println("r is nil")
 } else {
@@ -107,10 +106,9 @@ if r == nil {
 // Output: r is not nil
 ```
 
-Even though `p` is nil, when you assign it to the interface variable `r`, the interface gets
-a non-nil dynamic type (`*int`) along with a nil dynamic value. This means that the
-interface variable `r` is not considered nil when compared, because the type descriptor is
-still present.
+Even though `b` is nil, assigning it to the interface variable `r` gives `r` a non-nil
+dynamic type (`*bytes.Buffer`) with a nil dynamic value. Since `r` still holds type
+information, `r == nil` returns `false`, even though the underlying value is nil.
 
 > _When comparing an interface variable, Go checks both the dynamic type and the value. The
 > variable evaluates to nil only if both are nil._
