@@ -24,7 +24,7 @@ For example:
 
 ```go
 var n any  // The static type of n is any (interface{})
-n = 1      // The dynamic type becomes int
+n = 1      // Upon assignment, the dynamic type becomes int
            // And the dynamic value becomes 1
 ```
 
@@ -114,6 +114,52 @@ still present.
 
 > _When comparing an interface variable, Go checks both the dynamic type and the value. The
 > variable evaluates to nil only if both are nil._
+
+### Using type assertions for reliable nil checks
+
+In cases where an interface variable might hold a nil pointer, comparing the interface
+directly to nil may not yield the expected result.
+
+A type assertion can help extract the underlying value so that you can perform a more
+reliable nil check. This approach is especially useful when you know the expected underlying
+type.
+
+Below, we define a simple type `myReader` that implements the `Read` method to satisfy the
+`io.Reader` interface.
+
+```go
+type myReader struct{}
+
+func (mr *myReader) Read(p []byte) (int, error) {
+    return 0, nil
+}
+```
+
+Now, consider the following example:
+
+```go
+var mr *myReader        // mr is a nil pointer of type *myReader
+var r io.Reader = mr    // The static type of r is io.Reader
+                        // The dynamic type of r is *myReader
+                        // The dynamic value of r is nil
+
+// Use a type assertion to extract the underlying *myReader value.
+if underlying, ok := r.(*myReader); ok && underlying == nil {
+    fmt.Println("r holds a nil pointer")
+} else {
+    fmt.Println("r does not hold a nil pointer")
+}
+// Output: r holds a nil pointer
+```
+
+Here, we assert that `r` holds a value of type `*myReader`. If the assertion succeeds
+(indicated by `ok` being `true`) and the `underlying` value is `nil`, we can conclude that
+the interface variable holds a nil pointer—even though the interface itself is not nil due
+to its dynamic type.
+
+This type assertion trick works best when you know the underlying type of the interface
+value. If the type might vary, you might consider using the reflect package to examine the
+underlying value.
 
 Fin!
 
