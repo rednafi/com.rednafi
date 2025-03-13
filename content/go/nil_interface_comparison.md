@@ -1,5 +1,5 @@
 ---
-title: Nil comparisons in Go interfaces
+title: Nil comparison and Go interface
 date: 2025-03-12
 tags:
     - Go
