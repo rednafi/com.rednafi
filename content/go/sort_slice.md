@@ -1,5 +1,5 @@
 ---
-title: Three flavors of sorting slices in Go
+title: Three flavors of sorting Go slices
 date: 2025-03-22
 tags:
     - Go
