@@ -36,7 +36,7 @@ When `helper` is called, it defers its teardown—which executes at the end of t
 function, not the test. But the test logic still depends on whatever the helper set up. So
 this approach doesn't work.
 
-A better way is to move the teardown logic into the test itself:
+The next working option is to move the teardown logic into the test itself:
 
 ```go
 func TestFoo(t *testing.T) {
