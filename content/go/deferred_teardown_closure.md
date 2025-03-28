@@ -252,12 +252,12 @@ func setupTestTable(t *testing.T, db *sql.DB) func() {
     }
 
     return func() {
-    	_, err := db.Exec(`DROP TABLE IF EXISTS users`)
-    	if err != nil {
-    		t.Errorf("failed to drop table: %v", err)
-    	} else {
-    		t.Log("dropped test table")
-    	}
+        _, err := db.Exec(`DROP TABLE IF EXISTS users`)
+        if err != nil {
+            t.Errorf("failed to drop table: %v", err)
+        } else {
+            t.Log("dropped test table")
+        }
     }
 }
 ```
