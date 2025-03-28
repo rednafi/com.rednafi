@@ -233,7 +233,7 @@ Sample output:
 PASS
 ```
 
-## Creating and tearing down a database table
+## Setting up and tearing down a database table
 
 In tests that hit a real (or test) database, you often need to create and drop tables.
 Here's a helper that sets up a test table and returns a teardown function to drop it:
