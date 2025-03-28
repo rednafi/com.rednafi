@@ -148,9 +148,9 @@ func setupTempFile(t *testing.T, content string) (string, func()) {
 
     return tmpFile.Name(), func() {
     	if err := os.Remove(tmpFile.Name()); err != nil {
-    		t.Errorf("failed to remove temp file %s: %v", tmpFile.Name(), err)
+            t.Errorf("failed to remove temp file %s: %v", tmpFile.Name(), err)
     	} else {
-    		t.Logf("cleaned up temp file: %s", tmpFile.Name())
+            t.Logf("cleaned up temp file: %s", tmpFile.Name())
     	}
     }
 }
