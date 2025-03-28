@@ -172,7 +172,7 @@ func TestReadFile(t *testing.T) {
 }
 ```
 
-Sample output:
+Running the test displays:
 
 ```txt
 === RUN   TestReadFile
@@ -223,7 +223,7 @@ func TestHTTPRequest(t *testing.T) {
 }
 ```
 
-Sample output:
+Running the test prints:
 
 ```txt
 === RUN   TestHTTPRequest
