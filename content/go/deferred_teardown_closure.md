@@ -287,6 +287,8 @@ from helper functions altogether. It also runs the cleanup logic in the correct 
 
 ```go
 func TestFoo(t *testing.T) {
+    // The testing package will ensure that the cleanup runs at the end of
+    // this test function.
     helper(t)
 
     // Test logic here.
