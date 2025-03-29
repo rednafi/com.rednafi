@@ -6,9 +6,9 @@ tags:
     - Testing
 ---
 
-While watching Mitchell Hashimoto's excellent talk[^1] on Go testing, I came across this neat
-technique for deferring teardown to the caller. Let's say you have a helper function in a
-test that needs to perform some cleanup afterward.
+While watching Mitchell Hashimoto's excellent talk[^1] on Go testing, I came across this
+neat technique for deferring teardown to the caller. Let's say you have a helper function in
+a test that needs to perform some cleanup afterward.
 
 You can't run the teardown inside the helper itself because the test still needs the setup.
 For example, in the following case, the `helper` runs its teardown immediately:
@@ -277,6 +277,76 @@ func TestInsertUser(t *testing.T) {
 }
 ```
 
+## The t.Cleanup() method
+
+_P.S. I learned about this after the blog went live._
+
+Go 1.20 added the `t.Cleanup()` method, which lets you avoid returning the teardown closures
+from helper functions altogether. It also runs the cleanup logic in the correct order
+(LIFO). So, you could rewrite the first example in this post as follows:
+
+```go
+func TestFoo(t *testing.T) {
+    helper(t)
+
+    // Test logic here.
+}
+
+func helper(t *testing.T) {
+    t.Helper()
+
+    // We register the teardown logic with t.Cleanup().
+    t.Cleanup(func() {
+        // Teardown logic here.
+    })
+}
+```
+
+Now the `testing` package will handle calling the cleanup logic in the correct order. You
+can add multiple teardown functions like this:
+
+```go
+t.Cleanup(func() {})
+t.Cleanup(func() {})
+```
+
+The functions will run in LIFO order. Similarly, the database setup example can be rewritten
+like this:
+
+```go
+func setupTestTable(t *testing.T, db *sql.DB) func() {
+    t.Helper()
+
+    // Logic as before.
+
+    // Instead of returning the teardown function, we register
+    // it with t.Cleanup().
+    t.Cleanup(func() {
+        _, err := db.Exec(`DROP TABLE IF EXISTS users`)
+        if err != nil {
+            t.Errorf("failed to drop table: %v", err)
+        } else {
+            t.Log("dropped test table")
+        }
+    })
+}
+```
+
+Then the helper function is used like this:
+
+```go
+func TestInsertUser(t *testing.T) {
+    db := getTestDB(t) // Opens a test DB connection; defined elsewhere.
+
+    // This sets up the DB, and t.Cleanup will execute the teardown
+    // logic once this test function finishes.
+    setupTestTable(t, db)
+
+    // Rest of the test logic.
+}
+```
+
 Fin!
 
-[^1]: [GopherCon 2017: Advanced testing with Go - Mitchell Hashimoto](https://www.youtube.com/watch?v=8hQG7QlcLBk&t=3s)
+[^1]:
+    [GopherCon 2017: Advanced testing with Go - Mitchell Hashimoto](https://www.youtube.com/watch?v=8hQG7QlcLBk&t=3s)
