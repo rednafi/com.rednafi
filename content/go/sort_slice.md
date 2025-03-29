@@ -127,34 +127,10 @@ func main() {
 }
 ```
 
-Reversing the comparison sorts in descending order:
+We can leverage `sort.Reverse` to reverse the order:
 
 ```go
-import (
-    "fmt"
-    "sort"
-)
-
-type User struct {
-    Name string
-    Age  int
-}
-
-type ByAgeDesc []User
-
-func (s ByAgeDesc) Len() int           { return len(s) }
-func (s ByAgeDesc) Less(i, j int) bool { return s[i].Age > s[j].Age }
-func (s ByAgeDesc) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-
-func main() {
-    users := ByAgeDesc{
-        {"Alice", 32},
-        {"Bob", 27},
-        {"Carol", 40},
-    }
-    sort.Sort(users)
-    fmt.Println(users) // [{Carol 40} {Alice 32} {Bob 27}]
-}
+sort.Sort(sort.Reverse(users)) // [{Carol 40} {Alice 32} {Bob 27}]
 ```
 
 Although `sort.Interface` can handle just about any sorting logic, you must create a new
