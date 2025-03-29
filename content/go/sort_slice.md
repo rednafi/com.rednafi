@@ -6,10 +6,10 @@ tags:
 ---
 
 There are primarily three ways of sorting slices in Go. Early on, we had the verbose but
-flexible method of implementing `sort.Interface` to sort the elements in a slice. Later,
-Go 1.8 introduced `sort.Slice` to reduce boilerplate with inline comparison functions.
-Most recently, Go 1.21 brought generic sorting via the `slices` package, which offers a
-concise syntax and compile-time type safety.
+flexible method of implementing `sort.Interface` to sort the elements in a slice. Later, Go
+1.8 introduced `sort.Slice` to reduce boilerplate with inline comparison functions. Most
+recently, Go 1.21 brought generic sorting via the `slices` package, which offers a concise
+syntax and compile-time type safety.
 
 These days, I mostly use the generic sorting syntax, but I wanted to document all three
 approaches for posterity.
@@ -71,9 +71,33 @@ func main() {
 Just reversing the order requires you to define a separate type and implement the three
 methods again!
 
+Luckily, for the basic types, the `sort` package provides `sort.IntSlice`,
+`sort.Float64Slice`, and `sort.StringSlice`—which already implement `sort.Interface`. So you
+don't have to do the above for sorting a slice of primitive elements. Instead, you can do
+this:
+
+```go
+ints := sort.IntSlice{4, 1, 3, 2}
+floats := sort.Float64Slice{3.1, 2.7, 5.0}
+strings := sort.StringSlice{"banana", "apple", "cherry"}
+
+sort.Sort(ints)      // ints: [1 2 3 4]
+sort.Sort(floats)    // floats: [2.7 3.1 5]
+sort.Sort(strings)   // strings: [apple banana cherry]
+```
+
+To reverse the order, you can use `sort.Reverse` as follows:
+
+```go
+sort.Sort(sort.Reverse(ints))      // ints: [4 3 2 1]
+sort.Sort(sort.Reverse(floats))    // floats: [5 3.1 2.7]
+sort.Sort(sort.Reverse(strings))   // strings: [cherry banana apple]
+```
+
 ### Sorting a slice of structs by age
 
-Here, we sort by the `Age` field in ascending order:
+However, if you're dealing with a slice of structs, then you do have to implement
+`sort.Interface` manually. Here, we sort by the `Age` field in ascending order:
 
 ```go
 import (
