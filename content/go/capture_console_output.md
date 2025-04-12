@@ -131,7 +131,7 @@ from the immudb[^1] repo.
 Here's a more complete version:
 
 ```go
-// CaptureOut captures both stdout and stderr.
+// captureOut captures both stdout and stderr.
 func captureOut(f func()) string {
     // Create a pipe to capture stdout
     custReader, custWriter, err := os.Pipe()
