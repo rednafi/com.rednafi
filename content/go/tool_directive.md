@@ -106,7 +106,7 @@ I went with the second option.
 
 My layout looks like this:
 
-```sh
+```txt
 .
 ├── go.mod
 ├── go.sum
