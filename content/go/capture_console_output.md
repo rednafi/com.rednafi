@@ -116,7 +116,7 @@ the code or just want to assert some printed output.
 ## A more robust capture out
 
 The above version of `captureStdout` works fine for simple cases. But in practice, functions
-might also write to `stderr`, especially if they’re using Go's `log` package or if a panic
+might also write to `stderr`, especially if they're using Go's `log` package or if a panic
 happens. For example, this would not be captured by the simple `captureStdout` helper:
 
 ```go
