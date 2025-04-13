@@ -93,9 +93,9 @@ No further setup needed, no path issues, and it's always using the version you p
 
 ## Still not perfect
 
-That said, one thing still bugs me: `go get -tool` still adds these dev tools to the main
-`go.mod` file. That means your application and dev dependencies are still mixed together.
-Same problem the `tools.go` hack had.
+That said, one thing still bugs me: `go get -tool` adds these dev tools to the main `go.mod`
+file. That means your application and dev dependencies are still mixed together. Same
+problem the `tools.go` hack had.
 
 There's no built-in way to avoid this yet. So your options are:
 
@@ -127,10 +127,10 @@ And run them from the root directory as follows:
 go tool -modfile tools/go.mod golangci-lint run ./...
 ```
 
-The `go tool` command supports a `-modfile` flag that you can use to specify which version
-of the tool to use. I _really_ wish `go get` supported `-modfile` too—that way you wouldn't
-need to manage the dependencies in such a clunky way. This was close to being perfect. Well,
-maybe in a future release.
+The `go tool` command supports a `-modfile` flag that you can use to specify where to pull
+the tool version from. I _really_ wish `go get` supported `-modfile` too—that way you
+wouldn't need to manage the dependencies in such a wonky manner. This was close to being
+perfect. Well, maybe in a future release.
 
 ## Only works with Go-native tools
 
