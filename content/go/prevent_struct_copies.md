@@ -166,4 +166,4 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
     [noCopy](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122)
 
 [^3]:
-    [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf;l=175)
+    [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
