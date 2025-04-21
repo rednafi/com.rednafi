@@ -135,8 +135,7 @@ type Once struct {
 }
 ```
 
-Here's a complete example of abusing `copylocks` to prevent copying our own struct. This
-works even though `Svc` isn't a lock:
+Here's a complete example of abusing `copylocks` to prevent copying our own struct.
 
 ```go
 type Svc struct{ _ noCopy }
