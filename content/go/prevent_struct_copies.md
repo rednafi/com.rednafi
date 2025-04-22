@@ -166,8 +166,8 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 [^2]:
     [noCopy](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122)
 
-[^3]
-[Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
+[^3]:
+    [Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
 
 [^4]:
 
