@@ -149,7 +149,7 @@ func (*noCopy) Unlock() {}
 // Use this
 func main() {
     var svc Svc
-    s := svc // go vet will complain about this copy op
+    _ = svc // go vet will complain about this copy op
 }
 ```
 
@@ -160,6 +160,14 @@ assignment copies lock value to s: play.Svc contains play.noCopy
 call of fmt.Println copies lock value: play.Svc contains play.noCopy
 ```
 
+<div align="center">⁂</div>
+
+Someone on Reddit asked me what actually triggers the `copyLocks` checker in `go vet`—is it
+the struct's literal name `noCopy` or the fact that it implements the `Locker` interface?
+
+The name `noCopy` isn't special. You can call it whatever you want. As long as it implements
+the `Locker` interface, `go vet` will complain if the surrounding struct gets copied.
+
 [^1]:
     [sync.WaitGroup](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/waitgroup.go;l=25-30)
 
@@ -169,4 +177,5 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 [^3]:
     [Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
 
-[^4]: [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
+[^4]:
+    [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
