@@ -165,8 +165,9 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 Someone on Reddit asked me what actually triggers the `copyLocks` checker in `go vet`—is it
 the struct's literal name `noCopy` or the fact that it implements the `Locker` interface?
 
-The name `noCopy` isn't special. You can call it whatever you want. As long as it implements
-the `Locker` interface, `go vet` will complain if the surrounding struct gets copied.
+The name `noCopy` isn't special. You can call it whatever you want. As long as it
+implements the `Locker` interface, `go vet` will complain if the surrounding struct gets
+copied. See this go-playground snippet[^5].
 
 [^1]:
     [sync.WaitGroup](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/waitgroup.go;l=25-30)
@@ -179,3 +180,5 @@ the `Locker` interface, `go vet` will complain if the surrounding struct gets co
 
 [^4]:
     [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
+
+[^5]: [The name noCopy isn't special](https://go.dev/play/p/M-vR6nOn00j)
