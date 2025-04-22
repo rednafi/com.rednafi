@@ -89,14 +89,15 @@ func (*noCopy) Lock()   {}
 func (*noCopy) Unlock() {}
 ```
 
-Just having those no-op `Lock` and `Unlock` methods in a struct and sticking that struct
-inside another one is enough for `go vet` to flag copies.
+Just having those no-op `Lock` and `Unlock` methods on `noCopy` is enough. This implements
+the `Locker`[^3] interface. Then if you put that struct inside another one, `go vet` will
+flag cases where you try to copy the outer struct.
 
-Also, note the comment: don't _embed_ `noCopy`. Just include it explicitly. Embedding would
+Also, note the comment: don't _embed_ `noCopy`. Include it explicitly. Embedding would
 expose `Lock` and `Unlock` on the outer struct, which you probably don't want.
 
-Interestingly, if you define `noCopy` as anything other than a struct, vet ignores that. I
-tested this on Go 1.24:
+Interestingly, if you define `noCopy` as anything other than a struct and implement the
+`Locker` interface, vet ignores that. I tested this on Go 1.24:
 
 ```go
 type noCopy int     // this is valid but vet doesn't get triggered
@@ -165,5 +166,9 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 [^2]:
     [noCopy](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122)
 
-[^3]:
-    [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
+[^3]
+[Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
+
+[^4]:
+
+[copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
