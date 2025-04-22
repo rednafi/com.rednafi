@@ -114,7 +114,7 @@ having them is enough.
 When vet runs, it walks the AST and applies the `copylocks` check on assignments, function
 calls, return values, struct literals, range loops, channel sends, basically anywhere values
 can get copied. If it sees you copying a struct with something like `noCopy`, it yells. You
-can see the implementation of the check here[^3].
+can see the implementation of the check here[^4].
 
 You'll see this in other parts of the sync package too. `sync.Mutex` uses the same trick:
 
@@ -169,6 +169,4 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 [^3]:
     [Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
 
-[^4]:
-
-[copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
+[^4]: [copylocks checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
