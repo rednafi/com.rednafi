@@ -160,7 +160,7 @@ assignment copies lock value to s: play.Svc contains play.noCopy
 call of fmt.Println copies lock value: play.Svc contains play.noCopy
 ```
 
-<div align="center">⁂</div>
+---
 
 Someone on Reddit asked me what actually triggers the `copyLocks` checker in `go vet`—is it
 the struct's literal name `noCopy` or the fact that it implements the `Locker` interface?
