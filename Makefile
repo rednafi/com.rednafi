@@ -14,7 +14,7 @@ init:
 	for pkg in $(BREW_PACKAGES); do \
 		brew list $$pkg &>/dev/null || brew install $$pkg; \
 	done
-	uv venv -p 3.12
+	uv venv -p 3.13
 	uv tool install pre-commit
 	uv pip install black blacken-docs mypy pytest pytest-cov ruff
 
