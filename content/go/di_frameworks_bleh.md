@@ -5,7 +5,7 @@ tags:
     - Go
 ---
 
-While working with Go in an [industrial] context, I feel like dependency injection (DI)
+When working with Go in an [industrial] context, I feel like dependency injection (DI)
 often gets a bad rep because of _DI frameworks_. But DI as a technique is quite useful. It
 just tends to get explained with too many OO jargons and triggers PTSD among those who came
 to Go to escape GoF theology.
