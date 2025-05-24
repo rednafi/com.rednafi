@@ -202,7 +202,7 @@ It's better than dig's runtime panic, but still comes with its own headaches:
   etc.
 
 While DI frameworks tend to use vocabularies like _provider_ or _container_ to give you an
-essense of familiarity, they still reinvents the API surface every time. Switching between
+essense of familiarity, they still reinvent the API surface every time. Switching between
 them means relearning a new mental model.
 
 So the promise of "just register your providers and forget about wiring" ends up trading
