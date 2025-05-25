@@ -31,38 +31,37 @@ time, I moonlight as a reader, writer, hiker, and a pathological minimalist.
 ## Work
 
 I'm currently based in Berlin and working at [Wolt] as a software engineer. Before this, I
-was exploring the healthtech industry in the US with [Dendisoftware] and the fintech segment
-in Southeast Asia.
+was exploring healthtech in the US and fintech in Southeast Asia.
 
 ## Contact
 
--   [Email]
--   [GitHub]
--   [LinkedIn]
--   [Bluesky]
+- [Email]
+- [GitHub]
+- [LinkedIn]
+- [Bluesky]
 
 ## Colophon
 
 [Hugo] powers this blog. It's rocking the [Papermod] theme with some handrolled CSS flair. I
-write in plain markdown and push the [content] to GitHub, triggering the [GitHub Actions] CI,
-which then deploys the site to [GitHub Pages].
+write in plain markdown and push the [content] to GitHub, triggering the [GitHub Actions]
+CI, which then deploys the site to [GitHub Pages].
 
 Learn more about the stack, deployment, and writing process [here].
 
 ## Greatest hits
 
--   [Oh my poor business logic]
--   [The diminishing half-life of knowledge]
--   [Annotating args and kwargs in Python]
--   [An ode to the neo-grotesque web]
--   [HTTP requests via /dev/tcp]
--   [Escaping the template pattern hellscape in Python]
--   [Dotfiles stewardship for the indolent]
--   [Configuring options in Go]
--   [Recipes from Python SQLite docs]
--   [Limit goroutines with buffered channels]
--   [Pesky little scripts]
--   [I kind of like rebasing]
+- [Oh my poor business logic]
+- [The diminishing half-life of knowledge]
+- [Annotating args and kwargs in Python]
+- [An ode to the neo-grotesque web]
+- [HTTP requests via /dev/tcp]
+- [You probably don't need a DI framework]
+- [Dotfiles stewardship for the indolent]
+- [Configuring options in Go]
+- [Recipes from Python SQLite docs]
+- [Limit goroutines with buffered channels]
+- [Pesky little scripts]
+- [I kind of like rebasing]
 
 <!-- Self -->
 
@@ -73,7 +72,6 @@ Learn more about the stack, deployment, and writing process [here].
 <!-- Work -->
 
 [wolt]: https://wolt.com
-[dendisoftware]: https://dendisoftware.com
 
 <!-- Contact -->
 
@@ -99,7 +97,7 @@ Learn more about the stack, deployment, and writing process [here].
 [an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
 [http requests via /dev/tcp]: /misc/http_requests_via_dev_tcp
 [writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
-[escaping the template pattern hellscape in Python]: /python/escape_template_pattern/
+[you probably don't need a di framework]: /go/di_frameworks_bleh/
 [dotfiles stewardship for the indolent]: /misc/dotfile_stewardship_for_the_indolent/
 [configuring options in Go]: /go/configure_options/
 [recipes from python sqlite docs]: /python/recipes_from_python_sqlite_docs/
