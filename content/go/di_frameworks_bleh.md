@@ -5,10 +5,10 @@ tags:
     - Go
 ---
 
-When working with Go in an [industrial] context, I feel like dependency injection (DI)
-often gets a bad rep because of _DI frameworks_. But DI as a technique is quite useful. It
-just tends to get explained with too many OO jargons and triggers PTSD among those who came
-to Go to escape GoF theology.
+When working with Go in an [industrial] context, I feel like dependency injection (DI) often
+gets a bad rep because of _DI frameworks_. But DI as a technique is quite useful. It just
+tends to get explained with too many OO jargons and triggers PTSD among those who came to Go
+to escape GoF theology.
 
 > _Dependency Injection is a 25-dollar term for a 5-cent concept._
 >
@@ -288,15 +288,30 @@ A DI framework often fixes problems Go already solved and trades away readabilit
 ## You might still want a framework
 
 It's tempting to make a blanket statement saying that you should **never** pick up a DI
-framework. But context matters here.
+framework, but context matters here.
 
-I was watching Uber's [talk] on how they use Go and how their DI framework Fx (uses dig
-underneath) allows them to achieve consistency at scale. If you're Uber and have all the
-observabilities in place to get around DI downsides, then you'll know.
+I was watching Uber's [talk] on how they use Go and how their DI framework [Fx] (which uses
+dig underneath) allows them to achieve consistency at scale. If you're Uber and have all the
+observability tools in place to get around the downsides, then you'll know.
 
-However, in my experience, even in orgs that maintain a substantial amount of Go repos, DI
-frameworks add more confusion than they're worth. If your experience is otherwise, I'd love
-to be proven wrong.
+Also, if you're working in a codebase that's already leveraging a framework and it works
+well, then it doesn't make sense to refactor it without any incentives.
+
+Or, you're writing one of those languages where using a DI framework is the norm, and
+you'll be called a weirdo if you try to reinvent the wheel there.
+
+However, in my experience, even in organizations that maintain a substantial number of Go
+repos, DI frameworks add more confusion than they're worth. If your experience is otherwise,
+I'd love to be proven wrong.
+
+---
+
+The post got a fair bit of discussion going around the web. You might find it interesting.
+
+- [r/golang]
+- [r/experienceddevs]
+- [r/programming]
+
 
 [industrial]: https://peter.bourgon.org/go-for-industrial-programming/
 [dig]: https://github.com/uber-go/dig
@@ -304,3 +319,7 @@ to be proven wrong.
 [wire]: https://github.com/google/wire
 [talk]: https://www.youtube.com/watch?v=nLskCRJOdxM&t
 [fx]: https://github.com/uber-go/fx
+
+[r/golang]: https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
+[r/programming]: https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
+[r/experienceddevs]: https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
