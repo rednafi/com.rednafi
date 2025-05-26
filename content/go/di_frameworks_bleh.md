@@ -117,8 +117,8 @@ in an internal dependency graph. Nothing is executed yet. Things only run when y
 `.Invoke()` on the container.
 
 But that reflection-driven magic is also where the pain starts. As your graph grows, it gets
-harder to tell which constructor feeds which one. Some constructor take one parameter, some
-take three. There's no single place you can glance at to understand the wiring. It's all
+harder to tell which constructor feeds which one. Some constructor takes one parameter, some
+takes three. There's no single place you can glance at to understand the wiring. It's all
 figured out inside the container at runtime.
 
 > _Let the container figure it out!_
@@ -298,8 +298,8 @@ observability tools in place to get around the downsides, then you'll know.
 Also, if you're working in a codebase that's already leveraging a framework and it works
 well, then it doesn't make sense to refactor it without any incentives.
 
-Or, you're writing one of those languages where using a DI framework is the norm, and
-you'll be called a weirdo if you try to reinvent the wheel there.
+Or, you're writing one of those languages where using a DI framework is the norm, and you'll
+be called a weirdo if you try to reinvent the wheel there.
 
 However, in my experience, even in organizations that maintain a substantial number of Go
 repos, DI frameworks add more confusion than they're worth. If your experience is otherwise,
@@ -314,15 +314,16 @@ The post got a fair bit of discussion going around the web. You might find it in
 - [r/experienceddevs]
 - [r/programming]
 
-
 [industrial]: https://peter.bourgon.org/go-for-industrial-programming/
 [dig]: https://github.com/uber-go/dig
 [compiles]: https://go.dev/play/p/Vhimup7ukLo
 [wire]: https://github.com/google/wire
 [talk]: https://www.youtube.com/watch?v=nLskCRJOdxM&t
 [fx]: https://github.com/uber-go/fx
-
 [hackernews]: https://news.ycombinator.com/item?id=44086235
-[r/golang]: https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
-[r/programming]: https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
-[r/experienceddevs]: https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
+[r/golang]:
+    https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
+[r/programming]:
+    https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
+[r/experienceddevs]:
+    https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
