@@ -241,7 +241,8 @@ Longer? Yes. But:
     ```
 
 No reflection, no generated code, no global state. Go type-checks the dependency graph early
-and loudly, exactly how it should be.
+and loudly, exactly how it should be. And also, it doesn't confuse your LSP, so your IDE
+keeps on being useful.
 
 If `main()` really grows unwieldy, split _your_ code:
 
@@ -308,6 +309,7 @@ I'd love to be proven wrong.
 
 The post got a fair bit of discussion going around the web. You might find it interesting.
 
+- [hackernews]
 - [r/golang]
 - [r/experienceddevs]
 - [r/programming]
@@ -320,6 +322,7 @@ The post got a fair bit of discussion going around the web. You might find it in
 [talk]: https://www.youtube.com/watch?v=nLskCRJOdxM&t
 [fx]: https://github.com/uber-go/fx
 
+[hackernews]: https://news.ycombinator.com/item?id=44086235
 [r/golang]: https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
 [r/programming]: https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
 [r/experienceddevs]: https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
