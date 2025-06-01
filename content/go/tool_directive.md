@@ -20,9 +20,8 @@ version of the tools before running them. Chaos!
 ## The `tools.go` convention
 
 To avoid this mess, the Go community came up with a convention where you'd pin your tool
-versions in a `tools.go` file. I've written about this before[^1]. But the gist is, you'd
-have a `tools.go` file in your root directory that imports the tooling and assigns them to
-`_`:
+versions in a `tools.go` file. I've written about this [before]. But the gist is, you'd have
+a `tools.go` file in your root directory that imports the tooling and assigns them to `_`:
 
 ```go
 //go:build tools
@@ -46,7 +45,7 @@ This works, but it always felt a bit clunky. You end up polluting your main `go.
 tooling-only dependencies. And sometimes, transitive dependencies of those tools clash with
 your app's dependencies.
 
-The new `tool` directive in Go 1.24 solves _some_ of these pain points[^2].
+The new `tool` directive in Go 1.24 solves _some_ of these pain [points].
 
 ## Enter the `tool` directive
 
@@ -139,7 +138,15 @@ Another limitation is that it only works with tools written in Go. So if you're 
 like `eslint`, `prettier`, or `jq`, you're on your own. But for most of my projects, the dev
 tooling is written in Go anyway, so this setup has been working okay.
 
-[^1]: [Omitting dev dependencies in Go binaries](/go/omit_dev_dependencies_in_binaries)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Go toolchain still sticks the dev dependencies into the main go.mod file](/go/tool_directive/#still-not-perfect)
+<!-- Omitting dev dependencies in Go binaries -->
+[before]:
+    /go/omit_dev_dependencies_in_binaries
+
+<!-- Go toolchain still sticks the dev dependencies into the main go.mod file -->
+[points]:
+    /go/tool_directive/#still-not-perfect
+
+<!-- prettier-ignore-end -->

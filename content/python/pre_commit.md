@@ -25,9 +25,9 @@ To keep my sanity, I only use three linters in all of my python projects:
     - Custom Separate Sections (Defined by `forced_separate` list in the configuration file)
     - Custom Sections (Defined by `sections` list in configuration file)
 
-                          Inside each section, the imports are sorted alphabetically. This also automatically
-                          removes duplicate python imports, and wraps long from imports to the specified line
-                          length (defaults to 79).
+                                                        Inside each section, the imports are sorted alphabetically. This also automatically
+                                                        removes duplicate python imports, and wraps long from imports to the specified line
+                                                        length (defaults to 79).
 
 - **[Black]**: `Black` is the uncompromising Python code formatter. It uses consistent rules
   to format your python code and makes sure that they look the same regardless of the
