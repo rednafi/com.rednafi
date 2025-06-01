@@ -88,9 +88,9 @@ the repo.
 
 ## Google Analytics
 
-I'm still using [Google Analytics], even though I'm not a huge fan. Cloudflare already
-gives me better traffic insights, but the free version doesn't show how many hits each page
-gets. At some point, I might just pay for Cloudflare's upgraded plan so I can get rid of the
+I'm still using [Google Analytics], even though I'm not a huge fan. Cloudflare already gives
+me better traffic insights, but the free version doesn't show how many hits each page gets.
+At some point, I might just pay for Cloudflare's upgraded plan so I can get rid of the
 bulky, intrusive analytics scripts for good.
 
 The [source code] and content for this site are all publicly available on GitHub.
