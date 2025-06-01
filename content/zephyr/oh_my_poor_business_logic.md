@@ -16,7 +16,7 @@ seldom-read RFCs while juniors want to ditch Celery for Kafka because the latter
 
 While both are equally bad, technical people love to lambaste the former while remaining
 blissfully ignorant about the second type. Maybe because there's no incentive for doing that
-and resume-driven development[^1] genuinely pays better. As long as companies keep making
+and [resume-driven development] genuinely pays better. As long as companies keep making
 people solve obscure puzzles that has nothing to do with the job or hiring managers keep
 employing automated systems to look for keywords in resumes, a group of smart people will
 always engage in techno-maximalism to prepare for the next big opportunity; setting the
@@ -40,7 +40,7 @@ writing a retry decorator and monitoring if that works or not.
 
 Now that microservices are no longer in vogue, and numerous companies have been burnt by
 adopting the Netflix way of working, despite not having that level of revenue or manpower,
-there's no shortage of articles[^2] on how bad it is to adopt SoA when a PostgreSQL-backed
+there's no shortage of [articles] on how bad it is to adopt SoA when a PostgreSQL-backed
 Django monolith would probably do the job. Also, how terrible GraphQL is when a simple
 denormalized secondary index would suffice, or how the high churn rate of JavaScript
 frontend frameworks has wasted time, effort, and money. However, few of them mention how
@@ -52,6 +52,14 @@ nightmare. I don't have an answer for that, nor have I worked at a company that 
 perfect balance. Plus, I'm not a technical lead, manager, or business owner. So if you are
 one of them, I'd love to hear how you or your organization plans to tackle this.
 
-[^1]: [Resume-driven development](https://arxiv.org/abs/2101.12703)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [The costs of microservices](https://robertovitillo.com/costs-of-microservices/)
+[resume-driven development]:
+    https://arxiv.org/abs/2101.12703
+
+<!-- the cost of microservices - roberto vitillo -->
+[articles]:
+    https://robertovitillo.com/costs-of-microservices/
+
+<!-- prettier-ignore-end -->
