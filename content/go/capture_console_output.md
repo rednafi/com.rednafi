@@ -126,7 +126,7 @@ log.Println("something went wrong")
 Even though it looks like a normal print statement, `log` writes to `stderr` by default. So
 if you want to catch that output too, or generally capture everything that's printed to the
 console during a function call, we need to upgrade our helper a bit. I found this example
-from the immudb[^1] repo.
+from the [immudb] repo.
 
 Here's a more complete version:
 
@@ -204,5 +204,11 @@ It's not a replacement for writing functions that accept `io.Writer`, but when y
 dealing with existing code or want to quickly assert on terminal output, it gets the job
 done.
 
-[^1]:
-    [Capture out](https://github.com/codenotary/immudb/blob/cf9a5d8b9b4d3784c6b9fa8c874902bf1318a6e8/cmd/immuclient/immuclienttest/helper.go#L143)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+<!-- capture out example in the immudb repo -->
+[immudb]:
+    https://github.com/codenotary/immudb/blob/cf9a5d8b9b4d3784c6b9fa8c874902bf1318a6e8/cmd/immuclient/immuclienttest/helper.go#L143
+
+<!-- prettier-ignore-end -->
