@@ -8,14 +8,13 @@ tags:
 
 Five traits that almost all the GitHub Action workflows in my Python projects share are:
 
--   If a new workflow is triggered while the previous one is running, the first one will get
-    canceled.
--   The CI is triggered every day at UTC 1.
--   Tests and the lint-checkers are run on Ubuntu and MacOS against multiple Python
-    versions.
--   Pip dependencies are cached.
--   Dependencies, including the Actions dependencies are automatically updated via
-    dependabot[^1].
+- If a new workflow is triggered while the previous one is running, the first one will get
+  canceled.
+- The CI is triggered every day at UTC 1.
+- Tests and the lint-checkers are run on Ubuntu and MacOS against multiple Python versions.
+- Pip dependencies are cached.
+- Dependencies, including the Actions dependencies are automatically updated via
+  dependabot[^1].
 
 I use pip-tools[^2] for managing dependencies in applications and setuptools[^3] `setup.py`
 combo for managing dependencies in libraries. Here's an annotated version of the template

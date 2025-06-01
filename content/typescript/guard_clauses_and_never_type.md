@@ -41,10 +41,10 @@ processSignal(Signal.RED) // prints 'Stop!'
 
 The snippet above suffers from two major issues:
 
--   It contains three contiguous levels of nested conditionals.
--   The conditionals don't cover the case where the return value is `undefined`.
--   If you add a fourth member to the `Signal` enum, now the processing function doesn't
-    exhaustively cover all the cases and it won't communicate that fact with you.
+- It contains three contiguous levels of nested conditionals.
+- The conditionals don't cover the case where the return value is `undefined`.
+- If you add a fourth member to the `Signal` enum, now the processing function doesn't
+  exhaustively cover all the cases and it won't communicate that fact with you.
 
 We can leverage _guard clauses_ to fix the first two issues.
 

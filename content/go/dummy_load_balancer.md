@@ -9,12 +9,12 @@ tags:
 I was curious to see if I could prototype a simple load balancer in a single Go script. Go's
 standard library and goroutines make this trivial. Here's what the script needs to do:
 
--   Spin up two backend servers that'll handle the incoming requests.
--   Run a reverse proxy load balancer in the foreground.
--   The load balancer will accept client connections and round-robin them to one of the
-    backend servers; balancing the inbound load.
--   Once a backend responds, the load balancer will relay the response back to the client.
--   For simplicity, we'll only handle client's GET requests.
+- Spin up two backend servers that'll handle the incoming requests.
+- Run a reverse proxy load balancer in the foreground.
+- The load balancer will accept client connections and round-robin them to one of the
+  backend servers; balancing the inbound load.
+- Once a backend responds, the load balancer will relay the response back to the client.
+- For simplicity, we'll only handle client's GET requests.
 
 Obviously, this won't have SSL termination, advanced balancing algorithms, or session
 persistence like you'd get with Nginx[^1] or Caddy[^2]. The point is to understand the basic
@@ -159,12 +159,12 @@ func getNextBackend() string {
 The `getNextBackend()` function implements round-robin load balancing across the `backends`
 slice in a thread-safe manner. It works like this:
 
--   Acquire a lock on `backendMutex` to prevent concurrent access to the shared state.
--   Read the index of the current backend server from `currentBackend`.
--   Increment `currentBackend` to point to the next backend server. The modulo % operation
-    wraps around the index to the start when it reaches past the end.
--   Release the lock on `backendMutex`.
--   Return the URL of the backend at the index we read in step 2.
+- Acquire a lock on `backendMutex` to prevent concurrent access to the shared state.
+- Read the index of the current backend server from `currentBackend`.
+- Increment `currentBackend` to point to the next backend server. The modulo % operation
+  wraps around the index to the start when it reaches past the end.
+- Release the lock on `backendMutex`.
+- Return the URL of the backend at the index we read in step 2.
 
 This allows each request handling goroutine to safely get the next backend server in a
 round-robin fashion. The mutex prevents race conditions where two goroutines try to

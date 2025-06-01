@@ -90,18 +90,17 @@ type circuitBreaker struct {
 
 This struct includes:
 
--   `mu`: A mutex to ensure thread-safe access to the circuit breaker.
--   `state`: The current state of the circuit breaker (`Closed`, `Open`, or `HalfOpen`).
--   `failureCount`: The current count of consecutive failures.
--   `lastFailureTime`: The timestamp of the last failure.
--   `halfOpenSuccessCount`: The number of successful requests in the `HalfOpen` state.
--   `failureThreshold`: The number of consecutive failures allowed before opening the
-    circuit.
--   `recoveryTime`: The cool-down period before the circuit breaker transitions from `Open`
-    to `HalfOpen`.
--   `halfOpenMaxRequests`: The maximum number of successful requests needed to close the
-    circuit.
--   `timeout`: The maximum duration to wait for a request to complete.
+- `mu`: A mutex to ensure thread-safe access to the circuit breaker.
+- `state`: The current state of the circuit breaker (`Closed`, `Open`, or `HalfOpen`).
+- `failureCount`: The current count of consecutive failures.
+- `lastFailureTime`: The timestamp of the last failure.
+- `halfOpenSuccessCount`: The number of successful requests in the `HalfOpen` state.
+- `failureThreshold`: The number of consecutive failures allowed before opening the circuit.
+- `recoveryTime`: The cool-down period before the circuit breaker transitions from `Open` to
+  `HalfOpen`.
+- `halfOpenMaxRequests`: The maximum number of successful requests needed to close the
+  circuit.
+- `timeout`: The maximum duration to wait for a request to complete.
 
 ### Initializing the breaker
 
@@ -189,14 +188,13 @@ func (cb *circuitBreaker) handleClosedState(fn func() (any, error)) (any, error)
 
 In this function:
 
--   We attempt to execute the provided function `fn` using `runWithTimeout` to handle
-    possible timeouts.
--   If the function call fails, we increment the `failureCount` and update
-    `lastFailureTime`.
--   If the `failureCount` reaches the `failureThreshold`, we transition the circuit to the
-    `Open` state.
--   If the function call succeeds, we reset the circuit breaker to the `Closed` state by
-    calling `resetCircuit`.
+- We attempt to execute the provided function `fn` using `runWithTimeout` to handle possible
+  timeouts.
+- If the function call fails, we increment the `failureCount` and update `lastFailureTime`.
+- If the `failureCount` reaches the `failureThreshold`, we transition the circuit to the
+  `Open` state.
+- If the function call succeeds, we reset the circuit breaker to the `Closed` state by
+  calling `resetCircuit`.
 
 #### Resetting the breaker
 
@@ -236,9 +234,9 @@ func (cb *circuitBreaker) handleOpenState() (any, error) {
 
 Here:
 
--   We check if the recovery period (`recoveryTime`) has passed since the last failure.
--   If it has, we transition to the `HalfOpen` state and reset the counters.
--   If not, we block the request and return an error immediately.
+- We check if the recovery period (`recoveryTime`) has passed since the last failure.
+- If it has, we transition to the `HalfOpen` state and reset the counters.
+- If not, we block the request and return an error immediately.
 
 ### Handling half-open states
 
@@ -273,11 +271,11 @@ func (cb *circuitBreaker) handleHalfOpenState(
 
 In this function:
 
--   We attempt to execute the provided function `fn`.
--   If the function call fails, we transition back to the `Open` state.
--   If the function call succeeds, we increment `halfOpenSuccessCount`.
--   Once the success count reaches `halfOpenMaxRequests`, we reset the circuit breaker to
-    the `Closed` state.
+- We attempt to execute the provided function `fn`.
+- If the function call fails, we transition back to the `Open` state.
+- If the function call succeeds, we increment `halfOpenSuccessCount`.
+- Once the success count reaches `halfOpenMaxRequests`, we reset the circuit breaker to the
+  `Closed` state.
 
 ### Running functions with timeout
 
@@ -315,10 +313,10 @@ func (cb *circuitBreaker) runWithTimeout(fn func() (any, error)) (any, error) {
 
 This function:
 
--   Creates a context with a timeout using `context.WithTimeout`.
--   Executes the provided function `fn` in a separate goroutine.
--   Waits for either the result or the timeout.
--   Returns an error if the function takes longer than the specified timeout.
+- Creates a context with a timeout using `context.WithTimeout`.
+- Executes the provided function `fn` in a separate goroutine.
+- Waits for either the result or the timeout.
+- Returns an error if the function takes longer than the specified timeout.
 
 ### Taking it for a spin
 

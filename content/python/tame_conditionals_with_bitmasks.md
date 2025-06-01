@@ -33,14 +33,14 @@ class Client:
 The business logic requires that the system must abide by the following rules while sending
 notifications:
 
--   If only `email` is populated, send an email.
--   If only `url` is populated, send a webhook.
--   If only `address` is populated, send a postal mail.
--   If `email` and `url` are populated, send an email and a webhook.
--   If `email` and `address` are populated, only send an email.
--   If `url` and `address` are populated, only send a webhook.
--   If all three are populated, send both an email and a webhook.
--   At least one attribute must be populated, or it's an error.
+- If only `email` is populated, send an email.
+- If only `url` is populated, send a webhook.
+- If only `address` is populated, send a postal mail.
+- If `email` and `url` are populated, send an email and a webhook.
+- If `email` and `address` are populated, only send an email.
+- If `url` and `address` are populated, only send a webhook.
+- If all three are populated, send both an email and a webhook.
+- At least one attribute must be populated, or it's an error.
 
 Notice how the business logic wants to minimize sending notifications via postal mail.
 Postal mails are expensive and will only be sent if `address` is the only attribute on the
@@ -116,26 +116,26 @@ Bitwise operations allow manipulating numbers at the individual bit level. This 
 for compactly storing and accessing data, performing fast calculations, and implementing
 low-level algorithms. Here's a list of bitwise operations:
 
--   **Bitwise AND (&)**: Takes two numbers and performs the logical AND operation on each
-    pair of corresponding bits. Returns a number where a bit is 1 only if that bit is 1 in
-    both input numbers.
+- **Bitwise AND (&)**: Takes two numbers and performs the logical AND operation on each pair
+  of corresponding bits. Returns a number where a bit is 1 only if that bit is 1 in both
+  input numbers.
 
--   **Bitwise OR (|)**: Takes two numbers and performs the logical OR operation on each pair
-    of corresponding bits. Returns a number where a bit is 1 if that bit is 1 in either or
-    both input numbers.
+- **Bitwise OR (|)**: Takes two numbers and performs the logical OR operation on each pair
+  of corresponding bits. Returns a number where a bit is 1 if that bit is 1 in either or
+  both input numbers.
 
--   **Bitwise XOR (^)**: Takes two numbers and performs the logical XOR (exclusive OR)
-    operation on each pair of corresponding bits. Returns a number where a bit is 1 if that
-    bit is 1 in exactly one of the input numbers (but not both).
+- **Bitwise XOR (^)**: Takes two numbers and performs the logical XOR (exclusive OR)
+  operation on each pair of corresponding bits. Returns a number where a bit is 1 if that
+  bit is 1 in exactly one of the input numbers (but not both).
 
--   **Bitwise NOT (~)**: Takes a single number and flips all its bits.
+- **Bitwise NOT (~)**: Takes a single number and flips all its bits.
 
--   **Left shift (<<)**: Shifts the bits of a number to the left by a specified number of
-    positions. Zeros are shifted in on the right. Equivalent to multiplying by `2^n` where
-    `n` is the number of positions shifted.
+- **Left shift (<<)**: Shifts the bits of a number to the left by a specified number of
+  positions. Zeros are shifted in on the right. Equivalent to multiplying by `2^n` where `n`
+  is the number of positions shifted.
 
--   **Right shift (>>)**: Shifts the bits of a number to the right by a specified number of
-    positions. Zeros are shifted in on the left. Equivalent to integer division by `2^n`.
+- **Right shift (>>)**: Shifts the bits of a number to the right by a specified number of
+  positions. Zeros are shifted in on the left. Equivalent to integer division by `2^n`.
 
 Here's an example displaying these operators:
 
@@ -194,19 +194,19 @@ topic if you want to dig deeper into bitwise operations.
 With all the intros and primers out of the way, we can now start working towards making the
 `notify` function more tractable and testable. We'll do that in 3 phases:
 
--   First, we're gonna define a flag-type enum called `NotifyStatus` which will house all
-    the valid states our notification system can be in. Any state that's not explicitly
-    defined as an enum variant is invalid.
+- First, we're gonna define a flag-type enum called `NotifyStatus` which will house all the
+  valid states our notification system can be in. Any state that's not explicitly defined as
+  an enum variant is invalid.
 
--   Second, we'll write a function named `get_notify_status` that'll take in a `Client`
-    object as input, apply the business logic and return the appropriate `NotifyStatus` enum
-    variant. This function won't be responsible for dispatching the actual notification
-    handlers; rather, it'll just map the attribute values of the `Client` instance to a
-    fitting enum variant. We do this to keep the core business logic devoid of any external
-    dependencies—following Gary Bernhardt's functional core, imperative shell[^5] ethos.
+- Second, we'll write a function named `get_notify_status` that'll take in a `Client` object
+  as input, apply the business logic and return the appropriate `NotifyStatus` enum variant.
+  This function won't be responsible for dispatching the actual notification handlers;
+  rather, it'll just map the attribute values of the `Client` instance to a fitting enum
+  variant. We do this to keep the core business logic devoid of any external
+  dependencies—following Gary Bernhardt's functional core, imperative shell[^5] ethos.
 
--   Finally, we'll define the `notify` function that'll just accept the enum variant
-    returned by the previous function and invoke the desired notification handlers.
+- Finally, we'll define the `notify` function that'll just accept the enum variant returned
+  by the previous function and invoke the desired notification handlers.
 
 The `NotifyStatus` enum is defined as follows:
 

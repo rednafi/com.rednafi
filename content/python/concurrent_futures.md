@@ -83,8 +83,8 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 
 Similar to `map(func, *iterables)` except:
 
--   the iterables are collected immediately rather than lazily;
--   func is executed asynchronously and several calls to func may be made concurrently.
+- the iterables are collected immediately rather than lazily;
+- func is executed asynchronously and several calls to func may be made concurrently.
 
     The returned iterator raises a `concurrent.futures.TimeoutError` if `__next__()` is
     called and the result isn't available after timeout seconds from the original call to
@@ -765,9 +765,9 @@ with complicated code that performs worse than the naive solution.
 
 ## References
 
--   [concurrent.futures - the official documentation]
--   [Easy concurrency in Python]
--   [Adventures in Python with concurrent.futures]
+- [concurrent.futures - the official documentation]
+- [Easy concurrency in Python]
+- [Adventures in Python with concurrent.futures]
 
 [^1]: [GIL](https://wiki.python.org/moin/GlobalInterpreterLock)
 

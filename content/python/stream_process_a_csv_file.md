@@ -41,15 +41,15 @@ Since we're streaming the content from the network line by line, there should be
 usage and minimal memory footprint. Also, to speed up the consumption, we'll fork multiple
 OS processes. To put in concisely, we'll need to perform the following steps:
 
--   Stream a single row from the target CSV file.
--   Write the content of the row in an in-memory string buffer.
--   Parse the file buffer with `csv.DictReader`.
--   Collect the dict the contains the information of the parsed row.
--   Yield the dict.
--   Flush the buffer.
--   Another process will collect the yielded dict and consume that outside of the main
-    process.
--   And continue the loop for the next row.
+- Stream a single row from the target CSV file.
+- Write the content of the row in an in-memory string buffer.
+- Parse the file buffer with `csv.DictReader`.
+- Collect the dict the contains the information of the parsed row.
+- Yield the dict.
+- Flush the buffer.
+- Another process will collect the yielded dict and consume that outside of the main
+  process.
+- And continue the loop for the next row.
 
 The following snippet implements the workflow mentioned above:
 

@@ -11,10 +11,10 @@ but gets messy quite quickly.
 
 Here's a rudimentary `Retry` function that does the following:
 
--   It takes in another function that accepts arbitrary arguments.
--   Then tries to execute the wrapped function.
--   If the wrapped function returns an error after execution, `Retry` attempts to run the
-    underlying function `n` times with some backoff.
+- It takes in another function that accepts arbitrary arguments.
+- Then tries to execute the wrapped function.
+- If the wrapped function returns an error after execution, `Retry` attempts to run the
+  underlying function `n` times with some backoff.
 
 The following implementation leverages the `reflect` module to achieve the above goals.
 We're intentionally avoiding complex retry logic for brevity:
@@ -144,15 +144,15 @@ func Retry[T any](
 Functionally, the generic implementation works the same way as the previous one. However, it
 has a few limitations:
 
--   The generic `Retry` function assumes that the wrapped function will always return the
-    result as the first value and error as the second. This works well since it's a common
-    Go idiom, but the reflection version could dynamically handle different return value
-    patterns.
+- The generic `Retry` function assumes that the wrapped function will always return the
+  result as the first value and error as the second. This works well since it's a common Go
+  idiom, but the reflection version could dynamically handle different return value
+  patterns.
 
--   The reflection-based `Retry` can directly wrap any function because it accepts an empty
-    interface. The generic `Retry` needs the target function to match the expected
-    signature. So you have to create a thin wrapper function to adapt the signatures. This
-    wrapper function is necessary to make the process somewhat type-safe.
+- The reflection-based `Retry` can directly wrap any function because it accepts an empty
+  interface. The generic `Retry` needs the target function to match the expected signature.
+  So you have to create a thin wrapper function to adapt the signatures. This wrapper
+  function is necessary to make the process somewhat type-safe.
 
 Here's how you'd use the generic `Retry` function:
 

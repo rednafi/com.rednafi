@@ -20,12 +20,12 @@ I found that in my country, the optimized routes returned by the API do not chan
 dramatically for at least for a couple of hours. So the workflow will look something like
 this:
 
--   Caching the API response in Redis using the key-value data structure. Here the requested
-    coordinate-string will be the key and the response will be the corresponding value.
--   Setting a timeout on the records.
--   Serving new requests from cache if the records exist.
--   Only send a new request to MapBox API if the response is not cached and then add that
-    response to cache.
+- Caching the API response in Redis using the key-value data structure. Here the requested
+  coordinate-string will be the key and the response will be the corresponding value.
+- Setting a timeout on the records.
+- Serving new requests from cache if the records exist.
+- Only send a new request to MapBox API if the response is not cached and then add that
+  response to cache.
 
 ## Setting up Redis & RedisInsight
 

@@ -15,7 +15,7 @@ syntax I use the most, with real examples.
 
 ### Redirect stdout to a file
 
--   Standard way:
+- Standard way:
 
     ```sh
     command > file
@@ -27,7 +27,7 @@ syntax I use the most, with real examples.
     echo "Hello, world!" > hello.txt
     ```
 
--   Print and redirect to file:
+- Print and redirect to file:
 
     ```sh
     command | tee file
@@ -43,7 +43,7 @@ syntax I use the most, with real examples.
 
 ### Redirect stderr to a file
 
--   Standard way:
+- Standard way:
 
     ```sh
     command 2> file
@@ -55,7 +55,7 @@ syntax I use the most, with real examples.
     ls non_existing_file 2> error.log
     ```
 
--   Print and redirect stderr to file:
+- Print and redirect stderr to file:
 
     ```sh
     command 2> >(tee file)
@@ -69,7 +69,7 @@ syntax I use the most, with real examples.
 
 ### Redirect both stdout and stderr to a file
 
--   Common approach:
+- Common approach:
 
     ```sh
     command > file 2>&1
@@ -81,7 +81,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file > output.log 2>&1
     ```
 
--   Print and redirect both to file:
+- Print and redirect both to file:
 
     ```sh
     command 2>&1 | tee file
@@ -93,7 +93,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file 2>&1 | tee output.log
     ```
 
--   Convenient shorthand:
+- Convenient shorthand:
 
     ```sh
     command &> file
@@ -107,7 +107,7 @@ syntax I use the most, with real examples.
 
 ### Append instead of overwriting
 
--   Append stdout to a file:
+- Append stdout to a file:
 
     ```sh
     command >> file
@@ -119,7 +119,7 @@ syntax I use the most, with real examples.
     echo "Appending line" >> hello.txt
     ```
 
--   Print and append stdout to file:
+- Print and append stdout to file:
 
     ```sh
     command | tee -a file
@@ -131,7 +131,7 @@ syntax I use the most, with real examples.
     echo "Appending line" | tee -a hello.txt
     ```
 
--   Append both stdout and stderr (explicit):
+- Append both stdout and stderr (explicit):
 
     ```sh
     command >> file 2>&1
@@ -143,7 +143,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file >> output.log 2>&1
     ```
 
--   Print and append both stdout and stderr to file:
+- Print and append both stdout and stderr to file:
 
     ```sh
     command 2>&1 | tee -a file
@@ -155,7 +155,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file 2>&1 | tee -a output.log
     ```
 
--   Convenient shorthand for appending both:
+- Convenient shorthand for appending both:
 
     ```sh
     command &>> file
@@ -171,7 +171,7 @@ syntax I use the most, with real examples.
 
 ### Pipe stdout to another command
 
--   Basic usage:
+- Basic usage:
 
     ```sh
     command1 | command2
@@ -183,7 +183,7 @@ syntax I use the most, with real examples.
     echo "Hello, world!" | grep "Hello"
     ```
 
--   Print and redirect piped stdout to file:
+- Print and redirect piped stdout to file:
 
     ```sh
     command1 | tee file | command2
@@ -197,7 +197,7 @@ syntax I use the most, with real examples.
 
 ### Pipe both stdout and stderr
 
--   Common way:
+- Common way:
 
     ```sh
     command1 2>&1 | command2
@@ -209,7 +209,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file 2>&1 | grep "No"
     ```
 
--   Print and redirect both stdout and stderr to file:
+- Print and redirect both stdout and stderr to file:
 
     ```sh
     command1 2>&1 | tee file | command2
@@ -223,7 +223,7 @@ syntax I use the most, with real examples.
 
 ### Shorthand for piping both stdout and stderr (`|&`)
 
--   Shorthand syntax:
+- Shorthand syntax:
 
     ```sh
     command1 |& command2
@@ -236,7 +236,7 @@ syntax I use the most, with real examples.
     ls non_existing_file existing_file |& grep "No"
     ```
 
--   Print and redirect both stdout and stderr using `|&`:
+- Print and redirect both stdout and stderr using `|&`:
 
     ```sh
     command1 |& tee file | command2
@@ -252,7 +252,7 @@ syntax I use the most, with real examples.
 
 ### Custom file descriptors
 
--   Create a new file descriptor (e.g., `3`) and redirect stdout to it:
+- Create a new file descriptor (e.g., `3`) and redirect stdout to it:
 
     ```sh
     exec 3> outputfile
@@ -267,7 +267,7 @@ syntax I use the most, with real examples.
     echo "Using FD 3" >&3
     ```
 
--   Print and redirect stdout to custom file descriptor:
+- Print and redirect stdout to custom file descriptor:
 
     ```sh
     exec 3> custom_output.txt
@@ -279,7 +279,7 @@ syntax I use the most, with real examples.
 
 ### Redirect stderr to a file descriptor
 
--   Common case:
+- Common case:
 
     ```sh
     command 2>&3
@@ -292,7 +292,7 @@ syntax I use the most, with real examples.
     ls non_existing_file 2>&3
     ```
 
--   Print and redirect stderr to custom file descriptor:
+- Print and redirect stderr to custom file descriptor:
 
     ```sh
     command 2> >(tee >(cat > /dev/fd/3))
@@ -306,7 +306,7 @@ syntax I use the most, with real examples.
 
 ### Redirect both stdout and stderr to a file descriptor
 
--   Common way:
+- Common way:
 
     ```sh
     command > /dev/fd/3 2>&1
@@ -326,7 +326,7 @@ syntax I use the most, with real examples.
 
 ### Send stdout and stderr to /dev/null
 
--   Common:
+- Common:
 
     ```sh
     command > /dev/null 2>&1
@@ -338,7 +338,7 @@ syntax I use the most, with real examples.
     ls non_existing_file > /dev/null 2>&1
     ```
 
--   Print and discard stdout and stderr (not sure why you'd ever need this):
+- Print and discard stdout and stderr (not sure why you'd ever need this):
 
     ```sh
     command | tee /dev/null
@@ -350,7 +350,7 @@ syntax I use the most, with real examples.
     ls non_existing_file | tee /dev/null
     ```
 
--   Convenient shorthand:
+- Convenient shorthand:
 
     ```sh
     command &>/dev/null
@@ -364,31 +364,31 @@ syntax I use the most, with real examples.
 
 ## At a glance
 
--   **Redirect stdout**: `command > file`
--   **Redirect stderr**: `command 2> file`
--   **Redirect both stdout and stderr**:
+- **Redirect stdout**: `command > file`
+- **Redirect stderr**: `command 2> file`
+- **Redirect both stdout and stderr**:
 
-    -   Standard: `command > file 2>&1`
-    -   Shorthand: `command &> file`
+    - Standard: `command > file 2>&1`
+    - Shorthand: `command &> file`
 
--   **Append stdout**: `command >> file`
--   **Append both stdout and stderr**:
+- **Append stdout**: `command >> file`
+- **Append both stdout and stderr**:
 
-    -   Standard: `command >> file 2>&1`
-    -   Shorthand: `command &>> file`
+    - Standard: `command >> file 2>&1`
+    - Shorthand: `command &>> file`
 
--   **Pipe stdout**: `command1 | command2`
--   **Pipe both stdout and stderr**:
+- **Pipe stdout**: `command1 | command2`
+- **Pipe both stdout and stderr**:
 
-    -   Standard: `command1 2>&1 | command2`
-    -   Shorthand: `command1 |& command2`
+    - Standard: `command1 2>&1 | command2`
+    - Shorthand: `command1 |& command2`
 
--   **Custom file descriptors**:
+- **Custom file descriptors**:
 
-    -   Create and redirect stdout: `exec 3> file; command >&3`
-    -   Redirect stderr: `command 2>&3`
-    -   Redirect both stdout and stderr: `command > /dev/fd/3 2>&1` (no shorthand available)
+    - Create and redirect stdout: `exec 3> file; command >&3`
+    - Redirect stderr: `command 2>&3`
+    - Redirect both stdout and stderr: `command > /dev/fd/3 2>&1` (no shorthand available)
 
--   **Discard stdout and stderr**:
-    -   Standard: `command > /dev/null 2>&1`
-    -   Shorthand: `command &>/dev/null`
+- **Discard stdout and stderr**:
+    - Standard: `command > /dev/null 2>&1`
+    - Shorthand: `command &>/dev/null`

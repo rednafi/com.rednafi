@@ -94,9 +94,9 @@ Now, in the `.vscode` folder of the project's root directory, add a file named
 `launch.json`. Create the folder if it doesn't exist. You can also do this part manually; to
 do so:
 
--   Click on the debugger button and then click on _create a launch.json file_.
--   Select the _Python_ debugger.
--   Finally, select the _Remote Attach_ debug config.
+- Click on the debugger button and then click on _create a launch.json file_.
+- Select the _Python_ debugger.
+- Finally, select the _Remote Attach_ debug config.
 
 However, if you dislike clicking around, here's the full content of `launch.json` for you to
 copy and paste (into `$PWD/.vscode/launch.json`):
@@ -166,14 +166,14 @@ services:
 
 Here:
 
--   `sh -c`: Selects the shell inside the Docker container.
--   `pip install debugpy -t /tmp`: Installs the `debugpy` tool into the `/tmp` directory of
-    the container.
--   `python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678`: Runs `debugpy`, sets it
-    to wait for a client connection and listen on all network interfaces at port 5678.
--   `-m uvicorn main:app --host 0.0.0.0 --port 8000`: Starts an uvicorn server hosting the
-    application defined in `main:app`, making it accessible on all network interfaces at
-    port 8000.
+- `sh -c`: Selects the shell inside the Docker container.
+- `pip install debugpy -t /tmp`: Installs the `debugpy` tool into the `/tmp` directory of
+  the container.
+- `python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678`: Runs `debugpy`, sets it to
+  wait for a client connection and listen on all network interfaces at port 5678.
+- `-m uvicorn main:app --host 0.0.0.0 --port 8000`: Starts an uvicorn server hosting the
+  application defined in `main:app`, making it accessible on all network interfaces at
+  port 8000.
 
 ## Start the debugger
 

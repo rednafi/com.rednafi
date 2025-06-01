@@ -21,15 +21,15 @@ sitemap via Google Search Console[^4], I'd have to make individual indexing requ
 each URL to encourage faster indexing. The problem is, I've got quite a bit of content on
 this site, and it'll take forever for me to click through all the links and request indexing
 that way. Naturally, I looked for a way to do this programmatically. Luckily, I found out
-that there's an [indexing API] that allows you to make bulk indexing requests programmatically.
-This has one big advantage—Google responds[^5] to API requests faster than indexing requests
-with sitemap submission.
+that there's an [indexing API] that allows you to make bulk indexing requests
+programmatically. This has one big advantage—Google responds[^5] to API requests faster than
+indexing requests with sitemap submission.
 
 All you've to do is:
 
--   List out the URLs that need to be indexed.
--   Fulfill the prerequisites[^6] and download the private key JSON file required to make
-    requests to the API. From the docs:
+- List out the URLs that need to be indexed.
+- Fulfill the prerequisites[^6] and download the private key JSON file required to make
+  requests to the API. From the docs:
 
     > _Every call to the Indexing API must be authenticated with an OAuth token that you get
     > in exchange for your private key. Each token is good for a span of time. Google
@@ -53,7 +53,7 @@ All you've to do is:
     }
     ```
 
--   Use an API client to make the requests.
+- Use an API client to make the requests.
 
 In my case, this site's sitemap[^3] lists out all the URLs as follows:
 

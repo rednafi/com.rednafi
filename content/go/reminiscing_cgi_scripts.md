@@ -54,13 +54,13 @@ execute the compiled binary. For this demo, we're going to write the server in G
 
 Here's the plan:
 
--   Set up a basic HTTP server in Go.
--   The server will await an HTTP POST request containing a form field called `name`.
--   Upon receiving the request, the server will extract the value of `name`.
--   Next, it'll set the `$name` environment variable for the current process.
--   A Bash CGI script is invoked, which uses the `$name` environment variable to echo an
-    HTML-formatted dynamic message.
--   Finally, the server will then return this HTML response to the client.
+- Set up a basic HTTP server in Go.
+- The server will await an HTTP POST request containing a form field called `name`.
+- Upon receiving the request, the server will extract the value of `name`.
+- Next, it'll set the `$name` environment variable for the current process.
+- A Bash CGI script is invoked, which uses the `$name` environment variable to echo an
+  HTML-formatted dynamic message.
+- Finally, the server will then return this HTML response to the client.
 
 The server lives in a single `main.go` script. I'm leaving out Go's verbose error handling
 for clarity.
@@ -117,12 +117,12 @@ The script just reads `name` from the environment variable, sets the `Content-Ty
 injects the value of `name` into the message, and echos the out the final HTML response. The
 server then just relays it back to the client. To test this:
 
--   Run the server with `go run main.go`.
--   Set the permission of the CGI script:
+- Run the server with `go run main.go`.
+- Set the permission of the CGI script:
     ```sh
     sudo chmod +x cgi-script.sh
     ```
--   Make a cURL request:
+- Make a cURL request:
     ```sh
     curl -X POST http://localhost:8080 -d "name=Redowan"
     ```
