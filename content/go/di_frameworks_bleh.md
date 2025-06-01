@@ -314,16 +314,37 @@ The post got a fair bit of discussion going around the web. You might find it in
 - [r/experienceddevs]
 - [r/programming]
 
-[industrial]: https://peter.bourgon.org/go-for-industrial-programming/
-[dig]: https://github.com/uber-go/dig
-[compiles]: https://go.dev/play/p/Vhimup7ukLo
-[wire]: https://github.com/google/wire
-[talk]: https://www.youtube.com/watch?v=nLskCRJOdxM&t
-[fx]: https://github.com/uber-go/fx
-[hackernews]: https://news.ycombinator.com/item?id=44086235
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[industrial]:
+    https://peter.bourgon.org/go-for-industrial-programming/
+
+[dig]:
+    https://github.com/uber-go/dig
+
+[compiles]:
+    https://go.dev/play/p/Vhimup7ukLo
+
+[wire]:
+    https://github.com/google/wire
+
+[talk]:
+    https://www.youtube.com/watch?v=nLskCRJOdxM&t
+
+[fx]:
+    https://github.com/uber-go/fx
+
+[hackernews]:
+    https://news.ycombinator.com/item?id=44086235
+
 [r/golang]:
     https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
+
 [r/programming]:
     https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
+
 [r/experienceddevs]:
     https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
+
+<!-- prettier-ignore-end -->

@@ -5,15 +5,15 @@ tags:
     - Python
 ---
 
-I was working with a rate-limited API endpoint where I continuously needed to send short
-polling GET requests without hitting HTTP 429 error. Perusing the API doc, I found out that
-the API endpoint only allows a maximum of 100 requests per second. So, my goal was to find
-out a way to send the maximum amount of requests without encountering the too-many-requests
-error.
+I was working with a rate-limited API endpoint where I continuously needed to send
+short-polling GET requests without hitting HTTP 429 error. Perusing the API doc, I found out
+that the API endpoint only allows a maximum of 100 requests per second. So, my goal was to
+find out a way to send the maximum amount of requests without encountering the
+too-many-requests error.
 
-I picked up Python's asyncio[^1] and the amazing HTTPx[^2] library by Tom Christie to make
-the requests. This is the naive version that I wrote in the beginning; it quickly hits the
-HTTP 429 error:
+I picked up Python's [asyncio] and the amazing [HTTPx] library by Tom Christie to make the
+requests. This is the naive version that I wrote in the beginning; it quickly hits the HTTP
+429 error:
 
 ```python
 # src.py
@@ -111,9 +111,9 @@ shared resource. All concurrency primitives in Python have semaphores to help yo
 resource access. This means if you're using any of the—`multiprocessing`, `threading`, or
 `asyncio` module, you can take advantage of it. From the `asyncio` docs:
 
-> A semaphore manages an internal counter which is decremented by each `acquire()` call and
+> _A semaphore manages an internal counter which is decremented by each `acquire()` call and
 > incremented by each `release()` call. The counter can never go below zero; when
-> `acquire()` finds that it is zero, it blocks, waiting until some task calls `release()`.
+> `acquire()` finds that it is zero, it blocks, waiting until some task calls `release()`._
 
 You can use the semaphores in the above script as follows:
 
@@ -245,10 +245,13 @@ if __name__ == "__main__":
     asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
 ```
 
-[^1]: [asyncio](https://docs.python.org/3/library/asyncio.html)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [HTTPx](https://www.python-httpx.org/)
+[asyncio]:
+    https://docs.python.org/3/library/asyncio.html
 
-[^3]:
-    [Limiting Concurrent Requests with Semaphore - Think Async](https://github.com/rednafi/think-async/blob/master/patterns/limit_concurrent_request.py)
-    [^3]
+[httpx]:
+    https://www.python-httpx.org/
+
+<!-- prettier-ignore-end -->

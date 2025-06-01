@@ -64,7 +64,7 @@ call of f copies lock value: sync.WaitGroup contains sync.noCopy
 So the `sync.noCopy` struct inside `sync.WaitGroup` is doing something to alert `go vet`
 when you pass it by value.
 
-Looking at the implementation of `sync.WaitGroup`[^1], you'll see:
+Looking at the implementation of [sync.WaitGroup], you'll see:
 
 ```go
 type WaitGroup struct {
@@ -75,7 +75,7 @@ type WaitGroup struct {
 }
 ```
 
-Then I traced the definition of `noCopy` in `sync/cond.go`[^2]:
+Then I traced the definition of `noCopy` in [sync/cond.go]:
 
 ```go
 // noCopy may be added to structs which must not be copied
@@ -90,13 +90,13 @@ func (*noCopy) Unlock() {}
 ```
 
 Just having those no-op `Lock` and `Unlock` methods on `noCopy` is enough. This implements
-the `Locker`[^3] interface. Then if you put that struct inside another one, `go vet` will
-flag cases where you try to copy the outer struct.
+the [Locker] interface. Then if you put that struct inside another one, `go vet` will flag
+cases where you try to copy the outer struct.
 
 Also, note the comment: don't _embed_ `noCopy`. Include it explicitly. Embedding would
 expose `Lock` and `Unlock` on the outer struct, which you probably don't want.
 
-The Go toolchain enforces this with the `-copylocks` checker. It's part of `go vet`. You can
+The Go toolchain enforces this with the [copylock checker]. It's part of `go vet`. You can
 exclusively invoke it with `go vet -copylocks ./...`. It looks for value copies of any
 struct that nests a struct with `Lock` and `Unlock` methods. It doesn't matter what those
 methods do, just having them is enough.
@@ -116,7 +116,7 @@ func (*noCopy) Unlock() {}
 ```
 
 This doesn't trigger vet. It only works when `noCopy` is a struct. The reason is that vet
-takes a shortcut[^5] while checking when to trigger the warning. Currently, it explicitly
+takes a [shortcut] while checking when to trigger the warning. Currently, it explicitly
 looks for a struct that satisfies the `Locker` interface and ignores any other type even if
 it implements the interface.
 
@@ -171,21 +171,30 @@ the struct's literal name `noCopy` or the fact that it implements the `Locker` i
 
 The name `noCopy` isn't special. You can call it whatever you want. As long as it implements
 the `Locker` interface, `go vet` will complain if the surrounding struct gets copied. See
-this Go Playground snippet[^6].
+this Go Playground [snippet].
 
-[^1]:
-    [sync.WaitGroup](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/waitgroup.go;l=25-30)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [noCopy](https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122)
+[sync.WaitGroup]:
+    https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/waitgroup.go;l=25-30
 
-[^3]:
-    [Locker](https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37)
+<!-- noCopy in sync/cond.go -->
+[sync/cond.go]:
+    https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122
 
-[^4]:
-    [copylock checker](https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf)
+[Locker]:
+    https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37
 
-[^5]:
-    [copylock only checks for structs](https://cs.opensource.google/go/x/tools/+/refs/tags/v0.32.0:go/analysis/passes/copylock/copylock.go;l=338)
+[copylock checker]:
+    https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf
 
-[^6]: [The name noCopy isn't special](https://go.dev/play/p/M-vR6nOn00j)
+<!-- copylock only checks for structs -->
+[shortcut]:
+    https://cs.opensource.google/go/x/tools/+/refs/tags/v0.32.0:go/analysis/passes/copylock/copylock.go;l=338
+
+<!--The name noCopy isn't special-->
+[snippet]:
+    https://go.dev/play/p/M-vR6nOn00j
+
+<!-- prettier-ignore-end -->
