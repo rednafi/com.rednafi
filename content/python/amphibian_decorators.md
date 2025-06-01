@@ -61,18 +61,18 @@ def tag(*names: str) -> Callable:
 
 In the above snippet—
 
--   The decorator `tag` is a variadic function that accepts the names of the tags.
+- The decorator `tag` is a variadic function that accepts the names of the tags.
 
--   I attached the tag to a function before dealing with the sync and async functions. The
-    tag attachment is done via `func._tags = names` statement. Placing them outside of the
-    wrapped function also makes sure that the attachment happens during the definition time
-    of the wrapped function; not during runtime. Otherwise, it'll raise AttributeError if
-    you try to access `func._tags` to inspect the tags.
+- I attached the tag to a function before dealing with the sync and async functions. The tag
+  attachment is done via `func._tags = names` statement. Placing them outside of the wrapped
+  function also makes sure that the attachment happens during the definition time of the
+  wrapped function; not during runtime. Otherwise, it'll raise AttributeError if you try to
+  access `func._tags` to inspect the tags.
 
--   Afterwards, I checked if the function is an async one via `iscoroutinefunction` function
-    from the `inspect` module. If the wrapped function is an async function, then it's
-    executed with the `await` statement. Otherwise, the function is a sync function and is
-    executed as usual.
+- Afterwards, I checked if the function is an async one via `iscoroutinefunction` function
+  from the `inspect` module. If the wrapped function is an async function, then it's
+  executed with the `await` statement. Otherwise, the function is a sync function and is
+  executed as usual.
 
 You can play around with the decorator as follows:
 
