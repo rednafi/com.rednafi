@@ -45,9 +45,9 @@ Let's have a look at a few more examples of performing the same tasks using `os.
 
 Say you want to achieve the following goals:
 
--   There is a file named `file.txt` in your current directory and you want to create the
-    path for another file named `file_another.txt` in the same directory.
--   Then you want to save the absolute path of `file_another.txt` in a new variable.
+- There is a file named `file.txt` in your current directory and you want to create the path
+  for another file named `file_another.txt` in the same directory.
+- Then you want to save the absolute path of `file_another.txt` in a new variable.
 
 Let's see how you'd usually do this via the `os` module.
 
@@ -106,8 +106,8 @@ The `resolve` method finds out the absolute path of the file. From there you can
 
 Here's a piece of code that:
 
--   Tries to make a `src/stuff/` directory when it already exists.
--   Renames a file in the `src` directory called `.config` to `.stuffconfig`.
+- Tries to make a `src/stuff/` directory when it already exists.
+- Renames a file in the `src` directory called `.config` to `.stuffconfig`.
 
 ```python
 import os
@@ -640,13 +640,13 @@ Creates a new directory at this given path.
 
 **Parameters:**
 
--   **mode:**(_str_) Posix permissions (mimicking the POSIX mkdir -p command)
+- **mode:**(_str_) Posix permissions (mimicking the POSIX mkdir -p command)
 
--   **parents:**(_boolean_) If parents is `True`, any missing parents of this path are
-    created as needed. Otherwise, if the parent is absent, `FileNotFoundError` is raised.
+- **parents:**(_boolean_) If parents is `True`, any missing parents of this path are created
+  as needed. Otherwise, if the parent is absent, `FileNotFoundError` is raised.
 
--   **exist_ok:** (_boolean_) If `False`, FileExistsError is raised if the target directory
-    already exists. If `True`, FileExistsError is ignored.
+- **exist_ok:** (_boolean_) If `False`, FileExistsError is raised if the target directory
+  already exists. If `True`, FileExistsError is ignored.
 
 ```python
 from pathlib import Path

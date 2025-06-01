@@ -38,12 +38,12 @@ never returns, you can't collect the outputs in an iterable, return the containe
 the elements of the iterable in another function. You might be wondering why would you even
 need to do it. I can think of two reasons:
 
--   The `infinite_counter` function is the producer of the numbers and the `print` function
-    is consuming them. These are two separate responsibilities tangled in the same function
-    which violates the Single Responsibility Principle (SRP)[^2].
+- The `infinite_counter` function is the producer of the numbers and the `print` function is
+  consuming them. These are two separate responsibilities tangled in the same function which
+  violates the Single Responsibility Principle (SRP)[^2].
 
--   What'd you do if you needed a version of the infinite counter where the consumer had
-    different behavior?
+- What'd you do if you needed a version of the infinite counter where the consumer had
+  different behavior?
 
 One way the second point can be addressed is—by accepting the consumer function as a
 parameter and applying that to the produced value.

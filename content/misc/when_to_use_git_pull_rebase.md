@@ -9,10 +9,10 @@ tags:
 Whenever your local branch diverges from the remote branch, you can't directly pull from the
 remote branch and merge it into the local branch. This can happen when, for example:
 
--   You checkout from the `main` branch to work on a feature in a branch named `alice`.
--   When you're done, you merge `alice` into `main`.
--   After that, if you try to pull the `main` branch from remote again and the content of
-    the `main` branch changes by this time, you'll encounter a merge error.
+- You checkout from the `main` branch to work on a feature in a branch named `alice`.
+- When you're done, you merge `alice` into `main`.
+- After that, if you try to pull the `main` branch from remote again and the content of the
+  `main` branch changes by this time, you'll encounter a merge error.
 
 ## Reproduce the issue
 

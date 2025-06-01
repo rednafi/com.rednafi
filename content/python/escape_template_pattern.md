@@ -44,13 +44,13 @@ resources and focus on improving only a small part of the gamut.
 You're consciously or subconsciously implementing the template pattern when your API design
 follows these steps:
 
--   You have an Abstract Base Class (ABC) with abstract methods.
--   The ABC also includes one or more concrete methods.
--   The concrete methods in the ABC depend on the concrete implementation of the abstract
-    methods.
--   API users are expected to inherit from the ABC and provide concrete implementations for
-    the abstract methods.
--   Users then utilize the concrete methods defined in the ABC class.
+- You have an Abstract Base Class (ABC) with abstract methods.
+- The ABC also includes one or more concrete methods.
+- The concrete methods in the ABC depend on the concrete implementation of the abstract
+  methods.
+- API users are expected to inherit from the ABC and provide concrete implementations for
+  the abstract methods.
+- Users then utilize the concrete methods defined in the ABC class.
 
 This pattern enables the sharing of concrete method implementations with subclasses.
 However, the concrete methods of the baseclass are only valid when the user inherits from

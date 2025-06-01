@@ -35,11 +35,11 @@ the eccentricity of title casing:
 _Sentence case everywhere_ is the general trend I'm seeing on the technical blogs of some of
 the big players on the internet:
 
--   [Django docs]
--   [Dropbox blog]
--   [GitHub blog]
--   [Twitter blog]
--   [GitLab blog]
+- [Django docs]
+- [Dropbox blog]
+- [GitHub blog]
+- [Twitter blog]
+- [GitLab blog]
 
 One thing that I'll admit is, at first it just doesn't look right to me for a title to have
 sentence casing. Also, I'm not too conviced to adopt sentence case in technical papers.

@@ -9,11 +9,11 @@ Whether I'm trying out a new tool or just prototyping with a familiar stack, I u
 create a new project on GitHub and run all the experiments there. Some examples of these
 are:
 
--   [rubric]: linter config initializer for Python
--   [exert]: declaratively apply converter functions to class attributes
--   [hook-slinger]: generic service to send, retry, and manage webhooks
--   [think-async]: exploring cooperative concurrency primitives in Python
--   [epilog]: container log aggregation with Elasticsearch, Kibana & Filebeat
+- [rubric]: linter config initializer for Python
+- [exert]: declaratively apply converter functions to class attributes
+- [hook-slinger]: generic service to send, retry, and manage webhooks
+- [think-async]: exploring cooperative concurrency primitives in Python
+- [epilog]: container log aggregation with Elasticsearch, Kibana & Filebeat
 
 While many of these prototypes become full-fledged projects, most end up being just one-time
 journies. One common theme among all of these endeavors is that I always include

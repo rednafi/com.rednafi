@@ -37,14 +37,14 @@ I wanted to take a declarative approach while designing a config management pipl
 that'll be **modular**, **scalable** and easy to **maintain**. To meet my requirements, the
 system should be able to:
 
--   Read configs from `.env` files and _shell environment_ at the same time.
--   Handle dependency injection for introducing _passwords_ or _secrets_.
--   Convert variable types automatically in the appropriate cases, e.g. string to integer
-    conversion.
--   Keep _development_, _staging_ and _production_ configs separate.
--   Switch between the different environments e.g development, staging effortlessly.
--   Inspect the _active_ config values
--   Create arbitrarily nested config structure if required (Not encouraged though).
+- Read configs from `.env` files and _shell environment_ at the same time.
+- Handle dependency injection for introducing _passwords_ or _secrets_.
+- Convert variable types automatically in the appropriate cases, e.g. string to integer
+  conversion.
+- Keep _development_, _staging_ and _production_ configs separate.
+- Switch between the different environments e.g development, staging effortlessly.
+- Inspect the _active_ config values
+- Create arbitrarily nested config structure if required (Not encouraged though).
 
 ## Building the config management pipeline
 
@@ -372,7 +372,7 @@ The modular design demonstrated above is easy to maintain and extend in my opini
 Previously, for simplicity, I've defined only two environment scopes; development and
 production. Let's say you want to add the configs for your _staging environment_.
 
--   First you'll need to add those _staging_ variables to the `.env` file.
+- First you'll need to add those _staging_ variables to the `.env` file.
 
 ```txt
 ...
@@ -384,9 +384,9 @@ STAGE_REDIS_PORT="6000"
 
 ```
 
--   Then you've to create a class named `StageConfig` that inherits from the `GlobalConfig`
-    class. The architecture of the class is similar to that of the `DevConfig` or
-    `ProdConfig` class.
+- Then you've to create a class named `StageConfig` that inherits from the `GlobalConfig`
+  class. The architecture of the class is similar to that of the `DevConfig` or `ProdConfig`
+  class.
 
 ```python
 # configs.py
@@ -403,9 +403,9 @@ class StageConfig(GlobalConfig):
 ...
 ```
 
--   Finally, you'll need to insert an `ENV_STATE` logic into the control flow of the
-    `FactoryConfig` class. See how I've appended another if-else block to the previous
-    (prod) block.
+- Finally, you'll need to insert an `ENV_STATE` logic into the control flow of the
+  `FactoryConfig` class. See how I've appended another if-else block to the previous (prod)
+  block.
 
 ```python
 # configs.py

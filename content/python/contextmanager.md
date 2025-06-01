@@ -128,8 +128,8 @@ You can use context managers as decorators also. To do so, while defining the cl
 have to inherit from `contextlib.ContextDecorator` class. Let's make a `RunTime` decorator
 that'll be applied on a file-opening function. The decorator will:
 
--   Print a user provided description of the function.
--   Print the time it takes to run the function.
+- Print a user provided description of the function.
+- Print the time it takes to run the function.
 
 ```python
 from contextlib import ContextDecorator

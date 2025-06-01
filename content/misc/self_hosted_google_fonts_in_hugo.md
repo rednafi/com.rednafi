@@ -9,11 +9,11 @@ This site[^1] is built with Hugo[^2] and served via GitHub pages[^3]. Recently, 
 change the font here to make things more consistent across different devices. However, I
 didn't want to go with Google Fonts for a few reasons:
 
--   CDN is another dependency.
--   Hosting static assets on GitHub Pages has served me well.
--   Google Fonts tracks users and violates[^4] GDPR in Germany. Google Analytics does that
-    too. But since I'm using the latter anyway, this might come off a bit apocryphal.
--   I wanted to get a few extra Lighthouse points.
+- CDN is another dependency.
+- Hosting static assets on GitHub Pages has served me well.
+- Google Fonts tracks users and violates[^4] GDPR in Germany. Google Analytics does that
+  too. But since I'm using the latter anyway, this might come off a bit apocryphal.
+- I wanted to get a few extra Lighthouse points.
 
 Turns out, it's pretty easy to host the fonts yourself.
 

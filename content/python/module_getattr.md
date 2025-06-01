@@ -185,4 +185,6 @@ them all within the `__getattr__` method.
 Here's one example of using it for a non-trivial case in the wild[^2].
 
 [^1]: [PEP 562 – Module \_\_getattr\_\_ and \_\_dir\_\_](https://peps.python.org/pep-0562/)
-[^2]: [Prefect - \_\_getattr\_\_](https://github.com/PrefectHQ/prefect/blob/f196fb3da6ae747f7362be2f21e85b01f32e539c/src/prefect/__init__.py#L102)
+
+[^2]:
+    [Prefect - \_\_getattr\_\_](https://github.com/PrefectHQ/prefect/blob/f196fb3da6ae747f7362be2f21e85b01f32e539c/src/prefect/__init__.py#L102)

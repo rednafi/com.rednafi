@@ -11,8 +11,8 @@ I was cobbling together a long-running Go script to send webhook messages to a s
 some events occur. The initial script would continuously poll a Kafka topic for events and
 spawn new goroutines to make HTTP requests to the destination. This had two problems:
 
--   It could create unlimited goroutines if many events arrived quickly
--   It might overload the destination system by making many concurrent requests
+- It could create unlimited goroutines if many events arrived quickly
+- It might overload the destination system by making many concurrent requests
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously written
 about this here[^1]. Turns out, in Go, you could do the same with a buffered channel. Here's

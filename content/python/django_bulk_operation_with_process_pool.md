@@ -15,16 +15,16 @@ The issue is, `bulk_create / bulk_update` doesn't trigger these signals or expos
 to run any setup code. The Django doc mentions these caveates[^1] in detail. Here are a few
 of them:
 
--   The model's `save()` method will not be called, and the `pre_save` and `post_save`
-    signals will not be sent.
--   It does not work with child models in a multi-table inheritance scenario.
--   If the model's primary key is an `AutoField`, the primary key attribute can only be
-    retrieved on certain databases (currently PostgreSQL, MariaDB 10.5+, and SQLite 3.35+).
-    On other databases, it will not be set.
--   It does not work with many-to-many relationships.
--   It casts `objs` to a list, which fully evaluates objs if it's a generator. Here, `obj`
-    is the iterable that passes the information necessary to create the database objects in
-    a single go.
+- The model's `save()` method will not be called, and the `pre_save` and `post_save` signals
+  will not be sent.
+- It does not work with child models in a multi-table inheritance scenario.
+- If the model's primary key is an `AutoField`, the primary key attribute can only be
+  retrieved on certain databases (currently PostgreSQL, MariaDB 10.5+, and SQLite 3.35+). On
+  other databases, it will not be set.
+- It does not work with many-to-many relationships.
+- It casts `objs` to a list, which fully evaluates objs if it's a generator. Here, `obj` is
+  the iterable that passes the information necessary to create the database objects in a
+  single go.
 
 To solve this, I wanted to take advantage of Python's `concurrent.futures` module. It
 exposes a similar API for both thread-based and process-based concurrency. The snippet below

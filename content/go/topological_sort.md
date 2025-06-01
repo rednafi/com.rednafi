@@ -17,8 +17,8 @@ migrations.
 
 For example, consider these tasks:
 
--   Task A must be completed before Tasks B and C.
--   Tasks B and C must be completed before Task D.
+- Task A must be completed before Tasks B and C.
+- Tasks B and C must be completed before Task D.
 
 This can be represented as:
 
@@ -104,10 +104,10 @@ type Graph struct {
 
 Here:
 
--   `vertices`: a list of tasks that each node points to (i.e., its dependents).
--   `inDegree`: how many tasks must finish before each task can be processed.
--   `queue`: tasks that can be processed because they have no unmet dependencies.
--   `active`: how many tasks are currently ready for processing.
+- `vertices`: a list of tasks that each node points to (i.e., its dependents).
+- `inDegree`: how many tasks must finish before each task can be processed.
+- `queue`: tasks that can be processed because they have no unmet dependencies.
+- `active`: how many tasks are currently ready for processing.
 
 ### Adding dependencies
 
@@ -125,11 +125,11 @@ func (g *Graph) AddEdge(source, destination string) {
 }
 ```
 
--   The **destination task** is added to the list of tasks that the **source task** points
-    to, marking the dependency.
--   The in-degree of the **destination task** is increased by 1 because it depends on the
-    source task.
--   If the **source task** is new, we initialize its in-degree to 0.
+- The **destination task** is added to the list of tasks that the **source task** points to,
+  marking the dependency.
+- The in-degree of the **destination task** is increased by 1 because it depends on the
+  source task.
+- If the **source task** is new, we initialize its in-degree to 0.
 
 ### Initializing and processing tasks in batches
 
@@ -149,9 +149,9 @@ func (g *Graph) Prepare() {
 }
 ```
 
--   This function finds tasks with an in-degree of 0 (no dependencies) and adds them to the
-    processing queue.
--   The active count keeps track of how many tasks are ready to run.
+- This function finds tasks with an in-degree of 0 (no dependencies) and adds them to the
+  processing queue.
+- The active count keeps track of how many tasks are ready to run.
 
 ### Processing each batch of tasks
 
@@ -167,9 +167,9 @@ func (g *Graph) GetReady() []string {
 }
 ```
 
--   `GetReady` pulls the current batch of tasks from the queue and clears it for the next
-    batch.
--   Tasks are returned in the order they are ready to be processed.
+- `GetReady` pulls the current batch of tasks from the queue and clears it for the next
+  batch.
+- Tasks are returned in the order they are ready to be processed.
 
 ### Marking the processed tasks as done
 
@@ -190,9 +190,9 @@ func (g *Graph) Done(tasks ...string) {
 }
 ```
 
--   For each completed task, we reduce the in-degree of any dependent tasks.
--   If a dependent task's in-degree reaches 0, it's added to the queue and is now ready to
-    be processed in the next batch.
+- For each completed task, we reduce the in-degree of any dependent tasks.
+- If a dependent task's in-degree reaches 0, it's added to the queue and is now ready to be
+  processed in the next batch.
 
 ### Running the full topological sort
 
@@ -210,10 +210,10 @@ func TopologicalSortBatch(graph *Graph) {
 }
 ```
 
--   `Prepare` loads the first set of tasks that can be processed.
--   `IsActive` checks if there are any tasks left to process.
--   `GetReady` retrieves the next batch of tasks to process.
--   `Done` marks tasks as finished, allowing dependent tasks to be processed next.
+- `Prepare` loads the first set of tasks that can be processed.
+- `IsActive` checks if there are any tasks left to process.
+- `GetReady` retrieves the next batch of tasks to process.
+- `Done` marks tasks as finished, allowing dependent tasks to be processed next.
 
 ### Using the sorter
 

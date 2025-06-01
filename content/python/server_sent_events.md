@@ -8,13 +8,13 @@ tags:
 
 In multi-page web applications, a common workflow is where a user:
 
--   Loads a specific page or clicks on some button that triggers a long-running task.
--   On the server side, a background worker picks up the task and starts processing it
-    asynchronously.
--   The page shouldn't reload while the task is running.
--   The backend then communicates the status of the long-running task in real-time.
--   Once the task is finished, the client needs to display a success or an error message
-    depending on the final status of the finished task.
+- Loads a specific page or clicks on some button that triggers a long-running task.
+- On the server side, a background worker picks up the task and starts processing it
+  asynchronously.
+- The page shouldn't reload while the task is running.
+- The backend then communicates the status of the long-running task in real-time.
+- Once the task is finished, the client needs to display a success or an error message
+  depending on the final status of the finished task.
 
 The de facto tool for handling situations where real-time bidirectional communication is
 necessary is WebSocket[^1]. However, in the case above, you can see that the communication
@@ -83,21 +83,21 @@ not to cache the response by setting the `cache-control` header to `no-cache`. N
 message payload, only the `data` field is required, everything else is optional. Let's break
 down the message structure:
 
--   `event`: This is an optional field that specifies the name of the event. If present, it
-    must be preceded by the string 'event:'. If not present, the event is considered to have
-    the default name 'message'.
+- `event`: This is an optional field that specifies the name of the event. If present, it
+  must be preceded by the string 'event:'. If not present, the event is considered to have
+  the default name 'message'.
 
--   `id`: This is an optional field that assigns an ID to the event. If present, it must be
-    preceded by the string 'id:'. Clients can use this ID to resume an interrupted
-    connection and receive only events that they have not yet seen.
+- `id`: This is an optional field that assigns an ID to the event. If present, it must be
+  preceded by the string 'id:'. Clients can use this ID to resume an interrupted connection
+  and receive only events that they have not yet seen.
 
--   `data:` This field is required and contains the actual message data that the server
-    wants to send to the client. It must be preceded by the string 'data:' and can contain
-    any string of characters.
+- `data:` This field is required and contains the actual message data that the server wants
+  to send to the client. It must be preceded by the string 'data:' and can contain any
+  string of characters.
 
--   `retry`: This is an optional field that specifies the number of milliseconds that the
-    client should wait before attempting to reconnect to the server in case the connection
-    is lost. If present, it must be preceded by the string 'retry:'.
+- `retry`: This is an optional field that specifies the number of milliseconds that the
+  client should wait before attempting to reconnect to the server in case the connection is
+  lost. If present, it must be preceded by the string 'retry:'.
 
 Each message must end with double newline characters `("\n\n")`. Yep, this is part of the
 protocol. The server can send multiple messages in a single HTTP response, and each message
@@ -574,12 +574,12 @@ Notice, how the server pushes the result of the task automatically once it finis
 While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts—apart
 from only supporting unidirectional communication, they suffer from a few other limitations:
 
--   SSE is limited to sending text data only. If an application needs to send binary data,
-    it must encode the data as text before sending it over SSE.
--   SSE connections are subject to the same connection limitations as HTTP connections. In
-    some cases, a large number of SSE connections can overload the server, leading to
-    performance issues. However, this can be mitigated by taking advantage of connection
-    multiplexing in HTTP/2.
+- SSE is limited to sending text data only. If an application needs to send binary data, it
+  must encode the data as text before sending it over SSE.
+- SSE connections are subject to the same connection limitations as HTTP connections. In
+  some cases, a large number of SSE connections can overload the server, leading to
+  performance issues. However, this can be mitigated by taking advantage of connection
+  multiplexing in HTTP/2.
 
 [^1]: [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
 

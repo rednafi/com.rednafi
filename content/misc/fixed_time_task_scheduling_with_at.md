@@ -89,13 +89,13 @@ This will start the `atrun` daemon. Or enable it for future bootups by modifying
 On modern MacOS like Ventura, unfortunately, this requires disabling SIP[^3]. Next, you'll
 need to provide full disk access to `atrun`. To do so:
 
--   Open Spotlight and type in _Allow full disk access_.
--   On the left panel, click on _Allow applications to access all user files_.
+- Open Spotlight and type in _Allow full disk access_.
+- On the left panel, click on _Allow applications to access all user files_.
 
 ![enable atrun on mac][image_1]
 
--   On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
-    `cmd + shift + g` and type in the full path of `atrun`.
+- On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
+  `cmd + shift + g` and type in the full path of `atrun`.
 
 ![add atrun to allow list][image_2]
 
