@@ -103,8 +103,7 @@ methods do, just having them is enough.
 
 When vet runs, it walks the AST and applies the checker on assignments, function calls,
 return values, struct literals, range loops, channel sends, basically anywhere values can
-get copied. If it sees you copying a struct with `noCopy`, it yells. You can see the
-implementation of the check here[^4].
+get copied. If it sees you copying a struct with `noCopy`, it yells.
 
 Interestingly, if you define `noCopy` as anything other than a struct and implement the
 `Locker` interface, vet ignores that. I tested this on Go 1.24:
