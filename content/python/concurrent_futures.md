@@ -8,17 +8,17 @@ tags:
 Writing concurrent code in Python can be tricky. Before you even start, you have to worry
 about all these icky stuff like whether the task at hand is I/O or CPU bound or whether
 putting the extra effort to achieve concurrency is even going to give you the boost you
-need. Also, the presence of Global Interpreter Lock, GIL[^1] foists further limitations on
+need. Also, the presence of Global Interpreter Lock, [GIL] foists further limitations on
 writing truly concurrent code. But for the sake of sanity, you can oversimplify it like this
 without being blatantly incorrect:
 
-> In Python, if the task at hand is I/O bound, you can use use standard library's
+> _In Python, if the task at hand is I/O bound, you can use use standard library's
 > `threading` module or if the task is CPU bound then `multiprocessing` module can be your
 > friend. These APIs give you a lot of control and flexibility but they come at the cost of
 > having to write relatively low-level verbose code that adds extra layers of complexity on
 > top of your core logic. Sometimes when the target task is complicated, it's often
 > impossible to avoid complexity while adding concurrency. However, a lot of simpler tasks
-> can be made concurrent without adding too much verbosity.
+> can be made concurrent without adding too much verbosity._
 
 Python standard library also houses a module called the `concurrent.futures`. This module
 was added in Python 3.2 for providing the developers a high-level interface to launch
@@ -32,8 +32,8 @@ code concurrently and don't need the added modularity that the `threading` and
 
 From the official docs,
 
-> The concurrent.futures module provides a high-level interface for asynchronously executing
-> callables.
+> _The concurrent.futures module provides a high-level interface for asynchronously
+> executing callables._
 
 What it means is you can run your subroutines asynchronously using either threads or
 processes through a common high-level interface. Basically, the module provides an abstract
@@ -372,20 +372,20 @@ worker you want to deploy to spawn and manage the threads. A general rule of thu
 `2 * multiprocessing.cpu_count() + 1`. My machine has 6 physical cores with 12 threads. So
 13 is the value I chose.
 
-> Note: You can also try running the above functions with `ProcessPoolExecutor` via the same
-> interface and notice that the threaded version performs slightly better than due to the
-> nature of the task.
+> _Note: You can also try running the above functions with `ProcessPoolExecutor` via the
+> same interface and notice that the threaded version performs slightly better than due to
+> the nature of the task._
 
 There is one small problem with the example above. The `executor.map()` method returns a
 generator which allows to iterate through the results once ready. That means if any error
 occurs inside `map`, it's not possible to handle that and resume the generator after the
-exception occurs. From PEP-255[^2]:
+exception occurs. From [PEP-255]:
 
-> If an unhandled exception-- including, but not limited to, StopIteration --is raised by,
+> _If an unhandled exception-- including, but not limited to, StopIteration --is raised by,
 > or passes through, a generator function, then the exception is passed on to the caller in
 > the usual way, and subsequent attempts to resume the generator function raise
 > StopIteration. In other words, an unhandled exception terminates a generator's useful
-> life.
+> life._
 
 To get around that, you can use the `executor.submit()` method to create futures,
 accumulated the futures in a list, iterate through the futures and handle the exceptions
@@ -765,21 +765,26 @@ with complicated code that performs worse than the naive solution.
 
 ## References
 
-- [concurrent.futures - the official documentation]
+- [concurrent.futures - official docs]
 - [Easy concurrency in Python]
 - [Adventures in Python with concurrent.futures]
 
-[^1]: [GIL](https://wiki.python.org/moin/GlobalInterpreterLock)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [PEP-255](https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation)
+[gil]:
+    https://wiki.python.org/moin/GlobalInterpreterLock
 
-[^3]:
-    [concurrent.futures - the official documentation](https://docs.python.org/3/library/concurrent.futures.html)
-    [^3]
+[pep-255]:
+    https://www.python.org/dev/peps/pep-0255/#specification-generators-and-exception-propagation
 
-[^4]: [easy concurrency in python](http://pljung.de/posts/easy-concurrency-in-python/) [^4]
+[concurrent.futures - official docs]:
+    https://docs.python.org/3/library/concurrent.futures.html
 
-[^5]:
-    [Adventures in python with concurrent.futures](https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/)
-    [^5]
+[easy concurrency in python]:
+    http://pljung.de/posts/easy-concurrency-in-python/
+
+[adventures in python with concurrent.futures]:
+    https://alexwlchan.net/2019/10/adventures-with-concurrent-futures/
+
+<!-- prettier-ignore-end -->
