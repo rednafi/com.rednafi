@@ -28,9 +28,9 @@ In the `src` package, the function `Display` takes a pointer to a `Style` instan
 specified in the option struct. In the wild, I've seen 3 main ways to write APIs that let
 users configure options:
 
--   Expose the option struct directly
--   Use the option constructor pattern
--   Apply functional option constructor pattern
+- Expose the option struct directly
+- Use the option constructor pattern
+- Apply functional option constructor pattern
 
 Each comes with its own pros and cons.
 

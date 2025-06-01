@@ -12,10 +12,10 @@ if you want to shut down the server gracefully in the presence of an interruptio
 The intended behavior here is that whenever any of `SIGHUP`, `SIGINT`, `SIGTERM`, or
 `SIGQUIT` signals are sent to the server, it should:
 
--   Acknowledge the signal and log a message to the output console of the server.
--   Notify all the connected clients that the server is going offline.
--   Give the clients enough time (specified by a timeout parameter) to close the requests.
--   Close all the client requests and then shut down the server after the timeout exceeds.
+- Acknowledge the signal and log a message to the output console of the server.
+- Notify all the connected clients that the server is going offline.
+- Give the clients enough time (specified by a timeout parameter) to close the requests.
+- Close all the client requests and then shut down the server after the timeout exceeds.
 
 Here's a quick implementation of a multithreaded echo server and see what happens when you
 send `SIGINT` to shut down the server:

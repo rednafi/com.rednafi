@@ -10,8 +10,8 @@ People typically associate Google's Protocol Buffer[^1] with gRPC[^2] services, 
 rightfully so. But things often get confusing when discussing protobufs because the term can
 mean different things:
 
--   A binary protocol for efficiently serializing structured data.
--   A language used to specify how this data should be structured.
+- A binary protocol for efficiently serializing structured data.
+- A language used to specify how this data should be structured.
 
 In gRPC services, you usually use both: the protobuf language in proto files defines the
 service interface, and then the clients use the same proto files to communicate with the
@@ -25,25 +25,25 @@ has its benefits!
 
 Defining your service contracts with protobuf:
 
--   Allows you to generate message serializers and deserializers in almost any language of
-    your choice.
--   You can choose from a set of serialization formats.
--   The service contracts are self-documented, and you can simply hand over the proto files
-    to your service users.
--   Different parts of a service or a fleet of services can be written in different
-    languages, as long as their communication conforms to the defined contracts.
+- Allows you to generate message serializers and deserializers in almost any language of
+  your choice.
+- You can choose from a set of serialization formats.
+- The service contracts are self-documented, and you can simply hand over the proto files to
+  your service users.
+- Different parts of a service or a fleet of services can be written in different languages,
+  as long as their communication conforms to the defined contracts.
 
 For example, consider an event-driven application that sends messages to a message broker
 when an event occurs. A consumer then processes these messages asynchronously. Both the
 producer and consumer need to agree on a message format, which is defined by a contract. The
 workflow usually goes as follows:
 
--   Define the message contract using the protobuf DSL.
--   Generate the code for serializing/deserializing the messages in the language of your
-    choice.
--   On the publisher side, serialize the message using the generated code.
--   On the consumer side, generate code from the same contract and deserialize the message
-    with that.
+- Define the message contract using the protobuf DSL.
+- Generate the code for serializing/deserializing the messages in the language of your
+  choice.
+- On the publisher side, serialize the message using the generated code.
+- On the consumer side, generate code from the same contract and deserialize the message
+  with that.
 
 ## Define the contract
 
@@ -69,8 +69,8 @@ interfacing code that'll be used to serialize and deserialize the messages.
 
 Here's how it looks in Python:
 
--   Install `grpcio-tools`.
--   Generate the interface. From the directory where your proto files live, run:
+- Install `grpcio-tools`.
+- Generate the interface. From the directory where your proto files live, run:
 
     ```sh
     python -m grpc_tools.protoc -I. \
@@ -78,7 +78,7 @@ Here's how it looks in Python:
         --grpc_python_out=contracts protos/message.proto
     ```
 
--   This will generate the following files in the root directory:
+- This will generate the following files in the root directory:
 
     ```txt
     search

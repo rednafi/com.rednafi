@@ -52,15 +52,15 @@ In Bash, process substitution is a feature that allows you to treat the output o
 or commands as if it were a file. It enables you to use the output of a command as an input
 to another command or perform other operations that expect file input or output.
 
--   One important thing to point out is that process substitution is specific to Bash, Zsh,
-    and certain versions of Ksh. Other shells and Bash in POSIX mode don't understand it.
-    Bash, Zsh, and Ksh (88,93) support process substitution, but pdksh derivatives like mksh
-    don't currently have this capability.\*
+- One important thing to point out is that process substitution is specific to Bash, Zsh,
+  and certain versions of Ksh. Other shells and Bash in POSIX mode don't understand it.
+  Bash, Zsh, and Ksh (88,93) support process substitution, but pdksh derivatives like mksh
+  don't currently have this capability.\*
 
 The syntax for process substitution is as follows:
 
--   `<(command)`: This form allows you to use the output of a command as a file-like input.
--   `>(command)`: This form allows you to use the output of a command as a file-like output.
+- `<(command)`: This form allows you to use the output of a command as a file-like input.
+- `>(command)`: This form allows you to use the output of a command as a file-like output.
 
 When using process substitution, Bash creates a named pipe (FIFO) or a special file
 descriptor `/dev/fd/<n>` behind the scenes. The command within the parentheses is executed,
@@ -69,23 +69,23 @@ named pipe or file descriptor is substituted into the original command line.
 
 This is different from the plain-old `stdin` or `stdout` redirection. Here's how:
 
--   **Input**
+- **Input**
 
-    -   _Plain redirection_: When using plain stdin redirection (`<`), you can redirect
-        input from a file, for example, `< input.txt`. The command reads the content of the
-        file as standard input (stdin).
-    -   _Process substitution_: With process substitution, you can use the output of a
-        command as input. For example, `command < <(echo "input")`. Here, the output of the
-        `echo` command is treated as a file-like object and used as the input to `command`.
+    - _Plain redirection_: When using plain stdin redirection (`<`), you can redirect input
+      from a file, for example, `< input.txt`. The command reads the content of the file as
+      standard input (stdin).
+    - _Process substitution_: With process substitution, you can use the output of a command
+      as input. For example, `command < <(echo "input")`. Here, the output of the `echo`
+      command is treated as a file-like object and used as the input to `command`.
 
--   **Output**
-    -   _Plain redirection_: Using plain stdout redirection (`>` or `>>`), you can redirect
-        the output (stdout) of a command to a file, for example, `command > output.txt`. The
-        command's output is written to the specified file.
-    -   _Process substitution_: With process substitution, you can use the output of a
-        command as output. For example, `command >(process_output)`. Here, the output of
-        `command` is treated as a file-like output, and it is passed as input to the
-        `process_output` command or operation.
+- **Output**
+    - _Plain redirection_: Using plain stdout redirection (`>` or `>>`), you can redirect
+      the output (stdout) of a command to a file, for example, `command > output.txt`. The
+      command's output is written to the specified file.
+    - _Process substitution_: With process substitution, you can use the output of a command
+      as output. For example, `command >(process_output)`. Here, the output of `command` is
+      treated as a file-like output, and it is passed as input to the `process_output`
+      command or operation.
 
 By using process substitution, the output of a command can be seamlessly integrated into
 other commands as if it were a file, even if the command doesn't explicitly support stdin or

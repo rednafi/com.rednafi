@@ -26,43 +26,42 @@ Here's a quick rundown of the things I find useful to make reviewing the grunt w
 requests a bit more tractable. I don't always strictly follow them while doing personal or
 OSS work, but these steps have been helpful while working on a large shared repo at work.
 
--   Avoiding the temptation to lump tangentially related changes into a PR to speed things
-    up.
+- Avoiding the temptation to lump tangentially related changes into a PR to speed things up.
 
--   Having a ton of fragmented commits makes filtering useless when navigating the PR diff
-    in a platform like GitHub. I really like to filter diffs on GitHub, but it wouldn't be
-    useful if the commits are all over the place.
+- Having a ton of fragmented commits makes filtering useless when navigating the PR diff in
+  a platform like GitHub. I really like to filter diffs on GitHub, but it wouldn't be useful
+  if the commits are all over the place.
 
     ![commit filter][image_1]
 
--   To make diff filtering better, I often rebase my feature branch after a messy
-    development workflow and divide the changes into a few commits clustered around the core
-    implementation, tests, documentation, dependency upgrades, and occasional refactoring.
+- To make diff filtering better, I often rebase my feature branch after a messy development
+  workflow and divide the changes into a few commits clustered around the core
+  implementation, tests, documentation, dependency upgrades, and occasional refactoring.
 
--   Rebasing all the changes into a single commit is okay if the change is small, but for
-    bigger changes, this does more harm than good.
+- Rebasing all the changes into a single commit is okay if the change is small, but for
+  bigger changes, this does more harm than good.
 
--   I've rarely spent the time to ensure that the individual commits are perfect[^5]—in the
-    sense that they're complete with passing tests or documentation. As long as the complete
-    change list makes sense as a whole, it's good enough. YMMV. The main goal is to make
-    sure the diff makes sense to the person reviewing the work.
+- I've rarely spent the time to ensure that the individual commits are perfect[^5]—in the
+  sense that they're complete with passing tests or documentation. As long as the complete
+  change list makes sense as a whole, it's good enough. YMMV. The main goal is to make sure
+  the diff makes sense to the person reviewing the work.
 
--   Annotated comments from the author on the PR are great. I wish they'd take up less space
-    and there was a way to collapse them individually.
+- Annotated comments from the author on the PR are great. I wish they'd take up less space
+  and there was a way to collapse them individually.
 
     ![annotated comments][image_2]
 
--   Each PR must be connected to either an Issue or a Jira ticket, depending on how the team
-    works.
+- Each PR must be connected to either an Issue or a Jira ticket, depending on how the team
+  works.
 
--   Adding context, screenshots, gifs, and videos to the PR description makes things so much
-    easier for me when I do the review. Being able to see that the changes work as intended
-    without running the code has its benefits.
+- Adding context, screenshots, gifs, and videos to the PR description makes things so much
+  easier for me when I do the review. Being able to see that the changes work as intended
+  without running the code has its benefits.
 
     ![feature preview][image_3]
 
--   Keeping the PR in draft state until it's ready to be reviewed. I'm not a fan of getting
-    a notification to review some work only to find that it's not ready yet.
+- Keeping the PR in draft state until it's ready to be reviewed. I'm not a fan of getting a
+  notification to review some work only to find that it's not ready yet.
 
 [^1]: [I kind of like rebasing](/misc/on_rebasing)
 

@@ -20,10 +20,10 @@ what it does and how it can help me quickly build nifty client-side tools withou
 through the hassle of containerizing and deploying them as dedicated applications. So, I
 asked ChatGPT to build me a tool that would allow me to:
 
--   Upload two CSV files
--   Calculate the row and column counts from the files
--   Show the number of rows and columns in a table and include the headers of the columns
-    and their corresponding index numbers, so that you can compare them easily.
+- Upload two CSV files
+- Calculate the row and column counts from the files
+- Show the number of rows and columns in a table and include the headers of the columns and
+  their corresponding index numbers, so that you can compare them easily.
 
 Here's the initial prompt that I used:
 

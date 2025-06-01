@@ -51,10 +51,10 @@ attention since no one was uploading file that our server instances couln't hand
 storing the incoming file in a `models.FileField` type attribute of a Django model. When a
 user uploads a CSV file, we'd:
 
--   Open the file in binary mode via the `open(filepath, "rb")` callable.
--   Buffer the whole file in memory and transform the binary content into a unicode string.
--   Pass the stringified file-like object to `csv.DictReader` to load that as a CSV file.
--   Apply transformation on the rows line by line and render the HTML table.
+- Open the file in binary mode via the `open(filepath, "rb")` callable.
+- Buffer the whole file in memory and transform the binary content into a unicode string.
+- Pass the stringified file-like object to `csv.DictReader` to load that as a CSV file.
+- Apply transformation on the rows line by line and render the HTML table.
 
 This is how the code looks:
 

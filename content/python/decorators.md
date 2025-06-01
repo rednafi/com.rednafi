@@ -788,12 +788,12 @@ looks like a _dream within a dream_ from the movie Inception.
 
 There are a few subtle things happening in the `joinby()` function:
 
--   Defining `outer_wrapper()` as an inner function means that `repeat()` will refer to a
-    function object `outer_wrapper`.
+- Defining `outer_wrapper()` as an inner function means that `repeat()` will refer to a
+  function object `outer_wrapper`.
 
--   The `delimiter` argument is seemingly not used in `joinby()` itself. But by passing
-    `delimiter` a closure is created where the value of `delimiter` is stored until it will
-    be used later by `inner_wrapper()`
+- The `delimiter` argument is seemingly not used in `joinby()` itself. But by passing
+  `delimiter` a closure is created where the value of `delimiter` is stored until it will be
+  used later by `inner_wrapper()`
 
 ## Decorators with & without arguments
 

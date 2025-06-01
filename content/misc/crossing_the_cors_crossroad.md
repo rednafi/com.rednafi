@@ -15,35 +15,34 @@ a way to quickly troubleshoot and fix the issue at hand.
 
 Typically, the CORS issue I encounter boils down to:
 
--   A backend service that accepts requests only from a list of specified domains.
--   A new frontend service or some other client trying to access it from a different domain
-    that's not on the server's allowlist. Consequently, the server rejects it with an HTTP
-    4xx error.
+- A backend service that accepts requests only from a list of specified domains.
+- A new frontend service or some other client trying to access it from a different domain
+  that's not on the server's allowlist. Consequently, the server rejects it with an HTTP 4xx
+  error.
 
 Here's a list of some commonly found headers associated with CORS:
 
 **Request headers**
 
--   `Origin`: indicates the origin of the request
--   `Access-Control-Request-Method`: used in preflight[^3] to specify the method of the
-    actual request
--   `Access-Control-Request-Headers`: used in preflight to specify headers that will be used
-    in the actual request
+- `Origin`: indicates the origin of the request
+- `Access-Control-Request-Method`: used in preflight[^3] to specify the method of the actual
+  request
+- `Access-Control-Request-Headers`: used in preflight to specify headers that will be used
+  in the actual request
 
 **Response headers**
 
--   `Access-Control-Allow-Origin`: specifies the origins that are allowed to access the
-    resource
--   `Access-Control-Allow-Methods`: indicates the methods allowed when accessing the
-    resource
--   `Access-Control-Allow-Headers`: specifies the headers that can be included in the actual
-    request
--   `Access-Control-Allow-Credentials`: indicates whether or not the response can be exposed
-    when the credentials flag is true
--   `Access-Control-Expose-Headers`: specifies the headers that can be exposed as part of
-    the response
--   `Access-Control-Max-Age`: indicates how long the results of a preflight request can be
-    cached
+- `Access-Control-Allow-Origin`: specifies the origins that are allowed to access the
+  resource
+- `Access-Control-Allow-Methods`: indicates the methods allowed when accessing the resource
+- `Access-Control-Allow-Headers`: specifies the headers that can be included in the actual
+  request
+- `Access-Control-Allow-Credentials`: indicates whether or not the response can be exposed
+  when the credentials flag is true
+- `Access-Control-Expose-Headers`: specifies the headers that can be exposed as part of the
+  response
+- `Access-Control-Max-Age`: indicates how long the results of a preflight request can be
+  cached
 
 In most cases, focusing on the `Origin` and `Access-Control-Allow-Origin` headers is enough
 to verify whether a service can be reached from a certain domain without running into a CORS

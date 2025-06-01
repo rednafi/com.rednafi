@@ -156,7 +156,7 @@ http {
 
 The `http` block contains directives that apply to HTTP/S traffic.
 
--   **Set the rate limiting policy (`limit_req_zone` directive)**
+- **Set the rate limiting policy (`limit_req_zone` directive)**
 
     ```nginx
     limit_req_zone $binary_remote_addr zone=mylimit:10m rate=50r/s;
@@ -164,21 +164,21 @@ The `http` block contains directives that apply to HTTP/S traffic.
 
     This line sets up rate limiting policy using three parameters:
 
-    -   Key (`$binary_remote_addr`): This is the client's IP address in a binary format.
-        It's used as a key to apply the rate limit, meaning each unique IP address is
-        subjected to the rate limit specified.
+    - Key (`$binary_remote_addr`): This is the client's IP address in a binary format. It's
+      used as a key to apply the rate limit, meaning each unique IP address is subjected to
+      the rate limit specified.
 
-    -   Zone (`zone=mylimit:10m`): This defines a shared memory zone named `mylimit` with a
-        size of 10 megabytes. The zone stores the state of each IP address, including how
-        often it has accessed the server. Approximately 160,000 IP addresses can be tracked
-        with this size. If the zone is full, Nginx will start removing the oldest entries to
-        free up space.
+    - Zone (`zone=mylimit:10m`): This defines a shared memory zone named `mylimit` with a
+      size of 10 megabytes. The zone stores the state of each IP address, including how
+      often it has accessed the server. Approximately 160,000 IP addresses can be tracked
+      with this size. If the zone is full, Nginx will start removing the oldest entries to
+      free up space.
 
-    -   Rate (`rate=50r/s`): This parameter sets the maximum request rate to 50 requests per
-        second for each IP address. If the rate is exceeded, additional requests may be
-        delayed or rejected.
+    - Rate (`rate=50r/s`): This parameter sets the maximum request rate to 50 requests per
+      second for each IP address. If the rate is exceeded, additional requests may be
+      delayed or rejected.
 
--   **Include the default.conf file**
+- **Include the default.conf file**
     ```nginx
     include /etc/nginx/conf.d/*.conf;
     ```
@@ -261,7 +261,7 @@ location / {
 
 The `location /` block applies to all requests to the root URL and its subdirectories.
 
--   **Apply the rate limiting policy**
+- **Apply the rate limiting policy**
 
     ```nginx
     limit_req zone=mylimit burst=10 nodelay;
@@ -274,7 +274,7 @@ The `location /` block applies to all requests to the root URL and its subdirect
     ensures that excess requests within the burst limit are processed immediately without
     delay. `limit_req_status` sets the HTTP status code for rate-limited requests to 429.
 
--   **Configure the proxy**
+- **Configure the proxy**
 
     ```nginx
     proxy_pass http://app:8080;

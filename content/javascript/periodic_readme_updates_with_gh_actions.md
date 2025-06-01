@@ -19,15 +19,15 @@ update the readme file. However, I wanted to make a simpler version of it from s
 can be extended for periodically updating any Markdown file in any repo, just not the
 profile readme. So, here's the plan:
 
--   A custom GitHub Action workflow will periodically run a nodejs script.
--   The script will then:
-    -   Grab the XML index[^5] of this blog that you're reading.
-    -   Parse the XML content and extract the URLs and publication dates of 5 most recent
-        articles.
-    -   Update the associated Markdown table with the extracted content on the profile's
-        `README.md` file.
--   Finally, the workflow will commit the changes and push them to the profile repo. You can
-    see the final outcome here[^6].
+- A custom GitHub Action workflow will periodically run a nodejs script.
+- The script will then:
+    - Grab the XML index[^5] of this blog that you're reading.
+    - Parse the XML content and extract the URLs and publication dates of 5 most recent
+      articles.
+    - Update the associated Markdown table with the extracted content on the profile's
+      `README.md` file.
+- Finally, the workflow will commit the changes and push them to the profile repo. You can
+  see the final outcome here[^6].
 
 Here's the script that performs the above steps:
 

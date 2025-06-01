@@ -39,10 +39,10 @@ permission of the socket file on the system.
 I'm running these experiments on an M-series Macbook pro. However, any Unix-y environment
 will work as long as you can run the following tools:
 
--   `socat`: To create the socket servers and clients.
--   `curl`: To make HTTP requests to a supported socket server.
--   `jq`: To pretty print JSON payloads.
--   `lsof`: To display currently listening socket server processes.
+- `socat`: To create the socket servers and clients.
+- `curl`: To make HTTP requests to a supported socket server.
+- `jq`: To pretty print JSON payloads.
+- `lsof`: To display currently listening socket server processes.
 
 ## Inspecting Unix domain sockets in your system
 

@@ -7,7 +7,7 @@ tags:
 
 There are a few ways you can add URLs to your Markdown documents:
 
--   Inline links
+- Inline links
 
     ```md
     [inline link](https://example.com)
@@ -15,7 +15,7 @@ There are a few ways you can add URLs to your Markdown documents:
 
     This will render as [inline link](https://example.com).
 
--   Reference links
+- Reference links
 
     ```md
     [reference link]
@@ -29,7 +29,7 @@ There are a few ways you can add URLs to your Markdown documents:
 
     This will render the same way as before, [reference link].
 
--   Footnote style reference links
+- Footnote style reference links
 
     ```md
     footnote style reference link[^1]
@@ -52,16 +52,16 @@ There are a few ways you can add URLs to your Markdown documents:
 The inline link approach is the most prevalent one as it's also the easiest one to write.
 But it suffers from a few issues:
 
--   Links scattered throughout your documents can make updates cumbersome.
--   Reusing a link elsewhere requires multiple copy-pastes.
--   Placing several [links][reference link] [side][reference link] by [side][reference link]
-    can feel awkward, and URL stylings like blue highlighting or underlining make things
-    noisy.
--   To add a reference section, you'll have to create a separate segment, usually at the
-    bottom of your page, and duplicate the URLs.
--   On mobile devices, accidentally fat-fingering a URL can promptly redirect readers away
-    from your content, potentially against their intention.
--   Enforcing a line width limit can be challenging due to lengthy inlined URLs.
+- Links scattered throughout your documents can make updates cumbersome.
+- Reusing a link elsewhere requires multiple copy-pastes.
+- Placing several [links][reference link] [side][reference link] by [side][reference link]
+  can feel awkward, and URL stylings like blue highlighting or underlining make things
+  noisy.
+- To add a reference section, you'll have to create a separate segment, usually at the
+  bottom of your page, and duplicate the URLs.
+- On mobile devices, accidentally fat-fingering a URL can promptly redirect readers away
+  from your content, potentially against their intention.
+- Enforcing a line width limit can be challenging due to lengthy inlined URLs.
 
 The reference link approach solves some of these issues since you won't have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows

@@ -19,19 +19,19 @@ spending the time to write this.
 
 The basic workflow goes as follows:
 
--   The client makes a `GET` request to the server.
--   The server responds with a `200 OK` status, including the content requested and an
-    `ETag` header.
--   The client caches the response and the `ETag` value.
--   For subsequent requests to the same resource, the client includes the `If-None-Match`
-    header with the `ETag` value it has cached.
--   The server regenerates the `ETag` independently and checks if the `ETag` value sent by
-    the client matches the generated one.
-    -   If they match, the server responds with a `304 Not Modified` status, indicating that
-        the client's cached version is still valid, and the client serves the resource from
-        the cache.
-    -   If they don't match, the server responds with a `200 OK` status, including the new
-        content and a new `ETag` header, prompting the client to update its cache.
+- The client makes a `GET` request to the server.
+- The server responds with a `200 OK` status, including the content requested and an `ETag`
+  header.
+- The client caches the response and the `ETag` value.
+- For subsequent requests to the same resource, the client includes the `If-None-Match`
+  header with the `ETag` value it has cached.
+- The server regenerates the `ETag` independently and checks if the `ETag` value sent by the
+  client matches the generated one.
+    - If they match, the server responds with a `304 Not Modified` status, indicating that
+      the client's cached version is still valid, and the client serves the resource from
+      the cache.
+    - If they don't match, the server responds with a `200 OK` status, including the new
+      content and a new `ETag` header, prompting the client to update its cache.
 
 ```txt
 Client                                 Server
@@ -103,20 +103,20 @@ data to the users when asked for.
 
 A few key points to keep in mind:
 
--   Always wrap your `ETag` values in double quotes when sending them with the
-    `If-None-Match` header, just as the spec says[^6].
+- Always wrap your `ETag` values in double quotes when sending them with the `If-None-Match`
+  header, just as the spec says[^6].
 
--   Using the `If-None-Match` header to pass the `ETag` value means that the client request
-    is considered successful when the `ETag` value from the client doesn't match that of the
-    server. When the values match, the server will return `304 Not Modified` with no body.
+- Using the `If-None-Match` header to pass the `ETag` value means that the client request is
+  considered successful when the `ETag` value from the client doesn't match that of the
+  server. When the values match, the server will return `304 Not Modified` with no body.
 
--   If we're writing a compliant server, when it comes to `If-None-Match`, the spec tells
-    us[^7] to use a weak comparison for ETags. This means that the client will still be able
-    to validate the cache with weak ETags, even if there have been slight changes to the
-    representation of the data.
+- If we're writing a compliant server, when it comes to `If-None-Match`, the spec tells
+  us[^7] to use a weak comparison for ETags. This means that the client will still be able
+  to validate the cache with weak ETags, even if there have been slight changes to the
+  representation of the data.
 
--   If the client is a browser, it'll automatically manage the cache and send conditional
-    requests without any extra work.
+- If the client is a browser, it'll automatically manage the cache and send conditional
+  requests without any extra work.
 
 ## Writing a server that enables client-side caching
 
@@ -177,25 +177,25 @@ func main() {
 }
 ```
 
--   The server generates a weak `ETag` for its content by creating a SHA-256 hash and adding
-    `W/` to the front, indicating it's meant for weak comparison.
+- The server generates a weak `ETag` for its content by creating a SHA-256 hash and adding
+  `W/` to the front, indicating it's meant for weak comparison.
 
     You could make the `calculateETag` function format-agnostic, so the hash stays the same
     if the JSON format changes but the content does not. The current `calculateETag`
     implementation is susceptible to format changes, and I kept it that way to keep the code
     shorter.
 
--   When delivering content, the server includes this weak `ETag` in the response headers,
-    allowing clients to cache the content along with the `ETag`.
+- When delivering content, the server includes this weak `ETag` in the response headers,
+  allowing clients to cache the content along with the `ETag`.
 
--   For subsequent requests, the server checks if the client has sent an `ETag` in the
-    `If-None-Match` header and weakly compares it with the current content's `ETag` by
-    independently generating the hash.
+- For subsequent requests, the server checks if the client has sent an `ETag` in the
+  `If-None-Match` header and weakly compares it with the current content's `ETag` by
+  independently generating the hash.
 
--   If the ETags match, indicating no significant content change, the server replies with a
-    `304 Not Modified` status. Otherwise, it sends the content again with a `200 OK` status
-    and updates the `ETag`. When this happens, the client knows that the existing cache is
-    still warm and can be served without any changes to it.
+- If the ETags match, indicating no significant content change, the server replies with a
+  `304 Not Modified` status. Otherwise, it sends the content again with a `200 OK` status
+  and updates the `ETag`. When this happens, the client knows that the existing cache is
+  still warm and can be served without any changes to it.
 
 You can spin up the server by running `go run main.go` and from a different console, start
 making requests to it like this:

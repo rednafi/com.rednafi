@@ -63,16 +63,16 @@ with tempfile.NamedTemporaryFile("wb") as f:
 
 The above snippet won't work because:
 
--   The file-like object is opened in binary mode but the `csv.DictReader` expects the file
-    pointer to be opened in text mode. So, it'll raise an error.
+- The file-like object is opened in binary mode but the `csv.DictReader` expects the file
+  pointer to be opened in text mode. So, it'll raise an error.
 
--   Even if you fixed that, the CSV reader wouldn't be able to read anything since the file
-    currently only allows writing in binary mode, not reading.
+- Even if you fixed that, the CSV reader wouldn't be able to read anything since the file
+  currently only allows writing in binary mode, not reading.
 
--   Even if you fixed the second issue, the content of the CSV file would be empty. That's
-    because after boto3 downloads and saves the file to the file object, it sets the file
-    handle to the end of the file. So loading the content from there would result in an
-    empty file. Here's how I fixed all three of these problems:
+- Even if you fixed the second issue, the content of the CSV file would be empty. That's
+  because after boto3 downloads and saves the file to the file object, it sets the file
+  handle to the end of the file. So loading the content from there would result in an empty
+  file. Here's how I fixed all three of these problems:
 
 ```python
 # src.py

@@ -30,10 +30,10 @@ docker run -v myvolume:/usr/share/nginx/html:ro nginx
 
 Here's what each part means:
 
--   `myvolume`: The name of the Docker-managed volume on the host.
--   `/usr/share/nginx/html`: The mount point inside the container.
--   `:ro`: Mounts the volume as read-only inside the container. The host can still write to
-    the volume, but the container cannot.
+- `myvolume`: The name of the Docker-managed volume on the host.
+- `/usr/share/nginx/html`: The mount point inside the container.
+- `:ro`: Mounts the volume as read-only inside the container. The host can still write to
+  the volume, but the container cannot.
 
 The general syntax is:
 
@@ -119,9 +119,9 @@ docker run -v /path/on/host:/usr/share/nginx/html:ro nginx
 
 Here:
 
--   `/path/on/host`: The path on the host machine. This must be an absolute path.
--   `/usr/share/nginx/html`: The mount point inside the container.
--   `:ro`: Mounts the directory as read-only inside the container.
+- `/path/on/host`: The path on the host machine. This must be an absolute path.
+- `/usr/share/nginx/html`: The mount point inside the container.
+- `:ro`: Mounts the directory as read-only inside the container.
 
 ### The `--mount` option
 
@@ -181,9 +181,9 @@ Docker provides a `--tmpfs` option to create a tmpfs mount more concisely:
 docker run --tmpfs /app/tmp:rw,size=64m nginx
 ```
 
--   `/app/tmp`: The target directory inside the container.
--   `rw`: This option allows read and write access to the tmpfs mount.
--   `size=64m`: Sets the size of the tmpfs mount to 64 MB.
+- `/app/tmp`: The target directory inside the container.
+- `rw`: This option allows read and write access to the tmpfs mount.
+- `size=64m`: Sets the size of the tmpfs mount to 64 MB.
 
 ### The `--mount` option
 
@@ -196,11 +196,11 @@ docker run \
 
 Here's what each part means:
 
--   `type=tmpfs`: Specifies that this is a tmpfs mount, using the host's memory.
--   `target=/app/tmp`: The directory inside the container where the tmpfs mount is mounted.
--   `tmpfs-size=64m`: Limits the size of the tmpfs mount to 64 MB.
--   `tmpfs-mode=1777`: Sets permissions for the tmpfs mount (1777 grants read, write, and
-    execute permissions to everyone).
+- `type=tmpfs`: Specifies that this is a tmpfs mount, using the host's memory.
+- `target=/app/tmp`: The directory inside the container where the tmpfs mount is mounted.
+- `tmpfs-size=64m`: Limits the size of the tmpfs mount to 64 MB.
+- `tmpfs-mode=1777`: Sets permissions for the tmpfs mount (1777 grants read, write, and
+  execute permissions to everyone).
 
 ### In `docker-compose.yml`
 
@@ -245,10 +245,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 Here's what each option does:
 
--   `--mount=type=cache`: Defines a cache mount that stores the files from the `apt-get`
-    commands to speed up future builds by reusing the downloaded packages.
--   `target=/var/cache/apt`: Specifies the location inside the container where the cache
-    will be stored during the build process.
+- `--mount=type=cache`: Defines a cache mount that stores the files from the `apt-get`
+  commands to speed up future builds by reusing the downloaded packages.
+- `target=/var/cache/apt`: Specifies the location inside the container where the cache will
+  be stored during the build process.
 
 In my Python projects, I cache my dependencies and install them with `uv` like this:
 
