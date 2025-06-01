@@ -99,10 +99,10 @@ It's such a simple idea that opens up many possibilities.
 
 Here are a few things I'm using it for:
 
--   Automatically loading environment variables from a `.env` file.
--   Loading different sets of values for the same environment keys, e.g., local vs. staging
-    values.
--   Activating the virtual environment when I enter the directory of a Python project.
+- Automatically loading environment variables from a `.env` file.
+- Loading different sets of values for the same environment keys, e.g., local vs. staging
+  values.
+- Activating the virtual environment when I enter the directory of a Python project.
 
 Let's say you want to load your environment variables automatically when you `cd` into a
 directory and have them removed from the shell environment when you leave it. Suppose the

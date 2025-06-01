@@ -63,12 +63,12 @@ know about `$original_var`; it works on any variable name provided, making it ge
 
 In this script:
 
--   We declare a variable `original_var` with the value `"Hello, World!"`.
--   The `create_ref` function takes the name of a variable as an argument.
--   Inside the function, `declare -n ref="$ref_name"` creates a nameref `ref` that points to
-    the variable named by `$ref_name`.
--   By setting `ref="Hello from nameref!"`, we indirectly update `original_var`.
--   Finally, we print `original_var` to see the updated value.
+- We declare a variable `original_var` with the value `"Hello, World!"`.
+- The `create_ref` function takes the name of a variable as an argument.
+- Inside the function, `declare -n ref="$ref_name"` creates a nameref `ref` that points to
+  the variable named by `$ref_name`.
+- By setting `ref="Hello from nameref!"`, we indirectly update `original_var`.
+- Finally, we print `original_var` to see the updated value.
 
 Without the nameref, you could achieve the same thing with this `eval` (read: evil) trick:
 
@@ -137,13 +137,13 @@ Sum of dataset3: 1500
 
 Here:
 
--   We declare three arrays: `dataset1`, `dataset2`, and `dataset3`.
--   The `sum_array` function takes the name of an array as an argument.
--   Using `declare -n arr="$array_name"`, we create a nameref `arr` that points to the
-    specified array.
--   We then iterate over the elements of `arr` to calculate the sum.
--   Finally, we call `sum_array` for each dataset, and the function correctly processes each
-    array based on the reference.
+- We declare three arrays: `dataset1`, `dataset2`, and `dataset3`.
+- The `sum_array` function takes the name of an array as an argument.
+- Using `declare -n arr="$array_name"`, we create a nameref `arr` that points to the
+  specified array.
+- We then iterate over the elements of `arr` to calculate the sum.
+- Finally, we call `sum_array` for each dataset, and the function correctly processes each
+  array based on the reference.
 
 Without the nameref, you could again use the `eval` trick to achieve the same thing, but
 this time it looks even uglier:
@@ -252,13 +252,12 @@ in shell scripts.
 
 In this example:
 
--   We declare an associative array `user_info` containing user details.
--   The `update_info` function takes the name of the associative array, the key to update,
-    and the new value.
--   Using `declare -n info="$info_name"`, we create a nameref `info` pointing to
-    `user_info`.
--   We update the specified key in the array.
--   Finally, we echo the updated user information.
+- We declare an associative array `user_info` containing user details.
+- The `update_info` function takes the name of the associative array, the key to update, and
+  the new value.
+- Using `declare -n info="$info_name"`, we create a nameref `info` pointing to `user_info`.
+- We update the specified key in the array.
+- Finally, we echo the updated user information.
 
 Doing this with `eval` isn't pretty. I'll leave that as an exercise for you if you like to
 torment yourself.

@@ -139,21 +139,20 @@ through a few more checks.
 > type guard. The type argument provided for TypeGuard indicates the type that has been
 > validated by the function. — PEP-647
 
--   Usually, a type guard function only takes a single parameter and returns a boolean value
-    based on the conformity of the type of the incoming object with the expected type. The
-    expected type needs to be wrapped in `TypeGuard` and added as the return type
-    annotation.
+- Usually, a type guard function only takes a single parameter and returns a boolean value
+  based on the conformity of the type of the incoming object with the expected type. The
+  expected type needs to be wrapped in `TypeGuard` and added as the return type annotation.
 
--   Type checkers will only check if the first positional argument conforms to the expected
-    return type annotation. It'll ignore other parameters if there is more than one.
+- Type checkers will only check if the first positional argument conforms to the expected
+  return type annotation. It'll ignore other parameters if there is more than one.
 
--   If you define a type guard callable in a class, in that case, the type checker will
-    ignore `self/cls` argument and check the second positional parameter for type
-    conformity. Additional parameters won't be checked.
+- If you define a type guard callable in a class, in that case, the type checker will ignore
+  `self/cls` argument and check the second positional parameter for type conformity.
+  Additional parameters won't be checked.
 
--   The input type is usually wider than the output type. In our example case, the input
-    type `Sequence[object]` is less specific than that of the return type `Sequence[str]`.
-    However, this is mostly a convention and not enforced by any means.
+- The input type is usually wider than the output type. In our example case, the input type
+  `Sequence[object]` is less specific than that of the return type `Sequence[str]`. However,
+  this is mostly a convention and not enforced by any means.
 
 > The return type of a user-defined type guard function will normally refer to a type that
 > is strictly "narrower" than the type of the first argument (that is, it's a more specific

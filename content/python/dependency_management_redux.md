@@ -44,14 +44,14 @@ conflicting opinions in this space.
 Whether I'm working on a large Django monolith or exposing a microservice via FastAPI or
 Flask, while packaging an application, I want to be able to:
 
--   Store all project metadata, linter configs, and top-level dependencies in a
-    `pyproject.toml` file following the PEP-621[^6] conventions.
--   Separate the top-level application and development dependencies.
--   Generate `requirements.txt` and `requirements-dev.txt` files from the requirements
-    specified in the TOML file, where the top-level and their transient dependencies will be
-    pinned to specific versions.
--   Use vanilla `pip` to build the application hermetically from the locked dependencies
-    specified in the `requirements*.txt` files.
+- Store all project metadata, linter configs, and top-level dependencies in a
+  `pyproject.toml` file following the PEP-621[^6] conventions.
+- Separate the top-level application and development dependencies.
+- Generate `requirements.txt` and `requirements-dev.txt` files from the requirements
+  specified in the TOML file, where the top-level and their transient dependencies will be
+  pinned to specific versions.
+- Use vanilla `pip` to build the application hermetically from the locked dependencies
+  specified in the `requirements*.txt` files.
 
 The goal is to simply be able to run the following command to install all the pinned
 dependencies in a reproducible manner:

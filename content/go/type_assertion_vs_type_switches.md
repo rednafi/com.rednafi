@@ -267,22 +267,21 @@ interface only requires it to implement `foo()`. The type switch dynamically che
 
 ### Similarities
 
--   Both handle interfaces and extract their concrete types.
--   They evaluate an interface's dynamic type.
+- Both handle interfaces and extract their concrete types.
+- They evaluate an interface's dynamic type.
 
 ### Differences
 
--   Type assertions check a single type, while type switches handle multiple types.
--   Type assertion uses `i.(T)`, type switch uses a switch statement with literal
-    `i.(type)`.
--   Type assertions can panic or return a success boolean, type switches handle mismatches
-    more gracefully.
--   Type assertions are good when you're sure of the type. Type switches are more versatile
-    for handling various types.
--   Type assertion can get the value and success boolean. Type switches let you access the
-    value in each case block.
--   Type switches can handle multiple types, including a default case, offering more
-    flexibility for various types.
+- Type assertions check a single type, while type switches handle multiple types.
+- Type assertion uses `i.(T)`, type switch uses a switch statement with literal `i.(type)`.
+- Type assertions can panic or return a success boolean, type switches handle mismatches
+  more gracefully.
+- Type assertions are good when you're sure of the type. Type switches are more versatile
+  for handling various types.
+- Type assertion can get the value and success boolean. Type switches let you access the
+  value in each case block.
+- Type switches can handle multiple types, including a default case, offering more
+  flexibility for various types.
 
 Fin!
 

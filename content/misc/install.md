@@ -11,9 +11,9 @@ up a ton of matches[^1]. I'm surprised I just found out about it now.
 
 Often, in shell scripts I need to:
 
--   Create a directory hierarchy
--   Copy a config or binary file to the new directory
--   Set permissions on the file
+- Create a directory hierarchy
+- Copy a config or binary file to the new directory
+- Set permissions on the file
 
 It usually looks like this:
 

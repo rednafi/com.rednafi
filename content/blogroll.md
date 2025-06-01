@@ -10,44 +10,44 @@ ShowShareButtons: false
 
 Here's a non-exhaustive list of blogs I enjoy reading.
 
--   [Anton Zhiyanov]
+- [Anton Zhiyanov]
 
 ---
 
--   [Brandon Rhodes]
--   [Brandur]
+- [Brandon Rhodes]
+- [Brandur]
 
 ---
 
--   [Charity Majors]
+- [Charity Majors]
 
 ---
 
--   [Dan Luu]
--   [Drew DeVault's Blog]
+- [Dan Luu]
+- [Drew DeVault's Blog]
 
 ---
 
--   [Fabien Sanglard's Website]
+- [Fabien Sanglard's Website]
 
 ---
 
--   [Harmful Stuff]
--   [Hynek Schlawack]
+- [Harmful Stuff]
+- [Hynek Schlawack]
 
 ---
 
--   [Joel on Software]
--   [John Gruber]
--   [Julia Evans]
+- [Joel on Software]
+- [John Gruber]
+- [Julia Evans]
 
 ---
 
--   [Preslav Rachev]
+- [Preslav Rachev]
 
 ---
 
--   [Simon Willison's Weblog]
+- [Simon Willison's Weblog]
 
 <!-- Blogroll -->
 

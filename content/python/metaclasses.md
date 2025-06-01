@@ -173,12 +173,12 @@ Type `type`, as the default metaclass in Python, defines a few special methods t
 metaclasses can override to implement unique code generation behavior. Here is a brief
 overview of these "magic" methods that exist on a metaclass:
 
--   `__new__`: This method is called on the Metaclass before an instance of a class based on
-    the metaclass is created
--   `__init__`: This method is called to set up values after the instance/object is created
--   `__prepare__`: Defines the class namespace in a mapping that stores the attributes
--   `__call__`: This method is called when the constructor of the new class is to be used to
-    create an object
+- `__new__`: This method is called on the Metaclass before an instance of a class based on
+  the metaclass is created
+- `__init__`: This method is called to set up values after the instance/object is created
+- `__prepare__`: Defines the class namespace in a mapping that stores the attributes
+- `__call__`: This method is called when the constructor of the new class is to be used to
+  create an object
 
 These are the methods to override in your custom metaclass to give your classes behaviors
 different from that of `type`. The following example shows the default behaviors of these

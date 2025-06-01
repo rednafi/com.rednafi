@@ -96,8 +96,8 @@ print(foo)
 
 It involves:
 
--   Using the type checker to ensure the data class instance is immutable.
--   Replacing the immutable data class with a more performant mutable one at runtime.
+- Using the type checker to ensure the data class instance is immutable.
+- Replacing the immutable data class with a more performant mutable one at runtime.
 
 The `if TYPE_CHECKING` condition only executes during type-checking. In that block, we use
 `typing.dataclass_transform`, introduced in PEP-681[^3], to create a construct similar to

@@ -57,12 +57,12 @@ tput <formatting_option>
 
 Here are some commonly used `tput` formatting options:
 
--   `setaf <color>`: set the foreground (text) color to a specific color. For example,
-    `setaf 1` sets the color to red, while `setaf 2` sets the color to green.
--   `setab <color>`: set the background color to a specific color.
--   `bold`: set the text to bold.
--   `sgr0`: reset all formatting options to their defaults.
--   `smul`: underline the text.
+- `setaf <color>`: set the foreground (text) color to a specific color. For example,
+  `setaf 1` sets the color to red, while `setaf 2` sets the color to green.
+- `setab <color>`: set the background color to a specific color.
+- `bold`: set the text to bold.
+- `sgr0`: reset all formatting options to their defaults.
+- `smul`: underline the text.
 
 ## Example usage
 

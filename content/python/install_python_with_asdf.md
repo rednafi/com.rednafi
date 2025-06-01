@@ -12,9 +12,9 @@ that's not just another flavor of Debian. Primarily, I work with Python, NodeJS,
 bit of Go. Previously, any time I had to install these language runtimes, I'd execute a
 bespoke script that'd install:
 
--   Python via deadsnake[^1] ppa.
--   NodeJS via nvm[^2].
--   Go from the official binary source[^3].
+- Python via deadsnake[^1] ppa.
+- NodeJS via nvm[^2].
+- Go from the official binary source[^3].
 
 Along with the hassle of having to manage three version managers, setting up multiple
 versions of Python almost always felt like a chore. I've used pyenv[^4] before which kind of

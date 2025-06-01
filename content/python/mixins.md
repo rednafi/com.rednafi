@@ -51,8 +51,8 @@ class in a concrete subclass. Interfaces provide the skeletons and concrete clas
 the implementation of the methods based on those skeletons. Depending on the ways you can
 architect interfaces, they can be segmented into two primary categories.
 
--   Informal Interfaces
--   Formal Interfaces
+- Informal Interfaces
+- Formal Interfaces
 
 ## Informal interfaces
 
@@ -531,10 +531,10 @@ and abstract methods but don't keep any internal states.
 
 These can help you when -
 
--   You want to provide a lot of optional features for a class.
--   You want to provide a lot of not-optional features for a class, but you want the
-    features in separate classes so that each of them is about one feature (behavior).
--   You want to use one particular feature in many different classes.
+- You want to provide a lot of optional features for a class.
+- You want to provide a lot of not-optional features for a class, but you want the features
+  in separate classes so that each of them is about one feature (behavior).
+- You want to use one particular feature in many different classes.
 
 Let's see a contrived example. Consider Werkzeug's[^3] request and response system. Werkzeug
 is a small library that Flask[^4] depends on. I can make a plain old request object by
@@ -1261,9 +1261,9 @@ VerboseDict({'a': 'pepsi'})
 This section discusses two advanced data structures that I mentioned at the beginning of the
 post.
 
--   BitSet : Mutable set-like data structure that doesn't perform hashing.
--   SQLAlchemyDict: Mutable dict-like data structure that can store key-value pairs in any
-    SQLAlchemy supported relational database.
+- BitSet : Mutable set-like data structure that doesn't perform hashing.
+- SQLAlchemyDict: Mutable dict-like data structure that can store key-value pairs in any
+  SQLAlchemy supported relational database.
 
 ### BitSet
 

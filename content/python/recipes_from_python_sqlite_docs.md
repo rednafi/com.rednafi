@@ -84,11 +84,11 @@ with conn:
 You can define and apply arbitrary Python callbacks to different data points in an SQLite
 table. There are two types of callbacks that you can apply:
 
--   Scalar function: A scalar function returns one value per invocation; in most cases, you
-    can think of this as returning one value per row.
+- Scalar function: A scalar function returns one value per invocation; in most cases, you
+  can think of this as returning one value per row.
 
--   Aggregate function: In contrast, an aggregate function returns one value per group of
-    rows.
+- Aggregate function: In contrast, an aggregate function returns one value per group of
+  rows.
 
 ### Applying user-defined scalar functions
 
@@ -676,9 +676,9 @@ collation callback can be registered with the
 the name of the collation rule and the `collation_callback` determines how the string
 comparison should be done. The callback accepts two string values as arguments and returns:
 
--   1 if the first is ordered higher than the second
--   -1 if the first is ordered lower than the second
--   0 if they are ordered equal
+- 1 if the first is ordered higher than the second
+- -1 if the first is ordered lower than the second
+- 0 if they are ordered equal
 
 Then you can use the collation rules with an order by clause as follows:
 

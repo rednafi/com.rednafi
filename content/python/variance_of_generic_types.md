@@ -21,9 +21,9 @@ variance while going through PEP-483.
 
 If `T2 <: T1`, then a generic type constructor `GenType` will be:
 
--   **Covariant**, if `GenType[T2] <: GenType[T1]` for all such `T1` and `T2`.
--   **Contravariant**, if `GenType[T1] <: GenType[T2]` for all such `T1` and `T2`.
--   **Invariant**, if neither of the above is true.
+- **Covariant**, if `GenType[T2] <: GenType[T1]` for all such `T1` and `T2`.
+- **Contravariant**, if `GenType[T1] <: GenType[T2]` for all such `T1` and `T2`.
+- **Invariant**, if neither of the above is true.
 
 To better understand this definition, let's make an analogy with ordinary functions. Assume
 that we have:
@@ -56,33 +56,33 @@ behavior.
 
 For example:
 
--   `Union` behaves covariantly in all its arguments. That means: if `T2 <: T1`, then
-    `Union[T2] <: Union[T1]` for all such `T1` and `T2`.
+- `Union` behaves covariantly in all its arguments. That means: if `T2 <: T1`, then
+  `Union[T2] <: Union[T1]` for all such `T1` and `T2`.
 
--   `FrozenSet[T]` is also covariant. Let's consider `int` and `float` in place of `T`.
-    First, `int <: float`. Second, a set of values of `FrozenSet[int]` is clearly a subset
-    of values of `FrozenSet[float]`. Therefore, `FrozenSet[int] <: FrozenSet[float]`.
+- `FrozenSet[T]` is also covariant. Let's consider `int` and `float` in place of `T`. First,
+  `int <: float`. Second, a set of values of `FrozenSet[int]` is clearly a subset of values
+  of `FrozenSet[float]`. Therefore, `FrozenSet[int] <: FrozenSet[float]`.
 
 ### Mutable generic types are usually type invariant
 
 For example:
 
--   `list[T]` is invariant. Although a set of values of `list[int]` is a subset of values of
-    `list[float]`, only an `int` could be appended to a `list[int]`. Therefore, `list[int]`
-    is not a subtype of `list[float]`.
+- `list[T]` is invariant. Although a set of values of `list[int]` is a subset of values of
+  `list[float]`, only an `int` could be appended to a `list[int]`. Therefore, `list[int]` is
+  not a subtype of `list[float]`.
 
 ### The callable generic type is covariant in return type but contravariant in the arguments
 
--   `Callable[[], int] <: Callable[[], float]` .
--   If `Manager <: Employee` then `Callable[[], Manager] <: Callable[[], Employee]`.
+- `Callable[[], int] <: Callable[[], float]` .
+- If `Manager <: Employee` then `Callable[[], Manager] <: Callable[[], Employee]`.
 
 However, for two callable types that differ only in the type of one argument, the subtype
 relationship for the callable types goes in the opposite direction as for the argument
 types. Examples:
 
--   `Callable[[float], None] <: Callable[[int], None]`, where `int <: float`.
+- `Callable[[float], None] <: Callable[[int], None]`, where `int <: float`.
 
--   `Callable[[Employee], None] <: Callable[[Manager], None]`, where `Manager <: Employee`.
+- `Callable[[Employee], None] <: Callable[[Manager], None]`, where `Manager <: Employee`.
 
 I found this odd at first. However, this actually makes sense. If a function can calculate
 the salary for a `Manager`, it should also be able to calculate the salary of an `Employee`.

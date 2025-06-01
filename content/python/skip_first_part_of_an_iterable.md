@@ -37,9 +37,9 @@ function that takes one argument and returns a boolean value.
 
 The `dropwhile` function takes two arguments:
 
--   A function (the predicate), which takes one argument and returns a boolean value.
--   An iterable, which can be any object that can be iterated over, such as a list, tuple,
-    string, or even another generator.
+- A function (the predicate), which takes one argument and returns a boolean value.
+- An iterable, which can be any object that can be iterated over, such as a list, tuple,
+  string, or even another generator.
 
 The `dropwhile` function starts iterating over the elements of the iterable, and drops the
 elements for which the predicate returns `True`. It then returns all the remaining elements

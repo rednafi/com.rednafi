@@ -11,11 +11,11 @@ merge commit, while others love to preserve all the historical artifacts. There'
 both sides of the discussion. That being said, I kind of like rebasing because I'm a messy
 committer who:
 
--   Usually doesn't care for keeping atomic commits[^1].
--   Creates a lot of short commits with messages like "fix" or "wip".
--   Likes to clean up the untidy commits before sending the branch for peer review.
--   Prefers a linear history over a forked one so that `git log --oneline --graph` tells a
-    nice story.
+- Usually doesn't care for keeping atomic commits[^1].
+- Creates a lot of short commits with messages like "fix" or "wip".
+- Likes to clean up the untidy commits before sending the branch for peer review.
+- Prefers a linear history over a forked one so that `git log --oneline --graph` tells a
+  nice story.
 
 Git rebase allows me to squash my disordered commits into a neat little one, which bundles
 all the changes with passing tests and documentation. Sure, a similar result can be emulated
@@ -34,12 +34,12 @@ Broadly speaking, there are two common types of rebasing: rebasing a feature bra
 main branch and interactive rebasing on the feature branch itself. The workflow assumes a
 usual web service development cadence where:
 
--   You'll be working on a feature branch that's forked off of a main branch.
--   The main branch is protected, and you can't directly push your changes to it.
--   Once you're done with your feature work, you'll need to create a pull request against
-    the main branch.
--   After your PR is reviewed and merged onto the main branch, CI automatically deploys it
-    to some staging environment.
+- You'll be working on a feature branch that's forked off of a main branch.
+- The main branch is protected, and you can't directly push your changes to it.
+- Once you're done with your feature work, you'll need to create a pull request against the
+  main branch.
+- After your PR is reviewed and merged onto the main branch, CI automatically deploys it to
+  some staging environment.
 
 I'm aware this approach doesn't work for some niches in software development, but it's the
 one I'm most familiar with, so I'll go with it.

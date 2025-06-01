@@ -55,10 +55,10 @@ directly anywhere, they aren't tracked by the build toolchain.
 
 But we can leverage the following workflow:
 
--   Place a `tools.go` file in the root directory.
--   Import the dev dependencies in that file.
--   Run `go mod tidy` to track both app and dev dependencies via `go.mod` and `go.sum`.
--   Specify a build tag in `tools.go` to exclude the dev dependencies from the binary.
+- Place a `tools.go` file in the root directory.
+- Import the dev dependencies in that file.
+- Run `go mod tidy` to track both app and dev dependencies via `go.mod` and `go.sum`.
+- Specify a build tag in `tools.go` to exclude the dev dependencies from the binary.
 
 In this case, `tools.go` looks as follows:
 
