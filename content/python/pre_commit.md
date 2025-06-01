@@ -5,8 +5,8 @@ tags:
     - Python
 ---
 
-Pre-commit hooks[^1] can be a neat way to run automated ad-hoc _tasks_ before submitting a
-new git commit. These tasks may include linting, trimming trailing whitespaces, running code
+[Pre-commit hooks] can be a neat way to run automated ad-hoc _tasks_ before submitting a new
+git commit. These tasks may include linting, trimming trailing whitespaces, running code
 formatter before code reviews etc. Let's see how multiple Python linters and formatters can
 be applied automatically before each commit to impose strict conformity on your codebase.
 
@@ -25,17 +25,17 @@ To keep my sanity, I only use three linters in all of my python projects:
     - Custom Separate Sections (Defined by `forced_separate` list in the configuration file)
     - Custom Sections (Defined by `sections` list in configuration file)
 
-                                                        Inside each section, the imports are sorted alphabetically. This also automatically
-                                                        removes duplicate python imports, and wraps long from imports to the specified line
-                                                        length (defaults to 79).
+        Inside each section, the imports are sorted alphabetically. This also automatically
+        removes duplicate python imports, and wraps long from imports to the specified line
+        length (defaults to 79).
 
 - **[Black]**: `Black` is the uncompromising Python code formatter. It uses consistent rules
   to format your python code and makes sure that they look the same regardless of the
   project you're reading.
 
 - **[Flake8]**: _Flake8_ is a wrapper around _PyFlakes_, _pycodestyle_, Ned Batchelder's
-  McCabe script[^2]. The combination of these three linters makes sure that your code is
-  compliant with PEP-8[^3] and free of some obvious code smells.
+  [McCabe script]. The combination of these three linters makes sure that your code is
+  compliant with [PEP-8] and free of some obvious code smells.
 
 ## Installing pre-commit
 
@@ -187,12 +187,25 @@ This should apply the pre-commit hooks to your code base harmoniously. From now 
 each commit, the hooks will make sure that your code complies with the rules imposed by the
 linters.
 
-[^1]: [pre-commit hooks](https://pre-commit.com/#introduction)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [mccabe script](https://github.com/PyCQA/mccabe)
+[pre-commit hooks]:
+    https://pre-commit.com/#introduction
 
-[^3]: [PEP-8](https://www.python.org/dev/peps/pep-0008/)
+[mccabe script]:
+    https://github.com/PyCQA/mccabe
 
-[isort]: https://github.com/timothycrosley/isort
-[black]: https://github.com/psf/black
-[flake8]: https://github.com/PyCQA/flake8
+[pep-8]:
+  https://www.python.org/dev/peps/pep-0008/
+
+[isort]:
+    https://github.com/timothycrosley/isort
+
+[black]:
+    https://github.com/psf/black
+
+[flake8]:
+    https://github.com/PyCQA/flake8
+
+<!-- prettier-ignore-end -->
