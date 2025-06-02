@@ -11,9 +11,9 @@ Typically, you wrap your base handler with layers of middleware—one might log 
 while another intercepts specific routes like `/special` to serve a custom response.
 
 However, I often find the indirections introduced by this pattern a bit hard to read and
-debug. I recently came across the embedded delegation pattern while browsing the Gin[^1]
-repo. Here, I explore both patterns and explain why I usually start with delegation whenever
-I need to modify HTTP requests in my Go services.
+debug. I recently came across the embedded delegation pattern while browsing the [Gin repo].
+Here, I explore both patterns and explain why I usually start with delegation whenever I
+need to modify HTTP requests in my Go services.
 
 ## Middleware stacking
 
@@ -273,5 +273,10 @@ I usually start with the embedded delegation and gradually introduce the middlew
 if I need it later. It's easier to adopt the middleware pattern if you start with delegation
 than the other way around.
 
-[^1]:
-    [Gin](https://github.com/gin-gonic/gin/blob/3b28645dc95d58e0df36b8aff7a6c64f7c0ca5e9/gin.go#L94)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[gin repo]:
+    https://github.com/gin-gonic/gin/blob/3b28645dc95d58e0df36b8aff7a6c64f7c0ca5e9/gin.go#L94
+
+<!-- prettier-ignore-end -->
