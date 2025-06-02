@@ -8,8 +8,8 @@ tags:
 Comparing interface values in Go has caught me off guard a few times, especially with nils.
 Often, I'd expect a comparison to evaluate to `true` but got `false` instead.
 
-Many moons ago, Russ Cox wrote a fantastic blog post[^1] on interface internals that
-clarified my confusion. This post is a distillation of my exploration of interfaces and nil
+Many moons ago, Russ Cox wrote a fantastic [blog post] on interface internals that clarified
+my confusion. This post is a distillation of my exploration of interfaces and nil
 comparisons.
 
 ## Interface internals
@@ -32,7 +32,7 @@ Here, the static type of `n` is `any`, which tells the compiler what operations 
 on the variable. In the case of `any`, any operation is allowed. When we assign `1` to `n`,
 it adopts the dynamic type `int` and the dynamic value `1`.
 
-Internally, every interface value is implemented as a two-word[^2] structure:
+Internally, every interface value is implemented as a two [word] structure:
 
 - One word holds a pointer to the dynamic type (i.e., a type descriptor).
 - The other word holds the data associated with that type.
@@ -185,9 +185,14 @@ nil.
 
 Fin!
 
-[^1]: [Go data structures: interfaces](https://research.swtch.com/interfaces)
+<!-- References -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    A word is a fixed-size unit of data that a CPU processes in a single operation,
-    typically matching the system's pointer size (8 bytes on a 64-bit system, 4 bytes on a
-    32-bit system).
+<!-- go data structures: interfaces - russ cox -->
+[blog post]:
+    https://research.swtch.com/interfaces
+
+[word]:
+    https://en.wikipedia.org/wiki/Word_(computer_architecture)
+
+<!-- prettier-ignore-end -->
