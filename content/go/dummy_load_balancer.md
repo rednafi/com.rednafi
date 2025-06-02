@@ -17,7 +17,7 @@ standard library and goroutines make this trivial. Here's what the script needs 
 - For simplicity, we'll only handle client's GET requests.
 
 Obviously, this won't have SSL termination, advanced balancing algorithms, or session
-persistence like you'd get with Nginx[^1] or Caddy[^2]. The point is to understand the basic
+persistence like you'd get with [Nginx] or [Caddy]. The point is to understand the basic
 workflow and show how Go makes it easy to write this sort of stuff.
 
 ## Architecture
@@ -97,7 +97,7 @@ handled the most recent request. This will be used later to perform the round-ro
 balancing between the backends.
 
 The `backendMutex` lock provides mutually exclusive access to the shared variables. We'll
-see how it's used when we write the load balancing algorithm[^3].
+see how it's used when we write the [load balancing algorithm].
 
 ## Writing the backend server
 
@@ -256,7 +256,7 @@ func main() {
 
 ## Taking it for a spin
 
-You can find the self-contained complete implementation in this gist[^4]. Run the server in
+You can find the [self-contained complete implementation] in this gist. Run the server in
 one terminal with:
 
 ```sh
@@ -290,12 +290,21 @@ Hello from backend server on :8082
 
 Notice how the client requests are handled by different backends in an interleaving manner.
 
-[^1]: [Nginx](https://www.nginx.com/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Caddy](https://caddyserver.com/)
+[nginx]:
+    https://www.nginx.com/
 
-[^3]:
-    [Selecting backend server in a round robin fashion](/go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion)
+[caddy]:
+    https://caddyserver.com/
 
-[^4]:
-    [Complete implementation](https://gist.github.com/rednafi/4f871286f42177f21a74a0ce038ce725)
+<!-- selecting backend server in a round robin fashion -->
+[load balancing algorithm]:
+    /go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion
+
+<!-- complete implementation -->
+[self-contained complete implementation]:
+    https://gist.github.com/rednafi/4f871286f42177f21a74a0ce038ce725
+
+<!-- prettier-ignore-end -->
