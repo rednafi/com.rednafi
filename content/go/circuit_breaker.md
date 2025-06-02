@@ -7,7 +7,7 @@ tags:
 mermaid: true
 ---
 
-Besides retries, circuit breakers[^1] are probably one of the most commonly employed
+Besides retries, [circuit breakers] are probably one of the most commonly employed
 resilience patterns in distributed systems. While writing a retry routine is pretty simple,
 implementing a circuit breaker needs a little bit of work.
 
@@ -425,8 +425,17 @@ wrappedFunc := func() (any, error) {
 Now, `wrappedFunc` matches the `func() (any, error)` signature and can be used with our
 circuit breaker.
 
-Here's the complete implementation[^2] with tests.
+Here's the [complete implementation] with tests.
 
-[^1]: [Circuit breaker — Martin Fowler](https://martinfowler.com/bliki/CircuitBreaker.html)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Circuit breaker implementation in Go](https://github.com/rednafi/circuit-breaker)
+<!-- circuit breaker — martin fowler -->
+[circuit breaker]:
+    https://martinfowler.com/bliki/CircuitBreaker.html
+
+<!-- circuit breaker implementation in go -->
+[complete implementation]:
+    https://github.com/rednafi/circuit-breaker
+
+<!-- prettier-ignore-end -->

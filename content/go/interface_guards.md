@@ -14,7 +14,7 @@ need to export types that are required to implement specific interfaces as part 
 contract.
 
 However, there's a way you can statically check interface conformity at compile time with
-zero runtime overhead. Turns out, this was always buried in Effective Go[^1]. Observe:
+zero runtime overhead. Turns out, this was always buried in [Effective Go]. Observe:
 
 ```go
 import "io"
@@ -41,13 +41,13 @@ We're checking if struct `T` implements the `io.ReadWriter` interface. It needs 
 conforms to the `io.ReadWriter` interface. The code will fail to compile if the type ever
 stops matching the interface.
 
-This is only possible because `nil` values in Go can assume many different[^2] types. In
-this case, `var _ io.ReadWriter = T{}` will also work, but then you'll have to fiddle with
+This is only possible because `nil` values in Go can assume many [different types]. In this
+case, `var _ io.ReadWriter = T{}` will also work, but then you'll have to fiddle with
 different zero values if the type isn't a struct. One important thing to point out is that
 we're using `_` because we don't want to accidentally refer to this `nil` pointer anywhere
 in our code. Also, trying to access any method on it will cause runtime panic.
 
-Here's another example borrowed from Uber's style guide[^3]:
+Here's another example borrowed from [Uber's style guide]:
 
 No check:
 
@@ -76,26 +76,40 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-Neat, but don't abuse this. Effective Go warns[^6]:
+Neat, but don't abuse this. [Effective Go warns]:
 
 > _Don't do this for every type that satisfies an interface, though. By convention, such
 > declarations are only used when there are no static conversions already present in the
 > code, which is a rare event._
 
-[^1]: [Interface checks - Effective Go](https://go.dev/doc/effective_go#interfaces)
+## Further reading
 
-[^2]: [nils in Go](https://go101.org/article/nil.html)
+- [Interface guards - Caddy docs]
+- [Tweet by Matt Boyle]
 
-[^3]:
-    [Check interface compliance - Uber style guide](https://github.com/uber-go/guide/blob/master/style.md#verify-interface-compliance)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Interface guards - Caddy docs](https://caddyserver.com/docs/extending-caddy#interface-guards)
-    [^4]
+<!-- interfaces in effective go -->
+[effective go]:
+    https://go.dev/doc/effective_go#interfaces
 
-[^5]:
-    [Tweet by Matt Boyle](https://twitter.com/MattJamesBoyle/status/1692428212058403251?s=20)
-    [^5]
+<!-- nils can take many different types in go -->
+[different types]:
+    https://go101.org/article/nil.html
 
-[^6]:
-    [Don't abuse interface checks](https://go.dev/doc/effective_go#interfaces:~:text=The%20appearance%20of,a%20rare%20event)
+<!-- check for interface compliance - uber style guide -->
+[uber's style guide]:
+    https://github.com/uber-go/guide/blob/master/style.md#verify-interface-compliance
+
+<!-- effective go warns about not abusing interface guards -->
+[effective go warns]:
+    https://go.dev/doc/effective_go#interfaces:~:text=The%20appearance%20of,a%20rare%20event
+
+[interface guards - caddy docs]:
+    https://caddyserver.com/docs/extending-caddy#interface-guards
+
+[tweet by matt boyle]:
+    https://twitter.com/MattJamesBoyle/status/1692428212058403251?s=20
+    
+<!-- prettier-ignore-end -->
