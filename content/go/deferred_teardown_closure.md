@@ -6,7 +6,7 @@ tags:
     - Testing
 ---
 
-While watching Mitchell Hashimoto's excellent [talk] on Go testing, I came across this neat
+While watching [Mitchell Hashimoto's excellent talk] on Go testing, I came across this neat
 technique for deferring teardown to the caller. Let's say you have a helper function in a
 test that needs to perform some cleanup afterward.
 
@@ -354,7 +354,7 @@ Fin!
 <!-- prettier-ignore-start -->
 
 <!-- gophercon 2017: advanced testing with go - mitchell hashimoto -->
-[talk]:
+[mitchell hashimoto's excellent talk]:
     https://www.youtube.com/watch?v=8hQG7QlcLBk
 
 <!-- prettier-ignore-end -->
