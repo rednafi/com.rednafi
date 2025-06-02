@@ -10,7 +10,7 @@ As of now, unlike Python or NodeJS, Go doesn't allow you to specify your develop
 dependencies separately from those of the application. However, I like to specify the dev
 dependencies explicitly for better reproducibility.
 
-While working on a new CLI tool[^1] for checking dead URLs in Markdown files, I came across
+While working on a new [CLI tool] for checking dead URLs in Markdown files, I came across
 this neat convention: you can specify dev dependencies in a `tools.go` file and then exclude
 them while building the binary using a build tag.
 
@@ -49,8 +49,8 @@ go mod init example.com/foo   # creates the go.mod and go.sum files
 go mod tidy                   # installs the app dependencies
 ```
 
-Now, let's say we want to add the following dev dependencies: golangci-lint[^2] to lint the
-project in the CI and gofumpt[^3] as a stricter `gofmt`. Since we don't import these tools
+Now, let's say we want to add the following dev dependencies: [golangci-lint] to lint the
+project in the CI and [gofumpt] as a stricter `gofmt`. Since we don't import these tools
 directly anywhere, they aren't tracked by the build toolchain.
 
 But we can leverage the following workflow:
@@ -138,15 +138,26 @@ go build --tags tools main.go
 
 However, this will most likely fail if any of your dev dependencies aren't importable.
 
-Here's an example[^4] of this pattern in the wild from the Kubernetes repo.
+Here's an example of [this pattern] in the wild from the Kubernetes repo.
 
 While it works, I'd still prefer to have a proper solution instead of a hack. Fin!
 
-[^1]: [link-patrol](https://github.com/rednafi/link-patrol)
+<!-- References -->
+<!-- prettier-ignore-start -->
 
-[^2]: [golangci-lint](https://github.com/golangci/golangci-lint)
 
-[^3]: [gofumpt](https://github.com/mvdan/gofumpt)
+<!-- cli tool to detect dead links in markdown files -->
+[CLI tool]:
+    https://github.com/rednafi/link-patrol
 
-[^4]:
-    [tools.go in the kubernetes repo](https://github.com/kubernetes/kubernetes/blob/master/hack/tools/tools.go)
+[golangci-lint]:
+    https://github.com/golangci/golangci-lint
+
+[gofumpt]:
+    https://github.com/mvdan/gofumpt
+
+<!-- tools.go in the kubernetes repo -->
+[this pattern]:
+    https://github.com/kubernetes/kubernetes/blob/master/hack/tools/tools.go
+
+<!-- prettier-ignore-end -->
