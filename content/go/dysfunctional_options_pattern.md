@@ -5,8 +5,8 @@ tags:
     - Go
 ---
 
-Ever since Rob Pike published the text on the functional options pattern[^1], there's been
-no shortage of blogs, talks, or comments on how it improves or obfuscates configuration
+Ever since Rob Pike published the text on the [functional options pattern], there's been no
+shortage of blogs, talks, or comments on how it improves or obfuscates configuration
 ergonomics.
 
 While the necessity of such a pattern is quite evident in a language that lacks default
@@ -15,10 +15,11 @@ gets worse if you have to maintain a public API where multiple configurations ar
 in this manner.
 
 However, the pattern solves a valid problem and definitely has its place. Otherwise, it
-wouldn't have been picked up by pretty much every other library[^2][^3].
+wouldn’t have been picked up by pretty much every other library, whether it's [Ngrok] or the
+[Elasticsearch agent].
 
 If you have no idea what I'm talking about, you might want to give my previous write-up on
-configuring options[^4] a read.
+[configuring options] a read.
 
 ## Functional options pattern
 
@@ -275,28 +276,39 @@ optional configuration attributes.
 Apart from simplicity and the lack of magic, you can hover over the return type of the
 factory and immediately know about the supported modifier methods.
 
-I did a rudimentary benchmark[^5] of the two approaches and was surprised that the second
-one was roughly ~76x faster on Go 1.22!
+I did a [rudimentary benchmark] of the two approaches and was surprised that the second one
+was roughly ~76x faster on Go 1.22!
 
-Here's an example[^6] of the pattern in the wild.
+Here's an example of the [pattern in the wild].
 
 _P.S. This is indeed a lightweight spin on what OO languages call the builder pattern.
 However, I didn't call it that because there's no mandatory `.Build()` method to be called
 at the end of the method chain._
 
-[^1]:
-    [Self-referential functions and the design of options](https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Functional options pattern in ngrok](https://github.com/ngrok/ngrok-api-go/blob/ec1a3e91cae94c70f0e5c31b95aed5a1d6dd65b7/client_config.go)
+[functional options pattern]:
+    https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
 
-[^3]:
-    [Function options pattern in elastic search agent](https://github.com/elastic/elastic-agent/blob/4aeba5b3fcf0d72924c70ff2127996a817b83a23/pkg/testing/fetcher_http.go)
+<!-- functional options pattern in ngrok -->
+[ngrok]:
+    https://github.com/ngrok/ngrok-api-go/blob/ec1a3e91cae94c70f0e5c31b95aed5a1d6dd65b7/client_config.go
 
-[^4]: [Configuring options in Go](/go/configure_options)
+<!-- functional options pattern in elasticsearch agent -->
+[elasticsearch agent]:
+    https://github.com/elastic/elastic-agent/blob/4aeba5b3fcf0d72924c70ff2127996a817b83a23/pkg/testing/fetcher_http.go
 
-[^5]:
-    [Benchmarking functional vs dysfunctional options pattern](https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a)
+<!-- configuring options in go - rednafi -->
+[configuring options]:
+    /go/configure_options
 
-[^6]:
-    [Dysfunctional options pattern in the wild](https://github.com/rednafi/fork-sweeper/blob/80e1f7c76a2efcb7d1b65d6b12303c590bb74c2c/src/cli.go#L172)
+<!-- benchmarking functional vs dysfunctional options pattern -->
+[rudimentary benchmark]:
+    https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a
+
+<!-- dysfunctional options pattern in the wild -->
+[pattern in the wild]:
+    https://github.com/rednafi/fork-sweeper/blob/80e1f7c76a2efcb7d1b65d6b12303c590bb74c2c/src/cli.go#L172
+
+<!-- prettier-ignore-end -->
