@@ -14,8 +14,8 @@ spawn new goroutines to make HTTP requests to the destination. This had two prob
 - It could create unlimited goroutines if many events arrived quickly
 - It might overload the destination system by making many concurrent requests
 
-In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously written
-about this here[^1]. Turns out, in Go, you could do the same with a buffered channel. Here's
+In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously [written
+about this] here. Turns out, in Go, you could do the same with a buffered channel. Here's
 how the naive version looks:
 
 ```go
@@ -164,19 +164,33 @@ Waiting for batch interval...
 ```
 
 Now, you might want to add extra abstractions over the core behavior to make it more
-ergonomic. Here's a pointer[^2] on how to do so. Effective Go also mentions[^3] this pattern
+ergonomic. Here's a [pointer] on how to do so. [Effective Go also mentions] this pattern
 briefly.
 
-[^1]: [Limit concurrency with semaphore](/python/limit_concurrency_with_semaphore)
+## Further reading
 
-[^2]:
-    [Go concurrency pattern: semaphore](https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d)
+- [How to wait until buffered channel semaphore is empty]
 
-[^3]: [Effective Go - channels](https://go.dev/doc/effective_go#channels)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [How to wait until buffered channel semaphore is empty](https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty)
-    [^4]
+<!-- Limit concurrency with semaphore - rednafi -->
+[written about this]:
+    /python/limit_concurrency_with_semaphore
+
+<!-- go concurrency pattern: semaphore -->
+[pointer]:
+    https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d
+
+<!-- effective go - channels -->
+[effective go also mentions]:
+    https://go.dev/doc/effective_go#channels
+
+
+[how to wait until buffered channel semaphore is empty]:
+    https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty
+
+<!-- prettier-ignore-end -->
 
 <link rel="stylesheet" href="/modules/codapi/snippet.css"/>
 <script defer src="/modules/codapi/snippet.js"></script>
