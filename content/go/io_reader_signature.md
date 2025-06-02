@@ -25,8 +25,8 @@ Read() (p []byte, err error)
 This felt more intuitive to me—you call `Read`, and it gives you a slice filled with data,
 no need to pass anything.
 
-I found out why it's designed this way while watching this[^1] excellent GopherCon Singapore
-talk on understanding allocations by Jacob Walker. It mainly boils down to two reasons.
+I found out why it's designed this way while watching this excellent [GopherCon Singapore
+talk] on understanding allocations by Jacob Walker. It mainly boils down to two reasons.
 
 ## Reducing heap allocations
 
@@ -101,5 +101,11 @@ for {
 
 This avoids unnecessary allocations and produces less garbage for the GC to clean up.
 
-[^1]:
-    [Understanding allocations: the stack and the heap - GopherCon SG 2019](https://www.youtube.com/watch?v=ZMZpH4yT7M0)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+<!-- understanding allocations: the stack and the heap - gophercon sg 2019 -->
+[gophercon singapore talk]:
+    https://www.youtube.com/watch?v=ZMZpH4yT7M0
+
+<!-- prettier-ignore-end -->
