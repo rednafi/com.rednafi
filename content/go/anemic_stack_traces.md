@@ -21,8 +21,8 @@ traces. There's no avoiding that.
 
 But the good thing is that building an emaciated stack trace is fairly straightforward, and
 some of the patterns are quite portable. After reading Rob Pike's blog on error handling in
-the upspin[^1] project, I had some ideas on creating custom errors to emulate stack traces.
-I ended up spending a few hours this morning experimenting with some of the ideas in a more
+the [upspin] project, I had some ideas on creating custom errors to emulate stack traces. I
+ended up spending a few hours this morning experimenting with some of the ideas in a more
 limited scope.
 
 Let's say we're building a file-copy service that will accept a `src` and `dst` path and
@@ -296,18 +296,27 @@ Now depending on your needs, you can customize the `Error` struct and `NewError`
 to enable more elaborate error tracing.
 
 However, this isn't a proper stack in the sense that it only unwinds errors one level deep.
-But it can be extended to recursively build the full error trace if needed. The Upspin[^2]
-repo demonstrates a few techniques on how to do so. But for this particular case, anything
-more than a level deep stack is borderline overkill.
+But it can be extended to recursively build the full error trace if needed. The upspin repo
+demonstrates a [few techniques] on how to do so. But for this particular case, anything more
+than a level deep stack is borderline overkill.
 
-Here's the complete working example[^3].
+Here's the complete [working example].
 
 Fin!
 
-[^1]:
-    [Error handling in Upspin](https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Upspin's error package](https://github.com/upspin/upspin/blob/master/errors/errors.go)
+<!-- error handling in upspin -->
+[upspin]:
+    https://commandcenter.blogspot.com/2017/12/error-handling-in-upspin.html
 
-[^3]: [Complete example](https://gist.github.com/rednafi/d090a16ba6ddd19c7fe8bdaae746205c)
+<!-- upspin's error package -->
+[few techniques]:
+    https://github.com/upspin/upspin/blob/master/errors/errors.go
+
+<!-- complete working example -->
+[working example]:
+    https://gist.github.com/rednafi/d090a16ba6ddd19c7fe8bdaae746205c
+
+<!-- prettier-ignore-end -->
