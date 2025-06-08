@@ -82,7 +82,7 @@ Neat, but don't abuse this. [Effective Go warns]:
 > declarations are only used when there are no static conversions already present in the
 > code, which is a rare event._
 
-## Further reading
+## Further readings
 
 - [Interface guards - Caddy docs]
 - [Tweet by Matt Boyle]
@@ -111,5 +111,5 @@ Neat, but don't abuse this. [Effective Go warns]:
 
 [tweet by matt boyle]:
     https://twitter.com/MattJamesBoyle/status/1692428212058403251?s=20
-    
+
 <!-- prettier-ignore-end -->

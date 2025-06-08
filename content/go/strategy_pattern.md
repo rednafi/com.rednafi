@@ -10,10 +10,10 @@ These days, I don't build hierarchical types through inheritance even when writi
 that support it. Type composition has replaced almost all of my use cases where I would've
 reached for inheritance before.
 
-I've written[^1] about how to escape the _template pattern_[^2] hellscape and replace that
-with _strategy pattern_[^3] in Python before. While by default, Go saves you from shooting
-yourself in the foot by disallowing inheritance, it wasn't obvious to me how I could apply
-the strategy pattern to make things more composable and testable.
+I've written about how to [escape the template pattern hellscape] and replace that with
+_strategy pattern_ in Python before. While by default, Go saves you from shooting yourself
+in the foot by disallowing inheritance, it wasn't obvious to me how I could apply the
+strategy pattern to make things more composable and testable.
 
 Also, often the Go community exhibits a knee-jerk reaction to the word "pattern," even when
 it has nothing to do with OO. However, I feel it's important to use a specific term while
@@ -132,7 +132,7 @@ Now whenever you need to test the `display` function, you can just create a fake
 and pass that as an argument. The `display` function will happily accept any formatter as
 long as the strategy class satisfies the `MessageFormatter` interface.
 
-The same thing can be achieved in a more functional[^4] manner and we'll see that in the Go
+The same thing can be achieved in a more functional manner and we'll see that in the Go
 example.
 
 But Ruby is still primarily an OO language and it has classes. How'd you model the same
@@ -216,15 +216,11 @@ _Update: The original Go example used struct types rather than a function type t
 simpler. However, if your strategy needs to do multiple things, then a struct with multiple
 methods is probably going to be better._
 
-[^1]: [Escaping the template pattern hellscape in Python](/python/escape_template_pattern/)
+<!-- References -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Template method pattern in Ruby](https://refactoring.guru/design-patterns/template-method/ruby/example)
+<!-- escaping the template pattern hellscape in Python -->
+[template pattern hellscape]:
+    /python/escape_template_pattern/
 
-[^3]:
-    [Strategy pattern in Ruby](https://refactoring.guru/design-patterns/strategy/ruby/example)
-
-[^4]:
-    All of these festivities can be avoided in languages that support first-class functions.
-    You could just define your strategies as functions and pass them to the caller during
-    runtime; same idea, different implementation.
+<!-- prettier-ignore-end -->

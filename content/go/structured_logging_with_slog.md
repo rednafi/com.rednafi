@@ -14,10 +14,10 @@ you to do that and a whole lot more.
 
 Apart from being able to add levels to log messages, `slog` also allows you to emit
 JSON-structured log messages and group them by certain attributes. The ability to do all
-this in-house is quite neat and I wanted to take it for a spin. The official
-documentation[^1] on this is on the terser side but still comprehensive. So, here, instead
-of repeating the same information, I wanted to write something for me that mainly highlights
-the most common cases.
+this in-house is quite neat and I wanted to take it for a spin. The [official documentation]
+on this is on the terser side but still comprehensive. So, here, instead of repeating the
+same information, I wanted to write something for me that mainly highlights the most common
+cases.
 
 ## Kickoff
 
@@ -470,4 +470,11 @@ This avoids extra allocations while giving the same result as:
 slog.Info("info message", "some int", 7)
 ```
 
-[^1]: [Official documentation - slog](https://pkg.go.dev/log/slog)
+<!-- References -->
+<!-- prettier-ignore-start -->
+
+<!-- official documentation - log/slog -->
+[official documentation]:
+    https://pkg.go.dev/log/slog
+
+<!-- prettier-ignore-end -->

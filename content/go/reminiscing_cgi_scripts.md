@@ -159,5 +159,14 @@ any modern web framework.
 
 Fin!
 
-[^1]:
-    [Apache Tutorial: Dynamic Content with CGI](https://httpd.apache.org/docs/2.4/howto/cgi.html)[^1]
+## Further readings
+
+- [Apache tutorial: Dynamic content with CGI]
+
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[apache tutorial: dynamic content with cgi]:
+    https://httpd.apache.org/docs/2.4/howto/cgi.html
+
+<!-- prettier-ignore-end -->
