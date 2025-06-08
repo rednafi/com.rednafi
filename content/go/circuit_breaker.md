@@ -431,7 +431,7 @@ Here's the [complete implementation] with tests.
 <!-- prettier-ignore-start -->
 
 <!-- circuit breaker — martin fowler -->
-[circuit breaker]:
+[circuit breakers]:
     https://martinfowler.com/bliki/CircuitBreaker.html
 
 <!-- circuit breaker implementation in go -->
