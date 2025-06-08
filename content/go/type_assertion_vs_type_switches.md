@@ -285,4 +285,10 @@ interface only requires it to implement `foo()`. The type switch dynamically che
 
 Fin!
 
-[^1]: [Go by example](https://gobyexample.com/)
+<!-- References -->
+<!-- prettier-ignore-start -->
+
+[go by example]:
+    https://gobyexample.com/
+
+<!-- prettier-ignore-end -->

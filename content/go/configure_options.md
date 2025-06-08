@@ -289,7 +289,7 @@ In most cases, you can get away with exporting the option struct `Stuff` and a c
 function `NewStuff` to instantiate it. For another canonical example, see `bufio.Read` and
 `bufio.NewReader` in the standard library.
 
-## Further reading
+## Further readings
 
 - [Functional options for friendly APIs - Dave Cheney]
 - [Functional options pattern in Go - Matt Boyle]

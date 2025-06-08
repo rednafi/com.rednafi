@@ -20,7 +20,7 @@ version of the tools before running them. Chaos!
 ## The `tools.go` convention
 
 To avoid this mess, the Go community came up with a convention where you'd pin your tool
-versions in a `tools.go` file. I've written about this [before]. But the gist is, you'd have
+versions in a `tools.go` file. I've [written about this before]. But the gist is, you'd have
 a `tools.go` file in your root directory that imports the tooling and assigns them to `_`:
 
 ```go
@@ -45,7 +45,7 @@ This works, but it always felt a bit clunky. You end up polluting your main `go.
 tooling-only dependencies. And sometimes, transitive dependencies of those tools clash with
 your app's dependencies.
 
-The new `tool` directive in Go 1.24 solves _some_ of these pain [points].
+The new `tool` directive in Go 1.24 solves [some of these pain points].
 
 ## Enter the `tool` directive
 
@@ -142,11 +142,11 @@ tooling is written in Go anyway, so this setup has been working okay.
 <!-- prettier-ignore-start -->
 
 <!-- Omitting dev dependencies in Go binaries -->
-[before]:
+[written about this before]:
     /go/omit_dev_dependencies_in_binaries
 
 <!-- Go toolchain still sticks the dev dependencies into the main go.mod file -->
-[points]:
+[some of these pain points]:
     /go/tool_directive/#still-not-perfect
 
 <!-- prettier-ignore-end -->
