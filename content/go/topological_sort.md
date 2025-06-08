@@ -338,7 +338,16 @@ func main() {
 }
 ```
 
-This can be used to make custom task orchestrator. Here's an example[^1].
+You can use this to make [custom task orchestrators].
 
-[^1]:
-    [Python graphlib | My favourite Python library](https://philuvarov.io/python-top-sort/)
+Fin!
+
+<!-- References -->
+<!-- prettier-ignore-start -->
+
+<!-- python graphlib | my favourite python library -->
+[custom task orchestrators]:
+    https://philuvarov.io/python-top-sort/
+
+<!-- References -->
+<!-- prettier-ignore-end -->
