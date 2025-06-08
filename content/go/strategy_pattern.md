@@ -220,7 +220,7 @@ methods is probably going to be better._
 <!-- prettier-ignore-start -->
 
 <!-- escaping the template pattern hellscape in Python -->
-[template pattern hellscape]:
+[escape the template pattern hellscape]:
     /python/escape_template_pattern/
 
 <!-- prettier-ignore-end -->
