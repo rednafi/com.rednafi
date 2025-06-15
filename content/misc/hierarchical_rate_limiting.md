@@ -163,7 +163,7 @@ You can load the Lua script from disk, register it with Redis, and call it befor
 the notification service. If the script returns 0, drop the notification request. If it
 returns 1, send the notification. Here's how to do it in Python:
 
-```python
+```py
 from redis import Redis
 from redis.commands.core import Script
 
@@ -250,7 +250,7 @@ You can call the `send_notification` function multiple times to test the rate li
 is an example that simulates several notification requests in a short loop, giving you a
 sense of how many will be allowed versus blocked:
 
-```python
+```py
 from redis import Redis
 import time
 

@@ -52,7 +52,7 @@ following app structure:
 
 In the `src/config.py` file, we define our settings class as follows:
 
-```python
+```py
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -76,7 +76,7 @@ ENV_VAR_3="true"
 
 Next, we instantiate the `Settings` class in the `src/__init__.py` file:
 
-```python
+```py
 from src.config import Settings
 
 settings = Settings()
@@ -84,7 +84,7 @@ settings = Settings()
 
 Finally, we use the config values in `src/main.py`:
 
-```python
+```py
 from src import settings
 
 
@@ -117,7 +117,7 @@ env_var_3=True
 Fantastic! But now, testing the `read_env` function becomes tricky. Normally, you'd try to
 patch the environment variables in a pytest fixture and then test the values like this:
 
-```python
+```py
 # tests/test_main.py
 
 import os
@@ -166,7 +166,7 @@ able to override the values of some or all of the environment variables if neces
 
 Here's what has worked well for me:
 
-```python
+```py
 import pytest
 from src.main import read_env
 from src import settings, Settings
@@ -224,7 +224,7 @@ after a test ends.
 
 You can use the fixture like this:
 
-```python
+```py
 def test_read_env(patch_settings: Settings) -> None:
     env_var_1, env_var_2, env_var_3 = read_env()
     assert env_var_1 == "default_value"

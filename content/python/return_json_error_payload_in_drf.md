@@ -39,7 +39,7 @@ HTML page. On the contrary, if the incoming request header has
 `Content-Type: application/json` and the server sees an error, it responds with a JSON error
 payload instead. Here's how the middleware looks:
 
-```python
+```py
 # <app>/middleware.py
 
 from http import HTTPStatus
@@ -88,7 +88,7 @@ class JSONErrorMiddleware:
 
 You'll have to add this middleware to the list of middlewares in the `settings.py` file:
 
-```python
+```py
 MIDDLEWARE = [..., "<app>.middleware.JSONErrorMiddleware"]
 ```
 
@@ -98,7 +98,7 @@ And voila, now the API and non-API errors will be handled differently as expecte
 
 Here's how you can unit test the behavior of the middleware:
 
-```python
+```py
 import json
 from unittest.mock import MagicMock
 

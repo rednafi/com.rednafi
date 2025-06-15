@@ -73,7 +73,7 @@ been collected from the official docs verbatim.
 Schedules the callable, `fn`, to be executed as `fn(*args **kwargs)` and returns a `Future`
 object representing the execution of the callable.
 
-```python
+```py
 with ThreadPoolExecutor(max_workers=1) as executor:
     future = executor.submit(pow, 323, 1235)
     print(future.result())
@@ -104,7 +104,7 @@ Similar to `map(func, *iterables)` except:
 
 A lot of my scripts contains some variants of the following:
 
-```python
+```py
 for task in get_tasks():
     perform(task)
 ```
@@ -128,7 +128,7 @@ number of images, manipulating many text files at once etc.
 When you have a number of tasks, you can schedule them in one go and wait for them all to
 complete and then you can collect the results.
 
-```python
+```py
 import concurrent.futures
 
 
@@ -156,7 +156,7 @@ The `executor.submit()` method schedules the tasks asynchronously and doesn't ho
 contexts regarding the original tasks. So if you want to map the results with the original
 tasks, you need to track those yourself.
 
-```python
+```py
 import concurrent.futures
 
 
@@ -176,7 +176,7 @@ futures using a dictionary.
 Another way the results can be collected in the same order they're scheduled is via using
 `executor.map()` method.
 
-```python
+```py
 import concurrent.futures
 
 
@@ -200,7 +200,7 @@ significantly improve performance compared to the default size of 1. With
 Before proceeding with the examples, let's write a small decorator that'll be helpful to
 measure and compare the execution time between concurrent and sequential code.
 
-```python
+```py
 import time
 from functools import wraps
 
@@ -220,7 +220,7 @@ def timeit(method):
 
 The decorator can be used like this:
 
-```python
+```py
 @timeit
 def func(n):
     return list(range(n))
@@ -234,7 +234,7 @@ First, let's download some pdf files from a bunch of URLs and save them to the d
 presumably an I/O bound task and we'll be using the `ThreadPoolExecutor` class to carry out
 the operation. But before that, let's do this sequentially first.
 
-```python
+```py
 from pathlib import Path
 import urllib.request
 
@@ -299,7 +299,7 @@ disk. The second function `download_all` just iterates through a sequence of URL
 applies the `download_one` function on each of them. The sequential code takes about 22.8
 seconds to run. Now let's see how our threaded version of the same code performs.
 
-```python
+```py
 from pathlib import Path
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -391,7 +391,7 @@ To get around that, you can use the `executor.submit()` method to create futures
 accumulated the futures in a list, iterate through the futures and handle the exceptions
 manually. See the following example:
 
-```python
+```py
 from pathlib import Path
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -467,7 +467,7 @@ sequentially run a compute intensive hash algorithm multiple times. Then another
 will again run the primary function multiple times. Let's run the function sequentially
 first.
 
-```python
+```py
 import hashlib
 
 
@@ -502,7 +502,7 @@ If you analyze the `hash_one` and `hash_all` functions, you can see that togethe
 actually running two compute intensive nested `for` loops. The above code takes roughly 18
 seconds to run in sequential mode. Now let's run it parallelly using `ProcessPoolExecutor`.
 
-```python
+```py
 import hashlib
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
@@ -559,7 +559,7 @@ Another pitfall of using concurrency is deadlock situations that might occur whi
 another `Future`, they might never release their control of the threads and cause deadlock.
 Let's see a slightly modified example from the official docs.
 
-```python
+```py
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -593,7 +593,7 @@ that of the former function. So the code block in the context manager will never
 to having inter dependencies. This creates the deadlock situation. Let's explain another
 deadlock situation from the official docs.
 
-```python
+```py
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -629,7 +629,7 @@ concurrency can actually slow down your code rather than making it any performan
 a trivial example where both `ThreadPoolExecutor` and `ProcessPoolExecutor` perform worse
 than their sequential counterpart.
 
-```python
+```py
 import math
 
 PRIMES = [num for num in range(19000, 20000)]
@@ -673,7 +673,7 @@ on 1000 numbers to determine if they're prime or not. The sequential version too
 67ms to do that. However, look below where the threaded version of the same code takes more
 than double the time (140ms) to so the same task.
 
-```python
+```py
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import math
 
@@ -717,7 +717,7 @@ if __name__ == "__main__":
 The multiprocessing version of the same code is even slower. The tasks doesn't justify
 opening so many processes.
 
-```python
+```py
 from concurrent.futures import ProcessPoolExecutor
 import math
 

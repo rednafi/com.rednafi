@@ -48,7 +48,7 @@ dependencies.
 
 To resolve the above-mentioned case with `graphlib`, you'd do the following:
 
-```python
+```py
 from graphlib import TopologicalSorter
 
 # Define the graph

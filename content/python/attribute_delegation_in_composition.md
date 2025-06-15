@@ -12,7 +12,7 @@ trick to perform attribute delegation on composed classes. Let's say there's a c
 classic 'has a' (inheritance usually refers to 'is a' relationships) relationship with the
 engine. So, composition makes more sense than inheritance here. Consider this example:
 
-```python
+```py
 # src.py
 from typing import Any
 
@@ -38,7 +38,7 @@ class Car:
 
 Ideally, you'd to use the classes as a good citizen as follows:
 
-```python
+```py
 engine = Engine("w16", "vroom")
 car = Car(engine, "supercar", 3_000_000)
 
@@ -61,7 +61,7 @@ However, I wanted free attribute access, just like we get in inheritance. We sho
 to do `car.name`, not `car.engine.name`, and get the name of the engine instance. With a
 little bit of `__getattr__` magic, it's easy to do so:
 
-```python
+```py
 # src.py
 from typing import Any
 
@@ -97,7 +97,7 @@ it'll look for the attribute in the instance of the `Engine` class; just like ty
 inheritance. This will work in case of method access as well. So now you can use the classes
 as below:
 
-```python
+```py
 engine = Engine("w16", "vroom")
 car = Car(engine, "supercar", 3_000_000)
 
@@ -124,7 +124,7 @@ Engine w16 goes vroom!
 
 ## Complete example with tests
 
-```python
+```py
 # src.py
 import unittest
 from typing import Any

@@ -17,7 +17,7 @@ even after leveraging bulk update. So I wanted to see if I could use `multiproce
 Here's a script that creates 100k users in a PostgreSQL database and updates their usernames
 via vanilla `.bulk_update`. Notice how we're timing the update duration:
 
-```python
+```py
 # app_name/vanilla_bulk_update.py
 import os
 
@@ -85,7 +85,7 @@ USER_99844
 A little over 9 seconds isn't too bad for 100k users but we can do better. Here's how I've
 updated the above script to make it 4x faster:
 
-```python
+```py
 # app_name/multiprocessing_bulk_update.py
 import os
 

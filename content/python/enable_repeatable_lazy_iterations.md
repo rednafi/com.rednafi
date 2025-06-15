@@ -19,7 +19,7 @@ So, in the case where a function returns a generator and you've already consumed
 you'll need to call the function again to generate a new instance of the generator that you
 can use. Observe:
 
-```python
+```py
 from __future__ import annotations
 from collections.abc import Generator
 
@@ -30,7 +30,7 @@ def get_numbers(start: int, end: int, step: int) -> Generator[int, None, None]:
 
 This can be used like this:
 
-```python
+```py
 numbers = get_numbers(1, 10, 2)
 
 for number in numbers:
@@ -49,7 +49,7 @@ It'll return:
 
 Now, if you try to consume the iterable again, you'll get empty value. Run this again:
 
-```python
+```py
 for number in numbers:
     print(number)
 ```
@@ -59,7 +59,7 @@ expected and if you want to loop through the same elements again, you'll have to
 function again to produce another generator that you can consume. So, the following will
 always work:
 
-```python
+```py
 for number in get_numbers():
     print(number)
 ```
@@ -79,7 +79,7 @@ creating a new generator.
 
 For example:
 
-```python
+```py
 from __future__ import annotations
 from collections.abc import Generator
 
@@ -96,7 +96,7 @@ class NumberGen:
 
 Now use the class as such:
 
-```python
+```py
 numbers = NumberGen()
 for number in numbers:
     print(number)

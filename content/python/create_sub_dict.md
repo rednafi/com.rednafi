@@ -14,7 +14,7 @@ usually solve it with `O(DK)` complexity, where `K` is the length of the sub-dic
 `D` is the length of the primary dict. Here's how I usually do that without giving it any
 thoughts or whatsoever:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ complexity of creating the sub-dict is O(DK). This means, in the worst-case scen
 have to traverse the entire length of the main-dict and all the keys of the sub-dict to
 create the sub-dict. We can do better. Consider this:
 
-```python
+```py
 # src.py
 ...
 
@@ -69,7 +69,7 @@ entire `sub_keys` list—O(K) complexity achieved. This is so simple and elegant
 miss that! There's another functional but subjectively less readable way of achieving the
 same thing. Here you go:
 
-```python
+```py
 # src.py
 from operator import itemgetter
 
@@ -84,7 +84,7 @@ sub_dict = dict(zip(sub_keys, itemgetter(*sub_keys)(main_dict)))
 
 I ran this naive benchmark in an ipython console:
 
-```python
+```py
 ...
 
 In [3]: %timeit {k: v for k, v in main_dict.items() if k in sub_keys}

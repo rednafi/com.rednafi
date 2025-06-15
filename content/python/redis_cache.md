@@ -106,7 +106,7 @@ pip install redis httpx
 Assuming the database server is running and you've installed the dependencies, the following
 snippet connects `redis-py` client to the database.
 
-```python
+```py
 import redis
 import sys
 
@@ -144,7 +144,7 @@ to set and retrieve data to and from the redis database.
 
 The following function strikes the MapBox Route Optimization API and collects route data.
 
-```python
+```py
 import httpx
 
 
@@ -182,7 +182,7 @@ converts the response into a native dictionary object using the `response.json()
 The following two functions retrieves data from and sets data to redis database
 respectively.
 
-```python
+```py
 from datetime import timedelta
 
 
@@ -220,7 +220,7 @@ When a new request arrives, the function first checks if the return-value exists
 Redis cache. If the value exists, it shows the cached value, otherwise, it sends a new
 request to the MapBox API, cache that value and then shows the result.
 
-```python
+```py
 def route_optima(coordinates: str) -> dict:
     # First it looks for the data in redis cache
     data = get_routes_from_cache(key=coordinates)
@@ -252,7 +252,7 @@ This part of the code wraps the original Route Optimization API and exposes that
 endpoint. I've used FastAPI[^10] to build the wrapper API. Doing this also hides the
 underlying details of authentication and the actual endpoint of the MapBox API.
 
-```python
+```py
 from fastapi import FastAPI
 
 
@@ -272,7 +272,7 @@ def view(coordinates):
 
 ### Putting it all together
 
-```python
+```py
 # app.py
 
 import json

@@ -20,7 +20,7 @@ follows.
 Let's say there's a single file library named `lib.py` that decides to configure the root
 logger:
 
-```python
+```py
 # lib.py
 import logging
 
@@ -36,7 +36,7 @@ def frobnicate() -> None:
 Now, let's say the user of `lib.py` imports the `frobnicate` function and configures the
 root logger in the following manner:
 
-```python
+```py
 # main.py
 import logging
 from lib import frobnicate
@@ -89,7 +89,7 @@ into the library's log messages whenever they need to.
 
 Here's how to achieve that in the library:
 
-```python
+```py
 # lib.py
 import logging
 
@@ -113,7 +113,7 @@ INFO:root:This is an info message from the application.
 This setup also lets the application code access and adjust the library's logger to suit its
 needs. Here's how it can be done in the `main.py` file:
 
-```python
+```py
 # main.py
 import logging
 from lib import frobnicate
@@ -162,7 +162,7 @@ logger, check out the httpx[^3] codebase. The logging behavior is well-documente
 You can easily reconfigure the httpx logger in your application code while making an HTTP
 request like this:
 
-```python
+```py
 # Your application code
 import httpx
 import logging

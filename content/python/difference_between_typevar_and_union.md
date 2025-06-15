@@ -10,7 +10,7 @@ tags:
 If you want to define a variable that can accept values of multiple possible types, using
 `typing.Union` is one way of doing that:
 
-```python
+```py
 from typing import Union
 
 U = Union[int, str]
@@ -19,7 +19,7 @@ U = Union[int, str]
 However, there's another way you can express a similar concept via constrained `TypeVar`.
 You'd do so as follows:
 
-```python
+```py
 from typing import TypeVar
 
 T = TypeVar("T", int, str)
@@ -34,7 +34,7 @@ is:
 With a `Union` type used as function parameters, the arguments, as well as the return type,
 can all be different:
 
-```python
+```py
 # src.py
 from typing import Union
 
@@ -57,7 +57,7 @@ However, the above type definition will be too loose if you need to ensure that 
 function parameters must be of the same type in a single scope. Here's where constrained
 `TypeVar` can come in handy:
 
-```python
+```py
 # src.py
 from typing import TypeVar
 

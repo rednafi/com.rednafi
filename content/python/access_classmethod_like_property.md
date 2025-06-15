@@ -14,7 +14,7 @@ While sifting through Django 3.2's codebase, I found this neat trick to make a `
 that acts like a `property` method and can be accessed directly from the class without
 initializing it.
 
-```python
+```py
 # src.py
 # This requires Python 3.4+.
 from enum import Enum, EnumMeta
@@ -47,7 +47,7 @@ requires creating a metaclass and doing a bunch of magic to achieve something so
 Luckily, Python3.9+ makes it possible without any additional magic. Notice the example
 below:
 
-```python
+```py
 # src.py
 # Requires Python 3.9+
 class ModernPlanets(Enum):
@@ -69,7 +69,7 @@ Python applies them from bottom to top. Changing the order will make it behave u
 
 ## Complete example with tests
 
-```python
+```py
 # src.py
 # Requires Python 3.4+
 import sys

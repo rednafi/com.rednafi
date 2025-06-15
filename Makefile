@@ -27,7 +27,7 @@ update:
 	uvx pre-commit autoupdate -j 4
 	npm update
 
-devserver:
+dev:
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
 upload-static:

@@ -15,7 +15,7 @@ However, since the script was expected to be long-running, I needed to display p
 to show the state of execution. It's quite easy to do with `tqdm` when you're just looping
 over a list of file paths and downloading the contents synchronously:
 
-```python
+```py
 from tqdm import tqdm
 
 for file_path in tqdm(file_paths):
@@ -25,7 +25,7 @@ for file_path in tqdm(file_paths):
 But you can't do this when multiple threads or processes are doing the work. Here's what
 I've found that works quite well:
 
-```python
+```py
 from __future__ import annotations
 
 import time
@@ -98,7 +98,7 @@ mission successful.
 
 I usually use `contextlib.ExitStack` to avoid nested context managers like this:
 
-```python
+```py
 ...
 
 from contextlib import ExitStack

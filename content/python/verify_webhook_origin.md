@@ -41,7 +41,7 @@ X-Hub-Signature-256=\
 To demonstrate the workflow, here's an example of how the webhook sender might be
 implemented:
 
-```python
+```py
 # sender.py
 
 from __future__ import annotations
@@ -144,7 +144,7 @@ The receiver will:
 
 Here's how you can implement the receiver:
 
-```python
+```py
 # receiver.py
 
 from __future__ import annotations

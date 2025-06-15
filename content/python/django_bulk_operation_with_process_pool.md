@@ -31,7 +31,7 @@ exposes a similar API for both thread-based and process-based concurrency. The s
 creates ten thousand user objects in the database and runs some setup code before creating
 each object.
 
-```python
+```py
 # script.py
 
 from __future__ import annotations

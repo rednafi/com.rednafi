@@ -12,7 +12,7 @@ Python, the message remains valid for any language that supports data classes an
 to add state-mutating methods to them, e.g., Kotlin, Swift, etc. By state-mutating method, I
 mean methods that change attribute values during runtime. For instance:
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -65,7 +65,7 @@ Dataclasses are also great candidates for domain modeling with types. With the h
 you can leverage sum types[^5] to emulate ADTs[^6] as follows (using PEP-695[^7] generic
 syntax):
 
-```python
+```py
 from dataclasses import dataclass
 
 

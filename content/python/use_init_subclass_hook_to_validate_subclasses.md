@@ -14,7 +14,7 @@ subclasses and raising appropriate runtime exceptions is nice.
 Wrote a fancy Python 3.6+ `__init_subclasshook__` to validate the subclasses as below. This
 is neater than writing a metaclass.
 
-```python
+```py
 # main.py
 from collections.abc import Mapping
 from typing import Any
@@ -71,7 +71,7 @@ Running the script will print:
 
 However, if we initialize the `Sub` class like this:
 
-```python
+```py
 class Sub(Base):
     config = {"not": 1, "allowed": 2}
 ```
@@ -91,7 +91,7 @@ Exception: 'config' map should have only 'foo, bar, bazz' keys
 
 ## Test
 
-```python
+```py
 # test_base.py
 # Install pytest before running the script.
 

@@ -26,7 +26,7 @@ provide disparate functionalities that are scattered all around the standard lib
 including libraries like `os`, `glob`, and `shutil`. The following code uses three modules
 just to copy multiple python files from current directory to another directory called `src`:
 
-```python
+```py
 from glob import glob
 import os
 import shutil
@@ -51,7 +51,7 @@ Say you want to achieve the following goals:
 
 Let's see how you'd usually do this via the `os` module.
 
-```python
+```py
 from os.path import abspath, dirname, join
 
 file_path = abspath("./file.txt")
@@ -61,7 +61,7 @@ file_another_path = join(base_dir, "file_another.txt")
 
 The variables `file_path`, `base_dir`, `file_another_path` look like this on my machine:
 
-```python
+```py
 print("file_path:", file_path)
 print("base_dir:", base_dir)
 print("file_another_path:", file_another_path)
@@ -81,7 +81,7 @@ OSes use `"/"` as a separator. Joining with `os.path.join()` ensures correct pat
 on the corresponding operating system. Pathlib module uses `"/"` operator overloading and
 make this a little less painful.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("file.txt").resolve()
@@ -109,7 +109,7 @@ Here's a piece of code that:
 - Tries to make a `src/stuff/` directory when it already exists.
 - Renames a file in the `src` directory called `.config` to `.stuffconfig`.
 
-```python
+```py
 import os
 import os.path
 
@@ -119,7 +119,7 @@ os.rename("src/.config", "src/.stuffconfig")
 
 Here is the same thing done using the `pathlib` module:
 
-```python
+```py
 from pathlib import Path
 
 Path("src/stuff").mkdir(parents=True, exist_ok=True)
@@ -151,7 +151,7 @@ src/
 
 Usually, `glob` module is used to resolve this kind of situation:
 
-```python
+```py
 from glob import glob
 
 top_level_py_files = glob("src/*.py")
@@ -170,7 +170,7 @@ The above approach works perfectly. However, if you don't want to use another mo
 for a single job, `pathlib` has embedded `glob` and `rglob` methods. You can entirely ignore
 glob and achieve the same result in the following way:
 
-```python
+```py
 from pathlib import Path
 
 top_level_py_files = Path("src").glob("*.py")
@@ -199,7 +199,7 @@ neat, huh?
 Now let's open the `.py` files and read their contents that you recursively discovered in
 the previous example:
 
-```python
+```py
 from glob import glob
 
 contents = []
@@ -216,7 +216,7 @@ print(contents)
 
 The `pathlib` implementation is almost identical as above:
 
-```python
+```py
 from pathlib import Path
 
 contents = []
@@ -234,7 +234,7 @@ print(contents)
 You can also cook up a more robust implementation with generator comprehension and context
 manager:
 
-```python
+```py
 from contextlib import ExitStack
 from pathlib import Path
 
@@ -281,7 +281,7 @@ only.
 
 Instead of using `os.path.join` you can use `/` operator to create child paths.
 
-```python
+```py
 from pathlib import Path
 
 base_dir = Path("src")
@@ -351,7 +351,7 @@ src/
 
 Returns a tuple containing individual components of a path.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/__init__.py")
@@ -367,7 +367,7 @@ file_path.parts
 `Path.parents` returns an immutable sequence containing the all logical ancestors of the
 path. While `Path.parent` returns the immediate predecessor of the path.
 
-```python
+```py
 file_path = Path("src/stuff/__init__.py")
 
 for parent in file_path.parents:
@@ -380,7 +380,7 @@ for parent in file_path.parents:
 ... .
 ```
 
-```python
+```py
 file_path.parent
 ```
 
@@ -393,7 +393,7 @@ file_path.parent
 Returns the last component of a path as string. Usually used to extract file name from a
 path.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/module.py")
@@ -409,7 +409,7 @@ file_path.name
 `Path.suffixes` returns a list of extensions of the final component. `Path.suffix` only
 returns the last extension.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/somefile.tar.gz")
@@ -420,7 +420,7 @@ file_path.suffixes
 >>> ['.tar', '.gz']
 ```
 
-```python
+```py
 file_path.suffix
 ```
 
@@ -432,7 +432,7 @@ file_path.suffix
 
 Returns the final path component without the suffix.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/somefile.tar.gz")
@@ -447,7 +447,7 @@ file_path.stem
 
 Checks if a path is absolute or not. Return boolean value.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/somefile.tar.gz")
@@ -463,7 +463,7 @@ file_path.is_absolute()
 This method is used to combine multiple components into a complete path. This can be used as
 an alternative to `"/"` operator for joining path components.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src").joinpath("stuff").joinpath("__init__.py")
@@ -478,7 +478,7 @@ file_path
 
 Returns the current working directory.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/somefile.tar.gz")
@@ -493,7 +493,7 @@ file_path.cwd()
 
 Returns home directory.
 
-```python
+```py
 from pathlib import Path
 
 Path.home()
@@ -507,7 +507,7 @@ Path.home()
 
 Checks if a path exists or not. Returns boolean value.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/thisisabsent.py")
@@ -522,7 +522,7 @@ file_path.exists()
 
 Returns a new path with expanded `~` symbol.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("~/code/demo/src/stuff/somefile.tar.gz")
@@ -538,7 +538,7 @@ file_path.expanduser()
 Globs and yields all file paths matching a specific pattern. Let's discover all the files in
 `src/stuff/` directory that have `.py` extension.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src/stuff/")
@@ -555,7 +555,7 @@ print(list(file_paths))
 
 This is like `Path.glob` method but matches the file pattern recursively.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src")
@@ -574,7 +574,7 @@ print(list(file_paths))
 
 Checks if a path points to a directory or not. Returns boolean value.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src/stuff/")
@@ -589,7 +589,7 @@ dir_path.is_dir()
 
 Checks if a path points to a file. Returns boolean value.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src/stuff/")
@@ -604,7 +604,7 @@ dir_path.is_file()
 
 Checks if a path is absolute or relative. Returns boolean value.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src/stuff/")
@@ -619,7 +619,7 @@ dir_path.is_absolute()
 
 When the path points to a directory, this yields the content path objects.
 
-```python
+```py
 from pathlib import Path
 
 base_path = Path("src")
@@ -648,7 +648,7 @@ Creates a new directory at this given path.
 - **exist_ok:** (_boolean_) If `False`, FileExistsError is raised if the target directory
   already exists. If `True`, FileExistsError is ignored.
 
-```python
+```py
 from pathlib import Path
 
 dir_path = Path("src/other/side")
@@ -659,7 +659,7 @@ dir_path.mkdir(parents=True)
 
 This is same as the built in `open` function.
 
-```python
+```py
 from pathlib import Path
 
 with Path("src/module.py") as f:
@@ -679,7 +679,7 @@ with Path("src/module.py") as f:
 Renames this file or directory to the given target and returns a new Path instance pointing
 to target. This will raise `FileNotFoundError` if the file is not found.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/submodule.py")
@@ -694,7 +694,7 @@ file_path.rename(file_path.parent / "anothermodule.py")
 
 Replaces a file or directory to the given target. Returns the new path instance.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff/anothermodule.py")
@@ -710,7 +710,7 @@ file_path.replace(file_path.parent / "Dockerfile")
 Make the path absolute, resolving any symlinks. A new path object is returned. If strict is
 `True` and the path doesn't exist, `FileNotFoundError` will be raised.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/./stuff/Dockerfile")
@@ -726,7 +726,7 @@ file_path.resolve()
 Removes a path pointing to a file or directory. The directory must be empty, otherwise,
 `OSError` is raised.
 
-```python
+```py
 from pathlib import Path
 
 file_path = Path("src/stuff")

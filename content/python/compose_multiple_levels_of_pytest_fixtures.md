@@ -15,7 +15,7 @@ However, you still want to clear all the database states after each test functio
 Otherwise, a test might inadvertently get coupled with another test that runs before it via
 the fixture's shared state. Let's demonstrate this:
 
-```python
+```py
 # test_src.py
 import pytest
 
@@ -107,7 +107,7 @@ function-scoped fixture to clean up its state. This way, before running each tes
 the function-scoped fixture will clean up the state of the session-scoped fixture. We can
 write the previous example as follows:
 
-```python
+```py
 # test_src.py
 import pytest
 
