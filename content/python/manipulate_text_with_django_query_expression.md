@@ -20,7 +20,7 @@ I was working with a table that had a similar (simplified) structure like this:
 
 Let's say the above table is represented by the following Django model:
 
-```python
+```py
 from django.db import models
 
 
@@ -38,7 +38,7 @@ in a list of new file paths like this: `['dir/file_1.pdf', ..., 'dir/image_2.jpg
 
 Using Django ORM and some imperative Python code you could do the following:
 
-```python
+```py
 ...
 
 # This will give you a queryset with the file paths.
@@ -66,7 +66,7 @@ which can be significantly faster and less resource-intensive than the imperativ
 especially for larger querysets. Here's how you can achieve the same result in a declarative
 manner:
 
-```python
+```py
 ...
 
 from django.db.models import F, Value
@@ -89,7 +89,7 @@ file_cabinet = polls_models.FileCabinet.objects.annotate(
 
 You can see the new file paths by inspecting the `file_cabinet` queryset as follows:
 
-```python
+```py
 file_paths_new = file_cabinet.values_list("file_path_new", flat=True)
 ```
 

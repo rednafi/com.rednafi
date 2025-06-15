@@ -17,7 +17,7 @@ While consuming APIs, it's important to handle errors in a way that prevents dat
 corruption. In the following example, I'm making two `POST` requests to an API and rolling
 back to the original state if any one of them fails:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -108,7 +108,7 @@ function executes. However, you want only a particular type of callback function
 executed depending on the state of your conditionals or code path. I've found the following
 pattern useful in this case:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -179,7 +179,7 @@ It can get ugly pretty quickly when you start using multiple nested context mana
 example, if you need to open two files and copy content from one file to the other, you'd
 typically start two nested context managers and transfer the content like this:
 
-```python
+```py
 # src.py
 with open("file1.md") as f1:
     with open("file2.md") as f2:
@@ -189,7 +189,7 @@ with open("file1.md") as f1:
 `ExitStack` can help you get away with only one level of nesting here. Here's a complete
 example:
 
-```python
+```py
 # src.py
 import io
 import shutil
@@ -259,7 +259,7 @@ granular patching and unpatching during tests, the context manager approach give
 control than its decorator counterpart. In this case, `ExitStack` can help you avoid
 multiple nestings just like in the previous section:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

@@ -49,7 +49,7 @@ python -m pydoc typing_extensions.ParamSpec
 Also, works for any custom Python structure that is accessible from the current Python path.
 Let's define a function with docstrings and put that in a module called `src.py`:
 
-```python
+```py
 # src.py
 def greetings(name: str) -> None:
     """Prints Hello <name>! on the console.

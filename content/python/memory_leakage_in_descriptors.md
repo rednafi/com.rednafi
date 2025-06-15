@@ -28,7 +28,7 @@ validator in totally innocuous ways.
 Here's a simpler example of a validation descriptor that tracks the instances it's applied
 to:
 
-```python
+```py
 class Within:
     # The instances are tracked here
     _seen = {}
@@ -65,7 +65,7 @@ the `_seen` dict keeps a reference to every instance the descriptor has been acc
 This prevents the instances from being garbage collected even if there are no other
 references to them. You can use the descriptor and observe the memory leakage like this:
 
-```python
+```py
 import gc
 
 
@@ -120,7 +120,7 @@ other strong references to an instance are deleted, the garbage collector can re
 The weak reference in `WeakKeyDictionary` won't keep the instance alive. Here's how you'd
 modify `Within` to fix the issue:
 
-```python
+```py
 from weakref import WeakKeyDictionary
 
 
@@ -143,7 +143,7 @@ the strong reference in `_seen`. The weak reference doesn't interfere with gc fr
 memory as desired. If you run the demonstration snippet again, this time you'll see that
 once we force the gc to collect the garbage, the `_seen` container gets emptied out.
 
-```python
+```py
 exam = Exam(30, 50, 40)
 exam.math = 60
 

@@ -19,7 +19,7 @@ without the overhead of managing multiple processes.
 
 Here's what I'm trying to do:
 
-```python
+```py
 # pseudocode.py
 
 def stream_a():
@@ -42,7 +42,7 @@ One way is to poll the data sources in two generator functions and yield the res
 the consumer, we'll have to alternate between the generators to fetch the next result like
 this:
 
-```python
+```py
 # pseudocode.py
 import redis
 
@@ -78,7 +78,7 @@ def consume():
 
 Let's make a concrete example out of the pesudocode:
 
-```python
+```py
 # src.py
 
 from __future__ import annotations
@@ -151,7 +151,7 @@ The consumer infinite loop can be written in a more concise manner with `itertoo
 Instead of using the `while` loop, we can use this function to indefinitely cycle between
 the elements of an iterable.
 
-```python
+```py
 # src.py
 ...
 
@@ -174,7 +174,7 @@ def consume() -> None:
 
 Here, the finalized executable script:
 
-```python
+```py
 # src.py
 
 from __future__ import annotations

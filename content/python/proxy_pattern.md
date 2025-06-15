@@ -28,7 +28,7 @@ bypasses the security. The door's main functionality is to open but there is a p
 on top of it to add some functionality. Let me better explain it using the code example
 below:
 
-```python
+```py
 # src.py
 
 
@@ -99,7 +99,7 @@ Suppose, you're defining a `division` function that takes takes two integer as a
 returns the result of the division between them. It also handles edge cases like
 `ZeroDivisionError` or `TypeError` and logs them properly.
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -140,7 +140,7 @@ Instead, you can write two classes. The primary class `Division` will only imple
 core logic while another class `ProxyDivision` will extend the functionality of `Division`
 by adding exception handlers and loggers.
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -223,7 +223,7 @@ of the methods of the interface. Let's look at a minimal example of how you can 
 interface using Python's `abc.ABC` and `abc.abstractmethod` and achieve proxy pattern with
 that.
 
-```python
+```py
 # src.py
 from abc import ABC, abstractmethod
 
@@ -355,7 +355,7 @@ workflow is going to look like:
 Since, by now, you're already familiar with the workflow of the proxy pattern, let's dump
 the entire 110 line solution all at once.
 
-```python
+```py
 from __future__ import annotations
 
 import functools

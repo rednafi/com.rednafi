@@ -9,7 +9,7 @@ tags:
 
 Recently, I was refactoring a portion of a Python function that somewhat looked like this:
 
-```python
+```py
 def process(data):
     if cond0 and cond1:
         # apply func01 on data that satisfies the cond0 & cond1
@@ -72,7 +72,7 @@ take a look at an example to see how this works!
 
 Let's consider the following code:
 
-```python
+```py
 # procedural.py
 
 
@@ -100,7 +100,7 @@ print(process(1))
 
 Running this code will return:
 
-```python
+```py
 >>> Float 12.0 has been processed successfully!
 >>> Integer 1 has been processed successfully!
 ```
@@ -109,7 +109,7 @@ The above code snippet applies `process_int` or `process_float` functions on the
 number based on its type. Now let's see how the same thing can be achieved with
 `singledispatch`:
 
-```python
+```py
 # single_dispatch.py
 from functools import singledispatch
 
@@ -148,7 +148,7 @@ Running this will return the same result as before.
 Suppose, you want to dispatch your function based on custom argument type where the type
 will be deduced from data. Consider this example:
 
-```python
+```py
 def process(data: dict):
     if data["genus"] == "Felis" and data["bucket"] == "cat":
         return process_cat(data)
@@ -187,7 +187,7 @@ you make `Cat` and `Dog` objects from the classes and pass them through the `pro
 function, singledispatch will take care of dispatching the appropriate implementation of
 that function.
 
-```python
+```py
 from dataclasses import dataclass
 from functools import singledispatch
 

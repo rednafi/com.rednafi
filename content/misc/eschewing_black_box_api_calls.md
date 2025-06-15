@@ -10,7 +10,7 @@ tags:
 I love dynamically typed languages as much as the next person. They let us make ergonomic
 API calls like this:
 
-```python
+```py
 import httpx
 
 # Sync call for simplicity
@@ -156,7 +156,7 @@ and adds type safety as a cherry on top. But how do you do that in a language li
 If you want to go with what's in the standard library, you can handroll a dataclass like
 this and project the return payload onto it:
 
-```python
+```py
 # ...
 
 from dataclasses import dataclass
@@ -204,7 +204,7 @@ Pydantic[^2] shines here. It not only allows you to define a class to represent 
 payload structure, but also applies runtime validation to guarantee operational type safety.
 As a bonus, you can use a tool like this[^3] to generate pydantic classes from JSON:
 
-```python
+```py
 from pydantic import BaseModel, Field
 
 
@@ -226,7 +226,7 @@ You can project your response onto the data class with `Product(**response.json(
 a rich object that also validates the incoming values. This will work the same way with
 partially defined classes:
 
-```python
+```py
 # ...
 
 from pydantic import BaseModel
@@ -243,7 +243,7 @@ class Product(BaseModel):
 
 Here's a complete example:
 
-```python
+```py
 import httpx
 from pydantic import BaseModel
 import asyncio

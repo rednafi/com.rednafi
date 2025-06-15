@@ -24,7 +24,7 @@ While all this sounds good and dandy, my primary objective was to be able to wri
 that can pause serving the clients every now and then, do some work and then come back to
 the previous work. Here's how I did it with a multi-threaded socket server:
 
-```python
+```py
 from __future__ import annotations
 
 import logging
@@ -117,7 +117,7 @@ after the `timeout` period.
 
 To test the server out, here's a simple client that sends some data to the server:
 
-```python
+```py
 # client.py
 
 import socket

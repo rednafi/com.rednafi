@@ -18,7 +18,7 @@ Write a function to crop a text corpus without breaking any word.
 
 Your function should look something like this:
 
-```python
+```py
 def crop(text: str, limit: int) -> str:
     """Crops 'text' upto 'limit' characters."""
 
@@ -71,7 +71,7 @@ our job:
 
 With the descriptions out of the way, let's write the `crop` function here:
 
-```python
+```py
 # src.py
 import textwrap
 
@@ -110,7 +110,7 @@ parameters and see how they change the output.
 
 ## Complete solution with tests
 
-```python
+```py
 # src.py
 import textwrap
 import unittest

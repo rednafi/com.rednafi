@@ -13,7 +13,7 @@ working on the codebase.
 Whenever I need to do some processing on the data before starting to work on that, I prefer
 to transform the data via dataclasses. Consider this example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ make things simpler, I want to serialize the `request_payload`, `response_payloa
 `status_code` fields to JSON string before saving them to the DB. Usually, I'd do it in the
 `to_dynamodb_item` like this:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ the same transformation again if you need serialized fields in another method. A
 is to take advantage of the `__post_init__` hook exposed by dataclasses. Here's how you can
 do it:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -139,7 +139,7 @@ these two fields are absent in the final representation of the dataclass instanc
 
 You can turn off the JSON conversion by setting the `_json_transform` to `False`:
 
-```python
+```py
 # src.py
 
 ...
@@ -155,7 +155,7 @@ WebhookPayload(
 You can also add or remove fields to be transformed by changing the value of the
 `_json_fields` iterable of the class:
 
-```python
+```py
 # src.py
 
 ...

@@ -9,7 +9,7 @@ While grokking the source code of `http.HTTPStatus` module, I came across this t
 add extra attributes to the values of enum members. Now, to understand what do I mean by
 adding attributes, let's consider the following example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ class Color(str, Enum):
 Here, I've inherited from `str` to ensure that the values of the enum members are strings.
 This class can be used as follows:
 
-```python
+```py
 # src.py
 ...
 
@@ -54,7 +54,7 @@ Suppose, in the above case, along with the color title, you also need to save th
 and short descriptions of the colors. One way you can achieve this is via the assignment of
 an immutable container as the value of an enum member:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -72,7 +72,7 @@ members. This gets awkward whenever you'll need to access the individual element
 tuple. You'll have to use hardcoded indexes to access the elements of the tuple. This is how
 you'll probably use it:
 
-```python
+```py
 ...
 
 for c in Color:
@@ -95,7 +95,7 @@ you've to keep the semantic meanings of the index positions in your working memo
 thing to do is to rewrite the enum in a way that'll allow you to access different elements
 of the member values by their attribute names. Let's do it:
 
-```python
+```py
 from __future__ import annotations
 
 from enum import Enum
@@ -139,7 +139,7 @@ the `obj.hex_code=hexcode` and `obj.description=description` statements respecti
 
 Now, you'll be able to use this enum without any hardcoded shenanigans:
 
-```python
+```py
 ...
 
 # Access the elements of the values of the members by names.

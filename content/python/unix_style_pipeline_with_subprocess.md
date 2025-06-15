@@ -14,7 +14,7 @@ subprocess and waiting for it to complete. It accepts the command to run as a li
 strings, starts the subprocess, waits for it to finish, and then returns a
 `CompletedProcess` object with information about the result. For example:
 
-```python
+```py
 import subprocess
 
 # Here, result is an instance of CompletedProcess
@@ -48,7 +48,7 @@ while the subprocess runs in parallel. `Popen` has methods like `poll()` to chec
 process has finished, `wait()` to wait for completion, and `communicate()` for interacting
 with stdin/stdout/stderr. For example:
 
-```python
+```py
 import subprocess
 import time
 
@@ -131,7 +131,7 @@ that output as input to the `head -5` command, which reads the first 5 lines fro
 and prints just those, essentially slicing off the top 5 processes. We can emulate this in
 Python as follows:
 
-```python
+```py
 import subprocess
 
 # Run 'ps -ef' and pipe the output to 'head -n 5'
@@ -164,7 +164,7 @@ and prints the SHA-256 hash of the input string without needing an actual file. 
 particular case, we want to compute the hash of 3 different inputs in parallel by spawning
 three separate processes.
 
-```python
+```py
 import subprocess
 import os
 

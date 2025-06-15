@@ -23,7 +23,7 @@ type of log message you try to send, it won't print anything.
 According to the docs[^6], to make your logging work in the Lambda environment, you'll only
 need to set the log level for the root logger like this:
 
-```python
+```py
 # src.py
 import logging
 
@@ -44,7 +44,7 @@ here we're only setting the log level for the root logger and we haven't defined
 handler. To fix the local logging, you'll need to add a handler to the logger as and set the
 log level on it as follows:
 
-```python
+```py
 # src.py
 import logging
 
@@ -81,7 +81,7 @@ here is to configure the root logger in a way that doesn't conflict with Lambda'
 pre-configured handlers and also works locally without any side effects. Here's what I've
 found that works:
 
-```python
+```py
 # src.py
 import logging
 

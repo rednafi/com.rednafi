@@ -8,7 +8,7 @@ tags:
 
 To check whether an integer is a power of two, I've deployed hacks like this:
 
-```python
+```py
 def is_power_of_two(x: int) -> bool:
     return x > 0 and hex(x)[-1] in ("0", "2", "4", "8")
 ```
@@ -19,7 +19,7 @@ here.
 Today, I came across this tweet[^2] by Raymond Hettinger where he proposed an elegant
 solution to the problem. Here's how it goes:
 
-```python
+```py
 def is_power_of_two(x: int) -> bool:
     return x > 0 and x.bit_count() == 1
 ```
@@ -51,7 +51,7 @@ representation of an integer.
 
 ## Complete example with tests
 
-```python
+```py
 import unittest
 
 

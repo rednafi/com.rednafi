@@ -13,7 +13,7 @@ The `Self` type makes annotating methods that return the instances of the corres
 classes trivial. Before this, you'd have to do some mental gymnastics to statically type
 situations as follows:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -61,7 +61,7 @@ Found 1 error in 1 file (checked 1 source file)
 To fix this, we'll have to make sure that the return type of the `from_description` class
 method doesn't confuse the type checker. This is one way to do this:
 
-```python
+```py
 from __future__ import annotations
 
 from typing import TypeVar
@@ -92,7 +92,7 @@ sticks out like a sore thumb.
 
 PEP-673 allows us to solve the issue elegantly:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -124,7 +124,7 @@ If you run Mypy against the second snippet, it won't complain.
 
 Take a look at this:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -157,7 +157,7 @@ where the `Self` type can be useful.
 
 You can also type the `__new__` method easily:
 
-```python
+```py
 from __future__ import annotations
 
 import sys

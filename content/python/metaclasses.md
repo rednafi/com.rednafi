@@ -42,7 +42,7 @@ In Python, everything is an object. Classes are objects as well. As a result, al
 must have corresponding types. You deal with built in types like `int`, `float`, `list` etc
 all the time. Consider this example:
 
-```python
+```py
 a = 5
 
 print(type(a))
@@ -58,7 +58,7 @@ In the above example, variable `a` is an instance of the built in class `int`. T
 is `int` and the type of `int` is `type`. User defined classes also show similar behavior.
 For example:
 
-```python
+```py
 class Foo:
     pass
 
@@ -84,7 +84,7 @@ interchangeably. This brings up the question:
 
 Let's apply `type` on `type`:
 
-```python
+```py
 print(type(type))
 ```
 
@@ -98,7 +98,7 @@ in Python that can reveal the type of itself and of any other class or object. I
 `type` is a metaclass and all the classes in Python are instances of it. You can inspect
 that easily:
 
-```python
+```py
 class Foo:
     pass
 
@@ -129,7 +129,7 @@ created and instantiated. From now on, I'll be referring to the instance class o
 metaclass as _target class_. Let's create a custom metaclass that just prints the name of
 the target class while creating it:
 
-```python
+```py
 class PrintMeta(type):
     def __new__(metacls, cls, bases, classdict):
         """__new__ gets executed before the target is created.
@@ -193,7 +193,7 @@ special methods and their execution order.
 > `__init__`—except you'll have to call into Python to actually create the object, and then
 > return that object afterward.
 
-```python
+```py
 class ExampleMeta(type):
     """Simple metaclass showing the execution flow of the
     special methods."""
@@ -288,7 +288,7 @@ Note that the metaclass argument is singular – you can't attach more than one 
 class. However, through multiple inheritance you can accidentally end up with more than one
 metaclass, and this produces a conflict which must be resolved.
 
-```python
+```py
 class FirstMeta(type):
     pass
 
@@ -348,7 +348,7 @@ The goal here is to log a few basic information about a class without directly a
 logging statements to it. Instead, you can whip up a custom metaclass to perform some
 metaprogramming and add those statements to the target class without mutating it explicitly.
 
-```python
+```py
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -403,7 +403,7 @@ all attributes gathered before the `__new__` method call will be ordered. Just l
 previous example, here, the `__new__` method inside the metaclass implements the logic
 required to get the sorted list of the attribute names.
 
-```python
+```py
 from collections import OrderedDict
 
 
@@ -448,7 +448,7 @@ the same instance of the class that was created before. So any modifications don
 apparently new instance will mutate the original instance since they're basically the same
 instance.
 
-```python
+```py
 class Singleton(type):
     _instance = {}
 
@@ -485,7 +485,7 @@ create any subclasses from the base class. In that case, you can write a metacla
 attach that your base class. The base class will raise `RuntimeError` if someone tries to
 create a subclass from it.
 
-```python
+```py
 class TerminateMeta(type):
     def __new__(metacls, cls, bases, classdict):
         type_list = [type(base) for base in bases]
@@ -533,7 +533,7 @@ Multiple inheritance can be fragile and error prone. So, if you don't want to al
 users to use a base class with any other base classes to form multiple inheritance, you can
 do so by attaching a metaclass to that target base class.
 
-```python
+```py
 class NoMultiMeta(type):
     def __new__(metacls, cls, bases, classdict):
         if len(bases) > 1:
@@ -585,7 +585,7 @@ the class individually and the metaclass will dynamically apply the timer decora
 of the methods of your target class. This can reduce code repetition and improve code
 readability.
 
-```python
+```py
 import inspect
 import time
 from functools import wraps
@@ -639,7 +639,7 @@ Executing Shouter.intro took 1.0011515617370605 seconds.
 Suppose a specific single class represents a plugin in your code. You can write a metaclass
 to keep track of all of the plugins so than you don't have to count them manually.
 
-```python
+```py
 registry = {}
 
 
@@ -683,7 +683,7 @@ apply the decorator to all of the methods of your target class. Later on, you ca
 detach the metaclass once you're done with debugging and don't want the extra logic in your
 target class.
 
-```python
+```py
 import inspect
 from functools import wraps
 
@@ -740,7 +740,7 @@ That means all the methods of the class have the same exception handling, loggin
 Metaclasses can help you avoid adding repetitive exception handling and logging logics to
 your methods.
 
-```python
+```py
 import inspect
 from functools import wraps
 
@@ -825,7 +825,7 @@ all the abstract methods. Python has a dedicated `abc` module to help you create
 classes. Let's see how you can define a simple abstract class that provides four abstract
 methods:
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -874,7 +874,7 @@ take an attempt to initialize it. The only way to use this interface is via crea
 subclasses from `ICalc` base class and implementing all the abstract methods there. The
 snippet below shows that:
 
-```python
+```py
 class Calc(ICalc):
     """Concrete class that uses Icalc interface."""
 
@@ -917,7 +917,7 @@ in the following manner:
 
 #### Creating multiple dataclasses
 
-```python
+```py
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -978,7 +978,7 @@ dataclass decorator to all of the target classes implicitly. All you have to do 
 the metaclass to a base dataclass and inherit from it in the later dataclasses that need to
 be created.
 
-```python
+```py
 from dataclasses import dataclass
 from datetime import datetime
 

@@ -73,7 +73,7 @@ the interface, the compiler will throw a type error.
 
 In the world of Python, this polymorphism is achieved dynamically. Consider this example:
 
-```python
+```py
 def find(haystack, needle):
     return needle in haystack
 ```
@@ -95,7 +95,7 @@ Moreover, the Go code is self-documented to some extent and I'd love this kind o
 `polymorphic | type-safe | self-documented` trio in Python. Let's try to use nominal type
 hinting to statically type the following example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -134,7 +134,7 @@ passing as the value of `haystack`, supports `in` operation. But we're not commu
 that with the type checker properly and mypy isn't happy about that. To fix this mypy error,
 we can use Union type.
 
-```python
+```py
 ...
 
 
@@ -156,7 +156,7 @@ allowed types—we can create a class, add the `__contains__` method to it, and 
 the fact that `haystack` can be anything that has the `__contains__` method. Python's
 `typing.Protocol` class allows us to do that. Let's use that:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -198,7 +198,7 @@ This pattern of strurctural duck typing is so common, that the mixins in the
 instead of creating a `ProtoHaystack` class, you can directly use the
 `collections.abc.Container` class from the standard library and it'll do the same job.
 
-```python
+```py
 ...
 
 from collections.abc import Container
@@ -216,7 +216,7 @@ def find(haystack: Container, needle: T) -> bool:
 Abstract base classes in Python let you validate the structure of subclasses in runtime.
 Python's standard library APIs uses `abc.ABC` in many places. See this example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -276,7 +276,7 @@ sure that your subclasses conform to the structure that you want, and the decora
 with `isinstance` check can guarantee the conformity in runtime. Let's replace the `abc.ABC`
 and the shenanigans with the decorators with `typing.Protocol`:
 
-```python
+```py
 from __future__ import annotations
 
 from typing import Protocol, runtime_checkable
@@ -331,7 +331,7 @@ This example employs static duck-typing to check the type of `WebhookPayload` wh
 class represents the structure of the payload that is going to be sent to an URL by the
 `send_webhook` function.
 
-```python
+```py
 # Placeholder python file to test the snippets
 from __future__ import annotations
 

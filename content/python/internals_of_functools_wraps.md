@@ -10,7 +10,7 @@ it's been wrapped by a decorator. Whenever a function is wrapped by a decorator,
 properties like—function name, docstring, annotations of it get replaced by those of the
 wrapper function. Consider this example:
 
-```python
+```py
 from __future__ import annotations
 
 # In < Python 3.9, import this from the typing module.
@@ -68,7 +68,7 @@ function replace the identity properties of the wrapped function `add`. This can
 avoided by decorating the `wrapper` function inside the `log` decorator with the
 `functools.wraps` decorator:
 
-```python
+```py
 # src.py
 from functools import wraps
 
@@ -113,7 +113,7 @@ that the implementation is quite straightforward. Here's the entire implementati
 `functools.py` module. For brevity's sake, I've stripped out the comments and added type
 annotations:
 
-```python
+```py
 # functools.py
 
 from __future__ import annotations
@@ -183,7 +183,7 @@ function as a decorator.
 You can also directly use the `update_wrapper` function to get the same result should you
 choose to do so. Here's how to do it:
 
-```python
+```py
 # src.py
 from functools import update_wrapper
 

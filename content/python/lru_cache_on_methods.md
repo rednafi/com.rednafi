@@ -14,7 +14,7 @@ Recently, fell into this trap as I wanted to speed up a slow instance method by 
 
 Let's consider this example:
 
-```python
+```py
 # src.py
 import functools
 import time
@@ -136,7 +136,7 @@ To solve this, we'll have to make the cache containers local to the instances so
 reference from cache to the instance gets scraped off with the instance. Here's how you can
 do that:
 
-```python
+```py
 # src_2.py
 import functools
 import time
@@ -224,7 +224,7 @@ ties to their respective instances. In their case, the cache container is local 
 class, not the instances. Here, you can stack the `lru_cache` decorator as usual. Let's
 demonstrate that for `classmethod` first:
 
-```python
+```py
 # src_3.py
 import functools
 import time
@@ -277,7 +277,7 @@ Deleting instance ...
 Static methods behave exactly the same. You can use the `lru_cache` decorator in similar
 fashion as below:
 
-```python
+```py
 import functools
 import time
 

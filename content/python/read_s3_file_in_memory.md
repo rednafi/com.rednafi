@@ -23,7 +23,7 @@ automatically when the `with` block ends.
 This is quite straightforward with a simple gotcha. Here's how you'd usually download a file
 from s3 and save that to a file-like object:
 
-```python
+```py
 # src.py
 import boto3
 
@@ -42,7 +42,7 @@ text mode. This is not an issue when you download the file to disk since you can
 file again in text mode to feed it to the CSV reader. However, we're trying to avoid saving
 the file to disk and opening that again in text mode. So, you can't do this:
 
-```python
+```py
 # src.py
 import boto3
 import tempfile
@@ -74,7 +74,7 @@ The above snippet won't work because:
   handle to the end of the file. So loading the content from there would result in an empty
   file. Here's how I fixed all three of these problems:
 
-```python
+```py
 # src.py
 import boto3
 import tempfile

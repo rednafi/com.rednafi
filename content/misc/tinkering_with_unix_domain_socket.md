@@ -210,7 +210,7 @@ having lower overhead than its networked TCP counterpart.
 The following server uses Python's `socketserver` module to create a stream-based echo
 server:
 
-```python
+```py
 # server.py
 
 from __future__ import annotations
@@ -263,7 +263,7 @@ multiple clients to be connected to it via Unix domain sockets. The server spins
 thread to serve each new client and does bi-directional communication via UDS. The client
 code is quite similar to a TCP client:
 
-```python
+```py
 # client.py
 
 import socket
@@ -300,7 +300,7 @@ you need to spin up a local server and all the clients are running on the same m
 you're running your server behind a proxy. Here's an example of a simple webserver built
 with starlette[^3] and served with uvicorn.
 
-```python
+```py
 # server.py (http server)
 
 from __future__ import annotations

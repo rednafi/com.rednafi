@@ -21,7 +21,7 @@ src
 
 Let's say you're importing module `a` in module `b`:
 
-```python
+```py
 # b.py
 from src import a
 
@@ -46,7 +46,7 @@ here? Turns out Python puts the path of the module that you're trying to access 
 of the `sys.path` stack. Let's print the `sys.path` before importing module `a` in the
 `src/sub/b.py` file:
 
-```python
+```py
 # b.py
 import sys
 

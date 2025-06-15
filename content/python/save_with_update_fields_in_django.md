@@ -13,7 +13,7 @@ tight loop. To test that, I'm opening an IPython shell with
 `python manage.py shell -i ipython` command and creating a few user objects with the
 following lines:
 
-```python
+```py
 In [1]: from django.contrib.auth import User
 
 In [2]: for i in range(1000):
@@ -25,7 +25,7 @@ In [2]: for i in range(1000):
 
 Here's the underlying query Django generates when you're trying to save a single object:
 
-```python
+```py
 In [3]: from django.db import reset_queries, connections
 
 In [4]: reset_queries()
@@ -67,7 +67,7 @@ updates all of your columns every time you call `save()` can start becoming expe
 Specifying `update_fields` inside the `save()` method can make the query leaner. Consider
 this:
 
-```python
+```py
 In[9]: reset_queries()
 
 In[10]: user_0.first_name = "foo_updated_again"
@@ -92,7 +92,7 @@ You can see this time, Django generates a SQL that only updates the specific fie
 and doesn't send any redundant data over the wire. The following snippet quantifies the
 performance gain while updating 1000 objects in a tight loop:
 
-```python
+```py
 # src.py
 import os
 import time

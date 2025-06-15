@@ -53,7 +53,7 @@ OS processes. To put in concisely, we'll need to perform the following steps:
 
 The following snippet implements the workflow mentioned above:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -179,7 +179,7 @@ The `DictReader` class will parse the content of the row and emit a `reader` obj
 `next` on the `reader` iterator returns a dictionary with the parsed content of the row. The
 parsed content for the first row of the example CSV looks like this:
 
-```python
+```py
 {
     "a": "0.902210680227088",
     "b": "0.236522024407207",

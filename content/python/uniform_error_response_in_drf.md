@@ -15,7 +15,7 @@ I'll use a modified version of the quickstart example[^3] in the DRF docs to sho
 achieve that. Also, we'll need a POST API to demonstrate the changes better. Here's the same
 example with the added POST API. Place this code in the project's `urls.py` file.
 
-```python
+```py
 # urls.py
 
 from django.urls import path, include
@@ -101,7 +101,7 @@ like—HTTP error code, error message, etc. You can do it by wrapping the defaul
 `rest_framework.views.exception_handler` function in a custom exception handler function.
 Let's write the `api_exception_handler`:
 
-```python
+```py
 # urls.py
 from rest_framework.views import exception_handler
 from http import HTTPStatus
@@ -146,7 +146,7 @@ def api_exception_handler(exc: Exception, context: dict[str, Any]) -> Response:
 Now, you'll have to register this custom exception handler in the `settings.py` file. Head
 over to the `REST_FRAMEWORK` section and add the following key:
 
-```python
+```py
 REST_FRAMEWORK = {
     ...
     "EXCEPTION_HANDLER": "<project>.urls.api_exception_handler",

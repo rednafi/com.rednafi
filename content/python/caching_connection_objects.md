@@ -10,7 +10,7 @@ To avoid instantiating multiple DB connections in Python apps, a common approach
 initialize the connection objects in a module once and then import them everywhere. So,
 you'd do this:
 
-```python
+```py
 # src.py
 import boto3  # Pip install boto3
 import redis  # Pip install redis
@@ -23,7 +23,7 @@ However, this adds import time side effects to your module and can turn out to b
 In search of a better solution, my first instinct was to go for `functools.lru_cache(None)`
 to immortalize the connection objects in memory. It works like this:
 
-```python
+```py
 from __future__ import annotations
 
 # In Py < 3.9, use 'functools.lru_cache(None)'.
@@ -55,7 +55,7 @@ arguably, the complexity and the overhead of the `cache` decorator offset its be
 There's a simpler way to do it and James Powell on Twitter pointed[^1] me to it. This works
 as follows:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

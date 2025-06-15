@@ -127,7 +127,7 @@ steps:
 
 Here's the complete self-contained implementation. I tested it on Python 3.11:
 
-```python
+```py
 # script.py
 from __future__ import annotations
 

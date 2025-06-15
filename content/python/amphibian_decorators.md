@@ -26,7 +26,7 @@ utilizes a similar concept.
 
 Here's how you can do that:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -76,7 +76,7 @@ In the above snippet—
 
 You can play around with the decorator as follows:
 
-```python
+```py
 In [1]: import asyncio
 
 In [2]: @tag('tag_1', 'tag_2')

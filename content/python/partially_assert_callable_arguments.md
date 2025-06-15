@@ -11,7 +11,7 @@ certain arguments in a mock call, without caring about the other arguments. This
 handy if you want to test how a callable is called but only want to make assertions about
 some arguments. Consider the following example:
 
-```python
+```py
 # test_src.py
 
 import random
@@ -37,7 +37,7 @@ the `fetch` function, which has multiple side effects—it returns pseudo-random
 waits for 2 seconds on a fictitious network call. Since we only care about `process`, we'll
 mock the other two functions. Here's how `unittest.mock.ANY` can make life easier:
 
-```python
+```py
 # test_src.py
 
 from unittest.mock import patch, ANY
@@ -66,7 +66,7 @@ Under the hood, the implementation of `ANY` is quite simple. It's an instance of
 that defines `__eq__` and `__ne__` in a way that comparing any value with `ANY` will return
 `True`. Here's the full implementation:
 
-```python
+```py
 from __future__ import annotations
 from typing import Any, Literal
 
@@ -89,7 +89,7 @@ ANY = _ANY()
 
 It always returns `True` whenever compared with some value:
 
-```python
+```py
 In [1]: from unittest.mock import ANY
 
 In [2]: ANY == 1
