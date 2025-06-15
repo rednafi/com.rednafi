@@ -10,7 +10,7 @@ Static type checkers like Mypy follow your code flow and statically try to figur
 types of the variables without you having to explicitly annotate inline expressions. For
 example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -53,7 +53,7 @@ type of the variable `x`; and the `if ... else` conditionals, in this case, is k
 However, when the type checker encounters a complex expression, often time, it can't figure
 out the types statically. Mypy will complain when it faces one of these issues:
 
-```python
+```py
 from __future__ import annotations
 
 # In <Python3.9, import this from the 'typing' module.
@@ -105,7 +105,7 @@ boolean—are called **type guard functions**. PEP-647 proposed a `TypeGuard` cl
 the type checkers to narrow down types from more complex expressions. Python 3.10 added the
 `TypeGuard` class to the `typing` module. You can use it like this:
 
-```python
+```py
 # src.py
 ...
 
@@ -163,7 +163,7 @@ through a few more checks.
 
 User-defined type guards can be generic functions, as shown in this example:
 
-```python
+```py
 from __future__ import annotations
 
 # In <Python3.9, import these from the 'typing' module.

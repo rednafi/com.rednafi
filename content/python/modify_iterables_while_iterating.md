@@ -8,7 +8,7 @@ tags:
 If you try to mutate a sequence while traversing through it, Python usually doesn't
 complain. For example:
 
-```python
+```py
 # src.py
 
 l = [3, 4, 56, 7, 10, 9, 6, 5]
@@ -46,7 +46,7 @@ sequence. However, trying to emulate what happens inside the for-loop with `iter
 makes the situation clearer. Notice the following example. I'm using `ipython` shell to
 explore:
 
-```python
+```py
 In [1]: l = [3, 4, 56, 7, 10, 9, 6, 5]
 
 In [2]: # Make the list an iterator.
@@ -86,7 +86,7 @@ The REPL experiment reveals that:
 
 Here's what happens when you prepend values after the iteration has started:
 
-```python
+```py
 In[1]: l = [3, 4, 56, 7, 10, 9, 6, 5]
 
 In[2]: it = iter(l)
@@ -111,7 +111,7 @@ To solve this, you'll have to make sure the target elements don't get removed af
 iterator has already visited them. You can iterate in the reverse order and remove elements
 maintaining the original order. The first snippet can be rewritten as follows:
 
-```python
+```py
 # src.py
 
 l = [3, 4, 56, 7, 10, 9, 6, 5]
@@ -146,7 +146,7 @@ elements as expected.
 Another way you can solve this is—by copying the list `l` before iterating. But this can be
 expensive if `l` is large:
 
-```python
+```py
 # src.py
 l = [3, 4, 56, 7, 10, 9, 6, 5]
 
@@ -182,7 +182,7 @@ produces the following output:
 Dictionaries don't even allow you to change their sizes while iterating. The following
 snippet raises a `RuntimeError`:
 
-```python
+```py
 # src.py
 
 # {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9}
@@ -204,7 +204,7 @@ RuntimeError: dictionary changed size during iteration
 You can solve this by making a copy of the keys of the dictionary and iterating through it
 while removing the elements from the dictionary. Here's one way to do it:
 
-```python
+```py
 # src.py
 
 # {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9}

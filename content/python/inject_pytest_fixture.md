@@ -10,7 +10,7 @@ Sometimes, when writing tests in Pytest, I find myself using fixtures that the t
 function/method doesn't directly reference. Instead, Pytest runs the fixture, and the test
 function implicitly leverages its side effects. For example:
 
-```python
+```py
 import os
 from collections.abc import Iterator
 from unittest.mock import Mock, patch
@@ -57,7 +57,7 @@ TIL that you can use `@pytest.mark.usefixtures`[^1] to inject these implicit fix
 without cluttering the test function signature or using `autouse`. Here's the same test
 marked with `usefixtures`:
 
-```python
+```py
 # ... same as above
 
 

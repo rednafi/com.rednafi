@@ -13,7 +13,7 @@ specifying the `throttle_after` parameter. This parameter defines the number of 
 after which the operation will be halted. The `current_iter` parameter tracks the current
 number of times the operation has been performed. Here's the implementation:
 
-```python
+```py
 # src.py
 def throttle(current_iter: int, throttle_after: int = -1) -> None:
     """
@@ -65,7 +65,7 @@ not, we raise a `ValueError`. When the parameters pass these checks then we comp
 While this works fine, recently, I've started to use `assert` to replace the _conditionals
 with `ValueError`_ pattern. It works as follows:
 
-```python
+```py
 # src.py
 def throttle(current_iter: int, throttle_after: int = -1) -> None:
     # Return early if 'throttle_after=-1'.

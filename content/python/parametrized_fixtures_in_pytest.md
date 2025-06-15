@@ -10,7 +10,7 @@ While most of my pytest fixtures don't react to the dynamically-passed values of
 parameters, there have been situations where I've definitely felt the need for that.
 Consider this example:
 
-```python
+```py
 # test_src.py
 
 import pytest
@@ -44,7 +44,7 @@ expected. This snippet will pass successfully if you execute it with the `pytest
 Now, if you needed to create three files—`foo.md`, `bar.md`, `baz.md`—how'd you do that in
 the fixture? You could hardcode the names of the three files in the fixture as follows:
 
-```python
+```py
 # test_src.py
 
 import pytest
@@ -91,7 +91,7 @@ fixture would then create the corresponding file in the temporary folder. Also, 
 way to do so by leveraging fixture parameters and `@pytest.mark.parameterize` decorator.
 This is how you can do it:
 
-```python
+```py
 # test_src.py
 
 import pytest

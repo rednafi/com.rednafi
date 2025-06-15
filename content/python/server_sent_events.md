@@ -108,7 +108,7 @@ will be treated as a separate event by the client.
 In this section, I'll prop up a simple HTTP streaming server with starlette[^5] and collect
 the events from the browser. Here's the complete server implementation:
 
-```python
+```py
 # server.py
 from __future__ import annotations
 
@@ -281,7 +281,7 @@ sse
 
 The `view.py` contains the server implementation that looks like this:
 
-```python
+```py
 from __future__ import annotations
 
 import json

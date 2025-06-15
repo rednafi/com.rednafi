@@ -21,7 +21,7 @@ painful.
 
 Suppose you have a web view for an endpoint that calls another function to do something:
 
-```python
+```py
 async def view(request: Request) -> JSONResponse:
     # Collect contextual info from the header
     user_id = request.headers.get("Svc-User-Id")
@@ -92,7 +92,7 @@ statements in JSON where each message will look as follows:
 
 Here's the log configuration logic:
 
-```python
+```py
 # log.py
 
 import contextvars
@@ -151,7 +151,7 @@ handler to the root logger.
 With log formatting out of the way, here's how to write the middleware to update the logger
 so that all the log messages within a request-response cycle get automatically tagged:
 
-```python
+```py
 # middleware.py
 
 import logging
@@ -218,7 +218,7 @@ Setting up the logger and middleware drastically simplifies our endpoint view si
 need to tag the logs explicitly or add request-response logs in each view. It looks like
 this now:
 
-```python
+```py
 # view.py
 
 import asyncio
@@ -248,7 +248,7 @@ of the `work` function, are tagged with the contextual information.
 
 The logging configuration and middleware can be wired up like this:
 
-```python
+```py
 # main.py
 
 import uvicorn
@@ -269,7 +269,7 @@ if __name__ == "__main__":
 
 To instantiate the logger config, we import `log.py` in the `__init__.py` module:
 
-```python
+```py
 # __init__.py
 
 from svc import log  # noqa

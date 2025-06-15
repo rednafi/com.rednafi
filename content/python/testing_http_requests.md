@@ -11,7 +11,7 @@ tags:
 
 Here's a Python snippet that makes an HTTP POST request:
 
-```python
+```py
 # script.py
 
 import httpx
@@ -66,7 +66,7 @@ Now, how would you test it? One approach is by patching the `httpx.AsyncClient` 
 return a canned response and asserting against that. The happy path might be tested as
 follows:
 
-```python
+```py
 # test_script.py
 
 from unittest.mock import AsyncMock, patch
@@ -107,7 +107,7 @@ library like respx[^2] that handles the patching for you.
 
 For instance:
 
-```python
+```py
 # test_script.py
 
 import pytest
@@ -147,7 +147,7 @@ need to write fragile mocking sludges or depend on an external mocking library.
 
 Here's how you'd change the code:
 
-```python
+```py
 # script.py
 
 import httpx
@@ -177,7 +177,7 @@ async def main() -> None:
 
 Now the tests would look as follows:
 
-```python
+```py
 import pytest
 from typing import Any
 from httpx import Response, Request, AsyncClient
@@ -221,7 +221,7 @@ expected output.
 The test could look as follows. This assumes `make_request` takes in an `AsyncClient`
 instance as a parameter, as shown in the last example.
 
-```python
+```py
 import pytest
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse

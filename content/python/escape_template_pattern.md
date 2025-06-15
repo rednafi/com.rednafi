@@ -60,7 +60,7 @@ can be initialized once all the abstract methods have been implemented.
 
 Observe this example:
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -86,7 +86,7 @@ class Sub(Base):
 
 This is how you use it:
 
-```python
+```py
 sub = Sub()
 
 # Notice how we're only using the 'concrete_method' defined in the Base class
@@ -120,7 +120,7 @@ Python. Plus, it's used extensively in the standard library. For example, in the
 containers. I wrote about this[^5] a few years back. Here's how you can subclass
 `collections.abc.Sequence` to implement a tuple-like immutable datastructure:
 
-```python
+```py
 from typing import Any
 from collections.abc import Sequence
 
@@ -138,7 +138,7 @@ class CustomSequence(Sequence):
 
 You'd use the class as such:
 
-```python
+```py
 seq = CustomSequence(1, 2, 3, 4)
 assert seq[0] == 1
 assert len(seq) == 4
@@ -180,7 +180,7 @@ If you introspect the previously defined subclass with `dir(CustomSequence)`, yo
 following result. I've removed the common attributes that every class inherits from `object`
 for brevity and annotated the abstract and mixin method names for clarity.
 
-```python
+```py
 [
     "__abstractmethods__",  # Allows you to list out the abstract methods
     "__class_getitem__",  # Used for generic typing
@@ -236,7 +236,7 @@ and posts it to a callback URL via HTTP `POST` request. First, we'll commit the 
 of modeling the domain with the template pattern and then we'll try to find a way out of the
 quandary. Here it goes:
 
-```python
+```py
 from dataclasses import dataclass, field, asdict
 from uuid import uuid4
 from abc import ABC, abstractmethod
@@ -278,7 +278,7 @@ class Webhook(BaseWebhook):
 
 Here's how you'll orchestrate the classes:
 
-```python
+```py
 message = Message(body="Hello World")
 webhook = Webhook(message)
 
@@ -336,7 +336,7 @@ protocol, enabling more flexible and dynamic type-checking in Python. This confo
 usually checked by a type-checking tool like mypy[^10]. If you want to learn more, check out
 Glyph's post titled "I Want a New Duck"[^11]. Here's how I refactored it:
 
-```python
+```py
 from dataclasses import dataclass, field, asdict
 from uuid import uuid4
 from typing import Protocol
@@ -387,7 +387,7 @@ class Webhook:
 
 The classes can be wired together as follows:
 
-```python
+```py
 message = Message(body="Hello World")
 retriever = HookRetriever()
 dispatcher = HookDispatcher()

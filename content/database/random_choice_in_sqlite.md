@@ -9,7 +9,7 @@ tags:
 Python has a `random.choice` routine in the standard library that allows you to pick a
 random value from an iterable. It works like this:
 
-```python
+```py
 # src.py
 import random
 

@@ -19,7 +19,7 @@ to make their string operations more performant.
 
 Consider this example:
 
-```python
+```py
 # src.py
 
 x = "This is a string"
@@ -39,7 +39,7 @@ larger strings will create individual copies as usual. The exact length that det
 whether a string will be interned or not depends on the implementation and you shouldn't
 rely on this implicit behavior if your code needs interning. See this example:
 
-```python
+```py
 # src.py
 
 x = "This is a string" * 300
@@ -55,7 +55,7 @@ This will print `False` on the console and the strings are not interned.
 Python's `sys` module in the standard library has a routine called `intern` that you can use
 to intern even large strings. For example:
 
-```python
+```py
 # src.py
 
 import sys
@@ -75,7 +75,7 @@ String Literals, etc. This snippet[^3] from the CPython codebase suggests that w
 Python object is created, the interpreter is interning all the compile-time constants,
 names, and literals. Also, Dictionary Keys and Object Attributes are interned. Notice this:
 
-```python
+```py
 # src.py
 
 # Dict key interning.
@@ -105,7 +105,7 @@ One use case that I've found is—interning large dictionary keys. Dictionary ke
 general, interned automatically. However, if the key is large—something like a 4097 bytes
 hash value—Python can choose not to perform interning. Here's an example:
 
-```python
+```py
 # src.py
 
 # No dict key interning as the key is quite large.
@@ -119,7 +119,7 @@ print(d.popitem()[0] is k)  # prints False
 This will print `False` as the key in this case, will not be interned. Dictionary value
 access is slower if the key isn't interned. Let's test that out:
 
-```python
+```py
 # src.py
 import time
 
@@ -163,7 +163,7 @@ fact, 33 times slower than its interned counterpart.
 We can circumnavigate this limitation by using explicit string interning via the `sys`
 module as follows:
 
-```python
+```py
 # src.py
 import sys
 import time

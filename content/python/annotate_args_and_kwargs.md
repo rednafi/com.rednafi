@@ -13,7 +13,7 @@ Typing `*args` and `**kwargs` has always been a pain since you couldn't annotate
 precisely before. For example, if all the positional and keyword arguments of a function had
 the same type, you could do this:
 
-```python
+```py
 def foo(*args: int, **kwargs: bool) -> None: ...
 ```
 
@@ -26,7 +26,7 @@ back to `Any`, which defeats the purpose.
 
 Consider this example:
 
-```python
+```py
 def foo(*args: tuple[int, str], **kwargs: dict[str, bool | None]) -> None: ...
 ```
 
@@ -36,7 +36,7 @@ values are either booleans or `None`.
 
 With the previous annotation, `mypy` will reject this:
 
-```python
+```py
 foo(*(1, "hello"), **{"key1": 1, "key2": False})
 ```
 
@@ -50,7 +50,7 @@ expected "dict[str, bool | None]"  [arg-type]
 
 Instead, it'll accept the following:
 
-```python
+```py
 foo((1, "hello"), kw1={"key1": 1, "key2": False})
 ```
 
@@ -60,7 +60,7 @@ To annotate the second instance correctly, you'll need to leverage bits of PEP-5
 PEP-646[^2], PEP-655[^3], and PEP-692[^4]. We'll use `Unpack` and `TypedDict` from the
 `typing` module to achieve this. Here's how:
 
-```python {hl_lines=11}
+```py {hl_lines=11}
 from typing import TypedDict, Unpack  # Python 3.12+
 
 # from typing_extensions import TypedDict, Unpack # < Python 3.12
@@ -87,7 +87,7 @@ dictionary are strings but the type of the values varies.
 
 The following example shows how you might annotate a heterogeneous dictionary:
 
-```python {hl_lines=9}
+```py {hl_lines=9}
 from typing import TypedDict
 
 
@@ -107,20 +107,20 @@ respectively.
 
 While the type checker is satisfied when you pass the `*args` and `**kwargs` as
 
-```python
+```py
 foo(*args, **kwargs)
 ```
 
 it'll complain if you don't pass all the keyword arguments:
 
-```python
+```py
 foo(*args, key1=1)  # error: Missing named argument "key2" for "foo"
 ```
 
 To make all of the keywords optional, you could turn off the `total` flag in the typed-dict
 definition:
 
-```python {hl_lines=2}
+```py {hl_lines=2}
 # ...
 class Kw(TypedDict, total=False):
     key1: int
@@ -132,7 +132,7 @@ class Kw(TypedDict, total=False):
 
 Or you could mark specific keywords as optional with `typing.NotRequired`:
 
-```python {hl_lines=4}
+```py {hl_lines=4}
 # ...
 class Kw(TypedDict):
     key1: int

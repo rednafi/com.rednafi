@@ -15,7 +15,7 @@ tests in Django.
 
 Consider this example:
 
-```python
+```py
 # src.py
 import unittest
 
@@ -48,7 +48,7 @@ In the above snippet, I've used `assertTrue` and `assertFalse` to check both lit
 booleans and truthy/falsy values. However, to test the literal boolean values, `assertIs`
 works better and is more explicit. Here's how to do the above test properly:
 
-```python
+```py
 # src.py
 import unittest
 

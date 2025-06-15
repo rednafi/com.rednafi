@@ -12,7 +12,7 @@ denote the type of the `None` singleton. This usage is also documented[^1] in PE
 
 Whenever a callable doesn't return anything, you usually annotate it as follows:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ def abyss() -> None:
 But sometimes a callable raises an exception and never gets the chance to return anything.
 Consider this example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -46,7 +46,7 @@ that raises an exception. In the latter case, if you run any code after calling 
 callable, that code won't be reachable. But Mypy doesn't statically catch that or warn you
 about the potential dead code. This is apparently fine by the type checker:
 
-```python
+```py
 ...
 
 if __name__ == "__main__":
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 `NoReturn` type can be used in cases like this to warn us about potential dead code ahead.
 To utilize it, you'd type the above snippet like this:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -100,7 +100,7 @@ Found 1 error in 1 file (checked 1 source file)
 
 ### Callables containing infinite loops
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ Found 1 error in 1 file (checked 1 source file)
 Another case where `NoReturn` can be useful, is to type callables with `while True` loops.
 This is common in webservers:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -152,7 +152,7 @@ letting the interpreter run any cleanup code. Prefer `sys.exit()` over `os._exit
 The `os.execvp()` function execute a new program, replacing the current process. It never
 returns. Here's how you'd type the callables that call these functions:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

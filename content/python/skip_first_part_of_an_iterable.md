@@ -8,14 +8,14 @@ tags:
 
 Consider this iterable:
 
-```python
+```py
 it = (1, 2, 3, 0, 4, 5, 6, 7)
 ```
 
 Let's say you want to build another iterable that includes only the numbers that appear
 starting from the element `0`. Usually, I'd do this:
 
-```python
+```py
 # This returns (0, 4, 5, 6, 7).
 from_zero = tuple(elem for idx, elem in enumerate(it) if idx >= it.index(0))
 ```
@@ -24,7 +24,7 @@ While this is quite terse and does the job, it won't work with a generator. Ther
 more generic and terser way to do the same thing with `itertools.dropwhile` function. Here's
 how to do it:
 
-```python
+```py
 from itertools import dropwhile
 
 # This returns the same thing as before (0, 4, 5, 6, 7).
@@ -48,7 +48,7 @@ of the iterable, regardless of whether they satisfy the condition or not.
 Apart from being concise, this implementation is more generic and can be used for other
 purposes like skipping the header lines in a file. For example:
 
-```python
+```py
 from itertools import dropwhile
 
 with open("/etc/passwd") as f:
@@ -84,7 +84,7 @@ ID,Name,Age,Height
 3,Jack,22,1.6
 ```
 
-```python
+```py
 import csv
 from itertools import dropwhile
 

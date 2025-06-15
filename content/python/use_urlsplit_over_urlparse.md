@@ -13,7 +13,7 @@ alternative function.
 The `urlparse` function splits a supplied URL into multiple seperate components and returns
 a `ParseResult` object. Consider this example:
 
-```python
+```py
 In [1]: from urllib.parse import urlparse
 
 In [2]: url = "https://httpbin.org/get?q=hello&r=22"
@@ -33,7 +33,7 @@ you'll see that there's a `params` argument in the `ParseResult` object. This `p
 argument gets parsed whether you need it or not and that adds some overhead. The `params`
 field will be populated if you have a URL like this:
 
-```python
+```py
 In [1]: from urllib.parse import urlparse
 
 In [2]: url = "https://httpbin.org/get;a=mars&b=42?q=hello&r=22"
@@ -52,7 +52,7 @@ semicolon and a few more parameters succeeding that—`;a=mars&b=42`. The result
 to this in the standard library. The `urlsplit`[^3] function does the same thing as
 `urlparse` minus the param parsing and is twice as fast. Here's how you'd use `urlsplit`:
 
-```python
+```py
 In [1]: from urllib.parse import urlsplit
 
 In [2]: url = "https://httpbin.org/get?q=hello&r=22"
@@ -68,7 +68,7 @@ The `urlsplit` function returns a `SplitResult` object similar to the `ParseResu
 you've seen before. Notice there's no `param` argument in the output here. I measured the
 speed difference like this:
 
-```python
+```py
 In [1]: from urllib.parse import urlparse, urlsplit
 
 In [2]: url = "https://httpbin.org/get?q=hello&r=22"

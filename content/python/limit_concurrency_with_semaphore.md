@@ -15,7 +15,7 @@ I picked up Python's [asyncio] and the amazing [HTTPx] library by Tom Christie t
 requests. This is the naive version that I wrote in the beginning; it quickly hits the HTTP
 429 error:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -117,7 +117,7 @@ resource access. This means if you're using any of the—`multiprocessing`, `thr
 
 You can use the semaphores in the above script as follows:
 
-```python
+```py
 ...
 # Initialize a semaphore object with a limit of 3.
 limit = asyncio.Semaphore(3)
@@ -184,7 +184,7 @@ the limit in the `asyncio.Semaphore` object.
 
 ## Complete script
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

@@ -15,7 +15,7 @@ Suppose, you're working with a model called `Product` where you want to sort the
 table based on a list of product ids that are already sorted in a particular order. Here's
 how it might look:
 
-```python
+```py
 # List of product ids
 id_list = [3, 1, 2, 4, 8, 7, 5, 6]
 
@@ -140,7 +140,7 @@ The output would be:
 With the intro explanations out of the way, here's how you can sort the `products` table
 introduced in the previous section by a list of product ids:
 
-```python
+```py
 from django.db.models import Case, When
 from .models import Product
 
@@ -196,7 +196,7 @@ Django is taking advantage of a searched `CASE` expression to sort the queryset 
 desired way. This also allows sorting by a custom sequence of an attribute related to the
 target model. So you can do this:
 
-```python
+```py
 from django.db.models import Case, When
 from .models import Product, Order
 
@@ -215,7 +215,7 @@ products_sorted = products.filter(order__id__in=order_ids).order_by(preferred)
 
 Here's what the `Product` and `Order` models look like:
 
-```python
+```py
 from django.db import models
 
 

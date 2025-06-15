@@ -10,7 +10,7 @@ create a set from the iterable and then convert it back into a list or tuple. Ho
 approach doesn't preserve the original order of the items, which can be a problem if you
 need to keep the order unscathed. Here's a naive approach that works:
 
-```python
+```py
 from __future__ import annotations
 
 from collections.abc import Iterable  # Python >3.9
@@ -42,7 +42,7 @@ result list contains the unique items of `it` in their original order.
 
 This can be made a little terser by using listcomp as follows:
 
-```python
+```py
 from __future__ import annotations
 
 from collections.abc import Iterable  # Python >3.9
@@ -62,7 +62,7 @@ def dedup(it: Iterable) -> list:
 
 ## Dedup with ordered dict
 
-```python
+```py
 from collections import OrderedDict
 
 dedup = lambda it: list(OrderedDict.fromkeys(seq))
@@ -84,7 +84,7 @@ using the `list()` function to obtain a list of the unique items in their origin
 While this is quite terse and does the job with `O(1)` complexity, neither this nor the
 previous solution would work for compound iterables as follows:
 
-```python
+```py
 # Here the dedup function will have to remove the duplicate items by
 # nested items. So the desired output will be ((1,1), (2, 1), (3, 1))
 it = ((1, 1), (2, 1), (3, 1), (1, 1), (1, 3))
@@ -96,7 +96,7 @@ The next solution works on one-level nested iterables.
 
 Consider this one-level nested iterable:
 
-```python
+```py
 # Here, (1,1), (2, 1) are items of the iterable 'it' and 1 is an element
 # of the first item (1,1). We're referring to items of items as elements.
 it = ((1, 1), (2, 1), (3, 1), (1, 1), (1, 3))
@@ -107,7 +107,7 @@ particular element of an item. Here, `(1,1)`, `(2, 1)` are items of the iterable
 `1` is the second element of item `(2, 1)`. Here's how we can modify the first `dedup` to
 allow deduplication by nested elements.
 
-```python
+```py
 from __future__ import annotations
 
 from collections.abc import Iterable
