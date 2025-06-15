@@ -22,7 +22,7 @@ The notification can happen in three ways: email, webhook, and postal mail. Thes
 three attributes on the `Client` class that determine which notification method will be
 used:
 
-```python
+```py
 @dataclass
 class Client:
     email: str
@@ -51,7 +51,7 @@ Postal mails are expensive and will only be sent if `address` is the only attrib
 The `notify` function takes in a `Client` object and sprouts a few conditional branches to
 send notifications while maintaining the business constraints.
 
-```python
+```py
 def notify(client: Client) -> None:
     """Apply business logic and invoke the desired notification handlers."""
 
@@ -95,14 +95,14 @@ the negation logic.
 
 So this:
 
-```python
+```py
 if client.email and not client.url and not client.address:
     ...
 ```
 
 Can become:
 
-```python
+```py
 if client.email and not (client.url or client.address):
     ...
 ```
@@ -139,7 +139,7 @@ low-level algorithms. Here's a list of bitwise operations:
 
 Here's an example displaying these operators:
 
-```python
+```py
 a = 60  # 60    = 0011 1100
 b = 13  # 13    = 0000 1101
 print(a & b)  # 12    = 0000 1100 (0011 1100 & 0000 1101 = 0000 1100)
@@ -158,7 +158,7 @@ to clip the conditional statements in the `notify` function.
 
 For example, here's a bitmask representing text style options:
 
-```python
+```py
 # Flags
 BOLD = 1  # 0000 0001
 ITALIC = 2  # 0000 0010
@@ -172,7 +172,7 @@ We use powers of 2 (1, 2, 4, 8, etc.) for the flag values so that each bit posit
 corresponds to a single flag, and the flags can be combined using bitwise OR without
 overlapping. This allows testing and accessing each flag independently:
 
-```python
+```py
 has_bold = STYLE & BOLD == BOLD  # True
 has_italic = STYLE & ITALIC == ITALIC  # True
 has_underline = STYLE & UNDERLINE == UNDERLINE  # False
@@ -180,7 +180,7 @@ has_underline = STYLE & UNDERLINE == UNDERLINE  # False
 
 And toggle an option on or off using XOR:
 
-```python
+```py
 STYLE ^= BOLD  # Toggles BOLD bit on/off
 ```
 
@@ -210,7 +210,7 @@ With all the intros and primers out of the way, we can now start working towards
 
 The `NotifyStatus` enum is defined as follows:
 
-```python
+```py
 class NotifyStatus(Flag):
     # Valid primary variants (flags)
     EMAIL = 1
@@ -236,7 +236,7 @@ grossly simplify the implementation of the business logic.
 Now, let's write the `get_notify_status` function that'll take in an instance of `Client`
 and return the appropriate `NotifyStatus` variant based on our business logic:
 
-```python
+```py
 def get_notify_status(client: Client) -> NotifyStatus:
     status = 0
     if client.email:
@@ -261,7 +261,7 @@ to return the correct `NotifyStatus` enum variant.
 On the last step, the `notify` function can take the `NotifyStatus` variant returned by the
 `get_notify_status` function and dispatch the correct notification handlers like this:
 
-```python
+```py
 def notify(notify_status: NotifyStatus) -> None:
     # Mapping between enum variants and notification handlers
     actions = {

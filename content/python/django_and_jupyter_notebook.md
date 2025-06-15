@@ -79,7 +79,7 @@ In the `mysite/mysite/_debug_settings.py` file, we import the configs from the p
 settings file and add the Jupyter configuration attributes there. Here's the full content of
 the extended `_debug_settings.py` file:
 
-```python
+```py
 from .settings import *  # noqa
 
 INSTALLED_APPS.append("django_extensions")  # noqa
@@ -214,7 +214,7 @@ immediately.
 You can run the following snippet and it'll create two questions and two choices in the
 database.
 
-```python
+```py
 from polls import models as polls_models
 from datetime import datetime, timezone
 

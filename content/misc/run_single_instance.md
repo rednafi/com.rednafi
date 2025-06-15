@@ -89,7 +89,7 @@ non-Linux environments, either option is fine!
 Oftentimes, I opt for Python when I need to write larger scripts. The same can be achieved
 in Python like this:
 
-```python
+```py
 import fcntl
 import os
 import sys

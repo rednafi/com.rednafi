@@ -11,7 +11,7 @@ process it afterward. This is one of the first things that's taught to people wh
 the language. While the following snippet might be frowned upon by many, it's definitely not
 uncommon:
 
-```python
+```py
 # src.py
 
 with open("foo.csv", "r") as f:
@@ -58,7 +58,7 @@ user uploads a CSV file, we'd:
 
 This is how the code looks:
 
-```python
+```py
 # src.py
 
 import csv
@@ -105,7 +105,7 @@ reader. We were already processing the CSV rows in a lazy manner and just removi
 `f.read()` fixed the overzealous buffering issue. The corrected code snippet looks like
 this:
 
-```python
+```py
 # src.py
 
 import csv

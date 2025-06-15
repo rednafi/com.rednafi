@@ -15,7 +15,7 @@ targets in such a terse, flexible, and maintainable fashion.
 So, in almost all the tests that I write for both my OSS projects and at my workplace, I use
 `unittest.mock.patch` exclusively for performing mock-patch. Consider this example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -43,7 +43,7 @@ the standard library. Now, the question is, how'd you test this. The function
 need to mock it out. Otherwise, you won't be able to test the enclosing `prepend_random`
 function in a determinstic way. Here's how you might test it with pytest:
 
-```python
+```py
 # src.py
 ...
 from unittest.mock import patch
@@ -72,7 +72,7 @@ function signature—is the same as the original object.
 
 Another thing is, you can also use the `patch` function as a context manager like this:
 
-```python
+```py
 # src.py
 ...
 
@@ -103,7 +103,7 @@ specific, if your target function has `m` behaviors and `n` dependencies that ne
 mocked out, then the number of the `patch` decorators that practically do the same thing
 will be `m x n`. Just for a single function, it'll create a monstrosity similar to this:
 
-```python
+```py
 # src.py
 from unittest.mock import patch
 
@@ -138,7 +138,7 @@ testing each behavior requires multiple dependencies. The DRY gods will be furio
 The situation can be improved by wrapping the tests in a `unittest` style class and mocking
 out the common dependencies in the class scope as follows:
 
-```python
+```py
 # src.py
 from unittest.mock import patch
 
@@ -159,7 +159,7 @@ scope and you can't opt-out of mocked dependencies if some of your tests don't n
 can do better. Let's rewrite a slightly modified version of the above case with
 `pytest.fixture`. Here's how to do it:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -256,7 +256,7 @@ The following snippet defines the `get` and `post` functions that make `GET` and
 requests to a URL respectively. I used the HTTPx[^1] library to make the requests. Here, the
 functions make external network calls to the `https://httpbin.org` URL:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -289,7 +289,7 @@ closely, you'll notice that I'm instantiating the `client` object in the global 
 is because, both the `GET` and `POST` API calls share the same header. Let's see how you can
 test these two functions:
 
-```python
+```py
 # test_src.py
 from http import HTTPStatus
 from typing import Any

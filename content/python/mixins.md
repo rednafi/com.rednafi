@@ -61,7 +61,7 @@ strict enforcement.
 
 Let's write an informal interface for a simple calculator class:
 
-```python
+```py
 class ICalc:
     """Informal Interface: Abstract calculator class."""
 
@@ -83,7 +83,7 @@ implementation. It's an informal interface because you can still instantiate the
 the methods will raise `NotImplementedError` if you try to apply them. You've to subclass
 the interface to use it. Let's do it:
 
-```python
+```py
 class Calc(ICalc):
     """Concrete Class: Calculator"""
 
@@ -134,7 +134,7 @@ easier to do so from an established structure defined in the `ICalc` interface. 
 make the process of extending class functionalities more tractable. Let's make another class
 that will add logging to all of the methods of the `Calc` class:
 
-```python
+```py
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -203,7 +203,7 @@ the methods defined in the `Interface`.
 Let's create another class `FakeCalc` an only implement one method defined in the `ICalc`
 abstract class:
 
-```python
+```py
 class FakeCalc(ICalc):
     """Concrete Class: Fake calculator that doesn't implement all the methods
     defined in the interface."""
@@ -257,7 +257,7 @@ them to implement all the methods in the concrete sub classes, formal interface 
 to go. In Python, the idiomatic way to define formal interfaces is via the `abc` module.
 Let's transform the previously mentioned `ICalc` interface into a formal one:
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -291,7 +291,7 @@ Although, it seems like `ICalc` has merely inherited from the `ABC` class, under
 metaclass[^2] `ABCMeta` gets attached to the interface which essentially makes sure that you
 can't instantiate this class independently. Let's try to do so and see what happens:
 
-```python
+```py
 i = ICalc()
 ```
 
@@ -310,7 +310,7 @@ all. You've make a subclass of `ICalc` and implement all the abstract methods an
 you'll be able to make an instance of the subclass. The subclassing and implementation part
 is same as before.
 
-```python
+```py
 class Calc(ICalc):
     """Concrete calculator class"""
 
@@ -360,7 +360,7 @@ differ.
 
 **Interface**
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -378,7 +378,7 @@ Here, all the methods must have to be abstract.
 
 **Abstract Base Class**
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -412,7 +412,7 @@ classes will need to implement later.
 
 ![mixins][image_1]
 
-```python
+```py
 from abc import ABC, abstractmethod
 
 
@@ -540,7 +540,7 @@ Let's see a contrived example. Consider Werkzeug's[^3] request and response syst
 is a small library that Flask[^4] depends on. I can make a plain old request object by
 saying:
 
-```python
+```py
 from werkzeug import BaseRequest
 
 
@@ -550,7 +550,7 @@ class Request(BaseRequest):
 
 If I want to add accept header support, I would make that:
 
-```python
+```py
 from werkzeug import BaseRequest, AcceptMixin
 
 
@@ -561,7 +561,7 @@ class Request(AcceptMixin, BaseRequest):
 If I wanted to make a request object that supports accept headers, etags, user agent and
 authentication support, I could do this:
 
-```python
+```py
 from werkzeug import (
     BaseRequest,
     AcceptMixin,
@@ -617,7 +617,7 @@ that they shouldn't exist on their own, i.e. shouldn't be instantiated independe
 Before diving into the real-life examples and how mixins can be used to construct custom
 data structures, let's have a look at a self-contained example of a mixin class at work:
 
-```python
+```py
 import inspect
 from abc import ABC, abstractmethod
 from pprint import pprint
@@ -688,7 +688,7 @@ This is a tuple-like data structure that acts exactly like the built-in tuple bu
 exception. It'll print out the special methods underneath when you perform any operation
 with it.
 
-```python
+```py
 from collections.abc import Sequence
 
 
@@ -750,7 +750,7 @@ abstract and the mixin methods.
 In the following snippet I've used some of the functionalities offered by tuple and printed
 them in a way that will reveal the special methods when they perform any action.
 
-```python
+```py
 # check __getitem__
 print("\n ==== Checking __getitem__ ====")
 print(vt[2])
@@ -824,7 +824,7 @@ This is a list-like data structure that acts exactly like the built-in list but 
 exception. Like `VerboseTuple`, it'll also print out the special methods underneath when you
 perform any operation on or with it.`
 
-```python
+```py
 from collections.abc import MutableSequence
 
 
@@ -900,7 +900,7 @@ mixin methods.
 In the following snippet, I've used some of the functionalities offered by list and printed
 them in a way that will reveal the special methods when they perform any action.
 
-```python
+```py
 # check __setitem__
 print("\n ==== Checking __setitem__ ====")
 vl[1] = 44
@@ -966,7 +966,7 @@ Here, `VerboseFrozenDict` is an immutable data structure that is similar to the 
 dictionaries. Like the previous structures, this also reveals the internal special methods
 while performing different operations.
 
-```python
+```py
 from collections.abc import Mapping
 
 
@@ -1034,7 +1034,7 @@ methods.
 Below the printed output will reveal the special methods used internally when the
 `VerboseFrozenDict` objects perform any operation.
 
-```python
+```py
 # check __getitem__
 print("\n ==== Checking __getitem__ ====")
 print(vf["a"])
@@ -1115,7 +1115,7 @@ The `VerboseDict` data structure is the mutable version of `VerboseFrozedDict`. 
 all the operations of `VerboseFrozenDict` with some additional features like adding and
 deleting key-value pairs, updating values corresponding to different keys etc.
 
-```python
+```py
 from collections.abc import MutableMapping
 
 
@@ -1193,7 +1193,7 @@ mixin methods associated with it. The following snippet will print the special m
 internally by the custom data structure (also in the built-in one) while performing
 different operations.
 
-```python
+```py
 # check __getitem__
 print("\n ==== Checking __setitem__ ====")
 vd["a"] = "orange"
@@ -1275,7 +1275,7 @@ However, since no hashing happens, it's slower to perform addition and retrieval
 built-in sets. The following code snippet was taken directly from Raymond Hettinger's 2019
 PyCon Russia talk[^6] on advanced data structures.
 
-```python
+```py
 from collections.abc import MutableSet
 
 
@@ -1334,7 +1334,7 @@ mean, consider the following situation:
 
 Suppose, you have a nested list that looks like this:
 
-```python
+```py
 lst = [[1], [2, 3], [[4, 5], 6, 7], 8, 9]
 ```
 
@@ -1347,7 +1347,7 @@ will not include the size of nested data structures. I'll only reveal the size o
 outermost dictionary object. The following snippet will traverse through the reference tree
 of a nested object and reveal the _true_ size of it.
 
-```python
+```py
 from collections.abc import Mapping, Container
 from sys import getsizeof
 
@@ -1401,7 +1401,7 @@ def deep_getsizeof(o: object, ids: None = None) -> int:
 Let's use the `deep_getsizeof` to inspect the size differences between built-in set and
 `BitSet` objects.
 
-```python
+```py
 bs = BitSet(limit=5, iterable=[0, 4])
 s = {0, 4}
 print(f"Normal Set object: {s}")
@@ -1438,7 +1438,7 @@ will take care of storing and updating the data to the target database.
 Before running the code snippet below, you'll need to install SQLAlchemy as an external
 dependency.
 
-```python
+```py
 # sqla_dict.py
 
 from collections.abc import MutableMapping

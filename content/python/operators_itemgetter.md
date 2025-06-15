@@ -9,7 +9,7 @@ Python's `operator.itemgetter` is quite versatile. It works on pretty much any i
 map-like objects and allows you to fetch elements from them. The following snippet shows how
 you can use it to sort a list of tuples by the first element of the tuple:
 
-```python
+```py
 In [2]: from operator import itemgetter
    ...:
    ...: l = [(10, 9), (1, 3), (4, 8), (0, 55), (6, 7)]
@@ -24,7 +24,7 @@ tuple inside the list and then the `sorted` function is using those values to so
 elements. Also, this is faster than using a lambda function and passing that to the `key`
 parameter to do the sorting:
 
-```python
+```py
 In [6]: from operator import itemgetter
 
 In [7]: l = [(10, 9), (1, 3), (4, 8), (0, 55), (6, 7)]
@@ -39,7 +39,7 @@ In [9]: %timeit sorted(l, key=lambda x: x[0])
 You can also use `itemgetter` to extract multiple values from a dictionary in a single pass.
 Consider this example:
 
-```python
+```py
 In [13]: from operator import itemgetter
 
 In [14]: d = {'foo': 31, 'bar': 12, 'baz': 42, 'chez': 83, 'moi': 24}
@@ -55,7 +55,7 @@ So, instead of extracting the key-value pairs with `d['foo'], d['bar'], ...`, `i
 allows us to make it DRY. The source code of the callable is freakishly simple. Here's the
 entire thing:
 
-```python
+```py
 # operator.py
 
 
@@ -105,7 +105,7 @@ While this is all good and dandy, `itemgetter` will raise a `KeyError` if it can
 corresponding value against a key in a map or an `IndexError` if the provided index is
 outside of the range of the sequence. This is how it looks in a dict:
 
-```python
+```py
 
 In [1]: from operator import itemgetter
 
@@ -125,7 +125,7 @@ KeyError: 'fiz'
 In the above snippet, `itemgetter` can't find the key `fiz` in the dict `d` and it complains
 when we try to fetch the value against it. In a sequence, the error looks like this:
 
-```python
+```py
 
 In [5]: from operator import itemgetter
 
@@ -157,7 +157,7 @@ file, the `itemgetter` class is decorated with the `typing.final` decorator and 
 to be subclassed. So, our only option is to rewrite it. The good news is that this
 implementation is quite terse just like the original. Here it goes:
 
-```python
+```py
 # src.py
 from collections.abc import Mapping
 
@@ -232,7 +232,7 @@ This class behaves almost the same way as the original `itemgetter` function. Th
 difference is that you can pass a `default` value to return instead of raising
 `KeyError/IndexError` depending on the type of the container. Let's try it out with a dict:
 
-```python
+```py
 In [12]: d = {'foo': 31, 'bar': 12, 'baz': 42, 'chez': 83, 'moi': 24}
 
 In [13]: safe_itemgetter(-5, -3, -33, 'baz', 1)(d)
@@ -245,14 +245,14 @@ do this without raising any exceptions. You can see that instead of raising an e
 the positions are filled with the `default` value; in this case, the `<NOTHING>` sentinel.
 We can pass any default value there:
 
-```python
+```py
 In[14]: safe_itemgetter(-5, -3, -33, "baz", 1, default="default")(d)
 Out[14]: ("default", "default", "default", 42, "default")
 ```
 
 This works similarly when a sequence is passed:
 
-```python
+```py
 In[18]: l = [(10, 9), (1, 3), (4, 8), (0, 55), (6, 7)]
 
 In[19]: safe_itemgetter(-11, default=())(l)
@@ -262,7 +262,7 @@ Out[19]: ()
 This returns an empty tuple when the sequence index is out of range. It works with multiple
 indices as well:
 
-```python
+```py
 In [28]: l = [(10, 9), (1, 3), (4, 8), (0, 55), (6, 7)]
 
 In [29]: safe_itemgetter(-1, -3, -7, 1)(l)

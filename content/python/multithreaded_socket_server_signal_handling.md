@@ -20,7 +20,7 @@ The intended behavior here is that whenever any of `SIGHUP`, `SIGINT`, `SIGTERM`
 Here's a quick implementation of a multithreaded echo server and see what happens when you
 send `SIGINT` to shut down the server:
 
-```python
+```py
 # server.py
 
 from __future__ import annotations
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
 Here's the client code:
 
-```python
+```py
 # client.py
 
 import logging
@@ -121,7 +121,7 @@ What we want here is that whenever the server gets `SIGHUP`, `SIGINT`, `SIGTERM`
 with the `socketserver.ThreadingTCPServer` API for a while to come up with a solution that
 worked nicely for my use case. Here's the full server implementation:
 
-```python
+```py
 # server.py
 
 from __future__ import annotations
@@ -333,7 +333,7 @@ properly. That means, whenever the client receives the `SHUTDOWN` message, it sh
 immediately close the connection. Here's a slightly modified version of the vanilla socket
 client code that we've seen before:
 
-```python
+```py
 # client.py
 
 import logging

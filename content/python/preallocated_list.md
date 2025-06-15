@@ -21,7 +21,7 @@ typedef struct {
 
 An empty list builds a `PyObject` and occupies some memory:
 
-```python
+```py
 from sys import getsizeof
 
 l = []
@@ -45,7 +45,7 @@ implementations.
 
 Let's put this to test and append some elements to the list:
 
-```python
+```py
 # src.py
 from sys import getsizeof
 
@@ -66,7 +66,7 @@ bytes. This happens because in this case, Python over-allocated 32 extra bytes t
 accommodate future incoming elements. Now, if you append 3 more elements to the list, you'll
 see that it doesn't increase the size because no re-allocation is happening here:
 
-```python
+```py
 # src.py
 from sys import getsizeof
 
@@ -88,7 +88,7 @@ This prints:
 Adding a fifth element to the above list will increase the size of the list by 32 bytes (can
 be different in other implementations) again:
 
-```python
+```py
 # src.py
 from sys import getsizeof
 
@@ -122,7 +122,7 @@ I was working on.
 Let's measure the performance of appending elements to an empty list. I'm using IPython's
 built-in `%%timeit` command to do it:
 
-```python
+```py
 In [1]: %%timeit
     ...:
     ...: l=[]
@@ -136,7 +136,7 @@ Now, if you know the final size of the list beforehand, then you don't need to c
 empty list and append elements to it via a loop. You can initialize the list with `None` and
 then fill in the elements like this:
 
-```python
+```py
 # src.py
 size = 10_000
 l = [None] * size
@@ -147,7 +147,7 @@ for i in range(size):
 
 This is quite a bit faster than the previous snippet:
 
-```python
+```py
 In [2]: %%timeit
     ...:
     ...: l=[None]*10_000
@@ -162,7 +162,7 @@ In [2]: %%timeit
 For simple cases demonstrated above, list comprehension is going to be quite a bit quicker
 than the static pre-allocation technique. See for yourself:
 
-```python
+```py
 In [3]: %%timeit
     ...:
     ...: [i for i in range(10_000)]

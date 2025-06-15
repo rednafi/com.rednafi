@@ -10,7 +10,7 @@ containing a PDF file and the system would then download the file and save it to
 bucket. While this sounds quite straightforward, there's one big issue. Before I started
 working on it, the core logic looked like this:
 
-```python
+```py
 # src.py
 from __future__ import annoatations
 
@@ -48,7 +48,7 @@ neat API to perform streaming file download. Also, I didn't want to peek into th
 include that header key. I was looking for something more dependable than that. Here's how I
 solved it:
 
-```python
+```py
 # src
 from __future__ import annotations
 

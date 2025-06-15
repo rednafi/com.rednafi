@@ -15,7 +15,7 @@ them for each instantiation.
 Below is a quick benchmark comparing the instantiation times of a mutable dataclass and a
 frozen one (in Python 3.12):
 
-```python
+```py
 from dataclasses import dataclass
 import timeit
 
@@ -65,7 +65,7 @@ could do the same with standard data classes.
 
 Here's how to do it:
 
-```python
+```py
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, TypeVar, dataclass_transform
 

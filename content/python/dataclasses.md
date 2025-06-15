@@ -8,7 +8,7 @@ tags:
 Recently, my work needed me to create lots of custom data types and draw comparison among
 them. So, my code was littered with many classes that somewhat looked like this:
 
-```python
+```py
 class CartesianPoint:
     def __init__(self, x, y, z):
         self.x = x
@@ -37,7 +37,7 @@ to python in version 3.7. Basically they can be regarded as code generators that
 amount of boilerplate you need to write while generating generic classes. Rewriting the
 above class using `dataclass` will look like this:
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -62,7 +62,7 @@ to use explicit type annotations[^1] and it automatically implements methods lik
 `__init__`, `__repr__`, `__eq__` etc beforehand. You can inspect the methods that
 `dataclass` auto defines via Python's help.
 
-```python
+```py
 help(CartesianPoint)
 ```
 
@@ -105,7 +105,7 @@ class CartesianPoint(builtins.object)
 
 You can provide default values to the fields in the following way:
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -121,7 +121,7 @@ class CartesianPoint:
 If you don't want to specify your field type during type hinting, you can use `Any` type
 from python's `typing` module.
 
-```python
+```py
 from dataclasses import dataclass
 from typing import Any
 
@@ -137,7 +137,7 @@ class CartesianPoint:
 
 You can check if two instances are equal without making any modification to the class.
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -161,7 +161,7 @@ print(point_1 == point_2)
 However, if you want to compare multiple instances of dataclasses, aka add `__gt__` or
 `__lt__` methods to your instances, you have to turn on the `order` flag manually.
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -190,7 +190,7 @@ instance. You can customize this using the `field` function.
 Suppose you want to acknowledge two instances as equal only when attribute `x` of both of
 them are equal. You can emulate this in the following way:
 
-```python
+```py
 from dataclasses import dataclass, field
 
 
@@ -224,7 +224,7 @@ Methods can be added to dataclasses just like normal classes. Let's add another 
 called `dist` to our `CartesianPoint` class. This method calculates the distance of a point
 from origin.
 
-```python
+```py
 from dataclasses import dataclass
 import math
 
@@ -255,7 +255,7 @@ print(norm)
 By default, instances of dataclasses are immutable. If you want to prevent mutating your
 instance attributes, you can set `frozen=True` while defining your dataclass.
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -269,7 +269,7 @@ class CartesianPoint:
 If you try to mutate the any of the attributes of the above class, it will raise
 `FrozenInstanceError`.
 
-```python
+```py
 point = CartesianPoint(2, 4, 6)
 point.x = 23
 ```
@@ -297,7 +297,7 @@ instances hashable. This may come in handy when you want to use your instances a
 keys or want to perform set operation on them. However, if you are using `unsafe_hash` make
 sure that your dataclasses do not contain any mutable data structure in it.
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -323,7 +323,7 @@ print({f"{point}": "origin"})
 
 The `asdict()` function converts a dataclass instance to a dict of its fields.
 
-```python
+```py
 from dataclasses import dataclass, asdict
 
 point = CartesianPoint(1, 5, 6)
@@ -340,7 +340,7 @@ When dataclass generates the `__init__` method, internally it'll call `_post_ini
 You can add additional processing in the `__post_init__` method. Here, I've added another
 attribute `tup` that returns the cartesian point as a tuple.
 
-```python
+```py
 from dataclasses import dataclass
 
 
@@ -367,7 +367,7 @@ print(point.tup)
 
 The feature rich original `CartesianPoint` looks something like this:
 
-```python
+```py
 import math
 
 
@@ -430,7 +430,7 @@ class CartesianPoint:
 
 Let's see the class in action:
 
-```python
+```py
 # create multiple instances of the class
 a = CartesianPoint(1, 2, 3)
 b = CartesianPoint(1, 3, 3)
@@ -467,7 +467,7 @@ True
 
 Below is the same class refactored using dataclass.
 
-```python
+```py
 from dataclasses import dataclass, field
 
 
@@ -491,7 +491,7 @@ class CartesianPoint:
 
 Use this class like before.
 
-```python
+```py
 # create multiple instances of the class
 a = CartesianPoint(1, 2, 3)
 b = CartesianPoint(1, 3, 3)

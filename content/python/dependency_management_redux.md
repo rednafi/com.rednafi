@@ -196,7 +196,7 @@ src
 
 The content of `cli.py` looks like this:
 
-```python
+```py
 import click
 
 

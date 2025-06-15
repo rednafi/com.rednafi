@@ -73,7 +73,7 @@ using Python's type hints. Type hinting is a formal solution to statically indic
 of a value within your Python code. It was specified in PEP-484[^7] and introduced in Python
 3.5. Let's define and validate the attributes of a class named `User`:
 
-```python
+```py
 from Pydantic import BaseModel
 
 
@@ -139,7 +139,7 @@ configs. These help you discern between the variables designated for different e
 
 Now let's dump the entire config orchestration and go though the building blocks one by one:
 
-```python
+```py
 # configs.py
 
 from typing import Optional
@@ -329,7 +329,7 @@ This time the config instance should change and print the following:
 Using the config variables is easy. Suppose you want use the variables in file called
 `app.py`. You can easily do so as shown in the following code block:
 
-```python
+```py
 # app.py
 
 from configs import cnf
@@ -388,7 +388,7 @@ STAGE_REDIS_PORT="6000"
   class. The architecture of the class is similar to that of the `DevConfig` or `ProdConfig`
   class.
 
-```python
+```py
 # configs.py
 ...
 
@@ -407,7 +407,7 @@ class StageConfig(GlobalConfig):
   `FactoryConfig` class. See how I've appended another if-else block to the previous (prod)
   block.
 
-```python
+```py
 # configs.py
 ...
 

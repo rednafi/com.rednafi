@@ -28,7 +28,7 @@ If `T2 <: T1`, then a generic type constructor `GenType` will be:
 To better understand this definition, let's make an analogy with ordinary functions. Assume
 that we have:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -91,7 +91,7 @@ the salary for a `Manager`, it should also be able to calculate the salary of an
 
 ### Covariance
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -120,7 +120,7 @@ Here, `Dog <: Animal` and notice how Mypy doesn't raise an error when a tuple of
 instance is passed into the `action` function that expects a sequence of `Animal` instances.
 However, if you make change the `action` function as follows:
 
-```python
+```py
 ...
 
 
@@ -141,7 +141,7 @@ Hence, the error.
 
 The `Callable` generic type is **covariant** in return type. Here's how you can test it:
 
-```python
+```py
 from __future__ import annotations
 
 # In <Python 3.9, import this from the 'typing' module.
@@ -172,7 +172,7 @@ passed into the `factory` callable.
 On the other hand, the `Callable` generic type is **contravariant** in the argument type.
 Here's how you can test it:
 
-```python
+```py
 from __future__ import annotations
 
 # In <Python 3.9, import this from the 'typing' module.
@@ -210,7 +210,7 @@ covariant or contravariant as well. However:
 
 Here's how you can mark types as covariant, contravariant, or invariant:
 
-```python
+```py
 from __future__ import annotations
 
 from typing import Generic, TypeVar

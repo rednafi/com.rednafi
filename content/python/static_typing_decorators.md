@@ -13,7 +13,7 @@ the return values of the **wrapped** function.
 Let's write a decorator that registers the decorated functions in a global dictionary during
 function definition time. Here's how I used to annotate it:
 
-```python
+```py
 # src.py
 # Import 'Callable' from 'typing' module in < Py3.9.
 from collections.abc import Callable
@@ -50,7 +50,7 @@ you run Mypy against the code snippet, it'll happily tell you that everything's 
 However, this doesn't exactly do anything. If you call the `hello` function with the wrong
 type of parameter, Mypy won't be able to detect the mistake statically. Notice this:
 
-```python
+```py
 ...
 
 hello(1)  # Mypy doesn't complain about it all
@@ -71,7 +71,7 @@ change wrapped functions' signatures.
 I'll take advantage of both `ParamSpec` and `TypeVar` to annotate the `register` decorator
 that we've seen earlier:
 
-```python
+```py
 # src.py
 
 # Import 'Callable' from 'typing' module in < Py3.9.
@@ -125,7 +125,7 @@ Consider this `inject_logger` decorator, that adds a logger instance to the deco
 function. It sort of acts how Django injects the `request` instances into the **view**
 functions. Here's the typed version of that:
 
-```python
+```py
 # src.py
 import logging
 
@@ -177,7 +177,7 @@ that with the type checker.
 
 If you'd defined `hello` with the wrong types, the type checker would've complained.
 
-```python
+```py
 ...
 
 

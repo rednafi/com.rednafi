@@ -9,7 +9,7 @@ Generators can help you decouple the production and consumption of iterables—m
 code more readable and maintainable. I learned this trick a few years back from David
 Beazley's slides[^1] on generators. Consider this example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ need to do it. I can think of two reasons:
 One way the second point can be addressed is—by accepting the consumer function as a
 parameter and applying that to the produced value.
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -82,7 +82,7 @@ flexible. However, applying multiple consumers will still be hairy. Doing this w
 generators is cleaner. Here's how you'd transform the above script to take advantage of
 generators:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -140,7 +140,7 @@ If you look carefully, the above command has two parts. The `tail -f <filename>`
 new lines appended to the file and `grep <pattern>` consumes the new lines to look for a
 particular pattern. This behavior can be mimicked via generators as follows:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -197,7 +197,7 @@ well. I was working on a microservice that polls a Redis queue at a steady inter
 processes the elements one by one. I took advantage of generators to decouple the function
 that collects the data and the one that processes the data. Here's how it works:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

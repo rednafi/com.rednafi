@@ -13,7 +13,7 @@ printed when calling `dir(module)`, `__getattr__` is the more interesting additi
 The `__getattr__` method in a module works similarly to how it does in a Python class. For
 example:
 
-```python
+```py
 class Cat:
     def __getattr__(self, name: str) -> str:
         if name == "voice":
@@ -35,7 +35,7 @@ allowing you to manage how missing attributes behave. Since Python 3.7, you can 
 
 For instance, if you have a module `my_module.py`:
 
-```python
+```py
 # my_module.py
 
 
@@ -51,7 +51,7 @@ def __getattr__(name: str) -> str:
 
 Using this module:
 
-```python
+```py
 # another_module.py
 
 import my_module
@@ -72,7 +72,7 @@ One practical use for module-level `__getattr__` is lazy-loading heavy dependenc
 improve startup performance. Imagine you have a module that relies on a large library but
 don't need it immediately at import.
 
-```python
+```py
 # heavy_module.py
 
 from typing import Any
@@ -90,7 +90,7 @@ def __getattr__(name: str) -> Any:
 With this setup, importing `heavy_module` doesn't immediately import NumPy. Only when you
 access `heavy_module.np` does it trigger the import:
 
-```python
+```py
 # main.py
 
 import heavy_module
@@ -115,7 +115,7 @@ can defer the setup until needed.
 Here's an example with SQLite (though SQLite connections are quick, imagine a slower
 connection here):
 
-```python
+```py
 # db_module.py
 
 import sqlite3
@@ -140,7 +140,7 @@ initialized on the first access of `db_module.connection`. Later calls use the c
 
 Here's how you might use it in a CLI:
 
-```python
+```py
 # cli.py
 
 import click

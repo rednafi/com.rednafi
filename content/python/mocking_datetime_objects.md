@@ -10,7 +10,7 @@ This is the 4th time in a row that I've wasted time figuring out how to mock out
 during testing that calls the chained methods of a `datetime.datetime` object in the
 function body. So I thought I'd document it here. Consider this function:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ nature. Third-party libraries like freezegun[^1] make it easier to mock and test
 like the one above. However, it's not too difficult to cover this simple case without any
 additional dependencies. Here's one way to achieve the goal:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 

@@ -8,7 +8,7 @@ tags:
 I was reading a tweet about it yesterday and that didn't stop me from pushing a code change
 in production with the same rookie mistake today. Consider this function:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -71,7 +71,7 @@ but the timestamp function was invoked only once; during the function definition
 This is easy to fix. Remove the default value of the timestamp and explicitly pass the
 parameter value while calling the function:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -121,7 +121,7 @@ Notice, how the values of the seconds in the timestamps have roughly a 1-second 
 between them. Early-bound defaults can also produce surprising results if you try to use a
 mutable data structure as the default value of a function/method. Here's an example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -163,7 +163,7 @@ Python is reusing the same `MutableSequence` that was defined in the function de
 time; just like it was reusing the same return value of the `datetime.utcnow().isoformat()`
 in the previous section. To fix this you can do the following:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -201,7 +201,7 @@ Currently, there's an outstanding PEP ([PEP-671][^1]) that proposes late-bound f
 argument defaults. It's still in a draft state and I'm quite fond of the syntax that it's
 proposing. Here's how you'd make a default parameter late-bound:
 
-```python
+```py
 def foo(bar, baz => []):
     ...
 ```

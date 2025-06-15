@@ -14,7 +14,7 @@ For the uninitiated, `TypeGuard` allows you to apply custom type narrowing[^1]. 
 let's say you have a function named `pretty_print` that accepts a few different types and
 prints them differently onto the console:
 
-```python
+```py
 from typing import assert_never
 
 
@@ -43,7 +43,7 @@ complex type checking logic into a separate function and return a boolean depend
 whether the inbound value satisfies all the criteria to be of the expected type. For
 example:
 
-```python
+```py
 from typing import TypedDict, TypeGuard
 
 
@@ -83,7 +83,7 @@ You can see more examples of `TypeGuard` in PEP-647[^2].
 All good. However, I find the behavior of `TypeGuard` a bit unintuitive whenever I need to
 couple it with union types. For example:
 
-```python
+```py
 from typing import Any, TypeGuard
 
 
@@ -120,7 +120,7 @@ construct with a slightly different behavior doesn't make things any less confus
 both the `if` and `else` branches of a conditional. Here's another example with a union type
 where `TypeIs` does what I expected `TypeGuard` to do:
 
-```python
+```py
 import sys
 
 if sys.version_info > (3, 13):  # TypeIs is available in Python 3.13+
@@ -147,7 +147,7 @@ branch and skipped the `else` branch altogether. Exactly what I need!
 Here are a few typeshed stubs[^4] for the stdlib functions in the `inspect` module that are
 already taking advantage of the new `TypeIs` construct:
 
-```python
+```py
 # fmt: off
 
 def isgenerator(obj: object) -> TypeIs[GeneratorType[Any, Any, Any]]: ...

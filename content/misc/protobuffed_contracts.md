@@ -95,7 +95,7 @@ Here's how it looks in Python:
 Once you have the contracts in place and have generated the interfacing code, here's how you
 can serialize a message payload before publishing it to an event stream:
 
-```python
+```py
 # ./search/services/publish.py
 
 from contracts.protos.message_pb2 import SearchRequest
@@ -143,7 +143,7 @@ code again via the same commands as before and use it to deserialize the message
 
 as follows:
 
-```python
+```py
 # ./search/services/consume.py
 
 from contracts.protos.message_pb2 import SearchRequest

@@ -11,7 +11,7 @@ I love `@pytest.mark.parametrize`[^1]—so much so that I sometimes shoehorn my 
 into it. But the default style of writing tests with `parametrize` can quickly turn into an
 unreadable mess as the test complexity grows. For example:
 
-```python
+```py
 import pytest
 from math import atan2
 
@@ -51,7 +51,7 @@ to run only the third case where `x, y, expected = (0, 1, (1, 1.5707963267948966
 I used to set custom test IDs like below to be able to run individual test cases within
 `parametrize`:
 
-```python
+```py
 # ... polarify implementation hasn't changed.
 
 
@@ -83,7 +83,7 @@ make things any easier to read.
 TIL, `pytest.param`[^2] gives you a better syntax and more control to achieve the same.
 Observe:
 
-```python
+```py
 # ... polarify implementation hasn't changed.
 
 
@@ -125,7 +125,7 @@ But the test is still somewhat hard to read. I usually refactor mine to take a `
 argument so that I can neatly tuck all the input and expected values associated with a test
 case in a single dictionary. Notice:
 
-```python
+```py
 # ... polarify implementation hasn't changed.
 
 
@@ -163,7 +163,7 @@ dictionary, eliminating the need to guess any positional arguments.
 Using `pytest.param` also allows you to set custom test execution conditionals, which I've
 started to take advantage of recently:
 
-```python
+```py
 # ... polarify implementation hasn't changed.
 
 

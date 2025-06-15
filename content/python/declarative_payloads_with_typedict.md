@@ -10,7 +10,7 @@ While working with microservices in Python, a common pattern that I see is—the
 dynamically filled dictionaries as payloads of REST APIs or message queues. To understand
 what I mean by this, consider the following example:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -110,7 +110,7 @@ tapping into the data storage. There's a better way to declaratively communicate
 of the payload that doesn't involve writing unmaintainably large docstrings. Here's how you
 can leverage `TypedDict` and `Annotated` to achieve the goals:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -191,7 +191,7 @@ a `TypedDict` class and all the key-value pairs expected by the annotation must 
 in the dict. It's possible to lax this behavior by specifying _totality_. This can be
 helpful to deal with missing fields without letting go of type safety. Consider this:
 
-```python
+```py
 from __future__ import annotations
 
 from typing import TypedDict
@@ -220,7 +220,7 @@ Found 1 error in 1 file (checked 1 source file)
 
 You can relax this behavior like this:
 
-```python
+```py
 ...
 
 
@@ -236,7 +236,7 @@ class Attribute(TypedDict, total=False):
 Now Mypy will no longer complain about the missing field in the annotated dict. However,
 this will still disallow arbitrary keys that isn't defined in the `TypedDict`. For example:
 
-```python
+```py
 ...
 
 # Mypy will complain as the key 'species' doesn't exist in the TypedDict.

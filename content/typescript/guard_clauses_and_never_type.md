@@ -126,7 +126,7 @@ will also raise a runtime error if any case remains unhandled.
 The same idea can be demonstrated in Python using Python3.10's `match` statement and
 `typing.NoReturn` type.
 
-```python
+```py
 # src.py (Python 3.10+)
 
 from __future__ import annotations
@@ -177,7 +177,7 @@ you can use them interchangeably. However, in this case, `Never` seems to commun
 intent better. You may also choose to use the backported versions of the type and function
 from the `typing_extensions` module. Here's how:
 
-```python
+```py
 # src.py
 
 from __future__ import annotations

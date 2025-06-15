@@ -17,7 +17,7 @@ out while grokking them.
 To execute individual statements, you'll need to use the `cursor_obj.execute(statement)`
 primitive.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -48,7 +48,7 @@ with conn:
 You can bundle up multiple statements and execute them in a single go with the
 `cursor_obj.executemany(template_statement, (data, ...))` API.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -98,7 +98,7 @@ columns—`username` and `password`. Here, we define a transformation scalar fun
 function is then registered via the `connection_obj.create_function(func_name, narg, func)`
 API.
 
-```python
+```py
 # src.py
 import sqlite3
 import hashlib
@@ -161,7 +161,7 @@ define an aggregate function, we'll need to write a class with two methods—`st
 `finalize` will return the final result. Below, you can see that the aggregate function
 returns a single value in the output.
 
-```python
+```py
 # src.py
 import sqlite3
 import hashlib
@@ -208,7 +208,7 @@ with conn:
 By default, `sqlite3` will suppress the traceback of any error raised from an user-defined
 function. However, you can turn on the traceback option as follows:
 
-```python
+```py
 # src
 import sqlite3
 
@@ -234,7 +234,7 @@ that refers to the name of the color. Then I register the `lambda color: color.v
 anonymous function that serializes an enum value to a text value. This allows me to pass an
 enum member directly into the `cursor_obj.execute` method.
 
-```python
+```py
 # src.py
 import enum
 import sqlite3
@@ -284,7 +284,7 @@ point to keep in mind is that you'll have to set `detect_type=sqlite3.PARSE_DECL
 the `sqlite3.connection` method for the adaptation to work. Notice the output of the last
 `select ...` statement and you'll see that we're getting enum objects in the returned list.
 
-```python
+```py
 # src.py
 import enum
 import sqlite3
@@ -356,7 +356,7 @@ into the table. Also, this time, the final `select ...` statement looks a bit di
 We're specifying the expected type in the `select ...` statement and it's returning native
 Python objects in the returned list.
 
-```python
+```py
 # src.py
 import datetime
 import sqlite3
@@ -421,7 +421,7 @@ action, the `auth_callback` will have to return `sqlite3.SQLITE_DENY` and that'l
 actions. Returning `sqlite3.SQLITE_OK` from the callback ensures that unfiltered actions can
 still pass through the guardrail without incurring any errors.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -499,7 +499,7 @@ statement. Afterward, the `sqlite3` module calls this statement on each record a
 transforms the representation of the rows. When you run the snippet, you'll see that the
 result comes out as a list of dictionaries instead of a list of tuples.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -574,7 +574,7 @@ the custom row factory callback with `sqlite3.Row`. In the output, you'll see th
 object not only allows us to access the value of a column by `row[column_name]` syntax but
 also let us convert the representation of the final result.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -638,7 +638,7 @@ enables you to do that in a more elegant fashion. You can set
 callback only to the text columns. In the following example, I'm applying an anonymous
 function to the text columns to translate the color names to English.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -688,7 +688,7 @@ select * from table_name order by column_name collate collation_name
 
 Here's a full example of a collation callback in action:
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -735,7 +735,7 @@ Notice how the output prints all the statements executed by SQLite behind the sc
 also reveals that `cursor_obj.executemany` wraps up multiple statements in a transaction and
 runs them in an atomic manner.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -790,7 +790,7 @@ For demonstration purposes, I'm using an in-memory DB and backing that up in ano
 as well. One advantage of this approach is that your data is not loaded into memory at once,
 rather it's streamed iteratively from the main DB to the backup DB.
 
-```python
+```py
 # src.py
 import sqlite3
 import tempfile
@@ -839,7 +839,7 @@ the entire source database into memory and copy everything to the destination in
 pass. Also, in this example, the `progress` hook just prints the progress of the copied
 pages.
 
-```python
+```py
 # src.py
 import sqlite3
 from contextlib import ExitStack
@@ -904,7 +904,7 @@ performance benefits that come with an in-memory DB. The workflow is almost exac
 as before and the only difference is that the destination connection object points to an
 in-memory DB instead of an on-disk one.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -952,7 +952,7 @@ Number of rows in dst: 3
 You can also dump your in-memory DB into the disk. Just point the source connection object
 to the in-memory DB and the destination connection to the on-disk DB file.
 
-```python
+```py
 # src.py
 import sqlite3
 
@@ -1002,7 +1002,7 @@ showcase how effortless it is to leverage SQLite's native features via the Pytho
 following example creates a virtual table and implements a full-text search engine that
 allows us to fuzzy search the colors in the `colors` table by their names or hex values.
 
-```python
+```py
 # src.py
 import sqlite3
 import uuid

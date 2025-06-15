@@ -15,7 +15,7 @@ that there might be an aphorism on the practice.
 To understand it, consider the example below. Here, you have a module containing a function
 that fetches data from some fictitious database.
 
-```python
+```py
 # db.py
 from __future__ import annotations
 import random
@@ -30,7 +30,7 @@ def get_data() -> list[int]:
 Let's say another module named `service.py` imports the `get_data` function and calls that
 inside of a function named `process_data`:
 
-```python
+```py
 # service.py
 from __future__ import annotations
 
@@ -53,7 +53,7 @@ integers.
 
 You could patch `get_data` in multiple ways. Here's the first attempt:
 
-```python
+```py
 # test_service.py
 from unittest.mock import patch
 
@@ -116,7 +116,7 @@ While the function `get_data` is defined in the `db.py` module, it's actally use
 `service.py` module. So, we can avoid this missing target issue by patching `get_data` in
 the location where it's used; not where it's defined. Here's how to do it:
 
-```python
+```py
 # test_service.py
 
 # Notice how we're patching 'get_data' in the 'service.py' module.

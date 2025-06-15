@@ -20,7 +20,7 @@ only if you're using a static type checker.
 
 Here's an example:
 
-```python
+```py
 from typing import override
 
 
@@ -48,7 +48,7 @@ Found 1 error in 1 file (checked 1 source file)
 
 This decorator also works with class, property, or any other methods. Observe:
 
-```python
+```py
 from typing import override
 
 
@@ -79,7 +79,7 @@ Found 1 error in 1 file (checked 1 source file)
 The error message could be clearer here, though. You can use `@override` with class methods
 too:
 
-```python
+```py
 from typing import override
 
 

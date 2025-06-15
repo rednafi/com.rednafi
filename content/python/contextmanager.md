@@ -9,7 +9,7 @@ Python's context managers are great for resource management and stopping the pro
 leaked abstractions. You've probably used it while opening a file or a database connection.
 Usually it starts with a `with` statement like this:
 
-```python
+```py
 with open("file.txt", "wt") as f:
     f.write("contents go here")
 ```
@@ -17,7 +17,7 @@ with open("file.txt", "wt") as f:
 In the above case, `file.txt` gets automatically closed when the execution flow goes out of
 the scope. This is equivalent to writing:
 
-```python
+```py
 try:
     f = open("file.txt", "wt")
     text = f.write("contents go here")
@@ -31,7 +31,7 @@ To write a custom context manager, you need to create a class that includes the 
 and `__exit__` methods. Let's recreate a custom context manager that will execute the same
 workflow as above.
 
-```python
+```py
 class CustomFileOpen:
     """Custom context manager for opening files."""
 
@@ -49,7 +49,7 @@ class CustomFileOpen:
 
 You can use the above class just like a regular context manager.
 
-```python
+```py
 with CustomFileOpen("file.txt", "wt") as f:
     f.write("contents go here")
 ```
@@ -62,7 +62,7 @@ difficult. However, you can achieve better brevity by defining them using
 context manager. The blueprint for creating context manager decorators goes something like
 this:
 
-```python
+```py
 @contextmanager
 def some_generator(<arguments>):
     <setup>
@@ -74,7 +74,7 @@ def some_generator(<arguments>):
 
 When you use the context manager with the `with` statement:
 
-```python
+```py
 with some_generator(<arguments>) as <variable>:
     # ...body
 ```
@@ -99,7 +99,7 @@ code gracefully proceeds to the `finally` block where you run your cleanup code.
 
 Let's implement the same `CustomFileOpen` context manager with `contextmanager` decorator.
 
-```python
+```py
 from contextlib import contextmanager
 
 
@@ -117,7 +117,7 @@ def CustomFileOpen(filename, method):
 
 Now use it just like before:
 
-```python
+```py
 with CustomFileOpen("file.txt", "wt") as f:
     f.write("contents go here")
 ```
@@ -131,7 +131,7 @@ that'll be applied on a file-opening function. The decorator will:
 - Print a user provided description of the function.
 - Print the time it takes to run the function.
 
-```python
+```py
 from contextlib import ContextDecorator
 from time import time
 
@@ -154,7 +154,7 @@ class RunTime(ContextDecorator):
 
 You can use the decorator like this:
 
-```python
+```py
 @RunTime("This function opens a file")
 def custom_file_write(filename, mode, content):
     with open(filename, mode) as f:
@@ -163,7 +163,7 @@ def custom_file_write(filename, mode, content):
 
 Using the function like this should return:
 
-```python
+```py
 print(custom_file_write("file.txt", "wt", "jello"))
 ```
 
@@ -175,7 +175,7 @@ None
 
 You can also create the same decorator via `contextlib.contextmanager` decorator.
 
-```python
+```py
 from contextlib import contextmanager
 
 
@@ -196,7 +196,7 @@ def runtime(description):
 You can nest multiple context managers to manage resources simultaneously. Consider the
 following dummy manager:
 
-```python
+```py
 from contextlib import contextmanager
 
 
@@ -233,7 +233,7 @@ new exception.
 
 You can combine multiple context managers too. Let's consider these two managers.
 
-```python
+```py
 from contextlib import contextmanager
 
 
@@ -254,7 +254,7 @@ def b(name):
 Now combine these two using the decorator syntax. The following function takes the above
 define managers `a` and `b` and returns a combined context manager `ab`.
 
-```python
+```py
 @contextmanager
 def ab(a, b):
     with a("A") as A, b("B") as B:
@@ -263,7 +263,7 @@ def ab(a, b):
 
 This can be used as:
 
-```python
+```py
 with ab(a, b) as AB:
     print("Inside the composite context manager:", AB)
 ```
@@ -281,7 +281,7 @@ If you have variable numbers of context managers and you want to combine them gr
 `ExitStack`. This function takes the individual context managers and their arguments as
 tuples and returns the combined manager.
 
-```python
+```py
 from contextlib import contextmanager, ExitStack
 
 
@@ -291,7 +291,7 @@ def ab(cms, args):
         yield [stack.enter_context(cm(arg)) for cm, arg in zip(cms, args)]
 ```
 
-```python
+```py
 with ab((a, b), ("A", "B")) as AB:
     print("Inside the composite context manager:", AB)
 ```
@@ -309,7 +309,7 @@ gracefully. For example, suppose, you need to create a list from the contents of
 files in a directory. Let's see, how you can do so while avoiding accidental memory leakage
 with robust resource management.
 
-```python
+```py
 from contextlib import ExitStack
 from pathlib import Path
 
@@ -330,7 +330,7 @@ query into a transaction and make it atomic. Context managers can help you write
 transaction session in a very elegant way. A basic querying workflow in SQLAlchemy may look
 like this:
 
-```python
+```py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
@@ -361,7 +361,7 @@ with context manager. The session_scope function takes care of committing and ro
 in case of exception automatically. The `session_scope` function can be used to run queries
 in the following way:
 
-```python
+```py
 with session_scope() as session:
     myobject = MyObject("foo", "bar")
     session.add(myobject)
@@ -376,7 +376,7 @@ write a decorator type context manager that will handle the exceptions for you a
 these additional code from your main logic. Let's write a decorator that will handle
 `ZeroDivisionError` and `TypeError` simultaneously.
 
-```python
+```py
 from contextlib import contextmanager
 
 
@@ -394,13 +394,13 @@ def errhandler():
 
 Now use this in a function where these exceptions occur.
 
-```python
+```py
 @errhandler()
 def div(a, b):
     return a // b
 ```
 
-```python
+```py
 div("b", 0)
 ```
 
@@ -437,7 +437,7 @@ The following one is a more sophisticated example of using context manager to de
 error handling monstrosity from the main logic. It also hides the elaborate logging logic
 from the main method.
 
-```python
+```py
 import logging
 from contextlib import contextmanager
 import traceback
@@ -506,7 +506,7 @@ connection will be reused, which can result in a significant performance increas
 following example is taken directly from the official docs of the requests[^1] library.
 Let's persist some cookies across requests.
 
-```python
+```py
 with requests.Session() as session:
     session.get("http://httpbin.org/cookies/set/sessioncookie/123456789")
     response = session.get("http://httpbin.org/cookies")

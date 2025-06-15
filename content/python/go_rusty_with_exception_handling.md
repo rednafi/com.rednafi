@@ -12,7 +12,7 @@ paradigm where it's easier to ask for forgiveness than permission.
 However, Rust has this recoverable error[^2] handling workflow that leverages generic Enums.
 I wanted to explore how Black emulates that in Python. This is how it works:
 
-```python
+```py
 # src.py
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ In the above snippet, two generic types `Ok` and `Err` represent the return type
 error types of a callable respectively. These two generics were then combined into one
 `Result` generic type. You'd use the `Result` generic to handle exceptions as follows:
 
-```python
+```py
 # src.py
 ...
 
@@ -75,7 +75,7 @@ If you run Mypy on the snippet, it'll succeed as well.
 
 You can also apply constraints on the return or exception types as follows:
 
-```python
+```py
 # src.py
 ...
 # Only int, float, and str types are allowed as input.
