@@ -57,7 +57,7 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Breadcrumbs
 
-- The handle _"rednafi"_ is just a mashup of my first name, _Redowan_, and my nickname
+- The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my nickname
   _Nafi_, which my parents and a few close friends still use.
 - I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
 - When I'm not banging my head on the keyboard, I'm probably out taking a long walk through
