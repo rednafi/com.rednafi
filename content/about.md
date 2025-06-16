@@ -20,18 +20,22 @@ ShowShareButtons: false
     </figure>
 </div>
 
-Ahoy, fellow daywalkers! I'm Redowan Delowar, also go by 'rednafi' on most platforms.
+Ahoy, fellow daywalkers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
 
 Circa 2018, a glitch in the matrix slingshotted me from electrical engineering to data
 science, eventually landing me in brick-and-mortar software work.
 
-I enjoy exploring system architecture, databases, data analysis, and API design. In my spare
-time, I moonlight as a reader, writer, hiker, and a pathological minimalist.
+I enjoy spending time mulling over distributed systems, databases, and API design. In my
+spare time, I moonlight as a reader, writer, hiker, and a pathological minimalist.
 
 ## Work
 
-I'm currently based in Berlin and working at [Wolt] as a software engineer. Before this, I
+I'm currently based in Berlin and [working at Wolt] as a software engineer. Before this, I
 was exploring healthtech in the US and fintech in Southeast Asia.
+
+## Curriculum vitae
+
+For the paper trail inclined, here's [my CV].
 
 ## Contact
 
@@ -43,10 +47,15 @@ was exploring healthtech in the US and fintech in Southeast Asia.
 ## Colophon
 
 [Hugo] powers this blog. It's rocking the [Papermod] theme with some handrolled CSS flair. I
-write in plain markdown and push the [content] to GitHub, triggering the [GitHub Actions]
+write in plain Markdown and push the [content] to GitHub, triggering the [GitHub Actions]
 CI, which then deploys the site to [GitHub Pages].
 
-Learn more about the stack, deployment, and writing process [here].
+More on the [stack, deployment, and writing process] if you're curious.
+
+## Breadcrumbs
+
+The handle _"rednafi"_ is just a mashup of my first name, _Redowan_, and my nickname _Nafi_,
+which my parents and a few close friends use.
 
 ## Greatest hits
 
@@ -71,7 +80,12 @@ Learn more about the stack, deployment, and writing process [here].
 
 <!-- Work -->
 
-[wolt]: https://wolt.com
+[working at wolt]: https://explore.wolt.com/en/deu/about
+
+<!-- Curriculum vitae -->
+
+[my cv]:
+    https://docs.google.com/document/d/1LHQsrdJVN4RTFZ2DTmuwpe9zKcWfKJmABeSQXEnbZRQ/edit?usp=sharing
 
 <!-- Contact -->
 
@@ -84,7 +98,7 @@ Learn more about the stack, deployment, and writing process [here].
 
 [hugo]: https://gohugo.io
 [papermod]: https://github.com/adityatelange/hugo-PaperMod
-[here]: /misc/behind_the_blog
+[stack, deployment, and writing process]: /misc/behind_the_blog
 [content]: https://github.com/rednafi/rednafi.com
 [github actions]: https://docs.github.com/en/actions
 [github pages]: https://pages.github.com/
