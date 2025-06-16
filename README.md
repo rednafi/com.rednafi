@@ -1,43 +1,43 @@
-# [Redowan's Reflections][site]
+# Redowan's Reflections
 
-[![pre-commit.ci status][precommit-svg]][this]
+[![pre-commit.ci status][precommit-svg]][precommit-status]
 
-Musings & rants on software. Find them at [rednafi.com][site].
+Musings & rants on software. Find them at [rednafi.com].
 
 ## Local development
 
--   Install [Hugo][hugo]. I'm on macOS and Hugo can be installed with `brew`:
+- Install [Hugo]. I'm on macOS and Hugo can be installed with `brew`:
 
     ```sh
     brew install hugo
     ```
 
--   Bootstrap the theme:
+- Bootstrap:
 
     ```sh
     make init
     ```
 
--   Update the theme:
+- Update the stack:
 
     ```sh
     make update
     ```
 
--   Run the local server:
+- Run the local server:
 
     ```sh
-    make devserver
+    make dev
     ```
 
--   Go to [http://localhost:1313][localhost] to access the site locally.
+- Go to [http://localhost:1313] to access the site locally.
 
 ## Deployment
 
 The site is deployed to GitHub Pages via GitHub Actions.
 
-[site]: https://rednafi.com
+[rednafi.com]: https://rednafi.com
 [hugo]: https://gohugo.io/
-[localhost]: http://localhost:1313
+[http://localhost:1313]: http://localhost:1313
 [precommit-svg]: https://results.pre-commit.ci/badge/github/rednafi/rednafi.com/main.svg
-[this]: https://results.pre-commit.ci/latest/github/rednafi/rednafi.com/main
+[precommit-status]: https://results.pre-commit.ci/latest/github/rednafi/rednafi.com/main
