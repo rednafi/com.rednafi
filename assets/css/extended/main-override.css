@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .main {
   padding: 15px;
 }
@@ -8,6 +11,8 @@ body {
   word-break: break-word;
   background: var(--theme);
   font-weight: 400 !important;
+  margin: 0;
+  padding: 0;
 }
 .page-header h1 {
   font-size: 26px;

@@ -20,6 +20,8 @@ ShowShareButtons: false
     </figure>
 </div>
 
+---
+
 Ahoy, fellow daywalkers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
 
 Circa 2018, a glitch in the matrix slingshotted me from electrical engineering to data
@@ -39,10 +41,11 @@ For the paper trail inclined, here's [my CV].
 
 ## Contact
 
-- [Email]
-- [GitHub]
-- [LinkedIn]
-- [Bluesky]
+The best way to reach me is via [email]. I usually check it in the morning and reply within
+a day. I do most of my work on [GitHub]. I used to be more active in OSS back in the day,
+but my day job takes up most of my energy now so I'm less involved. I deleted my Twitter
+account, and these days I mostly rant on [Bluesky] and [Hacker News]. I cross-post some
+stuff on [LinkedIn] every now and then.
 
 ## Colophon
 
@@ -54,8 +57,13 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Breadcrumbs
 
-The handle _"rednafi"_ is just a mashup of my first name, _Redowan_, and my nickname _Nafi_,
-which my parents and a few close friends use.
+- The handle _"rednafi"_ is just a mashup of my first name, _Redowan_, and my nickname
+  _Nafi_, which my parents and a few close friends still use.
+- I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
+- When I'm not banging my head on the keyboard, I'm probably out taking a long walk through
+  some foresty area near a lake.
+- I think through writing and not the other way around. Most of the blogs on this site take
+  way longer to write than you'd think.
 
 ## Greatest hits
 
@@ -91,6 +99,7 @@ which my parents and a few close friends use.
 
 [email]: mailto:redowan.nafi@gmail.com
 [github]: https://github.com/rednafi
+[hacker news]: https://news.ycombinator.com/user?id=rednafi
 [linkedin]: https://www.linkedin.com/in/rednafi/
 [bluesky]: https://bsky.app/profile/rednafi.com
 
@@ -102,6 +111,10 @@ which my parents and a few close friends use.
 [content]: https://github.com/rednafi/rednafi.com
 [github actions]: https://docs.github.com/en/actions
 [github pages]: https://pages.github.com/
+
+<!-- Breadcrumbs -->
+
+[stanislaw lem's solaris]: https://www.goodreads.com/book/show/95558.Solaris
 
 <!-- Greatest hits -->
 
