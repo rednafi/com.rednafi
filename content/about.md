@@ -42,10 +42,10 @@ For the paper trail inclined, here's [my CV].
 ## Contact
 
 The best way to reach me is via [email]. I usually check it in the morning and reply within
-a day. I do most of my work on [GitHub]. I used to be more active in OSS back in the day,
-but my day job takes up most of my energy now so I'm less involved. I deleted my Twitter
-account, and these days I mostly rant on [Bluesky] and [Hacker News]. I cross-post some
-stuff on [LinkedIn] every now and then.
+a day. Most of my work lives on [GitHub]. I used to be more involved in OSS, but these days
+the day job takes up most of my energy, so that's slowed down. My Twitter account is gone,
+and now I mostly rant on [Bluesky] and [Hacker News]. Every now and then, I cross-post a few
+things on [LinkedIn] too.
 
 ## Colophon
 
@@ -80,23 +80,22 @@ More on the [stack, deployment, and writing process] if you're curious.
 - [Pesky little scripts]
 - [I kind of like rebasing]
 
-<!-- Self -->
+<!-- References -->
+<!-- prettier-ignore-start -->
 
+<!-- Self -->
 [rednafi.com]: /
 [writer]: /archives/
 [tinkerer]: /tags/til/
 
 <!-- Work -->
-
 [working at wolt]: https://explore.wolt.com/en/deu/about
 
 <!-- Curriculum vitae -->
-
 [my cv]:
     https://docs.google.com/document/d/1LHQsrdJVN4RTFZ2DTmuwpe9zKcWfKJmABeSQXEnbZRQ/edit?usp=sharing
 
 <!-- Contact -->
-
 [email]: mailto:redowan.nafi@gmail.com
 [github]: https://github.com/rednafi
 [hacker news]: https://news.ycombinator.com/user?id=rednafi
@@ -104,7 +103,6 @@ More on the [stack, deployment, and writing process] if you're curious.
 [bluesky]: https://bsky.app/profile/rednafi.com
 
 <!-- Colophon -->
-
 [hugo]: https://gohugo.io
 [papermod]: https://github.com/adityatelange/hugo-PaperMod
 [stack, deployment, and writing process]: /misc/behind_the_blog
@@ -113,11 +111,9 @@ More on the [stack, deployment, and writing process] if you're curious.
 [github pages]: https://pages.github.com/
 
 <!-- Breadcrumbs -->
-
 [stanislaw lem's solaris]: https://www.goodreads.com/book/show/95558.Solaris
 
 <!-- Greatest hits -->
-
 [oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
 [the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
 [annotating args and kwargs in python]: /python/annotate_args_and_kwargs
@@ -131,3 +127,5 @@ More on the [stack, deployment, and writing process] if you're curious.
 [limit goroutines with buffered channels]: /go/limit_goroutines_with_buffered_channels/
 [pesky little scripts]: /misc/pesky_little_scripts/
 [i kind of like rebasing]: /misc/on_rebasing/
+
+<!-- prettier-ignore-end -->
