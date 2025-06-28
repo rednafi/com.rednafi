@@ -1,6 +1,6 @@
 ---
 title: Flags for discoverable test config in Go
-date: 2025-06-29
+date: 2025-06-28
 tags:
     - Go
     - Testing
