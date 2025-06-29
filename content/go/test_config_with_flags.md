@@ -250,12 +250,15 @@ go test -v -args -h | grep custom
 
 Define the global flags in `TestMain` when several files need the same switches or when you
 have package-wide setup (containers, databases, global mocks). Define flags in `init()` when
-a switch is relevant to one test file and you want the declaration right next to the logic it
-controls. I usually prefer per-test- file-level flags that don't need to depend on any
+a switch is relevant to one test file and you want the declaration right next to the logic
+it controls. I usually prefer per-test- file-level flags that don't need to depend on any
 global magic.
 
 Either way, the flag lives in code, is easy to grep, appears in `-h`, and tells everyone
-exactly what it controls.
+exactly what it controls. The only downside I can think of with this approach is that,
+similar to the environment variable technique, you'll have to check for the flag in every
+test and make a decision. But in practice, I prefer the flexibility over the all-or-nothing
+approach with build tags.
 
 ---
 
