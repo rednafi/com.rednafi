@@ -37,7 +37,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.147.9
+      HUGO_VERSION: 0.148.1
     steps:
       - name: Install Hugo CLI
         run: "wget -O ${{ runner.temp }}/hugo.deb https://github.com/\
