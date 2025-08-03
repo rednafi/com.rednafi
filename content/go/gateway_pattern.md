@@ -255,7 +255,7 @@ _client_ is way overloaded, which makes it hard to discuss the pattern clearly. 
 HTTP client, the gRPC client, and then your own client that wraps these. It gets confusing
 fast. I prefer _"gateway,"_ as Martin Fowler used in his original text.
 
-In the Go context, the core idea is that a service function uses a locally defined gateway
+In context of Go, the core idea is that a service function uses a locally defined gateway
 interface to communicate with external gateway providers. This way, the service and the
 external providers are unaware of each other's existence and can be tested independently.
 
