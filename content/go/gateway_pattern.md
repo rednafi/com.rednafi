@@ -246,7 +246,7 @@ func main() {
 It's also common to call gateways _"client."_ Some people prefer that name. However, I think
 _client_ is way overloaded, which makes it hard to discuss the pattern clearly. There's the
 HTTP client, the gRPC client, and then your own client that wraps these. It gets confusing
-fast. I prefer _'gateway,"_ as Martin Fowler used in his original text.
+fast. I prefer _"gateway,"_ as Martin Fowler used in his original text.
 
 In the Go context, the core idea is that a service function uses a locally defined gateway
 interface to communicate with external gateway providers. This way, the service and the
