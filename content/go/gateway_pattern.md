@@ -112,12 +112,19 @@ That gives the consumer full control over what it wants to depend on, and nothin
 don't accidentally couple your code to a bloated interface just because the implementation
 provided one. You define exactly the shape you need and mock that in your tests.
 
+> _Clients should not be forced to depend on methods they do not use._
+>
+> _— Interface segregation principle from SOLID, Uncle Bob_
+
 So, in the `order` package, we define a tiny private interface that reflects the use case.
 
 ```go
 // order/service.go
 package order
 
+// The order service only requires the Charge method of Stripe gateway.
+// So we define a tiny interface here on the consumer side rather
+// than on the producer side
 type paymentGateway interface {
     Charge(amount int64, currency, cardToken string) (string, error)
 }
