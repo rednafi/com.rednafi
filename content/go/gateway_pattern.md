@@ -38,7 +38,7 @@ gRPC. But that's an implementation detail and shouldn't make any difference to t
 high-level `order` package.
 
 `order` will communicate with `external` via a common interface. This is how we satisfy the
-_both should depend on abstractions_ part of the ethos.
+_"both should depend on abstractions"_ part of the ethos.
 
 Our app layout looks like this:
 
