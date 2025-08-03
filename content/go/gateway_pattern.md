@@ -1,5 +1,5 @@
 ---
-title: Gateway pattern to call external services in Go
+title: Gateway pattern to call external services
 date: 2025-08-03
 tags:
     - Go
