@@ -1,5 +1,5 @@
 ---
-title: Gateway pattern to invoke external dependencies
+title: Gateway pattern for external service calls
 date: 2025-08-03
 tags:
     - Go
