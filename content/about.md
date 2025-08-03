@@ -24,16 +24,19 @@ ShowShareButtons: false
 
 Ahoy, fellow daywalkers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
 
-Circa 2018, a glitch in the matrix slingshotted me from electrical engineering to data
-science, eventually landing me in brick-and-mortar software work.
-
-I enjoy spending time mulling over distributed systems, databases, and API design. In my
-spare time, I moonlight as a reader, writer, hiker, and a pathological minimalist.
-
-## Work
-
 I'm currently based in Berlin and [working at Wolt] as a software engineer. Before this, I
 was exploring healthtech in the US and fintech in Southeast Asia.
+
+I focus on backend and distributed systems, mostly at the intersection of infrastructure,
+databases, and observability. I deeply care about API ergonomics and contract stability,
+especially when teams and services scale independently. I also help teams shape their data
+architecture, plan for capacity, and keep observability signals flowing at scale. I like
+working in the open and writing about my learnings.
+
+Recurring themes: Go, Python, distributed systems, schema-driven development, eventual
+consistency, resilience patterns, high availability, data access strategies, observability,
+SRE practices, and sci-fi.
+
 
 ## Curriculum vitae
 
@@ -84,11 +87,6 @@ More on the [stack, deployment, and writing process] if you're curious.
 <!-- prettier-ignore-start -->
 
 <!-- Self -->
-[rednafi.com]: /
-[writer]: /archives/
-[tinkerer]: /tags/til/
-
-<!-- Work -->
 [working at wolt]: https://explore.wolt.com/en/deu/about
 
 <!-- Curriculum vitae -->
