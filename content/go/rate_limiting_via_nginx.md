@@ -163,7 +163,6 @@ The `http` block contains directives that apply to HTTP/S traffic.
     ```
 
     This line sets up rate limiting policy using three parameters:
-
     - Key (`$binary_remote_addr`): This is the client's IP address in a binary format. It's
       used as a key to apply the rate limit, meaning each unique IP address is subjected to
       the rate limit specified.
