@@ -29,7 +29,7 @@ axiom:
 > _abstractions. Abstractions should not depend on details. Details should depend on_
 > _abstractions._
 >
-> _— Uncle Bob_
+> _— Dependency inversion principle (D in SOLID), Uncle Bob_
 
 In this scenario, our business logic in the `order` package is the _high-level module_ and
 `external` is the _low-level module_, as the latter concerns itself with transport details.
@@ -114,7 +114,7 @@ provided one. You define exactly the shape you need and mock that in your tests.
 
 > _Clients should not be forced to depend on methods they do not use._
 >
-> _— Interface segregation principle from SOLID, Uncle Bob_
+> _— Interface segregation principle (I in SOLID), Uncle Bob_
 
 So, in the `order` package, we define a tiny private interface that reflects the use case.
 
