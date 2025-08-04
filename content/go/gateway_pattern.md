@@ -44,12 +44,12 @@ Our app layout looks like this:
 
 ```txt
 yourapp/
-├── cmd/
+├── cmd/                        # wire up the deps
 │   └── main.go
-├── order/
+├── order/                      # business logic in the service functions
 │   ├── service.go
 │   └── service_test.go
-├── external/
+├── external/                   # code to communicate with external deps
 │   └── stripe/
 │       ├── gateway.go
 │       ├── mock_gateway.go
