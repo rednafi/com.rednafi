@@ -81,10 +81,10 @@ func NewStripeGateway(apiKey string) *StripeGateway {
 
 // Handle all the details of making HTTP calls to the Stripe service here.
 func (s *StripeGateway) Charge(
-    amount int64, currency string, cardToken string) (string, error) {
+    amount int64, currency string, source string) (string, error) {
     fmt.Printf(
         "[Stripe] Charging %d %s to card %s\n",
-        amount, currency, cardToken,
+        amount, currency, source,
     )
     return "txn_live_123", nil
 }
@@ -122,11 +122,11 @@ So, in the `order` package, we define a tiny private interface that reflects the
 // order/service.go
 package order
 
-// The order service only requires the Charge method of Stripe gateway.
+// The order service only requires the Charge method of a payment gateway.
 // So we define a tiny interface here on the consumer side rather
 // than on the producer side
 type paymentGateway interface {
-    Charge(amount int64, currency, cardToken string) (string, error)
+    Charge(amount int64, currency string, source string) (string, error)
 }
 
 type Service struct {
@@ -140,8 +140,8 @@ func NewService(gateway paymentGateway) *Service {
 
 // In production code, this calls the .Charge method of the Stripe implementation,
 // but during tests, this will call .Charge on a mock gateway.
-func (s *Service) Checkout(amount int64, cardToken string) error {
-    _, err := s.gateway.Charge(amount, "USD", cardToken)
+func (s *Service) Checkout(amount int64, source string) error {
+    _, err := s.gateway.Charge(amount, "USD", source)
     return err
 }
 ```
@@ -169,13 +169,13 @@ import (
 
 type mockGateway struct {
     calledAmount int64
-    calledToken  string
+    calledSource string
 }
 
 func (m *mockGateway) Charge(
-    amount int64, currency, cardToken string) (string, error) {
+    amount int64, currency, source string) (string, error) {
     m.calledAmount = amount
-    m.calledToken = cardToken
+    m.calledSource = source
     return "txn_mock", nil
 }
 
@@ -183,7 +183,7 @@ func TestCheckoutCallsCharge(t *testing.T) {
     mock := &mockGateway{}
     svc := order.NewService(mock)
 
-    err := svc.Checkout(1000, "tok_test_abc")
+    err := svc.Checkout(1000, "test_source_abc")
     if err != nil {
         t.Fatalf("unexpected error: %v", err)
     }
@@ -192,8 +192,8 @@ func TestCheckoutCallsCharge(t *testing.T) {
         t.Errorf("expected amount 1000, got %d", mock.calledAmount)
     }
 
-    if mock.calledToken != "tok_test_abc" {
-        t.Errorf("expected token tok_test_abc, got %s", mock.calledToken)
+    if mock.calledSource != "test_source_abc" {
+        t.Errorf("expected source test_source_abc, got %s", mock.calledSource)
     }
 }
 ```
