@@ -15,13 +15,13 @@
   src: url("/fonts/inter-v18-latin-700.woff2") format("woff2");
 }
 
-/* Google Sans Code for code snippets - only regular weight */
+/* JetBrains Mono for code snippets - only regular weight */
 @font-face {
-  font-family: "Google Sans Code";
+  font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/google-sans-code-v11-latin-regular.woff2") format("woff2");
+  src: url("/fonts/jetbrains-mono-v23-latin-regular.woff2") format("woff2");
 }
 
 /* Logo and headers use Inter */
