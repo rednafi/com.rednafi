@@ -19,14 +19,15 @@
   margin: auto 4px;
   padding: 4px 6px;
   font-size: 0.9em;
-  font-family: "Jetbrains Mono", monospace;
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color) !important;
+  font-family: "Google Sans Code", monospace;
 }
 
 .post-content pre code {
   background: var(--code-bg) !important;
+  font-family: "Google Sans Code", monospace;
 }
 
 .toc {
