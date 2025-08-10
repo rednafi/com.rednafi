@@ -30,6 +30,19 @@
   font-family: "Google Sans Code", monospace;
 }
 
+/* Blockquotes with same background as code */
+.post-content blockquote {
+  background: var(--code-bg);
+  margin: 20px 0;
+  padding: 10px 10px;
+  border-radius: var(--radius);
+}
+
+/* Remove bottom margin from last element in blockquotes */
+.post-content blockquote > *:last-child {
+  margin-bottom: 0 !important;
+}
+
 .toc {
   font-size: 0.9em;
 }
