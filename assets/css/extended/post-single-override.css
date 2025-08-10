@@ -22,12 +22,12 @@
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color) !important;
-  font-family: "Google Sans Code", monospace;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .post-content pre code {
   background: var(--code-bg) !important;
-  font-family: "Google Sans Code", monospace;
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* Blockquotes with same background as code */
