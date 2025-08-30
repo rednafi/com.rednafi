@@ -253,11 +253,17 @@ whenever possible.
 
 ## Parting words
 
-I find it sort of comforting that this is all there is to lifecycle management in Go. I've
-written tests in half a dozen languages with countless frameworks, and there are so many
-different ways to do setup and teardown that I can’t write tests elsewhere without looking
-up syntax and wiring tricks. Go's standard testing framework has its limitations, but I feel
-like those constraints make my tests easier to read and maintain.
+Most of your setup and teardown should happen at the function level. That gives you the
+strongest isolation and keeps each test self-contained.
+
+The next most useful pattern is at the subtest group level, where you create a resource once
+in a parent test and let its children share it. Cleanup runs when the parent finishes, which
+makes sense when you really do want that shared state.
+
+Package-level setup through `TestMain` should be rare. It is tempting when setup is
+expensive, but global state is the fastest way to end up with brittle tests. Mixing
+different scopes is possible, but usually creates more confusion than clarity, so reach
+for it only when you have no better option.
 
 <!-- References -->
 
