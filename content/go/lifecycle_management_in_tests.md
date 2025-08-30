@@ -183,7 +183,7 @@ func TestOrders(t *testing.T) {
 
 In this example, `TestMain` could be running a package-wide database server. The parent test `TestOrders` sets up a schema that is shared across its subtests. Inside, one subtest spins up its own per-test database to work in isolation, while another uses the shared schema to test how state persists across operations.
 
-The combination of package, group, and function scopes gives you flexibility: reuse expensive resources when you need to, and isolate state when correctness depends on it. This combination can be hard to reason about when you have many different subtests under a single parent. I tend to avoid combining scopes whenever possible.
+The combination of package, group, and function scopes gives you flexibility: reuse expensive resources when you need to, and isolate state when correctness depends on it. However, combining scopes can be hard to reason about when you have many different subtests under a single parent that are also interacting with some global state. I tend to avoid this whenever possible.
 
 ## Parting words
 
