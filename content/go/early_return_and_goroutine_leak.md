@@ -6,7 +6,6 @@ tags:
     - Concurrency
 ---
 
-
 At work, one of the most common mistakes I notice when reviewing candidates' home
 assignments is how they wire goroutines to channels and then return early.
 
