@@ -116,7 +116,7 @@ second result exists at all. If that second value carries data you must process,
 still receive it. If it is truly fire and forget, buffering is fine.
 
 Often the cleanest approach is to drop the channel plumbing when you only need to run tasks
-and aggregate errors. The `errgroup` package lets each goroutine return an error while the
+and aggregate errors. The [errgroup] package lets each goroutine return an error while the
 group does the waiting. There is nothing to forget to receive, so there is nothing to leak.
 
 ```go
@@ -191,10 +191,10 @@ particular receive in a general way, so it does not flag this pattern.
 access. A goroutine stuck on a channel send is not a data race. You may see a test hang
 until timeout, but the tool will not point to a leaking goroutine.
 
-You can turn this into a failing test with [goleak] from Uber. `goleak` fails if
-goroutines are still alive when a test ends. It snapshots all goroutines via the runtime,
-filters out the standard background ones, and reports the rest. Wire it into a test that
-triggers the early return and you will see the blocked sender's stack in the output.
+You can turn this into a failing test with [goleak] from Uber. `goleak` fails if goroutines
+are still alive when a test ends. It snapshots all goroutines via the runtime, filters out
+the standard background ones, and reports the rest. Wire it into a test that triggers the
+early return and you will see the blocked sender's stack in the output.
 
 Here is a test that leaks and fails:
 
@@ -251,8 +251,8 @@ FAIL
 exit status 1
 ```
 
-
-If you switch the implementation to a fixed version, the test passes. For example, the draining fix:
+If you switch the implementation to a fixed version, the test passes. For example, the
+draining fix:
 
 ```go
 func fixedDrain() error {
@@ -312,3 +312,14 @@ You can avoid this by:
   cancellation
 
 Add goleak to your tests so leaks surface early during development.
+
+<!-- References -->
+<!-- prettier-ignore-start -->
+
+[errgroup]:
+    pkg.go.dev/golang.org/x/sync/errgroup
+
+[goleak]:
+    github.com/uber-go/goleak
+
+<!-- prettier-ignore-end -->
