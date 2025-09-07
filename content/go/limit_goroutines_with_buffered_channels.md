@@ -3,7 +3,7 @@ title: Limit goroutines with buffered channels
 date: 2023-08-23
 tags:
     - Go
-    - Concurrency Patterns
+    - Concurrency
     - TIL
 ---
 
