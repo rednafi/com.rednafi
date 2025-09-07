@@ -217,7 +217,8 @@ func buggyEarlyReturn() error {
     // Force the early-return path by sending an error on ch1.
     go func() { ch1 <- result{err: fmt.Errorf("oops")} }()
 
-    // This send will block forever on the failing path because nobody receives ch2.
+    // This send will block forever on the failing path
+    // because nobody receives ch2.
     go func() { ch2 <- result{err: nil} }()
 
     r1 := <-ch1
@@ -230,7 +231,8 @@ func buggyEarlyReturn() error {
 }
 
 func TestBuggyLeaks(t *testing.T) {
-    defer goleak.VerifyNone(t) // fails if any goroutines are stuck at test end
+    // fails if any goroutines are stuck at test end
+    defer goleak.VerifyNone(t)
     _ = buggyEarlyReturn()
 }
 ```
@@ -240,7 +242,8 @@ This test fails and prints the goroutine stack stuck in the send to `ch2`.
 ```
 === RUN   TestBuggyLeaks
     main_test.go:34: found unexpected goroutines:
-        [Goroutine 24 in state chan send, with thing.buggyEarlyReturn.func2 on top of the stack:
+        [Goroutine 24 in state chan send, with thing.buggyEarlyReturn.func2 on
+        top of the stack:
         thing.buggyEarlyReturn.func2()
                 /Users/rednafi/canvas/rednafi.com/thing/main_test.go:20 +0x28
         created by thing.buggyEarlyReturn in goroutine 22
