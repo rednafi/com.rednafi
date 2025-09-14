@@ -37,7 +37,6 @@ Recurring themes: Go, Python, distributed systems, schema-driven development, ev
 consistency, resilience patterns, high availability, data access strategies, observability,
 SRE practices, and sci-fi.
 
-
 ## Curriculum vitae
 
 For the paper trail inclined, here's [my CV].

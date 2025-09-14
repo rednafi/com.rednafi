@@ -262,8 +262,8 @@ makes sense when you really do want that shared state.
 
 Package-level setup through `TestMain` should be rare. It is tempting when setup is
 expensive, but global state is the fastest way to end up with brittle tests. Mixing
-different scopes is possible, but usually creates more confusion than clarity, so reach
-for it only when you have no better option.
+different scopes is possible, but usually creates more confusion than clarity, so reach for
+it only when you have no better option.
 
 <!-- References -->
 
