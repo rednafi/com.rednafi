@@ -130,7 +130,6 @@ return check_rate_limit(
 The script performs the following operations in order:
 
 1. **Remove expired entries**:
-
     - It uses `ZREMRANGEBYSCORE` to remove notifications older than the time window
       (`current_time - window`). This ensures that only active notifications are considered
       for the limits.
@@ -140,19 +139,16 @@ The script performs the following operations in order:
       during each invocation.
 
 2. **Check the global limit**:
-
     - `ZCARD` counts the number of active notifications in the global sorted set.
     - If this count equals or exceeds the global limit (e.g., 100), the request is rejected
       (`return 0`).
 
 3. **Check the category-specific limit**:
-
     - `ZCARD` is used again to count the active notifications for the specific category.
     - If this count equals or exceeds the category limit (e.g., 10), the request is rejected
       (`return 0`).
 
 4. **Add the notification**:
-
     - If both limits are within bounds, the script uses `ZADD` to insert the current
       notification into both the global and category-specific sorted sets, using a timestamp
       as the score for accurate tracking.

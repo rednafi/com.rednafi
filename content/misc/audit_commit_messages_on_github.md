@@ -15,7 +15,6 @@ The process roughly goes like this:
 - Creating a feature branch off of `main/master/trunk`. If the feature is trivial or just a
   doc update, this step can be skipped.
 - Referring to the issue in every commit message as you start working on the feature:
-
     - Appending `#refs <issue-number>` to every commit message. This will attach the commit
       to the concerning issue on the GitHub UI.
     - Appending `#closes <issue-number>` to the final commit message when the feature is
