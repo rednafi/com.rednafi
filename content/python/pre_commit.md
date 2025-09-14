@@ -16,7 +16,6 @@ To keep my sanity, I only use three linters in all of my python projects:
   automatically separate them by sections and type. It parses specified files for global
   level import lines and puts them all at the top of the file grouped together by the type
   of import:
-
     - Future
     - Python Standard Library
     - Third Party
