@@ -70,7 +70,6 @@ named pipe or file descriptor is substituted into the original command line.
 This is different from the plain-old `stdin` or `stdout` redirection. Here's how:
 
 - **Input**
-
     - _Plain redirection_: When using plain stdin redirection (`<`), you can redirect input
       from a file, for example, `< input.txt`. The command reads the content of the file as
       standard input (stdin).
