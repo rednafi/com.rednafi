@@ -1,5 +1,5 @@
 ---
-title: Let domains guide your Go application structure
+title: Let the domain guide your application structure
 date: 2025-09-20
 tags:
     - Go
@@ -71,10 +71,12 @@ from mystore.handlers import http_handler
 But in Go the import path becomes this:
 
 ```go
-// Identifiers from order.go, user.go, product.go all live in the same namespace
+// Identifiers from order.go, user.go, product.go
+// all live in the same namespace
 import "mystore/models"
 
-// Identifiers from http_handler.go & webhook_handler.go all live in the same namespace
+// Identifiers from http_handler.go & webhook_handler.go
+// all live in the same namespace
 import "mystore/handlers"
 ```
 
@@ -135,7 +137,7 @@ mystore/
 ├── http/                 <-- lumping all the handlers here is fine
 │   ├── order_handler.go
 │   └── user_handler.go
-├── postgres/             <-- this is fine too, but you can create sub pkg if you need
+├── postgres/             <-- this is fine, but you can create sub pkgs too
 │   ├── order_repo.go
 │   └── user_repo.go
 └── cmd/
