@@ -1,3 +1,7 @@
+.post-header {
+  margin: 20px auto var(--content-gap) auto;
+}
+
 .post-title {
   margin-bottom: 2px;
   font-size: 26px;
@@ -45,6 +49,7 @@
 
 .toc {
   font-size: 0.9em;
+  margin: 0 2px 20px 2px;
 }
 
 .toc .details {
@@ -83,4 +88,17 @@ a.footnote-ref::before {
 }
 a.footnote-ref::after {
   content: "]";
+}
+
+/* Tags in post meta section styling */
+.post-tags-meta {
+  margin-top: 8px;
+}
+
+.post-tags-meta .post-tags {
+  display: inline-flex;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
