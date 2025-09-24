@@ -19,6 +19,17 @@
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}
     </div>
+    {{- /* Add tags on new line after other meta information */ -}}
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    {{- with ($.GetTerms $tags) }}
+    <div class="post-meta post-tags-meta">
+      <ul class="post-tags">
+        {{- range . }}
+        <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+    {{- end }}
     {{- end }}
   </header>
   {{- $isHidden := .Params.cover.hidden | default site.Params.cover.hiddenInSingle | default site.Params.cover.hidden }}
@@ -87,12 +98,6 @@
   {{- end }}
 
   <footer class="post-footer">
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- end }}
-    </ul>
     {{- if (.Param "ShowPostNavLinks") }}
     {{- partial "post_nav_links.html" . }}
     {{- end }}
