@@ -1,0 +1,5 @@
+- id: code_copy
+  translation: "snarf"
+
+- id: code_copied
+  translation: "snarfed!"
