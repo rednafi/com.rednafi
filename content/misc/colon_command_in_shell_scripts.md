@@ -1,6 +1,9 @@
 ---
 title: Colon command in shell scripts
 date: 2022-12-23
+slug: colon-command-in-shell-scripts
+aliases:
+    - /misc/colon_command_in_shell_scripts/
 tags:
     - Shell
     - TIL

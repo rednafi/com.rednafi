@@ -1,6 +1,9 @@
 ---
 title: Cropping texts in Python with 'textwrap.shorten'
 date: 2022-01-06
+slug: text-cropping-with-textwrap-shorten
+aliases:
+    - /python/text_cropping_with_textwrap_shorten/
 tags:
     - Python
     - TIL

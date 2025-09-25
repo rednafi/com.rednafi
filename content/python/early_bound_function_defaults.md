@@ -1,6 +1,9 @@
 ---
 title: Gotchas of early-bound function argument defaults in Python
 date: 2022-01-27
+slug: early-bound-function-defaults
+aliases:
+    - /python/early_bound_function_defaults/
 tags:
     - Python
 ---

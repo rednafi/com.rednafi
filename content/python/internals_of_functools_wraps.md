@@ -1,6 +1,9 @@
 ---
 title: Peeking into the internals of Python's 'functools.wraps' decorator
 date: 2022-02-14
+slug: internals-of-functools-wraps
+aliases:
+    - /python/internals_of_functools_wraps/
 tags:
     - Python
 ---

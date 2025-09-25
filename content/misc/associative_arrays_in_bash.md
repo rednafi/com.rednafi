@@ -1,6 +1,9 @@
 ---
 title: Associative arrays in Bash
 date: 2023-05-03
+slug: associative-arrays-in-bash
+aliases:
+    - /misc/associative_arrays_in_bash/
 tags:
     - Shell
     - TIL

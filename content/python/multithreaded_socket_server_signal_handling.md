@@ -1,6 +1,9 @@
 ---
 title: Signal handling in a multithreaded socket server
 date: 2023-02-26
+slug: multithreaded-socket-server-signal-handling
+aliases:
+    - /python/multithreaded_socket_server_signal_handling/
 tags:
     - Python
     - Networking

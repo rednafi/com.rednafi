@@ -1,6 +1,9 @@
 ---
 title: Three flavors of sorting Go slices
 date: 2025-03-22
+slug: sort-slice
+aliases:
+    - /go/sort_slice/
 tags:
     - Go
 ---

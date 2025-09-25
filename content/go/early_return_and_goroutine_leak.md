@@ -1,6 +1,9 @@
 ---
 title: Early return and goroutine leak
 date: 2025-09-07
+slug: early-return-and-goroutine-leak
+aliases:
+    - /go/early_return_and_goroutine_leak/
 tags:
     - Go
     - Concurrency

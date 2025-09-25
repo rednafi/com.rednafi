@@ -1,6 +1,9 @@
 ---
 title: When to use 'git pull --rebase'
 date: 2022-07-14
+slug: when-to-use-git-pull-rebase
+aliases:
+    - /misc/when_to_use_git_pull_rebase/
 tags:
     - Git
     - TIL

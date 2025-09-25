@@ -1,6 +1,9 @@
 ---
 title: Python logging quirks in AWS Lambda environment
 date: 2022-10-20
+slug: logging-quirks-in-lambda-environment
+aliases:
+    - /python/logging_quirks_in_lambda_environment/
 tags:
     - Python
     - AWS

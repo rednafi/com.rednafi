@@ -1,6 +1,9 @@
 ---
 title: Declaratively transform data class fields in Python
 date: 2022-03-20
+slug: declaratively-transform-dataclass-fields
+aliases:
+    - /python/declaratively_transform_dataclass_fields/
 tags:
     - Python
 ---

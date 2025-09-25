@@ -1,6 +1,9 @@
 ---
 title: Debugging a containerized Django application in Jupyter Notebook
 date: 2023-01-14
+slug: django-and-jupyter-notebook
+aliases:
+    - /python/django_and_jupyter_notebook/
 tags:
   - Python
   - Django

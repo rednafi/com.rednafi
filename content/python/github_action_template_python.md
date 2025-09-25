@@ -1,6 +1,9 @@
 ---
 title: Github action template for Python based projects
 date: 2022-03-02
+slug: github-action-template-python
+aliases:
+    - /python/github_action_template_python/
 tags:
     - Python
     - GitHub

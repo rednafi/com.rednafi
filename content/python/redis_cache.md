@@ -1,6 +1,9 @@
 ---
 title: Effortless API response caching with Python & Redis
 date: 2020-05-25
+slug: redis-cache
+aliases:
+    - /python/redis_cache/
 tags:
     - Python
     - API

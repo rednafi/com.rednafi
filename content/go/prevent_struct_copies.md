@@ -1,6 +1,9 @@
 ---
 title: Preventing accidental struct copies in Go
 date: 2025-04-21
+slug: prevent-struct-copies
+aliases:
+    - /go/prevent_struct_copies/
 tags:
     - Go
     - TIL

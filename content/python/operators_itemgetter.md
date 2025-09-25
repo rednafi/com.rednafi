@@ -1,6 +1,9 @@
 ---
 title: Safer 'operator.itemgetter' in Python
 date: 2022-06-16
+slug: operators-itemgetter
+aliases:
+    - /python/operators_itemgetter/
 tags:
     - Python
 ---

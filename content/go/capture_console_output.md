@@ -1,6 +1,9 @@
 ---
 title: Capturing console output in Go tests
 date: 2025-04-12
+slug: capture-console-output
+aliases:
+    - /go/capture_console_output/
 tags:
     - Go
     - Testing

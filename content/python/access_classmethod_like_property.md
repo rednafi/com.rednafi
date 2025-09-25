@@ -1,6 +1,9 @@
 ---
 title: Access 'classmethod's like 'property' methods in Python
 date: 2021-11-26
+slug: access-classmethod-like-property
+aliases:
+    - /python/access_classmethod_like_property/
 tags:
     - Python
 ---

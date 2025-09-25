@@ -1,6 +1,9 @@
 ---
 title: I kind of like rebasing
 date: 2024-06-18
+slug: on-rebasing
+aliases:
+    - /misc/on_rebasing/
 tags:
     - git
 ---

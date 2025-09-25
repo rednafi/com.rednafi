@@ -1,6 +1,9 @@
 ---
 title: Return JSON error payload instead of HTML text in DRF
 date: 2022-04-13
+slug: return-json-error-payload-in-drf
+aliases:
+    - /python/return_json_error_payload_in_drf/
 tags:
     - Python
     - API

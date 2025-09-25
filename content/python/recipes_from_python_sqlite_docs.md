@@ -1,6 +1,9 @@
 ---
 title: Recipes from Python SQLite docs
 date: 2022-09-11
+slug: recipes-from-python-sqlite-docs
+aliases:
+    - /python/recipes_from_python_sqlite_docs/
 tags:
     - Database
     - Python

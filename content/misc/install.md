@@ -4,6 +4,9 @@ date: 2024-07-28
 tags:
     - Shell
     - TIL
+slug: install
+aliases:
+    - /misc/install/
 ---
 
 TIL about the `install` command on \*nix systems. A quick GitHub search for the term brought

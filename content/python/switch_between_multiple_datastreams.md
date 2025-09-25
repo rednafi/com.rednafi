@@ -1,6 +1,9 @@
 ---
 title: Switching between multiple data streams in a single thread
 date: 2023-02-19
+slug: switch-between-multiple-datastreams
+aliases:
+    - /python/switch_between_multiple_datastreams/
 tags:
     - Python
     - Database

@@ -3,6 +3,9 @@ title: Deciphering Python's metaclasses
 date: 2020-06-26
 tags:
     - Python
+slug: metaclasses
+aliases:
+    - /python/metaclasses/
 ---
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._

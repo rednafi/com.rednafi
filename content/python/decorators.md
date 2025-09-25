@@ -3,6 +3,9 @@ title: Untangling Python decorators
 date: 2020-05-13
 tags:
     - Python
+slug: decorators
+aliases:
+    - /python/decorators/
 ---
 
 **_Updated on 2022-02-13_**: _Change functools import style._

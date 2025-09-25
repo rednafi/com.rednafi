@@ -1,6 +1,9 @@
 ---
 title: Please don't hijack my Python root logger
 date: 2024-08-03
+slug: no-hijack-root-logger
+aliases:
+    - /python/no_hijack_root_logger/
 tags:
     - Python
 ---

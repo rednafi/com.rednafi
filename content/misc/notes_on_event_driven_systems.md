@@ -1,6 +1,9 @@
 ---
 title: Notes on building event-driven systems
 date: 2024-09-21
+slug: notes-on-event-driven-systems
+aliases:
+    - /misc/notes_on_event_driven_systems/
 tags:
     - Networking
 ---

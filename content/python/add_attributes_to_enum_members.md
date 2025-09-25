@@ -1,6 +1,9 @@
 ---
 title: Add extra attributes to enum members in Python
 date: 2022-02-17
+slug: add-attributes-to-enum-members
+aliases:
+    - /python/add_attributes_to_enum_members/
 tags:
     - Python
 ---

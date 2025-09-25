@@ -1,6 +1,9 @@
 ---
 title: Writing on well-trodden topics
 date: 2023-08-14
+slug: writing-on-well-trodden-topics
+aliases:
+    - /zephyr/writing_on_well_trodden_topics/
 tags:
     - Essay
 ---

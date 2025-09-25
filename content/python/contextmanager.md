@@ -3,6 +3,9 @@ title: The curious case of Python's context manager
 date: 2020-03-26
 tags:
     - Python
+slug: contextmanager
+aliases:
+    - /python/contextmanager/
 ---
 
 Python's context managers are great for resource management and stopping the propagation of
