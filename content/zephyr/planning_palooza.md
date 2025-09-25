@@ -1,6 +1,9 @@
 ---
 title: Planning palooza
 date: 2024-01-01
+slug: planning-palooza
+aliases:
+    - /zephyr/planning_palooza/
 tags:
     - Essay
 ---

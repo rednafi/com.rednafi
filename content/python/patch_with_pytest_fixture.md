@@ -1,6 +1,9 @@
 ---
 title: Patching test dependencies via pytest fixture & unittest mock
 date: 2022-02-27
+slug: patch-with-pytest-fixture
+aliases:
+    - /python/patch_with_pytest_fixture/
 tags:
     - Python
     - Testing

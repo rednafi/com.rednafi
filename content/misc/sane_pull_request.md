@@ -1,6 +1,9 @@
 ---
 title: The sane pull request
 date: 2024-07-14
+slug: sane-pull-request
+aliases:
+    - /misc/sane_pull_request/
 tags:
     - Git
 ---

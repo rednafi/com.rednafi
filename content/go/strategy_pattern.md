@@ -1,6 +1,9 @@
 ---
 title: Strategy pattern in Go
 date: 2024-02-17
+slug: strategy-pattern
+aliases:
+    - /go/strategy_pattern/
 tags:
     - Go
     - TIL

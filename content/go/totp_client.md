@@ -1,6 +1,9 @@
 ---
 title: Writing a TOTP client in Go
 date: 2023-08-20
+slug: totp-client
+aliases:
+    - /go/totp_client/
 tags:
     - Go
     - TIL

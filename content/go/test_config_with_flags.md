@@ -1,6 +1,9 @@
 ---
 title: Flags for discoverable test config in Go
 date: 2025-06-28
+slug: test-config-with-flags
+aliases:
+    - /go/test_config_with_flags/
 tags:
     - Go
     - Testing

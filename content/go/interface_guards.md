@@ -1,6 +1,9 @@
 ---
 title: Interface guards in Go
 date: 2023-08-18
+slug: interface-guards
+aliases:
+    - /go/interface_guards/
 tags:
     - Go
     - TIL

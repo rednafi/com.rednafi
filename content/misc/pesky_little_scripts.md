@@ -1,6 +1,9 @@
 ---
 title: Pesky little scripts
 date: 2023-10-29
+slug: pesky-little-scripts
+aliases:
+    - /misc/pesky_little_scripts/
 tags:
     - Shell
 ---

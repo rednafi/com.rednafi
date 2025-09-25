@@ -1,6 +1,9 @@
 ---
 title: Simple terminal text formatting with tput
 date: 2023-04-23
+slug: terminal-text-formatting-with-tput
+aliases:
+    - /misc/terminal_text_formatting_with_tput/
 tags:
     - Shell
     - TIL

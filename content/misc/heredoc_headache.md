@@ -1,6 +1,9 @@
 ---
 title: Here-doc headache
 date: 2024-07-19
+slug: heredoc-headache
+aliases:
+    - /misc/heredoc_headache/
 tags:
     - Shell
 ---

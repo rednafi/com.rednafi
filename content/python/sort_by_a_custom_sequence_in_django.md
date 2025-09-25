@@ -1,6 +1,9 @@
 ---
 title: Sorting a Django queryset by a custom sequence of an attribute
 date: 2023-05-09
+slug: sort-by-a-custom-sequence-in-django
+aliases:
+    - /python/sort_by_a_custom_sequence_in_django/
 tags:
     - Python
     - Django

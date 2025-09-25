@@ -4,6 +4,9 @@ Date: 2024-10-02
 Tags:
     -   TIL
     -   Shell
+slug: direnv
+aliases:
+    - /misc/direnv/
 ---
 
 I'm not really a fan of shims—code that automatically performs actions as a side effect or

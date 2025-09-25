@@ -1,6 +1,9 @@
 ---
 title: String interning in Python
 date: 2022-01-05
+slug: string-interning
+aliases:
+    - /python/string_interning/
 tags:
     - Python
 ---

@@ -1,6 +1,9 @@
 ---
 title: Use daemon threads to test infinite while loops in Python
 date: 2021-11-18
+slug: use-daemon-threads-to-test-infinite-loop
+aliases:
+    - /python/use_daemon_threads_to_test_infinite_loop/
 tags:
     - Python
 ---

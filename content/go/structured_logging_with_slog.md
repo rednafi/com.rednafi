@@ -1,6 +1,9 @@
 ---
 title: Go structured logging with slog
 date: 2023-08-10
+slug: structured-logging-with-slog
+aliases:
+    - /go/structured_logging_with_slog/
 tags:
     - Go
     - TIL

@@ -1,6 +1,9 @@
 ---
 title: Amphibian decorators in Python
 date: 2022-02-06
+slug: amphibian-decorators
+aliases:
+    - /python/amphibian_decorators/
 tags:
     - Python
 ---

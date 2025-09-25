@@ -1,5 +1,8 @@
 ---
 title: Link blog in a static site
+slug: link-blog
+aliases:
+    - /misc/link_blog/
 Date: 2025-01-06
 Tags:
     - Essay

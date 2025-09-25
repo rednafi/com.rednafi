@@ -12,6 +12,9 @@ googleAnalytics: G-11NK905JK8
 taxonomies:
   tag: tags
 
+permalinks:
+  posts: "/:section/:slug/"
+
 minify:
   disableXML: true
   minifyOutput: true
@@ -168,7 +171,6 @@ menu:
       url: /feed/2025
       weight: 5
 
-
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 markup:
@@ -222,6 +224,5 @@ module:
       target: static
 
 copyright: "
-  <a href='/blogroll'>blogroll</a> •
-  <a href='/feed'>feed</a>
+  <a href='/blogroll'>blogroll</a> • <a href='/feed'>feed</a>
   "

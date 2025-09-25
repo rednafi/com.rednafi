@@ -1,6 +1,9 @@
 ---
 title: Gateway pattern for external service calls
 date: 2025-08-03
+slug: gateway-pattern
+aliases:
+    - /go/gateway_pattern/
 tags:
     - Go
     - Distributed Systems

@@ -1,6 +1,9 @@
 ---
 title: Dissecting an outage caused by eager-loading file content
 date: 2022-10-14
+slug: outage-caused-by-eager-loading-file
+aliases:
+    - /python/outage_caused_by_eager_loading_file/
 tags:
     - Python
     - Incident Post-mortem

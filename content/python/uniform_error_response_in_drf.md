@@ -1,6 +1,9 @@
 ---
 title: Uniform error response in Django Rest Framework
 date: 2022-01-20
+slug: uniform-error-response-in-drf
+aliases:
+    - /python/uniform_error_response_in_drf/
 tags:
     - Python
     - Django

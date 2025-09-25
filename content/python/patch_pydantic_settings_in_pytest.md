@@ -1,6 +1,9 @@
 ---
 title: Patching pydantic settings in pytest
 date: 2024-01-27
+slug: patch-pydantic-settings-in-pytest
+aliases:
+    - /python/patch_pydantic_settings_in_pytest/
 tags:
     - Python
     - TIL

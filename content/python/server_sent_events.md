@@ -1,6 +1,9 @@
 ---
 title: Pushing real-time updates to clients with Server-Sent Events (SSEs)
 date: 2023-04-08
+slug: server-sent-events
+aliases:
+    - /python/server_sent_events/
 tags:
     - Python
     - Networking

@@ -1,6 +1,9 @@
 ---
 title: Difference between constrained 'TypeVar' and 'Union' in Python
 date: 2022-01-19
+slug: difference-between-typevar-and-union
+aliases:
+    - /python/difference_between_typevar_and_union/
 tags:
     - Python
     - Typing

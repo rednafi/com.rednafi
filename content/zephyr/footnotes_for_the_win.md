@@ -1,6 +1,9 @@
 ---
 title: Footnotes for the win
 date: 2023-10-07
+slug: footnotes-for-the-win
+aliases:
+    - /zephyr/footnotes_for_the_win/
 tags:
     - Essay
 ---

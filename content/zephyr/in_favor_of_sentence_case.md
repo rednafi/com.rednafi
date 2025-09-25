@@ -1,6 +1,9 @@
 ---
 title: In favor of sentence case
 date: 2022-03-26
+slug: in-favor-of-sentence-case
+aliases:
+    - /zephyr/in_favor_of_sentence_case/
 tags:
     - Essay
 ---
