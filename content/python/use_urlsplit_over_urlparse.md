@@ -1,5 +1,8 @@
 ---
 title: Prefer urlsplit over urlparse to destructure URLs
+slug: use-urlsplit-over-urlparse
+aliases:
+    - /python/use_urlsplit_over_urlparse/
 Date: 2022-09-10
 tags:
     - Python

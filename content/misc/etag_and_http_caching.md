@@ -1,6 +1,9 @@
 ---
 title: ETag and HTTP caching
 date: 2024-04-10
+slug: etag-and-http-caching
+aliases:
+    - /misc/etag_and_http_caching/
 tags:
     - API
     - Go

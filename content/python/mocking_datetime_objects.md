@@ -1,6 +1,9 @@
 ---
 title: Mocking chained methods of datetime objects in Python
 date: 2022-03-16
+slug: mocking-datetime-objects
+aliases:
+    - /python/mocking_datetime_objects/
 tags:
     - Python
     - Testing

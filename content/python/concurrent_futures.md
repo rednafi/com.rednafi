@@ -1,6 +1,9 @@
 ---
 title: Effortless concurrency with Python's concurrent.futures
 date: 2020-04-21
+slug: concurrent-futures
+aliases:
+    - /python/concurrent_futures/
 tags:
     - Python
 ---

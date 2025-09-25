@@ -4,6 +4,9 @@ Date: 2024-10-22
 Tags:
     -   TIL
     -   Docker
+slug: docker-mount
+aliases:
+    - /misc/docker_mount/
 ---
 
 I always get tripped up by Docker's different mount types and their syntax, whether I'm

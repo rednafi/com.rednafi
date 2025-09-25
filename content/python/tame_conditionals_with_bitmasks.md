@@ -1,6 +1,9 @@
 ---
 title: Taming conditionals with bitmasks
 date: 2023-07-29
+slug: tame-conditionals-with-bitmasks
+aliases:
+    - /python/tame_conditionals_with_bitmasks/
 tags:
     - Python
     - TIL

@@ -1,6 +1,9 @@
 ---
 title: Rate limiting via Nginx
 date: 2024-01-06
+slug: rate-limiting-via-nginx
+aliases:
+    - /go/rate_limiting_via_nginx/
 tags:
     - Go
     - Networking

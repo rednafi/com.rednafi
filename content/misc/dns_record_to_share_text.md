@@ -1,6 +1,9 @@
 ---
 title: Using DNS record to share text data
 date: 2023-07-17
+slug: dns-record-to-share-text
+aliases:
+    - /misc/dns_record_to_share_text/
 tags:
     - Shell
     - TIL

@@ -1,6 +1,9 @@
 ---
 title: Behind the blog
 date: 2024-09-14
+slug: behind-the-blog
+aliases:
+    - /misc/behind_the_blog/
 tags:
   - Essay
 ---

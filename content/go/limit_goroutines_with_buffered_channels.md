@@ -1,6 +1,9 @@
 ---
 title: Limit goroutines with buffered channels
 date: 2023-08-23
+slug: limit-goroutines-with-buffered-channels
+aliases:
+    - /go/limit_goroutines_with_buffered_channels/
 tags:
     - Go
     - Concurrency

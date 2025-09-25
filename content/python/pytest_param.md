@@ -1,6 +1,9 @@
 ---
 title: Taming parametrize with pytest.param
 date: 2024-08-28
+slug: pytest-param
+aliases:
+    - /python/pytest_param/
 tags:
     - Python
     - Testing

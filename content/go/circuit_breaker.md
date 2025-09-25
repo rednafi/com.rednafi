@@ -1,6 +1,9 @@
 ---
 title: Writing a circuit breaker in Go
 date: 2024-10-06
+slug: circuit-breaker
+aliases:
+    - /go/circuit_breaker/
 tags:
     - Networking
     - Go

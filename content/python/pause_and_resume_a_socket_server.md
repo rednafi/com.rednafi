@@ -1,6 +1,9 @@
 ---
 title: Pausing and resuming a socket server in Python
 date: 2023-02-05
+slug: pause-and-resume-a-socket-server
+aliases:
+    - /python/pause_and_resume_a_socket_server/
 tags:
     - Python
     - Networking

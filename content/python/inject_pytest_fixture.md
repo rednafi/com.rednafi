@@ -1,6 +1,9 @@
 ---
 title: Injecting Pytest fixtures without cluttering test signatures
 date: 2024-12-02
+slug: inject-pytest-fixture
+aliases:
+    - /python/inject_pytest_fixture/
 tags:
   - Python
   - TIL

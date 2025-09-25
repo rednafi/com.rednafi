@@ -1,11 +1,13 @@
 ---
 title: Implementing a simple traceroute clone in Python
 date: 2023-06-01
-slug: implement_traceroute_in_python
+slug: implement-traceroute
 tags:
     - Python
     - Networking
     - Shell
+aliases:
+    - /python/implement_traceroute/
 ---
 
 I was watching this amazing lightning talk[^1] by Karla Burnett and wanted to understand how

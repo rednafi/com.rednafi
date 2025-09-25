@@ -3,6 +3,9 @@ title: Interfaces, mixins and building powerful custom data structures in Python
 date: 2020-07-03
 tags:
     - Python
+slug: mixins
+aliases:
+    - /python/mixins/
 ---
 
 Imagine a custom _set-like_ data structure that doesn't perform hashing and trades

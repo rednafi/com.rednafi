@@ -1,6 +1,9 @@
 ---
 title: Bulk operations in Django with process pool
 date: 2022-06-27
+slug: django-bulk-operation-with-process-pool
+aliases:
+    - /python/django_bulk_operation_with_process_pool/
 tags:
     - Python
     - Django

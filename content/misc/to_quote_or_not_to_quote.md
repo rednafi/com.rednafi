@@ -1,6 +1,9 @@
 ---
 title: To quote or not to quote
 date: 2022-10-05
+slug: to-quote-or-not-to-quote
+aliases:
+    - /misc/to_quote_or_not_to_quote/
 tags:
     - Shell
 ---

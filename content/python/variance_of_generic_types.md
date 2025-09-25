@@ -1,6 +1,9 @@
 ---
 title: Variance of generic types in Python
 date: 2022-01-31
+slug: variance-of-generic-types
+aliases:
+    - /python/variance_of_generic_types/
 tags:
     - Python
     - Typing

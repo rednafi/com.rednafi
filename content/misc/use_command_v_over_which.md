@@ -1,6 +1,9 @@
 ---
 title: Use 'command -v' over 'which' to find a program's executable
 date: 2021-11-16
+slug: use-command-v-over-which
+aliases:
+    - /misc/use_command_v_over_which/
 tags:
     - Shell
     - TIL

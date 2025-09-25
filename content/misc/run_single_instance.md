@@ -1,6 +1,9 @@
 ---
 title: Running only a single instance of a process
 date: 2024-12-31
+slug: run-single-instance
+aliases:
+    - /misc/run_single_instance/
 tags:
     - Shell
     - Python

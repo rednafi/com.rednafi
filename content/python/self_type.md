@@ -1,13 +1,16 @@
 ---
 title: Self type in Python
 date: 2022-02-28
+slug: self-type
+aliases:
+    - /python/self_type/
 tags:
     - Python
     - Typing
 ---
 
 PEP-673[^1] introduces the `Self` type and it's coming to Python 3.11. However, you can
-already use that now via the `typing_extenstions`[^2] module.
+already use that now via the `typing_extentions`[^2] module.
 
 The `Self` type makes annotating methods that return the instances of the corresponding
 classes trivial. Before this, you'd have to do some mental gymnastics to statically type

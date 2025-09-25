@@ -1,6 +1,9 @@
 ---
 title: Distil git logs attached to a single file
 date: 2022-06-21
+slug: distil-git-logs-attached-to-a-file
+aliases:
+    - /misc/distil_git_logs_attached_to_a_file/
 tags:
     - Shell
     - Git

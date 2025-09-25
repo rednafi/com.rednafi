@@ -1,6 +1,9 @@
 ---
 title: Compose multiple levels of fixtures in pytest
 date: 2022-07-21
+slug: compose-multiple-levels-of-pytest-fixtures
+aliases:
+    - /python/compose_multiple_levels_of_pytest_fixtures/
 tags:
     - Python
     - Testing

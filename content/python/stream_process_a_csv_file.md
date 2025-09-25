@@ -1,6 +1,9 @@
 ---
 title: Stream process a CSV file in Python
 date: 2022-07-01
+slug: stream-process-a-csv-file
+aliases:
+    - /python/stream_process_a_csv_file/
 tags:
     - Python
     - Networking

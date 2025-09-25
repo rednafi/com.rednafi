@@ -1,6 +1,9 @@
 ---
 title: Automerge Dependabot PRs on GitHub
 date: 2022-07-07
+slug: automerge-dependabot-prs-on-github
+aliases:
+    - /misc/automerge_dependabot_prs_on_github/
 tags:
     - GitHub
 ---

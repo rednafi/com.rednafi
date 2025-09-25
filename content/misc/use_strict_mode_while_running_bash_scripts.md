@@ -1,6 +1,9 @@
 ---
 title: Use strict mode while running bash scripts
 date: 2021-11-08
+slug: use-strict-mode-while-running-bash-scripts
+aliases:
+    - /misc/use_strict_mode_while_running_bash_scripts/
 tags:
     - Shell
     - TIL

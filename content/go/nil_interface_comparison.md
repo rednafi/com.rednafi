@@ -1,6 +1,9 @@
 ---
 title: Nil comparisons and Go interface
 date: 2025-03-12
+slug: nil-interface-comparison
+aliases:
+    - /go/nil_interface_comparison/
 tags:
     - Go
 ---

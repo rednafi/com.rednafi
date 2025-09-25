@@ -3,6 +3,9 @@ title: No really, Python's pathlib is great
 date: 2020-04-13
 tags:
     - Python
+slug: pathlib
+aliases:
+    - /python/pathlib/
 ---
 
 When I first encountered Python's `pathlib` module for path manipulation, I brushed it aside

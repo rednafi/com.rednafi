@@ -1,6 +1,9 @@
 ---
 title: Auditing commit messages on GitHub
 date: 2022-10-06
+slug: audit-commit-messages-on-github
+aliases:
+    - /misc/audit_commit_messages_on_github/
 tags:
     - GitHub
 ---

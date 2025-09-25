@@ -1,6 +1,9 @@
 ---
 title: Einstellung effect
 date: 2024-02-24
+slug: einstellung-effect
+aliases:
+    - /zephyr/einstellung_effect/
 tags:
     - Essay
 ---

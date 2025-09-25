@@ -1,6 +1,9 @@
 ---
 title: Crossing the CORS crossroad
 date: 2024-03-12
+slug: crossing-the-cors-crossroad
+aliases:
+    - /misc/crossing_the_cors_crossroad/
 tags:
     - Networking
     - Go

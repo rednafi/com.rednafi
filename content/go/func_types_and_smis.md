@@ -1,6 +1,9 @@
 ---
 title: Function types and single-method interfaces in Go
 date: 2024-12-22
+slug: func-types-and-smis
+aliases:
+    - /go/func_types_and_smis/
 tags:
     - Go
 ---

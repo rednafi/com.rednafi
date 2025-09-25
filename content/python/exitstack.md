@@ -3,6 +3,9 @@ title: ExitStack in Python
 date: 2022-08-27
 tags:
     - Python
+slug: exitstack
+aliases:
+    - /python/exitstack/
 ---
 
 Over the years, I've used Python's `contextlib.ExitStack` in a few interesting ways. The

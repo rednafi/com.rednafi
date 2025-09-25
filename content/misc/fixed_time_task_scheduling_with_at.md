@@ -1,6 +1,9 @@
 ---
 title: Fixed-time job scheduling with UNIX 'at' command
 date: 2023-05-14
+slug: fixed-time-task-scheduling-with-at
+aliases:
+    - /misc/fixed_time_task_scheduling_with_at/
 tags:
     - Shell
     - JavaScript
