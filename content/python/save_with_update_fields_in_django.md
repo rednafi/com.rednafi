@@ -1,6 +1,9 @@
 ---
 title: Save models with update_fields for better performance in Django
 date: 2022-11-09
+slug: save-with-update-fields-in-django
+aliases:
+    - /python/save_with_update_fields_in_django/
 tags:
     - Python
     - Django

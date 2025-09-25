@@ -1,6 +1,9 @@
 ---
 title: How not to run a script in Python
 date: 2022-03-16
+slug: how-not-to-run-a-script
+aliases:
+    - /python/how_not_to_run_a_script/
 tags:
     - Python
 ---

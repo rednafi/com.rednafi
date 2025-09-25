@@ -1,6 +1,9 @@
 ---
 title: You probably don't need a DI framework
 date: 2025-05-24
+slug: di-frameworks-bleh
+aliases:
+    - /go/di_frameworks_bleh/
 tags:
     - Go
 ---

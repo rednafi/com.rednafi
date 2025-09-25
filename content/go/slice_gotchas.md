@@ -1,6 +1,9 @@
 ---
 title: Go slice gotchas
 date: 2025-02-06
+slug: slice-gotchas
+aliases:
+    - /go/slice_gotchas/
 tags:
     - Go
 ---

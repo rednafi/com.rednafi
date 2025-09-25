@@ -1,6 +1,9 @@
 ---
 title: Omitting dev dependencies in Go binaries
 date: 2024-01-21
+slug: omit-dev-dependencies-in-binaries
+aliases:
+    - /go/omit_dev_dependencies_in_binaries/
 tags:
     - Go
     - TIL

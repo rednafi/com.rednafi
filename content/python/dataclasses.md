@@ -3,6 +3,9 @@ title: Reduce boilerplate code with Python's dataclasses
 date: 2020-03-12
 tags:
     - Python
+slug: dataclasses
+aliases:
+    - /python/dataclasses/
 ---
 
 Recently, my work needed me to create lots of custom data types and draw comparison among

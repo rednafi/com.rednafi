@@ -1,6 +1,9 @@
 ---
 title: Limit concurrency with semaphore in Python asyncio
 date: 2022-02-10
+slug: limit-concurrency-with-semaphore
+aliases:
+    - /python/limit_concurrency_with_semaphore/
 tags:
     - Python
 ---

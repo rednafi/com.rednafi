@@ -1,6 +1,9 @@
 ---
 title: An ode to the neo-grotesque web
 date: 2023-09-18
+slug: an-ode-to-the-neo-grotesque-web
+aliases:
+    - /zephyr/an_ode_to_the_neo_grotesque_web/
 tags:
     - Essay
 ---

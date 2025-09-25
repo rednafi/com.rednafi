@@ -1,6 +1,9 @@
 ---
 title: Why does Go's io.Reader have such a weird signature?
 date: 2025-02-08
+slug: io-reader-signature
+aliases:
+    - /go/io_reader_signature/
 tags:
     - Go
     - TIL

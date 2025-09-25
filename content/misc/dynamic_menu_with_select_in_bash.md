@@ -1,6 +1,9 @@
 ---
 title: Dynamic menu with select statement in Bash
 date: 2023-04-29
+slug: dynamic-menu-with-select-in-bash
+aliases:
+    - /misc/dynamic_menu_with_select_in_bash/
 tags:
     - Shell
     - TIL

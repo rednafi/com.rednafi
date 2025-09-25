@@ -1,6 +1,9 @@
 ---
 title: Installing Python on macOS with asdf
 date: 2022-11-13
+slug: install-python-with-asdf
+aliases:
+    - /python/install_python_with_asdf/
 tags:
     - Python
     - TIL

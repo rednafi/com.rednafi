@@ -1,6 +1,9 @@
 ---
 title: Go 1.24's "tool" directive
 date: 2025-04-13
+slug: tool-directive
+aliases:
+    - /go/tool_directive/
 tags:
     - Go
     - TIL

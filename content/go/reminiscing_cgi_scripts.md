@@ -1,6 +1,9 @@
 ---
 title: Reminiscing CGI scripts
 date: 2023-12-25
+slug: reminiscing-cgi-scripts
+aliases:
+    - /go/reminiscing_cgi_scripts/
 tag:
     - Go
     - TIL

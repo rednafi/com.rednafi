@@ -3,6 +3,9 @@ title: Generic functions with Python's singledispatch
 date: 2020-04-05
 tags:
     - Python
+slug: singledispatch
+aliases:
+    - /python/singledispatch/
 ---
 
 **_Updated on 2022-02-13_**: _Change import style of `functools.singledispatch`._

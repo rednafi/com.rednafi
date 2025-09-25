@@ -1,6 +1,9 @@
 ---
 title: Modify iterables while iterating in Python
 date: 2022-03-04
+slug: modify-iterables-while-iterating
+aliases:
+    - /python/modify_iterables_while_iterating/
 tags:
     - Python
 ---

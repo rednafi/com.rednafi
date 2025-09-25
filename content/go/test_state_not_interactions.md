@@ -1,6 +1,9 @@
 ---
 title: Test state, not interactions
 date: 2025-09-14
+slug: test-state-not-interactions
+aliases:
+    - /go/test_state_not_interactions/
 tags:
     - Go
     - Testing

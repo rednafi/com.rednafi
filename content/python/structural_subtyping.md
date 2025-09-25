@@ -1,6 +1,9 @@
 ---
 title: Structural subtyping in Python
 date: 2021-12-04
+slug: structural-subtyping
+aliases:
+    - /python/structural_subtyping/
 tags:
     - Python
     - Typing

@@ -1,6 +1,9 @@
 ---
 title: Implementing proxy pattern in Python
 date: 2020-06-16
+slug: proxy-pattern
+aliases:
+    - /python/proxy_pattern/
 tags:
     - Python
 ---

@@ -1,6 +1,9 @@
 ---
 title: Oh my poor business logic
 date: 2023-11-05
+slug: oh-my-poor-business-logic
+aliases:
+    - /zephyr/oh_my_poor_business_logic/
 tags:
     - Essay
 ---

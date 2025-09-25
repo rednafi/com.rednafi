@@ -1,6 +1,9 @@
 ---
 title: Bulk request Google search indexing with API
 date: 2023-05-26
+slug: bulk-request-google-search-index
+aliases:
+    - /javascript/bulk_request_google_search_index/
 tags:
     - JavaScript
     - API

@@ -1,6 +1,9 @@
 ---
 title: Building a web app to display CSV file stats with ChatGPT & Observable
 date: 2023-04-10
+slug: exploring-observable-notebooks
+aliases:
+    - /javascript/exploring_observable_notebooks/
 tags:
     - JavaScript
 ---

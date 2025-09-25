@@ -3,6 +3,9 @@ Title: Shell redirection syntax soup
 Date: 2024-09-12
 Tags:
     - Shell
+slug: shell-redirection
+aliases:
+    - /misc/shell_redirection/
 ---
 
 I always struggle with the syntax for redirecting multiple streams to another command or a

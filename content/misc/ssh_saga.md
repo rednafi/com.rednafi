@@ -3,6 +3,9 @@ Title: SSH saga
 Date: 2024-12-17
 Tags:
     - Shell
+slug: ssh-saga
+aliases:
+    - /misc/ssh_saga/
 ---
 
 Setting up SSH access to a new VM usually follows the same routine: generate a key pair,

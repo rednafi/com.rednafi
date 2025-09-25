@@ -1,6 +1,9 @@
 ---
 title: Eschewing black box API calls
 date: 2024-01-15
+slug: eschewing-black-box-api-calls
+aliases:
+    - /misc/eschewing_black_box_api_calls/
 tags:
     - Python
     - JavaScript

@@ -1,6 +1,9 @@
 ---
 title: Manipulating text with query expressions in Django
 date: 2023-01-07
+slug: manipulate-text-with-django-query-expression
+aliases:
+    - /python/manipulate_text_with_django_query_expression/
 tags:
     - Python
     - Django

@@ -1,6 +1,9 @@
 ---
 title: Dysfunctional options pattern in Go
 date: 2024-03-06
+slug: dysfunctional-options-pattern
+aliases:
+    - /go/dysfunctional_options_pattern/
 tags:
     - Go
 ---

@@ -1,6 +1,9 @@
 ---
 title: TypeIs does what I thought TypeGuard would do in Python
 date: 2024-04-27
+slug: typeguard-vs-typeis
+aliases:
+    - /python/typeguard_vs_typeis/
 tags:
     - Python
     - Typing

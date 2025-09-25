@@ -1,6 +1,9 @@
 ---
 title: Self-hosted Google Fonts in Hugo
 date: 2023-09-14
+slug: self-hosted-google-fonts-in-hugo
+aliases:
+    - /misc/self_hosted_google_fonts_in_hugo/
 tags:
     - TIL
 ---

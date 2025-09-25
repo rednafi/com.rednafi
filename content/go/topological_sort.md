@@ -1,6 +1,9 @@
 ---
 title: Topological sort
 date: 2024-10-13
+slug: topological-sort
+aliases:
+    - /go/topological_sort/
 tags:
     - Go
 mermaid: true
