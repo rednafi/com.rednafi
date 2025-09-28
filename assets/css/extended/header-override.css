@@ -35,3 +35,75 @@
   font-weight: 400 !important;
   border-bottom: 2px solid currentColor;
 }
+
+/* Simple hamburger menu */
+.hamburger-menu {
+  position: relative;
+}
+
+.hamburger-checkbox {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.hamburger-label {
+  color: var(--primary);
+  font-size: 16px;
+  line-height: var(--header-height);
+  cursor: pointer;
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.1s ease;
+}
+
+.hamburger-checkbox:checked + .hamburger-label + .hamburger-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.hamburger-dropdown li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.hamburger-dropdown a {
+  display: block !important;
+  padding: 8px 16px !important;
+  margin: 0 !important;
+  text-align: left !important;
+  text-indent: 0 !important;
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  border: none !important;
+}
+
+.hamburger-dropdown a:hover {
+  background: var(--tertiary);
+}
+
+.nav,
+#menu {
+  overflow: visible;
+}
