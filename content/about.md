@@ -24,10 +24,10 @@ ShowShareButtons: false
 
 Ahoy, fellow travelers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
 
-I dabble with software and mostly live at the intersection of infrastructure, databases, and
-observability. I deeply care about API ergonomics and contract stability, especially when
-teams and services scale independently. I also help teams shape their data architecture,
-plan for capacity, and keep observability signals flowing at scale.
+I dabble in software and work at the intersection of infrastructure, databases, and
+observability. I care deeply about API ergonomics and contract stability, especially as
+teams and services scale independently. I also help teams design their data architecture,
+plan for capacity, and ensure observability signals flow reliably at scale.
 
 Recurring themes: Go, Python, distributed systems, schema-driven development, eventual
 consistency, resilience patterns, high availability, data access strategies, observability,
