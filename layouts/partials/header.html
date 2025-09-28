@@ -122,6 +122,23 @@
                 </a>
             </li>
             {{- end }}
+            {{- if site.Menus.hamburger }}
+            <li class="hamburger-menu">
+                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox">
+                <label for="hamburger-toggle" class="hamburger-label">etc ☰</label>
+                <ul class="hamburger-dropdown">
+                    {{- range site.Menus.hamburger }}
+                    {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
+                    {{- $page_url:= $currentPage.Permalink | absLangURL }}
+                    <li>
+                        <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}" {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
+                            {{- .Pre }}{{- .Name -}}{{ .Post -}}
+                        </a>
+                    </li>
+                    {{- end }}
+                </ul>
+            </li>
+            {{- end }}
         </ul>
     </nav>
 </header>
