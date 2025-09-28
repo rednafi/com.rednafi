@@ -161,21 +161,21 @@ menu:
       url: /archive/
       weight: 3
 
-  hamburger:
     - identifier: about
       name: about
       url: /about/
-      weight: 1
+      weight: 4
 
+  hamburger:
     - identifier: blogroll
       name: blogroll
       url: /blogroll/
-      weight: 2
+      weight: 1
 
     - identifier: feed
       name: "2025"
       url: /feed/2025
-      weight: 3
+      weight: 2
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
