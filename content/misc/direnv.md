@@ -9,12 +9,11 @@ aliases:
     - /misc/direnv/
 ---
 
-I'm not really a fan of shims—code that automatically performs actions as a side effect or
-intercepts commands when you use the shell or when a prompt runs. That's why, other than the
-occasional dabbling, I've mostly stayed away from tools like `asdf` or `pyenv` and instead
-stick to `apt` or `brew` for managing my binary installs, depending on the OS.
+I'm not a big fan of shims—code that messes with commands in the shell or prompt. That’s
+why, aside from occasional dabbling, I tend to eschew tools like `asdf` or `pyenv` and just
+use `apt` or `brew` for installs, depending on the OS.
 
-Recently, though, I've started seeing many people I admire extolling `direnv`:
+Then recently, I saw [Hynek extolling direnv]:
 
 > _If you're old-school like me, my `.envrc` looks like this:_
 >
@@ -24,23 +23,19 @@ Recently, though, I've started seeing many people I admire extolling `direnv`:
 > ```
 >
 > _The sync ensures there's always a `.venv`, so no memory-baking required._
->
-> _— Hynek Schlawack[^1]_
 
-Or,
+And [Brandur doing the same]:
 
 > _This is embarrassing, but after using direnv for 10+ years, I only discovered the
 > `source_env` directive yesterday._
 >
 > _Game changer. I used it to improve our project's dev configuration ergonomics so new
 > environment variables are easily distributed via Git._
->
-> _—Brandur[^2]_
 
 So I got curious and wanted to try the tool to see if it fits into my workflow, or if I'll
 quickly abandon it when something goes wrong.
 
-When I first visited their landing page[^3], I was a bit confused by the tagline:
+When I first visited their [landing page], I was a bit confused by the tagline:
 
 > _direnv – unclutter your .profile_
 
@@ -218,7 +213,7 @@ You can do a lot more with the idea, but going overboard with environment variab
 risky. You don't want to accidentally load something into the environment you didn't intend
 to. Keeping it simple with sane defaults is the way to go.
 
-Like Hynek, I've adopted `uv`[^4] in my Python workflow, and now my default `.envrc` has
+Like Hynek, I've adopted [uv] in my Python workflow, and now my default `.envrc` has
 these two commands:
 
 ```sh
@@ -272,10 +267,20 @@ The biggest reason I've adopted it everywhere is that it lets me share my shell 
 variables and the magic commands without having anything stashed away in my `~/.zshrc` or
 `~/.zshenv`, so there's no need for out-of-band communication.
 
-[^1]: [Hynek on Twitter](https://x.com/hynek/status/1838076629249044533)
+<!-- references -->
 
-[^2]: [Brandur on Twitter](https://x.com/brandur/status/1837104038854164645)
+<!-- prettier-ignore-start -->
 
-[^3]: [direnv](https://direnv.net/)
+[hynek extolling direnv]:
+    https://x.com/hynek/status/1838076629249044533
 
-[^4]: [uv](https://github.com/astral-sh/uv)
+[brandur doing the same]:
+    https://x.com/brandur/status/1837104038854164645
+
+[landing page]:
+    https://direnv.net/
+
+[uv]:
+    https://github.com/astral-sh/uv
+
+<!-- prettier-ignore-end -->
