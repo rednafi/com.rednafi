@@ -22,16 +22,12 @@ ShowShareButtons: false
 
 ---
 
-Ahoy, fellow daywalkers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
+Ahoy, fellow travelers! I'm Redowan Delowar, also go by _"rednafi"_ on most platforms.
 
-I'm currently based in Berlin and [working at Wolt] as a software engineer. Before this, I
-was exploring healthtech in the US and fintech in Southeast Asia.
-
-I focus on backend and distributed systems, mostly at the intersection of infrastructure,
-databases, and observability. I deeply care about API ergonomics and contract stability,
-especially when teams and services scale independently. I also help teams shape their data
-architecture, plan for capacity, and keep observability signals flowing at scale. I like
-working in the open and writing about my learnings.
+I dabble with software and mostly live at the intersection of infrastructure, databases, and
+observability. I deeply care about API ergonomics and contract stability, especially when
+teams and services scale independently. I also help teams shape their data architecture,
+plan for capacity, and keep observability signals flowing at scale.
 
 Recurring themes: Go, Python, distributed systems, schema-driven development, eventual
 consistency, resilience patterns, high availability, data access strategies, observability,
@@ -61,10 +57,8 @@ More on the [stack, deployment, and writing process] if you're curious.
 - The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my nickname
   _Nafi_, which my parents and a few close friends still use.
 - I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
-- When I'm not banging my head on the keyboard, I'm probably out taking a long walk through
-  some foresty area near a lake.
 - I think through writing and not the other way around. Most of the blogs on this site take
-  way longer to write than you'd think.
+  way longer to write than I'd like to admit.
 
 ## Greatest hits
 
