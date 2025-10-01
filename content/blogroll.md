@@ -23,6 +23,7 @@ ShowShareButtons: false
 - [Fabien Sanglard's Website]
 - [Harmful Stuff]
 - [Julia Evans]
+- [Matt T. Proud]
 - [Peter Bourgon]
 - [Simon Willison's Weblog]
 
@@ -44,6 +45,7 @@ ShowShareButtons: false
 [fabien sanglard's website]: https://fabiensanglard.net/
 [harmful stuff]: https://harmful.cat-v.org/
 [julia evans]: https://jvns.ca/
+[matt t. proud]: https://www.matttproud.com/blog/index.html
 [peter bourgon]: https://peter.bourgon.org/
 [simon willison's weblog]: https://simonwillison.net/
 
