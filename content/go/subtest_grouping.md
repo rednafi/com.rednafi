@@ -505,7 +505,7 @@ with manual subtest grouping.
 [group discovery function]:
     https://github.com/grpc/grpc-go/blob/d0ebcdffc75dc76f18966ab9cccafe6a949d6fb5/internal/grpctest/grpctest.go#L109
 
-[blatantly copy the code]:
+[blatantly copying the code]:
     https://github.com/grpc/grpc-go/blob/d0ebcdffc75dc76f18966ab9cccafe6a949d6fb5/internal/grpctest/grpctest.go
 
 [testify's suite]:
