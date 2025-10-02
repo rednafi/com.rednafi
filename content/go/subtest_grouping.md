@@ -26,7 +26,7 @@ grouping and work our way up. Coming up with examples that make the point while 
 fitting in a blog is tricky, so you'll have to bear with my toy examples and use a bit of
 imagination.
 
-## System under test (SUT)
+## Subject under test (SUT)
 
 Let's say we're writing tests for a calculator that, for the sake of argument, can only do
 addition and multiplication. Instead of going for table-driven tests, we'll split the tests
@@ -34,9 +34,9 @@ for addition and multiplication into two groups using subtests. The reason being
 addition and multiplication need different kinds of setup and teardown for some reason.
 
 I know I'm reaching, but bear with me. I'd rather make the point without dragging in mocks,
-a real database, or [testcontainers] and getting lost in details. But you can find similar
-setup in a real codebase everywhere where you might be talking to a database and your read
-and write path have separate [lifecycles].
+databases, or [testcontainers] and getting lost in details. But you can find similar setup
+in a real codebase everywhere where you might be talking to a database and your read and
+write path have separate [lifecycles].
 
 ## Keep it flat until you can’t
 
