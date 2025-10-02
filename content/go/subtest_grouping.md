@@ -517,7 +517,7 @@ with manual subtest grouping.
 [bloomberg's go-testgroup]:
     https://github.com/bloomberg/go-testgroup
 
-[extracting the groups into their own named functions]:
+[extracting groups into their own named functions]:
     /go/subtest-grouping/#extract-subtest-groups-into-functions
 
 [third party testing tools come with their own DSLs]:
