@@ -520,7 +520,7 @@ with manual subtest grouping.
 [extracting groups into their own named functions]:
     /go/subtest-grouping/#extract-subtest-groups-into-functions
 
-[third party testing tools come with their own DSLs]:
+[testing frameworks often develop into mini-languages of their own]:
     https://go.dev/doc/faq#testing_framework
 
 <!-- prettier-ignore-end-->
