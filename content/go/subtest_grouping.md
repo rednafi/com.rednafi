@@ -378,7 +378,8 @@ func (CalcSuite) TestMultiplication(t *testing.T) {
 }
 
 // Top-level entry that "go test" sees.
-// RunSubTests reflects over CalcSuite, then runs Setup, the test method, then Teardown.
+// RunSubTests reflects over CalcSuite,
+// then runs Setup, the test method, then Teardown.
 func TestCalc(t *testing.T) {
     grpctest.RunSubTests(t, CalcSuite{})
 }
