@@ -3,10 +3,26 @@
 {
   "@context": "https://schema.org",
   "@type": "{{- ( site.Params.schema.publisherType | default "Organization") | title -}}",
+  {{- if (eq site.Params.schema.publisherType "Person") }}
+  "name": {{ site.Params.author }},
+  {{- else }}
   "name": {{ site.Title }},
+  {{- end }}
   "url": {{ site.Home.Permalink }},
-  "description": {{ site.Params.description | plainify | truncate 180 | safeHTML }},
+  "description": {{ site.Params.description | plainify | safeHTML }},
+  {{- if (eq site.Params.schema.publisherType "Person") }}
+  "image": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
+  {{- with site.Params.schema.jobTitle }}
+  "jobTitle": {{ . }},
+  {{- end }}
+  {{- with site.Params.schema.knowsAbout }}
+  "knowsAbout": [
+    {{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}
+  ],
+  {{- end }}
+  {{- else }}
   "thumbnailUrl": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
+  {{- end }}
   "sameAs": [
     {{- if site.Params.schema.sameAs }}
       {{ range $i, $e := site.Params.schema.sameAs }}{{ if $i }}, {{ end }}{{ trim $e " " }}{{ end }}
@@ -16,6 +32,30 @@
   ]
 }
 </script>
+{{- /* ItemList Schema for Recent Blog Posts - Critical for Google Article Sitelinks */ -}}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $recentPages := first 10 $pages }}
+{{- if $recentPages }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Recent Blog Posts",
+  "description": "Latest articles from Redowan's Reflections",
+  "itemListElement": [
+    {{- range $index, $page := $recentPages }}
+    {{- if $index }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $index 1 }},
+      "url": {{ $page.Permalink }},
+      "name": {{ $page.Title | plainify }}
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
 {{- else if (or .IsPage .IsSection) }}
 {{/* BreadcrumbList */}}
 {{- $url := replace .Parent.Permalink ( printf "%s" site.Home.Permalink) "" }}
@@ -86,8 +126,8 @@
   "image": {{ .Permalink }},
     {{- end }}
   {{- end -}}
-  "datePublished": {{ .PublishDate }},
-  "dateModified": {{ .Lastmod }},
+  "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
   {{- with (.Params.author | default site.Params.author) }}
   "author":
     {{- if (or (eq (printf "%T" .) "[]string") (eq (printf "%T" .) "[]interface {}")) -}}
