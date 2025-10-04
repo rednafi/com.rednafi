@@ -6,165 +6,163 @@ aliases:
     - /go/limit_goroutines_with_buffered_channels/
 tags:
     - Go
-    - Concurrency
     - TIL
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when
 some events occur. The initial script would continuously poll a Kafka topic for events and
-spawn new goroutines to make HTTP requests to the destination. This had two problems:
+spawn worker goroutines in a fire-and-forget manner to make HTTP requests to the
+destination. This had two problems:
 
-- It could create unlimited goroutines if many events arrived quickly
-- It might overload the destination system by making many concurrent requests
+- It could create unlimited goroutines if many events arrived quickly (no backpressure)
+- It might overload the destination system by making many concurrent requests (no
+  concurrency control)
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously [written
 about this] here. Turns out, in Go, you could do the same with a buffered channel. Here's
-how the naive version looks:
+how the naive version without any concurrency control looks:
 
 ```go
+// go 1.24
 package main
 
-import ("fmt"; "sync")
+import (
+    "fmt"
+    "time"
+)
 
-func worker(id int, wg *sync.WaitGroup) {
-    defer wg.Done()
+// pollKafka pretends to fetch a message from Kafka
+func pollKafka() string {
+    time.Sleep(200 * time.Millisecond) // emulate poll delay
+    return fmt.Sprintf("kafka-msg-%d", time.Now().UnixNano())
+}
 
-    // ... Send http post request
-    fmt.Println("Sending webhook request")
+// worker simulates doing something with a message
+func worker(id int, msg string) {
+    fmt.Printf("worker %d: sending webhook for message: %s\n", id, msg)
+    time.Sleep(200 * time.Millisecond)
 }
 
 func main() {
-    var wg sync.WaitGroup
-    nWorkers := 10
-    for i := 1; i <= nWorkers; i++ {
-        wg.Add(1)
-        go worker(i, &wg)
+    for id := 0; ; id++ {
+        // Poll a new message from Kafka before spawning the worker
+        msg := pollKafka()
+
+        // Spawn a worker goroutine for each message — fire and forget
+        go worker(id, msg)
     }
-    wg.Wait()
-    fmt.Println("All workers have completed")
 }
 ```
 
-<codapi-snippet sandbox="go" editor="basic">
-</codapi-snippet>
+Running it gives you this:
 
-We're sending the webhook request in the `worker` function. It takes an integer ID for
-bookkeeping and a pointer to a `WaitGroup` instance for synchronization. Once it finishes
-making the request, it signals the `WaitGroup` with `wg.Done()`. In the `main` function, we
-spawn 10 workers as goroutines and wait for all of them to finish work with `wg.Wait()`.
-Without the wait-group synchronization, the `main` goroutine would bail before all the
-background workers finish their work.
+```txt
+worker 0: sending webhook for message: kafka-msg-1759579628289116000
+worker 1: sending webhook for message: kafka-msg-1759579629290305000
+worker 2: sending webhook for message: kafka-msg-1759579630291584000
+worker 3: sending webhook for message: kafka-msg-1759579631292667000
+worker 4: sending webhook for message: kafka-msg-1759579632293768000
+worker 5: sending webhook for message: kafka-msg-1759579633294909000
+^Csignal: interrupt
+```
 
-In the above scenario, all the requests were made in parallel. How can we limit the system
-to only allow `n` number of concurrent requests at the same time? Sure, you can choose to
-spin up `n` number of goroutines and no more. But how do you do it from inside an infinite
-loop that's also polling a queue continuously?
+The `main` function runs an infinite loop where it polls the upstream message queue
+continuously to collect new message. Once a new message arrives, it spawns a new worker
+goroutine in a fire-and-forget manner that actually sends the HTTP request to the desination
+endpoint.
 
-In this case, I want to throttle the script so that it'll send 2 requests in parallel and
-then wait until those are done. Then it'll wait for a bit before firing up the next batch of
-2 goroutines and continuously repeat the same process. Buffered channels allow us to do
-exactly that. Observe:
+The problem here is that this setup creates an unbounded number of goroutines. If Kafka
+produces messages faster than the workers can process them, the system will keep spawning
+new goroutines, eventually consuming all available memory and CPU. Also, it can overwhelm
+the destination system by sending too many requests at once if that doesn't have any
+throttling mechanism in place. So we need a way to limit how many workers can run at once.
+
+To fix this, we can use a buffered channel as a semaphore. The idea is to block before
+launching a new worker if too many are already running. This applies backpressure naturally
+and prevents unbounded spawning. Observe:
 
 ```go
+// go 1.24
 package main
 
-import ("fmt"; "sync"; "time")
+import (
+    "fmt"
+    "time"
+)
 
-func worker(id int, sem chan struct{}, wg *sync.WaitGroup) {
-    defer wg.Done()
+// pollKafka pretends to fetch a message from Kafka
+func pollKafka() string {
+    time.Sleep(500 * time.Millisecond) // emulate poll delay
+    return fmt.Sprintf("kafka-msg-%d", time.Now().UnixNano())
+}
 
-    // Acquire semaphore
-    fmt.Printf("Worker %d: Waiting to acquire semaphore\n", id)
-    sem <- struct{}{}
-
-    // Do work
-    fmt.Printf("Worker %d: Semaphore acquired, running\n", id)
-    time.Sleep(10 * time.Millisecond)
-
-    // Release semaphore
-    <-sem
-    fmt.Printf("Worker %d: Semaphore released\n", id)
+// worker simulates doing something with a message
+func worker(id int, msg string) {
+    fmt.Printf("worker %d: sending webhook for message: %s\n", id, msg)
+    time.Sleep(200 * time.Millisecond)
 }
 
 func main() {
-    nWorkers := 10      // Total number of goroutines
-    maxConcurrency := 2 // Allowed to run at the same time
-    batchInterval := 50 * time.Millisecond // Delay between each batch of 2 goros
+    maxConcurrency := 2
+    sem := make(chan struct{}, maxConcurrency) // semaphore
+    batchInterval := 1 * time.Second
 
-    // Create a buffered channel with a capacity of maxConcurrency
-    sem := make(chan struct{}, maxConcurrency)
+    for id := 0; ; id++ {
+        msg := pollKafka() // get a message first
 
-    var wg sync.WaitGroup
+        sem <- struct{}{} // acquire BEFORE spawning; applies backpressure
 
-    // We start 10 goroutines but only 2 of them will run in parallel
-    for i := 1; i <= nWorkers; i++ {
-        wg.Add(1)
-        go worker(i, sem, &wg)
+        // Use a closure to wrap the original worker so that concurrency
+        // primitives like semaphores don't pollute the core worker function.
+        go func() {
+            defer func() { <-sem }() // release when done
+            worker(id, msg)
+        }()
 
-        // Introduce a delay after each batch of workers
-        if i % maxConcurrency == 0 && i != nWorkers {
-            fmt.Printf("Waiting for batch interval...\n")
+        // Apply backpressure
+        if id%maxConcurrency == 0 && id != 0 {
+            fmt.Printf("Limit reached, waiting %s...\n", batchInterval)
             time.Sleep(batchInterval)
         }
     }
-    wg.Wait()
-    close(sem) // Remember to close the channel once done
-    fmt.Println("All workers have completed")
 }
 ```
 
-<codapi-snippet sandbox="go" editor="basic">
-</codapi-snippet>
+Here, the buffered channel `sem` works as a semaphore that limits concurrency. Its capacity
+defines how many goroutines can run at the same time. Before spawning a worker, we try to
+send an empty struct into the channel. If the channel is full, that line blocks until a
+running worker finishes and releases its spot by reading from the channel. This ensures that
+only `maxConcurrency` workers run at once and prevents goroutine buildup.
 
-The clever bit here is the buffered channel named `sem` which acts as a semaphore to limit
-concurrency. We set its capacity to the max number of goroutines we want running at once, in
-this case 2. Before making the request, each `worker` goroutine tries to _acquire_ the
-semaphore by sending a value into the channel via `sem <- struct{}{}`. The value itself
-doesn't matter. So we're just sending an empty struct to avoid redundant allocation.
+The closure around the worker is intentional: it keeps concurrency management out of the
+worker itself. The worker only focuses on processing messages, while the outer function
+handles synchronization and throttling. This separation allows the caller to call the worker
+synchronously if needed. It also makes testing the worker function much easier. In general,
+it's a good practice to push concurrency to the outer edge of your system so that the caller
+has the choice of leveraging concurrency or not.
 
-Sending data to the channel will block if it's already full, essentially meaning all
-_permits_ are taken. Once the send succeeds, the goroutine has acquired the semaphore and is
-free to proceed with its work. When finished, it _releases_ the semaphore by reading from
-the channel `<-sem`. This frees up a slot in the channel for another goroutine to acquire
-it. By using this semaphore channel to limit access to critical sections, we can precisely
-control the number of concurrent goroutines.
-
-This channel-based semaphore gives us more flexibility than just using a `WaitGroup`.
-Combining it with a buffered channel provides fine-grained control over simultaneous
-goroutine execution. The buffer size of the channel determines the allowed parallelism, 2
-here. We've also thrown in an extra bit of delay after each batch of operation finishes
-with:
-
-```go
-// Introduce additional delay after each batch of workers
-if i % maxConcurrency == 0 && i != nWorkers {
-    fmt.Printf("Waiting for batch interval...\n")
-    time.Sleep(batchInterval)
-}
-```
-
-Running the script will show that although we've started 10 goroutines in the `main`
-function, only 2 of them run at once. Also, there's a delay of 3 seconds between each batch.
-We can tune it according to our need to be lenient on the consumer.
+The optional batch delay isn't required for correctness, but it helps spread out requests so
+the downstream system isn't flooded. Running the script shows that even though the loop is
+infinite, only two workers run at once, and there's a short pause between each batch.
 
 ```txt
-Waiting for batch interval...
-Worker 2: Waiting to acquire semaphore
-Worker 2: Semaphore acquired, running
-Worker 1: Waiting to acquire semaphore
-Worker 1: Semaphore acquired, running
-Worker 1: Semaphore released
-Worker 2: Semaphore released
-Waiting for batch interval...
-Worker 4: Waiting to acquire semaphore
-Worker 4: Semaphore acquired, running
-Worker 3: Waiting to acquire semaphore
-Worker 3: Semaphore acquired, running
-Worker 3: Semaphore released
-Worker 4: Semaphore released
-Waiting for batch interval...
-...
+worker 0: sending webhook for message: kafka-msg-1759580074075447000
+worker 1: sending webhook for message: kafka-msg-1759580074576160000
+Limit reached, waiting 1s...
+worker 2: sending webhook for message: kafka-msg-1759580075077279000
+worker 3: sending webhook for message: kafka-msg-1759580076579356000
+Limit reached, waiting 1s...
+worker 4: sending webhook for message: kafka-msg-1759580077079956000
+worker 5: sending webhook for message: kafka-msg-1759580078581780000
+Limit reached, waiting 1s...
+worker 6: sending webhook for message: kafka-msg-1759580079082375000
+^Csignal: interrupt
 ```
+
+The workers in this version are still getting spawned in a fire-and-forget manner but
+without leaking goroutines. When the concurrency limit is reached, the main loop blocks
+instead of spawning more workers. This applies natural backpressure to the producer, keeping
+the system stable even under heavy load.
 
 Now, you might want to add extra abstractions over the core behavior to make it more
 ergonomic. Here's a [pointer] on how to do so. [Effective Go also mentions] this pattern
@@ -194,6 +192,3 @@ briefly.
     https://stackoverflow.com/questions/39776481/how-to-wait-until-buffered-channel-semaphore-is-empty
 
 <!-- prettier-ignore-end -->
-
-<link rel="stylesheet" href="/modules/codapi/snippet.css"/>
-<script defer src="/modules/codapi/snippet.js"></script>
