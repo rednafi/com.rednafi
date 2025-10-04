@@ -224,7 +224,5 @@ security:
 
 module:
   mounts:
-    - source: node_modules/@antonz/codapi/dist
-      target: static/modules/codapi
     - source: static
       target: static

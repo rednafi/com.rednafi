@@ -38,7 +38,7 @@ databases, or [testcontainers] and getting lost in details. But you can find sim
 in a real codebase everywhere where you might be talking to a database and your read and
 write path have separate [lifecycles].
 
-## Keep it flat until you can’t
+## Keep it flat until you can't
 
 If we didn't need different setup and teardown for the two groups, the simplest way to test
 a system would be through a set of table-driven tests:

@@ -13,7 +13,7 @@ Go 1.24 added a new `tool` directive that makes it easier to manage your project
 
 I used to rely on Make targets to install and run tools like `stringer`, `mockgen`, and
 linters like `gofumpt`, `goimports`, `staticcheck`, and `errcheck`. Problem is, these
-installations were global, and they’d often clash between projects.
+installations were global, and they'd often clash between projects.
 
 Another big issue was frequent version mismatch. I ran into cases where people were
 formatting the same codebase differently because they had different versions of the tools

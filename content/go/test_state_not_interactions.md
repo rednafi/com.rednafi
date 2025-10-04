@@ -12,11 +12,11 @@ tags:
 With the advent of LLMs, the temptation to churn out a flood of unit tests for a false
 veneer of productivity and protection is stronger than ever.
 
-My colleague Matthias Doepmann recently fired [a shot at AI-generated tests] that don’t
+My colleague Matthias Doepmann recently fired [a shot at AI-generated tests] that don't
 validate the behavior of the subject under test (SUT) but instead create needless ceremony
 around internal implementations. At best, these tests give a shallow illusion of confidence
 in the system's correctness while breaking at the smallest change. At worst, they remain
-green even when the SUT’s behavior changes.
+green even when the SUT's behavior changes.
 
 In practice, they add maintenance overhead and drag down code reviews. The frustration in
 that post wasn't about violating some abstract testing philosophy. It came from having to
@@ -38,7 +38,7 @@ I think the problem persists for three reasons:
 ## Test state, not interactions
 
 The general theme when writing unit tests should be checking the behavior of the system, not
-the scaffolding of its implementation. It doesn’t matter which method called which, how many
+the scaffolding of its implementation. It doesn't matter which method called which, how many
 times, or with what arguments.
 
 What matters is: if you give the SUT some input, does it return the expected output? In a
@@ -61,7 +61,7 @@ And the guidance that follows:
 
 > _By far the most important way to ensure this is to write tests that invoke the system
 > being tested in the same way its users would; that is, make calls against its public API
-> rather than its implementation details. If tests work the same way as the system’s users,
+> rather than its implementation details. If tests work the same way as the system's users,
 > by definition, change that breaks a test might also break a user._
 
 I think the first step in the right direction is to accept that LLMs can't substitute for
@@ -73,7 +73,7 @@ maintainability of your tests.
 ## Mocking libraries often don't help
 
 Mocking libraries come with their own idiosyncratic syntax and workflows. On most occasions,
-handwritten fakes are better than mocks. I'll use Go to make my point here because that’s
+handwritten fakes are better than mocks. I'll use Go to make my point here because that's
 what I write the most these days, but the lesson applies to other languages too.
 
 Consider a simple `UserService` that depends on a `DB` interface. Its job is to delegate
@@ -191,7 +191,7 @@ This works mechanically, but it breaks down in practice:
     ```
 
     The mock-based test no longer compiles or needs rewiring, even though the public
-    behavior didn’t change.
+    behavior didn't change.
 
 3. **And worse, it survives real bugs**
 
@@ -211,7 +211,7 @@ This works mechanically, but it breaks down in practice:
     A real DB or an in-memory fake would raise a constraint error that should propagate. The
     mock test goes green anyway because it only checked the call path.
 
-The common thread is that mocks lock tests to implementation details. They don’t protect the
+The common thread is that mocks lock tests to implementation details. They don't protect the
 behavior that real users rely on.
 
 ## Interface-guided design and fakes
@@ -290,7 +290,7 @@ func TestUserService_CreateUser_DuplicateSurfaces(t *testing.T) {
 This avoids the fragility of mocks. The tests survive harmless refactors, fail when behavior
 changes, and stay readable without a mocking DSL.
 
-But the cost is maintaining the fake as the interface evolves. However, in practice, that’s
+But the cost is maintaining the fake as the interface evolves. However, in practice, that's
 still easier than constantly updating brittle mock expectations and occasionally dealing
 with the mock library's [lengthy migration workflow].
 
