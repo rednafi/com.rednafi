@@ -1,3 +1,10 @@
+/*
+ * Theme Variables Override
+ * Light theme: Warm cream background with dark text
+ * Dark theme: Modern dark background with light text
+ * Both themes maintain visual consistency and readability
+ */
+
 :root {
   --gap: 20px;
   --content-gap: 20px;
@@ -14,4 +21,20 @@
   --code-bg: #f2f1eb;
   --secondary-urls: #516727;
   --code-color: #202020;
+  --border: #e8e8e8;
+}
+
+/* Dark theme variables */
+.dark {
+  --theme: #2a2a2a;
+  --entry: #2a2a2a;
+  --primary: #e8e8e8;
+  --secondary: #e8e8e8;
+  --tertiary: #555555;
+  --content: #e8e8e8;
+  --hljs-bg: #3a3a3a;
+  --code-bg: #3a3a3a;
+  --secondary-urls: #9bb55a;
+  --code-color: #e8e8e8;
+  --border: #555555;
 }
