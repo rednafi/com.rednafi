@@ -8,6 +8,13 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 googleAnalytics: G-11NK905JK8
+enableGitInfo: true
+
+frontmatter:
+  lastmod:
+    - lastmod
+    - :git
+    - date
 
 taxonomies:
   tag: tags
@@ -25,24 +32,21 @@ pagination:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   robotsNoIndex: false
+  schema:
+    publisherType: Person
+    jobTitle: Software Engineer
+    knowsAbout:
+      - API Design
+      - Databases
+      - Distributed Systems
+      - Go
+      - Industrial Programming
+      - Observability
+      - Python
+      - Software Engineering
   title: Redowan's Reflections
   description: >-
     Hi, I'm Redowan Delowar—A software engineer with a flair for words and wires.
-  keywords:
-    [
-      "Redowan Delowar",
-      "Redowan Nafi",
-      "Rednafi",
-      "Blog",
-      "Python",
-      "Devops",
-      "Go",
-      "Golang",
-      "API",
-      "Networking",
-      "Database",
-      "Software Engineering"
-    ]
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
   DateFormat: "January 2, 2006"
