@@ -10,6 +10,16 @@
   color: #000;
   background-color: #fff;
 }
+
+/* Dark theme syntax highlighting */
+.dark .bg {
+  color: #e8e8e8;
+  background-color: #3a3a3a;
+}
+.dark .chroma {
+  color: #e8e8e8;
+  background-color: #3a3a3a;
+}
 /* LineLink */
 .chroma .lnlinks {
   outline: none;
@@ -253,5 +263,179 @@
 /* CommentPreprocFile */
 .chroma .cpf {
   color: #505050;
+  font-style: italic;
+}
+
+/* Dark theme syntax highlighting colors*/
+.dark .chroma .hl {
+  background-color: #4a4a4a;
+}
+.dark .chroma .lnt {
+  color: #888;
+}
+.dark .chroma .ln {
+  color: #888;
+}
+
+/* Keywords */
+.dark .chroma .k {
+  color: #c792ea;
+}
+.dark .chroma .kc {
+  color: #ffcb6b;
+}
+.dark .chroma .kd {
+  color: #c792ea;
+}
+.dark .chroma .kn {
+  color: #c792ea;
+}
+.dark .chroma .kp {
+  color: #c792ea;
+}
+.dark .chroma .kr {
+  color: #c792ea;
+}
+.dark .chroma .kt {
+  color: #82aaff;
+}
+
+/* Names */
+.dark .chroma .nb {
+  color: #f78c6c;
+}
+.dark .chroma .bp {
+  color: #f78c6c;
+}
+.dark .chroma .nv {
+  color: #eeffff;
+}
+.dark .chroma .vc {
+  color: #eeffff;
+}
+.dark .chroma .vg {
+  color: #eeffff;
+}
+.dark .chroma .vi {
+  color: #eeffff;
+}
+.dark .chroma .vm {
+  color: #eeffff;
+}
+.dark .chroma .nf {
+  color: #82aaff;
+}
+.dark .chroma .fm {
+  color: #82aaff;
+}
+
+/* Literals */
+.dark .chroma .l {
+  color: #f78c6c;
+}
+.dark .chroma .ld {
+  color: #f78c6c;
+}
+.dark .chroma .s {
+  color: #c3e88d;
+}
+.dark .chroma .sa {
+  color: #c3e88d;
+}
+.dark .chroma .sb {
+  color: #c3e88d;
+}
+.dark .chroma .sc {
+  color: #c3e88d;
+}
+.dark .chroma .dl {
+  color: #c3e88d;
+}
+.dark .chroma .sd {
+  color: #c3e88d;
+}
+.dark .chroma .s2 {
+  color: #c3e88d;
+}
+.dark .chroma .se {
+  color: #c3e88d;
+}
+.dark .chroma .sh {
+  color: #c3e88d;
+}
+.dark .chroma .si {
+  color: #c3e88d;
+}
+.dark .chroma .sx {
+  color: #c3e88d;
+}
+.dark .chroma .sr {
+  color: #c3e88d;
+}
+.dark .chroma .s1 {
+  color: #c3e88d;
+}
+.dark .chroma .ss {
+  color: #c3e88d;
+}
+
+/* Numbers */
+.dark .chroma .m {
+  color: #f78c6c;
+}
+.dark .chroma .mb {
+  color: #f78c6c;
+}
+.dark .chroma .mf {
+  color: #f78c6c;
+}
+.dark .chroma .mh {
+  color: #f78c6c;
+}
+.dark .chroma .mi {
+  color: #f78c6c;
+}
+.dark .chroma .il {
+  color: #f78c6c;
+}
+.dark .chroma .mo {
+  color: #f78c6c;
+}
+
+/* Operators */
+.dark .chroma .o {
+  color: #89ddff;
+}
+.dark .chroma .ow {
+  color: #89ddff;
+}
+
+/* Comments */
+.dark .chroma .c {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .ch {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .cm {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .c1 {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .cs {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .cp {
+  color: #8a9ba8;
+  font-style: italic;
+}
+.dark .chroma .cpf {
+  color: #8a9ba8;
   font-style: italic;
 }
