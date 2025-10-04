@@ -21,12 +21,12 @@ figure out the right conventions for setup and teardown that don't look odd to o
 Gophers, especially if you haven't written Go for a while. This text explores some common
 ways to do lifecycle management in your Go tests.
 
-Before we cover multiple testing scenarios, it's useful to understand how Go’s test harness
+Before we cover multiple testing scenarios, it's useful to understand how Go's test harness
 actually runs your tests.
 
 ## How Go discovers and runs your tests
 
-When you type `go test`, Go doesn’t interpret test files directly. It collects all the
+When you type `go test`, Go doesn't interpret test files directly. It collects all the
 `_test.go` files in a package, compiles them together with the rest of the package, and
 produces a temporary binary. That binary contains both your code and your tests, along with
 a small harness that drives them. The harness then runs the binary and reports results.
@@ -46,20 +46,20 @@ func TestXxx(t *testing.T)
 ```
 
 where `Xxx` starts with an uppercase letter. There are no annotations or decorators, just
-naming convention. Functions that don’t match this signature are ignored.
+naming convention. Functions that don't match this signature are ignored.
 
 ### Execution
 
 By default, the harness runs tests sequentially. If you want concurrency, you can opt in at
 the test level. Calling `t.Parallel()` inside a test signals that this test may run
-alongside others in the same package that also call `t.Parallel()`. Tests that don’t opt in
+alongside others in the same package that also call `t.Parallel()`. Tests that don't opt in
 remain strictly ordered.
 
 ### Scope of binaries
 
 Every package with tests produces its own binary, and those binaries are run independently.
 There is no global suite that links packages together, so setup and teardown only exist
-inside one package’s process. If you have ten packages containing tests, you get ten
+inside one package's process. If you have ten packages containing tests, you get ten
 binaries, each with its own lifecycle.
 
 For example:

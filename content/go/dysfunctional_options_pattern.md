@@ -18,7 +18,7 @@ gets worse if you have to maintain a public API where multiple configurations ar
 in this manner.
 
 However, the pattern solves a valid problem and definitely has its place. Otherwise, it
-wouldn’t have been picked up by pretty much every other library, whether it's [Ngrok] or the
+wouldn't have been picked up by pretty much every other library, whether it's [Ngrok] or the
 [Elasticsearch agent].
 
 If you have no idea what I'm talking about, you might want to give my previous write-up on
