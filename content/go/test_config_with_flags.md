@@ -128,7 +128,7 @@ hope someone left a good comment or wrote it down somewhere.
 ## Custom flags are almost always better
 
 The cleanest and most discoverable way to control optional test behavior in Go is by
-defining your own test flags. They're typed, explicit, and work well with Go’s built-in
+defining your own test flags. They're typed, explicit, and work well with Go's built-in
 tooling. Instead of toggling tests with magic file-level build tags or invisible environment
 variables, you can wire up test configuration using the `flag` package, just like any other
 Go binary.

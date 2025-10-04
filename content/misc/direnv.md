@@ -9,7 +9,7 @@ aliases:
     - /misc/direnv/
 ---
 
-I'm not a big fan of shims—code that messes with commands in the shell or prompt. That’s
+I'm not a big fan of shims—code that messes with commands in the shell or prompt. That's
 why, aside from occasional dabbling, I tend to eschew tools like `asdf` or `pyenv` and just
 use `apt` or `brew` for installs, depending on the OS.
 
@@ -213,8 +213,8 @@ You can do a lot more with the idea, but going overboard with environment variab
 risky. You don't want to accidentally load something into the environment you didn't intend
 to. Keeping it simple with sane defaults is the way to go.
 
-Like Hynek, I've adopted [uv] in my Python workflow, and now my default `.envrc` has
-these two commands:
+Like Hynek, I've adopted [uv] in my Python workflow, and now my default `.envrc` has these
+two commands:
 
 ```sh
 uv sync --frozen

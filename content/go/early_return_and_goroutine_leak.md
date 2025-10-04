@@ -6,7 +6,7 @@ aliases:
     - /go/early_return_and_goroutine_leak/
 tags:
     - Go
-    - Concurrency
+
 ---
 
 At work, a common mistake I notice when reviewing candidates' home assignments is how they
