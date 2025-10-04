@@ -46,8 +46,8 @@ params:
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
   DateFormat: "January 2, 2006"
-  defaultTheme: light # dark, light
-  disableThemeToggle: true
+  defaultTheme: auto # dark, light, auto
+  disableThemeToggle: false
   ShowReadingTime: false
   ShowShareButtons: false
   ShowPostNavLinks: true
