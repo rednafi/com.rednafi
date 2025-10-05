@@ -116,19 +116,14 @@
   ],
   "wordCount": "{{ .WordCount }}",
   "inLanguage": {{ .Language.Lang | default "en-us" }},
-  {{ if .Params.cover.image -}}
-  "image":
-    {{- if (ne .Params.cover.relative true) -}}
-    {{ .Params.cover.image | absURL }},
-    {{- else -}}
-    {{ (path.Join .RelPermalink .Params.cover.image) | absURL }},
-    {{- end }}
+  {{- if .Params.cover.image }}
+  "image": {{- if (ne .Params.cover.relative true) }}{{ .Params.cover.image | absURL }}{{ else }}{{ (path.Join .RelPermalink .Params.cover.image) | absURL }}{{ end }},
   {{- else }}
-    {{- $images := partial "templates/_funcs/get-page-images" . -}}
-    {{- with index $images 0 -}}
+    {{- $images := partial "templates/_funcs/get-page-images" . }}
+    {{- with index $images 0 }}
   "image": {{ .Permalink }},
     {{- end }}
-  {{- end -}},
+  {{- end }}
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
   "author": {
