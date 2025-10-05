@@ -2,19 +2,21 @@
 {{- $authorPage := ("about/" | absURL) -}}
 {{- $authorId := printf "%s#person" $authorPage -}}
 
+{{/* Build a SearchAction target.
+     If params.searchUrl is set (e.g., "/search?q={search_term_string}"), use it.
+     Otherwise default to "<home>/search?q={search_term_string}". */}}
+{{- $defaultSearch := printf "%ssearch?q={search_term_string}" site.Home.Permalink -}}
+{{- $hasSearch := isset site.Params "searchUrl" -}}
+{{- $searchTarget := cond $hasSearch site.Params.searchUrl $defaultSearch -}}
+
 {{ if .IsHome }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "{{ (site.Params.schema.publisherType | default "Organization") | title }}",
-  {{- if (eq site.Params.schema.publisherType "Person") }}
+  "@type": "{{ (site.Params.schema.publisherType | default "Person") | title }}",
   "name": {{ site.Params.author }},
-  {{- else }}
-  "name": {{ site.Title }},
-  {{- end }}
   "url": {{ site.Home.Permalink }},
   "description": {{ site.Params.description | plainify | safeHTML }},
-  {{- if (eq site.Params.schema.publisherType "Person") }}
   "image": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
   {{- with site.Params.schema.jobTitle }}
   "jobTitle": {{ . }},
@@ -24,16 +26,30 @@
     {{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}
   ],
   {{- end }}
-  {{- else }}
-  "thumbnailUrl": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
-  {{- end }}
   "sameAs": [
     {{- if site.Params.schema.sameAs }}
       {{ range $i, $e := site.Params.schema.sameAs }}{{ if $i }}, {{ end }}{{ trim $e " " }}{{ end }}
     {{- else}}
       {{ range $i, $e := site.Params.SocialIcons }}{{ if $i }}, {{ end }}{{ trim $e.url " " | safeURL }}{{ end }}
     {{- end}}
-  ]
+  ],
+  "@id": {{ $authorId }}
+}
+</script>
+
+{{/* WebSite entity with Sitelinks Search Box */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": {{ printf "%s#website" site.Home.Permalink }},
+  "url": {{ site.Home.Permalink }},
+  "name": {{ site.Title }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ $searchTarget }},
+    "query-input": "required name=search_term_string"
+  }
 }
 </script>
 
@@ -93,6 +109,10 @@
         {{ range $i, $e := site.Params.SocialIcons }}{{ if $i }}, {{ end }}{{ trim $e.url " " | safeURL }}{{ end }}
       {{- end}}
     ]
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ $authorPage }}
   }
 }
 </script>
@@ -104,6 +124,8 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "@id": {{ .Permalink | safeHTML }},
+  "url": {{ .Permalink | safeHTML }},
   "headline": {{ .Title | plainify }},
   "name": {{ .Title | plainify }},
   "description": {{ with .Description | plainify }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }},
@@ -114,14 +136,22 @@
       {{ range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}
     {{- end }}
   ],
+  "articleBody": {{ .Content | safeJS | htmlUnescape | plainify }},
   "wordCount": "{{ .WordCount }}",
   "inLanguage": {{ .Language.Lang | default "en-us" }},
   {{- if .Params.cover.image }}
-  "image": {{- if (ne .Params.cover.relative true) }}{{ .Params.cover.image | absURL }}{{ else }}{{ (path.Join .RelPermalink .Params.cover.image) | absURL }}{{ end }},
+  "image": [
+    {{- /* Single URL wrapped in array for future multi-aspect support */ -}}
+    {{- if (ne .Params.cover.relative true) -}}
+      {{ .Params.cover.image | absURL }}
+    {{- else -}}
+      {{ (path.Join .RelPermalink .Params.cover.image) | absURL }}
+    {{- end -}}
+  ],
   {{- else }}
     {{- $images := partial "templates/_funcs/get-page-images" . }}
     {{- with index $images 0 }}
-  "image": {{ .Permalink }},
+  "image": [ {{ .Permalink }} ],
     {{- end }}
   {{- end }}
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
@@ -132,17 +162,12 @@
     "name": {{ .Params.author | default site.Params.author }},
     "url": {{ $authorPage }}
   },
+  "publisher": {
+    "@id": {{ $authorId }}
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": {{ .Permalink | safeHTML }}
-  },
-  "publisher": {
-    "@type": "{{ (site.Params.schema.publisherType | default "Organization") | title }}",
-    "name": {{ site.Title }},
-    "logo": {
-      "@type": "ImageObject",
-      "url": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }}
-    }
   }
 }
 </script>
