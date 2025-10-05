@@ -54,9 +54,11 @@
         "url": {{ $page.Permalink }},
         "name": {{ $page.Title | plainify }},
         "headline": {{ $page.Title | plainify }},
+        "image": "",
         "author": {
           "@type": "Person",
-          "name": {{ site.Params.author }}
+          "name": {{ site.Params.author }},
+          "url": {{ site.Home.Permalink }}
         },
         "datePublished": {{ $page.PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
         "dateModified": {{ $page.Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
