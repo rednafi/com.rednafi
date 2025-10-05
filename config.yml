@@ -94,7 +94,7 @@ params:
     favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.webp"
     apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
     safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    disableFingerprinting: true
+    disableFingerprinting: false
     disableHLJS: true
 
   label:
