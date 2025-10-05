@@ -30,8 +30,9 @@ pagination:
   pagerSize: 20
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  env: production
   robotsNoIndex: false
+
   schema:
     publisherType: Person
     jobTitle: Software Engineer
@@ -44,13 +45,20 @@ params:
       - Observability
       - Python
       - Software Engineering
+    sameAs:
+      - "https://github.com/rednafi"
+      - "https://www.linkedin.com/in/rednafi/"
+      - "https://bsky.app/profile/rednafi.com"
+      - "https://fosstodon.org/@rednafi"
+
   title: Redowan's Reflections
   description: >-
     Hi, I'm Redowan Delowar—A software engineer with a flair for words and wires.
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
+
   DateFormat: "January 2, 2006"
-  defaultTheme: auto # dark, light, auto
+  defaultTheme: light
   disableThemeToggle: false
   ShowReadingTime: false
   ShowShareButtons: false
@@ -69,7 +77,8 @@ params:
   tocopen: false
   hideFooter: false
   ShowAllPagesInArchive: true
-  ShowFullTextinRSS: false
+  ShowFullTextinRSS: true
+
   mainSections:
     - databases
     - javascript
@@ -85,7 +94,6 @@ params:
     favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.webp"
     apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
     safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.webp"
-
     disableFingerprinting: true
     disableHLJS: true
 
@@ -95,7 +103,6 @@ params:
     iconHeight: 23
     iconWidth: 23
 
-  # home-info mode
   homeInfoParams:
     Title:
       Hi, I'm [Redowan](/about) <a href="/index.xml" title="RSS" aria-label="RSS"> <svg
@@ -107,19 +114,11 @@ params:
         A roving amateur with a flair for words and wires.
       </div>
 
-  socialIcons:
-    - name: twitter
-      url: "https://twitter.com/rednafi"
-    - name: stackoverflow
-      url: "https://stackoverflow.com/users/8963300/rednafi"
-    - name: github
-      url: "https://github.com/rednafi"
-
   analytics:
     google:
       SiteVerificationTag: "google-site-verification=GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
     bing:
-      SiteVerificationTag: "XYZabc" # automatically imported from google
+      SiteVerificationTag: "XYZabc"
     yandex:
       SiteVerificationTag: "cb037a09f985e313"
     naver:
@@ -154,17 +153,14 @@ menu:
       name: search
       url: /search/
       weight: 1
-
     - identifier: tags
       name: tags
       url: /tags/
       weight: 2
-
     - identifier: archive
       name: archive
       url: /archive/
       weight: 3
-
     - identifier: about
       name: about
       url: /about/
@@ -175,23 +171,19 @@ menu:
       name: blogroll
       url: /blogroll/
       weight: 1
-
     - identifier: feed
       name: "2025"
       url: /feed/2025
       weight: 2
 
-# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
-# pygmentsUseClasses: true
 markup:
   highlight:
     noClasses: false
-    # anchorLineNos: true
     codeFences: true
     guessSyntax: true
-    # lineNos: true
     style: syntax-highlight
     tabWidth: 4
+
   goldmark:
     extensions:
       definitionList: true
