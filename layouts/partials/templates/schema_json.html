@@ -48,8 +48,19 @@
     {
       "@type": "ListItem",
       "position": {{ add $index 1 }},
-      "url": {{ $page.Permalink }},
-      "name": {{ $page.Title | plainify }}
+      "item": {
+        "@type": "Article",
+        "@id": {{ $page.Permalink }},
+        "url": {{ $page.Permalink }},
+        "name": {{ $page.Title | plainify }},
+        "headline": {{ $page.Title | plainify }},
+        "author": {
+          "@type": "Person",
+          "name": {{ site.Params.author }}
+        },
+        "datePublished": {{ $page.PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
+        "dateModified": {{ $page.Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
+      }
     }
     {{- end }}
   ]
