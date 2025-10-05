@@ -30,6 +30,9 @@ update:
 dev:
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
+build:
+	hugo --environment production --minify --gc --cleanDestinationDir
+
 upload-static:
 	oxipng -o 6 -r static/images/
 	find static -type f | while read filepath; do \
