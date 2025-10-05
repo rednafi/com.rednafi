@@ -33,9 +33,14 @@ dev:
 build:
 	hugo --environment production --minify --gc --cleanDestinationDir
 
-upload-static:
-	oxipng -o 6 -r static/images/
-	find static -type f | while read filepath; do \
-		key=$$(echo "$$filepath" | sed 's|^|blog/|'); \
-		wrangler r2 object put $$key --file "$$filepath"; \
-	done
+upload-image:
+	@if [ -z "$(local_path)" ] || [ -z "$(remote_path)" ]; then \
+		echo "Usage: make upload-image local_path=<file> remote_path=<bucket_path>"; \
+		echo ""; \
+		echo "Examples:"; \
+		echo "  make upload-image local_path=static/images/transparent.png remote_path=blog/static/images/transparent.png"; \
+		echo "  make upload-image local_path=content/images/cover.png remote_path=blog/static/images/home/cover.png"; \
+		exit 1; \
+	fi
+	oxipng -o 6 $(local_path)
+	wrangler r2 object put $(remote_path) --file $(local_path) --remote
