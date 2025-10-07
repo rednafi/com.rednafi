@@ -26,7 +26,7 @@ grouping and work our way up. Coming up with examples that make the point while 
 fitting in a blog is tricky, so you'll have to bear with my toy examples and use a bit of
 imagination.
 
-## Subject under test (SUT)
+## System under test (SUT)
 
 Let's say we're writing tests for a calculator that, for the sake of argument, can only do
 addition and multiplication. Instead of going for table-driven tests, we'll split the tests

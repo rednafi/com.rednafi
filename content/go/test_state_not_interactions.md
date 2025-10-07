@@ -13,7 +13,7 @@ With the advent of LLMs, the temptation to churn out a flood of unit tests for a
 veneer of productivity and protection is stronger than ever.
 
 My colleague Matthias Doepmann recently fired [a shot at AI-generated tests] that don't
-validate the behavior of the subject under test (SUT) but instead create needless ceremony
+validate the behavior of the System Under Test (SUT) but instead create needless ceremony
 around internal implementations. At best, these tests give a shallow illusion of confidence
 in the system's correctness while breaking at the smallest change. At worst, they remain
 green even when the SUT's behavior changes.
