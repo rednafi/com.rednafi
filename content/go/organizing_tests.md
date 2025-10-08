@@ -284,12 +284,12 @@ The following tree attempts to capture the full picture:
 ```txt
 myapp/
 ├── mypkg/
-│   ├── greet.go                     # package mypkg — production code
-│   ├── greet_test.go                # package mypkg — unit tests, white-box tests
-│   ├── greet_external_test.go       # package mypkg_test — black-box tests
-│   └── greet_bench_fuzz_example.go  # package mypkg — examples, benchmarks, fuzz tests
+│   ├── greet.go                     # mypkg - production code
+│   ├── greet_test.go                # mypkg - unit & white-box tests
+│   ├── greet_external_test.go       # mypkg_test - black-box tests
+│   └── greet_bench_fuzz_example.go  # mypkg - examples, benchmarks, & fuzz tests
 └── integration/
-    └── greet_integration_test.go    # package integration — integration or e2e tests
+    └── greet_integration_test.go    # package integration - integration or e2e tests
 ```
 
 
