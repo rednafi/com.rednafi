@@ -168,7 +168,7 @@ This works mechanically, but it breaks down in practice:
 
 1. **It checks the collaborator call, not the result**
 
-    A useful test would assert that “alice” was actually added or that a duplicate error was
+    A useful test would assert that "alice" was actually added or that a duplicate error was
     returned. This one only verifies that `InsertUser("alice")` was invoked once.
 
 2. **It breaks on harmless refactors**
