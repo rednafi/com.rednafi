@@ -406,7 +406,7 @@ Fin!
 [ddos]:
     https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/
 
-<!-- the “thundering herd” problem - nick groenen -->
+<!-- the "thundering herd" problem - nick groenen -->
 [thundering herd]:
     https://nick.groenen.me/notes/thundering-herd/
 

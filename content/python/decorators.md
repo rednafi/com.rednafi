@@ -563,7 +563,7 @@ custom checks on data going in or out. Decorators can let you easily handle all 
 apply it to many functions at once.
 
 Imagine this: you have a set of functions, each returning a dictionary, which (among other
-fields) includes a field called “summary.” The value of this summary must not be more than
+fields) includes a field called "summary." The value of this summary must not be more than
 30 characters long; if violated, that's an error. Here is a decorator that raises a
 `ValueError` if that happens:
 
