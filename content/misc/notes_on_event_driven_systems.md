@@ -59,7 +59,7 @@ _"pizza boxed."_ Events are simple, factual, and unchangeable.
 
 The analogy of a light switch brings this to life: _"You hit the light switch, and that
 raises a light switched-on event. You can't un-switch on a light."_ To turn the light off,
-you generate a new event—_“light switched-off"_—but you don't undo the original. This
+you generate a new event—_"light switched-off"_—but you don't undo the original. This
 principle of immutability ensures that events in the system are reliable and unambiguous,
 forming the foundation for how systems react.
 

@@ -275,7 +275,7 @@ being compared.
 
 Go 1.21 introduced the `slices` package, which provides generic sorting functions. These new
 functions combine the convenience of `sort.Slice` with the ability to detect type errors at
-compile time. For basic numeric or string slices that satisfy Go's “ordered” constraints,
+compile time. For basic numeric or string slices that satisfy Go's "ordered" constraints,
 you can just call `slices.Sort`. For more complex or custom sorting, `slices.SortFunc`
 accepts a comparator function that returns an integer (negative if `a < b`, zero if they're
 equal, and positive if `a > b`).

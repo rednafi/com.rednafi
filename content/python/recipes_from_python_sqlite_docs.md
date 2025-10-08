@@ -411,7 +411,7 @@ authorization control. Here, `auth_callback` takes in 5 arguments. From the docs
 
 > The 1st argument to the callback signifies what kind of operation is to be authorized. The
 > 2nd and 3rd arguments will be arguments or None depending on the 1st argument. The 4th
-> argument is the name of the database (“main”, “temp”, etc.) if applicable. The 5th
+> argument is the name of the database ("main", "temp", etc.) if applicable. The 5th
 > argument is the name of the inner-most trigger or view that is responsible for the access
 > attempt or None if this access attempt is directly from input SQL code. Please consult the
 > SQLite documentation about the possible values for the first argument and the meaning of
