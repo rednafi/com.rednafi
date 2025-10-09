@@ -26,15 +26,15 @@
 
 /* Dark theme variables */
 .dark {
-  --theme: #2a2a2a;
-  --entry: #2a2a2a;
+  --theme: #212529;
+  --entry: #212529;
   --primary: #e8e8e8;
   --secondary: #e8e8e8;
-  --tertiary: #555555;
+  --tertiary: #505050;
   --content: #e8e8e8;
-  --hljs-bg: #3a3a3a;
-  --code-bg: #3a3a3a;
+  --hljs-bg: #2c3034;
+  --code-bg: #2c3034;
   --secondary-urls: #9bb55a;
   --code-color: #e8e8e8;
-  --border: #555555;
+  --border: #505050;
 }
