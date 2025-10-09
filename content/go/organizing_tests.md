@@ -1,8 +1,9 @@
 ---
 title: Organizing Go tests
 date: 2025-10-08
+slug: organizing-tests
 aliases:
-    - /go/organizing-tests/
+    - /go/organizing_tests/
 tags:
     - Go
     - Testing
