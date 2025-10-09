@@ -289,7 +289,7 @@ myapp/
 │   ├── greet_external_test.go       # mypkg_test - black-box tests
 │   └── greet_bench_fuzz_example.go  # mypkg - examples, benchmarks, & fuzz tests
 └── integration/
-    └── greet_integration_test.go    # package integration - integration or e2e tests
+    └── greet_integration_test.go    # integration - integration or e2e tests
 ```
 
 
