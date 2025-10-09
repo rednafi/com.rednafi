@@ -113,7 +113,7 @@ import (
     "myapp/mypkg" // Explicitly import the SUT package
 )
 
-func TestGreetingExternal(t *testing.T) {
+func TestGreetExternal(t *testing.T) {
     got := mypkg.Greet("External")
     want := "Hello, External"
     if got != want {
@@ -252,7 +252,7 @@ import (
     "myapp/mypkg" // Explicitly import the SUT pkg to use its deps
 )
 
-func TestGreetingFlow(t *testing.T) {
+func TestGreetFlow(t *testing.T) {
     got := mypkg.Greet("Integration")
     want := "Hello, Integration"
     if got != want {
