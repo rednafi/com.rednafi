@@ -270,6 +270,11 @@ explicitly.
 You'll see this pattern in [kubernetes], which has a `test` directory with subpackages like
 `integration` and `e2e`.
 
+Having a top-level package for testing only makes sense if you're testing multiple packages.
+Otherwise, if you're writing integration or functional tests for a single package, you can
+still nest the tests under the SUT package. In this case, integration tests for `mypkg` can
+be tucked away under `mypkg/test`.
+
 ## Closing
 
 The general rule of thumb is:
@@ -292,7 +297,6 @@ myapp/
 └── integration/
     └── greet_integration_test.go    # integration - integration or e2e tests
 ```
-
 
 <!-- References -->
 
