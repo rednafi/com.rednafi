@@ -10,10 +10,10 @@ tags:
 
 When I started my career in a tightly-knit team of six engineers at a small e-commerce
 startup, I was struck by the remarkable efficiency of having a centralized hub for all the
-documents used for planning. We used a single Trello board with four columns—To-do, Doing,
-Q/A, Done—where the tickets were grouped by feature tags. We'd leverage a dummy ticket as an
-epic to sketch out the full plan for a feature and link related tickets to it. The rest of
-the discussions took place in Slack or GitHub Issues.
+documents used for planning. We used a single Trello board with four columns — To-do, Doing,
+Q/A, Done — where the tickets were grouped by feature tags. We'd leverage a dummy ticket as
+an epic to sketch out the full plan for a feature and link related tickets to it. The rest
+of the discussions took place in Slack or GitHub Issues.
 
 The setup was rudimentary but stood the test of time. As we expanded into multiple teams,
 each unit had its own board mirroring the original structure. Managers had a clear picture
@@ -22,7 +22,7 @@ was surprisingly low.
 
 A few years down the line, I was fortunate enough to land gigs at larger companies with
 bigger teams and more corporate structures. What caught me off guard was the chaotic state
-of planning documents. They were scattered everywhere—RFCs[^1], ADRs[^2], Epics, Jira
+of planning documents. They were scattered everywhere — RFCs[^1], ADRs[^2], Epics, Jira
 Issues, Subtasks, Design Docs[^3], you name it. Often, a single team would juggle all these
 formats to plan and record their work. I'm not claiming every workplace was like this, but
 it's more common than I'd like to admit.

@@ -78,9 +78,9 @@ Then you can run the tool with:
 go tool golangci-lint run ./...
 ```
 
-One thing to keep in mind: the first time you run a tool this way, it might take a second—Go
-needs to compile it before running if it isn't already compiled. After that, it's cached, so
-subsequent runs are fast.
+One thing to keep in mind: the first time you run a tool this way, it might take a second —
+Go needs to compile it before running if it isn't already compiled. After that, it's cached,
+so subsequent runs are fast.
 
 ## What about `go generate`?
 
@@ -131,7 +131,7 @@ go tool -modfile tools/go.mod golangci-lint run ./...
 ```
 
 The `go tool` command supports a `-modfile` flag that you can use to specify where to pull
-the tool version from. I _really_ wish `go get` supported `-modfile` too—that way you
+the tool version from. I _really_ wish `go get` supported `-modfile` too — that way you
 wouldn't need to manage the dependencies in such a wonky manner. This was close to being
 perfect. Well, maybe in a future release.
 

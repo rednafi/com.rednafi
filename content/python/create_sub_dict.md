@@ -68,7 +68,7 @@ It prints out the same thing as before:
 ```
 
 It's quite a bit faster because in the worst case scenario, it'll only have to traverse the
-entire `sub_keys` list—O(K) complexity achieved. This is so simple and elegant. How did I
+entire `sub_keys` list — O(K) complexity achieved. This is so simple and elegant. How did I
 miss that! There's another functional but subjectively less readable way of achieving the
 same thing. Here you go:
 

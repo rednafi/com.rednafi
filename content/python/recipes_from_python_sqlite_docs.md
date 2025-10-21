@@ -95,11 +95,10 @@ table. There are two types of callbacks that you can apply:
 
 ### Applying user-defined scalar functions
 
-In the following example, I've created a table called `users` with two text type
-columns—`username` and `password`. Here, we define a transformation scalar function named
-`sha256` that applies sha256 hashing to all the elements of the `password` column. The
-function is then registered via the `connection_obj.create_function(func_name, narg, func)`
-API.
+In the following example, I've created a table called `users` with two text type columns —
+`username` and `password`. Here, we define a transformation scalar function named `sha256`
+that applies sha256 hashing to all the elements of the `password` column. The function is
+then registered via the `connection_obj.create_function(func_name, narg, func)` API.
 
 ```py
 # src.py
@@ -159,7 +158,7 @@ with conn:
 Aggregate functions are defined as classes and then registered with the
 `connection_obj.create_aggregate(func_name, narg, aggregate_class)` API. In the example
 below, I've created a table called `series` with a single integer type column `val`. To
-define an aggregate function, we'll need to write a class with two methods—`step` and
+define an aggregate function, we'll need to write a class with two methods — `step` and
 `finalize` where `step` will return the value of an intermediary progression step and
 `finalize` will return the final result. Below, you can see that the aggregate function
 returns a single value in the output.
@@ -347,7 +346,7 @@ allows you to annotate a column with a special type and it'll automatically conv
 values of the column to a compatible type of Python object while returning the result of a
 get query.
 
-Here, I've created a table called `timekeeper` with two columns—`d` and `dt` where `d`
+Here, I've created a table called `timekeeper` with two columns — `d` and `dt` where `d`
 expects a date and `dt` expects a timestamp. So, in the table creation DDL statement, we
 annotate the columns with `date` and `timestamp` types respectively. We've also turned on
 column type parsing by setting
@@ -490,12 +489,12 @@ a way that the result might come out as a list of dictionaries or a list of cust
 ### Via an arbitrary container object as the row factory
 
 You can attach a callback to the `connection_obj.row_factory` attribute to change how you
-want to display the rows in a result list. The factory callback takes in two arguments—
+want to display the rows in a result list. The factory callback takes in two arguments —
 `cursor` and `row` where `cursor` is a tuple containing some metadata related to a single
 table record and `row` is the default representation of a single database row as a tuple.
 
 In the following snippet, just like before, I'm creating the same `colors` table with two
-columns—`name` and `hex`. Here, the `row_factory` function is the factory callback that
+columns — `name` and `hex`. Here, the `row_factory` function is the factory callback that
 converts the default row representation from a tuple to a dictionary. We're then registering
 the `row_factory` function with the `connection_obj.row_factory = row_factory` assignment
 statement. Afterward, the `sqlite3` module calls this statement on each record and
@@ -835,7 +834,7 @@ on-disk DB. First, it connects to the source DB and then creates another connect
 empty backup DB. Afterward, the source data is backed up to the destination DB with the
 `connection_obj_source.backup(connection_obj_destination)` API.
 
-The `.backup` method takes in three values—a connection object that points to the
+The `.backup` method takes in three values — a connection object that points to the
 destination DB, the number of pages to copy in a single pass, and a callback to introspect
 the progress. You can set the value of the `progress` parameter to `-1` if you want to load
 the entire source database into memory and copy everything to the destination in a single

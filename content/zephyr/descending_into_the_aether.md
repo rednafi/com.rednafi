@@ -38,7 +38,7 @@ around 1500 USD.
 
 > _This isn't a product review, and I honestly don't know a squat about reviewing things.
 > It's simply a brief piece sharing my thoughts on a product I purchased with my own money.
-> You won't find any affiliated links here—just my genius opinions. Also, this comes from
+> You won't find any affiliated links here — just my genius opinions. Also, this comes from
 > the perspective of a person who won't be using this as their main work machine._
 
 I was worried that I'd have a hard time adjusting to the smaller 15" screen and wouldn't
@@ -63,15 +63,15 @@ So far, performance hasn't been a bottleneck at all, and I can always resort to 
 apparatus if I need to. However, for the work that I usually do, the device is holding up
 surprisingly well, and I knew exactly what I'd be getting when I picked the Air over the 14"
 Pro. One big caveat is that the I/O situation is less than ideal as it only has two USB-C
-ports, a 3.5 mm headphone jack, and a MagSafe power port—that's it. Also, it only supports a
-single monitor, but that's rarely an issue because where would I even get a monitor in an
+ports, a 3.5 mm headphone jack, and a MagSafe power port — that's it. Also, it only supports
+a single monitor, but that's rarely an issue because where would I even get a monitor in an
 Airbnb?
 
 Finally, I won't even talk about the insanely good battery life, as the Airs have been the
 reigning champion in that department for years. The 16" MBP already has great battery life,
 and the Air matches that with a smaller battery due to having less powerful but more
-efficient internals. Overall, even considering my recency bias[^2], this is certainly one
-of—if not the most—prudent tech purchases that I made this year!
+efficient internals. Overall, even considering my recency bias[^2], this is certainly one of
+— if not the most — prudent tech purchases that I made this year!
 
 [^1]: [ENIAC](https://en.wikipedia.org/wiki/ENIAC)
 
