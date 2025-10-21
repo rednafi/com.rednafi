@@ -124,7 +124,7 @@ serious and substantial ones.
 People are part of the system. The design should match the user's experience, expectations,
 and mental models.
 
-[the priciple of least astonishment]:
+[the principle of least astonishment]:
     https://github.com/dwmkerr/hacker-laws#the-principle-of-least-astonishment
 
 ### [The Unix philosophy]
