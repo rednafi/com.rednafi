@@ -19,27 +19,27 @@ distillation.
 ## The curse of tightly coupled microservices
 
 Microservices often start with HTTP-based request-response communication, which seems
-straightforward but quickly becomes a pain as systems grow. Coupling—where one service
-depends on another—creates a few issues. Take the _order processing service_ in a fictional
-Plant-Based Pizza company. It has to talk to the _pickup service_, _delivery service_,
-_kitchen_, and _loyalty point_ service. They're all tied together, so if one fails, the
-whole system could go down.
+straightforward but quickly becomes a pain as systems grow. Coupling — where one service
+depends on another — creates a few issues. Take the _order processing service_ in a
+fictional Plant-Based Pizza company. It has to talk to the _pickup service_, _delivery
+service_, _kitchen_, and _loyalty point_ service. They're all tied together, so if one
+fails, the whole system could go down.
 
 The system relies on all services being up at the same time, which causes issues when any
 service crashes. Even something like loyalty points can take the whole thing offline, making
 you wonder if the order processing service really needs to care about that.
 
-On top of that, there's semantic coupling—things like data formats. _"How do you handle null
-values in strings? What casing is your JSON using—camelCase?"_ These details might seem
-minor, but in tightly coupled systems, they pile up, making the integrations fragile and
-complicated.
+On top of that, there's semantic coupling — things like data formats. _"How do you handle
+null values in strings? What casing is your JSON using — camelCase?"_ These details might
+seem minor, but in tightly coupled systems, they pile up, making the integrations fragile
+and complicated.
 
 ## What event-driven architecture solves
 
 Event-driven architecture offers a way to decouple services. Instead of one service needing
 to communicate directly with another, services react to events, giving more flexibility and
-scalability. _"Event-driven architecture is about reversing dependencies—reversing the lines
-of integration."_ Now, the order processing service doesn't need to know where the
+scalability. _"Event-driven architecture is about reversing dependencies — reversing the
+lines of integration."_ Now, the order processing service doesn't need to know where the
 downstream services are. It simply publishes an event, and the downstream services react to
 it.
 
@@ -59,14 +59,14 @@ _"pizza boxed."_ Events are simple, factual, and unchangeable.
 
 The analogy of a light switch brings this to life: _"You hit the light switch, and that
 raises a light switched-on event. You can't un-switch on a light."_ To turn the light off,
-you generate a new event—_"light switched-off"_—but you don't undo the original. This
+you generate a new event — _"light switched-off"_ — but you don't undo the original. This
 principle of immutability ensures that events in the system are reliable and unambiguous,
 forming the foundation for how systems react.
 
 ## Event-driven vs. event-based systems
 
 It's easy to confuse event-driven systems with event-based systems, but the distinction is
-crucial. Event-driven systems are driven by business-specific events—things that reflect
+crucial. Event-driven systems are driven by business-specific events — things that reflect
 real-world actions and decisions, not just technical events like a button click. _"An
 event-driven system uses events like these: 'order confirmed,' 'pizza boxed,' 'staff member
 clocked in.'"_ These are business-level events that reflect the narrative of the company,
@@ -83,7 +83,7 @@ coherent system where the events reflect the organization's core processes.
 One of the critical design decisions in event-driven systems is choosing between fat events
 (which carry a lot of data) and sparse events (which carry minimal data). Fat events, also
 known as Event-Carried State Transfer (ECST), include all the information a consumer might
-need. For instance, _"the kitchen can consume this event—it's got the list of items on the
+need. For instance, _"the kitchen can consume this event — it's got the list of items on the
 order, so now it knows what it needs to cook."_ This reduces the need for callbacks or
 additional requests for data back to the original system that publishes the event, making
 the system more robust in terms of runtime interaction.
@@ -113,13 +113,13 @@ generates the event, the broker routes it, and the consumer processes it. The be
 system is that producers and consumers don't need to know about each other's existence.
 
 _"The first thing you'll notice is that the producer and the consumer here have no idea each
-other exists—the communication is managed by the broker."_ This decoupling makes the system
-more flexible and scalable. A consumer can be added or removed without impacting the
+other exists — the communication is managed by the broker."_ This decoupling makes the
+system more flexible and scalable. A consumer can be added or removed without impacting the
 producer. The broker ensures that events are delivered, allowing the system to continue
 functioning smoothly even as it evolves.
 
-However, one responsibility remains: _"The schema of your event—the format of that event—is
-the biggest part of the coupling that you will see in event-driven architecture."_ While
+However, one responsibility remains: _"The schema of your event — the format of that event —
+is the biggest part of the coupling that you will see in event-driven architecture."_ While
 runtime coupling is removed, semantic coupling still exists. Producers must ensure that the
 event schema doesn't change in ways that break existing consumers.
 
@@ -170,7 +170,7 @@ To illustrate this, consider a card payment: _"When you make a card transaction,
 doing is making a theoretical guarantee that, at some point in the future, that money is
 going to move from your bank account to theirs."_ While the system is eventually consistent,
 the end result will be correct, just not immediately. Event-driven architecture functions
-similarly—updates happen asynchronously, and systems eventually reach a consistent state.
+similarly — updates happen asynchronously, and systems eventually reach a consistent state.
 
 ## Handling HTTP communication in an event-driven world
 
@@ -207,7 +207,7 @@ services further and ensures more efficient use of resources.
 Command Query Responsibility Segregation (CQRS) is a powerful pattern that pairs well with
 event-driven architecture. CQRS separates the system into two parts: one for handling
 commands (writes) and another for handling queries (reads). _"In CQRS, you split your system
-into two completely independent services—one for processing commands, one for handling
+into two completely independent services — one for processing commands, one for handling
 queries."_ This allows each part of the system to be optimized for its specific workload.
 
 For example, the command service focuses on writing data to the database and publishing
@@ -228,8 +228,8 @@ outbox table ensures that if the event fails to publish initially, it can be ret
 
 This creates consistency across the system by acting as a buffer between the database and
 the event bus. Alternatively, systems can use change data capture to respond directly to
-changes in the database. _"As a record is written to the database, you can stream that—you
-can react to that—and you can publish events off the back of that."_ Both methods ensure
+changes in the database. _"As a record is written to the database, you can stream that — you
+can react to that — and you can publish events off the back of that."_ Both methods ensure
 reliability, preventing events from being lost due to temporary failures.
 
 The outbox pattern sounds great in theory, but in practice, if you have a large system with

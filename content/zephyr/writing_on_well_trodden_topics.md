@@ -8,13 +8,13 @@ tags:
     - Essay
 ---
 
-I enjoy writing about software—the things I learn, the tools I use, and the work I do. Owing
-to the constraints of the corporate software world, more often than not, you can't showcase
-your work or talk about them. At least that's how it always has been throughout my career.
-At the same time, as you grow older and start having a life outside of the computer screen,
-you realize that working on OSS at the tail of a 40+ hour workweek is hard, and maintaining
-consistency is even harder. On that front, how do you keep track of your progress without
-losing your sense of purpose as the years fly by?
+I enjoy writing about software — the things I learn, the tools I use, and the work I do.
+Owing to the constraints of the corporate software world, more often than not, you can't
+showcase your work or talk about them. At least that's how it always has been throughout my
+career. At the same time, as you grow older and start having a life outside of the computer
+screen, you realize that working on OSS at the tail of a 40+ hour workweek is hard, and
+maintaining consistency is even harder. On that front, how do you keep track of your
+progress without losing your sense of purpose as the years fly by?
 
 I ameliorate this by factoring out the things I learn at or outside work and writing about
 them publicly. Countless times I've found myself looking for stuff on the web only to land

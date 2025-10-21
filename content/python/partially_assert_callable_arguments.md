@@ -36,7 +36,7 @@ def procss() -> float:
 ```
 
 Let's say we only want to test the `process` function. But `process` ultimately depends on
-the `fetch` function, which has multiple side effects—it returns pseudo-random values and
+the `fetch` function, which has multiple side effects — it returns pseudo-random values and
 waits for 2 seconds on a fictitious network call. Since we only care about `process`, we'll
 mock the other two functions. Here's how `unittest.mock.ANY` can make life easier:
 

@@ -191,10 +191,10 @@ special methods and their execution order.
 > constructor" myself; but in actuality, as its name indicates, it's an initializer and by
 > the time it's invoked, the object has already been created, seeing as it's passed in as
 > self. The real constructor is a far less famous function: `__new__`. The reason you might
-> never hear about it or use it—is that allocation doesn't mean that much in Python, which
-> manages memory for you. So if you do override `__new__`, it'd be just like your
-> `__init__`—except you'll have to call into Python to actually create the object, and then
-> return that object afterward.
+> never hear about it or use it — is that allocation doesn't mean that much in Python, which
+> manages memory for you. So if you do override `__new__`, it'd be just like your `__init__`
+> — except you'll have to call into Python to actually create the object, and then return
+> that object afterward.
 
 ```py
 class ExampleMeta(type):
@@ -401,7 +401,7 @@ replaces the default `type` metaclass and produces the desired result by mutatin
 In this case, I want to dynamically attach a new attribute to the target class called
 `__attrs_ordered__`. Accessing this attribute from the target class (or instance) will give
 out an alphabetically sorted list of the attribute names. Here, the `__prepare__` method
-inside the metaclass `AttrsListMeta` returns an `OrderDict` instead of a simple `dict`—so
+inside the metaclass `AttrsListMeta` returns an `OrderDict` instead of a simple `dict` — so
 all attributes gathered before the `__new__` method call will be ordered. Just like the
 previous example, here, the `__new__` method inside the metaclass implements the logic
 required to get the sorted list of the attribute names.

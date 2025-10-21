@@ -10,8 +10,8 @@ tags:
 
 Up until now, I've always preferred **Title Case** to demarcate titles and section headers
 in my writings. However, lately I've realized that each time I start writing a sentence, I
-waste a few seconds deciding on the appropriate case of the special words like—technical
-terms, trademark names, proper nouns, etc—and how they'll blend in with the multiple
+waste a few seconds deciding on the appropriate case of the special words like — technical
+terms, trademark names, proper nouns, etc — and how they'll blend in with the multiple
 flavors[^1] of rules around title casing. Plus, often time, special casing of selected words
 makes title-cased sentences look strange.
 

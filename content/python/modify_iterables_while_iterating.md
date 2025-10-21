@@ -146,8 +146,8 @@ Running the script prints:
 Notice, how the iterator now visits all the elements and the final list contains the odd
 elements as expected.
 
-Another way you can solve this is—by copying the list `l` before iterating. But this can be
-expensive if `l` is large:
+Another way you can solve this is — by copying the list `l` before iterating. But this can
+be expensive if `l` is large:
 
 ```py
 # src.py

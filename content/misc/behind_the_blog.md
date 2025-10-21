@@ -65,7 +65,7 @@ me access to more accurate analytics.
 Static assets like images, CSS, JS, and other files are stored on [Cloudflare R2]. I used to
 host my images with GitHub Issues and serve CSS and JS from the origin, but I recently
 switched everything to R2. Now I can manage it all from one place without worrying about
-costs. Their free plan is super generous—there's no egress bandwidth fee, and because of
+costs. Their free plan is super generous — there's no egress bandwidth fee, and because of
 caching, I barely use any of the quota. It's fantastic!
 
 ![image_3]

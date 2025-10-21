@@ -39,7 +39,7 @@ actually have only a year's worth of experience repeated ten times.
 
 I've been looking for a phrase to label the dilemma where the curse of knowledge,
 accumulated over time, prevents you from acquiring new knowledge and adopting new ways of
-thinking. Turns out, there's one for that—the Einstellung effect[^2]. Einstellung is a
+thinking. Turns out, there's one for that — the Einstellung effect[^2]. Einstellung is a
 German word for "attitude" or "setting." It describes a situation where we stick to a
 familiar way of thinking or solving problems, which can stop us from seeing or seeking
 easier or better solutions. This only gets worse as we start growing older or becoming more
@@ -64,7 +64,7 @@ accumulated experience and acquired predispositions actively resisted adopting d
 ways of solving problems.
 
 It's natural for us to acquire new skills by mapping them with what we already know, and
-that's true for any skill—whether it's learning to cook a new dish or writing in an
+that's true for any skill — whether it's learning to cook a new dish or writing in an
 unfamiliar programming language. But at the same time, as we grow older, we actively need to
 strain against the tide to learn to learn like kids. Because without it, we are nothing but
 simulacra acting as conscious exotica[^3], spellbound by the allure of mimicry!

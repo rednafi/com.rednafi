@@ -13,7 +13,7 @@ tags:
 At my workplace, we have a large Django monolith that powers the main website and works as
 the primary REST API server at the same time. We use Django Rest Framework (DRF) to build
 and serve the API endpoints. This means, whenever there's an error, based on the incoming
-request header—we've to return different formats of error responses to the website and API
+request header — we've to return different formats of error responses to the website and API
 users.
 
 The default DRF configuration returns a JSON response when the system experiences an HTTP

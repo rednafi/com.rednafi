@@ -108,8 +108,8 @@ print(getsizeof(l))
 
 This dynamic memory allocation makes lists so flexible, and since a list only holds
 references to the elements, it can house heterogenous objects without any issue. But this
-flexibility of being able to append any number of elements—without ever caring about memory
-allocation—comes at the cost of slower execution time.
+flexibility of being able to append any number of elements — without ever caring about
+memory allocation — comes at the cost of slower execution time.
 
 Although usually, you don't need to think about optimizing this at all, there's a way that
 allows you to perform static pre-allocation of memory in a list instead of letting Python

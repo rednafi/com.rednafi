@@ -121,9 +121,9 @@ can quickly get out of hands when the number of tasks is huge or the individual 
 time consuming.
 
 A general rule of thumb is using `ThreadPoolExecutor` when the tasks are primarily I/O
-bound, like—sending multiple http requests to many urls, saving a large number of files to
-disk etc. `ProcessPoolExecutor` should be used in tasks that are primarily CPU bound,
-like—running callables that are computation heavy, applying pre-process methods over a large
+bound, like — sending multiple http requests to many urls, saving a large number of files to
+disk etc. `ProcessPoolExecutor` should be used in tasks that are primarily CPU bound, like —
+running callables that are computation heavy, applying pre-process methods over a large
 number of images, manipulating many text files at once etc.
 
 ### Running tasks with executor.submit
@@ -142,10 +142,10 @@ with concurrent.futures.Executor() as executor:
         print(f"The outcome is {fut.result()}")
 ```
 
-Here you start by creating an Executor, which manages all the tasks that are running—either
-in separate processes or threads. Using the with statement creates a context manager, which
-ensures any stray threads or processes get cleaned up via calling the `executor.shutdown()`
-method implicitly when you're done.
+Here you start by creating an Executor, which manages all the tasks that are running —
+either in separate processes or threads. Using the with statement creates a context manager,
+which ensures any stray threads or processes get cleaned up via calling the
+`executor.shutdown()` method implicitly when you're done.
 
 In real code, you'd would need to replace the `Executor` with `ThreadPoolExecutor` or a
 `ProcessPoolExecutor` depending on the nature of the callables. Then a set comprehension has

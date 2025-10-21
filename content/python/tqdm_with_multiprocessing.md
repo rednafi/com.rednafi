@@ -13,7 +13,7 @@ Making tqdm play nice with multiprocessing requires some additional work. It's n
 obvious and I don't want to add another third-party dependency just for this purpose.
 
 The following example attempts to make tqdm work with `multiprocessing.imap_unordered`.
-However, this should also work with similar mapping methods like—`multiprocessing.map`,
+However, this should also work with similar mapping methods like — `multiprocessing.map`,
 `multiprocessing.imap`, `multiprocessing.starmap`, etc.
 
 ```py
