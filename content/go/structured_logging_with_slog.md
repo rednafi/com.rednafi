@@ -60,7 +60,7 @@ components of `slog` work together.
 The `slog` package lets you create `Logger` instances. These instances have methods like
 `Info()` and `Error()` that you can call to log stuff. When you call one of these methods,
 it creates a `Record` from the data you passed in and sends it to a `Handler`. The `Handler`
-figures out what to actually do with the log—like print it somewhere or send it over the
+figures out what to actually do with the log — like print it somewhere or send it over the
 network. You can write your own or use one of the predefined `TextHandler` or `JSONHandler`
 to format your log output.
 

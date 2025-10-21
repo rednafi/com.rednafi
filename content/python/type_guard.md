@@ -103,8 +103,8 @@ Found 1 error in 1 file (checked 1 source file)
 
 The type checker can't figure out that the container type is `list[str]`.
 
-Functions like `check_sequence_str` that—checks the type of an input object and returns a
-boolean—are called **type guard functions**. PEP-647 proposed a `TypeGuard` class to help
+Functions like `check_sequence_str` that — checks the type of an input object and returns a
+boolean — are called **type guard functions**. PEP-647 proposed a `TypeGuard` class to help
 the type checkers to narrow down types from more complex expressions. Python 3.10 added the
 `TypeGuard` class to the `typing` module. You can use it like this:
 

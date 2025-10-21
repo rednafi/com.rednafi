@@ -8,7 +8,7 @@ tags:
     - Python
 ---
 
-Data classes are containers for your data—not behavior. The delineation is right there in
+Data classes are containers for your data — not behavior. The delineation is right there in
 the name. Yet, I see state-mutating methods getting crammed into data classes and polluting
 their semantics all the time. While this text will primarily talk about data classes in
 Python, the message remains valid for any language that supports data classes and allows you

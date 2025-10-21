@@ -433,7 +433,7 @@ Here's the [complete implementation] with tests.
 <!-- Resources -->
 <!-- prettier-ignore-start -->
 
-<!-- circuit breaker — martin fowler -->
+<!-- circuit breaker  —  martin fowler -->
 [circuit breakers]:
     https://martinfowler.com/bliki/CircuitBreaker.html
 

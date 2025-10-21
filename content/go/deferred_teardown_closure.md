@@ -35,7 +35,7 @@ func helper(t *testing.T) {
 }
 ```
 
-When `helper` is called, it defers its teardown—which executes at the end of the helper
+When `helper` is called, it defers its teardown — which executes at the end of the helper
 function, not the test. But the test logic still depends on whatever the helper set up. So
 this approach doesn't work.
 
@@ -63,7 +63,7 @@ func helper(t *testing.T) {
 ```
 
 This works fine if you have only one helper. But with multiple helpers, it quickly becomes
-messy—you now have to manage multiple teardown calls manually, like this:
+messy — you now have to manage multiple teardown calls manually, like this:
 
 ```go
 func TestFoo(t *testing.T) {
@@ -84,7 +84,7 @@ func TestFoo(t *testing.T) {
 
 You also need to be careful with the order: `defer` statements are executed in LIFO
 (last-in, first-out) order. So if teardown order matters, this can be a problem. Ideally,
-your tests shouldn't depend on teardown order—but sometimes they do.
+your tests shouldn't depend on teardown order — but sometimes they do.
 
 So rather than manually handling cleanup inside the test, have helpers return a teardown
 function that the test can `defer` itself. Here's how:

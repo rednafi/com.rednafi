@@ -51,7 +51,10 @@
 
 <!-- Custom logic: add links to recent posts starts -->
 {{- $current := . }}
-{{- $excludeUrls := site.Params.noRecentPosts }}
+{{- $excludeUrls := slice }}
+{{- range site.Menus.hamburger }}
+  {{- $excludeUrls = $excludeUrls | append .URL }}
+{{- end }}
 {{- $exclude := false }}
 
 {{- range $excludeUrls }}

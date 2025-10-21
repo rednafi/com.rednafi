@@ -574,8 +574,9 @@ Notice, how the server pushes the result of the task automatically once it finis
 
 ## Limitations
 
-While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts—apart
-from only supporting unidirectional communication, they suffer from a few other limitations:
+While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts —
+apart from only supporting unidirectional communication, they suffer from a few other
+limitations:
 
 - SSE is limited to sending text data only. If an application needs to send binary data, it
   must encode the data as text before sending it over SSE.

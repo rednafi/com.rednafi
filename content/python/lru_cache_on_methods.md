@@ -161,7 +161,7 @@ class SlowAdder:
         print("Deleting instance ...")
 ```
 
-The only difference here is—instead of decorating the method directly, I called the
+The only difference here is — instead of decorating the method directly, I called the
 decorator function on the `_calculate` method just as a regular function and saved the
 result as an instance variable named `calculate`. The instances of this class get garbage
 collected as usual.

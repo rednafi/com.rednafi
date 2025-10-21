@@ -11,12 +11,12 @@ tags:
 
 While going through a script at work today, I came across Bash's `nameref` feature. It uses
 `declare -n ref="$1"` to set up a variable that allows you to reference another variable by
-name—kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
+name — kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
 probably just skimmed over it.
 
 As I dug into the man page[^1], I realized there's a gap in my understanding of how variable
-references actually work in Bash—probably because I never gave it proper attention and just
-got by cobbling together scripts.
+references actually work in Bash — probably because I never gave it proper attention and
+just got by cobbling together scripts.
 
 ## Namerefs
 

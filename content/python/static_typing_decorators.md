@@ -174,7 +174,7 @@ decorated function.
 The only thing that's different from the previous section is the annotation of the `func`
 parameter of the `inject_logger`. Notice how the `Callable` generic now contain
 `Concatenate[logging.Logger, P]`. The first parameter of the `Concatenate` generic is the
-injected parameter—`logging.Logger` in this case. Since the instance of `logging.Logger`
+injected parameter — `logging.Logger` in this case. Since the instance of `logging.Logger`
 gets dynamically injected, an additional paradigm `Concatenate` is necessary to communicate
 that with the type checker.
 

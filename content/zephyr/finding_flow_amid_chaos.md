@@ -22,7 +22,7 @@ standups, one-on-ones with the manager, monthly all hands, and a confetti of oth
 rendezvous that often makes you question your career choice at the tail of a chaotic but
 unproductive day. Although the meeting marathon for an IC isn't as grueling as what a
 product manager or team lead endures, it's still a hefty list that often sidelines the real
-deal—doing the actual work you were hired for.
+deal — doing the actual work you were hired for.
 
 Now, railing against the corporate sky is useless. I'm well aware that far more astute minds
 have written about this many times before. Also, some of these meetings are paramount in a

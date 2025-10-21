@@ -21,7 +21,7 @@ a template solution is probably one of the few edges we still have over LLMs.
 
 Telling someone to acquire domain knowledge in a business is kind of like telling a CS grad
 to focus more on protocols and less on mechanisms. Protocol changes are way harder, and
-mechanisms shift under your feet constantly—grappling with that change is just part of the
+mechanisms shift under your feet constantly — grappling with that change is just part of the
 job.
 
 That said, not all domain knowledge yields the same result, and it's often not obvious which
@@ -38,9 +38,9 @@ knowledge is reusable.
 Knowing the ins and outs of an internal feature-flagging system at your company isn't the
 same as understanding the machinations of a database abstraction layer at Netflix. Not all
 of us work at Netflix, and finding that balance is hard. Sometimes you just have to learn
-enough to get by, and that's fine—learning is part of why we get paid. But domain lock-in is
-real. I've seen extremely good engineers get stuck in super niche areas and then struggle to
-pivot away.
+enough to get by, and that's fine — learning is part of why we get paid. But domain lock-in
+is real. I've seen extremely good engineers get stuck in super niche areas and then struggle
+to pivot away.
 
 This is probably obvious to veterans, but it wasn't to me when I started. I've seen some
 people get burned by over-specializing, while others pulled off moonshots by spotting

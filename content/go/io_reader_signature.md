@@ -25,7 +25,7 @@ inside `Read`, load the data, and return it instead?
 Read() (p []byte, err error)
 ```
 
-This felt more intuitive to me—you call `Read`, and it gives you a slice filled with data,
+This felt more intuitive to me — you call `Read`, and it gives you a slice filled with data,
 no need to pass anything.
 
 I found out why it's designed this way while watching this excellent [GopherCon Singapore
@@ -59,7 +59,7 @@ buf escapes to heap
 ```
 
 meaning Go has to allocate it dynamically. But by reusing a preallocated slice, we avoid
-unnecessary heap allocations—only if the buffer is small enough to fit in the stack. How
+unnecessary heap allocations — only if the buffer is small enough to fit in the stack. How
 small? Only the compiler knows, and you shouldn't depend on it. Use the escape analysis tool
 to see that. But most of the time, you don't need to worry about this at all.
 

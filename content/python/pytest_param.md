@@ -10,7 +10,7 @@ tags:
     - TIL
 ---
 
-I love `@pytest.mark.parametrize`[^1]—so much so that I sometimes shoehorn my tests to fit
+I love `@pytest.mark.parametrize`[^1] — so much so that I sometimes shoehorn my tests to fit
 into it. But the default style of writing tests with `parametrize` can quickly turn into an
 unreadable mess as the test complexity grows. For example:
 

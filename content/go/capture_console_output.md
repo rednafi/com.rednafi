@@ -85,9 +85,9 @@ func captureStdout(f func()) string {
 
 Here's what's happening under the hood:
 
-We use `os.Pipe()` to create a pipe: a connected pair of file descriptors—a reader (`r`) and
-a writer (`w`). Think of it like a temporary tunnel. Whatever we write to `w`, we can read
-back from `r`. Since both are just files as far as Go is concerned, we can temporarily
+We use `os.Pipe()` to create a pipe: a connected pair of file descriptors — a reader (`r`)
+and a writer (`w`). Think of it like a temporary tunnel. Whatever we write to `w`, we can
+read back from `r`. Since both are just files as far as Go is concerned, we can temporarily
 replace `os.Stdout` with the writer end of the pipe:
 
 ```go
