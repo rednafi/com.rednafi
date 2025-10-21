@@ -18,7 +18,7 @@ latter camp.
 In languages like C#, Java, and Kotlin, explicit overriding is required. For instance, in
 Java, you use `@Override` to make it clear you're overriding a method in a sub class. If you
 mess up the method name or if the method doesn't exist in the superclass, the compiler
-throws an error. Now, with Python's `@override` decorator, we get similar benefits—though
+throws an error. Now, with Python's `@override` decorator, we get similar benefits — though
 only if you're using a static type checker.
 
 Here's an example:

@@ -9,7 +9,7 @@ tags:
     - Typing
 ---
 
-While working with microservices in Python, a common pattern that I see is—the usage of
+While working with microservices in Python, a common pattern that I see is — the usage of
 dynamically filled dictionaries as payloads of REST APIs or message queues. To understand
 what I mean by this, consider the following example:
 
@@ -100,7 +100,7 @@ This will return the following payload to your console:
 Although this workflow is functional in runtime, there's a big gotcha here! It's really
 difficult to picture the shape of the `payload` from the output of the `get_payload`
 function; as it dynamically builds the dictionary. First, it declares a dictionary with two
-fields—`name` and `animals`. Here, `name` is a string value that denotes the name of the
+fields — `name` and `animals`. Here, `name` is a string value that denotes the name of the
 zoo. The other field `animals` is a list containing the names and attributes of the animals
 in the zoo. Later on, the for-loop fills up the dictionary with nested data structures. This
 charade of operations makes it difficult to reify the final shape of the resulting `payload`
@@ -172,9 +172,9 @@ if __name__ == "__main__":
 
 Notice, how I've used `TypedDict` to declare the nested structure of the payload `Zoo`. In
 runtime, instances of typed-dict classes behave the same way as normal dicts. Here, `Zoo`
-contains two fields—`name` and `animals`. The `animals` field is annotated as `list[Animal]`
-where `Animal` is another typed-dict. The `Animal` typed-dict houses another typed-dict
-called `Attribute` that defines various properties of the animal.
+contains two fields — `name` and `animals`. The `animals` field is annotated as
+`list[Animal]` where `Animal` is another typed-dict. The `Animal` typed-dict houses another
+typed-dict called `Attribute` that defines various properties of the animal.
 
 Taking a look at the typed-dict `Zoo` and following along its nested structure, the final
 shape of the payload becomes clearer without us having to look for example payloads. Also,

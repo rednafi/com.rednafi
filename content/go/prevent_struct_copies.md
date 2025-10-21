@@ -168,7 +168,7 @@ call of fmt.Println copies lock value: play.Svc contains play.noCopy
 
 ---
 
-Someone on Reddit asked me what actually triggers the `copylock` checker in `go vet`—is it
+Someone on Reddit asked me what actually triggers the `copylock` checker in `go vet` — is it
 the struct's literal name `noCopy` or the fact that it implements the `Locker` interface?
 
 The name `noCopy` isn't special. You can call it whatever you want. As long as it implements

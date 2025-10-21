@@ -50,7 +50,7 @@ This way, the connection objects returned by the functions are cached and any su
 calls to the functions will provide the same connection objects from the cache without
 reinitializing them.
 
-One problem with the above approach is—how complex the implementation of the `cache`
+One problem with the above approach is — how complex the implementation of the `cache`
 decorator is. Underneath, the `functools.cache` decorator is an alias for
 `functools.lru_cache(None)` and it employs a **Least Recently Used** cache eviction policy.
 While this policy is quite useful when you need it but to cache simple connection objects,

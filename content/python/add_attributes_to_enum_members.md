@@ -130,7 +130,7 @@ executed during the creation of the `Color` object; before the `__init__` method
 the first argument `cls`, you can define the `__new__` method with any number of arbitrarily
 named arguments.
 
-In this case, the value of each member of `Color` will have three elements—`title`,
+In this case, the value of each member of `Color` will have three elements — `title`,
 `hex_code`, and `description`. So, I defined the `__new__` method to accept those arguments.
 In the following line, the `str` class was initialized via `obj = str.__new__(cls, title)`
 and then `title` was assigned to the newly created string object via `obj._value_=title`.

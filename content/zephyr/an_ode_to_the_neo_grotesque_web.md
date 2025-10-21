@@ -43,7 +43,7 @@ of frameworks stomping out all traces of creativity.
 
 Whenever I see technology mughals like Peter Norvig or Rob Pike showcase their thoughts
 through ancient relics like this[^2] or this[^3], it does put a smile on my face. No gaudy
-animations, no fancy fonts, no dark mode—just strings of thoughts laid bare against a
+animations, no fancy fonts, no dark mode — just strings of thoughts laid bare against a
 backdrop of naked HTML. If you don't like the design, just load the content with Safari or
 Firefox reader and you're golden. Of course, not all websites have to be like this but not
 every website has to look like Stripe's[^4] either.

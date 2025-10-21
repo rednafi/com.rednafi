@@ -42,7 +42,7 @@ Internally, every interface value is implemented as a two [word] structure:
 
 This data word might directly contain the value if it's small enough, or it might hold a
 pointer to the actual data. Note that this internal representation is distinct from the
-interface's declared or "static" type—the type you wrote in the code (`any` in the example
+interface's declared or "static" type — the type you wrote in the code (`any` in the example
 above). At runtime, what gets stored is only the pair of dynamic type and dynamic value.
 Here's a crude diagram:
 
@@ -155,7 +155,7 @@ if underlying, ok := r.(*myReader); ok && underlying == nil {
 
 Here, we assert that `r` holds a value of type `*myReader`. If the assertion succeeds
 (indicated by `ok` being `true`) and the `underlying` value is `nil`, we can conclude that
-the interface variable holds a nil pointer—even though the interface itself is not nil due
+the interface variable holds a nil pointer — even though the interface itself is not nil due
 to its dynamic type.
 
 This type assertion trick only works when you know the underlying type of the interface

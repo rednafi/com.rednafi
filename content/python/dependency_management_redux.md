@@ -10,9 +10,9 @@ tags:
 
 One major drawback of Python's huge ecosystem is the significant variances in workflows
 among people trying to accomplish different things. This holds true for dependency
-management as well. Depending on what you're doing with Python—whether it's building
-reusable libraries, writing web apps, or diving into data science and machine learning—your
-workflow can look completely different from someone else's. That being said, my usual
+management as well. Depending on what you're doing with Python — whether it's building
+reusable libraries, writing web apps, or diving into data science and machine learning —
+your workflow can look completely different from someone else's. That being said, my usual
 approach to any development process is to pick a method and give it a shot to see if it
 works for my specific needs. Once a process works, I usually automate it and rarely revisit
 it unless something breaks.

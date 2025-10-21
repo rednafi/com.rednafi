@@ -48,7 +48,7 @@ func main() {
         // Poll a new message from Kafka before spawning the worker
         msg := pollKafka()
 
-        // Spawn a worker goroutine for each message — fire and forget
+        // Spawn a worker goroutine for each message  —  fire and forget
         go worker(id, msg)
     }
 }

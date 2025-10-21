@@ -25,7 +25,7 @@ tracking instances where validation occurred. This validator was being used all 
 codebase, so it slowly started blowing up memory usage in the background. The problem is
 that it was keeping hard references to everything it validated, so none of those objects
 could get garbage collected. But the really sneaky thing was how slowly and secretly the
-problem happened—the leakage built up bit by bit over time even when people used the
+problem happened — the leakage built up bit by bit over time even when people used the
 validator in totally innocuous ways.
 
 Here's a simpler example of a validation descriptor that tracks the instances it's applied
@@ -139,7 +139,7 @@ class Within:
     def __set__(self, instance, value): ...
 ```
 
-The modified descriptor is a drop-in replacement for the previous one—minus the memory
+The modified descriptor is a drop-in replacement for the previous one — minus the memory
 leakage issue. So in the last snippet, when `exam` is deleted and the gc is called, weakref
 allows the instance to be garbage collected correctly instead of remaining in memory due to
 the strong reference in `_seen`. The weak reference doesn't interfere with gc freeing up the

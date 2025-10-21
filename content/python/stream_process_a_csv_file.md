@@ -9,7 +9,7 @@ tags:
     - Networking
 ---
 
-A common bottleneck for processing large data files is—memory. Downloading the file and
+A common bottleneck for processing large data files is — memory. Downloading the file and
 loading the entire content is surely the easiest way to go. However, it's likely that you'll
 quickly hit OOM errors. Often time, whenever I have to deal with large data files that need
 to be downloaded and processed, I prefer to stream the content line by line and use multiple

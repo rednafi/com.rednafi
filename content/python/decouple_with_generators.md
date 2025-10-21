@@ -8,7 +8,7 @@ tags:
     - Python
 ---
 
-Generators can help you decouple the production and consumption of iterables—making your
+Generators can help you decouple the production and consumption of iterables — making your
 code more readable and maintainable. I learned this trick a few years back from David
 Beazley's slides[^1] on generators. Consider this example:
 
@@ -48,7 +48,7 @@ need to do it. I can think of two reasons:
 - What'd you do if you needed a version of the infinite counter where the consumer had
   different behavior?
 
-One way the second point can be addressed is—by accepting the consumer function as a
+One way the second point can be addressed is — by accepting the consumer function as a
 parameter and applying that to the produced value.
 
 ```py
