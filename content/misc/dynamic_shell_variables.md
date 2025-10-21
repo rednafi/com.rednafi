@@ -9,7 +9,7 @@ tags:
     - TIL
 ---
 
-I came across a weird shell syntax today—dynamic shell variables. It lets you dynamically
+I came across a weird shell syntax today — dynamic shell variables. It lets you dynamically
 construct and access variable names in Bash scripts, which I haven't encountered in any of
 the mainstream languages I juggle for work.
 
@@ -113,7 +113,7 @@ using `${!VAR}` for indirect expansion. This ensures the correct variable is acc
 
 ## Function dispatch
 
-Another neat use case for dynamic variables is function dispatch—calling the appropriate
+Another neat use case for dynamic variables is function dispatch — calling the appropriate
 function based on runtime conditions. This technique can be used to simplify scripts that
 need to handle multiple services or operations.
 

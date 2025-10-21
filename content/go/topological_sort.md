@@ -136,9 +136,9 @@ func (g *Graph) AddEdge(source, destination string) {
 
 ### Initializing and processing tasks in batches
 
-Now we'll initialize the graph by identifying tasks that can be processed immediately—those
-with an in-degree of 0 (i.e., they have no dependencies). We then process tasks batch by
-batch.
+Now we'll initialize the graph by identifying tasks that can be processed immediately —
+those with an in-degree of 0 (i.e., they have no dependencies). We then process tasks batch
+by batch.
 
 ```go
 func (g *Graph) Prepare() {

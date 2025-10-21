@@ -44,7 +44,7 @@ OSS work, but these steps have been helpful while working on a large shared repo
 - Rebasing all the changes into a single commit is okay if the change is small, but for
   bigger changes, this does more harm than good.
 
-- I've rarely spent the time to ensure that the individual commits are perfect[^5]—in the
+- I've rarely spent the time to ensure that the individual commits are perfect[^5] — in the
   sense that they're complete with passing tests or documentation. As long as the complete
   change list makes sense as a whole, it's good enough. YMMV. The main goal is to make sure
   the diff makes sense to the person reviewing the work.

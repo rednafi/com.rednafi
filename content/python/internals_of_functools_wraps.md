@@ -10,7 +10,7 @@ tags:
 
 The `functools.wraps` decorator allows you to keep your function's identity intact after
 it's been wrapped by a decorator. Whenever a function is wrapped by a decorator, identity
-properties like—function name, docstring, annotations of it get replaced by those of the
+properties like — function name, docstring, annotations of it get replaced by those of the
 wrapper function. Consider this example:
 
 ```py
@@ -168,7 +168,7 @@ def wraps(
 ```
 
 The bulk of the work is done in the `update_wrapper` function. It copies the identity
-properties defined in `WRAPPER_ASSIGNMENTS` and `WRAPPER_UPDATES`—from the `wrapped`
+properties defined in `WRAPPER_ASSIGNMENTS` and `WRAPPER_UPDATES` — from the `wrapped`
 function over to the `wrapper` function. Here, the `wrapped` function is the decorated one
 (`add` function) and the `wrapper` function is the eponymous function inside the `log`
 decorator.

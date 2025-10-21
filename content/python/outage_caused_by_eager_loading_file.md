@@ -102,7 +102,7 @@ vertically scaling up the machines. The surface area of this issue was quite lar
 didn't want to hotfix it in fear of triggering inadvertent regressions. Once we were out of
 the woods, we started patching the culprit.
 
-The solution to this is quite simple—convert the binary file-like object into a text
+The solution to this is quite simple — convert the binary file-like object into a text
 file-like object without buffering everything in memory and then pass the file to the CSV
 reader. We were already processing the CSV rows in a lazy manner and just removing
 `f.read()` fixed the overzealous buffering issue. The corrected code snippet looks like

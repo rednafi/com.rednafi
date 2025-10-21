@@ -70,8 +70,8 @@ If you run `pytest -v -s src.py`, the test will pass. The `unittest.mock.patch` 
 used here to mock the `random.choice` function and guarantee that it returns a controlled
 value instead of a random one. Shaving off this randomness of the `random.choice` function
 helps us test the behaviors of the `prepend_random` function in a more reproducible fashion.
-The `autospec=True` makes sure that the behavior of the mocked object—in this case, the
-function signature—is the same as the original object.
+The `autospec=True` makes sure that the behavior of the mocked object — in this case, the
+function signature — is the same as the original object.
 
 Another thing is, you can also use the `patch` function as a context manager like this:
 
@@ -216,7 +216,7 @@ def test_func_ok(mock_dep_1, mock_dep_2):
     mock_dep_2.assert_called_once()
 ```
 
-The target function `func` has two dependencies that need to be mocked-up—`dep_1` and
+The target function `func` has two dependencies that need to be mocked-up — `dep_1` and
 `dep_2`. I mocked out the dependencies using the `unittest.mock.patch` interjector as
 context managers while wrapping them in separate functions decorated with the
 `@pytest.fixture` decorator.
@@ -335,7 +335,7 @@ def test_get(mock_post):
 ```
 
 The `get` and `post` function share a global dependency, the `client`. Also, these functions
-have side effects—since they make external network calls. We'll have to mock the functions
+have side effects — since they make external network calls. We'll have to mock the functions
 in a way so that our tests are completely isolated and they don't make any network calls. I
 mocked out the functions in the `mock_get` and `mock_post` fixtures respectively. The
 functions are mocked in a way that whenever the original functions are called in the mock

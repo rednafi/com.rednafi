@@ -49,7 +49,7 @@ Out[4]: ParseResult(
 ```
 
 Notice the parts in the URL that appears after `https://httpbin.org/get`. There's a
-semicolon and a few more parameters succeeding that—`;a=mars&b=42`. The resulting
+semicolon and a few more parameters succeeding that — `;a=mars&b=42`. The resulting
 `ParseResult` now has the `params` field populated with the parsed param value
 `a=mars&b=42`. Unless you need this param support, there's a better and faster alternative
 to this in the standard library. The `urlsplit`[^3] function does the same thing as

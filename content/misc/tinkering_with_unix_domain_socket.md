@@ -360,7 +360,7 @@ uvicorn --uds /tmp/stream.sock server:app \
 The `uvicorn` command spins up a webserver in the background as before and listens on the
 socket file `/tmp/stream.sock`. Then we're using `socat` to create a forking TCP server that
 handles the incoming HTTP requests from the network and relays them to the webserver via
-UDS. It also relays the server's responses back to the client—doing the work of a reverse
+UDS. It also relays the server's responses back to the client — doing the work of a reverse
 proxy.
 
 You can then head over to your browser and go to `http://localhost:9999`. This will display

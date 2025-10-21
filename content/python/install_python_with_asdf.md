@@ -23,7 +23,7 @@ Along with the hassle of having to manage three version managers, setting up mul
 versions of Python almost always felt like a chore. I've used pyenv[^4] before which kind of
 feels like nvm and works quite well in practice. However, on Twitter, I came across this[^5]
 reply by Adam Johnson which mentions that asdf[^6] can manage multiple runtimes of different
-languages—one version manager to rule them all. Also, it's written in pure bash so there's
+languages — one version manager to rule them all. Also, it's written in pure bash so there's
 no external dependency required for the tool to work. Since I'm starting from scratch on a
 new OS, I wanted to give this a tool to try. Spoiler alert, it works with zero drama. Here,
 I'll quickly explain how to get up and running with multiple versions of Python and make

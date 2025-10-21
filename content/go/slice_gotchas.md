@@ -28,7 +28,7 @@ type slice struct {
 }
 ```
 
-When you create a slice from an array or another slice, Go doesn't copy the data—it simply
+When you create a slice from an array or another slice, Go doesn't copy the data — it simply
 points to a section of the existing array.
 
 ```
@@ -40,8 +40,8 @@ Slice Header              Underlying Array
 +-------------+
 ```
 
-This makes slices efficient. Passing a slice by value doesn't mean copying all its
-elements—only the small slice struct gets copied, while the data stays where it is. But this
+This makes slices efficient. Passing a slice by value doesn't mean copying all its elements
+— only the small slice struct gets copied, while the data stays where it is. But this
 behavior is also the source of much confusion. The next sections cover some common pitfalls.
 
 ## Sliced slices share the underlying array

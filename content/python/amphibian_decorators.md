@@ -62,7 +62,7 @@ def tag(*names: str) -> Callable:
     return decorator
 ```
 
-In the above snippet—
+In the above snippet —
 
 - The decorator `tag` is a variadic function that accepts the names of the tags.
 

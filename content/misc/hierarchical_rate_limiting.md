@@ -24,7 +24,7 @@ Now, imagine this:
 1. There are 20 event types.
 2. Each type hits its 10-notification limit in 30 minutes.
 3. That's 200 requests total, but the global limit only allows 100. So, 100 requests must be
-   dropped—even if some event types still have room under their individual caps.
+   dropped — even if some event types still have room under their individual caps.
 
 This created a **hierarchy of limits**:
 

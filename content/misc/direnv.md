@@ -9,7 +9,7 @@ aliases:
     - /misc/direnv/
 ---
 
-I'm not a big fan of shims—code that messes with commands in the shell or prompt. That's
+I'm not a big fan of shims — code that messes with commands in the shell or prompt. That's
 why, aside from occasional dabbling, I tend to eschew tools like `asdf` or `pyenv` and just
 use `apt` or `brew` for installs, depending on the OS.
 
@@ -55,13 +55,13 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 Then I realized that `.profile` is used here as a general term for various configuration
 files like `.*profile`, `.*rc`, and `.*env`. I have quite a bit set up in both my `~/.zshrc`
-and `~/.zshenv`—a mix of global and project-specific commands and environment variables.
+and `~/.zshenv` — a mix of global and project-specific commands and environment variables.
 
 To explain: `.*profile` files (like `.profile` or `.bash_profile`) are used by login shells,
 which are started when you log into a system, such as through SSH or a terminal login. In
 contrast, files like `.bashrc` or `.zshrc` are for interactive shells, meaning they run when
-you open a new terminal window or tab. For Zsh, `.zshenv` is sourced by all types of
-shells—both login and interactive—making it useful for global environment settings.
+you open a new terminal window or tab. For Zsh, `.zshenv` is sourced by all types of shells
+— both login and interactive — making it useful for global environment settings.
 
 ## What problem it solves
 

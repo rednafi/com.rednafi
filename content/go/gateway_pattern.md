@@ -28,11 +28,11 @@ detail and gives some examples in JS. However, I thought that Gophers could bene
 few examples to showcase how it translates to Go. Plus, I wanted to reify the following
 axiom:
 
-> _High-level modules should not depend on low-level modules. Both should depend on_
-> _abstractions. Abstractions should not depend on details. Details should depend on_
+> _High-level modules should not depend on low-level modules. Both should depend on_ >
+> _abstractions. Abstractions should not depend on details. Details should depend on_ >
 > _abstractions._
 >
-> _— Dependency inversion principle (D in SOLID), Uncle Bob_
+> _ — Dependency inversion principle (D in SOLID), Uncle Bob_
 
 In this scenario, our business logic in the `order` package is the _high-level module_ and
 `external` is the _low-level module_, as the latter concerns itself with transport details.
@@ -106,10 +106,10 @@ intentional.
 In Go, the general advice is that the [consumer should define the interface they want, not
 the provider].
 
-> _Go interfaces generally belong in the package that uses values of the interface type,_
+> _Go interfaces generally belong in the package that uses values of the interface type,_ >
 > _not the package that implements those values._
 >
-> _— Go code review comments_
+> _ — Go code review comments_
 
 That gives the consumer full control over what it wants to depend on, and nothing more. You
 don't accidentally couple your code to a bloated interface just because the implementation
@@ -117,7 +117,7 @@ provided one. You define exactly the shape you need and mock that in your tests.
 
 > _Clients should not be forced to depend on methods they do not use._
 >
-> _— Interface segregation principle (I in SOLID), Uncle Bob_
+> _ — Interface segregation principle (I in SOLID), Uncle Bob_
 
 So, in the `order` package, we define a tiny private interface that reflects the use case.
 

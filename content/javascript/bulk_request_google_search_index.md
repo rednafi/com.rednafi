@@ -25,8 +25,8 @@ each URL to encourage faster indexing. The problem is, I've got quite a bit of c
 this site, and it'll take forever for me to click through all the links and request indexing
 that way. Naturally, I looked for a way to do this programmatically. Luckily, I found out
 that there's an [indexing API] that allows you to make bulk indexing requests
-programmatically. This has one big advantage—Google responds[^5] to API requests faster than
-indexing requests with sitemap submission.
+programmatically. This has one big advantage — Google responds[^5] to API requests faster
+than indexing requests with sitemap submission.
 
 All you've to do is:
 

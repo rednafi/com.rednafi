@@ -97,16 +97,16 @@ foo = Foo("hello", "hello")
 print(foo.bar is foo.baz)  # prints True
 ```
 
-In both of these above cases, the print statement will print `True` on the
-console—confirming the fact that dictionary keys and object attributes are interned. Having
-interned attributes and keys means that the access operation is faster since the string
-comparison operation is now just doing a pointer comparison.
+In both of these above cases, the print statement will print `True` on the console —
+confirming the fact that dictionary keys and object attributes are interned. Having interned
+attributes and keys means that the access operation is faster since the string comparison
+operation is now just doing a pointer comparison.
 
 ## When explicit string interning might come in handy?
 
-One use case that I've found is—interning large dictionary keys. Dictionary keys are in
-general, interned automatically. However, if the key is large—something like a 4097 bytes
-hash value—Python can choose not to perform interning. Here's an example:
+One use case that I've found is — interning large dictionary keys. Dictionary keys are in
+general, interned automatically. However, if the key is large — something like a 4097 bytes
+hash value — Python can choose not to perform interning. Here's an example:
 
 ```py
 # src.py

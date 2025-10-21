@@ -10,7 +10,7 @@ tags:
 ---
 
 You can use `@dataclass(frozen=True)` to make instances of a data class immutable during
-runtime. However, there's a small caveat—instantiating a frozen data class is slightly
+runtime. However, there's a small caveat — instantiating a frozen data class is slightly
 slower than a non-frozen one. This is because, when you enable `frozen=True`, Python has to
 generate `__setattr__` and `__delattr__` methods during class definition time and invoke
 them for each instantiation.

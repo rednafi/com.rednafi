@@ -111,7 +111,7 @@ desirable. It's easy to overwhelm any service if you're not being careful.
 Luckily, Python exposes a `Semaphore` construct that allows you to synchronize the
 concurrent workers (threads, processes, or coroutines) regarding how they should access a
 shared resource. All concurrency primitives in Python have semaphores to help you control
-resource access. This means if you're using any of the—`multiprocessing`, `threading`, or
+resource access. This means if you're using any of the — `multiprocessing`, `threading`, or
 `asyncio` module, you can take advantage of it. From the `asyncio` docs:
 
 > _A semaphore manages an internal counter which is decremented by each `acquire()` call and
