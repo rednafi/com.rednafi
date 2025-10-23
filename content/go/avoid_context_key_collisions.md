@@ -9,7 +9,7 @@ tags:
 Along with propagating deadlines and cancellation signals, Go's `context` package can also
 carry request-scoped values across API boundaries and processes.
 
-There's only two public API constructs associated with context values:
+There are only two public API constructs associated with context values:
 
 ```go
 func WithValue(parent Context, key, val any) Context
@@ -39,7 +39,7 @@ fmt.Println(id) // 42
 
 `Value` returns `any` (an alias to `interface{}`), so you must assert the expected type.
 Without that, Go cannot verify the concrete type, and a direct cast without the `ok` check
-would panic if it's wrong.
+would panic if the expected type doesn't match the actual type of the value.
 
 The issue with this setup is that it risks collision. If another package sets some value
 against the same key, one value overwrites the other:
@@ -100,9 +100,9 @@ fmt.Println(id) // 42
 Even if another package uses the string `"id"`, the key types differ, so they cannot
 collide.
 
-To avoid allocation when assigning to `any`, you can define an empty struct key. Unlike
-strings or integers, which allocate when boxed into an interface, a zero-sized struct
-occupies no memory and needs no allocation:
+To avoid allocation when `WithValue` assigns the inbound value to interface `any`, you can
+define an empty struct key. Unlike strings or integers, which allocate when boxed into an
+interface, a zero-sized struct occupies no memory and needs no allocation:
 
 ```go
 type key struct{}
@@ -128,9 +128,11 @@ type userIDKey struct {
     name string
 }
 
+// Struct pointer as key
 var UserIDKey = &userIDKey{"user-id"}
 
-// Store value
+// Store value. No allocation here since userIDKey is a pointer
+// to a struct
 ctx := context.WithValue(context.Background(), UserIDKey, 42)
 
 // Retrieve value
@@ -152,9 +154,10 @@ You can export the key itself and let users interact with it freely:
 ```go
 type APIKey string
 
+// Allow the other packages to directly use this key
 var APIKeyContextKey = APIKey("api-key")
 
-// Store value
+// Store value. An allocation will occur since the key is of type string
 ctx := context.WithValue(context.Background(), APIKeyContextKey, "secret")
 
 // Retrieve value
@@ -181,8 +184,7 @@ var (
 )
 ```
 
-Each variable points to a distinct struct, making them unique by pointer identity. The
-`name` field is there to make debugging easier, not for equality checks.
+Each variable points to a distinct struct, making them unique by pointer identity.
 
 The [serve_test.go] file uses these keys like this:
 
@@ -204,29 +206,30 @@ values. This removes the need for users to remember the right key type or perfor
 assertions manually.
 
 ```go
-// define a private key type to avoid collisions
+// Define a private key type to avoid collisions
 type contextKey struct {
     name string
 }
 
-// define the key
+// Define the key
 var userIDKey = &contextKey{"user-id"}
 
-// public accessor to store a value to ctx
+// Public accessor to store a value to ctx
 func WithUserID(ctx context.Context, id int) context.Context {
+    // No allocation here since userIDKey is a pointer to a struct
     return context.WithValue(ctx, userIDKey, id)
 }
 
-// public accessor to fetch a value from ctx
+// Public accessor to fetch a value from ctx
 func UserIDFromContext(ctx context.Context) (int, bool) {
     v, ok := ctx.Value(userIDKey).(int)
     return v, ok
 }
 
-// store value
+// Store value
 ctx := WithUserID(context.Background(), 42)
 
-// retrieve value
+// Retrieve value
 id, ok := UserIDFromContext(ctx)
 if ok {
     fmt.Println(id) // 42
@@ -237,9 +240,10 @@ if ok {
 
 This approach centralizes how values are stored and retrieved from the context. It ensures
 the correct key and type are always used, preventing collisions and runtime panics. It also
-keeps calling code shorter since users don't need to repeat type assertions everywhere.
+keeps the calling code shorter since your API users won't need to repeat type assertions
+everywhere.
 
-This `WithX` / `XFromContext` convention appears throughout the Go standard library:
+`WithX` / `XFromContext` accessors appear throughout the Go standard library:
 
 - **[net/http/httptrace]**
 
@@ -255,7 +259,8 @@ This `WithX` / `XFromContext` convention appears throughout the Go standard libr
     func Labels(ctx context.Context) LabelSet
     ```
 
-Outside the standard library, the [OpenTelemetry Go SDK] follows the same model:
+You can find similar examples outside of the stdlib. For instance, the [OpenTelemetry Go
+SDK] follows the same model:
 
 ```go
 func ContextWithSpan(parent context.Context, span Span) context.Context
@@ -265,7 +270,7 @@ func SpanFromContext(ctx context.Context) Span
 This technique standardizes how values are passed across APIs, eliminates redundant type
 assertions, and prevents key misuse across packages.
 
-### Closing words
+## Closing words
 
 I usually use a pointer to a struct as a key and [expose accessor functions] when building
 user-facing APIs. Otherwise, in services, I often define empty struct keys and expose them
