@@ -268,9 +268,8 @@ assertions, and prevents key misuse across packages.
 ### Closing words
 
 I usually use a pointer to a struct as a key and [expose accessor functions] when building
-user-facing APIs. Otherwise, an empty struct works fine as a key. In services, I often
-define empty struct keys and expose them publicly to avoid the ceremony around accessor
-functions.
+user-facing APIs. Otherwise, in services, I often define empty struct keys and expose them
+publicly to avoid the ceremony around accessor functions.
 
 <!-- References -->
 
