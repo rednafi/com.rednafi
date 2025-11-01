@@ -100,10 +100,10 @@ func TestBackup(t *testing.T) {
 }
 ```
 
-That's a step forward, but there's still one issue. `Backup` only calls `Save`, yet the
-`Storage` interface includes both `Save` and `Load`. If `Storage` later gains more methods,
-every fake must grow too, even if those methods aren't used. That's exactly what the ISP
-warns against.
+That's a step forward. It fixes the coupling issue and makes the tests free of side effects.
+However, there's still one issue: `Backup` only calls `Save`, yet the `Storage` interface
+includes both `Save` and `Load`. If `Storage` later gains more methods, every fake must grow
+too, even if those methods aren't used. That's exactly what the ISP warns against.
 
 The above interface is too broad. So let's narrow it to match what the function actually
 needs:
