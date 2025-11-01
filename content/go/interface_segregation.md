@@ -165,8 +165,8 @@ From Go [code review comments]:
 This isn't a strict rule. The standard library defines producer-side interfaces like
 `io.Reader` and `io.Writer`, which is fine because they're stable and general-purpose. But
 for application code, interfaces usually exist in only two places: production code and
-tests. Keeping them near the consumer reduces between multiple packages and keeps the code
-easier to evolve.
+tests. Keeping them near the consumer reduces coupling between multiple packages and keeps
+the code easier to evolve.
 
 You'll see this same idea pop up all the time. Take the AWS SDK, for example. It's tempting
 to define a big S3 client interface and use it everywhere:
