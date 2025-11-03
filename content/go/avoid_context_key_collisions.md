@@ -16,7 +16,15 @@ func WithValue(parent Context, key, val any) Context
 func (c Context) Value(key any) any
 ```
 
-The naive workflow to store and retrieve values in a context looks like this:
+`WithValue` can take any comparable value as both the key and the value. The key defines how
+the stored value is identified, and the value can be any data you want to pass through the
+call chain.
+
+`Value`, on the other hand, also returns `any`, which means the compiler cannot infer the
+concrete type at compile time. To use the returned data safely, you must perform a type
+assertion.
+
+A naive workflow to store and retrieve values in a context looks like this:
 
 ```go
 ctx := context.Background()
@@ -35,14 +43,13 @@ if !ok {
 fmt.Println(id) // 42
 ```
 
-`WithValue` returns a derived context that points to the parent context.
+`WithValue` returns a new context that wraps the parent. `Value` walks up the chain of
+contexts and returns the first matching key it finds. Since the return type is `any`, a type
+assertion is required to recover the original type. Without the `ok` check, a mismatch would
+cause a panic.
 
-`Value` returns `any` (an alias to `interface{}`), so you must assert the expected type.
-Without that, Go cannot verify the concrete type, and a direct cast without the `ok` check
-would panic if the expected type doesn't match the actual type of the value.
-
-The issue with this setup is that it risks collision. If another package sets some value
-against the same key, one value overwrites the other:
+The issue with this setup is that it risks collision. If another package sets a value
+against the same key, one overwrites the other:
 
 ```go
 package main
@@ -64,12 +71,52 @@ func foo(ctx context.Context) context.Context {
 }
 ```
 
-The first value becomes inaccessible because the context variable is reassigned and the same
-string key is reused. Since `WithValue` returns a new context that shadows parent values
-with the same key, `ctx.Value("key")` now returns `"from-foo"`. The original value still
-exists in the parent context but is unreachable through the reassigned `ctx` variable.
+The first value becomes inaccessible because `WithValue` returns a new derived context that
+shadows parent values with the same key. The original value still exists in the parent
+context but is unreachable through the reassigned variable.
 
-The [doc has the following advice] to prevent that:
+To understand why this collision occurs, you need to know how Go compares interface values.
+When you assign a value to an `interface{}` (or `any`), Go boxes that value into an internal
+representation made up of two [machine words]: one points to the type information, and the
+other points to the underlying data.
+
+For example:
+
+```go
+var a any = "key"
+var b any = "key"
+fmt.Println(a == b) // true
+```
+
+Each boxed interface here stores two things: a pointer to the type `string` and a pointer to
+the data `"key"`. Since both type and data pointers match, the comparison returns true.
+
+`WithValue` stores both the key and the value as `any`. When you later call `Value`, Go
+compares the boxed key you pass in with those stored in the context chain. If two different
+packages use the same built-in key type and data, like both passing `"key"` as a string,
+their boxed representations look identical. Go sees them as equal, and the most recent value
+shadows the earlier one.
+
+If you want to learn more about how interfaces are represented and compared, Russ Cox wrote
+[an amazing blog post] that explains it in detail with pretty pictures.
+
+The fix is to make sure the keys have unique types so their boxed representations differ. If
+you define a custom type, the type pointer changes even if the data looks the same. For
+example:
+
+```go
+type userKey string
+
+var a any = userKey("key")
+var b any = "key"
+fmt.Println(a == b) // false
+```
+
+Even though the underlying value is `"key"`, the two interfaces now hold different type
+information, so Go considers them unequal. That difference in type identity is what prevents
+collisions.
+
+The [context documentation](https://pkg.go.dev/context#WithValue) gives this advice:
 
 > _The provided key must be comparable and should not be of type string or any other
 > built-in type to avoid collisions between packages using context. Users of WithValue
@@ -119,7 +166,7 @@ Empty structs are ideal for local, unexported keys. They are unique by type and 
 overhead.
 
 Alternatively, exported keys can use pointers, which also avoid allocation and guarantee
-uniqueness. When a pointer is boxed into an `interface{}`, no data copy occurs because the
+uniqueness. When a pointer is boxed into an interface, no data copy occurs because the
 interface just holds the pointer reference. Pointers are also ideal for keys that need to be
 shared across packages.
 
@@ -170,7 +217,7 @@ When you export the key directly the caller gains direct access, but they also m
 - do the type assertion themselves and handle the ok result to avoid panics
 - ensure they don't accidentally overwrite values using the wrong key
 
-The [net/http] package uses this approach for some of its exported context keys:
+The `net/http` package uses this approach for some of its exported context keys:
 
 ```go
 type contextKey struct {
@@ -186,7 +233,7 @@ var (
 
 Each variable points to a distinct struct, making them unique by pointer identity.
 
-The [serve_test.go] file uses these keys like this:
+The `serve_test.go` file uses these keys like this:
 
 ```go
 ctx := context.WithValue(context.Background(), http.ServerContextKey, srv)
@@ -245,22 +292,22 @@ everywhere.
 
 `WithX` / `XFromContext` accessors appear throughout the Go standard library:
 
-- **[net/http/httptrace]**
+- **`net/http/httptrace`**
 
     ```go
     func WithClientTrace(ctx context.Context, trace *ClientTrace) context.Context
     func ContextClientTrace(ctx context.Context) *ClientTrace
     ```
 
-- **[runtime/pprof]**
+- **`runtime/pprof`**
 
     ```go
     func WithLabels(ctx context.Context, labels LabelSet) context.Context
     func Labels(ctx context.Context) LabelSet
     ```
 
-You can find similar examples outside of the stdlib. For instance, the [OpenTelemetry Go
-SDK] follows the same model:
+You can find similar examples outside of the stdlib. For instance, the OpenTelemetry Go SDK
+follows the same model:
 
 ```go
 func ContextWithSpan(parent context.Context, span Span) context.Context
@@ -272,15 +319,21 @@ assertions, and prevents key misuse across packages.
 
 ## Closing words
 
-I usually use a pointer to a struct as a key and [expose accessor functions] when building
+I usually use a pointer to a struct as a key and expose accessor functions when building
 user-facing APIs. Otherwise, in services, I often define empty struct keys and expose them
 publicly to avoid the ceremony around accessor functions.
 
 <!-- References -->
-
 <!-- prettier-ignore-start -->
 
- [doc has the following advice]:
+[machine words]:
+    https://unicminds.com/what-is-a-machine-word-and-its-implications/
+
+<!-- russ cox's post on interface structure in go --->
+[an amazing blog post]:
+    https://research.swtch.com/interfaces
+
+[doc has the following advice]:
     https://pkg.go.dev/context#example-WithValue:~:text=The%20provided%20key,pointer%20or%20interface.
 
 [net/http]:
