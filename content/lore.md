@@ -91,6 +91,22 @@ it."
 [the beyoncé rule]:
     https://abseil.io/resources/swe-book/html/ch11.html#:~:text=and%20organizational%20realities.-,The%20Beyonc%C3%A9%20Rule,-We%20are%20often
 
+### [The ETTO principle]
+
+The ETTO (Efficiency–Thoroughness Trade-Off) principle says people and organizations are
+always balancing doing things quickly with doing things carefully.
+
+Choosing thoroughness means spending more time to ensure safety and quality. Choosing
+efficiency means getting things done faster with less effort. You can’t fully have both at
+the same time. Being faster usually means being less careful, and being more careful usually
+means slowing down.
+
+The ETTO fallacy happens when, after something goes wrong, people are blamed for not being
+thorough enough even though they were expected to be efficient.
+
+[the etto principle]:
+    https://en.wikipedia.org/wiki/Efficiency%E2%80%93thoroughness_trade-off_principle
+
 ### [The law of conservation of complexity (Tesler's law)]
 
 There is a certain amount of complexity in a system which cannot be reduced.
