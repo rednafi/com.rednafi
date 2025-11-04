@@ -96,14 +96,6 @@ it."
 The ETTO (Efficiency–Thoroughness Trade-Off) principle says people and organizations are
 always balancing doing things quickly with doing things carefully.
 
-Choosing thoroughness means spending more time to ensure safety and quality. Choosing
-efficiency means getting things done faster with less effort. You can’t fully have both at
-the same time. Being faster usually means being less careful, and being more careful usually
-means slowing down.
-
-The ETTO fallacy happens when, after something goes wrong, people are blamed for not being
-thorough enough even though they were expected to be efficient.
-
 [the etto principle]:
     https://en.wikipedia.org/wiki/Efficiency%E2%80%93thoroughness_trade-off_principle
 
@@ -142,6 +134,15 @@ and mental models.
 
 [the principle of least astonishment]:
     https://github.com/dwmkerr/hacker-laws#the-principle-of-least-astonishment
+
+### [The Ulysses contract]
+
+A Ulysses contract is an agreement you make with yourself to resist future temptation by
+limiting your own choices in advance. It's a way to act on your long-term interests instead
+of short-term impulses. You know your future self might give in to weakness, so you set up
+rules or constraints now while you are still in control.
+
+[the ulysses contract]: https://www.bryanbraun.com/2012/11/11/ulysses-contract
 
 ### [The Unix philosophy]
 
