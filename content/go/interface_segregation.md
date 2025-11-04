@@ -263,7 +263,7 @@ func (FakeUploader) PutObject(
 
 If we distill the workflow as a general rule of thumb, it'd look like this:
 
-> _Insert a seam between two tightly coupled components by defining a consumer-side
+> _Insert a seam between two tightly coupled components by placing a consumer-side
 > interface that exposes only the methods the caller invokes._
 
 Fin!
