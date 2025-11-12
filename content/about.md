@@ -10,13 +10,10 @@ ShowShareButtons: false
 
 <div style="text-align: center;">
     <figure style="margin: auto;">
-        <img src="https://blob.rednafi.com/static/images/about/profile.jpg"
+        <img src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
              alt="Profile picture"
              class="loading"
-             style="display: block; margin: 0 auto; width: 100%; max-width: 400px; height: auto;">
-        <figcaption style="color: #808080; font-style: italic; font-weight: normal;">
-            Gdynia, Poland
-        </figcaption>
+             style="display: block; margin: 0 auto; width: 400px; height: auto; border-radius: 20px;">
     </figure>
 </div>
 
@@ -39,10 +36,10 @@ For the paper trail inclined, here's [my CV].
 
 ## Contact
 
-- [Email]
-- [Bluesky]
-- [GitHub]
-- [LinkedIn]
+-   [Email]
+-   [Bluesky]
+-   [GitHub]
+-   [LinkedIn]
 
 ## Colophon
 
@@ -54,26 +51,26 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Breadcrumbs
 
-- The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my nickname
-  _Nafi_, which my parents and a few close friends still use.
-- I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
-- I think through writing and not the other way around. Most of the blogs on this site take
-  way longer to write than I'd like to admit.
+-   The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my
+    nickname _Nafi_, which my parents and a few close friends still use.
+-   I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
+-   I think through writing and not the other way around. Most of the blogs on this site
+    take way longer to write than I'd like to admit.
 
 ## Greatest hits
 
-- [Oh my poor business logic]
-- [The diminishing half-life of knowledge]
-- [Annotating args and kwargs in Python]
-- [An ode to the neo-grotesque web]
-- [HTTP requests via /dev/tcp]
-- [You probably don't need a DI framework]
-- [Dotfiles stewardship for the indolent]
-- [Configuring options in Go]
-- [Recipes from Python SQLite docs]
-- [Limit goroutines with buffered channels]
-- [Pesky little scripts]
-- [I kind of like rebasing]
+-   [Oh my poor business logic]
+-   [The diminishing half-life of knowledge]
+-   [Annotating args and kwargs in Python]
+-   [An ode to the neo-grotesque web]
+-   [HTTP requests via /dev/tcp]
+-   [You probably don't need a DI framework]
+-   [Dotfiles stewardship for the indolent]
+-   [Configuring options in Go]
+-   [Recipes from Python SQLite docs]
+-   [Limit goroutines with buffered channels]
+-   [Pesky little scripts]
+-   [I kind of like rebasing]
 
 <!-- References -->
 <!-- prettier-ignore-start -->
