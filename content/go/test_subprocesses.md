@@ -18,10 +18,11 @@ fake version doesn't behave like a real process. It won't fail, write to stderr,
 with a non-zero code. That makes it hard to trust the result, and over time the mock can
 drift away from what the real command actually does.
 
-**Re-exec.** I picked this neat trick from Go's [stdlib `os/exec` tests]. With re-exec, your
-test binary spawns a new subprocess that runs itself again. Inside that subprocess, the code
-emulates the behavior of the real command. The parent process then interacts with this
-subprocess exactly as it would with a real command. In short:
+**Re-exec.** I discovered this neat trick while watching Mitchel Hashimoto's [Advanced
+Testing with Go] talk. In fact, it originated in the stdlib [os/exec test suite]. With
+re-exec, your test binary spawns a new subprocess that runs itself again. Inside that
+subprocess, the code emulates the behavior of the real command. The parent process then
+interacts with this subprocess exactly as it would with a real command. In short:
 
 - The parent test process spawns the subprocess.
 - The subprocess emulates the behavior of the target command.
@@ -215,7 +216,10 @@ keeping the process interaction logic untouched.
 
 <!-- prettier-ignore-start -->
 
-[stdlib `os/exec` tests]:
+[advanced testing with go]:
+    https://www.youtube.com/watch?v=8hQG7QlcLBk
+
+[os/exec test suite]:
     https://cs.opensource.google/go/go/+/refs/tags/go1.25.4:src/os/exec/exec_test.go
 
 <!-- prettier-ignore-end -->
