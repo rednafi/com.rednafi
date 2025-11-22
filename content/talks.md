@@ -10,7 +10,7 @@ ShowShareButtons: false
 
 Oratories on paraphernalia.
 
-## Go interface segregation redux - Dec 3, GDG Berlin
+## Go interface segregation redux - Dec 3, 2025, GDG Berlin
 
 -   [Slides]
 -   Video [incoming]
