@@ -161,18 +161,22 @@ menu:
       weight: 4
 
   hamburger:
+    - identifier: talks
+      name: talks
+      url: /talks/
+      weight: 1
     - identifier: lore
       name: lore
       url: /lore/
-      weight: 1
+      weight: 2
     - identifier: blogroll
       name: blogroll
       url: /blogroll/
-      weight: 2
+      weight: 3
     - identifier: feed
       name: "2025"
       url: /feed/2025
-      weight: 3
+      weight: 4
 
 markup:
   highlight:
