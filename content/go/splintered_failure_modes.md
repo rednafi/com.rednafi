@@ -61,10 +61,10 @@ validity and the error tries to express failure, yet both answer the same questi
 this succeed?_ When combinations like `false, nil` or `true, err` appear, the caller has to
 decide which signal to trust.
 
-## Represent failure modes exclusively via error values
+## Represent failure modes exclusively via the error value
 
 We fix the ambiguity by removing the boolean status flag entirely. Instead of returning a
-flag about the data, we return the dumb result and the error values.
+flag about the data, we return the dumb result and the error.
 
 In this refactored version, the `error` assumes total responsibility for the function's
 state (success vs. failure). The first return value becomes purely the payload.
