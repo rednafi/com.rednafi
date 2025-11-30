@@ -24,8 +24,8 @@ func validate(input string) (bool, error) {
 }
 ```
 
-This function returns two signals: a **boolean** to indicate if the string is **valid**, and
-an **error** to explain any **problem**.
+This function returns two signals: a **boolean** to indicate if the string is valid, and
+an **error** to explain any problem.
 
 The issue is that these two signals are independent. Put together they produce four possible
 combinations:
@@ -50,7 +50,7 @@ In this specific case we never return `true, err`, but the caller doesn't know t
 have to read the code to understand which subset of the possible combinations the function
 actually uses.
 
-### Splintered failure modes
+## Splintered failure modes
 
 For the lack of a better term, I call this **splintered failure modes**. It's one of the
 special cases that the adage [make illegal state unrepresentable] aims to prevent.
@@ -61,7 +61,7 @@ validity and the error tries to express failure, yet both answer the same questi
 this succeed?_ When combinations like `false, nil` or `true, err` appear, the caller has to
 decide which signal to trust.
 
-### Represent failure modes exclusively via error values
+## Represent failure modes exclusively via error values
 
 We fix the ambiguity by removing the boolean status flag entirely. Instead of returning a
 flag about the data, we return the dumb result and the error values.
@@ -90,7 +90,7 @@ This makes the call site trivial because the state is no longer split. Check the
 it is non-nil, the operation failed and the data is invalid. If it is nil, the operation
 succeeded and the data is safe to use.
 
-### But sometimes only success/failure isn't enough
+## But sometimes only success/failure isn't enough
 
 Collapsing all the failure modes into the error value is relatively easy when you only need
 to know whether some operation succeeded or failed. But sometimes just knowing whether
