@@ -81,6 +81,18 @@ more the average individual performance decreases.
 
 [ringelmann effect]: https://github.com/dwmkerr/hacker-laws#the-ringelmann-effect
 
+### [Segal's law]
+
+A man with a watch knows what time it is. A man with two watches is never sure.
+
+At surface level, the adage emphasizes the consistency that arises when information comes
+from a single source and points out the potential pitfalls of having too much conflicting
+information. However, the underlying message is to question the apparent certainty of anyone
+who only has one source of information. The man with one watch has no way to identify error
+or uncertainty.
+
+[segal's law]: https://en.wikipedia.org/wiki/Segal%27s_law
+
 ### [The Beyoncé rule]
 
 If you want to be confident that a system exhibits a particular behavior, the only way to be
