@@ -87,6 +87,7 @@ params:
     - python
     - typescript
     - go
+    - system
 
   assets:
     favicon: "https://blob.rednafi.com/static/images/home/favicon.webp"
