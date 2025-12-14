@@ -548,7 +548,8 @@ Once the diffs drop to zero, you have evidence `goUserService.GetUser` works cor
 that point, you route real traffic to `HandleGetUser`. The domain logic has already been
 validated. The production handler just wires it to HTTP.
 
-Cutover cleanup:
+Once the production handlers have started to serve real traffic, you can remvove the tap
+tests:
 
 - Delete the tap handlers. The `Tap*` prefix makes them easy to find.
 - Remove tap-only wiring. Strip out comparison code and sister-datastore plumbing.
