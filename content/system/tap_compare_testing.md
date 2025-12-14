@@ -10,23 +10,23 @@ mermaid: true
 ---
 
 Throughout the years, I've been part of a few medium- to large-scale system migrations. As
-in, rewriting old logic in a new language or stack to gain better scalability, resilience,
-and maintainability, or to respond more easily to changing business requirements. Whether
-rewriting your system is the right move is its own debate.
+in, rewriting old logic in a new language or stack. The goal is usually better scalability,
+resilience, and maintainability, or more flexibility to adapt to changing requirements. Now,
+whether rewriting your system is the right move is its own debate.
 
 A common question that shows up during a migration is, "How do we make sure the new system
 behaves exactly like the old one, minus the icky parts?" Another one is, "How do we build
 the new system while the old one keeps changing without disrupting the business?"
 
 There's no universal playbook. It depends on how gnarly the old system is, how ambitious the
-new system is, and how much risk the business can stomach. After a few of these migrations,
-one approach keeps coming back.
+new system is, and how much risk the business can stomach. After going through a few of
+these migrations, I realized one approach keeps showing up. So I'll expand on it here.
 
-The core idea is that you shadow a slice of production traffic to the new system. The old
-system keeps serving real users. A copy of that same traffic is forwarded to the new system
-along with the old system's response. The new system runs the same business logic and
-compares its outputs with the old one. The entire point is to make the new system return the
-exact same answer the old one would have, for the same inputs and the same state.
+The idea is that you shadow a slice of production traffic to the new system. The old system
+keeps serving real users. A copy of that same traffic is forwarded to the new system along
+with the old system's response. The new system runs the same business logic and compares its
+outputs with the old one. The entire point is to make the new system return the exact same
+answer the old one would have, for the same inputs and the same state.
 
 At the start, you don't rip out bad behavior or ship new features. Everything is about
 output parity. Once the systems line up and the new one has processed enough real traffic to
@@ -38,18 +38,16 @@ This workflow is typically known as _[shadow testing]_ or _tap and compare testi
 
 ## The scenario
 
-Say we have a Python service that exposes a handful of read and write endpoints the business
-depends on. It's been around for a while. Different teams have patched it over the years,
-and parts of the logic behave the way they do because of decisions nobody remembers. While
-it still works, over time, it's getting harder to maintain. The business wants a tighter
-SLO, so the team decides to rebuild the service in Go.
+Say we have a Python service with a handful of read and write endpoints the business depends
+on. It's been around for a while, and different teams have patched it over the years. Some
+of the logic does what it does for reasons nobody remembers anymore. It still works, but
+it's getting harder to maintain. Also, the business wants a tighter SLO. So the team decides
+to rewrite it in Go.
 
-To keep the scope contained, I'm only talking about HTTP read and write endpoints on the
-main request path. I'm ignoring everything else: message queues, background workers, async
-job processing, analytics pipelines, and other side channels that also need to be migrated.
-For migrating between gRPC services, the workflow is pretty much identical. You mirror
-calls, let both services handle them, and compare responses. The transport details change,
-not the pattern.
+To keep the scope tight, I'm only talking about HTTP read and write endpoints on the main
+request path. The same applies to gRPC, minus the transport details. I'm ignoring everything
+else: message queues, background workers, async job processing, analytics pipelines, and
+other side channels that also need migrating.
 
 During shadow testing, the Python service stays on the main request path. All real user
 traffic still goes to the Python service. A proxy or load balancer sitting in front of it
@@ -63,8 +61,7 @@ Python, and Python talks to the live production database.
 The Go service never serves real users during this phase. It only sees tap events. For each
 event, it reconstructs the request, runs its version of the logic against a separate
 datastore, and compares its outputs with the Python response recorded in the event. The
-Python response is always the source of truth. There's no second call back into Python to
-guess what it might do.
+Python response is always the source of truth.
 
 The Go service has its own datastore, usually a snapshot or replica of production that's
 been detached so it can be written freely. This is the sister datastore. The Go service only
@@ -91,8 +88,11 @@ contains:
 - The original request: method, URL, headers, body.
 - The canonical Python response: status code, headers, body.
 
-The proxy sends this tap event to the Go service on an internal HTTP or RPC endpoint. The
-important thing is that the tap event captures the exact input and output of the Python
+The proxy sends this tap event to the Go service via an internal HTTP or RPC endpoint.
+Alternatively, it can publish the event to a Kafka stream, where a consumer eventually
+forwards it to the internal tap endpoint.
+
+The important thing is that the tap event captures the exact input and output of the Python
 service as seen by the real user.
 
 A typical read path diagram during tap compare looks like this:
@@ -174,7 +174,7 @@ type TapEvent struct {
     PythonResponse TapResponse `json:"python_response"`
 }
 
-func HandleGetUserTap(w http.ResponseWriter, r *http.Request) {
+func TapHandleGetUser(w http.ResponseWriter, r *http.Request) {
     // This endpoint is internal only.
     // It receives tap events from the proxy, not real user traffic.
 
@@ -228,19 +228,21 @@ func HandleGetUserTap(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-A few things matter here:
+A few things to notice:
 
 - Truth lives with the Python response that already went to the user.
 - The Go service sees exactly the same request the Python service saw.
 - Comparison happens off the user path. Users never wait on the Go service.
 - The Go service only touches the sister datastore, never the real one.
+- The tap handler doesn't return any payload. It just compares service outputs and emits
+  logs.
 
-When the diff rate on reads stabilizes across real traffic, you have decent evidence that
-the Go implementation behaves like the Python one for real-world inputs and state.
+When the read diffs drop to zero (or near zero) against live traffic, you can trust the Go
+implementation matches the Python one.
 
 ## Write endpoints are trickier
 
-Reads are easy because they don't change state. Writes are harder to migrate.
+Write endpoints change state, so they are harder to migrate.
 
 On the main path, only the Python service is allowed to mutate production state.
 
@@ -258,7 +260,7 @@ That path is the only one touching production. The Go service must not:
 - trigger real external side effects
 - call any real Python write endpoint in a way that causes a second write
 
-For writes, the tap event pushed by the proxy looks very similar to reads:
+For writes, the tap event pushed by the proxy looks quite similar to reads:
 
 ```json
 {
@@ -331,7 +333,7 @@ type User struct {
     // ... other fields
 }
 
-func HandleCreateUserTap(w http.ResponseWriter, r *http.Request) {
+func TapHandleCreateUser(w http.ResponseWriter, r *http.Request) {
     // Internal only. Receives tap events for CreateUser.
 
     var tap TapEvent
@@ -347,7 +349,7 @@ func HandleCreateUserTap(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // The Python response is canonical: this is what the user saw.
+    // The Python response is canonical: this is what the real user saw.
     pyUser, err := decodePythonUser(tap.PythonResponse)
     if err != nil {
         log.Printf("bad python response: %v", err)
@@ -450,7 +452,7 @@ legitimate differences in final state.
 You can't fully eliminate this. What you can do is:
 
 - Keep tap delivery low latency and best-effort ordered.
-- Focus your comparisons more on single-request behavior (did CreateUser behave the same)
+- Focus your comparisons more on single-request behavior (did `CreateUser` behave the same)
   than on multi-request history until you are comfortable with the noise.
 - Use version numbers or timestamps in the domain model to detect when the sister store is
   applying changes in a different order, and treat those as "not comparable" rather than
@@ -483,8 +485,6 @@ cause extra writes or side effects.
 
 ### What tap compare can and can't tell you on writes
 
-Tap compare with proxy-captured responses and a sister datastore is strong but not magic.
-
 It tells you:
 
 - For a given real user request and the production state that existed at that moment, what
@@ -508,7 +508,58 @@ The right way to think about it is: tap compare lets you align the new system wi
 one for the traffic you actually have, under the state and timing conditions you actually
 experienced. It shrinks the unknowns before you put the new system in front of real users.
 
-## Risks and pitfalls
+## From tap handlers to production handlers
+
+The `Tap*` handlers are test-only. They will never be promoted to production. They exist to
+validate the domain logic, not to serve users. The `204 No Content` response makes this
+clear.
+
+Here's how the pieces fit together:
+
+- **Core domain logic**: methods on `goUserService` that take a context and input, return a
+  response. This is the code you're actually testing.
+- **Tap handlers**: call the domain logic, compare against the Python response, discard the
+  result. Pure validation.
+- **Production handlers**: call the same domain logic and write real HTTP responses. This is
+  what users hit after cutover.
+
+Both tap and production handlers call the same domain logic. The difference is what happens
+to the result. Tap handlers compare and throw away. Production handlers serialize and
+return.
+
+A production handler might look like this:
+
+```go
+func HandleGetUser(w http.ResponseWriter, r *http.Request) {
+    resp, err := goUserService.GetUser(r.Context(), r)
+    if err != nil {
+        writeError(w, err)
+        return
+    }
+    writeHTTP(w, resp)
+}
+```
+
+During tap compare, `TapHandleGetUser` feeds the same inputs into `goUserService.GetUser`
+and compares `resp` against the Python response. Meanwhile, `HandleGetUser` exists but isn't
+on the main path yet. It might serve staging traffic or a canary behind a flag.
+
+Once the diffs drop to zero, you have evidence `goUserService.GetUser` works correctly. At
+that point, you route real traffic to `HandleGetUser`. The domain logic has already been
+validated. The production handler just wires it to HTTP.
+
+Cutover cleanup:
+
+- **Delete the tap handlers.** The `Tap*` prefix makes them easy to find.
+- **Remove tap-only wiring.** Strip out comparison code and sister-datastore plumbing.
+- **Point domain logic at the real datastore.** Flip a config or swap the write path.
+- **Flip the proxy.** Route traffic to `HandleGetUser` and `HandleCreateUser`.
+- **Optionally keep a thin tap path.** Mirror a small slice of traffic for extra safety.
+
+Tap compare is scaffolding. Once you trust the domain logic, you throw it away and let the
+production handlers take over.
+
+## Other risks and pitfalls
 
 Most of the sharp edges already showed up in the write section: database drift and
 replication lag, idempotency and ordering, and external side effects. Tap compare doesn't
@@ -538,87 +589,6 @@ behavior for real.
 service is doing real work against the sister datastore, often with extra logging and debug
 features enabled. Plan for the extra load on databases, caches, and queues so the tap path
 doesn't accidentally degrade the main path.
-
-The shape of the migration then looks like this:
-
-- Python stays on the main path, talking to the real production DB and external systems.
-- The proxy emits tap events containing both the original request and the canonical Python
-  response.
-- The Go service consumes tap events, talks only to the sister datastore, and compares its
-  outputs with Python.
-- When mismatches shrink to an acceptable level and you understand the ones that remain, you
-  start routing a small percentage of real traffic to the Go service as the source of truth.
-
-## From tap handlers to production handlers
-
-In the examples above, the handlers are intentionally suffixed with `Tap` and return
-`204 No Content`. That behavior is deliberate: `HandleGetUserTap` and `HandleCreateUserTap`
-exist only to ingest tap events, call into the Go business logic, and log mismatches. They
-are never meant to sit on the main request path or respond to real users. Their job is to
-exercise the candidate code against real traffic, not to become the production surface.
-
-If you tried to "promote" those `*Tap` handlers directly at cutover, you'd be wiring
-responses for the first time right when risk is highest. That's backwards. The safer shape
-is to separate three layers:
-
-- **Core business logic** that doesn't know about tap at all (for example, methods on
-  `goUserService` that accept a context and a request or domain input and return a domain
-  response).
-- **Production HTTP handlers** that call that logic and write real responses for users.
-- **Tap handlers** that call the same logic, compare against the Python response from the
-  tap event, and then discard the result.
-
-A production read handler might look like this:
-
-```go
-func HandleGetUser(w http.ResponseWriter, r *http.Request) {
-    resp, err := goUserService.GetUser(r.Context(), r)
-    if err != nil {
-        // Map domain errors to HTTP.
-        writeError(w, err)
-        return
-    }
-
-    // This should already be returning the same shape
-    // you validated against the Python response.
-    writeHTTP(w, resp)
-}
-```
-
-During tap compare, the `HandleGetUserTap` endpoint feeds the same inputs into
-`goUserService.GetUser` and compares `resp` against the Python response from the tap event.
-The real handler and the tap handler share the same core logic and response shape; the only
-difference is who sees the result. That means by the time you cut over, the code that
-actually writes HTTP responses has already been exercised and diffed against the Python
-version. The `204` status in the tap handlers is intentional: it makes it obvious those
-endpoints are not user-facing.
-
-The cutover then looks less ceremonious:
-
-- Before cutover, the Go service already has regular handlers like `HandleGetUser` and
-  `HandleCreateUser` wired up, returning the same payload shape as Python. They may serve
-  staging traffic, synthetic load, or a tiny canary slice behind a feature flag.
-- The tap handlers keep calling the same core logic but only for comparison: they read tap
-  events, call into the service, normalize responses, and log diffs.
-
-When you're ready to put Go on the main path, the cleanup requires some grunt work:
-
-- **Scrape the tap handlers.** Delete or disable the `*Tap` endpoints. They were
-  intentionally named so you can find and remove them handler by handler.
-- **Remove tap-only wiring.** Strip out comparison code, normalization glue, and any
-  sister-datastore–only plumbing that never runs on the main path.
-- **Point the core logic at the real datastore.** Swap `CreateUserInSisterStore` for the
-  real write path, or make the target datastore configurable and turn off sister mode. The
-  same service methods now talk to the production database instead of the sister store.
-- **Flip the proxy.** Route user traffic to `HandleGetUser`, `HandleCreateUser`, and
-  friends, not to Python. At that point, the Go responses are canonical.
-- **Optionally keep a thin tap path.** If you want extra safety, continue to mirror a small
-  fraction of traffic back to Python (or to an older Go version) and compare in the
-  background, but treat that as a guardrail, not the main migration mechanism.
-
-Tap compare is scaffolding. The `*Tap` handlers, the sister datastore, and the comparison
-layer exist so you can learn how the new system behaves under real traffic without putting
-it in charge.
 
 ## Parting words
 
