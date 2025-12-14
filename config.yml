@@ -80,7 +80,6 @@ params:
   ShowFullTextinRSS: true
 
   mainSections:
-    - databases
     - javascript
     - misc
     - zephyr
