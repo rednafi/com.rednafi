@@ -550,11 +550,11 @@ validated. The production handler just wires it to HTTP.
 
 Cutover cleanup:
 
-- **Delete the tap handlers.** The `Tap*` prefix makes them easy to find.
-- **Remove tap-only wiring.** Strip out comparison code and sister-datastore plumbing.
-- **Point domain logic at the real datastore.** Flip a config or swap the write path.
-- **Flip the proxy.** Route traffic to `HandleGetUser` and `HandleCreateUser`.
-- **Optionally keep a thin tap path.** Mirror a small slice of traffic for extra safety.
+- Delete the tap handlers. The `Tap*` prefix makes them easy to find.
+- Remove tap-only wiring. Strip out comparison code and sister-datastore plumbing.
+- Point domain logic at the real datastore. Flip a config or swap the write path.
+- Flip the proxy. Route traffic to `HandleGetUser` and `HandleCreateUser`.
+- Optionally keep a thin tap path. Mirror a small slice of traffic for extra safety.
 
 Tap compare is scaffolding. Once you trust the domain logic, you throw it away and let the
 production handlers take over.
