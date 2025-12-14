@@ -5,6 +5,7 @@ slug: tap-compare-testing
 tags:
     - Distributed Systems
     - Go
+mermaid: true
 ---
 
 Throughout the years, I've been part of a few medium- to large-scale system migrations. As
@@ -95,35 +96,38 @@ service as seen by the real user.
 
 A typical read path diagram during tap compare looks like this:
 
-```txt
-                         MAIN PATH (serves real users)
-               ┌──────────────────────────────────────────────┐
-               │                                              │
-               ▼                                              │
-┌──────┐   ┌─────────┐   ┌──────────┐   ┌──────────┐          │
-│ User │──▶│  Proxy  │──▶│  Python  │──▶│ Prod DB  │          │
-└──────┘   └─────────┘   └──────────┘   └──────────┘          │
-               │                 ▲                            │
-               │                 │                            │
-               │                 │  reads and writes          │
-               │                 │  real production state     │
-               │                 │                            │
-               │   tap event:    │                            │
-               │   {request,     │                            │
-               │    python_resp} │                            │
-               ▼                 │                            │
-          ┌──────────┐      ┌──────────┐                      │
-          │   Go     │◀────▶│Sister DB │                      │
-          └──────────┘      └──────────┘                      │
-               │                                              │
-               ▼                                              │
-          ┌──────────┐                                        │
-          │   Log    │                                        │
-          │ mismatch │                                        │
-          └──────────┘                                        │
-               ▲                                              │
-               └───────── SHADOW PATH (validation only) ──────┘
-```
+<!-- prettier-ignore-start -->
+
+{{< mermaid >}}
+graph TD
+    subgraph MAIN_PATH [MAIN PATH]
+        User([User]) --> Proxy
+        Proxy --> Python
+        Python <-- reads production state --> ProdDB[(Prod DB)]
+    end
+
+    subgraph SHADOW_PATH [SHADOW PATH]
+        Proxy -- "tap event: {request, python_resp}" --> Go
+        Go <--> SisterDB[(Sister DB)]
+        Go --> Log[Log mismatch?]
+    end
+
+    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fff
+    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fff
+    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fff
+    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fff
+    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fff
+
+    class User userStyle
+    class Proxy proxyStyle
+    class Python pythonStyle
+    class Go goStyle
+    class ProdDB,SisterDB dbStyle
+    class Log logStyle
+{{</ mermaid >}}
+
+<!-- prettier-ignore-end -->
 
 From the Go service's point of view, a tap event is just structured data. A simple shape
 might look like this on the wire:
@@ -273,34 +277,38 @@ For writes, the tap event pushed by the proxy looks very similar to reads:
 
 The write path diagram during tap compare becomes:
 
-```txt
-                         MAIN PATH (serves real users)
-               ┌──────────────────────────────────────────────┐
-               │                                              │
-               ▼                                              │
-┌──────┐   ┌─────────┐   ┌──────────┐   ┌──────────┐          │
-│ User │──▶│  Proxy  │──▶│  Python  │──▶│ Prod DB  │          │
-└──────┘   └─────────┘   └──────────┘   └──────────┘          │
-               │                 ▲                            │
-               │                 │ writes real prod state     │
-               │                 │ and triggers side effects  │
-               │                 │                            │
-               │   tap event:    │                            │
-               │   {request,     │                            │
-               │    python_resp} │                            │
-               ▼                 │                            │
-          ┌──────────┐      ┌──────────┐                      │
-          │   Go     │◀────▶│Sister DB │                      │
-          └──────────┘      └──────────┘                      │
-               │                                              │
-               ▼                                              │
-          ┌──────────┐                                        │
-          │   Log    │                                        │
-          │ mismatch │                                        │
-          └──────────┘                                        │
-               ▲                                              │
-               └───────── SHADOW PATH (validation only) ──────┘
-```
+<!-- prettier-ignore-start -->
+
+{{< mermaid >}}
+graph TD
+    subgraph MAIN_PATH [MAIN PATH]
+        User([User]) --> Proxy
+        Proxy --> Python
+        Python <-- writes prod state, triggers side effects --> ProdDB[(Prod DB)]
+    end
+
+    subgraph SHADOW_PATH [SHADOW PATH]
+        Proxy -- "tap event: {request, python_resp}" --> Go
+        Go <--> SisterDB[(Sister DB)]
+        Go --> Log[Log mismatch?]
+    end
+
+    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fff
+    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fff
+    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fff
+    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fff
+    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fff
+
+    class User userStyle
+    class Proxy proxyStyle
+    class Python pythonStyle
+    class Go goStyle
+    class ProdDB,SisterDB dbStyle
+    class Log logStyle
+{{</ mermaid >}}
+
+<!-- prettier-ignore-end -->
 
 On the Go side, the write tap handler follows the same pattern as reads but has more corner
 cases to think through.
@@ -506,10 +514,10 @@ replication lag, idempotency and ordering, and external side effects. Tap compar
 make those go away. On top of that, a few cross-cutting issues are worth calling out
 briefly.
 
-**Logging and privacy:** It's tempting to dump the full request and response
-on every mismatch. That is also a good way to leak user data into logs. Treat tap logs as
-sensitive. Prefer logging IDs, fingerprints, and a few representative fields over full
-payloads, and keep any raw dumps behind feature flags or in locked-down storage.
+**Logging and privacy:** It's tempting to dump the full request and response on every
+mismatch. That is also a good way to leak user data into logs. Treat tap logs as sensitive.
+Prefer logging IDs, fingerprints, and a few representative fields over full payloads, and
+keep any raw dumps behind feature flags or in locked-down storage.
 
 **Non-deterministic data:** You rarely get a byte-for-byte match between a Python app and a
 Go app. Auto-incremented IDs diverge, timestamps differ by milliseconds, and serialization
