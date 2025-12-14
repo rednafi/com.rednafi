@@ -584,7 +584,7 @@ core concept doesn't get obscured.
 Tap compare doesn't remove all the risk from a migration, but it moves a lot of it into a
 place you can see: mismatched payloads, noisy writes, and gaps in business logic. Once those
 are understood, switching over to the new service is less of a big bang and more of a boring
-configuration change, followed by trimming a pile of `*Tap` code you no longer need.
+configuration change, followed by trimming a pile of `Tap*` code you no longer need.
 
 <!--References -->
 
