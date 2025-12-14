@@ -5,6 +5,7 @@ slug: tap-compare-testing
 tags:
     - Distributed Systems
     - Go
+    - Testing
 mermaid: true
 ---
 
