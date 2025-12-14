@@ -561,34 +561,18 @@ production handlers take over.
 
 ## Other risks and pitfalls
 
-Most of the sharp edges already showed up in the write section: database drift and
-replication lag, idempotency and ordering, and external side effects. Tap compare doesn't
-make those go away. On top of that, a few cross-cutting issues are worth calling out
-briefly.
+A few things worth calling out beyond what the write section already covers:
 
-**Logging and privacy:** It's tempting to dump the full request and response on every
-mismatch. That is also a good way to leak user data into logs. Treat tap logs as sensitive.
-Prefer logging IDs, fingerprints, and a few representative fields over full payloads, and
-keep any raw dumps behind feature flags or in locked-down storage.
-
-**Non-deterministic data:** You rarely get a byte-for-byte match between a Python app and a
-Go app. Auto-incremented IDs diverge, timestamps differ by milliseconds, and serialization
-details like `10.0` versus `10` don't matter for correctness. Both services may also call
-`now()` or sample randomness during a request. Your comparison layer has to normalize or
-ignore these fields, or treat time and randomness as inputs that are captured in the tap
-event rather than hidden globals.
-
-**Bug compatibility:** The old Python code will have bugs: swallowed errors, wrong status
-codes, odd edge case behavior. The new Go code may fix those bugs, which shows up as a
-mismatch. Sometimes you deliberately replicate the bug in the Go service to get to a high
-match rate and keep the migration low-risk. Later, once the new system is on the main path
-and you can communicate behavioral changes, you remove the compatibility shim and fix the
-behavior for real.
-
-**Cost and blast radius:** Shadowing high-volume production traffic can be expensive. The Go
-service is doing real work against the sister datastore, often with extra logging and debug
-features enabled. Plan for the extra load on databases, caches, and queues so the tap path
-doesn't accidentally degrade the main path.
+- **Logging and privacy:** Dumping full requests and responses on every mismatch is a good
+  way to leak user data. If this is relevant in your case, log IDs and fingerprints, not
+  full payloads.
+- **Non-deterministic data:** Auto-incremented IDs diverge, timestamps can differ by
+  milliseconds, `10.0` vs `10` doesn't matter. Normalize or ignore these fields.
+- **Bug compatibility:** The Python code has bugs. The Go code may fix them, which shows up
+  as a mismatch. Sometimes you replicate the bug to keep the migration low-risk, then fix it
+  later once the new system is live.
+- **Cost and blast radius:** Shadowing production traffic is expensive. Plan for the extra
+  load so the tap path doesn't degrade the main path.
 
 ## Parting words
 
