@@ -139,7 +139,8 @@ async def stream(request: Request) -> StreamingResponse:
 
         while True:
             # Start sending messages.
-            yield "event: start\n"  # Sets the type of the next message to 'start'.
+            # Sets the type of the next message to 'start'.
+            yield "event: start\n"
             yield "data: streaming started\n\n"  # A 'start' event message.
 
             yield f"id: {attempt}\n\n"  # Sends the id field.
@@ -150,9 +151,10 @@ async def stream(request: Request) -> StreamingResponse:
 
             yield "data: message 2\n\n"  # Another default event message.
 
-            yield "retry: 5000\n\n"  # Controls autoretry from the client side (ms).
+            # Controls autoretry from the client side (ms).
+            yield "retry: 5000\n\n"
 
-            # Wait for a second so that we're not flooding the client with messages.
+            # Don't flood the client with messages.
             await asyncio.sleep(1)
             attempt += 1
 
@@ -354,7 +356,7 @@ async def task_status(request: Request) -> StreamingResponse:
                 yield f"data: {json.dumps(data)}\n\n"
                 break
 
-            # Sleep for a second so that we're not flooding the client with messages.
+            # Don't flood the client with messages.
             time.sleep(1)
 
     response = StreamingResponse(

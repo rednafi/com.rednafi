@@ -86,8 +86,8 @@ Let's see what happens if we make the same request again while passing the value
 `ETag` in the `If-None-Match` header.
 
 ```sh
-gh api -i -H \
-    'If-None-Match: W/"b8fdfabd59aed6e0e602dd140c0a0ff48a665cac791dede458c5109bf4bf9463"' \
+gh api -i \
+    -H 'If-None-Match: W/"b8fdfabd59aed6e0e602dd140c0a..."' \
     /users/rednafi
 ```
 
@@ -224,8 +224,8 @@ Now, you can make another request with the value of
 the `ETag` in the `If-None-Match` header:
 
 ```sh
-curl -i -H \
-    'If-None-Match: "1d3b4242cc9039faa663d7ca51a25798e91fbf7675c9007c2b0470b72c2ed2f3"' \
+curl -i \
+    -H 'If-None-Match: "1d3b4242cc9039faa663d7ca51a2..."' \
     http://localhost:8080/foo
 ```
 

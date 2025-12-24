@@ -732,7 +732,9 @@ vt = VerboseTuple(1, 3, 4)
 print(vt)
 print(f"Abstract Methods: {set(Sequence.__abstractmethods__)}")
 print(
-    f"Mixin Methods: { {k for k, v in Sequence.__dict__.items() if callable(v)} }"
+    f"Mixin Methods: {
+    {k for k, v in Sequence.__dict__.items() if callable(v)}
+}"
 )
 ```
 
@@ -889,9 +891,8 @@ print(
 
 ```txt
 VerboseList(4, 5, 6)
-Abstract Methods: {'__delitem__', '__len__', '__getitem__', 'insert', '__setitem__'}
-Mixin Methods: {'__iadd__', '__setitem__', 'pop', 'append', 'extend', '__delitem__',
-'reverse', 'insert', 'clear', 'remove'}
+Abstract Methods: {'__delitem__', '__len__', '__getitem__', ...}
+Mixin Methods: {'__iadd__', '__setitem__', 'pop', 'append', ...}
 ```
 
 In the above segment, I've inherited the `MutableSequence` mixin class from the
@@ -1540,7 +1541,10 @@ class SQLAlechemyDict(MutableMapping):
             return map(itemgetter(0), r.fetchall())
 
     def __repr__(self):
-        return f"{type(self).__name__}(dbname={self.dbname!r}, items={list(self.items())})"
+        return (
+            f"{type(self).__name__}"
+            f"(dbname={self.dbname!r}, items={list(self.items())})"
+        )
 
     def vacuum(self):
         with self.session_scope() as session:
@@ -1560,7 +1564,7 @@ if __name__ == "__main__":
     for key in sqladict:
         print(key)
 
-    # >>> SQLAlechemyDict(dbname='foo.db', items=[('hello', 'world'), ('key', 'val')])
+    # >>> SQLAlechemyDict(dbname='foo.db', items=[...])
     # >>> hello
     # >>> key
 ```

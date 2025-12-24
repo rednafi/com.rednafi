@@ -166,7 +166,10 @@ failures to decide when to trip the circuit breaker.
 
 ```go
 // handleClosedState executes the function and monitors failures
-func (cb *circuitBreaker) handleClosedState(fn func() (any, error)) (any, error) {
+func (cb *circuitBreaker) handleClosedState(
+    fn func() (any, error),
+    )(any, error) {
+
     result, err := cb.runWithTimeout(fn)
     if err != nil {
         slog.Warn(
@@ -193,6 +196,7 @@ In this function:
 
 - We attempt to execute the provided function `fn` using `runWithTimeout` to handle possible
   timeouts.
+
 - If the function call fails, we increment the `failureCount` and update `lastFailureTime`.
 - If the `failureCount` reaches the `failureThreshold`, we transition the circuit to the
   `Open` state.

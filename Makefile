@@ -18,7 +18,8 @@ init:
 	uv tool install pre-commit
 	uv pip install black blacken-docs mypy pytest pytest-cov ruff
 
-lint:
+format:
+	./scripts/lint-codeblocks.sh
 	git status --porcelain | awk '{print $$2}' | xargs -r uvx pre-commit run --files
 	git status --porcelain | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
 

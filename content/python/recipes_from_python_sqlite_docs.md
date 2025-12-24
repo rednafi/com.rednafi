@@ -658,7 +658,7 @@ conn.text_factory = lambda x: color_map.get(x.decode("utf-8"), x)
 with conn:
     c.execute("create table if not exists colors (name text);")
 
-    c.execute("insert into colors (name) values (?);", ("το κόκκινο",))
+    c.execute("insert into colors (name) values (?);", ("κόκκινο",))
     c.execute("insert into colors (name) values (?);", ("সবুজ",))
 
     result = c.execute("select * from colors;").fetchall()

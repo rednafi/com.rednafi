@@ -270,10 +270,10 @@ a = A(1, 3)
 ```
 
 ```txt
-Calling __prepare__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
-Calling __new__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
-Calling __init__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
-Calling __call__ method of <super: <class 'ExampleMeta'>, <ExampleMeta object>>!
+Calling __prepare__ method of <super: <class 'ExampleMeta'>, ...>!
+Calling __new__ method of <super: <class 'ExampleMeta'>, ...>!
+Calling __init__ method of <super: <class 'ExampleMeta'>, ...>!
+Calling __call__ method of <super: <class 'ExampleMeta'>, ...>!
 Printing <class '__main__.A'> args: (1, 3)
 Printing <class '__main__.A'> kwargs {}
 Calling __init__ method of <__main__.A object at 0x7febe710a130>
@@ -382,10 +382,7 @@ print(p)
 ```txt
 INFO:root:classname: Point
 INFO:root:baseclasses: ()
-INFO:root:attrs: {'__module__': '__main__', '__qualname__': 'Point', '__init__':
-<function Point.__init__ at 0x7f436c2db790>, '__repr__': <function Point.__repr__ at
-0x7f436c2db4c0>}
-
+INFO:root:attrs: {'__module__': '__main__', ...}
 
 Point(5, 10)
 ```

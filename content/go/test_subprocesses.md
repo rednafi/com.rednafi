@@ -89,7 +89,12 @@ func TestRunEcho(t *testing.T) {
     // Spawn the same test binary as a subprocess instead of calling the
     // real "echo". This runs only the TestEchoHelper test in a subprocess
     // which emulates the behavior of "echo"
-    cmd := exec.Command(os.Args[0], "-test.run=TestEchoHelper", "--", "hello")
+    cmd := exec.Command(
+        os.Args[0],
+        "-test.run=TestEchoHelper",
+        "--",
+        "hello",
+    )
     cmd.Env = append(os.Environ(), "GO_WANT_HELPER_PROCESS=1")
 
     out, err := cmd.Output()
