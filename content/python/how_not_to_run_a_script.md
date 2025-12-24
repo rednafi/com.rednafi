@@ -39,7 +39,7 @@ python src/sub/b.py
 
 ```txt
 Traceback (most recent call last):
-  File "/home/rednafi/canvas/personal/reflections/src/sub/b.py", line 2, in <module>
+  File ".../src/sub/b.py", line 2, in <module>
     from src import a
 ModuleNotFoundError: No module named 'src'
 ```
@@ -60,12 +60,11 @@ from src import a
 Now running this module with `python src/sub/b.py` will print the following:
 
 ```txt
-['/home/rednafi/canvas/personal/reflections/src/sub', '/usr/lib/python310.zip', '/usr/
-lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/home/rednafi/canvas/personal/
-reflections/.venv/lib/python3.10/site-packages']
+['.../src/sub', '/usr/lib/python310.zip', '/usr/lib/python3.10',
+'/usr/lib/python3.10/lib-dynload', '.../.venv/lib/python3.10/site-packages']
 
 Traceback (most recent call last):
-  File "/home/rednafi/canvas/personal/reflections/src/sub/b.py", line 5, in <module>
+  File ".../src/sub/b.py", line 5, in <module>
     from src import a
 ModuleNotFoundError: No module named 'src'
 ```

@@ -53,7 +53,7 @@ secured_door.open_method()
 ```
 
 ```txt
->>> Adding security measure to the method of <__main__.Door object at 0x7f9dab3b6670>
+>>> Adding security measure to the method of <__main__.Door object ...>
 ```
 
 The above code snippet concretizes the example given before. Here, the `Door` class has a
@@ -489,9 +489,7 @@ Cache Info: CacheInfo(hits=0, misses=1, maxsize=32, currsize=1)
     'x-b3-spanid': '503e6ceaa2a4f493',
     'x-b3-traceid': '77d5b03fe98fcc1a044bd10726921994',
     'x-envoy-external-address': '10.100.91.201',
-    'x-forwarded-client-cert': 'By=spiffe://cluster.local/ns/pm-echo-istio/sa/default;
-    Hash=2ed845a68a0968c80e6e0d0f49dec5ce15ee3c1f87408e56c938306f2129528b;Subject="";
-    URI=spiffe://cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account',
+    'x-forwarded-client-cert': 'By=spiffe://...;Hash=...;URI=...',
     'x-forwarded-port': '443',
     'x-forwarded-proto': 'http',
     'x-request-id': '295d0b6c-7aa0-4481-aa4d-f47f5eac7d57'}

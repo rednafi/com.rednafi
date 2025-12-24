@@ -198,9 +198,9 @@ httpx.get("https://httpbin.org/get")
 Running the script will print the `DEBUG` messages as follows:
 
 ```txt
-httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
-httpx - DEBUG - load_verify_locations cafile='.../site-packages/certifi/cacert.pem'
-httpx - INFO - HTTP Request: GET https://httpbin.org/get "HTTP/1.1 200 OK"
+httpx - DEBUG - load_ssl_context verify=True cert=None ...
+httpx - DEBUG - load_verify_locations cafile='...cacert.pem'
+httpx - INFO - HTTP Request: GET https://httpbin.org/get ...
 ```
 
 [^1]:

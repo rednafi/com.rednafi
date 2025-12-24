@@ -100,7 +100,7 @@ var r io.Reader = b    // The static type of r is io.Reader.
                        // The dynamic type of r is *bytes.Buffer.
                        // The dynamic value of r is nil.
 
-// Although b is nil, r != nil because r holds type information (*bytes.Buffer).
+// Although b is nil, r != nil because r holds type info (*bytes.Buffer).
 if r == nil {
     fmt.Println("r is nil")
 } else {
