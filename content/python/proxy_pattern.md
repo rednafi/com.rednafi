@@ -333,27 +333,28 @@ This API is perfect for the demonstration since it has a rate limiter that kicks
 arbitrarily and make the client throw `ConnectTimeOut` and `ReadTimeOutError`. See how this
 workflow is going to look like:
 
-- Define an interface called `IFetchUrl` that will implement three abstract methods. The
-  first method `get_data` will fetch data from the URL and serialize them into `json`
-  format. The second method `get_headers` will probe the data and return the header as a
-  dictionary. The third method `get_args` will also probe the data like the second method
-  but this time it will return the query arguments as a dictionary. However, in the
-  interface, you won't be implementing anything inside the methods.
+-   Define an interface called `IFetchUrl` that will implement three abstract methods. The
+    first method `get_data` will fetch data from the URL and serialize them into `json`
+    format. The second method `get_headers` will probe the data and return the header as a
+    dictionary. The third method `get_args` will also probe the data like the second method
+    but this time it will return the query arguments as a dictionary. However, in the
+    interface, you won't be implementing anything inside the methods.
 
-- Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
-  time you'll implement all three methods defined in the abstract class. However, you
-  shouldn't handle any edge cases here. The method should contain pure logic flow without
-  any extra fluff.
+-   Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
+    time you'll implement all three methods defined in the abstract class. However, you
+    shouldn't handle any edge cases here. The method should contain pure logic flow without
+    any extra fluff.
 
-- Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but this
-  time you'll add your exception handling logics here. This class also adds logging
-  functionality to all the methods. Here you call the concrete class `FetchUrl` in a
-  composition format and avoid code repetition by using the methods that's been already
-  implemented in the concrete class. Like the `FetchUrl` class, here too, you've to
-  implement all the methods found in the abstract class.
+-   Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but
+    this time you'll add your exception handling logics here. This class also adds logging
+    functionality to all the methods. Here you call the concrete class `FetchUrl` in a
+    composition format and avoid code repetition by using the methods that's been already
+    implemented in the concrete class. Like the `FetchUrl` class, here too, you've to
+    implement all the methods found in the abstract class.
 
-- The fourth and the final class will extend the `ExcFetchUrl` and add caching functionality
-  to the `get_data` method. It will follow the same pattern as the `ExcFetchUrl` class.
+-   The fourth and the final class will extend the `ExcFetchUrl` and add caching
+    functionality to the `get_data` method. It will follow the same pattern as the
+    `ExcFetchUrl` class.
 
 Since, by now, you're already familiar with the workflow of the proxy pattern, let's dump
 the entire 110 line solution all at once.
@@ -535,13 +536,9 @@ Dorado of loose coupling.
     [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
 
 [^3]: [Structural pattern](https://en.wikipedia.org/wiki/Structural_pattern)
-
 [^4]: [Single Responsibility Principle](https://stackify.com/solid-design-principles/)
-
 [^5]: [Python decorators](/python/decorators)
-
 [^6]: [HTTPx](https://github.com/encode/httpx)
-
 [^7]:
     [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py)
     [^7]
