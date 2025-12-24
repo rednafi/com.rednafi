@@ -85,7 +85,7 @@ local function check_rate_limit(
   global_key, category_key, global_limit, category_limit, window
 )
   -- Get the current timestamp in seconds (including microseconds)
-  local current_time_raw = redis.call('TIME') -- Returns {seconds, microseconds}
+  local current_time_raw = redis.call('TIME') -- {secs, usecs}
   local current_time = current_time_raw[1] + (current_time_raw[2] / 1000000)
 
   -- Step 1: Remove expired entries

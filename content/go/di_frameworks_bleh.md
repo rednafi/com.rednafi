@@ -15,7 +15,7 @@ to escape GoF theology.
 
 > _Dependency Injection is a 25-dollar term for a 5-cent concept._
 >
-> _ — James Shore_
+> _— James Shore_
 
 DI basically means _passing values into a constructor instead of creating them inside it_.
 That's really it. Observe:
@@ -86,8 +86,13 @@ type FakeDB struct{ data map[string]string }
 
 func NewFake() *FakeDB { return &FakeDB{data: map[string]string{}} }
 
-func (f *FakeDB) Get(id string) (string, error) { return f.data[id], nil }
-func (f *FakeDB) Save(id, value string) error   { f.data[id] = value; return nil }
+func (f *FakeDB) Get(id string) (string, error) {
+    return f.data[id], nil
+}
+func (f *FakeDB) Save(id, value string) error {
+    f.data[id] = value
+    return nil
+}
 ```
 
 Use the fake in unit tests like so:
@@ -126,7 +131,7 @@ figured out inside the container at runtime.
 
 > _Let the container figure it out!_
 >
-> _ — every DI framework ever_
+> _— every DI framework ever_
 
 ```go
 func BuildContainer() *dig.Container {
@@ -145,8 +150,8 @@ func main() {
     // Invoke kicks off the whole graph. dig topologically sorts, calls each
     // constructor, and finally hands *server to your callback.
     if err := BuildContainer().Invoke(
-    	func(s *server) { s.Run() }); err != nil {
-    	panic(err)
+        func(s *server) { s.Run() }); err != nil {
+        panic(err)
     }
 }
 ```
@@ -177,7 +182,7 @@ var serverSet = wire.NewSet(
     NewConfig,
     NewDB,
     NewRepo,
-    NewFlagClient,   // comment this line out to see Wire complain at compile time
+    NewFlagClient, // comment out to see Wire complain
     NewService,
     NewServer,
 )
@@ -287,7 +292,7 @@ A DI framework often fixes problems Go already solved and trades away readabilit
 
 > _The most magical thing about Go is how little magic it allows._
 >
-> _ — Some Gopher on Reddit_
+> _— Some Gopher on Reddit_
 
 ## You might still want a framework
 

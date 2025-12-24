@@ -263,8 +263,8 @@ func main() {
 The output will be:
 
 ```txt
-os.Open: /path/to/source/file: open /path/to/source/file: no such file or directory
-        /Users/rednafi/canvas/rednafi.com/main.go:54
+os.Open: /path/to/file: open /path/to/file: no such file or directory
+        /Users/.../main.go:54
 exit status 1
 ```
 

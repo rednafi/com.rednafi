@@ -245,12 +245,12 @@ This test fails and prints the goroutine stack stuck in the send to `ch2`.
 ```
 === RUN   TestBuggyLeaks
     main_test.go:34: found unexpected goroutines:
-        [Goroutine 24 in state chan send, with thing.buggyEarlyReturn.func2 on
-        top of the stack:
+        [Goroutine 24 in state chan send,
+        with thing.buggyEarlyReturn.func2 on top of the stack:
         thing.buggyEarlyReturn.func2()
-                /Users/rednafi/canvas/rednafi.com/thing/main_test.go:20 +0x28
+                .../main_test.go:20 +0x28
         created by thing.buggyEarlyReturn in goroutine 22
-                /Users/rednafi/canvas/rednafi.com/thing/main_test.go:20 +0xc0
+                .../main_test.go:20 +0xc0
         ]
 --- FAIL: TestBuggyLeaks (0.44s)
 FAIL

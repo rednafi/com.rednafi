@@ -465,7 +465,9 @@ func TestCalcSerial(t *testing.T)   { testgroup.RunSerially(t, &CalcGroup{}) }
 
 // Or run in parallel.
 // Don't call t.Parallel inside methods
-func TestCalcParallel(t *testing.T) { testgroup.RunInParallel(t, &CalcGroup{}) }
+func TestCalcParallel(t *testing.T) {
+    testgroup.RunInParallel(t, &CalcGroup{})
+}
 ```
 
 `RunInParallel` handles group-level parallelism for you and documents not to mix in your own

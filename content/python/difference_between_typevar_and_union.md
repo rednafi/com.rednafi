@@ -81,7 +81,7 @@ If you run Mypy against the above snippet, you'll get this:
 ```txt
 $ mypy src.py
 src.py:12: error: Value of type variable "T" of "add" cannot be "object"
-    add("hello", 1)  # Mypy will complain about this one and it'll fail in runtime.
+    add("hello", 1)  # Mypy will complain, fails at runtime.
     ^
 Found 1 error in 1 file (checked 1 source file)
 ```

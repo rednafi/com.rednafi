@@ -43,8 +43,8 @@ My tab completion looks like this:
 ```txt
 rednafi@air:~/canvas/rednafi.com
 $ ,
-,brclr                    ,clear-cache              ,docker-prune-containers  ,redis
-,brpre                    ,docker-nuke              ,docker-prune-images      ,www
+,brclr        ,clear-cache  ,docker-prune-containers  ,redis
+,brpre        ,docker-nuke  ,docker-prune-images      ,www
 ```
 
 All my aliases start with `,` too so that they also appear in the list with the custom

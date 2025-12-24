@@ -163,7 +163,7 @@ func TestMain(m *testing.M) {
 
 func TestSnapshot(t *testing.T) {
     if !*snapshot {
-    	t.Skip("pass -snapshot to run this test")
+        t.Skip("pass -snapshot to run this test")
     }
     t.Log("running snapshot")
 }
@@ -187,7 +187,7 @@ func init() {
 
 func TestSnapshot(t *testing.T) {
     if !snapshot {
-    	t.Skip("pass -snapshot to run this test")
+        t.Skip("pass -snapshot to run this test")
     }
     t.Log("running snapshot")
 }

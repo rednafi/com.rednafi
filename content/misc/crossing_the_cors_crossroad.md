@@ -79,7 +79,7 @@ type Person struct {
 // helloNameHandler responds with "Hello {name}".
 func helloNameHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != "POST" {
-        http.Error(w, "Only POST method is allowed", http.StatusMethodNotAllowed)
+        http.Error(w, "POST only", http.StatusMethodNotAllowed)
         return
     }
 
@@ -106,7 +106,7 @@ func corsMiddleware(next http.Handler) http.Handler {
         if _, ok := allowedOrigins[origin]; ok {
             w.Header().Set("Access-Control-Allow-Origin", origin)
         } else {
-            // Optional: Handle not allowed origin, e.g., by returning an error.
+            // Handle not allowed origin.
             http.Error(w, "Origin not allowed", http.StatusForbidden)
             return
         }
@@ -190,7 +190,8 @@ If you make a preflight request with an origin not on the server's allowlist, yo
 encounter a 4xx error again.
 
 ```sh
-curl -i -X OPTIONS http://localhost:7676/hello -H 'Origin: http://notallowed.com'
+curl -i -X OPTIONS http://localhost:7676/hello \
+    -H 'Origin: http://notallowed.com'
 ```
 
 The return message indicates that requests from `http://notallowed.com` are blocked by CORS
