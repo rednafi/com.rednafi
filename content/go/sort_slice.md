@@ -37,7 +37,7 @@ import (
 // Define a custom IntSlice so that we can implement the sort.Interface
 type IntSlice []int
 
-// Len, Less, and Swap methods need to be implemented to conform to sort.Interface
+// Len, Less, Swap are required to conform to sort.Interface
 func (s IntSlice) Len() int           { return len(s) }
 func (s IntSlice) Less(i, j int) bool { return s[i] < s[j] }
 func (s IntSlice) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
@@ -61,7 +61,8 @@ import (
 type DescIntSlice []int
 
 func (s DescIntSlice) Len() int           { return len(s) }
-func (s DescIntSlice) Less(i, j int) bool { return s[i] > s[j] } // Inverted comp
+// Inverted comparison for descending order
+func (s DescIntSlice) Less(i, j int) bool { return s[i] > s[j] }
 func (s DescIntSlice) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
 func main() {

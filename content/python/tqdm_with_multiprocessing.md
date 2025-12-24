@@ -26,7 +26,7 @@ get an iterable of size `CHUNK_SIZE=5`. So 5 processes each consuming
 5 elements of an iterable will require (100 / (5*5)) 4 passes to finish
 consuming the entire iterable of 100 elements.
 
-Tqdm progress bar will be updated after every `MAX_WORKERS*CHUNK_SIZE` iterations.
+Tqdm progress bar will update every `MAX_WORKERS*CHUNK_SIZE` iterations.
 """
 
 # src.py

@@ -30,7 +30,7 @@ func helper(t *testing.T) {
 
     // Teardown code here.
     defer func() {
-    	// Clean up something.
+        // Clean up something.
     }()
 }
 ```
@@ -47,7 +47,7 @@ func TestFoo(t *testing.T) {
 
     // Run the teardown of helper.
     defer func() {
-    	// Clean up something.
+        // Clean up something.
     }()
 
     // Test logic here.
@@ -71,11 +71,11 @@ func TestFoo(t *testing.T) {
     helper2(t)
 
     defer func() {
-    	// Clean up helper2.
+        // Clean up helper2.
     }()
 
     defer func() {
-    	// Clean up helper1.
+        // Clean up helper1.
     }()
 
     // Test logic here.
@@ -107,7 +107,7 @@ func helper1(t *testing.T) func() {
     // Maybe create a temp dir, start a mock server, etc.
 
     return func() {
-    	// Teardown code here.
+        // Teardown code here.
     }
 }
 
@@ -117,7 +117,7 @@ func helper2(t *testing.T) func() {
     // Setup code here.
 
     return func() {
-    	// Teardown code here.
+        // Teardown code here.
     }
 }
 ```
@@ -141,20 +141,21 @@ func setupTempFile(t *testing.T, content string) (string, func()) {
 
     tmpFile, err := os.CreateTemp("", "temp-*.txt")
     if err != nil {
-    	t.Fatalf("failed to create temp file: %v", err)
+        t.Fatalf("failed to create temp file: %v", err)
     }
 
     if _, err := tmpFile.WriteString(content); err != nil {
-    	t.Fatalf("failed to write to temp file: %v", err)
+        t.Fatalf("failed to write to temp file: %v", err)
     }
     tmpFile.Close()
 
     return tmpFile.Name(), func() {
-    	if err := os.Remove(tmpFile.Name()); err != nil {
-            t.Errorf("failed to remove temp file %s: %v", tmpFile.Name(), err)
-    	} else {
+        if err := os.Remove(tmpFile.Name()); err != nil {
+            t.Errorf("failed to remove temp file %s: %v",
+                tmpFile.Name(), err)
+        } else {
             t.Logf("cleaned up temp file: %s", tmpFile.Name())
-    	}
+        }
     }
 }
 ```
@@ -168,7 +169,7 @@ func TestReadFile(t *testing.T) {
 
     data, err := os.ReadFile(path)
     if err != nil {
-    	t.Fatalf("failed to read file: %v", err)
+        t.Fatalf("failed to read file: %v", err)
     }
 
     t.Logf("file contents: %s", data)
@@ -194,16 +195,18 @@ in-memory mock server and returns its URL and a cleanup function that shuts it d
 func setupMockServer(t *testing.T) (string, func()) {
     t.Helper()
 
-    handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-    	w.WriteHeader(http.StatusOK)
-    	w.Write([]byte("mock response"))
-    })
+    handler := http.HandlerFunc(
+        func(w http.ResponseWriter, r *http.Request) {
+            w.WriteHeader(http.StatusOK)
+            w.Write([]byte("mock response"))
+        },
+    )
 
     server := httptest.NewServer(handler)
 
     return server.URL, func() {
-    	server.Close()
-    	t.Log("mock server shut down")
+        server.Close()
+        t.Log("mock server shut down")
     }
 }
 ```
@@ -217,7 +220,7 @@ func TestHTTPRequest(t *testing.T) {
 
     resp, err := http.Get(url)
     if err != nil {
-    	t.Fatalf("failed to make HTTP request: %v", err)
+        t.Fatalf("failed to make HTTP request: %v", err)
     }
     defer resp.Body.Close()
 
@@ -246,12 +249,12 @@ func setupTestTable(t *testing.T, db *sql.DB) func() {
     t.Helper()
 
     query := `CREATE TABLE IF NOT EXISTS users (
-    	id INTEGER PRIMARY KEY,
-    	name TEXT
+        id INTEGER PRIMARY KEY,
+        name TEXT
     )`
     _, err := db.Exec(query)
     if err != nil {
-    	t.Fatalf("failed to create table: %v", err)
+        t.Fatalf("failed to create table: %v", err)
     }
 
     return func() {
@@ -275,7 +278,7 @@ func TestInsertUser(t *testing.T) {
 
     _, err := db.Exec(`INSERT INTO users (name) VALUES (?)`, "Alice")
     if err != nil {
-    	t.Fatalf("failed to insert user: %v", err)
+        t.Fatalf("failed to insert user: %v", err)
     }
 }
 ```

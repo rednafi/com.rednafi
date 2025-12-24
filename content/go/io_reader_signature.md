@@ -81,7 +81,7 @@ for {
     if err != nil {
         break
     }
-    allData = append(allData, buf...) // Growing slice every time, more allocation
+    allData = append(allData, buf...) // Growing slice, more allocs
 }
 process(allData)
 ```

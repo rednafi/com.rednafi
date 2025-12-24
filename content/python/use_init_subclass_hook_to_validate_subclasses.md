@@ -36,7 +36,7 @@ class Base:
     def _raise_error_for_invalid_config(cls) -> None:
         if not "config" in cls.__dict__:
             raise Exception(
-                f"'{cls.__name__}' should define a class attribute named 'config'",
+                f"'{cls.__name__}' should define 'config' attr",
             )
 
         if not isinstance(cls.config, Mapping):
@@ -50,7 +50,7 @@ class Base:
 
         if not tuple(config_keys) == expected_keys:
             raise Exception(
-                f"'config' map should have only '{', '.join(expected_keys)}' keys",
+                f"'config' should have only {expected_keys} keys",
             )
 
     def __repr__(self) -> str:
@@ -88,8 +88,8 @@ Traceback (most recent call last):
   File "main.py", line 8, in __init_subclass__
     cls._raise_error_for_invalid_config(cls)
   File "main.py", line 23, in _raise_error_for_invalid_config
-    raise Exception(f"'config' map should have only '{', '.join(expected_keys)}' keys")
-Exception: 'config' map should have only 'foo, bar, bazz' keys
+    raise Exception(f"'config' should have only {expected_keys} keys")
+Exception: 'config' should have only ('foo', 'bar', 'bazz') keys
 ```
 
 ## Test

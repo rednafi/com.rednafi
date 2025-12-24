@@ -160,7 +160,7 @@ from typing import Any
 
 async def make_request(url: str, client: httpx.AsyncClient) -> dict[str, Any]:
     # We don't want to initiate the ctx manager in every request
-    # AsyncClient.__enter__(...) will be called once and passed to this function
+    # AsyncClient.__enter__ will be called once and passed here
     response = await client.post(
         url,
         json={"key_1": "value_1", "key_2": "value_2"},

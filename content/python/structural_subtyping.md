@@ -123,7 +123,7 @@ function parameter. If you try to run this function, it'll happily print `True`.
 you run mypy[^2] against this file, it'll complain as follows:
 
 ```txt
-src.py:17: error: Argument 1 to "find" has incompatible type "Set[int]"; expected
+src.py:17: error: Argument 1 to "find" has incompatible type "Set[int]";
 "Dict[Any, Any]"
         print(contains(haystack, needle))
                        ^

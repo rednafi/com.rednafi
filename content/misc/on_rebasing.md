@@ -158,7 +158,7 @@ actions like pick, reword, edit, fixup, etc. I usually use squash and edit the
 
 ```txt
 pick 763e178 ci # empty
-s 4b10faf ci # empty  # <- s=squash means melding this commit into the previous one
+s 4b10faf ci # empty  # <- s=squash melds into prev commit
 s 7f7ce20 ci # empty
 s 88fc529 ci # empty
 s 8bc19b6 ci # empty

@@ -141,7 +141,7 @@ not on the local:
 SCRIPT="
     # ...
 
-    # Here, without the backslash, shell will try to run it on the local machine
+    # Without backslash, shell runs this locally
     docker rmi -f \$(docker compose images -q) || true
     "
 # Run the script on the remote machine

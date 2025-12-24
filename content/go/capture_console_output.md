@@ -66,7 +66,7 @@ I found this neat pattern to test functions that write to stdout without accepti
 The idea is to write a helper function named `captureStdout` that looks like this:
 
 ```go
-// captureStdout replaces os.Stdout with a buffer and returns the captured output.
+// captureStdout replaces os.Stdout with a buffer and returns it.
 func captureStdout(f func()) string {
     old := os.Stdout
     r, w, _ := os.Pipe()
