@@ -102,15 +102,12 @@ the server down with this nasty traceback (full traceback trimmed for brevity):
 
 ```txt
 Traceback (most recent call last):
-  File "/Users/rednafi/Canvas/personal/reflections/server.py", line 137,
-  in <module>
+  File ".../server.py", line 137, in <module>
     server.serve_forever()
-  File "/Users/rednafi/.asdf/installs/Python/3.11.1/lib/python3.11/socketserver.py",
-  line 233, in serve_forever
+  File ".../socketserver.py", line 233, in serve_forever
     ready = selector.select(poll_interval)
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/rednafi/.asdf/installs/Python/3.11.1/lib/python3.11/selectors.py",
-  line 415, in select
+  File ".../selectors.py", line 415, in select
     fd_event_list = self._selector.poll(timeout)
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 KeyboardInterrupt

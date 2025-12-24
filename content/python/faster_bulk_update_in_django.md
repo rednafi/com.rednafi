@@ -178,7 +178,7 @@ python -m app_name.multiprocessing_bulk_update
 This will print the following:
 
 ```txt
-Time taken to update 100k users with multiprocessing: 2.2682724999976926 seconds.
+Time taken to update 100k users with multiprocessing: 2.27 seconds.
 Updated usernames:
 ===================
 USER_960

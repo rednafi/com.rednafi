@@ -112,7 +112,7 @@ better. Here's the complete 85-line code snippet:
       };
     });
 
-    // wait for the promise to resolve before displaying the results in the table
+    // Wait for promise before displaying results in table
     try {
       const { numRows, numColumns, headers } = await fileLoaded;
       console.log(

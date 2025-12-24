@@ -18,7 +18,7 @@ has the following block of code that I found interesting (added comments for cla
 ```sh
 #!/usr/bin/env bash
 
-# Define the path for the PID file, using the script's name to ensure uniqueness
+# Define PID file path using script's name for uniqueness
 PIDFILE="/tmp/$(basename "${BASH_SOURCE[0]%.*}.pid")"
 
 # Open file descriptor 200 for the PID file
@@ -27,7 +27,7 @@ exec 200>"${PIDFILE}"
 # Try to acquire a non-blocking lock; exit if the script is already running
 flock -n 200 \
     || {
-        echo "${BASH_SOURCE[0]} script is already running. Aborting..."; exit 1;
+        echo "${BASH_SOURCE[0]} already running. Aborting..."; exit 1;
     }
 
 # Store the current process ID (PID) in the lock file for reference

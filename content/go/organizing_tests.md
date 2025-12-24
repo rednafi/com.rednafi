@@ -293,9 +293,9 @@ myapp/
 │   ├── greet.go                     # mypkg - production code
 │   ├── greet_test.go                # mypkg - unit & white-box tests
 │   ├── greet_external_test.go       # mypkg_test - black-box tests
-│   └── greet_bench_fuzz_example.go  # mypkg - examples, benchmarks, & fuzz tests
+│   └── greet_bench_fuzz_example.go  # examples, benchmarks, fuzz
 └── integration/
-    └── greet_integration_test.go    # integration - integration or e2e tests
+    └── greet_integration_test.go    # integration or e2e tests
 ```
 
 <!-- References -->

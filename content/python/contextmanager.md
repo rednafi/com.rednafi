@@ -456,7 +456,7 @@ logging.basicConfig(
 
 
 class Calculation:
-    """Dummy class for demonstrating exception decoupling with contextmanager."""
+    """Demo class for exception decoupling with contextmanager."""
 
     def __init__(self, a, b):
         self.a = a

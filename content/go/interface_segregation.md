@@ -179,14 +179,14 @@ type S3Client interface {
         opts ...func(*s3.Options)) (*s3.PutObjectOutput, error)
 
     GetObject(
-    	ctx context.Context,
-    	input *s3.GetObjectInput,
-    	opts ...func(*s3.Options)) (*s3.GetObjectOutput, error)
+        ctx context.Context,
+        input *s3.GetObjectInput,
+        opts ...func(*s3.Options)) (*s3.GetObjectOutput, error)
 
     ListObjectsV2(
-    	ctx context.Context,
-    	input *s3.ListObjectsV2Input,
-    	opts ...func(*s3.Options)) (*s3.ListObjectsV2Output, error)
+        ctx context.Context,
+        input *s3.ListObjectsV2Input,
+        opts ...func(*s3.Options)) (*s3.ListObjectsV2Output, error)
 
     // ...and many more
 }
@@ -226,8 +226,9 @@ Similar to what we've seen before, you can define a single method interface:
 ```go
 type Uploader interface {
     PutObject(
-        ctx context.Context, input *s3.PutObjectInput, opts ...func(*s3.Options),
-    ) (*s3.PutObjectOutput, error)
+        ctx context.Context,
+        input *s3.PutObjectInput,
+        opts ...func(*s3.Options)) (*s3.PutObjectOutput, error)
 }
 ```
 
@@ -263,8 +264,8 @@ func (FakeUploader) PutObject(
 
 If we distill the workflow as a general rule of thumb, it'd look like this:
 
-> _Insert a seam between two tightly coupled components by placing a consumer-side
-> interface that exposes only the methods the caller invokes._
+> _Insert a seam between two tightly coupled components by placing a consumer-side interface
+> that exposes only the methods the caller invokes._
 
 Fin!
 

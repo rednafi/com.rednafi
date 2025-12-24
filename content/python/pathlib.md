@@ -330,7 +330,7 @@ Path
         ├── is_absolute()
         ├── iterdir()
         ├── mkdir(mode=0o777, parents=False, exist_ok=False)
-        ├── open(mode='r', buffering=-1, encoding=None, errors=None, newline=None)
+        ├── open(mode='r', buffering=-1, encoding=None, ...)
         ├── rename(target)
         ├── replace(target)
         ├── resolve(strict=False)

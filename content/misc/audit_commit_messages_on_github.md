@@ -83,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - name: "Return exit code 1 if the commit messages aren't formatted correctly."
+      - name: "Check commit message format"
         shell: bash
         run: |
           set -euo pipefail
@@ -110,8 +110,7 @@ jobs:
               if [[ -z "$line" ]]; then
                   continue
 
-              # Check with regex if the commit message contains 'refs #issue_number'
-              # or 'closes #issue_number'. If not, exit with an error.
+              # Check for 'refs #N' or 'closes #N'. Else error.
               elif [[ "$line" =~ $mtch ]]; then
                   echo "Commit message: $line ✅"
               else
