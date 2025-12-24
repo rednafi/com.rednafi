@@ -19,9 +19,9 @@ comparisons.
 
 Roughly speaking, an interface in Go has three components:
 
-- A static type
-- A dynamic type
-- A dynamic value
+-   A static type
+-   A dynamic type
+-   A dynamic value
 
 For example:
 
@@ -37,8 +37,8 @@ it adopts the dynamic type `int` and the dynamic value `1`.
 
 Internally, every interface value is implemented as a two [word] structure:
 
-- One word holds a pointer to the dynamic type (i.e., a type descriptor).
-- The other word holds the data associated with that type.
+-   One word holds a pointer to the dynamic type (i.e., a type descriptor).
+-   The other word holds the data associated with that type.
 
 This data word might directly contain the value if it's small enough, or it might hold a
 pointer to the actual data. Note that this internal representation is distinct from the

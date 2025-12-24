@@ -183,21 +183,21 @@ func captureOut(f func()) string {
 
 This version does a few more things:
 
-- **Captures everything**: It redirects both `os.Stdout` and `os.Stderr` to ensure all
-  standard output streams are captured. It also explicitly redirects the standard `log`
-  package's output, which often bypasses `os.Stderr`.
+-   **Captures everything**: It redirects both `os.Stdout` and `os.Stderr` to ensure all
+    standard output streams are captured. It also explicitly redirects the standard `log`
+    package's output, which often bypasses `os.Stderr`.
 
-- **Prevents deadlocks**: Output is read concurrently in a separate goroutine. This is
-  crucial because if `f` generates more output than the internal pipe buffer can hold,
-  writing would block without a concurrent reader, causing a deadlock.
+-   **Prevents deadlocks**: Output is read concurrently in a separate goroutine. This is
+    crucial because if `f` generates more output than the internal pipe buffer can hold,
+    writing would block without a concurrent reader, causing a deadlock.
 
-- **Ensure reader readiness**: A `sync.WaitGroup` guarantees the reading goroutine is active
-  before `f` starts executing. This prevents a potential race condition where initial output
-  could be lost if `f` writes before the reader is ready.
+-   **Ensure reader readiness**: A `sync.WaitGroup` guarantees the reading goroutine is
+    active before `f` starts executing. This prevents a potential race condition where
+    initial output could be lost if `f` writes before the reader is ready.
 
-- **Guarantees cleanup**: Using `defer`, the original `os.Stdout` and `os.Stderr` are always
-  restored, even if `f` panics. This prevents the function from permanently altering the
-  program's standard output streams.
+-   **Guarantees cleanup**: Using `defer`, the original `os.Stdout` and `os.Stderr` are
+    always restored, even if `f` panics. This prevents the function from permanently
+    altering the program's standard output streams.
 
 You'd use `captureOut` the same way as the naive `captureStdout`. This version is safer and
 more complete, and works well when you're testing CLI commands, log-heavy code, or anything

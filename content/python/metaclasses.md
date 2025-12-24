@@ -176,12 +176,12 @@ Type `type`, as the default metaclass in Python, defines a few special methods t
 metaclasses can override to implement unique code generation behavior. Here is a brief
 overview of these "magic" methods that exist on a metaclass:
 
-- `__new__`: This method is called on the Metaclass before an instance of a class based on
-  the metaclass is created
-- `__init__`: This method is called to set up values after the instance/object is created
-- `__prepare__`: Defines the class namespace in a mapping that stores the attributes
-- `__call__`: This method is called when the constructor of the new class is to be used to
-  create an object
+-   `__new__`: This method is called on the Metaclass before an instance of a class based on
+    the metaclass is created
+-   `__init__`: This method is called to set up values after the instance/object is created
+-   `__prepare__`: Defines the class namespace in a mapping that stores the attributes
+-   `__call__`: This method is called when the constructor of the new class is to be used to
+    create an object
 
 These are the methods to override in your custom metaclass to give your classes behaviors
 different from that of `type`. The following example shows the default behaviors of these
@@ -1066,11 +1066,8 @@ This article assumes familiarity with decorators, dataclasses etc. If your knowl
 is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
 
 [^1]: [Tim Peters](<https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)>)
-
 [^2]: [decorators](/python/decorators)
-
 [^3]: [dataclasses](/python/dataclasses)
-
 [^4]:
     [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/)
     [^4]
@@ -1080,7 +1077,6 @@ is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
     [^5]
 
 [^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
-
 [^7]:
     [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php)
     [^7]

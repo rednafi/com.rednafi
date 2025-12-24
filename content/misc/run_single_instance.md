@@ -188,6 +188,5 @@ released when the file is closed in the `defer` block.
 Underneath, Go makes sure that `syscall.Flock` works on both macOS and Linux.
 
 [^1]: [Tailscale](https://tailscale.com/)
-
 [^2]:
     [Update tailscale ufw rules](https://github.com/AT3K/Tailscale-Firewall-Setup/blob/main/update_tailscale_ufw_rules.sh)
