@@ -224,6 +224,6 @@ methods is probably going to be better._
 
 <!-- escaping the template pattern hellscape in Python -->
 [escape the template pattern hellscape]:
-    /python/escape_template_pattern/
+    /python/escape-template-pattern/
 
 <!-- prettier-ignore-end -->
