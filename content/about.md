@@ -34,10 +34,10 @@ For the paper trail inclined, here's [my CV].
 
 ## Contact
 
-- [Email]
-- [Bluesky]
-- [GitHub]
-- [LinkedIn]
+-   [Email]
+-   [Bluesky]
+-   [GitHub]
+-   [LinkedIn]
 
 ## Colophon
 
@@ -49,26 +49,26 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Breadcrumbs
 
-- The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my nickname
-  _Nafi_, which my parents and a few close friends still use.
-- I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
-- I think through writing and not the other way around. Most of the blogs on this site take
-  way longer to write than I'd like to admit.
+-   The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my
+    nickname _Nafi_, which my parents and a few close friends still use.
+-   I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
+-   I think through writing and not the other way around. Most of the blogs on this site
+    take way longer to write than I'd like to admit.
 
 ## Greatest hits
 
-- [Oh my poor business logic]
-- [The diminishing half-life of knowledge]
-- [Annotating args and kwargs in Python]
-- [An ode to the neo-grotesque web]
-- [HTTP requests via /dev/tcp]
-- [You probably don't need a DI framework]
-- [Dotfiles stewardship for the indolent]
-- [Configuring options in Go]
-- [Recipes from Python SQLite docs]
-- [Limit goroutines with buffered channels]
-- [Pesky little scripts]
-- [I kind of like rebasing]
+-   [Oh my poor business logic]
+-   [The diminishing half-life of knowledge]
+-   [Annotating args and kwargs in Python]
+-   [An ode to the neo-grotesque web]
+-   [HTTP requests via /dev/tcp]
+-   [You probably don't need a DI framework]
+-   [Dotfiles stewardship for the indolent]
+-   [Configuring options in Go]
+-   [Recipes from Python SQLite docs]
+-   [Limit goroutines with buffered channels]
+-   [Pesky little scripts]
+-   [I kind of like rebasing]
 
 <!-- References -->
 <!-- prettier-ignore-start -->
@@ -97,7 +97,7 @@ More on the [stack, deployment, and writing process] if you're curious.
 [papermod]:
     https://github.com/adityatelange/hugo-PaperMod
 [stack, deployment, and writing process]:
-    /misc/behind_the_blog
+    /misc/behind-the-blog/
 [content]:
     https://github.com/rednafi/rednafi.com
 [github actions]:
@@ -110,18 +110,18 @@ More on the [stack, deployment, and writing process] if you're curious.
     https://www.goodreads.com/book/show/95558.Solaris
 
 <!-- Greatest hits -->
-[oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
-[the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
-[annotating args and kwargs in python]: /python/annotate_args_and_kwargs
-[an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
-[http requests via /dev/tcp]: /misc/http_requests_via_dev_tcp
-[writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
-[you probably don't need a di framework]: /go/di_frameworks_bleh/
-[dotfiles stewardship for the indolent]: /misc/dotfile_stewardship_for_the_indolent/
-[configuring options in Go]: /go/configure_options/
-[recipes from python sqlite docs]: /python/recipes_from_python_sqlite_docs/
-[limit goroutines with buffered channels]: /go/limit_goroutines_with_buffered_channels/
-[pesky little scripts]: /misc/pesky_little_scripts/
-[i kind of like rebasing]: /misc/on_rebasing/
+[oh my poor business logic]: /zephyr/oh-my-poor-business-logic/
+[the diminishing half-life of knowledge]: /zephyr/diminishing-half-life-of-knowledge/
+[annotating args and kwargs in python]: /python/annotate-args-and-kwargs/
+[an ode to the neo-grotesque web]: /zephyr/an-ode-to-the-neo-grotesque-web/
+[http requests via /dev/tcp]: /misc/http-requests-via-dev-tcp/
+[writing on well-trodden topics]: /zephyr/writing-on-well-trodden-topics/
+[you probably don't need a di framework]: /go/di-frameworks-bleh/
+[dotfiles stewardship for the indolent]: /misc/dotfile-stewardship-for-the-indolent/
+[configuring options in Go]: /go/configure-options/
+[recipes from python sqlite docs]: /python/recipes-from-python-sqlite-docs/
+[limit goroutines with buffered channels]: /go/limit-goroutines-with-buffered-channels/
+[pesky little scripts]: /misc/pesky-little-scripts/
+[i kind of like rebasing]: /misc/on-rebasing/
 
 <!-- prettier-ignore-end -->

@@ -304,7 +304,7 @@ Notice how the client requests are handled by different backends in an interleav
 
 <!-- selecting backend server in a round robin fashion -->
 [load balancing algorithm]:
-    /go/dummy_load_balancer/#selecting-backend-servers-in-a-round-robin-fashion
+    /go/dummy-load-balancer/#selecting-backend-servers-in-a-round-robin-fashion
 
 <!-- complete implementation -->
 [self-contained complete implementation]:

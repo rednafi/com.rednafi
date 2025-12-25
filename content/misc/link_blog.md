@@ -13,10 +13,11 @@ overthinking. The idea is to focus on doing more while worrying less about scala
 sustainability in the things I do outside of work. With that in mind, I've been thinking for
 a while about tracking some of my out-of-band activities on this blog. The goal is to:
 
-- List the things I do, books and articles I read, and talks I grok.
-- Add some commentary or quote something I liked from the content, verbatim, for posterity.
-- Not spam people who just want to read the regular articles.
-- Not turn into a content junkie, churning out slop I wouldn't want to read myself.
+-   List the things I do, books and articles I read, and talks I grok.
+-   Add some commentary or quote something I liked from the content, verbatim, for
+    posterity.
+-   Not spam people who just want to read the regular articles.
+-   Not turn into a content junkie, churning out slop I wouldn't want to read myself.
 
 This isn't about getting more eyeballs on what I publish. It's about tracking what I do so I
 can look back at the end of the year and enjoy a nice little lull of accomplishment. Plus,
@@ -40,9 +41,9 @@ handles his link blog.
 
 I went with a dead simple approach that has worked for me for the past 5 months:
 
-- **Detail view:** Have a single markdown page dedicated to each year and add the links
-  there[^3].
-- **List view:** Cluster the detail pages in a list view named "feed" [^4].
+-   **Detail view:** Have a single markdown page dedicated to each year and add the links
+    there[^3].
+-   **List view:** Cluster the detail pages in a list view named "feed" [^4].
 
 ### Detail view
 
@@ -95,15 +96,12 @@ This solution is simple and has been working well for me. I started it in August
 and the 2024 page[^5] already has enough entries to make me feel good when I reviewed them
 at the end of the year.
 
-[^1]: [Behind the blog](/misc/behind_the_blog)
-
+[^1]: [Behind the blog](/misc/behind-the-blog/)
 [^2]:
     [My approach to running a link blog - Simon Willison](https://simonwillison.net/2024/Dec/22/link-blog/)
 
 [^3]: [Feed detail view](/feed/2025)
-
 [^4]: [Feed list view](/feed)
-
 [^5]: [Feed 2024](/feed/2024)
 
 [img_1]: https://blob.rednafi.com/static/images/link_blog/img_1.png
