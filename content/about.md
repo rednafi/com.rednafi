@@ -70,7 +70,7 @@ More on the [stack, deployment, and writing process] if you're curious.
 - [Pesky little scripts]
 - [I kind of like rebasing]
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- Self -->
@@ -82,46 +82,83 @@ More on the [stack, deployment, and writing process] if you're curious.
     https://docs.google.com/document/d/1LHQsrdJVN4RTFZ2DTmuwpe9zKcWfKJmABeSQXEnbZRQ/edit?usp=sharing
 
 <!-- Contact -->
+
 [email]:
     mailto:redowan.nafi@gmail.com
+
 [github]:
     https://github.com/rednafi
+
 [linkedin]:
     https://www.linkedin.com/in/rednafi/
+
 [bluesky]:
     https://bsky.app/profile/rednafi.com
 
 <!-- Colophon -->
+
 [hugo]:
     https://gohugo.io
+
 [papermod]:
     https://github.com/adityatelange/hugo-PaperMod
+
 [stack, deployment, and writing process]:
     /misc/behind_the_blog
+
 [content]:
     https://github.com/rednafi/rednafi.com
+
 [github actions]:
     https://docs.github.com/en/actions
+
 [github pages]:
     https://pages.github.com/
 
 <!-- Breadcrumbs -->
+
 [stanislaw lem's solaris]:
     https://www.goodreads.com/book/show/95558.Solaris
 
 <!-- Greatest hits -->
-[oh my poor business logic]: /zephyr/oh_my_poor_business_logic/
-[the diminishing half-life of knowledge]: /zephyr/diminishing_half_life_of_knowledge/
-[annotating args and kwargs in python]: /python/annotate_args_and_kwargs
-[an ode to the neo-grotesque web]: /zephyr/an_ode_to_the_neo_grotesque_web/
-[http requests via /dev/tcp]: /misc/http_requests_via_dev_tcp
-[writing on well-trodden topics]: /zephyr/writing_on_well_trodden_topics/
-[you probably don't need a di framework]: /go/di_frameworks_bleh/
-[dotfiles stewardship for the indolent]: /misc/dotfile_stewardship_for_the_indolent/
-[configuring options in Go]: /go/configure_options/
-[recipes from python sqlite docs]: /python/recipes_from_python_sqlite_docs/
-[limit goroutines with buffered channels]: /go/limit_goroutines_with_buffered_channels/
-[pesky little scripts]: /misc/pesky_little_scripts/
-[i kind of like rebasing]: /misc/on_rebasing/
+
+[oh my poor business logic]:
+    /zephyr/oh_my_poor_business_logic/
+
+[the diminishing half-life of knowledge]:
+    /zephyr/diminishing_half_life_of_knowledge/
+
+[annotating args and kwargs in python]:
+    /python/annotate_args_and_kwargs
+
+[an ode to the neo-grotesque web]:
+    /zephyr/an_ode_to_the_neo_grotesque_web/
+
+[http requests via /dev/tcp]:
+    /misc/http_requests_via_dev_tcp
+
+[writing on well-trodden topics]:
+    /zephyr/writing_on_well_trodden_topics/
+
+[you probably don't need a di framework]:
+    /go/di_frameworks_bleh/
+
+[dotfiles stewardship for the indolent]:
+    /misc/dotfile_stewardship_for_the_indolent/
+
+[configuring options in go]:
+    /go/configure_options/
+
+[recipes from python sqlite docs]:
+    /python/recipes_from_python_sqlite_docs/
+
+[limit goroutines with buffered channels]:
+    /go/limit_goroutines_with_buffered_channels/
+
+[pesky little scripts]:
+    /misc/pesky_little_scripts/
+
+[i kind of like rebasing]:
+    /misc/on_rebasing/
 
 <!-- prettier-ignore-end -->

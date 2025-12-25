@@ -169,8 +169,8 @@ if __name__ == "__main__":
 ```
 
 The first function `stream_csv` accepts a URL that points to a CSV file. In this case, the
-URL used here points to a real CSV file hosted on GitHub. HTTPx[^1] allows you to make a
-streaming[^2] GET request and iterate through the contents of the file without fully
+URL used here points to a real CSV file hosted on GitHub. [HTTPx] allows you to make a
+[streaming] GET request and iterate through the contents of the file without fully
 downloading it to the disk.
 
 Inside the `client.stream` block, we've created an in-memory file instance with
@@ -219,6 +219,13 @@ wait for 2 seconds after printing every row. By increasing the number of process
 speed up the consumption rate. Also, if the consumer tasks are lightweight, you can open
 multiple threads to consume them.
 
-[^1]: [HTTPx](https://www.python-httpx.org/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Streaming responses](https://www.python-httpx.org/quickstart/#streaming-responses)
+[httpx]:
+    https://www.python-httpx.org/
+
+[streaming]:
+    https://www.python-httpx.org/quickstart/#streaming-responses
+
+<!-- prettier-ignore-end -->

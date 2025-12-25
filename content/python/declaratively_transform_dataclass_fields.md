@@ -175,6 +175,12 @@ This will only serialize the `status_code` field. Neat!
 
 ## References
 
-[^1]:
-    [Post-init processing — Python docs](https://docs.python.org/3/library/dataclasses.html#post-init-processing)
-    [^1]
+- [Post-init processing — Python docs]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[post-init processing — python docs]:
+    https://docs.python.org/3/library/dataclasses.html#post-init-processing
+
+<!-- prettier-ignore-end -->

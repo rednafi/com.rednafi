@@ -219,7 +219,7 @@ _Update: The original Go example used struct types rather than a function type t
 simpler. However, if your strategy needs to do multiple things, then a struct with multiple
 methods is probably going to be better._
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- escaping the template pattern hellscape in Python -->

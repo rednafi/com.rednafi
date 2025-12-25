@@ -20,7 +20,7 @@ absolutely necessary.
 ## Markdown
 
 I write plain Markdown files in my editor of choice, which has been VSCode since its launch.
-Once I'm finished, [pre-commit] runs a fleet of linters like [prettier] and [blacken-docs]
+Once I'm finished, [pre-commit] runs a fleet of linters like [Prettier] and [blacken-docs]
 to fix line length and code formatting.
 
 ## Hugo
@@ -32,7 +32,7 @@ at work, so messing with Hugo templates or its source code gives me a reason to 
 with Go.
 
 I initially tried some JS-based SSGs but dropped them pretty quickly because I couldn't keep
-up with the constant tooling changes in the JavaScript universe. I use the [papermod] theme
+up with the constant tooling changes in the JavaScript universe. I use the [PaperMod] theme
 and have tweaked the CSS over time. Papermod handles the SEO stuff, which I like to pretend
 I don't care about.
 

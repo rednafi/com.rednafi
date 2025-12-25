@@ -319,13 +319,13 @@ You can avoid this by:
 
 Add goleak to your tests so leaks surface early during development.
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [errgroup]:
-    pkg.go.dev/golang.org/x/sync/errgroup
+    https://pkg.go.dev/golang.org/x/sync/errgroup
 
 [goleak]:
-    github.com/uber-go/goleak
+    https://github.com/uber-go/goleak
 
 <!-- prettier-ignore-end -->

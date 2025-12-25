@@ -172,8 +172,8 @@ Someone on Reddit asked me what actually triggers the `copylock` checker in `go 
 the struct's literal name `noCopy` or the fact that it implements the `Locker` interface?
 
 The name `noCopy` isn't special. You can call it whatever you want. As long as it implements
-the `Locker` interface, `go vet` will complain if the surrounding struct gets copied. See
-this Go Playground [snippet].
+the `Locker` interface, `go vet` will complain if the surrounding struct gets copied. Try it
+in the [Go Playground].
 
 <!-- Resources -->
 <!-- prettier-ignore-start -->
@@ -196,7 +196,7 @@ this Go Playground [snippet].
     https://cs.opensource.google/go/x/tools/+/refs/tags/v0.32.0:go/analysis/passes/copylock/copylock.go;l=338
 
 <!--The name noCopy isn't special-->
-[snippet]:
+[go playground]:
     https://go.dev/play/p/M-vR6nOn00j
 
 <!-- prettier-ignore-end -->

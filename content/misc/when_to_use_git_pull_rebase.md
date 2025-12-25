@@ -74,12 +74,21 @@ git pull --rebase
 This will rebase your local `main` by adding your local commits on top of the remote
 commits.
 
-[^1]:
-    [When should I use git pull --rebase](https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase)
-    [^1]
+## References
 
-[^2]:
-    [An example repo that reproduces the issue](https://github.com/rednafi/_pull-rebase)
-    [^2]
+- [When should I use git pull --rebase]
+- [An example repo that reproduces the issue]
 
-[image_1]: https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[when should i use git pull --rebase]:
+    https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase
+
+[an example repo that reproduces the issue]:
+    https://github.com/rednafi/_pull-rebase
+
+[image_1]:
+    https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png
+
+<!-- prettier-ignore-end -->

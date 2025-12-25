@@ -8,12 +8,12 @@ tags:
     - Python
 ---
 
-While grokking Black formatter's codebase, I came across this[^1] interesting way of
-handling exceptions in Python. Exception handling in Python usually follows the EAFP
-paradigm where it's easier to ask for forgiveness than permission.
+While grokking Black formatter's codebase, I came across [an interesting way] of handling
+exceptions in Python. Exception handling in Python usually follows the EAFP paradigm where
+it's easier to ask for forgiveness than permission.
 
-However, Rust has this recoverable error[^2] handling workflow that leverages generic Enums.
-I wanted to explore how Black emulates that in Python. This is how it works:
+However, Rust has this [recoverable error] handling workflow that leverages generic Enums. I
+wanted to explore how Black emulates that in Python. This is how it works:
 
 ```py
 # src.py
@@ -120,7 +120,7 @@ In this case, Mypy will catch the type inconsistency before runtime.
 
 ## Breadcrumbs
 
-Black extensively uses this pattern[^3] in the transformation part of the codebase. This
+Black extensively uses [this pattern] in the transformation part of the codebase. This
 showed me another way of thinking about handling recoverable exceptions while ensuring type
 safety in a Python codebase.
 
@@ -128,15 +128,23 @@ However, I wouldn't go about and mindlessly refactor any exception handling logi
 come across to follow this pattern. You might find it useful if you need to handle
 exceptions in a recoverable fashion and need additional type safety around the logic.
 
-[^1]:
-    [An error-handling model influenced by the Rust programming language](https://github.com/psf/black/blob/main/src/black/rusty.py)
+## References
 
-[^2]:
-    [Recoverable errors with result](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
+- [Beginner's guide to error handling in Rust]
 
-[^3]:
-    [More rusty error handling in Black](https://github.com/psf/black/blob/6417c99bfdbdc057e4a10aeff9967a751f4f85e9/src/black/trans.py#L61)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Beginner's guide to error handling in Rust](https://www.sheshbabu.com/posts/rust-error-handling/)
-    [^4]
+[an interesting way]:
+    https://github.com/psf/black/blob/main/src/black/rusty.py
+
+[recoverable error]:
+    https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
+
+[this pattern]:
+    https://github.com/psf/black/blob/6417c99bfdbdc057e4a10aeff9967a751f4f85e9/src/black/trans.py#L61
+
+[beginner's guide to error handling in rust]:
+    https://www.sheshbabu.com/posts/rust-error-handling/
+
+<!-- prettier-ignore-end -->

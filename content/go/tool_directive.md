@@ -23,8 +23,9 @@ version of the tools before running them. Chaos!
 ## The `tools.go` convention
 
 To avoid this mess, the Go community came up with a convention where you'd pin your tool
-versions in a `tools.go` file. I've [written about this before]. But the gist is, you'd have
-a `tools.go` file in your root directory that imports the tooling and assigns them to `_`:
+versions in a `tools.go` file. I've [written about the tools.go convention] before. But the
+gist is, you'd have a `tools.go` file in your root directory that imports the tooling and
+assigns them to `_`:
 
 ```go
 //go:build tools
@@ -141,11 +142,11 @@ Another limitation is that it only works with tools written in Go. So if you're 
 like `eslint`, `prettier`, or `jq`, you're on your own. But for most of my projects, the dev
 tooling is written in Go anyway, so this setup has been working okay.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- Omitting dev dependencies in Go binaries -->
-[written about this before]:
+[written about the tools.go convention]:
     /go/omit_dev_dependencies_in_binaries
 
 <!-- Go toolchain still sticks the dev dependencies into the main go.mod file -->

@@ -10,10 +10,10 @@ tags:
     - Networking
 ---
 
-This morning, while browsing Hacker News, I came across a neat trick[^1] that allows you to
-share textual data by leveraging DNS TXT records. It can be useful for sharing a small
-amount of data in environments that restrict IP but allow DNS queries, or to bypass
-censorship.
+This morning, while browsing Hacker News, I came across a neat [HN post about using DNS TXT
+records for data sharing] that allows you to share textual data by leveraging DNS TXT
+records. It can be useful for sharing a small amount of data in environments that restrict
+IP but allow DNS queries, or to bypass censorship.
 
 To test this out, I opened my domain registrar's panel and created a new TXT type DNS entry
 with a base64 encoded message containing the poem **A Poison Tree** by William Blake. The
@@ -54,16 +54,22 @@ You can also encode image data and retrieve it in a similar manner. If your data
 large to fit in a single record, you can split it into multiple records and concatenate them
 on the receiving end.
 
-However, there are some limitations to this approach. RFC 1035[^2] says that the total size
-of a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual
-text value in a single TXT record is 255 bytes or characters. This doesn't give us much room
-to tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks,
+However, there are some limitations to this approach. [RFC 1035] says that the total size of
+a DNS resource record cannot exceed 65535 bytes. Also, the maximum length of the actual text
+value in a single TXT record is 255 bytes or characters. This doesn't give us much room to
+tunnel large amounts of data. Plus, DNS has well-known vulnerabilities like MITM attacks,
 injection issues, cache poisoning, and DoS. So I'd refrain from transferring any data in
 this manner that requires a layer of security. Protocols like DANE and DNSSEC aim to address
 some of these concerns but their adoption is spotty at best. Still, I found the idea of
 using DNS records as a simple database quite clever!
 
-[^1]: [Use DNS TXT to share information](https://news.ycombinator.com/item?id=36754366)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Domain names — implementation & specification](https://www.rfc-editor.org/rfc/rfc1035)
+[hn post about using dns txt records for data sharing]:
+    https://news.ycombinator.com/item?id=36754366
+
+[rfc 1035]:
+    https://www.rfc-editor.org/rfc/rfc1035
+
+<!-- prettier-ignore-end -->

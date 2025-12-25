@@ -13,9 +13,9 @@ As of now, unlike Python or NodeJS, Go doesn't allow you to specify your develop
 dependencies separately from those of the application. However, I like to specify the dev
 dependencies explicitly for better reproducibility.
 
-While working on a new [CLI tool] for checking dead URLs in Markdown files, I came across
-this neat convention: you can specify dev dependencies in a `tools.go` file and then exclude
-them while building the binary using a build tag.
+While working on a [CLI tool for detecting dead URLs in Markdown files], I came across this
+neat convention: you can specify dev dependencies in a `tools.go` file and then exclude them
+while building the binary using a build tag.
 
 Here's how it works. Let's say our project `foo` currently has the following structure:
 
@@ -141,16 +141,16 @@ go build --tags tools main.go
 
 However, this will most likely fail if any of your dev dependencies aren't importable.
 
-Here's an example of [this pattern] in the wild from the Kubernetes repo.
+Here's an example of [this pattern in the Kubernetes repo].
 
 While it works, I'd still prefer to have a proper solution instead of a hack. Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 
 <!-- cli tool to detect dead links in markdown files -->
-[CLI tool]:
+[CLI tool for detecting dead URLs in Markdown files]:
     https://github.com/rednafi/link-patrol
 
 [golangci-lint]:
@@ -160,7 +160,7 @@ While it works, I'd still prefer to have a proper solution instead of a hack. Fi
     https://github.com/mvdan/gofumpt
 
 <!-- tools.go in the kubernetes repo -->
-[this pattern]:
+[this pattern in the kubernetes repo]:
     https://github.com/kubernetes/kubernetes/blob/master/hack/tools/tools.go
 
 <!-- prettier-ignore-end -->

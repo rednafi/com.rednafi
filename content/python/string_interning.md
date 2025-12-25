@@ -8,10 +8,10 @@ tags:
     - Python
 ---
 
-I was reading the source code[^1] of the reference implementation of "PEP-661: Sentinel
-Values"[^2] and discovered an optimization technique known as **String interning**. Modern
-programming languages like Java, Python, PHP, Ruby, Julia, etc, performs _string interning_
-to make their string operations more performant.
+I was reading the [reference implementation of PEP-661: Sentinel Values][pep-661-source] and
+discovered an optimization technique known as **String interning**. Modern programming
+languages like Java, Python, PHP, Ruby, Julia, etc, performs _string interning_ to make
+their string operations more performant.
 
 ## String interning
 
@@ -74,9 +74,9 @@ Here, the strings are interned and running the snippet will print `True` on the 
 ## What strings are interned?
 
 CPython performs string interning on constants such as Function Names, Variable Names,
-String Literals, etc. This snippet[^3] from the CPython codebase suggests that when a new
-Python object is created, the interpreter is interning all the compile-time constants,
-names, and literals. Also, Dictionary Keys and Object Attributes are interned. Notice this:
+String Literals, etc. This [CPython snippet] suggests that when a new Python object is
+created, the interpreter is interning all the compile-time constants, names, and literals.
+Also, Dictionary Keys and Object Attributes are interned. Notice this:
 
 ```py
 # src.py
@@ -213,17 +213,24 @@ Explicitly interned creation & access is 1.1264793204711423 times slower
 Here, implicitly and explicitly interned dict creation and key access are almost equally
 fast.
 
-[^1]:
-    [String interning in PEP-661's implementation](https://github.com/taleinat/python-stdlib-sentinels/blob/main/sentinels/sentinels.py)
+## References
 
-[^2]: [PEP-661 – Sentinel Values](https://hugovk-peps.readthedocs.io/en/latest/pep-0661/#)
+- [String interning in Python]
+- [Python docs: sys.intern]
 
-[^3]:
-    [PyObject](https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [String interning in Python](https://arpitbhayani.me/blogs/string-interning-python/)
-    [^4]
+[pep-661-source]:
+    https://github.com/taleinat/python-stdlib-sentinels/blob/main/sentinels/sentinels.py
 
-[^5]:
-    [Python docs: `sys.intern`](https://docs.python.org/3/library/sys.html#sys.intern) [^5]
+[cpython snippet]:
+    https://github.com/python/cpython/blob/7d7817cf0f826e566d8370a0e974bbfed6611d91/Objects/codeobject.c#L537
+
+[string interning in python]:
+    https://arpitbhayani.me/blogs/string-interning-python/
+
+[python docs: sys.intern]:
+    https://docs.python.org/3/library/sys.html#sys.intern
+
+<!-- prettier-ignore-end -->

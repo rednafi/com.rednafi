@@ -8,10 +8,10 @@ tags:
     - Go
 ---
 
-When working with Go in an [industrial] context, I feel like dependency injection (DI) often
-gets a bad rep because of _DI frameworks_. But DI as a technique is quite useful. It just
-tends to get explained with too many OO jargons and triggers PTSD among those who came to Go
-to escape GoF theology.
+When working with Go in [industrial programming] contexts, I feel like dependency injection
+(DI) often gets a bad rep because of _DI frameworks_. But DI as a technique is quite useful.
+It just tends to get explained with too many OO jargons and triggers PTSD among those who
+came to Go to escape GoF theology.
 
 > _Dependency Injection is a 25-dollar term for a 5-cent concept._
 >
@@ -299,8 +299,8 @@ A DI framework often fixes problems Go already solved and trades away readabilit
 It's tempting to make a blanket statement saying that you should **never** pick up a DI
 framework, but context matters here.
 
-I was watching Uber's [talk] on how they use Go and how their DI framework [Fx] (which uses
-dig underneath) allows them to achieve consistency at scale. If you're Uber and have all the
+I was watching [Uber's talk on Go at scale] and how their DI framework [Fx] (which uses dig
+underneath) allows them to achieve consistency. If you're Uber and have all the
 observability tools in place to get around the downsides, then you'll know.
 
 Also, if you're working in a codebase that's already leveraging a framework and it works
@@ -322,10 +322,10 @@ The post got a fair bit of discussion going around the web. You might find it in
 - [r/experienceddevs]
 - [r/programming]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
-[industrial]:
+[industrial programming]:
     https://peter.bourgon.org/go-for-industrial-programming/
 
 [dig]:
@@ -337,7 +337,7 @@ The post got a fair bit of discussion going around the web. You might find it in
 [wire]:
     https://github.com/google/wire
 
-[talk]:
+[uber's talk on go at scale]:
     https://www.youtube.com/watch?v=nLskCRJOdxM&t
 
 [fx]:

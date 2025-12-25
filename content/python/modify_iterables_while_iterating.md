@@ -232,6 +232,14 @@ Running the snippet prints:
 
 Voila, the key-value pairs of the even numbers have been removed successfully!
 
-[^1]:
-    [How to modify a list while iterating - Anthony Sottile](https://www.youtube.com/watch?v=JXis-BKRDFY)
-    [^1]
+## References
+
+- [How to modify a list while iterating - Anthony Sottile]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[how to modify a list while iterating - anthony sottile]:
+    https://www.youtube.com/watch?v=JXis-BKRDFY
+
+<!-- prettier-ignore-end -->

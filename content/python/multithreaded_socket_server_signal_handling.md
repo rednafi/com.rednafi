@@ -15,10 +15,10 @@ if you want to shut down the server gracefully in the presence of an interruptio
 The intended behavior here is that whenever any of `SIGHUP`, `SIGINT`, `SIGTERM`, or
 `SIGQUIT` signals are sent to the server, it should:
 
--   Acknowledge the signal and log a message to the output console of the server.
--   Notify all the connected clients that the server is going offline.
--   Give the clients enough time (specified by a timeout parameter) to close the requests.
--   Close all the client requests and then shut down the server after the timeout exceeds.
+- Acknowledge the signal and log a message to the output console of the server.
+- Notify all the connected clients that the server is going offline.
+- Give the clients enough time (specified by a timeout parameter) to close the requests.
+- Close all the client requests and then shut down the server after the timeout exceeds.
 
 Here's a quick implementation of a multithreaded echo server and see what happens when you
 send `SIGINT` to shut down the server:
@@ -267,7 +267,7 @@ Next, we define a new server class called `SocketServer` that inherits from the
 `ThreadingTCPServer` class. Here are the explanations for each:
 
 1. `reuse_address`: This variable determines whether the server can reuse a socket that's
-   still in the TIME_WAIT[^1] state after a previous connection has been closed. If this
+   still in the [TIME_WAIT] state after a previous connection has been closed. If this
    variable is set to `True`, the server can reuse the socket. Otherwise, the socket will be
    unavailable for a short period of time after it's closed.
 
@@ -323,7 +323,7 @@ means, upon receiving the interruption signal, the server will wait `5` seconds 
 shutting itself down. Notice, how we're running the `server.serve_forever` method in a new
 thread. That's because our custom signal handler explicitly calls the `shutdown` of the
 server instance and the `shutdown` method can only be called when the `serve_forever` loop
-is running in a different thread. From the shutdown[^2] documentation:
+is running in a different thread. From the [shutdown] documentation:
 
 > Tell the serve_forever() loop to stop and wait until it does. shutdown() must be called
 > while serve_forever() is running in a different thread otherwise it will deadlock.
@@ -372,13 +372,26 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 
 ![error handling in multi-threaded socket server][image_2]
 
-[^1]: [TIME_WAIT](https://totozhang.github.io/2016-01-31-tcp-timewait-status/)
-[^2]:
-    [shutdown](https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown)
+## References
 
-[^3]: [socketserver](https://docs.python.org/3/library/socketserver.html) [^3]
+- [socketserver]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[time_wait]:
+    https://totozhang.github.io/2016-01-31-tcp-timewait-status/
+
+[shutdown]:
+    https://docs.python.org/3/library/socketserver.html#socketserver.BaseServer.shutdown
+
+[socketserver]:
+    https://docs.python.org/3/library/socketserver.html
 
 [image_1]:
     https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_1.png
+
 [image_2]:
     https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_2.png
+
+<!-- prettier-ignore-end -->

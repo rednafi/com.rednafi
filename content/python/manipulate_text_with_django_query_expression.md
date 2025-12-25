@@ -142,10 +142,18 @@ this case, the `dir/` prefix is being concatenated with `file_name` field.
 
 Perfection!
 
-[^1]:
-    [Do database work in the database rather than in Python](https://docs.djangoproject.com/en/4.1/topics/db/optimization/#do-database-work-in-the-database-rather-than-in-python)
-    [^1]
+## References
 
-[^2]:
-    [Use StrIndex to get the last instance of a character for an annotation in Django](https://stackoverflow.com/questions/67030571/django-use-strindex-to-get-the-last-instance-of-a-character-for-an-annotation)
-    [^2]
+- [Do database work in the database rather than in Python]
+- [Use StrIndex to get the last instance of a character]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[do database work in the database rather than in python]:
+    https://docs.djangoproject.com/en/4.1/topics/db/optimization/#do-database-work-in-the-database-rather-than-in-python
+
+[use strindex to get the last instance of a character]:
+    https://stackoverflow.com/questions/67030571/django-use-strindex-to-get-the-last-instance-of-a-character-for-an-annotation
+
+<!-- prettier-ignore-end -->

@@ -9,9 +9,9 @@ tags:
     - TIL
 ---
 
-This morning, someone on Twitter pointed me to PEP 562[^1], which introduces `__getattr__`
-and `__dir__` at the module level. While `__dir__` helps control which attributes are
-printed when calling `dir(module)`, `__getattr__` is the more interesting addition.
+This morning, someone on Twitter pointed me to [PEP-562], which introduces `__getattr__` and
+`__dir__` at the module level. While `__dir__` helps control which attributes are printed
+when calling `dir(module)`, `__getattr__` is the more interesting addition.
 
 The `__getattr__` method in a module works similarly to how it does in a Python class. For
 example:
@@ -185,9 +185,15 @@ convenient if you have multiple global variables that require expensive calculat
 initializations. Instead of writing separate functions for each variable, you can handle
 them all within the `__getattr__` method.
 
-Here's one example of using it for a non-trivial case in the wild[^2].
+Here's one example of using it [in the Prefect codebase].
 
-[^1]: [PEP 562 – Module \_\_getattr\_\_ and \_\_dir\_\_](https://peps.python.org/pep-0562/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Prefect - \_\_getattr\_\_](https://github.com/PrefectHQ/prefect/blob/f196fb3da6ae747f7362be2f21e85b01f32e539c/src/prefect/__init__.py#L102)
+[pep-562]:
+    https://peps.python.org/pep-0562/
+
+[in the Prefect codebase]:
+    https://github.com/PrefectHQ/prefect/blob/f196fb3da6ae747f7362be2f21e85b01f32e539c/src/prefect/__init__.py#L102
+
+<!-- prettier-ignore-end -->

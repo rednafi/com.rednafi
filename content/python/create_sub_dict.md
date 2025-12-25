@@ -3,7 +3,7 @@ title: Create a sub dictionary with O(K) complexity in Python
 slug: create-sub-dict
 aliases:
     - /python/create_sub_dict/
-Date: 2022-01-30
+date: 2022-01-30
 tags:
     - Python
     - TIL
@@ -12,7 +12,7 @@ tags:
 How'd you create a sub dictionary from a dictionary where the keys of the sub-dict are
 provided as a list?
 
-I was reading a tweet[^1] by Ned Bachelder on this today and that made me realize that I
+I was reading a [tweet] by Ned Bachelder on this today and that made me realize that I
 usually solve it with `O(DK)` complexity, where `K` is the length of the sub-dict keys and
 `D` is the length of the primary dict. Here's how I usually do that without giving it any
 thoughts or whatsoever:
@@ -107,8 +107,17 @@ even when the dict size is as small as 9 elements. The second solution is the fa
 the least complex one to understand. While the third one is better than the first solution,
 it's a gratuitously complex way of doing something so trivial.
 
-[^1]: [Ned Bachelder's tweet](https://twitter.com/nedbat/status/1487084661163626506)
+## References
 
-[^2]:
-    [The second solution came out of a comment on the same tweet](https://twitter.com/__mharrison__/status/1487087733633781766/photo/1)
-    [^2]
+- [The second solution came out of a comment on the same tweet]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[tweet]:
+    https://twitter.com/nedbat/status/1487084661163626506
+
+[the second solution came out of a comment on the same tweet]:
+    https://twitter.com/__mharrison__/status/1487087733633781766/photo/1
+
+<!-- prettier-ignore-end -->

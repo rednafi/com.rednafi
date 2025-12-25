@@ -9,10 +9,10 @@ aliases:
 ---
 
 Over the years, I've used Python's `contextlib.ExitStack` in a few interesting ways. The
-official documentation[^1] advertises it as a way to manage multiple context managers and
-has a couple of examples of how to leverage it. However, neither in the docs nor in GitHub
-code search[^2] I could find examples of some of the maybe unusual ways I've used it in the
-past. So, I thought I'd document them here.
+[official documentation] advertises it as a way to manage multiple context managers and has
+a couple of examples of how to leverage it. However, neither in the docs nor in [GitHub code
+search] I could find examples of some of the maybe unusual ways I've used it in the past.
+So, I thought I'd document them here.
 
 ## Enforcing request level transaction
 
@@ -333,6 +333,13 @@ function, the `httpx.get` and `httpx.post` callable are patched with the `patch`
 manager. However, `ExitStack` allows me here to do it without creating additional nested
 `with` blocks.
 
-[^1]: [ExitStack](https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [GitHub code search](https://github.com/search?l=Python&q=ExitStack&type=Code)
+[official documentation]:
+    https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack
+
+[github code search]:
+    https://github.com/search?l=Python&q=ExitStack&type=Code
+
+<!-- prettier-ignore-end -->

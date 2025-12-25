@@ -3,15 +3,15 @@ title: Prefer urlsplit over urlparse to destructure URLs
 slug: use-urlsplit-over-urlparse
 aliases:
     - /python/use_urlsplit_over_urlparse/
-Date: 2022-09-10
+date: 2022-09-10
 tags:
     - Python
 ---
 
-TIL from this[^1] video that Python's `urllib.parse.urlparse`[^2] is quite slow at parsing
-URLs. I've always used `urlparse` to destructure URLs and didn't know that there's a faster
-alternative to this in the standard library. The official documentation also recommends the
-alternative function.
+TIL from [Anthony Sottile's video] that Python's [urllib.parse.urlparse] is quite slow at
+parsing URLs. I've always used `urlparse` to destructure URLs and didn't know that there's a
+faster alternative to this in the standard library. The official documentation also
+recommends the alternative function.
 
 The `urlparse` function splits a supplied URL into multiple seperate components and returns
 a `ParseResult` object. Consider this example:
@@ -52,8 +52,8 @@ Notice the parts in the URL that appears after `https://httpbin.org/get`. There'
 semicolon and a few more parameters succeeding that — `;a=mars&b=42`. The resulting
 `ParseResult` now has the `params` field populated with the parsed param value
 `a=mars&b=42`. Unless you need this param support, there's a better and faster alternative
-to this in the standard library. The `urlsplit`[^3] function does the same thing as
-`urlparse` minus the param parsing and is twice as fast. Here's how you'd use `urlsplit`:
+to this in the standard library. The [urlsplit] function does the same thing as `urlparse`
+minus the param parsing and is twice as fast. Here's how you'd use `urlsplit`:
 
 ```py
 In [1]: from urllib.parse import urlsplit
@@ -88,9 +88,16 @@ In [4]: %timeit urlsplit(url)
 Wow, that's almost 2x speed improvement. Although this shouldn't be much of an issue in a
 real codebase but it can matter if you are parsing URLs in a critical hot path.
 
-[^1]:
-    [python: don't use urlparse - Anthony Sottile](https://www.youtube.com/watch?v=ABJvdsIANds)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [urlparse](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse)
+[anthony sottile's video]:
+    https://www.youtube.com/watch?v=ABJvdsIANds
 
-[^3]: [urlsplit](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlsplit)
+[urllib.parse.urlparse]:
+    https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
+
+[urlsplit]:
+    https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlsplit
+
+<!-- prettier-ignore-end -->

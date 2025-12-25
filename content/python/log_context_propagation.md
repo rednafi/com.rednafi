@@ -16,11 +16,10 @@ collects and sends these messages to a destination like Datadog where you can qu
 One common requirement is to tag the log messages with some common attributes, which you can
 use later to query them.
 
-In distributed tracing, this tagging is usually known as context propagation[^1], where
-you're attaching some contextual information to your log messages that you can use later for
-query purposes. However, if you have to collect the context at each layer of your
-application and pass it manually to the downstream ones, that'd make the whole process quite
-painful.
+In distributed tracing, this tagging is usually known as [context propagation], where you're
+attaching some contextual information to your log messages that you can use later for query
+purposes. However, if you have to collect the context at each layer of your application and
+pass it manually to the downstream ones, that'd make the whole process quite painful.
 
 Suppose you have a web view for an endpoint that calls another function to do something:
 
@@ -50,7 +49,7 @@ async def work() -> None:
     logger.info("Work done")
 ```
 
-I'm using Starlette[^2] syntax for the above pseudocode, but this is valid for any generic
+I'm using [Starlette] syntax for the above pseudocode, but this is valid for any generic
 ASGI web app. The `view` procedure collects contextual information like `user_id` and
 `platform` from the request headers. Then it tags the log statements before and after
 calling the `work` function using the `extra` fields in the logger calls. This way, the log
@@ -332,17 +331,28 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 INFO:     127.0.0.1:54780 - "GET / HTTP/1.1" 200 OK
 ```
 
-And we're done. You can find the fully working code in this GitHub gist[^3].
+And we're done. You can find the fully working code in this [GitHub gist][complete example].
 
-_Note: The previous version[^4] of this example wasn't concurrency safe and used a shared
+_Note: The [previous version] of this example wasn't concurrency safe and used a shared
 logger filter, leaking context information during concurrent requests. This was pointed out
-in this GitHub comment[^5]._
+in this [GitHub comment][github discussion]._
 
-[^1]: [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
-[^2]: [Starlette](https://www.starlette.io/)
-[^3]: [Complete example](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142)
-[^4]:
-    [Previous version of this example](https://web.archive.org/web/20240806220817/https://rednafi.com/python/log_context_propagation/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^5]:
-    [GitHub discussion on context leakage in log statements](https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142?permalink_comment_id=5148207#gistcomment-5148207)
+[context propagation]:
+    https://opentelemetry.io/docs/concepts/context-propagation/
+
+[starlette]:
+    https://www.starlette.io/
+
+[complete example]:
+    https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142
+
+[previous version]:
+    https://web.archive.org/web/20240806220817/https://rednafi.com/python/log_context_propagation/
+
+[github discussion]:
+    https://gist.github.com/rednafi/dc2016a8ea0e2405b943f023bfb18142?permalink_comment_id=5148207#gistcomment-5148207
+
+<!-- prettier-ignore-end -->

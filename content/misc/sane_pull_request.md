@@ -10,20 +10,19 @@ tags:
 
 One of the reasons why I'm a big advocate of rebasing and cleaning up feature branches, even
 when the changes get squash-merged to the mainline, is that it makes the PR reviewer's life
-a little easier. I've written about my rebase workflow before[^1] and learned a few new
-things from the Hacker News discussion[^2] around it.
+a little easier. I've written about [my rebase workflow] and learned a few new things from
+the [Hacker News discussion] around it.
 
-While there's been no shortage of text on why and how to craft atomic commits[^3], I often
+While there's been no shortage of text on why and how to craft [atomic commits], I often
 find those discussions focus too much on VCS hygiene, and the main benefit gets lost in the
 minutiae. When working in a team setup, I've discovered that individual commits matter much
 less than the final change list.
 
 Also, I find some of the prescriptive suggestions for easier review, like keeping the PR
 under ~150 lines, ensuring that the tests pass in each commit, and tidying the commits to be
-strictly independent, quite cumbersome. Stacked PRs[^4] sometimes help to make large changes
-a bit more tractable, but that comes with a whole set of review-conflict-feedback
-challenges. So this piece will mainly focus on making large PRs a wee bit easier to work
-with.
+strictly independent, quite cumbersome. [Stacked PRs] sometimes help to make large changes a
+bit more tractable, but that comes with a whole set of review-conflict-feedback challenges.
+So this piece will mainly focus on making large PRs a wee bit easier to work with.
 
 Here's a quick rundown of the things I find useful to make reviewing the grunt work of pull
 requests a bit more tractable. I don't always strictly follow them while doing personal or
@@ -44,10 +43,11 @@ OSS work, but these steps have been helpful while working on a large shared repo
 - Rebasing all the changes into a single commit is okay if the change is small, but for
   bigger changes, this does more harm than good.
 
-- I've rarely spent the time to ensure that the individual commits are perfect[^5] — in the
-  sense that they're complete with passing tests or documentation. As long as the complete
-  change list makes sense as a whole, it's good enough. YMMV. The main goal is to make sure
-  the diff makes sense to the person reviewing the work.
+- I've rarely spent the time to ensure that the individual commits are [perfect as Simon
+  Willison describes] — in the sense that they're complete with passing tests or
+  documentation. As long as the complete change list makes sense as a whole, it's good
+  enough. YMMV. The main goal is to make sure the diff makes sense to the person reviewing
+  the work.
 
 - Annotated comments from the author on the PR are great. I wish they'd take up less space
   and there was a way to collapse them individually.
@@ -66,18 +66,31 @@ OSS work, but these steps have been helpful while working on a large shared repo
 - Keeping the PR in draft state until it's ready to be reviewed. I'm not a fan of getting a
   notification to review some work only to find that it's not ready yet.
 
-[^1]: [I kind of like rebasing](/misc/on_rebasing)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [HN discussion on my rebasing workflow](https://news.ycombinator.com/item?id=40742628)
+[my rebase workflow]:
+    /misc/on_rebasing
 
-[^3]:
-    [Make atomic git commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/)
+[hacker news discussion]:
+    https://news.ycombinator.com/item?id=40742628
 
-[^4]:
-    [In praise of stacked PRs](https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/)
+[atomic commits]:
+    https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/
 
-[^5]: [The perfect commit](https://simonwillison.net/2022/Oct/29/the-perfect-commit/)
+[stacked prs]:
+    https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/
 
-[image_1]: https://blob.rednafi.com/static/images/sane_pull_request/img_1.png
-[image_2]: https://blob.rednafi.com/static/images/sane_pull_request/img_2.png
-[image_3]: https://blob.rednafi.com/static/images/sane_pull_request/img_3.png
+[perfect as simon willison describes]:
+    https://simonwillison.net/2022/Oct/29/the-perfect-commit/
+
+[image_1]:
+    https://blob.rednafi.com/static/images/sane_pull_request/img_1.png
+
+[image_2]:
+    https://blob.rednafi.com/static/images/sane_pull_request/img_2.png
+
+[image_3]:
+    https://blob.rednafi.com/static/images/sane_pull_request/img_3.png
+
+<!-- prettier-ignore-end -->

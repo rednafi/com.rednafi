@@ -52,6 +52,14 @@ ec9191c Add unfinished indexing script
 18e41c8 Update bash tils
 ```
 
-## Reference
+## References
 
-[^1]: [How to write a git commit message](https://chris.beams.io/posts/git-commit/) [^1]
+- [How to write a git commit message]
+
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[how to write a git commit message]:
+    https://chris.beams.io/posts/git-commit/
+
+<!-- prettier-ignore-end -->

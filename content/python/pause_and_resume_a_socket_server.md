@@ -18,9 +18,9 @@ control over how you can tune the server's behavior, writing a server with robus
 error handling can be quite a bit of boilerplate work.
 
 Thankfully, I found out that Python is already shipped with a higher level library named
-`socketserver`[^1] that uses the `socket` module underneath but gives you more tractable
-hooks to latch onto and build fairly robust servers where the low-level details are handled
-for you. Not only that, `socketserver` makes it easy to write a sever that can concurrently
+[socketserver] that uses the `socket` module underneath but gives you more tractable hooks
+to latch onto and build fairly robust servers where the low-level details are handled for
+you. Not only that, `socketserver` makes it easy to write a sever that can concurrently
 handle multiple clients either by spinning child threads or forking child processes.
 
 While all this sounds good and dandy, my primary objective was to be able to write a server
@@ -158,6 +158,13 @@ Now, we could also make the work in the `serving_actions` non-blocking by spinni
 thread or process and doing the work there. However, for the task that I was tackling,
 simply running the function in a blocking manner was enough.
 
-[^1]: [socketserver](https://docs.python.org/3/library/socketserver.html)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[image_1]: https://blob.rednafi.com/static/images/pause_and_resume_a_socket_server/img_1.png
+[socketserver]:
+    https://docs.python.org/3/library/socketserver.html
+
+[image_1]:
+    https://blob.rednafi.com/static/images/pause_and_resume_a_socket_server/img_1.png
+
+<!-- prettier-ignore-end -->

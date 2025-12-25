@@ -45,7 +45,7 @@ In the above snippet, there's no guardrail against how large the target file can
 could bring the entire server down to its knees by posting a link to a ginormous file. The
 server would be busy downloading the file and keep consuming resources.
 
-I didn't want to use `urllib` at all for this purpose and went for HTTPx[^1]. It exposes a
+I didn't want to use `urllib` at all for this purpose and went for [HTTPx]. It exposes a
 neat API to perform streaming file download. Also, I didn't want to peek into the
 `Content-Length` header to assess the file size since the file server can choose not to
 include that header key. I was looking for something more dependable than that. Here's how I
@@ -97,8 +97,17 @@ This means the entire file won't be loaded into memory while being downloaded. T
 we're keeping track of the size of the already downloaded bytes in the
 `downloaded_content_length` variable and raising an error if the size exceeds 10MB. Sweet!
 
-[^1]: [HTTPx](https://www.python-httpx.org/)
+## References
 
-[^2]:
-    [Streaming download with HTTPx](https://www.python-httpx.org/advanced/#monitoring-download-progress)
-    [^2]
+- [Streaming download with HTTPx]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[httpx]:
+    https://www.python-httpx.org/
+
+[streaming download with httpx]:
+    https://www.python-httpx.org/advanced/#monitoring-download-progress
+
+<!-- prettier-ignore-end -->

@@ -9,9 +9,9 @@ tags:
     - TIL
 ---
 
-I've been a happy user of pydantic[^1] settings to manage all my app configurations since
-the 1.0 era. When pydantic 2.0 was released, the settings portion became a separate package
-called `pydantic_settings`[^2].
+I've been a happy user of [Pydantic] settings to manage all my app configurations since the
+1.0 era. When pydantic 2.0 was released, the settings portion became a separate package
+called [pydantic_settings].
 
 It does two things that I love: it automatically reads the environment variables from the
 `.env` file and allows you to declaratively convert the string values to their desired types
@@ -259,6 +259,13 @@ probability of spooky actions at a distance.
 
 Fin!
 
-[^1]: [pydantic](https://docs.pydantic.dev/latest/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [pydantic_settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
+[pydantic]:
+    https://docs.pydantic.dev/latest/
+
+[pydantic_settings]:
+    https://docs.pydantic.dev/latest/concepts/pydantic_settings/
+
+<!-- prettier-ignore-end -->

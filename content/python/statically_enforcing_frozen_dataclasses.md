@@ -61,10 +61,10 @@ non-frozen counterparts. This gap can widen further if you compare slotted data 
 `@dataclass(slots=True)`) with frozen ones. While the cost for immutability is small, it can
 add up if you need to create many frozen instances.
 
-I was reading Tin Tvrtković's article[^1] on making `attr`[^2] instances frozen at compile
-time. He mentions how to leverage `mypy` to enforce instance immutability statically and use
-mutable `attr` classes at runtime to avoid any instantiation cost. I wanted to see if I
-could do the same with standard data classes.
+I was reading Tin Tvrtković's article on [zero-overhead frozen attrs classes], on making
+[attrs] instances frozen at compile time. He mentions how to leverage `mypy` to enforce
+instance immutability statically and use mutable `attr` classes at runtime to avoid any
+instantiation cost. I wanted to see if I could do the same with standard data classes.
 
 Here's how to do it:
 
@@ -103,8 +103,8 @@ It involves:
 - Replacing the immutable data class with a more performant mutable one at runtime.
 
 The `if TYPE_CHECKING` condition only executes during type-checking. In that block, we use
-`typing.dataclass_transform`, introduced in PEP-681[^3], to create a construct similar to
-the `dataclass` function that type checkers recognize.
+`typing.dataclass_transform`, introduced in [PEP-681], to create a construct similar to the
+`dataclass` function that type checkers recognize.
 
 The `frozen_default` flag, added in Python 3.12, makes this work seamlessly, but the code
 should also function in Python 3.11 without changes, as `dataclass_transform` accepts any
@@ -129,17 +129,24 @@ foo.py:24: error: Property "x" defined in "Foo" is read-only  [misc]
 Voilà!
 
 I struggled to figure this one out myself, and LLMs were of no help. So, I ended up posting
-a question[^4] on Stack Overflow, where someone pointed out how to use `dataclass_transform`
+a [question on Stack Overflow], where someone pointed out how to use `dataclass_transform`
 to achieve this.
 
 Fin!
 
-[^1]:
-    [Zero-overhead frozen attrs classes - Tin Tvrtković](https://threeofwands.com/attra-iv-zero-overhead-frozen-attrs-classes/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [attrs](https://www.attrs.org/en/stable/)
+[zero-overhead frozen attrs classes]:
+    https://threeofwands.com/attra-iv-zero-overhead-frozen-attrs-classes/
 
-[^3]: [PEP 681 – Data Class Transforms](https://peps.python.org/pep-0681/)
+[attrs]:
+    https://www.attrs.org/en/stable/
 
-[^4]:
-    [How to statically enforce frozen data classes in Python?](https://stackoverflow.com/questions/77754655/how-to-statically-enforce-frozen-data-classes-in-python)
+[pep-681]:
+    https://peps.python.org/pep-0681/
+
+[question on stack overflow]:
+    https://stackoverflow.com/questions/77754655/how-to-statically-enforce-frozen-data-classes-in-python
+
+<!-- prettier-ignore-end -->

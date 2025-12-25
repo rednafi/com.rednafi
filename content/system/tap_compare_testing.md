@@ -587,14 +587,23 @@ place you can see: mismatched payloads, noisy writes, and gaps in business logic
 are understood, switching over to the new service is less of a big bang and more of a boring
 configuration change, followed by trimming a pile of `Tap*` code you no longer need.
 
-<!--References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 
-[Envoy]: https://www.envoyproxy.io/
-[NGINX]: https://nginx.org/
-[HAProxy]: https://www.haproxy.org/
-[Istio]: https://istio.io/
-[shadow testing]: https://microsoft.github.io/code-with-engineering-playbook/automated-testing/shadow-testing/
+[envoy]:
+    https://www.envoyproxy.io/
+
+[nginx]:
+    https://nginx.org/
+
+[haproxy]:
+    https://www.haproxy.org/
+
+[istio]:
+    https://istio.io/
+
+[shadow testing]:
+    https://microsoft.github.io/code-with-engineering-playbook/automated-testing/shadow-testing/
 
 <!-- prettier-ignore-end -->

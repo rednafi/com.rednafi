@@ -10,13 +10,13 @@ tags:
 
 I like writing custom scripts to automate stuff or fix repetitive headaches. Most of them
 are shell scripts, and a few of them are written in Python. Over the years, I've accumulated
-quite a few of them. I use Git and GNU stow[^1] to manage them across different machines,
-and the workflow[^2] is quite effective. However, as the list of scripts grows larger,
-invoking them becomes a pain because the tab completion results get cluttered with other
-system commands. Plus, often I even forget the initials of a script's name and stare at my
-terminal while the blinking cursor facepalms at my stupidity.
+quite a few of them. I use Git and [GNU stow] to manage them across different machines, and
+the [workflow] is quite effective. However, as the list of scripts grows larger, invoking
+them becomes a pain because the tab completion results get cluttered with other system
+commands. Plus, often I even forget the initials of a script's name and stare at my terminal
+while the blinking cursor facepalms at my stupidity.
 
-I was watching this amazing talk[^3] by Brandon Rhodes that proposes quite an elegant
+I was watching Brandon Rhodes' [talk on activation energy] that proposes quite an elegant
 solution to this problem. It goes like this:
 
 > _All your scripts should start with a character as a prefix that doesn't have any special
@@ -50,8 +50,16 @@ $ ,
 All my aliases start with `,` too so that they also appear in the list with the custom
 scripts. Fin!
 
-[^1]: [GNU stow](https://www.gnu.org/software/stow/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Dotfile stewardship for the indolent](/misc/dotfile_stewardship_for_the_indolent)
+[gnu stow]:
+    https://www.gnu.org/software/stow/
 
-[^3]: [Activation energy — Brandon Rhodes](https://www.youtube.com/watch?v=pybtvFFRYFs)
+[workflow]:
+    /misc/dotfile_stewardship_for_the_indolent
+
+[talk on activation energy]:
+    https://www.youtube.com/watch?v=pybtvFFRYFs
+
+<!-- prettier-ignore-end -->

@@ -203,8 +203,18 @@ focus on, and the second parameter denotes the default types that are allowed in
 output list. Running the snippet will print `jupiter` and `mars` in the console and mypy
 will also be happy with the types.
 
-[^1]: [PEP 647 -- User-defined type guards](https://www.python.org/dev/peps/pep-0647/) [^1]
+## References
 
-[^2]:
-    [Python type hints - how to narrow types with TypeGuard — Adam Johnson](https://adamj.eu/tech/2021/06/09/python-type-hints-how-to-narrow-types-with-typeguard/)
-    [^2]
+- [PEP-647]
+- [Python type hints - how to narrow types with TypeGuard — Adam Johnson]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pep-647]:
+    https://www.python.org/dev/peps/pep-0647/
+
+[python type hints - how to narrow types with typeguard — adam johnson]:
+    https://adamj.eu/tech/2021/06/09/python-type-hints-how-to-narrow-types-with-typeguard/
+
+<!-- prettier-ignore-end -->

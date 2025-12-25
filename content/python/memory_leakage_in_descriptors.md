@@ -12,8 +12,8 @@ tags:
 Unless I'm hand rolling my own ORM-like feature or validation logic, I rarely need to write
 custom descriptors in Python. The built-in descriptor magics like `@classmethod`,
 `@property`, `@staticmethod`, and vanilla instance methods usually get the job done.
-However, every time I need to dig my teeth into descriptors, I reach for this fantastic how
-to[^1] guide by Raymond Hettinger. You should definitely set aside the time to read it if
+However, every time I need to dig my teeth into descriptors, I reach for this fantastic
+[how-to guide] by Raymond Hettinger. You should definitely set aside the time to read it if
 you haven't already. It has helped me immensely to deepen my understanding of how many of
 the fundamental language constructs are wired together underneath.
 
@@ -115,7 +115,7 @@ collected since the `Within` descriptor's `_seen` dictionary holds a strong refe
 ## Dispel the malady
 
 Once I spotted the bug, the solution was fairly simple. Don't keep strong references to the
-class instances if you don't need to. Also, use a more robust tool like Pydantic[^2] to
+class instances if you don't need to. Also, use a more robust tool like [Pydantic] to
 perform validation but I digress here! Using a `weakref.WeakKeyDictionary` instead of a
 regular dict for `_seen` would prevent the memory leakage by avoiding strong references to
 the deleted instances. Since `WeakKeyDictionary` holds weak references to the keys, if all
@@ -169,7 +169,13 @@ This will print an empty tuple:
 This also means that now `Within` will only keep track of instances that are alive in
 memory.
 
-[^1]:
-    [Descriptor how to - Raymond Hettinger](https://docs.python.org/3/howto/descriptor.html)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Pydantic](https://docs.pydantic.dev/latest/)
+[how-to guide]:
+    https://docs.python.org/3/howto/descriptor.html
+
+[pydantic]:
+    https://docs.pydantic.dev/latest/
+
+<!-- prettier-ignore-end -->

@@ -32,7 +32,7 @@ async def make_request(url: str) -> dict[str, Any]:
         return response.json()
 ```
 
-The function `make_request` makes an async HTTP request with the httpx[^1] library. Running
+The function `make_request` makes an async HTTP request with the [httpx] library. Running
 this with `asyncio.run(make_request("https://httpbin.org/post"))` gives us the following
 output:
 
@@ -104,7 +104,7 @@ async def test_make_request_ok() -> None:
 
 That's quite a bit of work just to test a simple HTTP request. The mocking gets pretty hairy
 as the complexity of your HTTP calls increases. One way to cut down the mess is by using a
-library like respx[^2] that handles the patching for you.
+library like [respx] that handles the patching for you.
 
 ## Simplifying mocks with respx
 
@@ -250,7 +250,7 @@ async def test_make_request() -> None:
         assert response == {"key_1": "value_1", "key_2": "value_2"}
 ```
 
-In the above test, we're using starlette[^3] to define a simple ASGI server that returns our
+In the above test, we're using [Starlette] to define a simple ASGI server that returns our
 expected response. Then we set up the `httpx.AsyncClient` so it makes the request against
 the test server instead of making an external network call. Finally, we call the
 `make_request` function and assert the expected payload.
@@ -258,6 +258,16 @@ the test server instead of making an external network call. Finally, we call the
 Sure, you could set up the server with the standard library's `http` module, but that code
 doesn't look half as pretty.
 
-[^1]: [httpx](https://www.python-httpx.org/)
-[^2]: [respx](https://lundberg.github.io/respx/)
-[^3]: [starlette](https://www.starlette.io/)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[httpx]:
+    https://www.python-httpx.org/
+
+[respx]:
+    https://lundberg.github.io/respx/
+
+[starlette]:
+    https://www.starlette.io/
+
+<!-- prettier-ignore-end -->

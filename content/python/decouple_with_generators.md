@@ -10,7 +10,7 @@ tags:
 
 Generators can help you decouple the production and consumption of iterables — making your
 code more readable and maintainable. I learned this trick a few years back from David
-Beazley's slides[^1] on generators. Consider this example:
+Beazley's [slides] on generators. Consider this example:
 
 ```py
 # src.py
@@ -43,7 +43,7 @@ need to do it. I can think of two reasons:
 
 - The `infinite_counter` function is the producer of the numbers and the `print` function is
   consuming them. These are two separate responsibilities tangled in the same function which
-  violates the Single Responsibility Principle (SRP)[^2].
+  violates the Single Responsibility Principle ([SRP]).
 
 - What'd you do if you needed a version of the infinite counter where the consumer had
   different behavior?
@@ -228,10 +228,10 @@ data = collect("default")
 process(data)
 ```
 
-You'll need to run an instance of Redis[^3] server and Redis CLI[^4] to test this out. If
-you've got Docker[^5] installed in your system, then you can run `docker run -it redis` to
-quickly spin up a Redis instance. Afterward, run the above script and start the CLI. Print
-the following command on the CLI prompt:
+You'll need to run an instance of [Redis] server and [Redis CLI] to test this out. If you've
+got [Docker] installed in your system, then you can run `docker run -it redis` to quickly
+spin up a Redis instance. Afterward, run the above script and start the CLI. Print the
+following command on the CLI prompt:
 
 ```sh
 127.0.0.1:6379> lpush default hello world
@@ -247,13 +247,22 @@ queue_name='default', content='world'
 This allows you to define multiple consumers and run them in separate threads/processes
 without the producer ever knowing about their existence at all.
 
-[^1]:
-    [Generator tricks for systems programmers — David Beazley](https://www.dabeaz.com/generators/Generators.pdf)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [SRP](https://en.wikipedia.org/wiki/Single-responsibility_principle)
+[slides]:
+    https://www.dabeaz.com/generators/Generators.pdf
 
-[^3]: [Redis](https://redis.io/)
+[srp]:
+    https://en.wikipedia.org/wiki/Single-responsibility_principle
 
-[^4]: [Redis CLI](https://redis.io/docs/ui/cli/)
+[redis]:
+    https://redis.io/
 
-[^5]: [Docker](https://www.docker.com/)
+[redis cli]:
+    https://redis.io/docs/ui/cli/
+
+[docker]:
+    https://www.docker.com/
+
+<!-- prettier-ignore-end -->

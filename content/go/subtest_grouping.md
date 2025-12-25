@@ -493,7 +493,7 @@ pretty much the same thing.
 In my experience, even in large codebases, a bit of discipline is usually enough to get by
 with manual subtest grouping.
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 [support for subtests]:
     https://go.dev/blog/subtests

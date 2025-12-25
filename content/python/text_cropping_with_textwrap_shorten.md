@@ -57,7 +57,7 @@ or:
 ## Solution
 
 This is quite easily solvable by using Python's `textwrap.shorten` function. The `shorten`
-function takes quite a few parameters[^1]. However, we'll only need the following ones to do
+function takes quite a few [parameters]. However, we'll only need the following ones to do
 our job:
 
 - `text: str`: Target text that we're going to operate on.
@@ -161,4 +161,10 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-[^1]: [textwrap.shorten](https://docs.python.org/3/library/textwrap.html#textwrap.shorten)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[parameters]:
+    https://docs.python.org/3/library/textwrap.html#textwrap.shorten
+
+<!-- prettier-ignore-end -->

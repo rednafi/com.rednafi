@@ -90,4 +90,14 @@ This will not raise the import error and return the following output:
 Here, the first entry denotes the root directory from where the script is being run from.
 Voila, problem solved!
 
-[^1]: [Don't run python my/script.py](https://www.youtube.com/watch?v=hgCVIa5qQhM) [^1]
+## References
+
+- [Don't run python my/script.py]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[don't run python my/script.py]:
+    https://www.youtube.com/watch?v=hgCVIa5qQhM
+
+<!-- prettier-ignore-end -->

@@ -185,14 +185,14 @@ table with the randomly filled in data:
 | 100 | c   | 420.0  |
 ```
 
-<!--References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [trick from ricardo ander-egg's tweet]:
     https://twitter.com/ricardoanderegg/status/1564723221173342220?s=20&t=V4TtJsxqyH0IuheqhEvb4w
 
 <!-- the json_extract() function in the sqlite docs -->
-[on this topic]:
+[docs on this topic]:
     https://www.sqlite.org/json1.html#jex
 
 <!-- prettier-ignore-end -->

@@ -15,14 +15,14 @@ that's not just another flavor of Debian. Primarily, I work with Python, NodeJS,
 bit of Go. Previously, any time I had to install these language runtimes, I'd execute a
 bespoke script that'd install:
 
-- Python via deadsnake[^1] ppa.
-- NodeJS via nvm[^2].
-- Go from the official binary source[^3].
+- Python via [deadsnake] ppa.
+- NodeJS via [nvm].
+- Go from the [official binary source].
 
 Along with the hassle of having to manage three version managers, setting up multiple
-versions of Python almost always felt like a chore. I've used pyenv[^4] before which kind of
-feels like nvm and works quite well in practice. However, on Twitter, I came across this[^5]
-reply by Adam Johnson which mentions that asdf[^6] can manage multiple runtimes of different
+versions of Python almost always felt like a chore. I've used [pyenv] before which kind of
+feels like nvm and works quite well in practice. However, on Twitter, I came across [a reply
+by Adam Johnson] which mentions that [asdf] can manage multiple runtimes of different
 languages — one version manager to rule them all. Also, it's written in pure bash so there's
 no external dependency required for the tool to work. Since I'm starting from scratch on a
 new OS, I wanted to give this a tool to try. Spoiler alert, it works with zero drama. Here,
@@ -31,21 +31,21 @@ them work seamlessly.
 
 ## Prerequisites
 
-For this to work, I'm assuming that you've got homebrew[^7] installed on your system.
-Install asdf with the following command:
+For this to work, I'm assuming that you've got [homebrew] installed on your system. Install
+asdf with the following command:
 
 ```sh
 brew install asdf
 ```
 
-Once asdf is installed, you'll need to install the Python plugin[^8]. Run this:
+Once asdf is installed, you'll need to install the [Python plugin]. Run this:
 
 ```sh
 asdf plugin-add python
 ```
 
-Also, you'll need to make sure that your system has these[^9] plugin-specific dependencies
-in place.
+Also, you'll need to make sure that your system has the [required plugin dependencies] in
+place.
 
 ## Bootstrapping Python
 
@@ -115,22 +115,34 @@ python -m venv .venv && source .venv/bin/activate && python
 
 Running `asdf uninstall python <python-version>` will do the trick.
 
-[^1]: [deadsnake](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [nvm](https://github.com/nvm-sh/nvm)
+[deadsnake]:
+    https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
 
-[^3]: [Download Go](https://go.dev/dl/)
+[nvm]:
+    https://github.com/nvm-sh/nvm
 
-[^4]: [pyenv](https://github.com/pyenv/pyenv)
+[official binary source]:
+    https://go.dev/dl/
 
-[^5]:
-    [Adam Johnson's tweet](https://twitter.com/AdamChainz/status/1591131543262867456?s=20&t=cl7NMLREat945aSICfk-9g)
+[pyenv]:
+    https://github.com/pyenv/pyenv
 
-[^6]: [asdf - manage multiple runtime versions with a single CLI tool](https://asdf-vm.com/)
+[a reply by adam johnson]:
+    https://twitter.com/AdamChainz/status/1591131543262867456?s=20&t=cl7NMLREat945aSICfk-9g
 
-[^7]: [homebrew](https://brew.sh/)
+[asdf]:
+    https://asdf-vm.com/
 
-[^8]: [asdf Python plugin](https://github.com/asdf-community/asdf-python)
+[homebrew]:
+    https://brew.sh/
 
-[^9]:
-    [asdf plugin dependencies](https://asdf-vm.com/guide/getting-started.html#plugin-dependencies)
+[python plugin]:
+    https://github.com/asdf-community/asdf-python
+
+[required plugin dependencies]:
+    https://asdf-vm.com/guide/getting-started.html#plugin-dependencies
+
+<!-- prettier-ignore-end -->

@@ -10,7 +10,7 @@ aliases:
     - /python/implement_traceroute/
 ---
 
-I was watching this amazing lightning talk[^1] by Karla Burnett and wanted to understand how
+I was watching this [amazing lightning talk] by Karla Burnett and wanted to understand how
 `traceroute` works in Unix. Traceroute is a tool that shows the route of a network packet
 from your computer to another computer on the internet. It also tells you how long it takes
 for the packet to reach each stop along the way.
@@ -69,9 +69,9 @@ packets instead of discarding them. This is not a problem and does not affect th
 of the traceroute.
 
 This is all good and dandy but I wanted to understand how `traceroute` can find out what
-route a packet takes and how long it takes between each hop. So I started reading blogs like
-this[^2] one that does an awesome job at explaining what's going on behind the scene. The
-gist of it goes as follows.
+route a packet takes and how long it takes between each hop. So I started reading blogs and
+found one on [how traceroute works] that does an awesome job at explaining what's going on
+behind the scene. The gist of it goes as follows.
 
 ## How traceroute works
 
@@ -101,8 +101,8 @@ traceroute can trace the route that your packets take to reach the target IP add
 and measure the latency between each hop. The tool prints out the associated IPs and
 latencies as it jumps through different hops.
 
-I snagged this photo from an SFU (Simon Fraser University) slide[^3] that I think explains
-the machinery of `traceroute` quite well:
+I snagged this photo from an [SFU slide] that I think explains the machinery of `traceroute`
+quite well:
 
 ![how traceroute works][image_1]
 
@@ -261,12 +261,19 @@ Hop  IP Address          Hostname                                          Time 
 10   93.184.216.34                                                         23.546     ms
 ```
 
-[^1]: [Storytelling with traceroute](https://www.youtube.com/watch?v=xW_ALxfop7Y)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
+[amazing lightning talk]:
+    https://www.youtube.com/watch?v=xW_ALxfop7Y
 
-[^3]:
-    [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
+[how traceroute works]:
+    https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command
 
-[image_1]: https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+[sfu slide]:
+    http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm
+
+[image_1]:
+    https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+
+<!-- prettier-ignore-end -->

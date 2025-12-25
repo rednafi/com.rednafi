@@ -97,8 +97,8 @@ packages use the same built-in key type and data, like both passing `"key"` as a
 their boxed representations look identical. Go sees them as equal, and the most recent value
 shadows the earlier one.
 
-If you want to learn more about how interfaces are represented and compared, Russ Cox wrote
-[an amazing blog post] that explains it in detail with pretty pictures.
+Russ Cox wrote a great [blog post on Go interface internals] that explains how interfaces
+are represented and compared, complete with diagrams.
 
 The fix is to make sure the keys have unique types so their boxed representations differ. If
 you define a custom type, the type pointer changes even if the data looks the same. For
@@ -116,7 +116,7 @@ Even though the underlying value is `"key"`, the two interfaces now hold differe
 information, so Go considers them unequal. That difference in type identity is what prevents
 collisions.
 
-The [context documentation](https://pkg.go.dev/context#WithValue) gives this advice:
+The [context documentation] gives this advice:
 
 > _The provided key must be comparable and should not be of type string or any other
 > built-in type to avoid collisions between packages using context. Users of WithValue
@@ -217,7 +217,7 @@ When you export the key directly the caller gains direct access, but they also m
 - do the type assertion themselves and handle the ok result to avoid panics
 - ensure they don't accidentally overwrite values using the wrong key
 
-The `net/http` package uses this approach for some of its exported context keys:
+The [net/http] package uses this approach for some of its exported context keys:
 
 ```go
 type contextKey struct {
@@ -233,7 +233,7 @@ var (
 
 Each variable points to a distinct struct, making them unique by pointer identity.
 
-The `serve_test.go` file uses these keys like this:
+The [serve_test.go] file uses these keys like this:
 
 ```go
 ctx := context.WithValue(context.Background(), http.ServerContextKey, srv)
@@ -292,22 +292,22 @@ everywhere.
 
 `WithX` / `XFromContext` accessors appear throughout the Go standard library:
 
-- **`net/http/httptrace`**
+- **[net/http/httptrace]**
 
     ```go
     func WithClientTrace(ctx context.Context, trace *ClientTrace) context.Context
     func ContextClientTrace(ctx context.Context) *ClientTrace
     ```
 
-- **`runtime/pprof`**
+- **[runtime/pprof]**
 
     ```go
     func WithLabels(ctx context.Context, labels LabelSet) context.Context
     func Labels(ctx context.Context) LabelSet
     ```
 
-You can find similar examples outside of the stdlib. For instance, the OpenTelemetry Go SDK
-follows the same model:
+You can find similar examples outside of the stdlib. For instance, the [OpenTelemetry Go
+SDK] follows the same model:
 
 ```go
 func ContextWithSpan(parent context.Context, span Span) context.Context
@@ -323,18 +323,18 @@ I usually use a pointer to a struct as a key and expose accessor functions when 
 user-facing APIs. Otherwise, in services, I often define empty struct keys and expose them
 publicly to avoid the ceremony around accessor functions.
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [machine words]:
     https://unicminds.com/what-is-a-machine-word-and-its-implications/
 
 <!-- russ cox's post on interface structure in go --->
-[an amazing blog post]:
+[blog post on go interface internals]:
     https://research.swtch.com/interfaces
 
-[doc has the following advice]:
-    https://pkg.go.dev/context#example-WithValue:~:text=The%20provided%20key,pointer%20or%20interface.
+[context documentation]:
+    https://pkg.go.dev/context#WithValue
 
 [net/http]:
     https://cs.opensource.google/go/go/+/refs/tags/go1.25.3:src/net/http/server.go;l=239-251
@@ -346,12 +346,9 @@ publicly to avoid the ceremony around accessor functions.
     https://github.com/golang/go/blob/39ed968832ad8923a4bd1fb6bc3d9090ddd98401/src/net/http/httptrace/trace.go#L20-L68
 
 [runtime/pprof]:
-https://github.com/golang/go/blob/39ed968832ad8923a4bd1fb6bc3d9090ddd98401/src/runtime/pprof/label.go#L60-L63
+    https://github.com/golang/go/blob/39ed968832ad8923a4bd1fb6bc3d9090ddd98401/src/runtime/pprof/label.go#L60-L63
 
 [opentelemetry go sdk]:
     https://github.com/open-telemetry/opentelemetry-go/blob/f0c24571557de839332e48790714a5899c4fd2c6/trace/context.go
-
-[expose accessor functions]:
-    #2-expose-accessor-functions
 
 <!-- prettier-ignore-end -->

@@ -9,9 +9,10 @@ tags:
     - Testing
 ---
 
-I was reading Ned Bachelder's blog "Why your mock doesn't work"[^1] and it triggered an
-epiphany in me about a testing pattern that I've been using for a while without being aware
-that there might be an aphorism on the practice.
+I was reading Ned Bachelder's [blog "Why your mock doesn't
+work"][why your mock doesn't work] and it triggered an epiphany in me about a testing
+pattern that I've been using for a while without being aware that there might be an aphorism
+on the practice.
 
 > Patch where the object is used; not where it's defined.
 
@@ -77,8 +78,8 @@ def test_process(mock_get_data):
 ```
 
 Since `get_data` is defined in the `db.py` module, we pass `db.get_data` to the `patch`
-decorator. Unfortunately, if you run the above test with pytest[^2], you'll see that the
-test fails with the following error:
+decorator. Unfortunately, if you run the above test with [pytest], you'll see that the test
+fails with the following error:
 
 ```txt
 test_service.py F                                      [100%]
@@ -130,7 +131,13 @@ def test_process(mock_get_data):
 
 This time, when you run the tests, pytest doesn't complain.
 
-[^1]:
-    [Why your mock doesn't work](https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [pytest](https://docs.pytest.org/en/latest/)
+[why your mock doesn't work]:
+    https://nedbatchelder.com/blog/201908/why_your_mock_doesnt_work.html
+
+[pytest]:
+    https://docs.pytest.org/en/latest/
+
+<!-- prettier-ignore-end -->

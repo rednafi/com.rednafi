@@ -32,8 +32,13 @@ Where,
 
 ## References
 
-The idea is a less radical version of this post[^1]. I don't recommend messing with the IFS
+The idea is a less radical version of [this post]. I don't recommend messing with the IFS
 without a valid reason.
 
-[^1]:
-    [Unofficial bash strict mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[this post]:
+    http://redsymbol.net/articles/unofficial-bash-strict-mode/
+
+<!-- prettier-ignore-end -->

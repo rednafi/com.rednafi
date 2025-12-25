@@ -22,7 +22,7 @@ wouldn't have been picked up by pretty much every other library, whether it's [N
 [Elasticsearch agent].
 
 If you have no idea what I'm talking about, you might want to give my previous write-up on
-[configuring options] a read.
+[configuring options in Go] a read.
 
 ## Functional options pattern
 
@@ -303,7 +303,7 @@ at the end of the method chain._
     https://github.com/elastic/elastic-agent/blob/4aeba5b3fcf0d72924c70ff2127996a817b83a23/pkg/testing/fetcher_http.go
 
 <!-- configuring options in go - rednafi -->
-[configuring options]:
+[configuring options in Go]:
     /go/configure_options
 
 <!-- benchmarking functional vs dysfunctional options pattern -->

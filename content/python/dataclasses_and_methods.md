@@ -31,13 +31,13 @@ class Person:
 In this case, calling the `make_older` method will change the value of `age` in-place.
 
 Every time I spot a data class decked out with such methods, I feel like I'm looking at the
-penguin with an elephant head[^1] from the Family Guy. Whenever I traverse down to see how
-the instances of the class are being used, more often than not, I find them being treated
-just like regular mutable class instances with fancy `repr`s. But if you only need a nice
-`repr` for your large OO class, adding a `__repr__` to the class definition is not that
-difficult. Why pay the price for building heavier data class instances only for that?
+[penguin with an elephant head] from the Family Guy. Whenever I traverse down to see how the
+instances of the class are being used, more often than not, I find them being treated just
+like regular mutable class instances with fancy `repr`s. But if you only need a nice `repr`
+for your large OO class, adding a `__repr__` to the class definition is not that difficult.
+Why pay the price for building heavier data class instances only for that?
 
-In Python, data classes are considerably slower[^2] to define and import compared to vanilla
+In Python, data classes are considerably [slower to define] and import compared to vanilla
 classes. However, they serve a different purpose than your typical run-of-the-mill classes.
 When you decorate a class with the `@dataclass` decorator without changing any of the
 default parameters, Python automatically generates `__init__`, `__eq__`, and `__repr__`
@@ -52,11 +52,11 @@ probably wouldn't be one of my favorite languages. I use data classes all the ti
 how they often allow me to craft nicer APIs with little effort. My issue is when people add
 state-mutating methods to data classes. The moment you're doing that, you're breaking the
 semantics of the data structure. You probably wouldn't use hashmaps to represent sequential
-data even though Python currently maintains[^3] the insertion order of the keys in dicts.
+data even though Python currently [maintains the insertion order] of the keys in dicts.
 
 In Kotlin, I almost always define immutable data classes and pass them around in different
 functions that perform transformations and calculations. In Python, however, instantiating
-frozen data classes (`@dataclass(frozen=True)`) is almost twice as slow[^4] compared to
+frozen data classes (`@dataclass(frozen=True)`) is almost [twice as slow] compared to
 mutable data classes. So I just set `slots=True` to make the instantiation quicker and call
 it a day. But in either case, if I need to add a method that mutates the attributes of the
 class instance, I reconsider whether a data class is the right abstraction for the problem
@@ -65,8 +65,7 @@ regular OO class. You'll signal incorrect intent to the reader if you keep using
 classes in this context.
 
 Dataclasses are also great candidates for domain modeling with types. With the help of mypy,
-you can leverage sum types[^5] to emulate ADTs[^6] as follows (using PEP-695[^7] generic
-syntax):
+you can leverage [sum types] to emulate [ADTs] as follows (using [PEP-695] generic syntax):
 
 ```py
 from dataclasses import dataclass
@@ -99,20 +98,28 @@ class, write a function and pass the instance as a parameter or write a normal c
 repr and add the method there. This way, the reader won't have to wonder whether your data
 containers have some hidden behavior attached to them or not.
 
-[^1]: [Penguin with an elephant head – Family Guy](https://i.imgflip.com/3gb0nh.jpg?a472776)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Improving data classes startup performance](https://discuss.python.org/t/improving-dataclasses-startup-performance/15442/20)
+[penguin with an elephant head]:
+    https://i.imgflip.com/3gb0nh.jpg?a472776
 
-[^3]:
-    [Dicts are now ordered, get used to it](https://softwaremaniacs.org/blog/2020/02/05/dicts-ordered/en/)
+[slower to define]:
+    https://discuss.python.org/t/improving-dataclasses-startup-performance/15442/20
 
-[^4]:
-    [Frozen data classes are slower](https://docs.python.org/3.12/library/dataclasses.html#frozen-instances)
+[maintains the insertion order]:
+    https://softwaremaniacs.org/blog/2020/02/05/dicts-ordered/en/
 
-[^5]: [Sum types](https://fsharpforfunandprofit.com/posts/discriminated-unions/)
+[twice as slow]:
+    https://docs.python.org/3.12/library/dataclasses.html#frozen-instances
 
-[^6]:
-    [Algebraic Data Types in (typed) Python](https://threeofwands.com/algebraic-data-types-in-python/)
+[sum types]:
+    https://fsharpforfunandprofit.com/posts/discriminated-unions/
 
-[^7]: [PEP 695 – Type Parameter Syntax](https://peps.python.org/pep-0695/)
+[adts]:
+    https://threeofwands.com/algebraic-data-types-in-python/
+
+[pep-695]:
+    https://peps.python.org/pep-0695/
+
+<!-- prettier-ignore-end -->

@@ -55,8 +55,8 @@ decorator is. Underneath, the `functools.cache` decorator is an alias for
 `functools.lru_cache(None)` and it employs a **Least Recently Used** cache eviction policy.
 While this policy is quite useful when you need it but to cache simple connection objects,
 arguably, the complexity and the overhead of the `cache` decorator offset its benefits.
-There's a simpler way to do it and James Powell on Twitter pointed[^1] me to it. This works
-as follows:
+There's a simpler way to do it and James Powell on Twitter [pointed] me to it. This works as
+follows:
 
 ```py
 # src.py
@@ -91,5 +91,10 @@ def get_redis_client(service_name: str = "redis") -> redis.Redis:
 
 Is this singleton pattern? Probably so.
 
-[^1]:
-    [Caching connections in Python — Twitter](https://twitter.com/rednafi/status/1503465791987273729?s=20&t=GlzWHBF_y0ZR-uKHVSP40Q)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pointed]:
+    https://twitter.com/rednafi/status/1503465791987273729?s=20&t=GlzWHBF_y0ZR-uKHVSP40Q
+
+<!-- prettier-ignore-end -->

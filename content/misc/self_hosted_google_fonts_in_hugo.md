@@ -8,9 +8,9 @@ tags:
     - TIL
 ---
 
-This [site] is built with [Hugo] and served via [GitHub Pages]. Recently, I decided to
-change the font here to make things more consistent across different devices. However, I
-didn't want to go with Google Fonts for a few reasons:
+This [blog's source code] is on GitHub. It's built with [Hugo] and served via [GitHub
+Pages]. Recently, I decided to change the font here to make things more consistent across
+different devices. However, I didn't want to go with Google Fonts for a few reasons:
 
 - CDN is another dependency.
 - Hosting static assets on GitHub Pages has served me well.
@@ -84,17 +84,18 @@ the rest. Notice there's no `/static` prefix in the font's path. Find this blog'
 [header-override.css] if you're facing any trouble while doing it. Serve your website
 locally and ensure that the fonts are being loaded and displayed correctly. Deploy!
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 
-[site]:
+[blog's source code]:
     https://github.com/rednafi/rednafi.com/
 
 [hugo]:
     https://gohugo.io/
 
-[gitHub pages]: https://pages.github.com/
+[github pages]:
+    https://pages.github.com/
 
 [google fonts tracks users and violates GDPR]:
     https://rewis.io/urteile/urteil/lhm-20-01-2022-3-o-1749320/

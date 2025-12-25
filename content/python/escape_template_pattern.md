@@ -8,17 +8,17 @@ tags:
     - Python
 ---
 
-Over the years, I've used the template pattern[^1] across multiple OO languages with varying
+Over the years, I've used the [template pattern] across multiple OO languages with varying
 degrees of success. It was one of the first patterns I learned in the primordial hours of my
 software engineering career, and for some reason, it just feels like the natural way to
 tackle many real-world code-sharing problems. Yet, even before I jumped on board with the
-composition over inheritance[^2] camp, I couldn't help but notice how using this particular
+[composition over inheritance] camp, I couldn't help but notice how using this particular
 inheritance technique spawns all sorts of design and maintenance headaches as the codebase
 starts to grow.
 
 ## An epiphany
 
-This isn't an attempt to explain why you should prefer composition over inheritance
+This isn't an attempt to explain why you should prefer [composition over inheritance]
 (although you should), as it's a vast topic and much has been said regarding this. Also,
 only after a few years of reading concomitant literatures and making enough mistakes in
 real-life codebases, it dawned on me that opting for inheritance as the default option leads
@@ -35,9 +35,9 @@ of inheritance-driven architecture. Then, I'll explain how the service can be re
 escape the quagmire that I've now started to refer to as the **template pattern hellscape**.
 
 Only a few moons ago, while watching Hynek Schlawack's Python 2023 talk aptly titled
-"Subclassing, Composition, Python, and You"[^3] and reading his fantastic blog post
-"Subclassing in Python Redux"[^4], the concept of adopting composition to gradually phase
-out subclass-oriented design from my code finally clicked for me. However, it's not always
+[Subclassing, Composition, Python, and You] and reading his fantastic blog post [Subclassing
+in Python Redux], the concept of adopting composition to gradually phase out
+subclass-oriented design from my code finally clicked for me. However, it's not always
 obvious to me how to locate inheritance metastasis and exactly where to intervene to make
 the design better. This post is my attempt to distill some of my learning from those
 resources and focus on improving only a small part of the gamut.
@@ -120,7 +120,7 @@ Template pattern seems like the obvious way of sharing code and it almost always
 the first things that people learn while familiarizing themselves with how OO works in
 Python. Plus, it's used extensively in the standard library. For example, in the
 `collections.abc` module, there are a few ABCs that you can subclass to build your own
-containers. I wrote about this[^5] a few years back. Here's how you can subclass
+containers. I [wrote about this] a few years back. Here's how you can subclass
 `collections.abc.Sequence` to implement a tuple-like immutable datastructure:
 
 ```py
@@ -149,10 +149,10 @@ assert len(seq) == 4
 
 We're inheriting from the `Sequence` ABC and implementing the required abstract methods.
 Here's the first issue: how do we even know which methods to implement and which methods we
-get for free? You can consult the documentation[^6] and learn that `__getitem__` and
-`__len__` are the abstract methods that subclasses are expected to implement. In return, the
-base `Sequence` class gives you `__contains__`, `__iter__`, `__reversed__`, `index`, and
-`count` as mixin methods. You can also print out the abstract methods by accessing the
+get for free? You can consult the [Sequence docs] and learn that `__getitem__` and `__len__`
+are the abstract methods that subclasses are expected to implement. In return, the base
+`Sequence` class gives you `__contains__`, `__iter__`, `__reversed__`, `index`, and `count`
+as mixin methods. You can also print out the abstract methods by accessing the
 `Sequence.__abstractmethod__` attribute. Sure, you're getting a lot of concrete methods for
 free, but suddenly you're dependent on some out-of-band information to learn about the
 behavior of your specialized `CustomSequence` class.
@@ -212,7 +212,7 @@ the Python realm if that's what you want, but it's certainly a suboptimal defaul
 The biggest complaint I have against the template pattern is how it encourages the baseclass
 to do too many things at once. I can endure poor discoverability of public APIs and
 namespace pollution to some extent, but when a class tries to do too many things
-simultaneously, it eventually exhibits the tendency to give birth to God Objects[^7];
+simultaneously, it eventually exhibits the tendency to give birth to [God objects];
 breaching the SRP (Single Responsibility Principle).
 
 Intentionally violating the SRP rarely fosters good results, and in this case, the baseclass
@@ -234,9 +234,9 @@ design with composition.
 
 ### Designing with template pattern
 
-The following code snippet mimics a real-world webhook[^8] dispatcher that takes a message
-and posts it to a callback URL via HTTP `POST` request. First, we'll commit the cardinal sin
-of modeling the domain with the template pattern and then we'll try to find a way out of the
+The following code snippet mimics a real-world [webhook] dispatcher that takes a message and
+posts it to a callback URL via HTTP `POST` request. First, we'll commit the cardinal sin of
+modeling the domain with the template pattern and then we'll try to find a way out of the
 quandary. Here it goes:
 
 ```py
@@ -325,7 +325,7 @@ every possible solution under the sun, I'll go through the one that has worked f
 well.
 
 We'll refactor the code in the previous section to take advantage of composition and
-structural subtyping[^9] support in Python. Long story short, structural subtyping refers to
+[structural subtyping] support in Python. Long story short, structural subtyping refers to
 the ability to ensure type safety based on the structure or shape of an object rather than
 its explicit inheritance hierarchy. This allows us to define and enforce contracts based on
 the presence of specific attributes or methods, rather than relying on a specific class or
@@ -336,8 +336,8 @@ defining a protocol using the `typing.Protocol` class, we can specify the expect
 attributes and methods that an object should have to satisfy the protocol. Any object that
 matches the structure defined by the protocol can be treated as if it conforms to that
 protocol, enabling more flexible and dynamic type-checking in Python. This conformity is
-usually checked by a type-checking tool like mypy[^10]. If you want to learn more, check out
-Glyph's post titled "I Want a New Duck"[^11]. Here's how I refactored it:
+usually checked by a type-checking tool like [mypy]. If you want to learn more, check out
+Glyph's post titled [I Want a New Duck]. Here's how I refactored it:
 
 ```py
 from dataclasses import dataclass, field, asdict
@@ -430,7 +430,7 @@ dataclass constructor, we're using the protocol classes instead of the concrete 
 is how the type checker knows that whatever instance is passed to the `retriever` and
 `dispatcher` parameters must conform to the `Retriever` and `Dispatcher` protocols,
 respectively. Note that we've completely eliminated subclassing from our public API.
-Injecting dependencies in this manner is also known as the strategy pattern[^12].
+Injecting dependencies in this manner is also known as the [strategy pattern].
 
 The `Webhook` class now has a hierarchical namespace instead of a flat one, unlike our
 inheritance-based friend. You'll have to be explicit about where a method is coming from
@@ -463,36 +463,50 @@ language like Python, you can't always escape inheritance, nor should you try to
 > _Yet behold, it need not be the customary stratagem that thou graspest at each moment
 > thine heart yearns to commune code amidst classes._
 
-[^1]:
-    [Template pattern](https://refactoring.guru/design-patterns/template-method/python/example)
+## References
 
-[^2]:
-    [Composition over inheritance - Brandon Rhodes](https://python-patterns.guide/gang-of-four/composition-over-inheritance/)
+- [End of object inheritance - Augie Fackler, Nathaniel Manista]
 
-[^3]:
-    [Subclassing, composition, Python, and you - Hynek Schlawack](https://www.youtube.com/watch?v=k8MT5liCQ7g)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Subclassing in Python redux - Hynek Schlawack](https://hynek.me/articles/python-subclassing-redux/)
+[template pattern]:
+    https://refactoring.guru/design-patterns/template-method/python/example
 
-[^5]:
-    [Interfaces, mixins and building powerful custom data structures in Python](/python/mixins/)
+[composition over inheritance]:
+    https://python-patterns.guide/gang-of-four/composition-over-inheritance/
 
-[^6]:
-    [Sequence docs](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)
+[subclassing, composition, python, and you]:
+    https://www.youtube.com/watch?v=k8MT5liCQ7g
 
-[^7]: [God objects](https://blog.devgenius.io/code-smell-14-god-objects-b84b75b702)
+[subclassing in python redux]:
+    https://hynek.me/articles/python-subclassing-redux/
 
-[^8]: [Webhook](https://zapier.com/blog/what-are-webhooks/)
+[wrote about this]:
+    /python/mixins/
 
-[^9]: [Structural subtyping](https://rednafi.com/python/structural_subtyping/)
+[sequence docs]:
+    https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence
 
-[^10]: [Mypy](https://mypy-lang.org/)
+[god objects]:
+    https://blog.devgenius.io/code-smell-14-god-objects-b84b75b702
 
-[^11]: [I want a new duck - Glyph](https://blog.glyph.im/2020/07/new-duck.html)
+[webhook]:
+    https://zapier.com/blog/what-are-webhooks/
 
-[^12]: [Strategy pattern](https://refactoring.guru/design-patterns/strategy/python/example)
+[structural subtyping]:
+    https://rednafi.com/python/structural_subtyping/
 
-[^13]:
-    [End of object inheritance - Augie Fackler, Nathaniel Manista](https://www.youtube.com/watch?v=3MNVP9-hglc)
-    [^13]
+[mypy]:
+    https://mypy-lang.org/
+
+[i want a new duck]:
+    https://blog.glyph.im/2020/07/new-duck.html
+
+[strategy pattern]:
+    https://refactoring.guru/design-patterns/strategy/python/example
+
+[end of object inheritance - augie fackler, nathaniel manista]:
+    https://www.youtube.com/watch?v=3MNVP9-hglc
+
+<!-- prettier-ignore-end -->

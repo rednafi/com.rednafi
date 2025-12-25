@@ -11,20 +11,20 @@ tags:
 
 In multi-page web applications, a common workflow is where a user:
 
--   Loads a specific page or clicks on some button that triggers a long-running task.
--   On the server side, a background worker picks up the task and starts processing it
-    asynchronously.
--   The page shouldn't reload while the task is running.
--   The backend then communicates the status of the long-running task in real-time.
--   Once the task is finished, the client needs to display a success or an error message
-    depending on the final status of the finished task.
+- Loads a specific page or clicks on some button that triggers a long-running task.
+- On the server side, a background worker picks up the task and starts processing it
+  asynchronously.
+- The page shouldn't reload while the task is running.
+- The backend then communicates the status of the long-running task in real-time.
+- Once the task is finished, the client needs to display a success or an error message
+  depending on the final status of the finished task.
 
 The de facto tool for handling situations where real-time bidirectional communication is
-necessary is WebSocket[^1]. However, in the case above, you can see that the communication
-is mostly unidirectional where the client initiates some action in the server and then the
+necessary is [WebSocket]. However, in the case above, you can see that the communication is
+mostly unidirectional where the client initiates some action in the server and then the
 server continuously pushes data to the client during the lifespan of the background job.
 
-In Django, I usually go for the channels[^2] library whenever I need to do any real-time
+In Django, I usually go for the [channels] library whenever I need to do any real-time
 communication over WebSockets. It's a fantastic tool if you need real-time full duplex
 communication between the client and the server. But it can be quite cumbersome to set up,
 especially if you're not taking full advantage of it or not working with Django. Moreover,
@@ -35,12 +35,12 @@ manner.
 
 ## Server-Sent Events (SSEs)
 
-Server-Sent Events (SSE)[^3] is a way for a web server to send real-time updates to a web
-page without the need for the page to repeatedly ask for updates. Instead of the page asking
-the server for new data every few seconds, the server can just send updates as they happen,
-like a live stream. This is useful for things like live chat, news feeds, and stock tickers
-but won't work in situations where you also need to send real-time updates from the client
-to the server. In the latter scenarios, WebSockets are kind of your only option.
+[Server-Sent Events (SSE)] is a way for a web server to send real-time updates to a web page
+without the need for the page to repeatedly ask for updates. Instead of the page asking the
+server for new data every few seconds, the server can just send updates as they happen, like
+a live stream. This is useful for things like live chat, news feeds, and stock tickers but
+won't work in situations where you also need to send real-time updates from the client to
+the server. In the latter scenarios, WebSockets are kind of your only option.
 
 SSEs are sent over traditional HTTP. That means they don't need any special protocol or
 server implementation to get working. WebSockets on the other hand, need full-duplex
@@ -51,7 +51,7 @@ browser, you won't have to write additional logic to handle reconnections and st
 
 The biggest reason why I wanted to explore SSE is because of its simplicity and the fact
 that it plays in the HTTP realm. If you want to learn more about how SSEs stack up against
-WebSockts, I recommend this post[^4] by Germano Gabbianelli.
+WebSockts, I recommend this [SSE vs WebSockets post] by Germano Gabbianelli.
 
 ## The wire protocol
 
@@ -86,21 +86,21 @@ not to cache the response by setting the `cache-control` header to `no-cache`. N
 message payload, only the `data` field is required, everything else is optional. Let's break
 down the message structure:
 
--   `event`: This is an optional field that specifies the name of the event. If present, it
-    must be preceded by the string 'event:'. If not present, the event is considered to have
-    the default name 'message'.
+- `event`: This is an optional field that specifies the name of the event. If present, it
+  must be preceded by the string 'event:'. If not present, the event is considered to have
+  the default name 'message'.
 
--   `id`: This is an optional field that assigns an ID to the event. If present, it must be
-    preceded by the string 'id:'. Clients can use this ID to resume an interrupted
-    connection and receive only events that they have not yet seen.
+- `id`: This is an optional field that assigns an ID to the event. If present, it must be
+  preceded by the string 'id:'. Clients can use this ID to resume an interrupted connection
+  and receive only events that they have not yet seen.
 
--   `data:` This field is required and contains the actual message data that the server
-    wants to send to the client. It must be preceded by the string 'data:' and can contain
-    any string of characters.
+- `data:` This field is required and contains the actual message data that the server wants
+  to send to the client. It must be preceded by the string 'data:' and can contain any
+  string of characters.
 
--   `retry`: This is an optional field that specifies the number of milliseconds that the
-    client should wait before attempting to reconnect to the server in case the connection
-    is lost. If present, it must be preceded by the string 'retry:'.
+- `retry`: This is an optional field that specifies the number of milliseconds that the
+  client should wait before attempting to reconnect to the server in case the connection is
+  lost. If present, it must be preceded by the string 'retry:'.
 
 Each message must end with double newline characters `("\n\n")`. Yep, this is part of the
 protocol. The server can send multiple messages in a single HTTP response, and each message
@@ -108,7 +108,7 @@ will be treated as a separate event by the client.
 
 ## A simple example
 
-In this section, I'll prop up a simple HTTP streaming server with starlette[^5] and collect
+In this section, I'll prop up a simple HTTP streaming server with [Starlette] and collect
 the events from the browser. Here's the complete server implementation:
 
 ```py
@@ -253,7 +253,7 @@ Default event: closing connection
 
 This section will demonstrate the scenario that was mentioned at the beginning of this post
 where loading a particular page in your browser will trigger a long-running asynchronous
-celery[^6] task in the background. While the task runs, the server will communicate the
+[celery] task in the background. While the task runs, the server will communicate the
 progress with the client.
 
 Once the task is finished, the server will send a specific message to the client and it'll
@@ -580,19 +580,39 @@ While SSE-driven pages are much easier to bootstrap than their WebSocket counter
 apart from only supporting unidirectional communication, they suffer from a few other
 limitations:
 
--   SSE is limited to sending text data only. If an application needs to send binary data,
-    it must encode the data as text before sending it over SSE.
--   SSE connections are subject to the same connection limitations as HTTP connections. In
-    some cases, a large number of SSE connections can overload the server, leading to
-    performance issues. However, this can be mitigated by taking advantage of connection
-    multiplexing in HTTP/2.
+- SSE is limited to sending text data only. If an application needs to send binary data, it
+  must encode the data as text before sending it over SSE.
+- SSE connections are subject to the same connection limitations as HTTP connections. In
+  some cases, a large number of SSE connections can overload the server, leading to
+  performance issues. However, this can be mitigated by taking advantage of connection
+  multiplexing in HTTP/2.
 
-[^1]: [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
-[^2]: [channels](https://channels.readthedocs.io/en/stable/)
-[^3]: [SSE](https://en.wikipedia.org/wiki/Server-sent_events)
-[^4]: [SSE vs WebSockets](https://germano.dev/sse-websockets/)
-[^5]: [starlette](https://www.starlette.io/)
-[^6]: [celery](https://docs.celeryq.dev/en/stable/getting-started/introduction.html)
-[^7]:
-    [Using server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
-    [^7]
+## References
+
+- [Using server-sent events]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[websocket]:
+    https://en.wikipedia.org/wiki/WebSocket
+
+[channels]:
+    https://channels.readthedocs.io/en/stable/
+
+[server-sent events (sse)]:
+    https://en.wikipedia.org/wiki/Server-sent_events
+
+[sse vs websockets post]:
+    https://germano.dev/sse-websockets/
+
+[starlette]:
+    https://www.starlette.io/
+
+[celery]:
+    https://docs.celeryq.dev/en/stable/getting-started/introduction.html
+
+[using server-sent events]:
+    https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+
+<!-- prettier-ignore-end -->

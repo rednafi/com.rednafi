@@ -207,7 +207,7 @@ wanted to emphasize is that technology or architecture patterns should not guide
 structure. It should be based on something more persistent and nothing is more persistent
 than your application's domain.
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

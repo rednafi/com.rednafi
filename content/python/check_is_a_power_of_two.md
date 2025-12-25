@@ -16,11 +16,11 @@ def is_power_of_two(x: int) -> bool:
     return x > 0 and hex(x)[-1] in ("0", "2", "4", "8")
 ```
 
-While this works[^1], I've never liked explaining the pattern matching hack that's going on
+While this [works], I've never liked explaining the pattern matching hack that's going on
 here.
 
-Today, I came across this tweet[^2] by Raymond Hettinger where he proposed an elegant
-solution to the problem. Here's how it goes:
+Today, I came across this [tweet] by Raymond Hettinger where he proposed an elegant solution
+to the problem. Here's how it goes:
 
 ```py
 def is_power_of_two(x: int) -> bool:
@@ -77,7 +77,13 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-[^1]: [My tweet on the hack](https://twitter.com/rednafi/status/1484326191687696391/photo/1)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [A better solution by Raymond Hettinger](https://twitter.com/raymondh/status/1483948152906522625)
+[works]:
+    https://twitter.com/rednafi/status/1484326191687696391/photo/1
+
+[tweet]:
+    https://twitter.com/raymondh/status/1483948152906522625
+
+<!-- prettier-ignore-end -->

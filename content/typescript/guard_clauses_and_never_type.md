@@ -49,7 +49,7 @@ The snippet above suffers from two major issues:
 - If you add a fourth member to the `Signal` enum, now the processing function doesn't
   exhaustively cover all the cases and it won't communicate that fact with you.
 
-We can leverage _guard clauses_ to fix the first two issues.
+We can leverage [guard clauses] to fix the first two issues.
 
 > The guard (clause) provides an early exit from a subroutine, and is a commonly used
 > deviation from structured programming, removing one level of nesting and resulting in
@@ -196,12 +196,21 @@ else:
 ...
 ```
 
-[^1]:
-    [Guard clause, guard code, or guard statement](<https://en.wikipedia.org/wiki/Guard_(computer_science)>)
-    [^1]
+## References
 
-[^2]: [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never) [^2]
+- [Never type in TypeScript]
+- [Unreachable code and exhaustiveness checking in Python]
 
-[^3]:
-    [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[guard clauses]:
+    https://en.wikipedia.org/wiki/Guard_(computer_science)
+
+[never type in typescript]:
+    https://www.zhenghao.io/posts/ts-never
+
+[unreachable code and exhaustiveness checking in python]:
+    https://typing.readthedocs.io/en/latest/source/unreachable.html
+
+<!-- prettier-ignore-end -->

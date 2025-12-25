@@ -90,7 +90,7 @@ Neat, but don't abuse this. [Effective Go warns]:
 - [Interface guards - Caddy docs]
 - [Tweet by Matt Boyle]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- interfaces in effective go -->

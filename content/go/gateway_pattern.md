@@ -263,7 +263,7 @@ In Go context, the core idea is that a service function uses a locally defined g
 interface to communicate with external gateway providers. This way, the service and the
 external providers are unaware of each other's existence and can be tested independently.
 
-<!--References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

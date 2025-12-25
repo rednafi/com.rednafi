@@ -772,7 +772,7 @@ with complicated code that performs worse than the naive solution.
 - [Easy concurrency in Python]
 - [Adventures in Python with concurrent.futures]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [gil]:

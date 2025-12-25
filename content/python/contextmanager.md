@@ -131,8 +131,8 @@ You can use context managers as decorators also. To do so, while defining the cl
 have to inherit from `contextlib.ContextDecorator` class. Let's make a `RunTime` decorator
 that'll be applied on a file-opening function. The decorator will:
 
--   Print a user provided description of the function.
--   Print the time it takes to run the function.
+- Print a user provided description of the function.
+- Print the time it takes to run the function.
 
 ```py
 from contextlib import ContextDecorator
@@ -506,8 +506,8 @@ Another great use case for context managers is making parameters persistent acro
 HTTP requests. Python's `requests` library has a `Session` object that will let you easily
 achieve this. So, if you're making several requests to the same host, the underlying TCP
 connection will be reused, which can result in a significant performance increase. The
-following example is taken directly from the official docs of the requests[^1] library.
-Let's persist some cookies across requests.
+following example is taken directly from the official docs of the [requests] library. Let's
+persist some cookies across requests.
 
 ```py
 with requests.Session() as session:
@@ -531,22 +531,33 @@ This should show:
 To avoid redundencies, I have purposefully excluded examples of nested with statements and
 now deprecated `contextlib.nested` function to create nested context managers.
 
-[^1]:
-    [Session objects in requests](https://docs.python-requests.org/en/latest/user/advanced/#session-objects)
+## References
 
-[^2]:
-    [Python contextlib documentation](https://docs.python.org/3/library/contextlib.html)
-    [^2]
+- [Python contextlib documentation]
+- [Python with context manager - Jeff Knupp]
+- [SQLAlchemy session creation]
+- [Scipy lectures: context managers]
+- [Merging context managers]
 
-[^3]:
-    [Python with context manager - Jeff Knupp](https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [SQLAlchemy session creation](https://docs.sqlalchemy.org/en/20/core/engines.html) [^4]
+[requests]:
+    https://docs.python-requests.org/en/latest/user/advanced/#session-objects
 
-[^5]:
-    [Scipy lectures: context managers](https://scipy-lectures.org/advanced/advanced_python/index.html#context-managers)
-    [^5]
+[python contextlib documentation]:
+    https://docs.python.org/3/library/contextlib.html
 
-[^6]: [Merging context managers](https://stackoverflow.com/a/45681273/8963300) [^6]
+[python with context manager - jeff knupp]:
+    https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/
+
+[sqlalchemy session creation]:
+    https://docs.sqlalchemy.org/en/20/core/engines.html
+
+[scipy lectures: context managers]:
+    https://scipy-lectures.org/advanced/advanced_python/index.html#context-managers
+
+[merging context managers]:
+    https://stackoverflow.com/a/45681273/8963300
+
+<!-- prettier-ignore-end -->

@@ -61,7 +61,7 @@ hello(1)  # Mypy doesn't complain about it all
 
 All this for nothing!
 
-PEP-612[^1] proposed `ParamSpec` and `Concatenate` in the `typing` module to address this
+[PEP-612] proposed `ParamSpec` and `Concatenate` in the `typing` module to address this
 issue. Later on, these were introduced in Python 3.10. The former is required to precisely
 add type hints to any decorator while the latter is needed to type annotate decorators that
 change wrapped functions' signatures.
@@ -194,7 +194,7 @@ Above, I've changed the type of the `logger` parameter from `logging.Logger` to 
 type checker will now dutifully chastise us for our transgressions.
 
 Unfortunately, as of writing this post, Mypy doesn't understand `Concatenate` but
-Microsoft's Pyright[^2] does. You can pip install Pyright and test out the above snippet as
+Microsoft's [Pyright] does. You can pip install Pyright and test out the above snippet as
 follows:
 
 ```sh
@@ -210,11 +210,20 @@ Parameter 1: type "Logger" cannot be assigned to type "int"
 ./src.py:83:12 - error: Cannot access member "warning" for type "int"
 ```
 
-[^1]:
-    [PEP 612 -- Parameter specification variables](https://www.python.org/dev/peps/pep-0612/)
+## References
 
-[^2]: [pyright](https://github.com/microsoft/pyright)
+- [Decorator typing (PEP 612) - Anthony explains #386]
 
-[^3]:
-    [Decorator typing (PEP 612) - Anthony explains #386](https://www.youtube.com/watch?v=fwZoxWyMGM8)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pep-612]:
+    https://www.python.org/dev/peps/pep-0612/
+
+[pyright]:
+    https://github.com/microsoft/pyright
+
+[decorator typing (pep 612) - anthony explains #386]:
+    https://www.youtube.com/watch?v=fwZoxWyMGM8
+
+<!-- prettier-ignore-end -->

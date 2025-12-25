@@ -1,9 +1,6 @@
 ---
 title: Configuring options in Go
 date: 2023-09-05
-slug: configure-options
-aliases:
-    - /go/configure_options/
 tags:
     - Go
 ---

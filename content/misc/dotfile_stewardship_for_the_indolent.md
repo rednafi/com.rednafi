@@ -21,12 +21,12 @@ the years, I've accumulated a few config files here and there, which were histor
 backed up in a git repository and restored manually whenever necessary. MacOS's time machine
 made sure that I didn't need to do it very often. So I never paid much attention to it.
 
-But recently, I came across GNU stow[^1] and realized that people have been using it for
-years to manage their configs. I tried it and found that it works perfectly for what I need.
-It's a nifty little tool written in perl that allows you to store all of your config files
-in a git repository and symlink them to the targeted directories. The tool is pretty
-versatile and you can do a lot more than just dotfile management. But for this purpose, only
-two commands will do. The workflow roughly goes like this:
+But recently, I came across [GNU stow] and realized that people have been using it for years
+to manage their configs. I tried it and found that it works perfectly for what I need. It's
+a nifty little tool written in perl that allows you to store all of your config files in a
+git repository and symlink them to the targeted directories. The tool is pretty versatile
+and you can do a lot more than just dotfile management. But for this purpose, only two
+commands will do. The workflow roughly goes like this:
 
 ```txt
 ┌─────────────────┐
@@ -124,8 +124,15 @@ One neat side effect of managing configs in this manner is that, since symlinks 
 to the original files living in the source repo, any changes made to the source files are
 automatically reflected in the destination configs.
 
-Here are my dotfiles[^2] and a few management scripts in all their splendor!
+Here are my [dotfiles] and a few management scripts in all their splendor!
 
-[^1]: [GNU stow](https://www.gnu.org/software/stow/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Dotfiles](https://github.com/rednafi/dot)
+[gnu stow]:
+    https://www.gnu.org/software/stow/
+
+[dotfiles]:
+    https://github.com/rednafi/dot
+
+<!-- prettier-ignore-end -->

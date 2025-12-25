@@ -270,6 +270,13 @@ Running the query gives us the following output:
 | 11 | Product 1 | 51.0  | Category 1 |
 ```
 
-[^1]:
-    [Django get a queryset from an array of id's in a specific order - Stack Overflow](https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order)
-    [^1]
+## References
+
+- [Django get a queryset from an array of id's in a specific order - Stack Overflow]
+
+<!-- prettier-ignore-start -->
+
+[django get a queryset from an array of id's in a specific order - stack overflow]:
+    https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order
+
+<!-- prettier-ignore-end -->

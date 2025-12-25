@@ -288,10 +288,10 @@ Here, I've imported `ABC` class and `abstractmethod` decorator from the `abc` mo
 Python's standard library. The name `ABC` stands for _Abstract Base Class_. The interface
 class needs to inherit from this `ABC`class and all the abstract methods need to be
 decorated using the `abstractmethod` decorator. If your knowledge on decorators are fuzzy,
-checkout this in-depth article on python decorators[^1].
+checkout this in-depth article on [Python decorators].
 
 Although, it seems like `ICalc` has merely inherited from the `ABC` class, under the hood, a
-metaclass[^2] `ABCMeta` gets attached to the interface which essentially makes sure that you
+[metaclass] `ABCMeta` gets attached to the interface which essentially makes sure that you
 can't instantiate this class independently. Let's try to do so and see what happens:
 
 ```py
@@ -539,9 +539,8 @@ These can help you when -
   in separate classes so that each of them is about one feature (behavior).
 - You want to use one particular feature in many different classes.
 
-Let's see a contrived example. Consider Werkzeug's[^3] request and response system. Werkzeug
-is a small library that Flask[^4] depends on. I can make a plain old request object by
-saying:
+Let's see a contrived example. Consider [Werkzeug]'s request and response system. Werkzeug
+is a small library that [Flask] depends on. I can make a plain old request object by saying:
 
 ```py
 from werkzeug import BaseRequest
@@ -677,7 +676,7 @@ method `multiply`, a concrete method `multiply_show` and doesn't store any insta
 variable.
 
 If you really want to dive deeper into mixins and their real-life use cases, checkout the
-codebase of the requests[^5] library. It defines and employs many powerful mixin classes to
+codebase of the [requests library]. It defines and employs many powerful mixin classes to
 bestow superpowers upon different concrete classes.
 
 ## Building powerful custom data structures with mixins
@@ -1277,7 +1276,7 @@ to built-in sets.
 
 However, since no hashing happens, it's slower to perform addition and retrieval compared to
 built-in sets. The following code snippet was taken directly from Raymond Hettinger's 2019
-PyCon Russia talk[^6] on advanced data structures.
+PyCon Russia [talk on advanced data structures].
 
 ```py
 from collections.abc import MutableSet
@@ -1579,30 +1578,43 @@ Running the above code snippet will create a SQLite database named `foo.db` in y
 working directory. You can inspect the database with any database viewer and find your
 key-value pairs there. Everything else is the same as a built-in dictionary object.
 
-[^1]: [decorators](/python/decorators)
+## References
 
-[^2]: [metaclass](/python/metaclasses)
+- [Implementing an interface in Python - Real Python]
+- [What is a mixin, and why are they useful? - Stackoverflow]
+- [Mixins for fun and profit - Dan Hillard]
 
-[^3]: [werkzeug](https://werkzeug.palletsprojects.com/en/latest/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]: [flask](https://flask.palletsprojects.com/)
+[python decorators]:
+    /python/decorators
 
-[^5]:
-    [Mixins in the requests library](https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60)
+[metaclass]:
+    /python/metaclasses
 
-[^6]:
-    [Build powerful, new data structures with Python's abstract base classes - Raymond Hettinger](https://www.youtube.com/watch?v=S_ipdVNSFlo)
+[werkzeug]:
+    https://werkzeug.palletsprojects.com/en/latest/
 
-[^7]:
-    [Implementing an interface in Python - Real Python](https://realpython.com/python-interface/)
-    [^7]
+[flask]:
+    https://flask.palletsprojects.com/
 
-[^8]:
-    [What is a mixin, and why are they useful? - Stackoverflow](https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful)
-    [^8]
+[requests library]:
+    https://github.com/psf/requests/blob/8149e9fe54c36951290f198e90d83c8a0498289c/requests/models.py#L60
 
-[^9]:
-    [Mixins for fun and profit - Dan Hillard](https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556)
-    [^9]
+[talk on advanced data structures]:
+    https://www.youtube.com/watch?v=S_ipdVNSFlo
 
-[image_1]: https://blob.rednafi.com/static/images/mixins/img_1.png
+[implementing an interface in python - real python]:
+    https://realpython.com/python-interface/
+
+[what is a mixin, and why are they useful? - stackoverflow]:
+    https://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful
+
+[mixins for fun and profit - dan hillard]:
+    https://easyaspython.com/mixins-for-fun-and-profit-cb9962760556
+
+[image_1]:
+    https://blob.rednafi.com/static/images/mixins/img_1.png
+
+<!-- prettier-ignore-end -->

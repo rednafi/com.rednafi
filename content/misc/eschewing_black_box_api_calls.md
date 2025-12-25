@@ -69,7 +69,7 @@ returns:
 }
 ```
 
-This is how you'd call the API endpoint in Go. I'm using this json-to-go[^1] service to
+This is how you'd call the API endpoint in Go. I'm using this [json-to-go] service to
 generate the Go struct instead of handwriting it:
 
 ```go
@@ -203,9 +203,9 @@ Also, unlike Go, you can't define a structure to represent only a portion of the
 payload in Python without adding extra code to ignore the rest of the fields that aren't
 relevant to you.
 
-Pydantic[^2] shines here. It not only allows you to define a class to represent a partial
+[Pydantic] shines here. It not only allows you to define a class to represent a partial
 payload structure, but also applies runtime validation to guarantee operational type safety.
-As a bonus, you can use a tool like this[^3] to generate pydantic classes from JSON:
+As a bonus, you can use [JSON to Pydantic] to generate pydantic classes from JSON:
 
 ```py
 from pydantic import BaseModel, Field
@@ -272,7 +272,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-In the JS land, you can adopt TypeScript and zod[^4] to achieve a similar result:
+In the JS land, you can adopt TypeScript and [zod] to achieve a similar result:
 
 ```ts
 // index.ts
@@ -299,10 +299,19 @@ I don't mind the added verbosity if it leads to better readability and type safe
 
 Fin!
 
-[^1]: [json-to-go](https://mholt.github.io/json-to-go/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
 
-[^2]: [pydantic](https://docs.pydantic.dev/latest/)
+[json-to-go]:
+    https://mholt.github.io/json-to-go/
 
-[^3]: [json-to-pydantic](https://jsontopydantic.com/)
+[pydantic]:
+    https://docs.pydantic.dev/latest/
 
-[^4]: [zod](https://github.com/colinhacks/zod)
+[json to pydantic]:
+    https://jsontopydantic.com/
+
+[zod]:
+    https://github.com/colinhacks/zod
+
+<!-- prettier-ignore-end -->

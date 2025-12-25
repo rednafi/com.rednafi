@@ -48,7 +48,12 @@ install `pytest` and `pytest-asyncio`. Then run:
 pytest -v -s --asyncio-mode=auto
 ```
 
-The idea came from this quora answer[^1].
+The idea came from this [Quora answer].
 
-[^1]:
-    [How do we test an infinite loop in Python using the unittest library?](https://qr.ae/pGDHVw)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[quora answer]:
+    https://qr.ae/pGDHVw
+
+<!-- prettier-ignore-end -->

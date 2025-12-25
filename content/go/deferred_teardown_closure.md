@@ -356,7 +356,7 @@ func TestInsertUser(t *testing.T) {
 
 Fin!
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- gophercon 2017: advanced testing with go - mitchell hashimoto -->

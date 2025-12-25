@@ -28,7 +28,7 @@ ShowShareButtons: false
 - [Simon Willison's Weblog]
 
 <!-- references -->
-<!-- prettier-format-start -->
+<!-- prettier-ignore-start -->
 
 <!-- friends -->
 
@@ -49,4 +49,4 @@ ShowShareButtons: false
 [peter bourgon]: https://peter.bourgon.org/
 [simon willison's weblog]: https://simonwillison.net/
 
-<!-- prettier-format-end -->
+<!-- prettier-ignore-end -->

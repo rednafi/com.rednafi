@@ -19,8 +19,9 @@ destination. This had two problems:
   concurrency control)
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously [written
-about this] here. Turns out, in Go, you could do the same with a buffered channel. Here's
-how the naive version without any concurrency control looks:
+about limiting concurrency with semaphores in Python]. Turns out, in Go, you could do the
+same with a buffered channel. Here's how the naive version without any concurrency control
+looks:
 
 ```go
 // go 1.24
@@ -165,22 +166,22 @@ instead of spawning more workers. This applies natural backpressure to the produ
 the system stable even under heavy load.
 
 Now, you might want to add extra abstractions over the core behavior to make it more
-ergonomic. Here's a [pointer] on how to do so. [Effective Go also mentions] this pattern
-briefly.
+ergonomic. Here's an [article on the semaphore concurrency pattern] for that. [Effective Go
+also mentions] this pattern briefly.
 
 ## Further readings
 
 - [How to wait until buffered channel semaphore is empty]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- Limit concurrency with semaphore - rednafi -->
-[written about this]:
+[written about limiting concurrency with semaphores in Python]:
     /python/limit_concurrency_with_semaphore
 
 <!-- go concurrency pattern: semaphore -->
-[pointer]:
+[article on the semaphore concurrency pattern]:
     https://levelup.gitconnected.com/go-concurrency-pattern-semaphore-9587d45f058d
 
 <!-- effective go - channels -->

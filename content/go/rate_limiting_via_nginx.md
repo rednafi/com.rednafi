@@ -22,8 +22,8 @@ amount of work.
 Also, ideally, rate limiting is an infrastructure concern; your app should be oblivious to
 it. Implementing rate limiting in a layer in front of your app prevents rogue requests from
 even reaching the app server in the event of an incident. So, I decided to spend some time
-investigating how to do it at the load balancer layer. [Nginx] makes it quite [manageable]
-without much fuss and the system was already using it as a reverse proxy.
+investigating how to do it at the load balancer layer. [Nginx] makes [rate limiting
+straightforward] and the system was already using it as a reverse proxy.
 
 For the initial pass, I chose to go with the default Nginx settings, avoiding any additional
 components like a Redis layer for centralized rate limiting.
@@ -395,11 +395,11 @@ This will print the same output as the local service.
 Nginx uses the [leaky bucket algorithm] to enforce the rate limiting, where requests arrive
 at the bucket at various rates and leave the bucket at fixed rate.
 
-Find the [complete implementation] on GitHub.
+Find the [full source code on GitHub].
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- what is a ddos attack? -->
@@ -414,13 +414,13 @@ Fin!
     https://www.nginx.com/
 
 <!-- rate limiting with nginx and nginx plus -->
-[manageable]:
+[rate limiting straightforward]:
     https://www.nginx.com/blog/rate-limiting-nginx/
 
 [leaky bucket algorithm]:
     https://en.wikipedia.org/wiki/Leaky_bucket
 
-[complete implementation]:
+[full source code on GitHub]:
     https://github.com/rednafi/nginx-ratelimit
 
 <!-- prettier-ignore-end -->

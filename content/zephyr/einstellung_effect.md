@@ -8,8 +8,8 @@ tags:
     - Essay
 ---
 
-In 9th grade, when I first learned about Lenz's Law[^1] in Physics class, I was fascinated
-by its implications. It states:
+In 9th grade, when I first learned about [Lenz's law] in Physics class, I was fascinated by
+its implications. It states:
 
 > _The direction of an induced current will always oppose the motion causing it._
 
@@ -39,7 +39,7 @@ actually have only a year's worth of experience repeated ten times.
 
 I've been looking for a phrase to label the dilemma where the curse of knowledge,
 accumulated over time, prevents you from acquiring new knowledge and adopting new ways of
-thinking. Turns out, there's one for that — the Einstellung effect[^2]. Einstellung is a
+thinking. Turns out, there's one for that — the [Einstellung effect]. Einstellung is a
 German word for "attitude" or "setting." It describes a situation where we stick to a
 familiar way of thinking or solving problems, which can stop us from seeing or seeking
 easier or better solutions. This only gets worse as we start growing older or becoming more
@@ -67,10 +67,18 @@ It's natural for us to acquire new skills by mapping them with what we already k
 that's true for any skill — whether it's learning to cook a new dish or writing in an
 unfamiliar programming language. But at the same time, as we grow older, we actively need to
 strain against the tide to learn to learn like kids. Because without it, we are nothing but
-simulacra acting as conscious exotica[^3], spellbound by the allure of mimicry!
+[simulacra acting as conscious exotica], spellbound by the allure of mimicry!
 
-[^1]: [Lenz's law](https://www.youtube.com/watch?v=QwUq8xM_8bY)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Einstellung effect](https://en.wikipedia.org/wiki/Einstellung_effect)
+[lenz's law]:
+    https://www.youtube.com/watch?v=QwUq8xM_8bY
 
-[^3]: [Simulacra acting as conscious exotica](https://arxiv.org/abs/2402.12422)
+[einstellung effect]:
+    https://en.wikipedia.org/wiki/Einstellung_effect
+
+[simulacra acting as conscious exotica]:
+    https://arxiv.org/abs/2402.12422
+
+<!-- prettier-ignore-end -->

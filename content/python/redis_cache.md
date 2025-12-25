@@ -11,10 +11,10 @@ tags:
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._
 
-Recently, I was working with MapBox's[^1] Route optimization API[^2]. Basically, it tries to
-solve the traveling salesman problem[^3] where you provide the API with coordinates of
+Recently, I was working with [MapBox]'s [Route optimization API]. Basically, it tries to
+solve the [traveling salesman problem] where you provide the API with coordinates of
 multiple places and it returns a duration-optimized route between those locations. This is a
-perfect usecase where Redis[^4] caching can come handy. Redis is a fast and lightweight
+perfect usecase where [Redis] caching can come handy. Redis is a fast and lightweight
 in-memory database with additional persistence options; making it a perfect candidate for
 the task at hand. Here, caching can save you from making redundant API requests and also, it
 can dramatically improve the response time as well.
@@ -33,9 +33,9 @@ this:
 ## Setting up Redis & RedisInsight
 
 To proceed with the above workflow, you'll need to install and setup Redis database on your
-system. For monitoring the database, I'll be using RedisInsight[^5]. The easiest way to
-setup Redis and RedisInsight is through Docker[^6]. Here's a docker-compose that you can use
-to setup everything with a single command.
+system. For monitoring the database, I'll be using [RedisInsight]. The easiest way to setup
+Redis and RedisInsight is through [Docker]. Here's a docker-compose that you can use to
+setup everything with a single command.
 
 ```yml
 # docker-compose.yml
@@ -168,11 +168,11 @@ def get_routes_from_api(coordinates: str) -> dict:
         return response.json()
 ```
 
-The above code uses Python's httpx[^7] library to make the get request. Httpx is almost a
-drop-in replacement for the ubiquitous requests[^8] library but way faster and has async
+The above code uses Python's [httpx] library to make the get request. Httpx is almost a
+drop-in replacement for the ubiquitous [requests] library but way faster and has async
 support. Here, I've used context manager `httpx.Client()` for better resource management
 while making the `get` request. You can read more about context managers and how to use them
-for hassle free resource management here[^9].
+for hassle free resource management in my [previous write-up on context managers].
 
 The `base_url` is the base url of the route optimization API and the you'll need to provide
 your own access token in the `access_token` field. Notice, how the `url` variable builds up
@@ -252,8 +252,8 @@ def route_optima(coordinates: str) -> dict:
 ### Exposing as an API
 
 This part of the code wraps the original Route Optimization API and exposes that as a new
-endpoint. I've used FastAPI[^10] to build the wrapper API. Doing this also hides the
-underlying details of authentication and the actual endpoint of the MapBox API.
+endpoint. I've used [FastAPI] to build the wrapper API. Doing this also hides the underlying
+details of authentication and the actual endpoint of the MapBox API.
 
 ```py
 from fastapi import FastAPI
@@ -499,7 +499,7 @@ interactive UI. Go ahead and inspect how the caching works for new coordinates.
 
 ## Remarks
 
-You can find the complete source code of the app [here][^11].
+You can find the [complete source code of the app] on GitHub.
 
 ## Disclaimer
 
@@ -507,30 +507,52 @@ This app has been made for demonstration purpose only. So it might not reflect t
 practices of production ready applications. Using APIs without authentication like this is
 not recommended.
 
-[^1]: [Mapbox](https://www.mapbox.com/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Route optimization API](https://docs.mapbox.com/api/navigation/#optimization)
+[mapbox]:
+    https://www.mapbox.com/
 
-[^3]:
-    [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+[route optimization api]:
+    https://docs.mapbox.com/api/navigation/#optimization
 
-[^4]: [Redis](https://redis.io/)
+[traveling salesman problem]:
+    https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
-[^5]: [RedisInsight](https://redislabs.com/redisinsight/)
+[redis]:
+    https://redis.io/
 
-[^6]: [Dockjer](https://www.docker.com/)
+[redisinsight]:
+    https://redislabs.com/redisinsight/
 
-[^7]: [HTTPx](https://github.com/encode/httpx)
+[docker]:
+    https://www.docker.com/
 
-[^8]: [requests](https://github.com/psf/requests)
+[httpx]:
+    https://github.com/encode/httpx
 
-[^9]: [contextmanager](/python/contextmanager)
+[requests]:
+    https://github.com/psf/requests
 
-[^10]: [FastAPI](https://fastapi.tiangolo.com/)
+[previous write-up on context managers]:
+    /python/contextmanager
 
-[^11]: [HTTP request caching with Redis](https://github.com/rednafi/redis-request-caching)
+[fastapi]:
+    https://fastapi.tiangolo.com/
 
-[image_1]: https://blob.rednafi.com/static/images/redis_cache/img_1.png
-[image_2]: https://blob.rednafi.com/static/images/redis_cache/img_2.png
-[image_3]: https://blob.rednafi.com/static/images/redis_cache/img_3.png
-[image_4]: https://blob.rednafi.com/static/images/redis_cache/img_4.png
+[complete source code of the app]:
+    https://github.com/rednafi/redis-request-caching
+
+[image_1]:
+    https://blob.rednafi.com/static/images/redis_cache/img_1.png
+
+[image_2]:
+    https://blob.rednafi.com/static/images/redis_cache/img_2.png
+
+[image_3]:
+    https://blob.rednafi.com/static/images/redis_cache/img_3.png
+
+[image_4]:
+    https://blob.rednafi.com/static/images/redis_cache/img_4.png
+
+<!-- prettier-ignore-end -->

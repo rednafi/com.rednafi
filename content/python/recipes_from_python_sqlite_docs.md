@@ -9,7 +9,7 @@ tags:
     - Python
 ---
 
-While going through the documentation of Python's `sqlite3`[^1] module, I noticed that it's
+While going through the documentation of Python's [sqlite3] module, I noticed that it's
 quite API-driven, where different parts of the module are explained in a prescriptive
 manner. I, however, learn better from examples, recipes, and narratives. Although a few good
 recipes already exist in the docs, I thought I'd also enlist some of the examples I tried
@@ -416,12 +416,12 @@ authorization control. Here, `auth_callback` takes in 5 arguments. From the docs
 > SQLite documentation about the possible values for the first argument and the meaning of
 > the second and third arguments depending on the first one.
 
-You can find the list of all the supported actions here[^2]. In the following example, I'm
-disallowing create table, create index, drop table, and drop index actions. To deny an
-action, the `auth_callback` will have to return `sqlite3.SQLITE_DENY` and that'll raise an
-`sqlite3.DatabaseError` exception whenever a user tries to execute any of the restricted
-actions. Returning `sqlite3.SQLITE_OK` from the callback ensures that unfiltered actions can
-still pass through the guardrail without incurring any errors.
+You can find the [list of all the supported actions] in the SQLite documentation. In the
+following example, I'm disallowing create table, create index, drop table, and drop index
+actions. To deny an action, the `auth_callback` will have to return `sqlite3.SQLITE_DENY`
+and that'll raise an `sqlite3.DatabaseError` exception whenever a user tries to execute any
+of the restricted actions. Returning `sqlite3.SQLITE_OK` from the callback ensures that
+unfiltered actions can still pass through the guardrail without incurring any errors.
 
 ```py
 # src.py
@@ -1061,6 +1061,13 @@ with conn:
 ]
 ```
 
-[^1]: [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [SQLite actions](https://www.sqlite.org/c3ref/constlist.html)
+[sqlite3]:
+    https://docs.python.org/3/library/sqlite3.html
+
+[list of all the supported actions]:
+    https://www.sqlite.org/c3ref/constlist.html
+
+<!-- prettier-ignore-end -->

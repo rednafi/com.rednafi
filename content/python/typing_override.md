@@ -10,10 +10,9 @@ tags:
 ---
 
 Although I've been using Python 3.12 in production for nearly a year, one neat feature in
-the typing module that escaped me was the `@override` decorator. Proposed in PEP-698[^1],
-it's been hanging out in `typing_extensions` for a while. This is one of those small
-features you either don't care about or get totally psyched over. I'm definitely in the
-latter camp.
+the typing module that escaped me was the `@override` decorator. Proposed in [PEP-698], it's
+been hanging out in `typing_extensions` for a while. This is one of those small features you
+either don't care about or get totally psyched over. I'm definitely in the latter camp.
 
 In languages like C#, Java, and Kotlin, explicit overriding is required. For instance, in
 Java, you use `@Override` to make it clear you're overriding a method in a sub class. If you
@@ -106,4 +105,10 @@ decorator.
 I've been gradually adding the `@override` decorator to my code, as it not only prevents
 typos but also alerts me if an upstream method name changes.
 
-[^1]: [PEP 698 – Override decorator for static typing](https://peps.python.org/pep-0698/)
+<!-- Resources -->
+<!-- prettier-ignore-start -->
+
+[pep-698]:
+    https://peps.python.org/pep-0698/
+
+<!-- prettier-ignore-end -->

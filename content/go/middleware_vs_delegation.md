@@ -277,7 +277,7 @@ I usually start with the embedded delegation and gradually introduce the middlew
 if I need it later. It's easier to adopt the middleware pattern if you start with delegation
 than the other way around.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [gin repo]:
