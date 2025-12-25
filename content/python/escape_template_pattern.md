@@ -485,7 +485,7 @@ language like Python, you can't always escape inheritance, nor should you try to
 
 [^8]: [Webhook](https://zapier.com/blog/what-are-webhooks/)
 
-[^9]: [Structural subtyping](https://rednafi.com/python/structural_subtyping/)
+[^9]: [Structural subtyping](https://rednafi.com/python/structural-subtyping/)
 
 [^10]: [Mypy](https://mypy-lang.org/)
 

@@ -14,9 +14,9 @@ some events occur. The initial script would continuously poll a Kafka topic for 
 spawn worker goroutines in a fire-and-forget manner to make HTTP requests to the
 destination. This had two problems:
 
-- It could create unlimited goroutines if many events arrived quickly (no backpressure)
-- It might overload the destination system by making many concurrent requests (no
-  concurrency control)
+-   It could create unlimited goroutines if many events arrived quickly (no backpressure)
+-   It might overload the destination system by making many concurrent requests (no
+    concurrency control)
 
 In Python, I'd use just `asyncio.Semaphore` to limit concurrency. I've previously [written
 about this] here. Turns out, in Go, you could do the same with a buffered channel. Here's
@@ -170,14 +170,14 @@ briefly.
 
 ## Further readings
 
-- [How to wait until buffered channel semaphore is empty]
+-   [How to wait until buffered channel semaphore is empty]
 
 <!-- Resources -->
 <!-- prettier-ignore-start -->
 
 <!-- Limit concurrency with semaphore - rednafi -->
 [written about this]:
-    /python/limit_concurrency_with_semaphore
+    /python/limit-concurrency-with-semaphore/
 
 <!-- go concurrency pattern: semaphore -->
 [pointer]:

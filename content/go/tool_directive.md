@@ -102,8 +102,8 @@ problem the `tools.go` hack had.
 
 There's no built-in way to avoid this yet. So your options are:
 
-- Accept that dev and app deps will live in the same `go.mod` file.
-- Create a separate `tools` module to isolate your tooling. A bit clunky, but doable.
+-   Accept that dev and app deps will live in the same `go.mod` file.
+-   Create a separate `tools` module to isolate your tooling. A bit clunky, but doable.
 
 I went with the second option.
 
@@ -146,10 +146,10 @@ tooling is written in Go anyway, so this setup has been working okay.
 
 <!-- Omitting dev dependencies in Go binaries -->
 [written about this before]:
-    /go/omit_dev_dependencies_in_binaries
+    /go/omit-dev-dependencies-in-binaries/
 
 <!-- Go toolchain still sticks the dev dependencies into the main go.mod file -->
 [some of these pain points]:
-    /go/tool_directive/#still-not-perfect
+    /go/tool-directive/#still-not-perfect
 
 <!-- prettier-ignore-end -->
