@@ -304,7 +304,7 @@ at the end of the method chain._
 
 <!-- configuring options in go - rednafi -->
 [configuring options]:
-    /go/configure_options
+    /go/configure-options/
 
 <!-- benchmarking functional vs dysfunctional options pattern -->
 [rudimentary benchmark]:
