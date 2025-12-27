@@ -17,10 +17,10 @@ language.
 
 If we distill the most common questions that come up when organizing tests, they are:
 
--   Where to put the unit tests for a package
--   How to enable [white-box] and [black-box] testing
--   Where the [executable examples], [benchmarks], and [fuzz tests] should live
--   Where the integration and end-to-end tests for a service should live
+- Where to put the unit tests for a package
+- How to enable [white-box] and [black-box] testing
+- Where the [executable examples], [benchmarks], and [fuzz tests] should live
+- Where the integration and end-to-end tests for a service should live
 
 To answer these, let's consider a simple test subject.
 
@@ -279,11 +279,11 @@ be tucked away under `mypkg/test`.
 
 The general rule of thumb is:
 
--   Unit tests stay in the same package as the code.
--   Black-box tests use a `_test` package in the same directory.
--   Examples, benchmarks, and fuzz tests live with the unit tests, though you may put them
-    in `_test` if needed.
--   Integration and end-to-end tests live outside the SUT package tree.
+- Unit tests stay in the same package as the code.
+- Black-box tests use a `_test` package in the same directory.
+- Examples, benchmarks, and fuzz tests live with the unit tests, though you may put them in
+  `_test` if needed.
+- Integration and end-to-end tests live outside the SUT package tree.
 
 The following tree attempts to capture the full picture:
 
@@ -298,7 +298,7 @@ myapp/
     └── greet_integration_test.go    # integration or e2e tests
 ```
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

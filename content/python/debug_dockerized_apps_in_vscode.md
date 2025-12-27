@@ -12,9 +12,10 @@ tags:
 Despite using VSCode as my primary editor, I never really bothered to set up the native
 debugger to step through application code running inside Docker containers. Configuring the
 debugger to work with individual files, libraries, or natively running servers is
-trivial[^1]. So, I use it in those cases and just resort back to my terminal for debugging
-containerized apps running locally. However, after seeing a colleague's workflow in a
-pair-programming session, I wanted to configure the debugger to cover this scenario too.
+[straightforward]. So, I use it in those cases and just resort back to my terminal for
+debugging containerized apps running locally. However, after seeing a colleague's workflow
+in a pair-programming session, I wanted to configure the debugger to cover this scenario
+too.
 
 I'm documenting this to save my future self from banging his head against the wall trying to
 figure it out again.
@@ -27,9 +28,9 @@ from the app container which the debugger can connect to.
 
 ## App layout
 
-For demonstration, I'll go with a simple containerized starlette[^2] app served with
-uvicorn[^3]. However, the strategy will be similar for any web app. Here's the app's
-directory structure:
+For demonstration, I'll go with a simple containerized [Starlette] app served with
+[uvicorn]. However, the strategy will be similar for any web app. Here's the app's directory
+structure:
 
 ```txt
 src
@@ -133,15 +134,15 @@ through port `5678`. The next section will elaborate on how to run the debug ser
 container.
 
 Launch configuration will vary depending on your project and each project needs to be set up
-individually. The official doc[^4] lists out all the supported application types with
-example configurations. To avoid having to reconfigure the same app repetitively, tracking
-the entire `.vscode` directory via source control is probably a good idea.
+individually. The [VSCode debugging documentation] lists out all the supported application
+types with example configurations. To avoid having to reconfigure the same app repetitively,
+tracking the entire `.vscode` directory via source control is probably a good idea.
 
 ## Add docker-compose.debug.yml
 
 Next up, we'll need to update the `command` section of `services.web` in the
-`docker-compose.yml` to expose the debug server. The debugpy[^5] tool from Microsoft does
-that for us.
+`docker-compose.yml` to expose the debug server. The [debugpy] tool from Microsoft does that
+for us.
 
 However, instead of changing the `docker-compose.yml` file for debugging, we can add a
 separate file for it named `docker-compose.debug.yml`. Here's the content of it:
@@ -190,19 +191,27 @@ Now click on the debugger button and select the `Python: Remote attach` profile 
 debugging. Hack away!
 
 _P.S.: An altruist on Reddit brought to my attention that a more elaborate version of this,
-with prettier screenshots, can be found in the official documentation[^6]._
+with prettier screenshots, can be found in the [official documentation]._
 
-[^1]:
-    [Python debugging in VS Code](https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [starlette](https://www.starlette.io/)
+[straightforward]:
+    https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection
 
-[^3]: [uvicorn](https://www.uvicorn.org/)
+[starlette]:
+    https://www.starlette.io/
 
-[^4]:
-    [Debug Python within a container](https://code.visualstudio.com/docs/containers/debug-python)
+[uvicorn]:
+    https://www.uvicorn.org/
 
-[^5]: [debugpy](https://github.com/microsoft/debugpy/tree/main/src/debugpy)
+[vscode debugging documentation]:
+    https://code.visualstudio.com/docs/containers/debug-python
 
-[^6]:
-    [Python in a container](https://code.visualstudio.com/docs/containers/quickstart-python)
+[debugpy]:
+    https://github.com/microsoft/debugpy/tree/main/src/debugpy
+
+[official documentation]:
+    https://code.visualstudio.com/docs/containers/quickstart-python
+
+<!-- prettier-ignore-end -->

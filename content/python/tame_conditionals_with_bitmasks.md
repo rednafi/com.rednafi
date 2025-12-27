@@ -9,11 +9,11 @@ tags:
     - TIL
 ---
 
-The 100k context window of Claude 2[^1] has been a huge boon for me since now I can paste a
+The 100k context window of [Claude 2] has been a huge boon for me since now I can paste a
 moderately complex problem to the chat window and ask questions about it. In that spirit, it
 recently refactored some pretty gnarly conditional logic for me in such an elegant manner
-that it absolutely blew me away. Now, I know how bitmasks[^2] work and am aware of the
-existence of `enum.Flag`[^3] in Python. However, it never crossed my mind that flags can be
+that it absolutely blew me away. Now, I know how [bitmasks] work and am aware of the
+existence of [enum.Flag] in Python. However, it never crossed my mind that flags can be
 leveraged to trim conditional branches in such a clever manner that Claude illustrated. But
 once I looked at the proposed solution, the whole thing immediately clicked for me.
 
@@ -189,8 +189,8 @@ STYLE ^= BOLD  # Toggles BOLD bit on/off
 
 You can do a ton of other cool stuff with bitwise operations and bitmasks. However, this is
 pretty much all we need to know to curtail the twisted conditional branching necessitated by
-the business logic. Check out this incredibly in-depth article[^4] from Real Python on this
-topic if you want to dig deeper into bitwise operations.
+the business logic. Check out this incredibly in-depth [Python bitwise operators article]
+from Real Python if you want to dig deeper.
 
 ## Pruning conditional branches with flags
 
@@ -206,7 +206,7 @@ With all the intros and primers out of the way, we can now start working towards
   This function won't be responsible for dispatching the actual notification handlers;
   rather, it'll just map the attribute values of the `Client` instance to a fitting enum
   variant. We do this to keep the core business logic devoid of any external dependencies —
-  following Gary Bernhardt's functional core, imperative shell[^5] ethos.
+  following Gary Bernhardt's [functional core, imperative shell] ethos.
 
 - Finally, we'll define the `notify` function that'll just accept the enum variant returned
   by the previous function and invoke the desired notification handlers.
@@ -292,13 +292,22 @@ also means that if a new notification channel pops up, all we'll need to do is u
 flat constructs and write the corresponding tests instead of battling with the twisted
 conditional statements that we started with. Not too shabby, eh?
 
-[^1]: [Claude 2](https://www.anthropic.com/index/claude-2)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Bitmasks](https://stackoverflow.com/questions/10493411/what-is-bit-masking)
+[claude 2]:
+    https://www.anthropic.com/index/claude-2
 
-[^3]: [enum.Flag](https://docs.python.org/3/library/enum.html#enum.Flag)
+[bitmasks]:
+    https://stackoverflow.com/questions/10493411/what-is-bit-masking
 
-[^4]: [Python bitwise operators](https://realpython.com/python-bitwise-operators/)
+[enum.Flag]:
+    https://docs.python.org/3/library/enum.html#enum.Flag
 
-[^5]:
-    [Functional core, imperative shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell)
+[python bitwise operators article]:
+    https://realpython.com/python-bitwise-operators/
+
+[functional core, imperative shell]:
+    https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell
+
+<!-- prettier-ignore-end -->

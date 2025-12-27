@@ -17,10 +17,10 @@ width="800px"> </img>
 Around a year ago, I ditched my fancy Linux rig for a beefed-up 16" MacBook Pro and ever
 since, it's been my primary machine for both personal and work stuff. I love how this
 machine strikes a decent balance between power and portability. However, I often joke that
-this chonky boy is just a pound shy of being an ENIAC[^1]. It's a beast of a machine when
-you need all that power, but certainly isn't the most convenient contraption to lug around
-while flying. I work fully remote, but can't get any work done while traveling and rarely
-ever need to tap into the full power this thing offers.
+this chonky boy is just a pound shy of being an [ENIAC]. It's a beast of a machine when you
+need all that power, but certainly isn't the most convenient contraption to lug around while
+flying. I work fully remote, but can't get any work done while traveling and rarely ever
+need to tap into the full power this thing offers.
 
 So I wanted to find an excuse to have separate machines for work and when I'm out and about.
 Sure, I could've gone for a 14" Pro to make it more portable and all, but here's the deal: I
@@ -70,9 +70,16 @@ Airbnb?
 Finally, I won't even talk about the insanely good battery life, as the Airs have been the
 reigning champion in that department for years. The 16" MBP already has great battery life,
 and the Air matches that with a smaller battery due to having less powerful but more
-efficient internals. Overall, even considering my recency bias[^2], this is certainly one of
-— if not the most — prudent tech purchases that I made this year!
+efficient internals. Overall, even considering my [recency bias], this is certainly one of —
+if not the most — prudent tech purchases that I made this year!
 
-[^1]: [ENIAC](https://en.wikipedia.org/wiki/ENIAC)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Recency Bias](https://en.wikipedia.org/wiki/Recency_bias)
+[eniac]:
+    https://en.wikipedia.org/wiki/ENIAC
+
+[recency bias]:
+    https://en.wikipedia.org/wiki/Recency_bias
+
+<!-- prettier-ignore-end -->

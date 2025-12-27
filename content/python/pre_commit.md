@@ -189,7 +189,7 @@ This should apply the pre-commit hooks to your code base harmoniously. From now 
 each commit, the hooks will make sure that your code complies with the rules imposed by the
 linters.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [pre-commit hooks]:

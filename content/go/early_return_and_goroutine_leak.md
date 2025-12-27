@@ -319,7 +319,7 @@ You can avoid this by:
 
 Add goleak to your tests so leaks surface early during development.
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [errgroup]:

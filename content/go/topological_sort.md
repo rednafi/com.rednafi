@@ -345,12 +345,12 @@ You can use this to make [custom task orchestrators].
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- python graphlib | my favourite python library -->
 [custom task orchestrators]:
     https://philuvarov.io/python-top-sort/
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-end -->

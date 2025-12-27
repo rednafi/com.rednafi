@@ -9,11 +9,11 @@ tags:
     - API
 ---
 
-While working with GitHub webhooks, I discovered a common pattern[^1] a webhook receiver can
-adopt to verify that the incoming webhooks are indeed arriving from GitHub; not from some
-miscreant trying to carry out a man-in-the-middle attack. After some amount of digging, I
-found that it's quite a common practice that many other webhook services employ as well.
-Also, check out how Sentry does it here[^2].
+While working with GitHub webhooks, I discovered a common [webhook security pattern] a
+receiver can adopt to verify that the incoming webhooks are indeed arriving from GitHub; not
+from some miscreant trying to carry out a man-in-the-middle attack. After some amount of
+digging, I found that it's quite a common practice that many other webhook services employ
+as well. Also, check out how [Sentry handles webhook verification].
 
 Moreover, GitHub's documentation demonstrates the pattern in Ruby. So I thought it'd be a
 good idea to translate that into Python in a more platform-agnostic manner. The core idea of
@@ -232,11 +232,10 @@ app = Starlette(
 ```
 
 > In the receiver, instead of using plain string comparison to compare the payload hashes,
-> leverage `secrets.compare_digest` to mitigate the possibility of timing attacks[^3].
+> leverage `secrets.compare_digest` to mitigate the possibility of [timing attacks].
 
-To test the end-to-end workflow, you'll need to pip install `httpx`[^4] and `uvicorn`[^5].
-Then on your console, you can run the two scripts in the background with the following
-command:
+To test the end-to-end workflow, you'll need to pip install [httpx] and [uvicorn]. Then on
+your console, you can run the two scripts in the background with the following command:
 
 ```sh
 nohup uvicorn sender:app --reload --port 5000 > /dev/null \
@@ -268,14 +267,22 @@ content-type: application/json
 The reciver will return a HTTP 400 error code if it can't verify the payload. Once you're
 done, kill the running servers with `sudo pkill uvicorn` command.
 
-[^1]:
-    [Securing your webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [Sentry hook resources](https://docs.sentry.io/product/integrations/integration-platform/webhooks/#sentry-hook-resource)
+[webhook security pattern]:
+    https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks
 
-[^3]: [Timing attack](https://en.wikipedia.org/wiki/Timing_attack)
+[sentry handles webhook verification]:
+    https://docs.sentry.io/product/integrations/integration-platform/webhooks/#sentry-hook-resource
 
-[^4]: [HTTPx](https://www.python-httpx.org/)
+[timing attacks]:
+    https://en.wikipedia.org/wiki/Timing_attack
 
-[^5]: [Uvicorn](https://www.uvicorn.org/)
+[httpx]:
+    https://www.python-httpx.org/
+
+[uvicorn]:
+    https://www.uvicorn.org/
+
+<!-- prettier-ignore-end -->

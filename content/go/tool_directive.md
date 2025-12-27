@@ -23,8 +23,9 @@ version of the tools before running them. Chaos!
 ## The `tools.go` convention
 
 To avoid this mess, the Go community came up with a convention where you'd pin your tool
-versions in a `tools.go` file. I've [written about this before]. But the gist is, you'd have
-a `tools.go` file in your root directory that imports the tooling and assigns them to `_`:
+versions in a `tools.go` file. I've [written about omitting dev dependencies before]. But
+the gist is, you'd have a `tools.go` file in your root directory that imports the tooling
+and assigns them to `_`:
 
 ```go
 //go:build tools
@@ -48,7 +49,7 @@ This works, but it always felt a bit clunky. You end up polluting your main `go.
 tooling-only dependencies. And sometimes, transitive dependencies of those tools clash with
 your app's dependencies.
 
-The new `tool` directive in Go 1.24 solves [some of these pain points].
+The new `tool` directive in Go 1.24 solves [some of the tools.go pain points].
 
 ## Enter the `tool` directive
 
@@ -102,8 +103,8 @@ problem the `tools.go` hack had.
 
 There's no built-in way to avoid this yet. So your options are:
 
--   Accept that dev and app deps will live in the same `go.mod` file.
--   Create a separate `tools` module to isolate your tooling. A bit clunky, but doable.
+- Accept that dev and app deps will live in the same `go.mod` file.
+- Create a separate `tools` module to isolate your tooling. A bit clunky, but doable.
 
 I went with the second option.
 
@@ -141,15 +142,13 @@ Another limitation is that it only works with tools written in Go. So if you're 
 like `eslint`, `prettier`, or `jq`, you're on your own. But for most of my projects, the dev
 tooling is written in Go anyway, so this setup has been working okay.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
-<!-- Omitting dev dependencies in Go binaries -->
-[written about this before]:
+[written about omitting dev dependencies before]:
     /go/omit-dev-dependencies-in-binaries/
 
-<!-- Go toolchain still sticks the dev dependencies into the main go.mod file -->
-[some of these pain points]:
+[some of the tools.go pain points]:
     /go/tool-directive/#still-not-perfect
 
 <!-- prettier-ignore-end -->

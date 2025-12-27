@@ -166,12 +166,18 @@ overhead as any time you change the model, you'll have to remember to keep the
 `update_fields`, Django will silently ignore the incoming data against that field and data
 will be lost.
 
-## References
+## Further reading
 
-[^1]:
-    [Specifying which fields to save - Django docs](https://docs.djangoproject.com/en/4.1/ref/models/instances/#specifying-which-fields-to-save)
-    [^1]
+- [Specifying which fields to save - Django docs]
+- [Save your Django models using update_fields for better performance - Reddit]
 
-[^2]:
-    [Save your Django models using update_fields for better performance - Reddit](https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/)
-    [^2]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[specifying which fields to save - django docs]:
+    https://docs.djangoproject.com/en/4.1/ref/models/instances/#specifying-which-fields-to-save
+
+[save your django models using update_fields for better performance - reddit]:
+    https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/
+
+<!-- prettier-ignore-end -->

@@ -111,8 +111,18 @@ In [6]: ANY == None
 Out[6]: True
 ```
 
-[^1]: [unittest.mock.ANY](https://docs.python.org/3/library/unittest.mock.html#any) [^1]
+## Further reading
 
-[^2]:
-    [ANY in the wild](https://github.com/rednafi/example-rq-sentry/blob/9630e8ae31197fea6606a1972a108fa70de8b331/tests/test_tasks.py#L19)
-    [^2]
+- [unittest.mock.ANY]
+- [ANY in the wild]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[unittest.mock.ANY]:
+    https://docs.python.org/3/library/unittest.mock.html#any
+
+[any in the wild]:
+    https://github.com/rednafi/example-rq-sentry/blob/9630e8ae31197fea6606a1972a108fa70de8b331/tests/test_tasks.py#L19
+
+<!-- prettier-ignore-end -->

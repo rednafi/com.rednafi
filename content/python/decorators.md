@@ -865,7 +865,7 @@ above demonstrate that.
 
 Personally, I find it cumbersome how you need three layers of nested functions to define a
 generalized decorator that can be used with or without arguments. David Beazley in his
-Python Cookbook[^1] shows an excellent way to define generalized decorators without writing
+[Python Cookbook] shows an excellent way to define generalized decorators without writing
 three levels of nested functions. It uses the built in `functools.partial` function to
 achieve that. The following is a pattern you can use to define generalized decorators in a
 more elegant way:
@@ -1254,16 +1254,25 @@ request on the terminal. Moreover, if you inspect the `logger_list`, you'll find
 registered logger there. You'll find a lot more real life usage of decorators in the Flask
 framework.
 
-[^1]: [Python Cookbook - David Beazley](https://realpython.com/asins/1449340377/)
+## Further reading
 
-[^2]:
-    [Primer on Python decorator - Real Python](https://realpython.com/primer-on-python-decorators/)
-    [^2]
+- [Primer on Python decorator - Real Python]
+- [Decorators in Python - Datacamp]
+- [5 reasons you need to write python decorators]
 
-[^3]:
-    [Decorators in Python - Datacamp](https://www.datacamp.com/community/tutorials/decorators-python)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [5 reasons you need to write python decorators](https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/)
-    [^4]
+[python cookbook]:
+    https://realpython.com/asins/1449340377/
+
+[primer on python decorator - real python]:
+    https://realpython.com/primer-on-python-decorators/
+
+[decorators in python - datacamp]:
+    https://www.datacamp.com/community/tutorials/decorators-python
+
+[5 reasons you need to write python decorators]:
+    https://www.oreilly.com/content/5-reasons-you-need-to-learn-to-write-python-decorators/
+
+<!-- prettier-ignore-end -->

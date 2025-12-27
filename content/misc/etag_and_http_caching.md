@@ -15,8 +15,8 @@ conditional HTTP headers like `If-Match` or `If-None-Match`. However, their inte
 feel a bit confusing at times.
 
 Every time I need to tackle this, I end up spending some time browsing through the relevant
-MDN docs[^1][^2][^3] to jog my memory. At this point, I've done it enough times to justify
-spending the time to write this.
+MDN docs on [ETag], [If-Match], and [If-None-Match] to jog my memory. At this point, I've
+done it enough times to justify spending the time to write this.
 
 ## Caching the response of a `GET` endpoint
 
@@ -52,7 +52,7 @@ Client                                 Server
   |                                       |
 ```
 
-We can test this workflow with GitHub's REST API suite via the GitHub CLI[^4]. If you've
+We can test this workflow with GitHub's REST API suite via the [GitHub CLI]. If you've
 installed the CLI and authenticated yourself, you can make a request like this:
 
 ```sh
@@ -76,7 +76,7 @@ I've truncated the response body and omitted the headers that aren't relevant to
 discussion. You can see that the HTTP status code is `200 OK` and the server has included an
 `ETag` header.
 
-The `W/` prefix indicates that a weak validator[^5] is used to validate the content of the
+The `W/` prefix indicates that a [weak validator] is used to validate the content of the
 cache. Using a weak validator means when the server compares the response payload to
 generate the hash, it doesn't do it bit-by-bit. So, if your response is JSON, then changing
 the format of the JSON won't change the value of the `ETag` header since two JSON payloads
@@ -107,15 +107,15 @@ data to the users when asked for.
 A few key points to keep in mind:
 
 - Always wrap your `ETag` values in double quotes when sending them with the `If-None-Match`
-  header, just as the spec says[^6].
+  header, just as the [spec says for conditional header values].
 
 - Using the `If-None-Match` header to pass the `ETag` value means that the client request is
   considered successful when the `ETag` value from the client doesn't match that of the
   server. When the values match, the server will return `304 Not Modified` with no body.
 
-- If we're writing a compliant server, when it comes to `If-None-Match`, the spec tells
-  us[^7] to use a weak comparison for ETags. This means that the client will still be able
-  to validate the cache with weak ETags, even if there have been slight changes to the
+- If we're writing a compliant server, when it comes to `If-None-Match`, the [spec tells us
+  to use weak comparison for ETags]. This means that the client will still be able to
+  validate the cache with weak ETags, even if there have been slight changes to the
   representation of the data.
 
 - If the client is a browser, it'll automatically manage the cache and send conditional
@@ -254,20 +254,28 @@ already have, wasting bandwidth and slowing things down.
 This inconsistency also means servers end up dealing with more requests for content that
 clients could have just used from their cache if ETags were consistent.
 
-[^1]: [Etag - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [If-Match - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)
+[etag]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
 
-[^3]:
-    [If-None-Match - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match)
+[if-match]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match
 
-[^4]: [GitHub CLI](https://cli.github.com/)
+[if-none-match]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match
 
-[^5]:
-    [Weak validation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#weak_validation)
+[github cli]:
+    https://cli.github.com/
 
-[^6]:
-    [Double quote in conditional header values](https://www.rfc-editor.org/rfc/rfc7232#section-3.2)
+[weak validator]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#weak_validation
 
-[^7]:
-    [Use weak comparison for Etags while caching](https://www.rfc-editor.org/rfc/rfc7232#section-2.3.2)
+[spec says for conditional header values]:
+    https://www.rfc-editor.org/rfc/rfc7232#section-3.2
+
+[spec tells us to use weak comparison for ETags]:
+    https://www.rfc-editor.org/rfc/rfc7232#section-2.3.2
+
+<!-- prettier-ignore-end -->

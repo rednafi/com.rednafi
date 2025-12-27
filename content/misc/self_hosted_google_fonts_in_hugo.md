@@ -84,7 +84,7 @@ the rest. Notice there's no `/static` prefix in the font's path. Find this blog'
 [header-override.css] if you're facing any trouble while doing it. Serve your website
 locally and ensure that the fonts are being loaded and displayed correctly. Deploy!
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

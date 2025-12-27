@@ -11,10 +11,10 @@ tags:
 ---
 
 Django Rest Framework exposes a neat hook to customize the response payload of your API when
-errors occur. I was going through Microsoft's REST API guideline[^1] and wanted to make the
-error response of my APIs more uniform and somewhat similar to this[^2].
+errors occur. I was going through [Microsoft's REST API guideline] and wanted to make the
+error response of my APIs more uniform and somewhat similar to [this example].
 
-I'll use a modified version of the quickstart example[^3] in the DRF docs to show how to
+I'll use a modified version of the [quickstart example] in the DRF docs to show how to
 achieve that. Also, we'll need a POST API to demonstrate the changes better. Here's the same
 example with the added POST API. Place this code in the project's `urls.py` file.
 
@@ -178,13 +178,23 @@ see this:
 
 Much nicer!
 
-[^1]: [API guidelines - Microsoft](https://github.com/microsoft/api-guidelines)
+## Further reading
 
-[^2]:
-    [Error payload](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples)
+- [Custom Exception Handling - DRF docs]
 
-[^3]: [DRF example](https://www.django-rest-framework.org/#example)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Custom Exception Handling - DRF docs](https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling)
-    [^4]
+[microsoft's rest api guideline]:
+    https://github.com/microsoft/api-guidelines
+
+[this example]:
+    https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#examples
+
+[quickstart example]:
+    https://www.django-rest-framework.org/#example
+
+[custom exception handling - drf docs]:
+    https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling
+
+<!-- prettier-ignore-end -->

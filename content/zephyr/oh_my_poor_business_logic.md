@@ -55,7 +55,7 @@ nightmare. I don't have an answer for that, nor have I worked at a company that 
 perfect balance. Plus, I'm not a technical lead, manager, or business owner. So if you are
 one of them, I'd love to hear how you or your organization plans to tackle this.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [resume-driven development]:

@@ -14,11 +14,11 @@ merge commit, while others love to preserve all the historical artifacts. There'
 both sides of the discussion. That being said, I kind of like rebasing because I'm a messy
 committer who:
 
--   Usually doesn't care for keeping atomic commits[^1].
--   Creates a lot of short commits with messages like "fix" or "wip".
--   Likes to clean up the untidy commits before sending the branch for peer review.
--   Prefers a linear history over a forked one so that `git log --oneline --graph` tells a
-    nice story.
+- Usually doesn't care for keeping [atomic commits].
+- Creates a lot of short commits with messages like "fix" or "wip".
+- Likes to clean up the untidy commits before sending the branch for peer review.
+- Prefers a linear history over a forked one so that `git log --oneline --graph` tells a
+  nice story.
 
 Git rebase allows me to squash my disordered commits into a neat little one, which bundles
 all the changes with passing tests and documentation. Sure, a similar result can be emulated
@@ -26,10 +26,9 @@ using `git merge --squash feat_branch` or GitHub's squash-merge feature, but to 
 feels cleaner. Plus, over time, I've subconsciously picked up the tricks to work my way
 around rebase-related gotchas.
 
-Julia Evans explores the pros and cons of rebasing in detail here[^2]. Also, squashing
-commits is just one of the many things that you can do with the rebase command. Here, I just
-wanted to document my daily rebasing workflow where I mostly rename, squash, or fixup
-commits.
+Julia Evans explores the [pros and cons of rebasing] in detail. Also, squashing commits is
+just one of the many things that you can do with the rebase command. Here, I just wanted to
+document my daily rebasing workflow where I mostly rename, squash, or fixup commits.
 
 ## A few assumptions
 
@@ -37,12 +36,12 @@ Broadly speaking, there are two common types of rebasing: rebasing a feature bra
 main branch and interactive rebasing on the feature branch itself. The workflow assumes a
 usual web service development cadence where:
 
--   You'll be working on a feature branch that's forked off of a main branch.
--   The main branch is protected, and you can't directly push your changes to it.
--   Once you're done with your feature work, you'll need to create a pull request against
-    the main branch.
--   After your PR is reviewed and merged onto the main branch, CI automatically deploys it
-    to some staging environment.
+- You'll be working on a feature branch that's forked off of a main branch.
+- The main branch is protected, and you can't directly push your changes to it.
+- Once you're done with your feature work, you'll need to create a pull request against the
+  main branch.
+- After your PR is reviewed and merged onto the main branch, CI automatically deploys it to
+  some staging environment.
 
 I'm aware this approach doesn't work for some niches in software development, but it's the
 one I'm most familiar with, so I'll go with it.
@@ -276,10 +275,20 @@ make sure they pass in the intermediate commits.
 
 Fin!
 
-[^1]:
-    [Atomic commits](https://suchdevblog.com/lessons/AtomicGitCommits.html#why-should-you-write-atomic-git-commits)
+## Further reading
 
-[^2]:
-    [Git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
+- [Hackernews discussion on rebasing]
 
-[^3]: [Hackernews discussion](https://news.ycombinator.com/item?id=40742628)[^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[atomic commits]:
+    https://suchdevblog.com/lessons/AtomicGitCommits.html#why-should-you-write-atomic-git-commits
+
+[pros and cons of rebasing]:
+    https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/
+
+[hackernews discussion on rebasing]:
+    https://news.ycombinator.com/item?id=40742628
+
+<!-- prettier-ignore-end -->

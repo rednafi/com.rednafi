@@ -56,9 +56,9 @@ One way to avoid this is by marking the `mock_env` fixture with
 However, I prefer not to use `autouse=True` because it can make reasoning about tests
 harder.
 
-TIL that you can use `@pytest.mark.usefixtures`[^1] to inject these implicit fixtures
-without cluttering the test function signature or using `autouse`. Here's the same test
-marked with `usefixtures`:
+TIL that you can use [@pytest.mark.usefixtures] to inject these implicit fixtures without
+cluttering the test function signature or using `autouse`. Here's the same test marked with
+`usefixtures`:
 
 ```py
 # ... same as above
@@ -80,12 +80,17 @@ no more greyed-out unused parameter warnings! The `usefixtures` marker also acce
 fixtures as variadic arguments: `@pytest.mark.usefixtures("fixture_a", "fixture_b")`.
 
 One thing to keep in mind is that it won't work if you try to mark another fixture with the
-`usefixtures` decorator. The pytest documentation includes a warning[^2] about this.
+`usefixtures` decorator. The pytest documentation includes a [warning] about this.
 
 Fin!
 
-[^1]:
-    [Use fixtures in classes and modules with usefixtures - Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [The usefixutre mark has no effect on fixtures - Pytest docs](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures:~:text=usefixtures%20%3D%20cleandir-,Warning,-Note%20this%20mark)
+[@pytest.mark.usefixtures]:
+    https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures
+
+[warning]:
+    https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#usefixtures:~:text=usefixtures%20%3D%20cleandir-,Warning,-Note%20this%20mark
+
+<!-- prettier-ignore-end -->

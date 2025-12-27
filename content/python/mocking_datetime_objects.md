@@ -26,7 +26,7 @@ def get_utcnow_isoformat() -> str:
 ```
 
 How'd you test it? Mocking out `datetime.datetime` is tricky because of its immutable
-nature. Third-party libraries like freezegun[^1] make it easier to mock and test functions
+nature. Third-party libraries like [freezegun] make it easier to mock and test functions
 like the one above. However, it's not too difficult to cover this simple case without any
 additional dependencies. Here's one way to achieve the goal:
 
@@ -76,8 +76,17 @@ src.py .                                              [100%]
 ====== 1 passed in 0.01s ======
 ```
 
-[^1]: [freezegun](https://github.com/spulec/freezegun)
+## Further reading
 
-[^2]:
-    [Python test using mock with datetime.utcnow — Stackoverflow](https://stackoverflow.com/questions/57671585/python-test-using-mock-with-datetime-utcnow)
-    [^2]
+- [Python test using mock with datetime.utcnow — Stackoverflow]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[freezegun]:
+    https://github.com/spulec/freezegun
+
+[python test using mock with datetime.utcnow — stackoverflow]:
+    https://stackoverflow.com/questions/57671585/python-test-using-mock-with-datetime-utcnow
+
+<!-- prettier-ignore-end -->
