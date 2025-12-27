@@ -84,6 +84,14 @@ Notice how I've used `self.assertIs` in the `is_true` and `is_false` methods to 
 test out the literal boolean values. The `is_truthy` and `is_falsy` methods were kept
 unchanged from the previous snippet.
 
-[^1]:
-    [Tweet by Drewrey Lupton](https://twitter.com/chieftanbonobo/status/741689567590395905)
-    [^1]
+## Further reading
+
+- [Tweet by Drewrey Lupton]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[tweet by drewrey lupton]:
+    https://twitter.com/chieftanbonobo/status/741689567590395905
+
+<!-- prettier-ignore-end -->

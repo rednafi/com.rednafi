@@ -8,8 +8,8 @@ tags:
     - Python
 ---
 
-While grokking the source code of `http.HTTPStatus` module, I came across this technique to
-add extra attributes to the values of enum members. Now, to understand what do I mean by
+While grokking the source code of the [http.HTTPStatus] module, I came across this technique
+to add extra attributes to the values of enum members. Now, to understand what do I mean by
 adding attributes, let's consider the following example:
 
 ```py
@@ -168,6 +168,11 @@ title=Green, hex_code=#00ff00, description=Guava Green
 title=Blue, hex_code=#0000ff, description=Baby Blue
 ```
 
-[^1]:
-    [http.HTTPStatus](https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6)
-    [^1]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[http.HTTPStatus]:
+    https://github.com/python/cpython/blob/6f1efd19a70839d480e4b1fcd9fecd3a8725824b/Lib/http/__init__.py#L6
+
+
+<!-- prettier-ignore-end -->

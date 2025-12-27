@@ -432,17 +432,16 @@ wrappedFunc := func() (any, error) {
 Now, `wrappedFunc` matches the `func() (any, error)` signature and can be used with our
 circuit breaker.
 
-Here's the [complete implementation] with tests.
+Here's the [complete implementation on GitHub] with tests.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- circuit breaker  —  martin fowler -->
 [circuit breakers]:
     https://martinfowler.com/bliki/CircuitBreaker.html
 
-<!-- circuit breaker implementation in go -->
-[complete implementation]:
+[complete implementation on GitHub]:
     https://github.com/rednafi/circuit-breaker
 
 <!-- prettier-ignore-end -->

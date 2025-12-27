@@ -9,9 +9,9 @@ tags:
     - TIL
 ---
 
-While working on a project with EdgeDB[^1] and FastAPI[^2], I wanted to perform health
-checks against the FastAPI server in the GitHub CI. This would notify me about the working
-state of the application. The idea is to:
+While working on a project with [EdgeDB] and [FastAPI], I wanted to perform health checks
+against the FastAPI server in the GitHub CI. This would notify me about the working state of
+the application. The idea is to:
 
 - Run the server in the background.
 - Run the commands against the server that'll denote that the app is in a working state.
@@ -68,10 +68,20 @@ considered successful. This will break the loop and the script will be terminate
 keep retrying 20 times with a 1 second interval between each subsequent request before
 giving up. A failed health check will cause the script to terminate with `exit 1` status.
 
-[^1]: [EdgeDB](https://www.edgedb.com/)
+## Further reading
 
-[^2]: [FastAPI](https://fastapi.tiangolo.com/)
+- [Difference between nohup and ampersand]
 
-[^3]:
-    [What's the difference between nohup and ampersand](https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[edgedb]:
+    https://www.edgedb.com/
+
+[fastapi]:
+    https://fastapi.tiangolo.com/
+
+[difference between nohup and ampersand]:
+    https://stackoverflow.com/questions/15595374/whats-the-difference-between-nohup-and-ampersand
+
+<!-- prettier-ignore-end -->

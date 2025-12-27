@@ -105,12 +105,12 @@ So, instead of using the `if not expression ... raise ValueError` pattern, we ca
 Otherwise, the statement will remain silent and allow the execution to move forward.
 
 This is more succinct and makes the code flatter. I've no idea why I haven't started using
-it earlier and this[^1] piece of code in the Starlette[^2] repository jolted my brain. Eh
-bien, better late than never, I guess.
+it earlier and this [assert usage in Starlette] jolted my brain. Eh bien, better late than
+never, I guess.
 
 ## Breadcrumbs
 
-After this blog was published, several people mentioned[^3] on Twitter that the second
+After this blog was published, several people [mentioned on Twitter] that the second
 approach has a small caveat. Python has a flag that allows you to disable `assert`
 statements in a script. You can disable the assertions in the snippet above by running the
 script with the `-OO` flag:
@@ -121,17 +121,23 @@ python -00 src.py
 
 Removing assert statements will disable the constraints needed for the second `throttle`
 function to work, which could lead to unexpected behavior or even subtle bugs. However, I
-see this being used frequently[^4] in frameworks like Starlette and FastAPI. Also, from my
+see this being used frequently in frameworks like [Starlette] and [FastAPI]. Also, from my
 experience, using assertions is much more common than running production code with the
 optimization flag.
 
-[^1]:
-    [Usage of assert in the Starlette codebase](https://github.com/encode/starlette/blob/14ef6bbbd6c5f03f0e1222a0a1b33ccc3a5f04cf/starlette/applications.py#L63)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Starlette](https://github.com/encode/starlette)
+[assert usage in Starlette]:
+    https://github.com/encode/starlette/blob/14ef6bbbd6c5f03f0e1222a0a1b33ccc3a5f04cf/starlette/applications.py#L63
 
-[^3]:
-    [Caveats of using asserts to enforce constraints](https://twitter.com/rednafi/status/1546010546297659392)
+[starlette]:
+    https://github.com/encode/starlette
 
-[^4]:
-    [Usage of assert in the FastAPI codebase](https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications)
+[mentioned on Twitter]:
+    https://twitter.com/rednafi/status/1546010546297659392
+
+[fastapi]:
+    https://github.com/tiangolo/fastapi/blob/bcabbf8b37db3fbc020560e94ad2f90e64d1510a/fastapi/applications
+
+<!-- prettier-ignore-end -->

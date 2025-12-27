@@ -271,7 +271,7 @@ give users a single `-h` command they can run to see all available options for t
 behavior. Tests are no exception. I was quite happy to find out that Peter Bourgon conveyed
 the same sentiment in this [seminal 2018 blog post].
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

@@ -217,7 +217,7 @@ This separation between subprocess creation and handling keeps tests focused and
 You can emulate different subprocess outcomes, such as errors or unexpected output, while
 keeping the process interaction logic untouched.
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

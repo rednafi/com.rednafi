@@ -473,7 +473,7 @@ This avoids extra allocations while giving the same result as:
 slog.Info("info message", "some int", 7)
 ```
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- official documentation - log/slog -->

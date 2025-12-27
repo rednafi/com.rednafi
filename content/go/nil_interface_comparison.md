@@ -11,7 +11,7 @@ tags:
 Comparing interface values in Go has caught me off guard a few times, especially with nils.
 Often, I'd expect a comparison to evaluate to `true` but got `false` instead.
 
-Many moons ago, Russ Cox wrote a fantastic [blog post] on interface internals that clarified
+Many moons ago, Russ Cox wrote a fantastic [post on Go interface internals] that clarified
 my confusion. This post is a distillation of my exploration of interfaces and nil
 comparisons.
 
@@ -19,9 +19,9 @@ comparisons.
 
 Roughly speaking, an interface in Go has three components:
 
--   A static type
--   A dynamic type
--   A dynamic value
+- A static type
+- A dynamic type
+- A dynamic value
 
 For example:
 
@@ -37,8 +37,8 @@ it adopts the dynamic type `int` and the dynamic value `1`.
 
 Internally, every interface value is implemented as a two [word] structure:
 
--   One word holds a pointer to the dynamic type (i.e., a type descriptor).
--   The other word holds the data associated with that type.
+- One word holds a pointer to the dynamic type (i.e., a type descriptor).
+- The other word holds the data associated with that type.
 
 This data word might directly contain the value if it's small enough, or it might hold a
 pointer to the actual data. Note that this internal representation is distinct from the
@@ -188,11 +188,10 @@ nil.
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
-<!-- go data structures: interfaces - russ cox -->
-[blog post]:
+[post on Go interface internals]:
     https://research.swtch.com/interfaces
 
 [word]:

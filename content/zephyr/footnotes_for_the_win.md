@@ -46,7 +46,7 @@ There are a few ways you can add URLs to your Markdown documents:
 
     This will render a bit differently with a clickable number beside the origin text that
     refers to the backref at the bottom of the document. Like this: footnote style reference
-    link[^1].
+    link (see [example link]).
 
     Try clicking on the number within the square brackets and see how the page scrolls down
     to the corresponding backref link that lives with other backrefs at the tail of the
@@ -68,9 +68,9 @@ But it suffers from a few issues:
 
 The reference link approach solves some of these issues since you won't have to scatter the
 URLs across your document or repeat them multiple times for multiple usage. This also allows
-you to use a Markdown formatter to enforce a maximum line width. I use prettier[^2] to cap
-the line width at 92 characters and the formatter works better when it doesn't have to
-shimmy around multiple long inline URLs.
+you to use a Markdown formatter to enforce a maximum line width. I use [prettier] to cap the
+line width at 92 characters and the formatter works better when it doesn't have to shimmy
+around multiple long inline URLs.
 
 This is certainly better than using inline links, but it still suffers from all the other
 issues that plague the former approach. Creating a reference section still requires some
@@ -87,30 +87,44 @@ reference section also allows you to provide more context on each link, like a t
 description.
 
 Moreover, adding multiple links to the same origin is straightforward since you simply add
-the footnote numbers like this[^3][^4]. Plus, you don't have to manually create a separate
-reference section; it automatically gets created for you as you start adding footnotes. See
-the reference section in this post and click on the backref links to go back to the origin.
-Most parsers like GitHub flavored Markdown[^5] now support footnotes out of the box.
+the footnote numbers like this (see [footnotes with extra texts] and [multiple footnotes]).
+Plus, you don't have to manually create a separate reference section; it automatically gets
+created for you as you start adding footnotes. See the reference section in this post and
+click on the backref links to go back to the origin. Most parsers like [GitHub flavored
+Markdown] now support footnotes out of the box.
 
 Recently, I've spent an entire evening converting almost all of the inline links on this
 site into footnote style references in a semi-automated manner. I still use reference links
 here and there but mostly prefer footnotes since they allow me to avoid repetition and
 subjectively look less distracting compared to underlined or highlighted URLs. And suddenly,
-prettier's[^2] job has become easier too!
+[prettier]'s job has become easier too!
 
-[^1]: https://example.com
+## Further reading
 
-[^2]: https://prettier.io/
+- [Checkout the raw Markdown file of this post]
 
-[^3]: Footnotes with extra texts <https://rednafi.com>
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    Multiple footnotes are less distracting than multiple side-by-side URLs
-    <https://rednafi.com/index>
+[example link]:
+    https://example.com
 
-[^5]: [GitHub flavored Markdown](https://github.github.com/gfm/)
+[prettier]:
+    https://prettier.io/
 
-[^6]:
-    [Checkout the raw Markdown file of this post](https://github.com/rednafi/rednafi.com/blob/main/content/zephyr/footnotes_for_the_win.md)
+[footnotes with extra texts]:
+    https://rednafi.com
 
-[reference link]: https://example.com
+[multiple footnotes]:
+    https://rednafi.com/index
+
+[github flavored markdown]:
+    https://github.github.com/gfm/
+
+[checkout the raw markdown file of this post]:
+    https://github.com/rednafi/rednafi.com/blob/main/content/zephyr/footnotes_for_the_win.md
+
+[reference link]:
+    https://example.com
+
+<!-- prettier-ignore-end -->

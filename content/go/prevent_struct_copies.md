@@ -118,9 +118,9 @@ func (*noCopy) Unlock() {}
 ```
 
 This doesn't trigger vet. It only works when `noCopy` is a struct. The reason is that vet
-takes a [shortcut] while checking when to trigger the warning. Currently, it explicitly
-looks for a struct that satisfies the `Locker` interface and ignores any other type even if
-it implements the interface.
+takes a [shortcut in the copylock checker] when deciding whether to trigger the warning.
+Currently, it explicitly looks for a struct that satisfies the `Locker` interface and
+ignores any other type even if it implements the interface.
 
 You'll see this in other parts of the sync package too. `sync.Mutex` uses the same trick:
 
@@ -175,7 +175,7 @@ The name `noCopy` isn't special. You can call it whatever you want. As long as i
 the `Locker` interface, `go vet` will complain if the surrounding struct gets copied. See
 this Go Playground [snippet].
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [sync.WaitGroup]:
@@ -185,14 +185,13 @@ this Go Playground [snippet].
 [sync/cond.go]:
     https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/sync/cond.go;l=111-122
 
-[Locker]:
+[locker]:
     https://github.com/golang/go/blob/336626bac4c62b617127d41dccae17eed0350b0f/src/sync/mutex.go#L37
 
 [copylock checker]:
     https://cs.opensource.google/go/x/tools/+/master:go/analysis/passes/copylock/copylock.go;l=39;drc=bacd4ba3666bbac3f6d08bede00fdcb2f5cbaacf
 
-<!-- copylock only checks for structs -->
-[shortcut]:
+[shortcut in the copylock checker]:
     https://cs.opensource.google/go/x/tools/+/refs/tags/v0.32.0:go/analysis/passes/copylock/copylock.go;l=338
 
 <!--The name noCopy isn't special-->

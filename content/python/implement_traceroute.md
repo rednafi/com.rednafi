@@ -10,10 +10,10 @@ aliases:
     - /python/implement_traceroute/
 ---
 
-I was watching this amazing lightning talk[^1] by Karla Burnett and wanted to understand how
-`traceroute` works in Unix. Traceroute is a tool that shows the route of a network packet
-from your computer to another computer on the internet. It also tells you how long it takes
-for the packet to reach each stop along the way.
+I was watching [Storytelling with traceroute] lightning talk by Karla Burnett and wanted to
+understand how `traceroute` works in Unix. Traceroute is a tool that shows the route of a
+network packet from your computer to another computer on the internet. It also tells you how
+long it takes for the packet to reach each stop along the way.
 
 It's useful when you want to know more about how your computer connects to other computers
 on the internet. For example, if you want to visit a website, your computer sends a request
@@ -70,10 +70,10 @@ of the traceroute.
 
 This is all good and dandy but I wanted to understand how `traceroute` can find out what
 route a packet takes and how long it takes between each hop. So I started reading blogs like
-this[^2] one that does an awesome job at explaining what's going on behind the scene. The
-gist of it goes as follows.
+[How traceroute works] that does an awesome job at explaining what's going on behind the
+scene. The gist of it goes as follows.
 
-## How traceroute works
+## Underneath traceroute
 
 Traceroute works by sending a series of ICMP (Internet Control Message Protocol) echo
 request packets, which are also known as pings, to the target IP address or URL that you
@@ -101,8 +101,8 @@ traceroute can trace the route that your packets take to reach the target IP add
 and measure the latency between each hop. The tool prints out the associated IPs and
 latencies as it jumps through different hops.
 
-I snagged this photo from an SFU (Simon Fraser University) slide[^3] that I think explains
-the machinery of `traceroute` quite well:
+I snagged this photo from an [SFU traceroute machinery slide] that I think explains the
+machinery of `traceroute` quite well:
 
 ![how traceroute works][image_1]
 
@@ -261,12 +261,19 @@ Hop  IP Address          Hostname                                          Time 
 10   93.184.216.34                                                         23.546     ms
 ```
 
-[^1]: [Storytelling with traceroute](https://www.youtube.com/watch?v=xW_ALxfop7Y)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [How traceroute works](https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command)
+[storytelling with traceroute]:
+    https://www.youtube.com/watch?v=xW_ALxfop7Y
 
-[^3]:
-    [Traceroute machinery slide](http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm)
+[how traceroute works]:
+    https://www.slashroot.in/how-does-traceroute-work-and-examples-using-traceroute-command
 
-[image_1]: https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+[sfu traceroute machinery slide]:
+    http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm
+
+[image_1]:
+    https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+
+<!-- prettier-ignore-end -->

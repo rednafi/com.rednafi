@@ -288,7 +288,7 @@ interface only requires it to implement `foo()`. The type switch dynamically che
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [go by example]:

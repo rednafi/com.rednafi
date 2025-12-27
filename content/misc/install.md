@@ -9,8 +9,8 @@ aliases:
     - /misc/install/
 ---
 
-TIL about the `install` command on \*nix systems. A quick GitHub search for the term brought
-up a ton of matches[^1]. I'm surprised I just found out about it now.
+TIL about the `install` command on \*nix systems. A quick [GitHub search for the term]
+brought up a ton of matches. I'm surprised I just found out about it now.
 
 Often, in shell scripts I need to:
 
@@ -33,7 +33,7 @@ cp conf ~/.config/app/conf
 chmod 755 ~/.config/app/conf
 ```
 
-Turns out, the `install` command in GNU coreutils[^2] can do all that in one line:
+Turns out, the `install` command in [GNU coreutils] can do all that in one line:
 
 ```sh
 install -D -m 755 conf ~/.config/app/conf
@@ -110,8 +110,13 @@ access to the root user and group with the `-o` and `-g` flags, respectively.
 There are a few other options you can read about in the man pages, but I haven't needed
 anything beyond the above.
 
-[^1]:
-    [Search for "install -D" on GitHub](https://github.com/search?q=%22install+-D%22++language%3Ash+NOT+npm&type=code)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]:
-    [GNU install](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#install-invocation)
+[github search for the term]:
+    https://github.com/search?q=%22install+-D%22++language%3Ash+NOT+npm&type=code
+
+[gnu coreutils]:
+    https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#install-invocation
+
+<!-- prettier-ignore-end -->

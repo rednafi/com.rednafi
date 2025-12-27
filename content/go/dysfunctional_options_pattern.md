@@ -282,13 +282,13 @@ factory and immediately know about the supported modifier methods.
 I did a [rudimentary benchmark] of the two approaches and was surprised that the second one
 was roughly ~76x faster on Go 1.22!
 
-Here's an example of the [pattern in the wild].
+Here's an example in [fork-sweeper's CLI code].
 
 _P.S. This is indeed a lightweight spin on what OO languages call the builder pattern.
 However, I didn't call it that because there's no mandatory `.Build()` method to be called
 at the end of the method chain._
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [functional options pattern]:
@@ -310,8 +310,7 @@ at the end of the method chain._
 [rudimentary benchmark]:
     https://gist.github.com/rednafi/08fe371ed31072ab0bd96bf51611660a
 
-<!-- dysfunctional options pattern in the wild -->
-[pattern in the wild]:
+[fork-sweeper's CLI code]:
     https://github.com/rednafi/fork-sweeper/blob/80e1f7c76a2efcb7d1b65d6b12303c590bb74c2c/src/cli.go#L172
 
 <!-- prettier-ignore-end -->

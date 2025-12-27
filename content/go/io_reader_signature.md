@@ -104,7 +104,7 @@ for {
 
 This avoids unnecessary allocations and produces less garbage for the GC to clean up.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- understanding allocations: the stack and the heap - gophercon sg 2019 -->

@@ -15,15 +15,15 @@ it seemed to be the simplest route.
 
 Plus, I didn't want to muck around with load balancer configurations, and there's no
 shortage of libraries that allow me to do this quickly in the app. However, this turned out
-to be a bad idea. In the event of a [DDoS] or [thundering herd] incident, even if the app
-rejects the influx of inbound requests, the app server workers still have to do a minimal
-amount of work.
+to be a bad idea. In the event of a [DDoS attack] or [thundering herd] incident, even if the
+app rejects the influx of inbound requests, the app server workers still have to do a
+minimal amount of work.
 
 Also, ideally, rate limiting is an infrastructure concern; your app should be oblivious to
 it. Implementing rate limiting in a layer in front of your app prevents rogue requests from
 even reaching the app server in the event of an incident. So, I decided to spend some time
-investigating how to do it at the load balancer layer. [Nginx] makes it quite [manageable]
-without much fuss and the system was already using it as a reverse proxy.
+investigating how to do it at the load balancer layer. [Nginx] makes [rate limiting
+straightforward] and the system was already using it as a reverse proxy.
 
 For the initial pass, I chose to go with the default Nginx settings, avoiding any additional
 components like a Redis layer for centralized rate limiting.
@@ -399,11 +399,10 @@ Find the [complete implementation] on GitHub.
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
-<!-- what is a ddos attack? -->
-[ddos]:
+[ddos attack]:
     https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/
 
 <!-- the "thundering herd" problem - nick groenen -->
@@ -413,8 +412,7 @@ Fin!
 [nginx]:
     https://www.nginx.com/
 
-<!-- rate limiting with nginx and nginx plus -->
-[manageable]:
+[rate limiting straightforward]:
     https://www.nginx.com/blog/rate-limiting-nginx/
 
 [leaky bucket algorithm]:

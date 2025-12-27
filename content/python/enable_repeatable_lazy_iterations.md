@@ -70,7 +70,7 @@ for number in get_numbers():
 If you run this snippet multiple times, on each pass, the `get_numbers()` function will be
 called again and that'll return a new generator for you to iterate through. Calling the
 generator function like this works but here's another thing that I learned today while
-reading Effective Python[^1] by Brett Slatkin. You can create a class with the `__iter__`
+reading [Effective Python] by Brett Slatkin. You can create a class with the `__iter__`
 method and yield numbers from it just like the function. Then when you initiate the class,
 the instance of the class will allow you to loop through it multiple times; each time
 creating a new generator.
@@ -130,4 +130,10 @@ generator that the loop can consume.
 This is more convenient than having to repeatedly call a generator function if your API
 needs to consume a generator multiple times.
 
-[^1]: [Effective Python - Brett Slatkin](https://effectivepython.com/)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[effective python]:
+    https://effectivepython.com/
+
+<!-- prettier-ignore-end -->

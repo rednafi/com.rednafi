@@ -248,7 +248,7 @@ if __name__ == "__main__":
     asyncio.run(make_many_requests("https://httpbin.org/get", count=200))
 ```
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [asyncio]:

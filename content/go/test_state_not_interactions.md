@@ -322,7 +322,7 @@ More often than not, you can skip mocking libraries and rely on handwritten fake
 the behavior of the SUT instead of its interactions. The next person that needs to read and
 extend your tests might thank you for that.
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

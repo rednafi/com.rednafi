@@ -10,8 +10,8 @@ tags:
     - Go
 ---
 
-I've been having a ton of fun fiddling with Tailscale[^1] over the past few days. While
-setting it up on a server, I came across this shell script[^2] that configures the `ufw`
+I've been having a ton of fun fiddling with [Tailscale] over the past few days. While
+setting it up on a server, I came across this [ufw firewall script] that configures the
 firewall on Linux to ensure direct communication across different nodes in my tailnet. It
 has the following block of code that I found interesting (added comments for clarity):
 
@@ -187,6 +187,13 @@ released when the file is closed in the `defer` block.
 
 Underneath, Go makes sure that `syscall.Flock` works on both macOS and Linux.
 
-[^1]: [Tailscale](https://tailscale.com/)
-[^2]:
-    [Update tailscale ufw rules](https://github.com/AT3K/Tailscale-Firewall-Setup/blob/main/update_tailscale_ufw_rules.sh)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[tailscale]:
+    https://tailscale.com/
+
+[ufw firewall script]:
+    https://github.com/AT3K/Tailscale-Firewall-Setup/blob/main/update_tailscale_ufw_rules.sh
+
+<!-- prettier-ignore-end -->

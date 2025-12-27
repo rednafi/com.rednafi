@@ -112,10 +112,18 @@ Running this will give you the dicts containing the data rows only:
 {'ID': '3', 'Name': 'Jack', 'Age': '22', 'Height': '1.6'}
 ```
 
-[^1]:
-    [Python Cookbook - David Beazley, Ch 4: Iterators and Generators](https://www.oreilly.com/library/view/python-cookbook-3rd/9781449357337/)
-    [^1]
+## Further reading
 
-[^2]:
-    [itertools.dropwhile](https://docs.python.org/3/library/itertools.html#itertools.dropwhile)
-    [^2]
+- [Python Cookbook - David Beazley, Ch 4: Iterators and Generators]
+- [itertools.dropwhile]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[python cookbook - david beazley, ch 4: iterators and generators]:
+    https://www.oreilly.com/library/view/python-cookbook-3rd/9781449357337/
+
+[itertools.dropwhile]:
+    https://docs.python.org/3/library/itertools.html#itertools.dropwhile
+
+<!-- prettier-ignore-end -->

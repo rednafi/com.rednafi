@@ -268,7 +268,7 @@ expensive, but global state is the fastest way to end up with brittle tests. Mix
 different scopes is possible, but usually creates more confusion than clarity, so reach for
 it only when you have no better option.
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 ["go test" command doc]:
