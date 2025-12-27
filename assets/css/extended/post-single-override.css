@@ -9,14 +9,17 @@
 
 .post-content h1 {
   font-size: 32px;
+  margin: 40px auto 24px;
 }
 
 .post-content h2 {
   font-size: 26px;
+  margin: 36px auto 18px;
 }
 
 .post-content h3 {
   font-size: 20px;
+  margin: 28px auto 14px;
 }
 
 .post-content code {
