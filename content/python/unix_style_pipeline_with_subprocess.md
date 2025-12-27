@@ -11,7 +11,7 @@ tags:
 
 Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and run
 arbitrary commands in your system. However, the documentation usually encourages you to use
-the subprocess[^1] module for creating and managing child processes. The `subprocess` module
+the [subprocess] module for creating and managing child processes. The `subprocess` module
 exposes a high-level `run()` function that provides a simple interface for running a
 subprocess and waiting for it to complete. It accepts the command to run as a list of
 strings, starts the subprocess, waits for it to finish, and then returns a
@@ -224,6 +224,17 @@ Finally, the `procs` list is iterated through and `proc.communicate()` is called
 `sha256sum`, which is the hash of the random input string. The hash is then decoded,
 stripped, and printed to the console.
 
-[^1]: [subprocess](https://docs.python.org/3/library/subprocess)
+## Further reading
 
-[^2]: [Effective Python - Item 52 - Brett Slatkin](https://effectivepython.com/) [^2]
+- [Effective Python - Item 52]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[subprocess]:
+    https://docs.python.org/3/library/subprocess
+
+[effective python - item 52]:
+    https://effectivepython.com/
+
+<!-- prettier-ignore-end -->

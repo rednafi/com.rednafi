@@ -22,10 +22,10 @@ was surprisingly low.
 
 A few years down the line, I was fortunate enough to land gigs at larger companies with
 bigger teams and more corporate structures. What caught me off guard was the chaotic state
-of planning documents. They were scattered everywhere — RFCs[^1], ADRs[^2], Epics, Jira
-Issues, Subtasks, Design Docs[^3], you name it. Often, a single team would juggle all these
-formats to plan and record their work. I'm not claiming every workplace was like this, but
-it's more common than I'd like to admit.
+of planning documents. They were scattered everywhere — [RFCs], [ADRs], Epics, Jira Issues,
+Subtasks, [Design Docs], you name it. Often, a single team would juggle all these formats to
+plan and record their work. I'm not claiming every workplace was like this, but it's more
+common than I'd like to admit.
 
 The fallout? Discussing a feature or onboarding new people became a pain since explaining
 any part of the system required going down the rabbit hole of finding the concomitant entry
@@ -59,10 +59,16 @@ ADRs should be written before RFCs or vice versa.
 
 Fin!
 
-[^1]:
-    [Companies Using RFCs or Design Docs and Examples of These - Gergely Orosz](https://blog.pragmaticengineer.com/rfcs-and-design-docs/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Architectural Decision Records (ADRs)](https://adr.github.io/)
+[rfcs]:
+    https://blog.pragmaticengineer.com/rfcs-and-design-docs/
 
-[^3]:
-    [Design docs at Google](https://www.industrialempathy.com/posts/design-docs-at-google/)
+[adrs]:
+    https://adr.github.io/
+
+[design docs]:
+    https://www.industrialempathy.com/posts/design-docs-at-google/
+
+<!-- prettier-ignore-end -->

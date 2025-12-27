@@ -215,7 +215,7 @@ By sticking to the `error` value as the single indicator of failure, we eliminat
 watches"_ paradox. Whether the failure is a simple validation error or a catastrophic system
 crash, all the failure modes are encapsulated inside the single error value itself.
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

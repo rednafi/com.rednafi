@@ -14,7 +14,7 @@ While going through a script at work today, I came across Bash's `nameref` featu
 name — kind of like pass-by-reference in C. I'm pretty sure I've seen it before, but I
 probably just skimmed over it.
 
-As I dug into the man page[^1], I realized there's a gap in my understanding of how variable
+As I dug into the [man pages], I realized there's a gap in my understanding of how variable
 references actually work in Bash — probably because I never gave it proper attention and
 just got by cobbling together scripts.
 
@@ -335,5 +335,10 @@ Database User: prod_admin
 Oh, one extra thing: nameref was introduced in Bash 4.3, so you might run into problems if
 you're using an ancient version like the one shipped with macOS.
 
-[^1]:
-    [Shell Builtin Commands - Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[man pages]:
+    https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands
+
+<!-- prettier-ignore-end -->

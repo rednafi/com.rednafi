@@ -35,6 +35,14 @@ functools.partial(<function f at 0x7f4fd16c11f0>, a=1, b=2, c=3)
 Args are 1-2-3
 ```
 
-[^1]:
-    [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1454865294120325124)
-    [^1]
+## Further reading
+
+- [Tweet by Raymond Hettinger]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[tweet by raymond hettinger]:
+    https://twitter.com/raymondh/status/1454865294120325124
+
+<!-- prettier-ignore-end -->

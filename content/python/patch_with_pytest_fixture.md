@@ -256,7 +256,7 @@ This approach has the following advantages:
 ## Another practical example
 
 The following snippet defines the `get` and `post` functions that make `GET` and `POST`
-requests to a URL respectively. I used the HTTPx[^1] library to make the requests. Here, the
+requests to a URL respectively. I used the [HTTPx] library to make the requests. Here, the
 functions make external network calls to the `https://httpbin.org` URL:
 
 ```py
@@ -349,12 +349,21 @@ test session quicker. However, keep in mind that making fixtures run in the modu
 also its demerits. Since the target functions get mocked and stay mocked through the entire
 module, it can subtly create coupling between your test functions if you aren't careful.
 
-[^1]: [HTTPx](https://www.python-httpx.org/)
+## Further reading
 
-[^2]:
-    [Test async code with pytest-asyncio](https://github.com/rednafi/reflections/issues/73)
-    [^2]
+- [Test async code with pytest-asyncio]
+- [Unittest mock — mock object library]
 
-[^3]:
-    [Unittest mock — mock object library](https://docs.python.org/3/library/unittest.mock.html)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[httpx]:
+    https://www.python-httpx.org/
+
+[test async code with pytest-asyncio]:
+    https://github.com/rednafi/reflections/issues/73
+
+[unittest mock — mock object library]:
+    https://docs.python.org/3/library/unittest.mock.html
+
+<!-- prettier-ignore-end -->

@@ -9,7 +9,7 @@ tags:
     - TIL
 ---
 
-When writing shell scripts, I'd often resort to using hardcoded ANSI escape codes[^1] to
+When writing shell scripts, I'd often resort to using hardcoded [ANSI escape codes] to
 format text, such as:
 
 ```bash
@@ -130,9 +130,16 @@ On my terminal, it prints this nice color palette:
 
 ![tput color palette][image_2]
 
-[^1]: [Escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[ansi escape codes]:
+    https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
 [image_1]:
     https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_1.png
+
 [image_2]:
     https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_2.png
+
+<!-- prettier-ignore-end -->

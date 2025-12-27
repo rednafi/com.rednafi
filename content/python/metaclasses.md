@@ -13,8 +13,8 @@ aliases:
 In Python, metaclass is one of the few tools that enables you to inject metaprogramming
 capabilities into your code. The term metaprogramming refers to the potential for a program
 to manipulate itself in a self referential manner. However, messing with metaclasses is
-often considered an arcane art that's beyond the grasp of the plebeians. Heck, even Tim
-Peters[^1] advices you to tread carefully while dealing with these.
+often considered an arcane art that's beyond the grasp of the plebeians. Heck, even [Tim
+Peters] advises you to tread carefully while dealing with these.
 
 > Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder
 > whether you need them, you don't (the people who actually need them know with certainty
@@ -176,12 +176,12 @@ Type `type`, as the default metaclass in Python, defines a few special methods t
 metaclasses can override to implement unique code generation behavior. Here is a brief
 overview of these "magic" methods that exist on a metaclass:
 
--   `__new__`: This method is called on the Metaclass before an instance of a class based on
-    the metaclass is created
--   `__init__`: This method is called to set up values after the instance/object is created
--   `__prepare__`: Defines the class namespace in a mapping that stores the attributes
--   `__call__`: This method is called when the constructor of the new class is to be used to
-    create an object
+- `__new__`: This method is called on the Metaclass before an instance of a class based on
+  the metaclass is created
+- `__init__`: This method is called to set up values after the instance/object is created
+- `__prepare__`: Defines the class namespace in a mapping that stores the attributes
+- `__call__`: This method is called when the constructor of the new class is to be used to
+  create an object
 
 These are the methods to override in your custom metaclass to give your classes behaviors
 different from that of `type`. The following example shows the default behaviors of these
@@ -1063,30 +1063,48 @@ reached its EOL. Save yourself some trouble and switch to Python 3.x if you alre
 done so.
 
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on them
-is rusty, checkout these posts on decorators[^2] and dataclasses[^3].
+is rusty, checkout these posts on [decorators] and [dataclasses].
 
-[^1]: [Tim Peters](<https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)>)
-[^2]: [decorators](/python/decorators)
-[^3]: [dataclasses](/python/dataclasses)
-[^4]:
-    [Understanding Python's metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/)
-    [^4]
+## Further reading
 
-[^5]:
-    [What are metaclasses in Python - Stackoverflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
-    [^5]
+- [Understanding Python's metaclasses]
+- [What are metaclasses in Python - Stackoverflow]
+- [Python metaclasses - Real Python]
+- [Metaclasses - Python course EU]
+- [When to use metaclasses in Python]
+- [A primer on Python metaclasses]
 
-[^6]: [Python metaclasses - Real Python](https://realpython.com/python-metaclasses/) [^6]
-[^7]:
-    [Metaclasses - Python course EU](https://www.python-course.eu/python3_metaclasses.php)
-    [^7]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^8]:
-    [When to use metaclasses in Python](https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/)
-    [^8]
+[tim peters]:
+    https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
 
-[^9]:
-    [A primer on Python metaclasses](https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/)
-    [^9]
+[decorators]:
+    /python/decorators
 
-[image_1]: https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg
+[dataclasses]:
+    /python/dataclasses
+
+[understanding python's metaclasses]:
+    https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/
+
+[what are metaclasses in python - stackoverflow]:
+    https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python
+
+[python metaclasses - real python]:
+    https://realpython.com/python-metaclasses/
+
+[metaclasses - python course eu]:
+    https://www.python-course.eu/python3_metaclasses.php
+
+[when to use metaclasses in python]:
+    https://breadcrumbscollector.tech/when-to-use-metaclasses-in-python-5-interesting-use-cases/
+
+[a primer on python metaclasses]:
+    https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/
+
+[image_1]:
+    https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg
+
+<!-- prettier-ignore-end -->

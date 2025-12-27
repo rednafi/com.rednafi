@@ -200,9 +200,9 @@ unfortunate time.
 
 ## Breadcrumbs
 
-Currently, there's an outstanding PEP ([PEP-671][^1]) that proposes late-bound function
-argument defaults. It's still in a draft state and I'm quite fond of the syntax that it's
-proposing. Here's how you'd make a default parameter late-bound:
+Currently, there's an outstanding PEP ([PEP-671]) that proposes late-bound function argument
+defaults. It's still in a draft state and I'm quite fond of the syntax that it's proposing.
+Here's how you'd make a default parameter late-bound:
 
 ```py
 def foo(bar, baz => []):
@@ -212,8 +212,17 @@ def foo(bar, baz => []):
 The default parameter `baz` will be late-bound and will produce similar results that we've
 seen in the last solution.
 
-[^1]: [PEP-671](https://www.python.org/dev/peps/pep-0671)
+## Further reading
 
-[^2]:
-    [Mutable default arguments - The hitchhiker's guide to Python!](https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments)
-    [^2]
+- [Mutable default arguments - The hitchhiker's guide to Python!]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pep-671]:
+    https://www.python.org/dev/peps/pep-0671
+
+[mutable default arguments - the hitchhiker's guide to python!]:
+    https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments
+
+<!-- prettier-ignore-end -->

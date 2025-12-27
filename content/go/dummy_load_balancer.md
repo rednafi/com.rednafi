@@ -293,7 +293,7 @@ Hello from backend server on :8082
 
 Notice how the client requests are handled by different backends in an interleaving manner.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [nginx]:

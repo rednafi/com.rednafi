@@ -10,7 +10,7 @@ tags:
     - TIL
 ---
 
-While reading the second version of Brian Okken's pytest book[^1], I came across this neat
+While reading the second version of [Brian Okken's pytest book], I came across this neat
 trick to compose multiple levels of fixtures. Suppose, you want to create a fixture that
 returns some canned data from a database. Now, let's say that invoking the fixture multiple
 times is expensive, and to avoid that you want to run it only once per test session.
@@ -89,7 +89,7 @@ FAILED test_src.py::test_read_default_content
 
 Our tests behave differently when the order of their execution changes. This is bad. You
 should always make sure that running your tests randomly or reversely doesn't change the
-outcome of the test run. You can use a plugin like pytest-reverse[^2] to change your test
+outcome of the test run. You can use a plugin like [pytest-reverse] to change your test
 execution order.
 
 This happens because the data of the fixture `create_files` persists across multiple tests
@@ -166,7 +166,13 @@ fixture gets executed only once per test session. This time, if you run the test
 tests should pass successfully. We have successfully composed two different levels of
 fixture functions!
 
-[^1]:
-    [Python testing with pytest - Brian Okken](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Pytest reverse](https://github.com/adamchainz/pytest-reverse)
+[brian okken's pytest book]:
+    https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/
+
+[pytest-reverse]:
+    https://github.com/adamchainz/pytest-reverse
+
+<!-- prettier-ignore-end -->
