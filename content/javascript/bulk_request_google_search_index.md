@@ -10,9 +10,9 @@ tags:
 ---
 
 Recently, I purchased a domain for this blog and migrated the content from
-rednafi.github.io[^1] to rednafi.com[^2]. This turned out to be a much bigger hassle than I
+[rednafi.github.io] to [rednafi.com]. This turned out to be a much bigger hassle than I
 originally thought it'd be, mostly because, despite setting redirection for almost all the
-URLs from the previous domain to the new one and submitting the new sitemap.xml[^3] to the
+URLs from the previous domain to the new one and submitting the new [sitemap.xml] to the
 Search Console, Google kept indexing the older domain. To make things worse, the search
 engine selected the previous domain as canonical, and no amount of manual requests were
 changing the status in the last 30 days. Strangely, I didn't encounter this issue with Bing,
@@ -20,18 +20,18 @@ as it reindexed the new site within a week after I submitted the sitemap file vi
 webmaster panel.
 
 While researching this, one potential solution suggested that along with submitting the
-sitemap via Google Search Console[^4], I'd have to make individual indexing requests for
-each URL to encourage faster indexing. The problem is, I've got quite a bit of content on
-this site, and it'll take forever for me to click through all the links and request indexing
-that way. Naturally, I looked for a way to do this programmatically. Luckily, I found out
-that there's an [indexing API] that allows you to make bulk indexing requests
-programmatically. This has one big advantage — Google responds[^5] to API requests faster
-than indexing requests with sitemap submission.
+sitemap via [Google Search Console], I'd have to make individual indexing requests for each
+URL to encourage faster indexing. The problem is, I've got quite a bit of content on this
+site, and it'll take forever for me to click through all the links and request indexing that
+way. Naturally, I looked for a way to do this programmatically. Luckily, I found out that
+there's an [indexing API] that allows you to make bulk indexing requests programmatically.
+This has one big advantage — Google [responds to API requests faster] than indexing requests
+with sitemap submission.
 
 All you've to do is:
 
 - List out the URLs that need to be indexed.
-- Fulfill the prerequisites[^6] and download the private key JSON file required to make
+- Fulfill the [prerequisites] and download the private key JSON file required to make
   requests to the API. From the docs:
 
     > _Every call to the Indexing API must be authenticated with an OAuth token that you get
@@ -58,7 +58,7 @@ All you've to do is:
 
 - Use an API client to make the requests.
 
-In my case, this site's sitemap[^3] lists out all the URLs as follows:
+In my case, this site's [sitemap.xml] lists out all the URLs as follows:
 
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -195,19 +195,33 @@ the `options` with the URL and makes a POST request to the Indexing API to reque
 The response from the API is then logged into the console.
 
 One thing to keep in mind is that by default, the daily request quota per project is 200.
-But you can request more quota[^7] if you need it.
+But you can [request more quota] if you need it.
 
-[^1]: [rednafi.github.io](https://rednafi.github.io)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [rednafi.com](/)
+[rednafi.github.io]:
+    https://rednafi.github.io
 
-[^3]: [sitemap.xml](/sitemap.xml)
+[rednafi.com]:
+    /
 
-[^4]: [Google search console](https://search.google.com/search-console/about)
+[sitemap.xml]:
+    /sitemap.xml
 
-[^5]:
-    [Turnaround time of the indexing API is shorter than sitemap submission](https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps)
+[google search console]:
+    https://search.google.com/search-console/about
 
-[^6]: [Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+[indexing API]:
+    https://developers.google.com/search/apis/indexing-api/v3/quickstart
 
-[^7]: [Quota](https://developers.google.com/search/apis/indexing-api/v3/quota-pricing)
+[responds to API requests faster]:
+    https://developers.google.com/search/apis/indexing-api/v3/quickstart#sitemaps
+
+[prerequisites]:
+    https://developers.google.com/search/apis/indexing-api/v3/quickstart
+
+[request more quota]:
+    https://developers.google.com/search/apis/indexing-api/v3/quota-pricing
+
+<!-- prettier-ignore-end -->

@@ -196,12 +196,22 @@ else:
 ...
 ```
 
-[^1]:
-    [Guard clause, guard code, or guard statement](<https://en.wikipedia.org/wiki/Guard_(computer_science)>)
-    [^1]
+## Further reading
 
-[^2]: [Never type in TypeScript](https://www.zhenghao.io/posts/ts-never) [^2]
+- [Guard clause, guard code, or guard statement]
+- [Never type in TypeScript]
+- [Unreachable code and exhaustiveness checking in Python]
 
-[^3]:
-    [Unreachable Code and Exhaustiveness Checking in Python](https://typing.readthedocs.io/en/latest/source/unreachable.html)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[guard clause, guard code, or guard statement]:
+    https://en.wikipedia.org/wiki/Guard_(computer_science)
+
+[never type in typescript]:
+    https://www.zhenghao.io/posts/ts-never
+
+[unreachable code and exhaustiveness checking in python]:
+    https://typing.readthedocs.io/en/latest/source/unreachable.html
+
+<!-- prettier-ignore-end -->

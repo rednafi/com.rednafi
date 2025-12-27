@@ -9,7 +9,8 @@ tags:
 ---
 
 In CPython, elements of a list are stored as pointers to the elements rather than the values
-of the elements themselves. This is evident from the struct[^1] that represents a list in C:
+of the elements themselves. This is evident from the [list struct in CPython] that
+represents a list in C:
 
 ```c
 // Fetched from CPython main branch. Removed comments for brevity.
@@ -177,11 +178,17 @@ However, list pre-allocation can still come in handy in more complex cases where
 know the size of the final list, and shaving off a few micro-seconds makes a considerable
 difference.
 
-## References
+## Further reading
 
-[^1]:
-    [List struct in CPython](https://github.com/python/cpython/blob/c19c3a09618ac400538ee412f84be4c1196c7bab/Include/cpython/listobject.h#L5)
+- [Create a list with initial capacity in Python]
 
-[^2]:
-    [Create a list with initial capacity in Python](https://stackoverflow.com/questions/311775/create-a-list-with-initial-capacity-in-python)
-    [^2]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[list struct in CPython]:
+    https://github.com/python/cpython/blob/c19c3a09618ac400538ee412f84be4c1196c7bab/Include/cpython/listobject.h#L5
+
+[create a list with initial capacity in python]:
+    https://stackoverflow.com/questions/311775/create-a-list-with-initial-capacity-in-python
+
+<!-- prettier-ignore-end -->

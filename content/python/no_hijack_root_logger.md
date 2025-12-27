@@ -14,7 +14,7 @@ frequently mess up the logger settings, meddling with my application logs. While
 common in more seasoned libraries, I guess it's worth rehashing why hijacking the root
 logger isn't a good idea when writing libraries or other forms of reusable code.
 
-In Python, when I say root logger[^1], I mean the logger instance that `logging.basicConfig`
+In Python, when I say [root logger], I mean the logger instance that `logging.basicConfig`
 acts on, or the one you get back when you don't specify a name in `logging.getLogger()`. The
 root logger is for the application code to use and if you're a library author, you should
 probably steer clear from it. If not, people using your code might get into situations as
@@ -76,7 +76,7 @@ the `logging.basicConfig(...)` line in the `main.py` file. By doing so, the log
 configuration in the application code gets to run before the library has the chance to
 meddle with it.
 
-This makes things confusing for the library user, and the logging how-to[^2] doc advises
+This makes things confusing for the library user, and the [Logging how-to] doc advises
 against doing so:
 
 > _It is strongly advised that you do not log to the root logger in your library. Instead,
@@ -160,7 +160,7 @@ strongly warns against this:
 > deliver logs which suit their requirements._
 
 If you're looking for a real-life example of how to minimally configure your library's
-logger, check out the httpx[^3] codebase. The logging behavior is well-documented here.
+logger, check out the [httpx codebase]. The logging behavior is well-documented there.
 
 You can easily reconfigure the httpx logger in your application code while making an HTTP
 request like this:
@@ -203,10 +203,16 @@ httpx - DEBUG - load_verify_locations cafile='...cacert.pem'
 httpx - INFO - HTTP Request: GET https://httpbin.org/get ...
 ```
 
-[^1]:
-    [Root logger](https://docs.python.org/3/library/logging.html#:~:text=Logged%20messages%20to%20the%20module%2Dlevel%20logger%20get%20forwarded%20to%20handlers%20of%20loggers%20in%20higher%2Dlevel%20modules%2C%20all%20the%20way%20up%20to%20the%20highest%2Dlevel%20logger%20known%20as%20the%20root%20logger%3B%20this%20approach%20is%20known%20as%20hierarchical%20logging)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Logging how-to](https://docs.python.org/3/howto/logging.html)
+[root logger]:
+    https://docs.python.org/3/library/logging.html#:~:text=Logged%20messages%20to%20the%20module%2Dlevel%20logger%20get%20forwarded%20to%20handlers%20of%20loggers%20in%20higher%2Dlevel%20modules%2C%20all%20the%20way%20up%20to%20the%20highest%2Dlevel%20logger%20known%20as%20the%20root%20logger%3B%20this%20approach%20is%20known%20as%20hierarchical%20logging
 
-[^3]:
-    [Logging in httpx](https://github.com/search?q=repo%3Aencode%2Fhttpx%20logging&type=code)
+[logging how-to]:
+    https://docs.python.org/3/howto/logging.html
+
+[httpx codebase]:
+    https://github.com/search?q=repo%3Aencode%2Fhttpx%20logging&type=code
+
+<!-- prettier-ignore-end -->

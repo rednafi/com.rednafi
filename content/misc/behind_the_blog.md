@@ -40,7 +40,7 @@ I don't care about.
 
 I use [GitHub Issues] to brainstorm ideas and keep track of my writing. I usually gather
 ideas throughout the week, log them in Issues, and then write something over the weekend.
-This workflow is heavily inspired by Simon Willison's piece on his work [process].
+This workflow is heavily inspired by [Simon Willison's blog] on his workflow.
 
 ![image_1]
 
@@ -98,7 +98,7 @@ bulky, intrusive analytics scripts for good.
 
 The [source code] and content for this site are all publicly available on GitHub.
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [pre-commit]:
@@ -120,8 +120,7 @@ The [source code] and content for this site are all publicly available on GitHub
 [github issues]:
     https://github.com/rednafi/rednafi.com/issues/125
 
-<!-- coping strategies for the serial project hoarder -- simon willison -->
-[process]:
+[simon willison's blog]:
     https://simonwillison.net/2022/Nov/26/productivity/
 
 [github actions]:

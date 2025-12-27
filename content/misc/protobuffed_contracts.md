@@ -9,9 +9,9 @@ tags:
     - Networking
 ---
 
-People typically associate Google's Protocol Buffer[^1] with gRPC[^2] services, and
-rightfully so. But things often get confusing when discussing protobufs because the term can
-mean different things:
+People typically associate Google's [Protocol Buffer] with [gRPC] services, and rightfully
+so. But things often get confusing when discussing protobufs because the term can mean
+different things:
 
 - A binary protocol for efficiently serializing structured data.
 - A language used to specify how this data should be structured.
@@ -66,8 +66,8 @@ message SearchRequest {
 }
 ```
 
-I'm using proto3 syntax, and you can find more about that on the official guide[^3]. Next,
-you can install the gRPC tools for your preferred programming language to generate the
+I'm using proto3 syntax, and you can find more about that in the [official proto3 guide].
+Next, you can install the gRPC tools for your preferred programming language to generate the
 interfacing code that'll be used to serialize and deserialize the messages.
 
 Here's how it looks in Python:
@@ -177,8 +177,16 @@ automatically for multiple languages, and package them up via CI whenever some c
 merged into the main branch. Then the services can just update those protocol packages and
 use the serializers and deserializers as needed.
 
-[^1]: [Protobuf](https://protobuf.dev/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [GRPC](https://grpc.io/)
+[protocol buffer]:
+    https://protobuf.dev/
 
-[^3]: [Proto3 syntax](https://protobuf.dev/programming-guides/proto3/)
+[gRPC]:
+    https://grpc.io/
+
+[official proto3 guide]:
+    https://protobuf.dev/programming-guides/proto3/
+
+<!-- prettier-ignore-end -->

@@ -1,9 +1,9 @@
 ---
-Title: Docker mount revisited
-Date: 2024-10-22
-Tags:
-    -   TIL
-    -   Docker
+title: Docker mount revisited
+date: 2024-10-22
+tags:
+    - TIL
+    - Docker
 slug: docker-mount
 aliases:
     - /misc/docker_mount/
@@ -18,7 +18,7 @@ Here's my attempt to disentangle some of my most-used mount commands.
 
 ## Volume mounts
 
-Volume mounts[^1] let you store data outside the container in a location managed by Docker.
+[Volume mounts] let you store data outside the container in a location managed by Docker.
 The data persists even after the container stops. On non-Linux systems, volume mounts are
 faster than bind mounts because data doesn't need to cross the virtualization boundary.
 
@@ -102,7 +102,7 @@ I prefer the new style because it reduces ambiguity and makes the configuration 
 
 ## Bind mounts
 
-Bind mounts[^2] let you directly mount a file or directory from the host into the container.
+[Bind mounts] let you directly mount a file or directory from the host into the container.
 This is especially useful in development when you want the container to have access to your
 code or data.
 
@@ -172,7 +172,7 @@ services:
 
 ## Tmpfs mounts
 
-Tmpfs mounts[^3] store data in the host's memory, not on disk. This makes them ideal for
+[Tmpfs mounts] store data in the host's memory, not on disk. This makes them ideal for
 temporary storage that doesn't need to persist after the container stops. They're great for
 things like caches or scratch space.
 
@@ -235,7 +235,7 @@ services:
 
 ## Build cache mounts
 
-Build cache mounts[^4] help speed up Docker image builds by caching intermediate files like
+[Build cache mounts] help speed up Docker image builds by caching intermediate files like
 package downloads or compiled artifacts. They're used during the build process and aren't
 part of the final container image.
 
@@ -268,10 +268,19 @@ re-downloaded in future builds if nothing changes. The bind mounts provide acces
 files during the build. Any changes to the files are picked up, while cached dependencies
 are reused unless the configurations have been updated.
 
-[^1]: [Volume mounts](https://docs.docker.com/storage/volumes/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Bind mounts](https://docs.docker.com/storage/bind-mounts/)
+[volume mounts]:
+    https://docs.docker.com/storage/volumes/
 
-[^3]: [Tmpfs mounts](https://docs.docker.com/storage/tmpfs/)
+[bind mounts]:
+    https://docs.docker.com/storage/bind-mounts/
 
-[^4]: [Build cache mounts](https://docs.docker.com/build/cache/optimize/#use-cache-mounts)
+[tmpfs mounts]:
+    https://docs.docker.com/storage/tmpfs/
+
+[build cache mounts]:
+    https://docs.docker.com/build/cache/optimize/#use-cache-mounts
+
+<!-- prettier-ignore-end -->
