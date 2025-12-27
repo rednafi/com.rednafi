@@ -23,9 +23,9 @@ interactively, it still isn't as flexible as a notebook.
 So, I wanted to see if I could connect a Jupyter notebook server to a containerized Django
 application running on my local machine and interactively start making queries from there.
 Turns out, you can do that by integrating three tools into your Dockerized environment:
-ipykernel[^1], jupyter[^2], and django-extensions[^3]. Before I start explaining how
-everything is tied together, here's a fully working example[^4] of a containerized Django
-application where you can log into the Jupyter server and start debugging the app.
+[ipykernel], [jupyter], and [django-extensions]. Before I start explaining how everything is
+tied together, here's a [fully working example] of a containerized Django application where
+you can log into the Jupyter server and start debugging the app.
 
 The app is just a Dockerized version of the famous `polls-app` from the Django tutorial. The
 directory structure looks as follows:
@@ -189,8 +189,8 @@ are defined in the `Makefile` for your convenience. You can run any of these by 
 
 And that's it!
 
-If you have Docker[^5] and docker-compose[^6] installed on your local system, you can give
-it a try. Clone the example-app[^4] repo, navigate to the root directory and run:
+If you have [Docker] and [docker-compose] installed on your local system, you can give it a
+try. Clone the [fully working example] repo, navigate to the root directory and run:
 
 ```sh
 docker compose up -d
@@ -237,22 +237,41 @@ created and they appear in the view:
 
 ![display created objects in jupyter notebook][image_3]
 
-[^1]: [ipykernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
+## References
 
-[^2]: [jupyter](https://jupyter.org/)
+- [How to access Jupyter notebook in a Docker container]
 
-[^3]: [django-extensions](https://django-extensions.readthedocs.io/en/latest/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]: [example-app](https://github.com/rednafi/django-jupyter)
+[ipykernel]:
+    https://ipython.readthedocs.io/en/stable/install/kernel_install.html
 
-[^5]: [Docker](https://www.docker.com/)
+[jupyter]:
+    https://jupyter.org/
 
-[^6]: [docker-compose](https://docs.docker.com/compose/)
+[django-extensions]:
+    https://django-extensions.readthedocs.io/en/latest/
 
-[^7]:
-    [How to access Jupyter notebook in a Docker Container](https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container)
-    [^7]
+[fully working example]:
+    https://github.com/rednafi/django-jupyter
 
-[image_1]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
-[image_2]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
-[image_3]: https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png
+[docker]:
+    https://www.docker.com/
+
+[docker-compose]:
+    https://docs.docker.com/compose/
+
+[how to access jupyter notebook in a docker container]:
+    https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container
+
+[image_1]:
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
+
+[image_2]:
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
+
+[image_3]:
+    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png
+
+<!-- prettier-ignore-end -->

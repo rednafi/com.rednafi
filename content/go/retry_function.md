@@ -245,7 +245,7 @@ The runtime behavior of this version is the same as the ones before.
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [anton zhiyanov pointed out on twitter]:

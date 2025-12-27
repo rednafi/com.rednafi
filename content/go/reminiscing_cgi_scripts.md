@@ -166,7 +166,7 @@ Fin!
 
 - [Apache tutorial: Dynamic content with CGI]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 [apache tutorial: dynamic content with cgi]:

@@ -44,11 +44,12 @@ We're checking if struct `T` implements the `io.ReadWriter` interface. It needs 
 conforms to the `io.ReadWriter` interface. The code will fail to compile if the type ever
 stops matching the interface.
 
-This is only possible because `nil` values in Go can assume many [different types]. In this
-case, `var _ io.ReadWriter = T{}` will also work, but then you'll have to fiddle with
-different zero values if the type isn't a struct. One important thing to point out is that
-we're using `_` because we don't want to accidentally refer to this `nil` pointer anywhere
-in our code. Also, trying to access any method on it will cause runtime panic.
+This is only possible because `nil` values in Go can assume many [different types as
+explained in Go 101]. In this case, `var _ io.ReadWriter = T{}` will also work, but then
+you'll have to fiddle with different zero values if the type isn't a struct. One important
+thing to point out is that we're using `_` because we don't want to accidentally refer to
+this `nil` pointer anywhere in our code. Also, trying to access any method on it will cause
+runtime panic.
 
 Here's another example borrowed from [Uber's style guide]:
 
@@ -90,15 +91,14 @@ Neat, but don't abuse this. [Effective Go warns]:
 - [Interface guards - Caddy docs]
 - [Tweet by Matt Boyle]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
 <!-- interfaces in effective go -->
 [effective go]:
     https://go.dev/doc/effective_go#interfaces
 
-<!-- nils can take many different types in go -->
-[different types]:
+[different types as explained in Go 101]:
     https://go101.org/article/nil.html
 
 <!-- check for interface compliance - uber style guide -->

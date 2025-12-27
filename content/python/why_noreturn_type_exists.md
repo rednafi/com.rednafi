@@ -11,7 +11,7 @@ tags:
 
 Technically, the type of `None` in Python is `NoneType`. However, you'll rarely see
 `types.NoneType` being used in the wild as the community has pretty much adopted `None` to
-denote the type of the `None` singleton. This usage is also documented[^1] in PEP-484.
+denote the type of the `None` singleton. This usage is also [documented in PEP-484].
 
 Whenever a callable doesn't return anything, you usually annotate it as follows:
 
@@ -176,12 +176,21 @@ def call_os_execvp() -> NoReturn:
     os.execvp("echo", ("echo", "hi"))
 ```
 
-[^1]: [Using None](https://www.python.org/dev/peps/pep-0484/#using-none)
+## References
 
-[^2]:
-    [Python return annotations: NoReturn vs None (intermediate) anthony explains #007](https://www.youtube.com/watch?v=-zH0qqDtd4w)
-    [^2]
+- [NoReturn vs None - Anthony explains]
+- [What's the point of NoReturn? - Adam Johnson]
 
-[^3]:
-    [Python type hints - what's the point of NoReturn? - Adam Johnson](https://adamj.eu/tech/2021/05/20/python-type-hints-whats-the-point-of-noreturn/)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[documented in PEP-484]:
+    https://www.python.org/dev/peps/pep-0484/#using-none
+
+[noreturn vs none - anthony explains]:
+    https://www.youtube.com/watch?v=-zH0qqDtd4w
+
+[what's the point of noreturn? - adam johnson]:
+    https://adamj.eu/tech/2021/05/20/python-type-hints-whats-the-point-of-noreturn/
+
+<!-- prettier-ignore-end -->

@@ -17,9 +17,9 @@ Five traits that almost all the GitHub Action workflows in my Python projects sh
 - Tests and the lint-checkers are run on Ubuntu and MacOS against multiple Python versions.
 - Pip dependencies are cached.
 - Dependencies, including the Actions dependencies are automatically updated via
-  dependabot[^1].
+  [Dependabot].
 
-I use pip-tools[^2] for managing dependencies in applications and setuptools[^3] `setup.py`
+I use [pip-tools] for managing dependencies in applications and [setuptools] `setup.py`
 combo for managing dependencies in libraries. Here's an annotated version of the template
 action syntax:
 
@@ -125,12 +125,23 @@ updates:
       interval: "daily"
 ```
 
-[^1]: [Dependabot](https://github.com/dependabot)
+## References
 
-[^2]: [pip-tools](https://github.com/jazzband/pip-tools)
+- [An active version of the above workflow]
 
-[^3]: [setuptools](https://github.com/pypa/setuptools)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [An active version of the above workflow](https://github.com/rednafi/stress-test-locust/blob/master/.github/workflows/build_test.yml)
-    [^4]
+[dependabot]:
+    https://github.com/dependabot
+
+[pip-tools]:
+    https://github.com/jazzband/pip-tools
+
+[setuptools]:
+    https://github.com/pypa/setuptools
+
+[an active version of the above workflow]:
+    https://github.com/rednafi/stress-test-locust/blob/master/.github/workflows/build_test.yml
+
+<!-- prettier-ignore-end -->

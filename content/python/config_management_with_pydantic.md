@@ -15,7 +15,7 @@ applications or as your application begins to grow in size and complexity.
 
 Even if you're writing a library, there should be a consistent config management process
 that scales up properly. Since I primarily spend my time writing data-analytics,
-data-science applications and expose them using Flask[^1] or FastAPI[^2] framework, I'll be
+data-science applications and expose them using [Flask] or [FastAPI] framework, I'll be
 tacking config management from an application development perspective.
 
 ## Few ineffective approaches
@@ -30,8 +30,8 @@ using `*.json`, `*.yaml` or `*.toml` based config management approaches but thos
 quickly turned into a tangled mess. I was constantly accessing variables buried into 3-4
 levels of nested toml data structure and it wasn't pretty.
 
-Then there are config management libraries like Dynaconf[^3] or environ-config[^4] that aim
-to ameliorate the issue. While these are all amazing tools but they also introduce their own
+Then there are config management libraries like [Dynaconf] or [environ-config] that aim to
+ameliorate the issue. While these are all amazing tools but they also introduce their own
 custom workflow that can feel over-engineered while dealing with maintenance and extension.
 
 ## A pragmatic wishlist
@@ -70,10 +70,10 @@ Make sure you have fairly a recent version of `Python 3` installed, preferably
 ### Introduction to Pydantic
 
 To check off all the boxes of the wishlist above, I made a custom config management flow
-using Pydantic[^5], python-dotenv[^6] and the `.env` file. Pydantic is a fantastic data
+using [pydantic], [python-dotenv] and the `.env` file. Pydantic is a fantastic data
 validation library that can be used for validating and implicitly converting data types
 using Python's type hints. Type hinting is a formal solution to statically indicate the type
-of a value within your Python code. It was specified in PEP-484[^7] and introduced in Python
+of a value within your Python code. It was specified in [PEP-484] and introduced in Python
 3.5. Let's define and validate the attributes of a class named `User`:
 
 ```py
@@ -236,8 +236,8 @@ don't have any environment specific prefixes like `DEV_` or `PROD_` before them.
 `GlobalConfig` inherits from Pydantic's `BaseSettings` which helps to load and read the
 variables from the `.env` file. The `.env` file itself is loaded in the nested `Config`
 class. Although the environment variables are loaded from the `.env` file, Pydantic also
-loads your actual shell environment variables at the same time. From Pydantic's
-[documentation]:
+loads your actual shell environment variables at the same time. From the Pydantic [Settings
+management documentation]:
 
 > Even when using a dotenv file, Pydantic will still read environment variables as well as
 > the dotenv file, **environment variables will always take priority over values loaded from
@@ -447,22 +447,42 @@ This will print out an instance of the class `StageConfig`.
 The above workflow works perfectly for my usage scenario. So subjectively, I feel like it's
 an elegant solution to a very icky problem. Your mileage will definitely vary.
 
-[^1]: [Flask](https://github.com/pallets/flask)
+## References
 
-[^2]: [FastAPI](https://github.com/tiangolo/fastapi)
+- [Settings management with Pydantic]
+- [Flask config management]
 
-[^3]: [Dynaconf](https://github.com/rochacbruno/dynaconf)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]: [environ-config](https://github.com/hynek/environ-config)
+[flask]:
+    https://github.com/pallets/flask
 
-[^5]: [Pydantic](https://github.com/samuelcolvin/pydantic)
+[fastapi]:
+    https://github.com/tiangolo/fastapi
 
-[^6]: [python-dotenv](https://github.com/theskumar/python-dotenv)
+[dynaconf]:
+    https://github.com/rochacbruno/dynaconf
 
-[^7]: [PEP-484](https://www.python.org/dev/peps/pep-0484/)
+[environ-config]:
+    https://github.com/hynek/environ-config
 
-[^8]:
-    [Settings management with pydantic](https://pydantic-docs.helpmanual.io/usage/settings/)
-    [^8]
+[pydantic]:
+    https://github.com/samuelcolvin/pydantic
 
-[^9]: [Flask config management](https://flask.palletsprojects.com/en/1.1.x/config/) [^9]
+[python-dotenv]:
+    https://github.com/theskumar/python-dotenv
+
+[pep-484]:
+    https://www.python.org/dev/peps/pep-0484/
+
+[settings management documentation]:
+    https://pydantic-docs.helpmanual.io/usage/settings/
+
+[settings management with pydantic]:
+    https://pydantic-docs.helpmanual.io/usage/settings/
+
+[flask config management]:
+    https://flask.palletsprojects.com/en/1.1.x/config/
+
+<!-- prettier-ignore-end -->

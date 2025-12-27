@@ -9,8 +9,8 @@ tags:
     - Typing
 ---
 
-PEP-673[^1] introduces the `Self` type and it's coming to Python 3.11. However, you can
-already use that now via the `typing_extentions`[^2] module.
+[PEP-673] introduces the `Self` type and it's coming to Python 3.11. However, you can
+already use that now via the [typing_extensions] module.
 
 The `Self` type makes annotating methods that return the instances of the corresponding
 classes trivial. Before this, you'd have to do some mental gymnastics to statically type
@@ -190,10 +190,20 @@ class Config:
 The `__new__` method in the `Config` class validates the `var` before constructing an
 instance of the class. The `Self` type makes it easy to annotate the method.
 
-[^1]: [PEP 673 -- Self Type](https://www.python.org/dev/peps/pep-0673/)
+## References
 
-[^2]: [typing_extensions](https://typing.readthedocs.io/)
+- [Tweet by Raymond Hettinger]
 
-[^3]:
-    [Tweet by Raymond Hettinger](https://twitter.com/raymondh/status/1491187805636407298)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pep-673]:
+    https://www.python.org/dev/peps/pep-0673/
+
+[typing_extensions]:
+    https://typing.readthedocs.io/
+
+[tweet by raymond hettinger]:
+    https://twitter.com/raymondh/status/1491187805636407298
+
+<!-- prettier-ignore-end -->

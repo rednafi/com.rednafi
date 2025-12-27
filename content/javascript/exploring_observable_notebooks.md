@@ -18,7 +18,7 @@ starting from scratch when you decide to work on something. Personally, this ben
 enough to keep language models in my tool belt and use them to churn out more exploratory
 work at a much faster pace.
 
-For some strange reason, I never took the time to explore ObservableHQ[^1], despite knowing
+For some strange reason, I never took the time to explore [ObservableHQ], despite knowing
 what it does and how it can help me quickly build nifty client-side tools without going
 through the hassle of containerizing and deploying them as dedicated applications. So, I
 asked ChatGPT to build me a tool that would allow me to:
@@ -179,9 +179,16 @@ Click on the following thumbnail to take the notebook for a spin:
 
 [![observable thumbnail][image_1]][observable notebook]
 
-[^1]: [ObservableHQ](https://observablehq.com/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Observable notebook] [^2]
+[observablehq]:
+    https://observablehq.com/
 
-[image_1]: https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
-[observable notebook]: https://observablehq.com/@rednafi/compare-two-csv-files
+[observable notebook]:
+    https://observablehq.com/@rednafi/compare-two-csv-files
+
+[image_1]:
+    https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
+
+<!-- prettier-ignore-end -->

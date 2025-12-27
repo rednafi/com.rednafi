@@ -21,7 +21,7 @@ Also, I actively try to abstain from picking up tools that haven't stood the tes
 If the workflow laid out here doesn't work for you and something else does, that's
 fantastic! I just wanted to document a more modern approach to the dependency management
 workflow that has reliably worked for me over the years. Plus, I don't want to be the person
-who still uses distutils[^1] in their package management workflow and gets reprehended by
+who still uses [distutils] in their package management workflow and gets reprehended by
 `pip` for doing so.
 
 ## Defining the scope
@@ -29,18 +29,18 @@ who still uses distutils[^1] in their package management workflow and gets repre
 Since the dependency management story in Python is a huge mess for whatever reason, to avoid
 getting yelled at by the most diligent gatekeepers of the internet, I'd like to clarify the
 scope of this piece. I mainly write web applications in Python and dabble in data science
-and machine learning every now and then. So yeah, I'm well aware of how great conda[^2] is
+and machine learning every now and then. So yeah, I'm well aware of how great [conda] is
 when you need to deal with libraries with C dependencies. However, that's not typically my
 day-to-day focus. Here, I'll primarily delve into how I manage dependencies when developing
 large-scale web apps and reusable libraries.
 
-In applications, I manage my dependencies with pip[^3] and pip-tools[^4], and for libraries,
-my preferred build backend is hatch[^5]. PEP-621[^6] attempts to standardize the process of
-storing project metadata in a `pyproject.toml` file, and I absolutely love the fact that
-now, I'll mostly be able to define all my configurations and dependencies in a single file.
-This made me want to rethink how I wanted to manage the dependencies without sailing against
-the current recommended standard while also not getting swallowed into the vortex of
-conflicting opinions in this space.
+In applications, I manage my dependencies with [pip] and [pip-tools], and for libraries, my
+preferred build backend is [hatch]. [PEP-621] attempts to standardize the process of storing
+project metadata in a `pyproject.toml` file, and I absolutely love the fact that now, I'll
+mostly be able to define all my configurations and dependencies in a single file. This made
+me want to rethink how I wanted to manage the dependencies without sailing against the
+current recommended standard while also not getting swallowed into the vortex of conflicting
+opinions in this space.
 
 ## In applications
 
@@ -48,7 +48,7 @@ Whether I'm working on a large Django monolith or exposing a microservice via Fa
 Flask, while packaging an application, I want to be able to:
 
 - Store all project metadata, linter configs, and top-level dependencies in a
-  `pyproject.toml` file following the PEP-621[^6] conventions.
+  `pyproject.toml` file following the [PEP-621] conventions.
 - Separate the top-level application and development dependencies.
 - Generate `requirements.txt` and `requirements-dev.txt` files from the requirements
   specified in the TOML file, where the top-level and their transient dependencies will be
@@ -159,7 +159,7 @@ black==23.3.0 \
 Once the lock files are generated, you're free to build the application in however way you
 see fit and the build process doesn't even need to be aware of the existence of `pip-tools`.
 In the simplest case, you can just run `pip install` to build the application. Check out
-this working example[^7] that uses the workflow explained in this section.
+this [fastapi-nano example] that uses the workflow explained in this section.
 
 ## In libraries
 
@@ -167,22 +167,21 @@ While packaging libraries, I pretty much want the same things mentioned in the a
 section. However, the story of dependency management in reusable libraries is a bit more
 hairy. Currently, there's no standard around a lock file and I'm not aware of a way to build
 artifacts from a plain `requirements.txt` file. For this purpose, my preferred build backend
-is hatch[^5]. Mostly because it follows the latest standards formalized by the associated
+is [hatch]. Mostly because it follows the latest standards formalized by the associated
 PEPs. From the FAQ section of the hatch docs:
 
 > _Q: What is the risk of lock-in?_
 >
 > _A: Not much! Other than the plugin system, everything uses Python's established standards
-> by default. Project metadata is based entirely on PEP-621[^6]/PEP-631[^8], the build
-> system is compatible with PEP-517[^9]/PEP-660[^10], versioning uses the scheme specified
-> by PEP-440[^11], dependencies are defined with PEP-508[^12] strings, and environments use
-> virtualenv._
+> by default. Project metadata is based entirely on [PEP-621]/[PEP-631], the build system is
+> compatible with [PEP-517]/[PEP-660], versioning uses the scheme specified by [PEP-440],
+> dependencies are defined with [PEP-508] strings, and environments use virtualenv._
 
 However, it doesn't support lock files yet:
 
 > _The only caveat is that currently there is no support for re-creating an environment
 > given a set of dependencies in a reproducible manner. Although a standard lock file format
-> may be far off since PEP-665[^13] was rejected, resolving capabilities are coming to pip.
+> may be far off since [PEP-665] was rejected, resolving capabilities are coming to pip.
 > When that is stabilized, Hatch will add locking functionality and dedicated documentation
 > for managing applications._
 
@@ -291,42 +290,62 @@ pip install ".[dev]"
 ```
 
 Hatch also provides a `hatch publish` command to upload the package to PyPI. For a complete
-reference, check out how I shipped another CLI[^14] following this workflow.
+reference, check out how I shipped [rubric] following this workflow.
 
-[^1]: [distutils](https://docs.python.org/3.11/distutils/)
+## References
 
-[^2]: [conda](https://docs.conda.io/en/latest/)
+- [Using pyproject.toml in your Django project - Peter Baumgartner]
+- [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack]
 
-[^3]: [pip](https://pip.pypa.io/en/stable/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]: [pip-tools](https://pip-tools.readthedocs.io/en/latest/)
+[distutils]:
+    https://docs.python.org/3.11/distutils/
 
-[^5]: [hatch](https://hatch.pypa.io/latest/)
+[conda]:
+    https://docs.conda.io/en/latest/
 
-[^6]: [PEP-621](https://peps.python.org/pep-0621/)
+[pip]:
+    https://pip.pypa.io/en/stable/
 
-[^7]:
-    [Example application - fastapi-nano](https://github.com/rednafi/fastapi-nano/blob/master/pyproject.toml)
+[pip-tools]:
+    https://pip-tools.readthedocs.io/en/latest/
 
-[^8]: [PEP-631](https://peps.python.org/pep-0631/)
+[hatch]:
+    https://hatch.pypa.io/latest/
 
-[^9]: [PEP-517](https://peps.python.org/pep-0517/)
+[pep-621]:
+    https://peps.python.org/pep-0621/
 
-[^10]: [PEP-660](https://peps.python.org/pep-0660/)
+[fastapi-nano example]:
+    https://github.com/rednafi/fastapi-nano/blob/master/pyproject.toml
 
-[^11]: [PEP-440](https://peps.python.org/pep-0440/)
+[pep-631]:
+    https://peps.python.org/pep-0631/
 
-[^12]: [PEP-508](https://peps.python.org/pep-0508/)
+[pep-517]:
+    https://peps.python.org/pep-0517/
 
-[^13]: [PEP-665](https://peps.python.org/pep-0665/)
+[pep-660]:
+    https://peps.python.org/pep-0660/
 
-[^14]:
-    [Example library - rubric](https://github.com/rednafi/rubric/blob/main/pyproject.toml)
+[pep-440]:
+    https://peps.python.org/pep-0440/
 
-[^15]:
-    [Using pyproject.toml in your Django project - Peter Baumgartner](https://lincolnloop.com/insights/using-pyprojecttoml-in-your-django-project/)
-    [^15]
+[pep-508]:
+    https://peps.python.org/pep-0508/
 
-[^16]:
-    [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack](https://hynek.me/til/pip-tools-and-pyproject-toml/)
-    [^16]
+[pep-665]:
+    https://peps.python.org/pep-0665/
+
+[rubric]:
+    https://github.com/rednafi/rubric/blob/main/pyproject.toml
+
+[using pyproject.toml in your django project - peter baumgartner]:
+    https://lincolnloop.com/insights/using-pyprojecttoml-in-your-django-project/
+
+[til: pip-tools supports pyproject.toml - hynek schlawack]:
+    https://hynek.me/til/pip-tools-and-pyproject-toml/
+
+<!-- prettier-ignore-end -->

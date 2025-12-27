@@ -61,9 +61,9 @@ single method called `open_method` which denotes the action of _opening_ on the 
 object. This method gets extended in the `SecuredDoor` class and in this case, I've just
 added a print statement to the method of the latter class.
 
-Notice how the class `Door` was called from `SecuredDoor` via composition[^1]. In the case
-of proxy pattern, you can substitute primary object with the proxy object without any
-additional changes in the code. This conforms to the Liskov Substitution Principle[^2]. It
+Notice how the class `Door` was called from `SecuredDoor` via [composition]. In the case of
+proxy pattern, you can substitute primary object with the proxy object without any
+additional changes in the code. This conforms to the [Liskov Substitution Principle]. It
 states:
 
 > Objects of a superclass shall be replaceable with objects of its subclasses without
@@ -87,8 +87,8 @@ Wikipedia says:
 > provided, for example caching when operations on the real object are resource intensive,
 > or checking preconditions before operations on the real object are invoked.
 
-Pedagogically, the proxy pattern belongs to a family of patterns called the structural
-pattern[^3].
+Pedagogically, the proxy pattern belongs to a family of patterns called the [structural
+pattern].
 
 ## Why use it?
 
@@ -133,11 +133,11 @@ print(division(1.9, 2))
 >>> 0.95
 ```
 
-You can see this function is already doing three things at once which violates the Single
-Responsibility Principle[^4]. SRP says that a function or class should have only one reason
-to change. In this case, a change in any of the three responsibilities can force the
-function to change. Also this means, changing or extending the function can be difficult to
-keep track of.
+You can see this function is already doing three things at once which violates the [Single
+Responsibility Principle]. SRP says that a function or class should have only one reason to
+change. In this case, a change in any of the three responsibilities can force the function
+to change. Also this means, changing or extending the function can be difficult to keep
+track of.
 
 Instead, you can write two classes. The primary class `Division` will only implement the
 core logic while another class `ProxyDivision` will extend the functionality of `Division`
@@ -287,12 +287,12 @@ Python provides abstract base classes as `ABC` in the `abc` module. Abstract cla
 `Interface` inherits from `ABC` and defines all the methods that the concrete class will
 have to implement later. `Concrete` class inherits from the interface and implements all the
 methods defined in it. Notice how each method in the `Interface` class is decorated with the
-`@abstractmethod` decorator. If your knowledge on decorator is fuzzy, then checkout this[^5]
-post on Python decorators. The `@abstractmethod` decorator turns a normal method into an
+`@abstractmethod` decorator. The `@abstractmethod` decorator turns a normal method into an
 abstract method which means that the method is nothing but a blueprint of the required
-methods that the concrete subclass will have to implement later. You can't directly
-instantiate `Interface` or use any of the abstract methods without making subclasses of the
-interface and implementing the methods.
+methods that the concrete subclass will have to implement later. If your knowledge on
+decorators is fuzzy, check out my [Python decorators] post. You can't directly instantiate
+`Interface` or use any of the abstract methods without making subclasses of the interface
+and implementing the methods.
 
 The second class `Concrete` is the actual class that inherits from the abstract base class
 (interface) `Interface` and implements all the methods mentioned as abstract methods. This
@@ -333,28 +333,27 @@ This API is perfect for the demonstration since it has a rate limiter that kicks
 arbitrarily and make the client throw `ConnectTimeOut` and `ReadTimeOutError`. See how this
 workflow is going to look like:
 
--   Define an interface called `IFetchUrl` that will implement three abstract methods. The
-    first method `get_data` will fetch data from the URL and serialize them into `json`
-    format. The second method `get_headers` will probe the data and return the header as a
-    dictionary. The third method `get_args` will also probe the data like the second method
-    but this time it will return the query arguments as a dictionary. However, in the
-    interface, you won't be implementing anything inside the methods.
+- Define an interface called `IFetchUrl` that will implement three abstract methods. The
+  first method `get_data` will fetch data from the URL and serialize them into `json`
+  format. The second method `get_headers` will probe the data and return the header as a
+  dictionary. The third method `get_args` will also probe the data like the second method
+  but this time it will return the query arguments as a dictionary. However, in the
+  interface, you won't be implementing anything inside the methods.
 
--   Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
-    time you'll implement all three methods defined in the abstract class. However, you
-    shouldn't handle any edge cases here. The method should contain pure logic flow without
-    any extra fluff.
+- Make a concrete class named `FetchUrl` that will derive from interface `IFetchUrl`. This
+  time you'll implement all three methods defined in the abstract class. However, you
+  shouldn't handle any edge cases here. The method should contain pure logic flow without
+  any extra fluff.
 
--   Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but
-    this time you'll add your exception handling logics here. This class also adds logging
-    functionality to all the methods. Here you call the concrete class `FetchUrl` in a
-    composition format and avoid code repetition by using the methods that's been already
-    implemented in the concrete class. Like the `FetchUrl` class, here too, you've to
-    implement all the methods found in the abstract class.
+- Make a proxy class called `ExcFetchUrl`. It will also inherit from the interface but this
+  time you'll add your exception handling logics here. This class also adds logging
+  functionality to all the methods. Here you call the concrete class `FetchUrl` in a
+  composition format and avoid code repetition by using the methods that's been already
+  implemented in the concrete class. Like the `FetchUrl` class, here too, you've to
+  implement all the methods found in the abstract class.
 
--   The fourth and the final class will extend the `ExcFetchUrl` and add caching
-    functionality to the `get_data` method. It will follow the same pattern as the
-    `ExcFetchUrl` class.
+- The fourth and the final class will extend the `ExcFetchUrl` and add caching functionality
+  to the `get_data` method. It will follow the same pattern as the `ExcFetchUrl` class.
 
 Since, by now, you're already familiar with the workflow of the proxy pattern, let's dump
 the entire 110 line solution all at once.
@@ -499,12 +498,11 @@ Cache Info: CacheInfo(hits=0, misses=1, maxsize=32, currsize=1)
 ....
 ```
 
-In the `get_data` method of the `FetchUrl` class, I've used the awesome HTTPx[^6] client to
-fetch the data from the URL. Pay attention to the fact that I've practically ignored all the
-additional logics of error handling and logging here. The exception handling and logging
-logic were added via `ExcFetchUrl` proxy class. Another class `CacheFetchUrl` further
-extends the proxy class `ExcFetchUrl` by adding cache functionality to the `get_data`
-method.
+In the `get_data` method of the `FetchUrl` class, I've used [HTTPx] to fetch the data from
+the URL. Pay attention to the fact that I've practically ignored all the additional logics
+of error handling and logging here. The exception handling and logging logic were added via
+`ExcFetchUrl` proxy class. Another class `CacheFetchUrl` further extends the proxy class
+`ExcFetchUrl` by adding cache functionality to the `get_data` method.
 
 In the main section, you can use any of the `FetchUrl`, `ExcFetchUrl` or `CacheFetchUrl`
 without any additional changes to the logic of these classes. The `FetchUrl` is the barebone
@@ -529,20 +527,36 @@ So use the pattern wisely. On the flip side, proxy pattern can come in handy whe
 to extend the functionality of some class arbitrarily as it can work a gateway to the El
 Dorado of loose coupling.
 
-[^1]:
-    [Composition](https://realpython.com/inheritance-composition-python/#composition-in-python)
+## References
 
-[^2]:
-    [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+- [Proxy pattern]
+- [Design patterns for humans - proxy pattern]
 
-[^3]: [Structural pattern](https://en.wikipedia.org/wiki/Structural_pattern)
-[^4]: [Single Responsibility Principle](https://stackify.com/solid-design-principles/)
-[^5]: [Python decorators](/python/decorators)
-[^6]: [HTTPx](https://github.com/encode/httpx)
-[^7]:
-    [Proxy pattern](https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py)
-    [^7]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^8]:
-    [Design patterns for humans - proxy pattern](https://github.com/kamranahmedse/design-patterns-for-humans#-proxy)
-    [^8]
+[composition]:
+    https://realpython.com/inheritance-composition-python/#composition-in-python
+
+[liskov substitution principle]:
+    https://en.wikipedia.org/wiki/Liskov_substitution_principle
+
+[structural pattern]:
+    https://en.wikipedia.org/wiki/Structural_pattern
+
+[single responsibility principle]:
+    https://stackify.com/solid-design-principles/
+
+[python decorators]:
+    /python/decorators
+
+[httpx]:
+    https://github.com/encode/httpx
+
+[proxy pattern]:
+    https://github.com/faif/python-patterns/blob/d4b7f97b3ac07cb545caca32826186e32ec1d88a/patterns/structural/proxy.py
+
+[design patterns for humans - proxy pattern]:
+    https://github.com/kamranahmedse/design-patterns-for-humans#-proxy
+
+<!-- prettier-ignore-end -->

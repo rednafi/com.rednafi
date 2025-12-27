@@ -106,6 +106,14 @@ This will render the docstrings as HTML web pages and automatically open the ind
 your default browser. From there you can use the built-in search to find and read your ones
 you need.
 
-[^1]:
-    [Tweet by Brandon Rhodes](https://twitter.com/brandon_rhodes/status/1354416534098214914)
-    [^1]
+## References
+
+- [Tweet by Brandon Rhodes]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[tweet by brandon rhodes]:
+    https://twitter.com/brandon_rhodes/status/1354416534098214914
+
+<!-- prettier-ignore-end -->

@@ -110,6 +110,14 @@ This will print:
 100%|██████████████████████████████████████████████████████| 100/100 [00:04<00:00]
 ```
 
-[^1]:
-    [Using tqdm with multiprocessing](https://stackoverflow.com/questions/58560686/using-tqdm-with-multiprocessing)
-    [^1]
+## References
+
+- [Using tqdm with multiprocessing]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[using tqdm with multiprocessing]:
+    https://stackoverflow.com/questions/58560686/using-tqdm-with-multiprocessing
+
+<!-- prettier-ignore-end -->

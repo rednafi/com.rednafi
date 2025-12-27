@@ -56,7 +56,7 @@ if __name__ == "__main__":
 Here, the `get_payload` function constructs a payload that gets stored in a Redis DB in the
 `save_to_cache` function. The `get_payload` function returns a dict that denotes a contrived
 payload containing the data of an imaginary zoo. To execute the above snippet, you'll need
-to spin up a Redis database first. You can use Docker[^1] to do so. Install and configure
+to spin up a Redis database first. You can use [Docker] to do so. Install and configure
 Docker on your system and run:
 
 ```sh
@@ -259,8 +259,17 @@ make: *** [Makefile:134: mypy] Error 1
 
 Sweet type safety without being too strict about missing fields!
 
-[^1]: [Docker](https://www.docker.com/)
+## References
 
-[^2]:
-    [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys](https://peps.python.org/pep-0589/)
-    [^2]
+- [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[docker]:
+    https://www.docker.com/
+
+[pep 589 – typeddict: type hints for dictionaries with a fixed set of keys]:
+    https://peps.python.org/pep-0589/
+
+<!-- prettier-ignore-end -->

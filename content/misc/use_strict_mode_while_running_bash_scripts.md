@@ -32,8 +32,12 @@ Where,
 
 ## References
 
-The idea is a less radical version of this post[^1]. I don't recommend messing with the IFS
-without a valid reason.
+- [Unofficial bash strict mode]
 
-[^1]:
-    [Unofficial bash strict mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[unofficial bash strict mode]:
+    http://redsymbol.net/articles/unofficial-bash-strict-mode/
+
+<!-- prettier-ignore-end -->

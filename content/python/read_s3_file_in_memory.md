@@ -8,20 +8,20 @@ tags:
     - Python
 ---
 
-I frequently have to write ad-hoc scripts that download a CSV file from s3[^1], do some
+I frequently have to write ad-hoc scripts that download a CSV file from [AWS S3], do some
 processing on it, and then create or update objects in the production database using the
 parsed information from the file. In Python, it's trivial to download any file from s3 via
-boto3[^2], and then the file can be read with the `csv` module from the standard library.
+[boto3], and then the file can be read with the `csv` module from the standard library.
 However, these scripts are usually run from a separate script server and I prefer not to
 clutter the server's disk with random CSV files. Loading the s3 file directly into memory
 and reading its contents isn't difficult but the process has some subtleties. I do this
 often enough to justify documenting the workflow here.
 
-Along with boto3, we can leverage Python's `tempfile.NamedTemporaryFile`[^3] to directly
-download the contents of the file to a temporary in-memory file. Afterward, we can do the
-processing, create the objects in the DB, and delete the file once we're done. The
-`NamedTemporaryFile` class can be used as a context manager and it'll delete the file
-automatically when the `with` block ends.
+Along with boto3, we can leverage Python's
+[`tempfile.NamedTemporaryFile`][NamedTemporaryFile] to directly download the contents of the
+file to a temporary in-memory file. Afterward, we can do the processing, create the objects
+in the DB, and delete the file once we're done. The `NamedTemporaryFile` class can be used
+as a context manager and it'll delete the file automatically when the `with` block ends.
 
 This is quite straightforward with a simple gotcha. Here's how you'd usually download a file
 from s3 and save that to a file-like object:
@@ -120,13 +120,23 @@ allows binary read and write operations, we'll need to convert it to a text file
 before passing it to the CSV reader. The `io.TextIOWrapper` class does exactly that. Once
 the file object is in text mode, we pass it to the CSV reader and do further processing.
 
-[^1]: [AWS s3](https://aws.amazon.com/s3/)
+## References
 
-[^2]: [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+- [How to use Python csv.DictReader with a binary file?]
 
-[^3]:
-    [NamedTemporaryFile](https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [How to use Python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract)
-    [^4]
+[aws s3]:
+    https://aws.amazon.com/s3/
+
+[boto3]:
+    https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+
+[namedtemporaryfile]:
+    https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile
+
+[how to use python csv.dictreader with a binary file?]:
+    https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract
+
+<!-- prettier-ignore-end -->

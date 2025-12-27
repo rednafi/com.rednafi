@@ -269,7 +269,7 @@ If we distill the workflow as a general rule of thumb, it'd look like this:
 
 Fin!
 
-<!-- References -->
+<!-- references -->
 
 <!-- prettier-ignore-start -->
 

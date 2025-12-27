@@ -128,17 +128,27 @@ with model_instance.file.open(mode="rb") as f:
 Here, `io.TextIOWrapper` wraps the binary file-like object in a way that makes it behave as
 if it were opened in text mode. In fact when you open a file in text mode, the native
 implementation of `open` returns a file-like object wrapped in `io.TextIOWrapper`. You can
-find more details about the implementation[^1] of `open` in PEP-3116[^2].
+find more details about the [implementation of open] in [PEP-3116].
 
 The `csv.DictReader` callable can consume this transformed file-like object without any
 further modifications. Since we aren't calling `f.read()` anymore, no overzealous content
 buffering is going on here and we can lazily ask for new rows from the `reader` object as we
 sequentially process them.
 
-[^1]: [open](https://peps.python.org/pep-3116/#the-open-built-in-function)
+## References
 
-[^2]: [New I/O - PEP-3116](https://peps.python.org/pep-3116/)
+- [How to use python csv.DictReader with a binary file?]
 
-[^3]:
-    [How to use python csv.DictReader with a binary file?](https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[implementation of open]:
+    https://peps.python.org/pep-3116/#the-open-built-in-function
+
+[pep-3116]:
+    https://peps.python.org/pep-3116/
+
+[how to use python csv.dictreader with a binary file?]:
+    https://stackoverflow.com/questions/51152023/how-to-use-python-csv-dictreader-with-a-binary-file-for-a-babel-custom-extract
+
+<!-- prettier-ignore-end -->

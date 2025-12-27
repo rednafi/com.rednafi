@@ -226,5 +226,14 @@ From stream_even: 6
 KeyboardInterrupt
 ```
 
-[^1]:
-    [itertools-cycle](https://docs.python.org/3/library/itertools.html#itertools.cycle) [^1]
+## References
+
+- [itertools.cycle]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[itertools.cycle]:
+    https://docs.python.org/3/library/itertools.html#itertools.cycle
+
+<!-- prettier-ignore-end -->

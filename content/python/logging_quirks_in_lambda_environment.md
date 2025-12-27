@@ -9,22 +9,22 @@ tags:
     - AWS
 ---
 
-At my workplace, while working on a Lambda[^1] function, I noticed that my Python logs
-weren't appearing on the corresponding Cloudwatch[^2] log dashboard. At first, I thought
-that the function wasn't picking up the correct log level from the environment variables. We
-were using serverless[^3] framework and GitLab CI to deploy the function, so my first line
-of investigation involved checking for missing environment variables in those config files.
+At my workplace, while working on a [Lambda] function, I noticed that my Python logs weren't
+appearing on the corresponding [Cloudwatch] log dashboard. At first, I thought that the
+function wasn't picking up the correct log level from the environment variables. We were
+using [Serverless framework] and GitLab CI to deploy the function, so my first line of
+investigation involved checking for missing environment variables in those config files.
 
 However, I quickly realized that the environment variables were being propagated to the
 Lambda function as expected. So, the issue had to be coming from somewhere else. After
-perusing through some docs, I discovered from the source code of Lambda Python Runtime
-Interface Client[^4] that AWS Lambda Python runtime pre-configures[^5] a logging handler
-that modifies the format of the log message, and also adds some metadata to the record if
+perusing through some docs, I discovered from the source code of [Lambda Python Runtime
+Interface Client] that AWS Lambda Python runtime [pre-configures] a logging handler that
+modifies the format of the log message, and also adds some metadata to the record if
 available. What's not pre-configured though is the log level. This means that no matter the
 type of log message you try to send, it won't print anything.
 
-According to the docs[^6], to make your logging work in the Lambda environment, you'll only
-need to set the log level for the root logger like this:
+According to the [Lambda function logging docs], to make your logging work in the Lambda
+environment, you'll only need to set the log level for the root logger like this:
 
 ```py
 # src.py
@@ -108,21 +108,32 @@ local and Lambda environment and won't suffer from any side effects like message
 duplication. It'll also make sure that the pre-configured formatting of the log message is
 kept intact.
 
-[^1]: [AWS Lambda](https://aws.amazon.com/lambda/)
+## References
 
-[^2]: [Cloudwatch](https://aws.amazon.com/cloudwatch/)
+- [Using Python logging with AWS Lambda]
 
-[^3]: [Serverless framework](https://www.serverless.com/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Lambda Python Runtime Interface Client](https://github.com/aws/aws-lambda-python-runtime-interface-client)
+[lambda]:
+    https://aws.amazon.com/lambda/
 
-[^5]:
-    [Pre-configured root logger in the Lambda environment](https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/970e9c1d2613e0ce9c388547c76ac30992ad0e96/awslambdaric/bootstrap.py#L376-L385)
+[cloudwatch]:
+    https://aws.amazon.com/cloudwatch/
 
-[^6]:
-    [AWS Lambda function logging in Python](https://docs.aws.amazon.com/lambda/latest/dg/python-logging.html)
+[serverless framework]:
+    https://www.serverless.com/
 
-[^7]:
-    [Using Python logging with AWS Lambda](https://stackoverflow.com/questions/37703609/using-python-logging-with-aws-lambda)
-    [^7]
+[lambda python runtime interface client]:
+    https://github.com/aws/aws-lambda-python-runtime-interface-client
+
+[pre-configures]:
+    https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/970e9c1d2613e0ce9c388547c76ac30992ad0e96/awslambdaric/bootstrap.py#L376-L385
+
+[lambda function logging docs]:
+    https://docs.aws.amazon.com/lambda/latest/dg/python-logging.html
+
+[using python logging with aws lambda]:
+    https://stackoverflow.com/questions/37703609/using-python-logging-with-aws-lambda
+
+<!-- prettier-ignore-end -->

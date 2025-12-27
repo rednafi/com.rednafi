@@ -202,7 +202,7 @@ see events pouring into the console that's listening for them:
 docker run hello-world
 ```
 
-The complete list of APIs can be found here[^1].
+The complete list of APIs can be found in the [Docker engine API documentation].
 
 ## Writing a Unix domain socket server in Python
 
@@ -298,10 +298,10 @@ Running the server and client as two separate processes will yield the following
 ## Exposing an HTTP application via a Unix domain socket
 
 Webservers usually allow you to expose HTTP applications via Unix domain sockets. In Python,
-the uvicorn[^2] ASGI server lets you do this quite easily. This can come as handy whenever
-you need to spin up a local server and all the clients are running on the same machine or
-you're running your server behind a proxy. Here's an example of a simple webserver built
-with starlette[^3] and served with uvicorn.
+the [uvicorn] ASGI server lets you do this quite easily. This can come as handy whenever you
+need to spin up a local server and all the clients are running on the same machine or you're
+running your server behind a proxy. Here's an example of a simple webserver built with
+[starlette] and served with uvicorn.
 
 ```py
 # server.py (http server)
@@ -368,21 +368,34 @@ the HTML page:
 
 ![reverse proxy access][image_2]
 
-[^1]: [Docker engine API](https://docs.docker.com/engine/api/latest/)
+## References
 
-[^2]: [Uvicorn](https://www.uvicorn.org/)
+- [Understanding sockets - Digital Ocean]
 
-[^3]: [Starlette](https://www.starlette.io/)
+- [Fun with Unix domain sockets - Simon Willison]
 
-[^4]:
-    [Understanding sockets](https://www.digitalocean.com/community/tutorials/understanding-sockets)
-    [^4]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^5]:
-    [Fun with Unix domain sockets](https://simonwillison.net/2021/Jul/13/unix-domain-sockets/)
-    [^5]
+[docker engine api documentation]:
+    https://docs.docker.com/engine/api/latest/
+
+[uvicorn]:
+    https://www.uvicorn.org/
+
+[starlette]:
+    https://www.starlette.io/
+
+[understanding sockets - digital ocean]:
+    https://www.digitalocean.com/community/tutorials/understanding-sockets
+
+[fun with unix domain sockets - simon willison]:
+    https://simonwillison.net/2021/Jul/13/unix-domain-sockets/
 
 [image_1]:
     https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_1.png
+
 [image_2]:
     https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_2.png
+
+<!-- prettier-ignore-end -->

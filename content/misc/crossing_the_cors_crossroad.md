@@ -10,8 +10,8 @@ tags:
 ---
 
 Every once in a while, I find myself skimming through the MDN docs to jog my memory on how
-CORS[^1] works and which HTTP headers are associated with it. This is particularly true when
-a frontend app can't talk to a backend service I manage due to a CORS error[^2].
+[CORS] works and which HTTP headers are associated with it. This is particularly true when a
+frontend app can't talk to a backend service I manage due to a [CORS error].
 
 MDN's CORS documentation is excellent but can be a bit verbose for someone just looking for
 a way to quickly troubleshoot and fix the issue at hand.
@@ -28,8 +28,8 @@ Here's a list of some commonly found headers associated with CORS:
 **Request headers**
 
 - `Origin`: indicates the origin of the request
-- `Access-Control-Request-Method`: used in preflight[^3] to specify the method of the actual
-  request
+- `Access-Control-Request-Method`: used in [preflight requests] to specify the method of the
+  actual request
 - `Access-Control-Request-Headers`: used in preflight to specify headers that will be used
   in the actual request
 
@@ -236,9 +236,16 @@ the case of a browser, this should be automatically handled for you.
 Use the preflight request commands to test that the server is only allowing access from the
 whitelisted domain while blocking everything else.
 
-[^1]: [CORS - mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
+[cors]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-[^3]:
-    [Preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)
+[cors error]:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+[preflight requests]:
+    https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request
+
+<!-- prettier-ignore-end -->

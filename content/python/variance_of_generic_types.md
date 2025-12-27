@@ -263,6 +263,14 @@ if __name__ == "__main__":
     process_holder_contra(holder_contra)
 ```
 
-[^1]:
-    [PEP 483 -- The theory of type hints](https://www.python.org/dev/peps/pep-0483/#generic-types)
-    [^1]
+## References
+
+- [PEP 483 - The theory of type hints]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[pep 483 - the theory of type hints]:
+    https://www.python.org/dev/peps/pep-0483/#generic-types
+
+<!-- prettier-ignore-end -->

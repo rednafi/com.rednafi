@@ -194,10 +194,18 @@ Whoa! This updated the records in under 2.5 seconds. Quite a bit of performance 
 > support concurrent writes from multiple processes. Trying to run the second script with
 > SQLite backend will incur a database error.
 
-[^1]:
-    [Django bulk_update](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update)
-    [^1]
+## References
 
-[^2]:
-    [Using a pool of forked workers](https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers)
-    [^2]
+- [Django bulk_update]
+- [Using a pool of forked workers]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[django bulk_update]:
+    https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-update
+
+[using a pool of forked workers]:
+    https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers
+
+<!-- prettier-ignore-end -->

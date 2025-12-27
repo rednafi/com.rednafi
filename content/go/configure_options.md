@@ -279,7 +279,7 @@ func NewStyle(fg, bg string, options ...styleoption) *style {
 }
 ```
 
-I first came across this pattern in [Rob Pike's blog] on the same topic.
+I first came across this pattern in [Rob Pike's post on self-referential functions].
 
 ## Verdict
 
@@ -297,11 +297,10 @@ function `NewStuff` to instantiate it. For another canonical example, see `bufio
 - [Functional options for friendly APIs - Dave Cheney]
 - [Functional options pattern in Go - Matt Boyle]
 
-<!-- Resources -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 
-<!-- self-referential functions and the design of options - rob pike -->
-[rob pike's blog]:
+[rob pike's post on self-referential functions]:
     https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
 
 [functional options for friendly apis - dave cheney]:
@@ -309,6 +308,5 @@ function `NewStuff` to instantiate it. For another canonical example, see `bufio
 
 [functional options pattern in go - matt boyle]:
     https://twitter.com/MattJamesBoyle/status/1698605808517288428
-
 
 <!-- prettier-ignore-end -->

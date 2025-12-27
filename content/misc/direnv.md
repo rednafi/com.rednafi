@@ -1,9 +1,9 @@
 ---
 title: Discovering direnv
-Date: 2024-10-02
-Tags:
-    -   TIL
-    -   Shell
+date: 2024-10-02
+tags:
+    - TIL
+    - Shell
 slug: direnv
 aliases:
     - /misc/direnv/

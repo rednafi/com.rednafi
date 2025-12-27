@@ -93,6 +93,14 @@ drwxr-xr-x   26 rednafi  staff   832B Dec 23 13:35 .
 If you look closely, you'll see that the debug commands and their outputs are no longer
 getting repeated.
 
-[^1]:
-    [Why I use the colon command - @anthonywritescode](https://www.youtube.com/watch?v=onkNf1AKSgg)
-    [^1]
+## References
+
+- [Why I use the colon command by @anthonywritescode]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[why i use the colon command by @anthonywritescode]:
+    https://www.youtube.com/watch?v=onkNf1AKSgg
+
+<!-- prettier-ignore-end -->

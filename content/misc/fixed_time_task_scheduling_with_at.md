@@ -12,7 +12,7 @@ tags:
 
 This weekend, I was working on a fun project that required a fixed-time job scheduler to run
 a `curl` command at a future timestamp. I was aiming to find the simplest solution that
-could just get the job done. I've also been exploring Google Bard[^1] recently and wanted to
+could just get the job done. I've also been exploring [Google Bard] recently and wanted to
 see how it stacks up against other LLM tools like ChatGPT, BingChat, or Anthropic's Claude
 in terms of resolving programming queries.
 
@@ -25,7 +25,7 @@ It introduced me to the UNIX `at` command that does exactly what I needed. Cron 
 a good fit for this particular use case, and I wasn't aware of the existence of `at` before.
 So I started probing the model and wanted to document my findings for future reference.
 Also, the final hacky solution that allowed me to schedule jobs remotely can be found at the
-tail[^2] of this post.
+[end of this post].
 
 ## The insipid definition
 
@@ -89,7 +89,7 @@ This will start the `atrun` daemon. Or enable it for future bootups by modifying
 
 ```
 
-On modern MacOS like Ventura, unfortunately, this requires disabling SIP[^3]. Next, you'll
+On modern MacOS like Ventura, unfortunately, this requires [disabling SIP]. Next, you'll
 need to provide full disk access to `atrun`. To do so:
 
 - Open Spotlight and type in _Allow full disk access_.
@@ -102,7 +102,7 @@ need to provide full disk access to `atrun`. To do so:
 
 ![add atrun to allow list][image_2]
 
-You can learn more about making `atrun` work on MacOS here[^4]. Although I'm using MacOS for
+You can learn more about [making atrun work on MacOS]. Although I'm using MacOS for
 development, In my particular case, making `at` work on MacOS wasn't the first priority
 because I deployed the final solution to an Ubuntu container.
 
@@ -362,18 +362,32 @@ curl -X POST -H "Authorization: Bearer some-token" \
      http://localhost:3000/run-command
 ```
 
-[^1]: [Bard](https://bard.google.com/)
+## References
 
-[^2]: [A hacky way to schedule jobs remotely](#a-hacky-way-to-schedule-jobs-remotely)
+- [at command in Linux]
 
-[^3]:
-    [System Integrity Protection (SIP)](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]: [Making "at" work on macOS](https://unix.stackexchange.com/a/478840/383934)
+[google bard]:
+    https://bard.google.com/
 
-[^5]: ["at" command in Linux](https://linuxize.com/post/at-command-in-linux/) [^5]
+[end of this post]:
+    #a-hacky-way-to-schedule-jobs-remotely
+
+[disabling SIP]:
+    https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection
+
+[making atrun work on MacOS]:
+    https://unix.stackexchange.com/a/478840/383934
+
+[at command in Linux]:
+    https://linuxize.com/post/at-command-in-linux/
 
 [image_1]:
     https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_1.png
+
 [image_2]:
     https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_2.png
+
+<!-- prettier-ignore-end -->

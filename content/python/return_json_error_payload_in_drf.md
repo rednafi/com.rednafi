@@ -23,10 +23,10 @@ occurs. This is suboptimal; JSON APIs should never return HTML text whenever som
 wrong. On the other hand, the website needs those error text to appear accordingly.
 
 This happens because 403, 404, and 500 are handled by Django's default handlers for those
-errors and not by DRF's exception handlers. As the DRF doc suggests[^1], overriding the
-error handlers is one way of solving it. But this will only work if the application is an
-API-only backend or if you haven't already overridden the error handlers for custom error
-pages.
+errors and not by DRF's exception handlers. As the DRF doc suggests on [generic error
+views], overriding the error handlers is one way of solving it. But this will only work if
+the application is an API-only backend or if you haven't already overridden the error
+handlers for custom error pages.
 
 In our case, we already had to override the default error handlers to display custom error
 pages on the website. These custom pages would bleed into the API endpoints occasionally
@@ -161,13 +161,19 @@ This workflow has been tested on Django 3.2, 4.0, and DRF 3.13.
 
 ## References
 
-[^1]:
-    [Generic error views](https://www.django-rest-framework.org/api-guide/exceptions/#generic-error-views)
+- [HTML sometimes returned when Accept: application/json is provided #3362]
+- [Added generic 500 and 400 JSON error handlers #5904]
 
-[^2]:
-    [HTML sometimes returned when Accept: application/json is provided #3362](https://github.com/encode/django-rest-framework/issues/3362)
-    [^2]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^3]:
-    [Added generic 500 and 400 JSON error handlers #5904](https://github.com/encode/django-rest-framework/pull/5904)
-    [^3]
+[generic error views]:
+    https://www.django-rest-framework.org/api-guide/exceptions/#generic-error-views
+
+[html sometimes returned when accept: application/json is provided #3362]:
+    https://github.com/encode/django-rest-framework/issues/3362
+
+[added generic 500 and 400 json error handlers #5904]:
+    https://github.com/encode/django-rest-framework/pull/5904
+
+<!-- prettier-ignore-end -->

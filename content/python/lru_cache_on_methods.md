@@ -213,9 +213,9 @@ with the same parameters as before, the first time, it recalculated it instead o
 the result from the cache. How come!
 
 Underneath, the `lru_cache` decorator uses a dictionary to cache the calculated values. A
-hash function is applied[^1] to all the parameters of the target function to build the key
-of the dictionary, and the value is the return value of the function when those parameters
-are the inputs. This means, the first argument `self` also gets included while building the
+[hash function is applied] to all the parameters of the target function to build the key of
+the dictionary, and the value is the return value of the function when those parameters are
+the inputs. This means, the first argument `self` also gets included while building the
 cache key. However, for different instances, this `self` object is going to be different and
 that makes the hashed key of the cache different for every instance even if the other
 parameters are the same.
@@ -295,17 +295,26 @@ class Foo:
         print("Deleting instance ...")
 ```
 
-[^1]:
-    [LRU cache key](https://github.com/python/cpython/blob/8882b30dab237c8b460cb8d18cecc8b8d031da25/Lib/functools.py#L448)
+## References
 
-[^2]:
-    [functools.lru_cache - Python Docs](https://docs.python.org/3/library/functools.html#functools.lru_cache)
-    [^2]
+- [functools.lru_cache - Python Docs]
+- [Don't lru_cache methods! (intermediate) anthony explains #382]
+- [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod
+  or classmethod decorator]
 
-[^3]:
-    [Don't lru_cache methods! (intermediate) anthony explains #382](https://www.youtube.com/watch?v=sVjtp6tGo0g)
-    [^3]
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod or classmethod decorator](https://stackoverflow.com/questions/70409673/python-lru-cache-in-a-class-disregards-maxsize-limit-when-decorated-with-a-stati)
-    [^4]
+[hash function is applied]:
+    https://github.com/python/cpython/blob/8882b30dab237c8b460cb8d18cecc8b8d031da25/Lib/functools.py#L448
+
+[functools.lru_cache - Python Docs]:
+    https://docs.python.org/3/library/functools.html#functools.lru_cache
+
+[don't lru_cache methods! (intermediate) anthony explains #382]:
+    https://www.youtube.com/watch?v=sVjtp6tGo0g
+
+[python lru cache in a class disregards maxsize limit when decorated with a staticmethod or classmethod decorator]:
+    https://stackoverflow.com/questions/70409673/python-lru-cache-in-a-class-disregards-maxsize-limit-when-decorated-with-a-stati
+
+<!-- prettier-ignore-end -->
