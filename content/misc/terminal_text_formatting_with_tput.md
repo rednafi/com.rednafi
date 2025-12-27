@@ -110,7 +110,7 @@ tput sgr0
 
 Running the script will give you the following output:
 
-![tput color][image_1]
+![Terminal output showing tput text formatting with colored warning and debug messages][image_1]
 
 This also hardcodes the color and formatting codes but it's much easier than having to
 remember or search for the ANSI escape codes. Currently, I'm using a 256-bit macOS terminal
@@ -128,7 +128,7 @@ done
 
 On my terminal, it prints this nice color palette:
 
-![tput color palette][image_2]
+![Terminal displaying 256-color palette grid generated with tput setab command][image_2]
 
 <!-- references -->
 <!-- prettier-ignore-start -->

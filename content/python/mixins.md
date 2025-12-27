@@ -413,7 +413,7 @@ about the cases where interfaces can come handy. I'll define an interface called
 interface defines three abstract methods `start`, `accelerate` and `stop` that the concrete
 classes will need to implement later.
 
-![mixins][image_1]
+![UML diagram showing mixin class composition pattern in Python][image_1]
 
 ```py
 from abc import ABC, abstractmethod

@@ -33,7 +33,7 @@ A metaclass is a class whose instances are classes. Like an "ordinary" class def
 behavior of the instances of the class, a metaclass defines the behavior of classes and
 their instances.
 
-![metaclass][image_1]
+![Diagram showing relationship between metaclass, class, and instance in Python][image_1]
 
 Metaclasses aren't supported by every object oriented programming language. Those
 programming language, which support metaclasses, considerably vary in way they implement

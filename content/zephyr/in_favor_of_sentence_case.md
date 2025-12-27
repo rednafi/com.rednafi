@@ -33,7 +33,7 @@ casing and whether or not sentences with technical words in them will look awkwa
 saves me from creating horrors like this where the semantics of a sentence get massacred by
 the eccentricity of title casing:
 
-![weird case massacring a sentence][image_1]
+![Screenshot showing awkward title case with technical terms creating semantic confusion][image_1]
 
 _Sentence case everywhere_ is the general trend I'm seeing on the technical blogs of some of
 the big players on the internet:
