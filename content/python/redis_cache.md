@@ -86,7 +86,7 @@ This command will start the database and monitor accordingly. You can go to this
 `localhost:8000` link using your browser and connect redisinsight to your database. After
 connecting your database, you should see a dashboard like this in your redisinsight panel:
 
-![redis insight][image_1]
+![RedisInsight dashboard showing connected Redis database overview][image_1]
 
 ## Preparing Python environment
 
@@ -217,7 +217,7 @@ The `route_optima` function is the primary agent that orchestrates and executes 
 and returning of responses against requests. It roughly follows the execution flow shown
 below.
 
-![route_optima flowchart][image_2]
+![Flowchart showing cache check and API request decision flow][image_2]
 
 When a new request arrives, the function first checks if the return-value exists in the
 Redis cache. If the value exists, it shows the cached value, otherwise, it sends a new
@@ -484,7 +484,7 @@ http://localhost:8000/
 Select the `Browser` panel from the left menu and click on a key of your cached data. It
 should show something like this:
 
-![redisinsight browser][image_3]
+![RedisInsight browser panel displaying cached coordinate data as key-value pairs][image_3]
 
 Also you can play around with the API in the swagger UI. To do so, go to the following link:
 
@@ -495,7 +495,7 @@ http://localhost:5000/docs
 This will take you to the swagger dashboard. Here you can make requests using the
 interactive UI. Go ahead and inspect how the caching works for new coordinates.
 
-![fastapi browser][image_4]
+![FastAPI Swagger UI showing route optimization API endpoint][image_4]
 
 ## Remarks
 

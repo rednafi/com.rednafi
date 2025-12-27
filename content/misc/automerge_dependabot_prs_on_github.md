@@ -39,26 +39,26 @@ First, you'll need to turn on the auto-merge option from the repository settings
 go to the repo's _settings_ tab and turn on the _Allow auto-merge_ option from the _Pull
 Requests_ section:
 
-![turn on automerge][image_1]
+![GitHub repository settings showing Allow auto-merge checkbox in Pull Requests section][image_1]
 
 Now, you probably don't want to mindlessly merge every pull request Dependabot throws at
 you. You most likely want to make sure that a pull request triggers certain tests and it'll
 be merged only if all of those checks pass. To do so, you can turn on [branch protection].
 From the _settings_ panel, select _Branches_ on the left panel:
 
-![select up a branch protection rule][image_2]
+![GitHub settings Branches panel for adding branch protection rules][image_2]
 
 Once you've selected the tab, add a branch protection rule to the target branch against
 which Dependabot will send the pull requests:
 
-![set up a branch protection rule][image_3]
+![GitHub branch protection rule configuration with status checks enabled][image_3]
 
 In this case, I'm adding the protection layer to the `main` branch. I've turned on the
 _Require status checks to pass before merging_ toggle and added the `build` step to the list
 of status checks that are required. Here, you can select any job from your CI files in the
 `.github/workflows` directory:
 
-![turn on status check][image_4]
+![GitHub status checks dropdown showing build job selected as required check][image_4]
 
 Once this is done, you can drop the following CI file in the `.github/workflows` directory
 of your repo. It's the same [automerge workflow file] that's currently living inside this

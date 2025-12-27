@@ -146,7 +146,7 @@ string. The server will capture and echo it back to the client which the client 
 as `Received ...`. You can run the server in one console with `python server.py` and the
 client in another one with the `python client.py` command.
 
-![server-client][image_1]
+![Terminal showing socket server pausing and resuming while handling client connections][image_1]
 
 You'll see that the server will pause every 5 seconds, do something else in a blocking
 manner and then come back to handle the client requests. If you attach a second client from
