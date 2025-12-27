@@ -104,7 +104,7 @@ latencies as it jumps through different hops.
 I snagged this photo from an [SFU traceroute machinery slide] that I think explains the
 machinery of `traceroute` quite well:
 
-![how traceroute works][image_1]
+![Diagram showing traceroute mechanism with TTL incrementing at each router hop][image_1]
 
 ## Writing a crappier version of traceroute in Python
 

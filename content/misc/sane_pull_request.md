@@ -34,7 +34,7 @@ OSS work, but these steps have been helpful while working on a large shared repo
   a platform like GitHub. I really like to filter diffs on GitHub, but it wouldn't be useful
   if the commits are all over the place.
 
-    ![commit filter][image_1]
+    ![GitHub PR diff view with commit filter dropdown for navigating changes][image_1]
 
 - To make diff filtering better, I often rebase my feature branch after a messy development
   workflow and divide the changes into a few commits clustered around the core
@@ -51,7 +51,7 @@ OSS work, but these steps have been helpful while working on a large shared repo
 - Annotated comments from the author on the PR are great. I wish they'd take up less space
   and there was a way to collapse them individually.
 
-    ![annotated comments][image_2]
+    ![GitHub PR with author annotations explaining code changes inline][image_2]
 
 - Each PR must be connected to either an Issue or a Jira ticket, depending on how the team
   works.
@@ -60,7 +60,7 @@ OSS work, but these steps have been helpful while working on a large shared repo
   easier for me when I do the review. Being able to see that the changes work as intended
   without running the code has its benefits.
 
-    ![feature preview][image_3]
+    ![PR description with embedded screenshot demonstrating feature behavior][image_3]
 
 - Keeping the PR in draft state until it's ready to be reviewed. I'm not a fan of getting a
   notification to review some work only to find that it's not ready yet.

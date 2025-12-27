@@ -39,7 +39,7 @@ git commit -am "From branch alice" && git push
 
 From the GitHub UI, send a pull request against the `main` branch and merge it:
 
-![example pull rebase][image_1]
+![GitHub pull request UI showing merge from alice branch to main][image_1]
 
 In your local machine, switch to `main` and try to pull the latest content merged from the
 `alice` branch. You'll encounter the following error:

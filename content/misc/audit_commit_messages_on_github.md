@@ -30,7 +30,7 @@ This pattern also works for bugfixes without any changes. Here's an [example iss
 shows the workflow in action. Plus, I follow a similar pattern to write the blogs on this
 site as well. This is what a feature issue might look like on GitHub:
 
-![enforce commit style][image_1]
+![GitHub issue showing commits linked with refs and closes keywords][image_1]
 
 While I'm quite happy with how the process is working for me, often time, I get careless and
 push commits without a reference to any issue. This pollutes the Git history and breaks my

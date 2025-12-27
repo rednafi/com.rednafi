@@ -293,7 +293,7 @@ the stdout stream.
 
 Running the server and client as two separate processes will yield the following output:
 
-![echo client server][image_1]
+![Terminal split view showing Unix domain socket server and client exchanging hello world messages][image_1]
 
 ## Exposing an HTTP application via a Unix domain socket
 
@@ -366,7 +366,7 @@ proxy.
 You can then head over to your browser and go to `http://localhost:9999`. This will display
 the HTML page:
 
-![reverse proxy access][image_2]
+![Browser displaying Hello World HTML page served via Unix domain socket with socat proxy][image_2]
 
 ## Further reading
 
