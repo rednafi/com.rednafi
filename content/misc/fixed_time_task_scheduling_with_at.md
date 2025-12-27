@@ -95,12 +95,12 @@ need to provide full disk access to `atrun`. To do so:
 - Open Spotlight and type in _Allow full disk access_.
 - On the left panel, click on _Allow applications to access all user files_.
 
-![enable atrun on mac][image_1]
+![macOS System Settings showing Full Disk Access panel for atrun][image_1]
 
 - On the right panel, add `/usr/libexec/atrun` to the list of allowed apps. Press
   `cmd + shift + g` and type in the full path of `atrun`.
 
-![add atrun to allow list][image_2]
+![macOS file picker dialog adding /usr/libexec/atrun to Full Disk Access][image_2]
 
 You can learn more about [making atrun work on MacOS]. Although I'm using MacOS for
 development, In my particular case, making `at` work on MacOS wasn't the first priority

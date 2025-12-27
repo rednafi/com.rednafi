@@ -195,7 +195,7 @@ Then in the last step, we use an off-the-shelf workflow to push our changes to t
 Check out the [workflow directory] of my profile's repo to see the whole setup in action.
 I'm quite satisfied with the final output:
 
-![periodic readme update][image_1]
+![GitHub profile README showing auto-updated table of latest blog posts][image_1]
 
 <!-- references -->
 <!-- prettier-ignore-start -->

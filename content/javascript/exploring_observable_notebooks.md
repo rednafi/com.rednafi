@@ -177,7 +177,7 @@ Here's a gif of it in action:
 
 Click on the following thumbnail to take the notebook for a spin:
 
-[![observable thumbnail][image_1]][observable notebook]
+[![Observable notebook interface showing CSV file comparison tool][image_1]][observable notebook]
 
 <!-- references -->
 <!-- prettier-ignore-start -->

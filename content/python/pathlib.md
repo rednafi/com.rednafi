@@ -274,7 +274,7 @@ individual classes internally coupled by inheritance. They are:
 This UML diagram from the official docs does a better job at explaining the internal
 relationships between the component classes.
 
-![pathlib path hierarchy][image_1]
+![UML diagram showing Python pathlib class hierarchy with PurePath and Path][image_1]
 
 Unless you are doing cross platform path manipulation, most of the time you'll be working
 with the concrete `Path` object. So I'll focus on the methods and properties of `Path` class

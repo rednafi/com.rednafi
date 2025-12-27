@@ -76,14 +76,14 @@ layout: post
 
 Hugo renders the detail view like this:
 
-![detail view][img_1]
+![Link blog detail view showing curated links with dates and commentary][img_1]
 
 ### List view
 
 I use the Papermod theme for this site, and it automatically creates a list view from the
 yearly pages.
 
-![list view][img_2]
+![Link blog list view showing yearly feed pages in Hugo PaperMod theme][img_2]
 
 To avoid spamming people, the entries in the link blog are filtered out of the main RSS
 feed. Also, the client-side search functionality allows me to look for a particular link
