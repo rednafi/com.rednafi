@@ -176,7 +176,7 @@ def call_os_execvp() -> NoReturn:
     os.execvp("echo", ("echo", "hi"))
 ```
 
-## References
+## Further reading
 
 - [NoReturn vs None - Anthony explains]
 - [What's the point of NoReturn? - Adam Johnson]

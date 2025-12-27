@@ -232,7 +232,7 @@ Running the snippet prints:
 
 Voila, the key-value pairs of the even numbers have been removed successfully!
 
-## References
+## Further reading
 
 - [How to modify a list while iterating - Anthony Sottile]
 

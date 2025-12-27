@@ -270,7 +270,7 @@ Running the query gives us the following output:
 | 11 | Product 1 | 51.0  | Category 1 |
 ```
 
-## References
+## Further reading
 
 - [Django get a queryset from an array of id's in a specific order - Stack Overflow]
 

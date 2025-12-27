@@ -178,7 +178,7 @@ see this:
 
 Much nicer!
 
-## References
+## Further reading
 
 - [Custom Exception Handling - DRF docs]
 

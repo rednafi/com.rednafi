@@ -99,7 +99,7 @@ here and there but mostly prefer footnotes since they allow me to avoid repetiti
 subjectively look less distracting compared to underlined or highlighted URLs. And suddenly,
 [prettier]'s job has become easier too!
 
-## References
+## Further reading
 
 - [Checkout the raw Markdown file of this post]
 

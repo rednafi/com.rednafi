@@ -52,7 +52,7 @@ ec9191c Add unfinished indexing script
 18e41c8 Update bash tils
 ```
 
-## References
+## Further reading
 
 - [How to write a git commit message]
 

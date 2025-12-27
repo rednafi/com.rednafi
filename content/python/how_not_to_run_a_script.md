@@ -90,7 +90,7 @@ This will not raise the import error and return the following output:
 Here, the first entry denotes the root directory from where the script is being run from.
 Voila, problem solved!
 
-## References
+## Further reading
 
 - [Don't run python my/script.py]
 

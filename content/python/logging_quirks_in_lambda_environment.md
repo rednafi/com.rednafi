@@ -108,7 +108,7 @@ local and Lambda environment and won't suffer from any side effects like message
 duplication. It'll also make sure that the pre-configured formatting of the log message is
 kept intact.
 
-## References
+## Further reading
 
 - [Using Python logging with AWS Lambda]
 

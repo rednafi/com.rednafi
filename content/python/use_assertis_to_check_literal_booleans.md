@@ -84,7 +84,7 @@ Notice how I've used `self.assertIs` in the `is_true` and `is_false` methods to 
 test out the literal boolean values. The `is_truthy` and `is_falsy` methods were kept
 unchanged from the previous snippet.
 
-## References
+## Further reading
 
 - [Tweet by Drewrey Lupton]
 

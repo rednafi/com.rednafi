@@ -86,7 +86,7 @@ Neat, but don't abuse this. [Effective Go warns]:
 > declarations are only used when there are no static conversions already present in the
 > code, which is a rare event._
 
-## Further readings
+## Further reading
 
 - [Interface guards - Caddy docs]
 - [Tweet by Matt Boyle]

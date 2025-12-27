@@ -396,7 +396,7 @@ All the code snippets here are using Python 3.10's type annotation syntax. Howev
 you're using `from __future__ import annotations`, you'll be able to run all of them in
 earlier Python versions, going as far back as Python 3.7.
 
-## References
+## Further reading
 
 - [PEP 544 -- Protocols: Structural subtyping (static duck typing)]
 

@@ -372,7 +372,7 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 
 ![error handling in multi-threaded socket server][image_2]
 
-## References
+## Further reading
 
 - [socketserver]
 

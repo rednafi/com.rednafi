@@ -349,7 +349,7 @@ test session quicker. However, keep in mind that making fixtures run in the modu
 also its demerits. Since the target functions get mocked and stay mocked through the entire
 module, it can subtly create coupling between your test functions if you aren't careful.
 
-## References
+## Further reading
 
 - [Test async code with pytest-asyncio]
 - [Unittest mock — mock object library]

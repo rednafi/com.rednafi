@@ -463,7 +463,7 @@ language like Python, you can't always escape inheritance, nor should you try to
 > _Yet behold, it need not be the customary stratagem that thou graspest at each moment
 > thine heart yearns to commune code amidst classes._
 
-## References
+## Further reading
 
 - [End of object inheritance - Augie Fackler, Nathaniel Manista]
 

@@ -162,7 +162,7 @@ any modern web framework.
 
 Fin!
 
-## Further readings
+## Further reading
 
 - [Apache tutorial: Dynamic content with CGI]
 

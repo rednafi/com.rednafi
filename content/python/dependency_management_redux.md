@@ -292,7 +292,7 @@ pip install ".[dev]"
 Hatch also provides a `hatch publish` command to upload the package to PyPI. For a complete
 reference, check out how I shipped [rubric] following this workflow.
 
-## References
+## Further reading
 
 - [Using pyproject.toml in your Django project - Peter Baumgartner]
 - [TIL: pip-tools Supports pyproject.toml - Hynek Schlawack]

@@ -212,7 +212,7 @@ def foo(bar, baz => []):
 The default parameter `baz` will be late-bound and will produce similar results that we've
 seen in the last solution.
 
-## References
+## Further reading
 
 - [Mutable default arguments - The hitchhiker's guide to Python!]
 

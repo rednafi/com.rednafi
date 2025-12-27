@@ -527,7 +527,7 @@ So use the pattern wisely. On the flip side, proxy pattern can come in handy whe
 to extend the functionality of some class arbitrarily as it can work a gateway to the El
 Dorado of loose coupling.
 
-## References
+## Further reading
 
 - [Proxy pattern]
 - [Design patterns for humans - proxy pattern]

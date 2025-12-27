@@ -142,7 +142,7 @@ this case, the `dir/` prefix is being concatenated with `file_name` field.
 
 Perfection!
 
-## References
+## Further reading
 
 - [Do database work in the database rather than in Python]
 - [Use StrIndex to get the last instance of a character for an annotation in Django]

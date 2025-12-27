@@ -194,7 +194,7 @@ Whoa! This updated the records in under 2.5 seconds. Quite a bit of performance 
 > support concurrent writes from multiple processes. Trying to run the second script with
 > SQLite backend will incur a database error.
 
-## References
+## Further reading
 
 - [Django bulk_update]
 - [Using a pool of forked workers]

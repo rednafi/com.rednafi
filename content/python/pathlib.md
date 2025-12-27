@@ -747,7 +747,7 @@ while working with paths in different operating systems.
 The ability to manipulate paths in an OO way and not having to rummage through the massive
 `os` or `shutil` module can make path manipulation a lot less painful.
 
-## References
+## Further reading
 
 - [pathlib - Object-oriented filesystem paths]
 - [Python 3's pathlib Module: Taming the File System]

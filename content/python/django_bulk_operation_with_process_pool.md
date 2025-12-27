@@ -132,7 +132,7 @@ benchmark before adding concurrency to your workflow.
 Also, this approach primarily targets ad-hoc scripts and tasks. I don't recommend forking
 multiple processes in your views or forms since Python processes aren't cheap.
 
-## References
+## Further reading
 
 - [concurrent.futures documentation]
 

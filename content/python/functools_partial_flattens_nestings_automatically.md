@@ -35,7 +35,7 @@ functools.partial(<function f at 0x7f4fd16c11f0>, a=1, b=2, c=3)
 Args are 1-2-3
 ```
 
-## References
+## Further reading
 
 - [Tweet by Raymond Hettinger]
 

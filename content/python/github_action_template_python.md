@@ -125,7 +125,7 @@ updates:
       interval: "daily"
 ```
 
-## References
+## Further reading
 
 - [An active version of the above workflow]
 

@@ -110,7 +110,7 @@ This will print:
 100%|██████████████████████████████████████████████████████| 100/100 [00:04<00:00]
 ```
 
-## References
+## Further reading
 
 - [Using tqdm with multiprocessing]
 

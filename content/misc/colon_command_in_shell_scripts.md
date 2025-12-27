@@ -93,7 +93,7 @@ drwxr-xr-x   26 rednafi  staff   832B Dec 23 13:35 .
 If you look closely, you'll see that the debug commands and their outputs are no longer
 getting repeated.
 
-## References
+## Further reading
 
 - [Why I use the colon command by @anthonywritescode]
 

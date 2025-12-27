@@ -1065,7 +1065,7 @@ done so.
 This article assumes familiarity with decorators, dataclasses etc. If your knowledge on them
 is rusty, checkout these posts on [decorators] and [dataclasses].
 
-## References
+## Further reading
 
 - [Understanding Python's metaclasses]
 - [What are metaclasses in Python - Stackoverflow]

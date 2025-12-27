@@ -112,7 +112,7 @@ Running this will give you the dicts containing the data rows only:
 {'ID': '3', 'Name': 'Jack', 'Age': '22', 'Height': '1.6'}
 ```
 
-## References
+## Further reading
 
 - [Python Cookbook - David Beazley, Ch 4: Iterators and Generators]
 - [itertools.dropwhile]

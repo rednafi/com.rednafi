@@ -529,7 +529,7 @@ True
 {'CartesianPoint(x=1, y=2, z=3)': 3.7416573867739413}
 ```
 
-## References
+## Further reading
 
 - [Python dataclasses official docs]
 - [The ultimate guide to dataclasses in Python 3.7]

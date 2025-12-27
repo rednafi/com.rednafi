@@ -206,7 +206,7 @@ def log(func: Callable) -> Callable:
 ...
 ```
 
-## References
+## Further reading
 
 - [functools.update_wrapper source code]
 

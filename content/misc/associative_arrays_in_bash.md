@@ -213,7 +213,7 @@ flag takes advantage of the `Content-Disposition` header in the HTTP response to
 the filename. We include the `-L` flag to follow redirects, and the `-s` flag to silence
 curl's progress output.
 
-## References
+## Further reading
 
 - [Advanced Bash scripting guide - devconnected]
 

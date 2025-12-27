@@ -368,7 +368,7 @@ the HTML page:
 
 ![reverse proxy access][image_2]
 
-## References
+## Further reading
 
 - [Understanding sockets - Digital Ocean]
 

@@ -166,7 +166,7 @@ overhead as any time you change the model, you'll have to remember to keep the
 `update_fields`, Django will silently ignore the incoming data against that field and data
 will be lost.
 
-## References
+## Further reading
 
 - [Specifying which fields to save - Django docs]
 - [Save your Django models using update_fields for better performance - Reddit]

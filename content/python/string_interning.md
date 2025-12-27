@@ -213,7 +213,7 @@ Explicitly interned creation & access is 1.1264793204711423 times slower
 Here, implicitly and explicitly interned dict creation and key access are almost equally
 fast.
 
-## References
+## Further reading
 
 - [String interning in Python]
 - [Python docs: `sys.intern`]

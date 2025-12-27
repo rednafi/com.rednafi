@@ -135,7 +135,7 @@ further modifications. Since we aren't calling `f.read()` anymore, no overzealou
 buffering is going on here and we can lazily ask for new rows from the `reader` object as we
 sequentially process them.
 
-## References
+## Further reading
 
 - [How to use python csv.DictReader with a binary file?]
 

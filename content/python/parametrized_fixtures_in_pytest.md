@@ -128,7 +128,7 @@ injected into the fixture via the `@pytest.mark.parametrize` decorator. In the a
 snippet, pytest runs the fixture 3 times and creates the desired files in 3 passes — just
 like how a normal function call would behave.
 
-## References
+## Further reading
 
 - [Pass a parameter to a fixture function - Stackoverflow]
 

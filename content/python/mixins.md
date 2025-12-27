@@ -1578,7 +1578,7 @@ Running the above code snippet will create a SQLite database named `foo.db` in y
 working directory. You can inspect the database with any database viewer and find your
 key-value pairs there. Everything else is the same as a built-in dictionary object.
 
-## References
+## Further reading
 
 - [Implementing an interface in Python - Real Python]
 - [What is a mixin, and why are they useful? - Stackoverflow]

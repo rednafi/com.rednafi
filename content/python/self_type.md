@@ -190,7 +190,7 @@ class Config:
 The `__new__` method in the `Config` class validates the `var` before constructing an
 instance of the class. The `Self` type makes it easy to annotate the method.
 
-## References
+## Further reading
 
 - [Tweet by Raymond Hettinger]
 

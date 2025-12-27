@@ -111,7 +111,7 @@ In [6]: ANY == None
 Out[6]: True
 ```
 
-## References
+## Further reading
 
 - [unittest.mock.ANY]
 - [ANY in the wild]

@@ -531,7 +531,7 @@ This should show:
 To avoid redundencies, I have purposefully excluded examples of nested with statements and
 now deprecated `contextlib.nested` function to create nested context managers.
 
-## References
+## Further reading
 
 - [Python contextlib documentation]
 - [Python with context manager by Jeff Knupp]

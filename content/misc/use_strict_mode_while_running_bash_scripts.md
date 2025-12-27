@@ -30,7 +30,7 @@ Where,
                 or zero if no command exited with a non-zero status.
 ```
 
-## References
+## Further reading
 
 - [Unofficial bash strict mode]
 

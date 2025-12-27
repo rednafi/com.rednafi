@@ -226,7 +226,7 @@ From stream_even: 6
 KeyboardInterrupt
 ```
 
-## References
+## Further reading
 
 - [itertools.cycle]
 

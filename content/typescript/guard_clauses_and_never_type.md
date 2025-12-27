@@ -196,7 +196,7 @@ else:
 ...
 ```
 
-## References
+## Further reading
 
 - [Guard clause, guard code, or guard statement]
 - [Never type in TypeScript]

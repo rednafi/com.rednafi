@@ -112,7 +112,7 @@ it adds quite a bit of noise that might obfuscate the primary intent of the code
 Also, typing a decorator that returns either a sync or async callable based on the control
 flow is tricky.
 
-## References
+## Further reading
 
 - [Amphibian decorator in Starlette's source code]
 

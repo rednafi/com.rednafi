@@ -272,7 +272,7 @@ In [29]: safe_itemgetter(-1, -3, -7, 1)(l)
 Out[29]: ((6, 7), (4, 8), <NOTHING>, (1, 3))
 ```
 
-## References
+## Further reading
 
 - [operator.itemgetter - Python docs]
 

@@ -587,7 +587,7 @@ limitations:
   performance issues. However, this can be mitigated by taking advantage of connection
   multiplexing in HTTP/2.
 
-## References
+## Further reading
 
 - [Using server-sent events]
 

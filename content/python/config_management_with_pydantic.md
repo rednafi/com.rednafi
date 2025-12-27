@@ -447,7 +447,7 @@ This will print out an instance of the class `StageConfig`.
 The above workflow works perfectly for my usage scenario. So subjectively, I feel like it's
 an elegant solution to a very icky problem. Your mileage will definitely vary.
 
-## References
+## Further reading
 
 - [Settings management with Pydantic]
 - [Flask config management]

@@ -168,7 +168,7 @@ Now, you might want to add extra abstractions over the core behavior to make it 
 ergonomic. Here's a [pointer] on how to do so. [Effective Go also mentions] this pattern
 briefly.
 
-## Further readings
+## Further reading
 
 - [How to wait until buffered channel semaphore is empty]
 

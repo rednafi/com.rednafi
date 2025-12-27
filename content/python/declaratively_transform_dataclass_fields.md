@@ -173,7 +173,7 @@ WebhookPayload(
 
 This will only serialize the `status_code` field. Neat!
 
-## References
+## Further reading
 
 - [Post-init processing — Python docs]
 

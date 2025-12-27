@@ -766,7 +766,7 @@ bound operation, it's also important to determine if the task itself is computat
 heavy enough to justify spawning multiple threads or processes. Otherwise, you might end up
 with complicated code that performs worse than the naive solution.
 
-## References
+## Further reading
 
 - [concurrent.futures - official docs]
 - [Easy concurrency in Python]

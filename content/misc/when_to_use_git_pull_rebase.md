@@ -74,7 +74,7 @@ git pull --rebase
 This will rebase your local `main` by adding your local commits on top of the remote
 commits.
 
-## References
+## Further reading
 
 - [When should I use git pull --rebase]
 - [An example repo that reproduces the issue]

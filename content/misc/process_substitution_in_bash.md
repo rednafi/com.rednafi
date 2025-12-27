@@ -193,7 +193,7 @@ then passed as arguments to the `comm` command. Then `comm` compares the input f
 line and generates three columns of output: lines unique to the first input, lines unique to
 the second input, and lines common to both inputs.
 
-## References
+## Further reading
 
 - [Process substitution in Bash]
 

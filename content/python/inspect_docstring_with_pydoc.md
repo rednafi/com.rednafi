@@ -106,7 +106,7 @@ This will render the docstrings as HTML web pages and automatically open the ind
 your default browser. From there you can use the built-in search to find and read your ones
 you need.
 
-## References
+## Further reading
 
 - [Tweet by Brandon Rhodes]
 

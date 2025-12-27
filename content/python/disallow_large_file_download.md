@@ -97,7 +97,7 @@ This means the entire file won't be loaded into memory while being downloaded. T
 we're keeping track of the size of the already downloaded bytes in the
 `downloaded_content_length` variable and raising an error if the size exceeds 10MB. Sweet!
 
-## References
+## Further reading
 
 - [Streaming download with HTTPx]
 

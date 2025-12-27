@@ -239,7 +239,7 @@ Running this will print out the same output as before:
 >>> Dog data has been processed successfully!
 ```
 
-## References
+## Further reading
 
 - [Transform a function into a single dispatch generic function]
 - [Function overloading]

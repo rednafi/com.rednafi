@@ -237,7 +237,7 @@ created and they appear in the view:
 
 ![display created objects in jupyter notebook][image_3]
 
-## References
+## Further reading
 
 - [How to access Jupyter notebook in a Docker container]
 

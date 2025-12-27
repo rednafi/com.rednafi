@@ -362,7 +362,7 @@ curl -X POST -H "Authorization: Bearer some-token" \
      http://localhost:3000/run-command
 ```
 
-## References
+## Further reading
 
 - [at command in Linux]
 

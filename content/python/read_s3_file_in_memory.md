@@ -120,7 +120,7 @@ allows binary read and write operations, we'll need to convert it to a text file
 before passing it to the CSV reader. The `io.TextIOWrapper` class does exactly that. Once
 the file object is in text mode, we pass it to the CSV reader and do further processing.
 
-## References
+## Further reading
 
 - [How to use Python csv.DictReader with a binary file?]
 

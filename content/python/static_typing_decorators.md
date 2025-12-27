@@ -210,7 +210,7 @@ Parameter 1: type "Logger" cannot be assigned to type "int"
 ./src.py:83:12 - error: Cannot access member "warning" for type "int"
 ```
 
-## References
+## Further reading
 
 - [Decorator typing (PEP 612) - Anthony explains #386]
 

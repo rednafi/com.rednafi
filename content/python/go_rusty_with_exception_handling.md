@@ -129,7 +129,7 @@ However, I wouldn't go about and mindlessly refactor any exception handling logi
 come across to follow this pattern. You might find it useful if you need to handle
 exceptions in a recoverable fashion and need additional type safety around the logic.
 
-## References
+## Further reading
 
 - [Beginner's guide to error handling in Rust]
 

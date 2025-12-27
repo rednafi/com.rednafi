@@ -275,7 +275,7 @@ make sure they pass in the intermediate commits.
 
 Fin!
 
-## References
+## Further reading
 
 - [Hackernews discussion on rebasing]
 

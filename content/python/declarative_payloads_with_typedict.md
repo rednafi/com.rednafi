@@ -259,7 +259,7 @@ make: *** [Makefile:134: mypy] Error 1
 
 Sweet type safety without being too strict about missing fields!
 
-## References
+## Further reading
 
 - [PEP 589 – TypedDict: Type hints for dictionaries with a fixed set of keys]
 

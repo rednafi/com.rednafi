@@ -107,7 +107,7 @@ even when the dict size is as small as 9 elements. The second solution is the fa
 the least complex one to understand. While the third one is better than the first solution,
 it's a gratuitously complex way of doing something so trivial.
 
-## References
+## Further reading
 
 - [Second solution from a comment on the same tweet]
 

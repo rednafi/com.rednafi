@@ -159,7 +159,7 @@ class TestJSONErrorMiddleware(TestCase):
 
 This workflow has been tested on Django 3.2, 4.0, and DRF 3.13.
 
-## References
+## Further reading
 
 - [HTML sometimes returned when Accept: application/json is provided #3362]
 - [Added generic 500 and 400 JSON error handlers #5904]

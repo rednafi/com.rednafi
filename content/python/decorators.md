@@ -1254,7 +1254,7 @@ request on the terminal. Moreover, if you inspect the `logger_list`, you'll find
 registered logger there. You'll find a lot more real life usage of decorators in the Flask
 framework.
 
-## References
+## Further reading
 
 - [Primer on Python decorator - Real Python]
 - [Decorators in Python - Datacamp]

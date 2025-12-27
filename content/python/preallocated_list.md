@@ -178,7 +178,7 @@ However, list pre-allocation can still come in handy in more complex cases where
 know the size of the final list, and shaving off a few micro-seconds makes a considerable
 difference.
 
-## References
+## Further reading
 
 - [Create a list with initial capacity in Python]
 

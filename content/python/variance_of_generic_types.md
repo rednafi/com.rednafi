@@ -263,7 +263,7 @@ if __name__ == "__main__":
     process_holder_contra(holder_contra)
 ```
 
-## References
+## Further reading
 
 - [PEP 483 - The theory of type hints]
 

@@ -295,7 +295,7 @@ class Foo:
         print("Deleting instance ...")
 ```
 
-## References
+## Further reading
 
 - [functools.lru_cache - Python Docs]
 - [Don't lru_cache methods! (intermediate) anthony explains #382]

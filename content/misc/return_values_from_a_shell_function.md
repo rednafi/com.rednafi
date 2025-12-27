@@ -143,7 +143,7 @@ script.
 The second pattern won't work if you need to set the status code to something other than `0`
 or `1`. In that case you can resort the first pattern without confusing anyone.
 
-## References
+## Further reading
 
 - [Returning a boolean from a Bash function]
 
