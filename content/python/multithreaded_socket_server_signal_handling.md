@@ -95,7 +95,7 @@ logs and made the demonstration difficult.
 Let's run the server and the client in two separate processes and then send a `SIGINT`
 signal to the server by clicking `Ctrl + C` on the server console:
 
-![multi-threaded socket server][image_1]
+![Terminal showing multi-threaded socket server with client connection and SIGINT handling][image_1]
 
 At first, the server just ignores the signal, and clicking `Ctrl + C` multiple times crashes
 the server down with this nasty traceback (full traceback trimmed for brevity):
@@ -370,7 +370,7 @@ terminals. Once both the server and client are running, try sending a `SIGINT` o
 three other handled signals. You see that the server acknowledges the interruption signal,
 gives the clients enough time to disconnect, then shut itself down in a graceful manner:
 
-![error handling in multi-threaded socket server][image_2]
+![Terminal showing graceful shutdown with signal handling and client notifications][image_2]
 
 ## Further reading
 

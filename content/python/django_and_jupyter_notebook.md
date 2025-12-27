@@ -206,13 +206,13 @@ docker compose exec debug python mysite/manage.py makemigrations \
 Now head over to your browser and go to `http://localhost:8000`. You should see an empty
 page with a simple header like this:
 
-![empty page with a simple header][image_1]
+![Django polls app empty page running on localhost:8000][image_1]
 
 If you go to `http://localhost:8895`, you'll be able to open a new notebook that
 automatically connects to your database and allows you to write interactive code
 immediately.
 
-![interactive code in jupyter notebook][image_2]
+![Jupyter notebook connected to Django showing interactive Python code execution][image_2]
 
 You can run the following snippet and it'll create two questions and two choices in the
 database.
@@ -235,7 +235,7 @@ for question_text in ("Are you okay?", "Do you wanna go there?"):
 If you run this and refresh your application server, you'll that the objects have been
 created and they appear in the view:
 
-![display created objects in jupyter notebook][image_3]
+![Django app displaying Question and Choice objects created via Jupyter notebook][image_3]
 
 ## Further reading
 

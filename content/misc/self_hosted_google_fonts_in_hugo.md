@@ -28,7 +28,7 @@ used it to download Schibsted Grotesk for text and JetBrains Mono for code snipp
 targeting only modern browsers. You might want to pick _Legacy Support_ if you need
 compatibility with older browsers and _Historic Support_ for the really old ones.
 
-![download google fonts][image_1]
+![Google Webfonts Helper tool interface for downloading self-hosted fonts][image_1]
 
 After downloading, unzip the file and place the fonts in the `/static/fonts` folder in your
 root directory. If you've selected the _Modern Browsers_ option, then the fonts will come in

@@ -356,7 +356,7 @@ result in a successful request. You can also interactively send requests to the 
 URLs via the Cloudflare Workers dashboard. Go to your Cloudflare dashboard, head over to the
 Workers section, and select your deployed serverless function:
 
-![cloudflare worker editor][image_1]
+![Cloudflare Workers dashboard showing CORS proxy code in web editor][image_1]
 
 ### Deploying the service with GitHub Actions
 
