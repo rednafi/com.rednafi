@@ -59,9 +59,9 @@ foo((1, "hello"), kw1={"key1": 1, "key2": False})
 
 You probably wanted to represent the former while the type checker wants the latter.
 
-To annotate the second instance correctly, you'll need to leverage bits of PEP-589[^1],
-PEP-646[^2], PEP-655[^3], and PEP-692[^4]. We'll use `Unpack` and `TypedDict` from the
-`typing` module to achieve this. Here's how:
+To annotate the second instance correctly, you'll need to leverage bits of [PEP-589],
+[PEP-646], [PEP-655], and [PEP-692]. We'll use `Unpack` and `TypedDict` from the `typing`
+module to achieve this. Here's how:
 
 ```py {hl_lines=11}
 from typing import TypedDict, Unpack  # Python 3.12+
@@ -150,13 +150,19 @@ checker yelling at you.
 
 Fin!
 
-[^1]:
-    [PEP 589 – TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys](https://peps.python.org/pep-0589/)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [PEP 646 – Variadic Generics](https://peps.python.org/pep-0646/)
+[pep-589]:
+    https://peps.python.org/pep-0589/
 
-[^3]:
-    [PEP 655 – Marking individual TypedDict items as required or potentially-missing](https://peps.python.org/pep-0655/)
+[pep-646]:
+    https://peps.python.org/pep-0646/
 
-[^4]:
-    [PEP 692 – Using TypedDict for more precise \*\*kwargs typing](https://peps.python.org/pep-0692/)
+[pep-655]:
+    https://peps.python.org/pep-0655/
+
+[pep-692]:
+    https://peps.python.org/pep-0692/
+
+<!-- prettier-ignore-end -->

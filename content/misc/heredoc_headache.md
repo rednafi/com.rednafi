@@ -10,7 +10,7 @@ tags:
 
 I was working on the deployment pipeline for a service that launches an app in a dedicated
 VM using GitHub Actions. In the last step of the workflow, the CI SSHs into the VM and runs
-several commands using a here document[^1] in bash. The simplified version looks like this:
+several commands using a [here document] in bash. The simplified version looks like this:
 
 ```sh
 # SSH into the remote machine and run a bunch of commands to deploy the service
@@ -29,7 +29,7 @@ ssh $SSH_USER@$SSH_HOST <<EOF
 EOF
 ```
 
-The fully working version can be found on GitHub[^2].
+The fully working version can be found in the [serve-init repo with here-doc].
 
 Here, environment variables like `SSH_USER`, `SSH_HOST`, and `APP_AUTH_TOKEN` are defined in
 the surrounding local scope of the CI. The variables then get propagated to the remote
@@ -131,7 +131,7 @@ SCRIPT="
 ssh $SSH_USER@$SSH_HOST "$SCRIPT"
 ```
 
-It works[^3]!
+It [works without here-doc]!
 
 One thing to keep in mind with the second approach is that if you need to run any expanded
 commands, you'll need to defer it with a backslash so that it's run on the remote machine,
@@ -151,9 +151,16 @@ ssh $SSH_USER@$SSH_HOST "$SCRIPT"
 Without the backslash, the `$(...)` will be expanded on the local machine, which is not
 desirable here. The backslash defers it so that it runs on the remote instead.
 
-[^1]: [Here documents](https://tldp.org/LDP/abs/html/here-docs.html)
-[^2]:
-    [Service deployment steps - with here-doc](https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^3]:
-    [Service deployment steps - without here-doc](https://github.com/rednafi/serve-init/blob/54b9b0fc94030eb4b9749fd4a5823a8867545f6a/.github/workflows/ci.yml#L86-L113)
+[here document]:
+    https://tldp.org/LDP/abs/html/here-docs.html
+
+[serve-init repo with here-doc]:
+    https://github.com/rednafi/serve-init/blob/7232c55c9aa3a6c34c5da6aeb9d14afc88d9aa0e/.github/workflows/ci.yml#L86-L115
+
+[works without here-doc]:
+    https://github.com/rednafi/serve-init/blob/54b9b0fc94030eb4b9749fd4a5823a8867545f6a/.github/workflows/ci.yml#L86-L113
+
+<!-- prettier-ignore-end -->

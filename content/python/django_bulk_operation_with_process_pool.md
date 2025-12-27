@@ -15,8 +15,8 @@ complex objects with a script. Often time, these complex objects trigger a chain
 or need non-trivial setups before any operations can be performed on each of them.
 
 The issue is, `bulk_create / bulk_update` doesn't trigger these signals or expose any hooks
-to run any setup code. The Django doc mentions these caveates[^1] in detail. Here are a few
-of them:
+to run any setup code. The Django doc mentions these [bulk_create caveats] in detail. Here
+are a few of them:
 
 - The model's `save()` method will not be called, and the `pre_save` and `post_save` signals
   will not be sent.
@@ -132,7 +132,17 @@ benchmark before adding concurrency to your workflow.
 Also, this approach primarily targets ad-hoc scripts and tasks. I don't recommend forking
 multiple processes in your views or forms since Python processes aren't cheap.
 
-[^1]:
-    [Caveats of bulk_create](https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-create)
+## Further reading
 
-[^2]: [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) [^2]
+- [concurrent.futures documentation]
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[bulk_create caveats]:
+    https://docs.djangoproject.com/en/dev/ref/models/querysets/#bulk-create
+
+[concurrent.futures documentation]:
+    https://docs.python.org/3/library/concurrent.futures.html
+
+<!-- prettier-ignore-end -->

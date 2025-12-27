@@ -38,13 +38,13 @@ pick up if I ever intend to get past the interview barrier and professionally wo
 arena again.
 
 Turns out this manifestation of stochastic knowledge decay is a well-studied phenomenon. The
-term half-life of knowledge[^1] was coined in 1962 by economist Fritz Machlup[^2] to
-represent the amount of time that has to elapse before half of the knowledge or facts in a
-particular area is superseded or shown to be untrue. It's named after the half-life of decay
-in radioactive materials. This article[^3] on the IEEE Spectrum dives deep into the concept
-and reflects upon its effect on the industry. It postulates that the half-life of
-engineering knowledge is shrinking faster than ever before and the only way to tackle this
-is through continuous learning and getting better at managing the onslaught of information.
+term [half-life of knowledge] was coined in 1962 by economist [Fritz Machlup] to represent
+the amount of time that has to elapse before half of the knowledge or facts in a particular
+area is superseded or shown to be untrue. It's named after the half-life of decay in
+radioactive materials. This [IEEE Spectrum article] dives deep into the concept and reflects
+upon its effect on the industry. It postulates that the half-life of engineering knowledge
+is shrinking faster than ever before and the only way to tackle this is through continuous
+learning and getting better at managing the onslaught of information.
 
 I don't have a prescriptive solution for this. I wrote this text to start a discussion
 around a feeling I previously struggled with but didn't know how to label. So far, engaging
@@ -54,9 +54,16 @@ relevant. However, this approach isn't bulletproof and is quite susceptible to l
 motivation at the tail end of a 40-hour workweek. If you've experienced something similar
 and found a solution that worked for you to some extent, I'd love to hear about it!
 
-[^1]: [Half-life of knowledge](https://en.wikipedia.org/wiki/Half-life_of_knowledge)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [Fritz Machlup](https://en.wikipedia.org/wiki/Fritz_Machlup)
+[half-life of knowledge]:
+    https://en.wikipedia.org/wiki/Half-life_of_knowledge
 
-[^3]:
-    [Half-life of knowledge pressures employers to seek out young engineers](https://spectrum.ieee.org/an-engineering-career-only-a-young-persons-game)
+[fritz machlup]:
+    https://en.wikipedia.org/wiki/Fritz_Machlup
+
+[ieee spectrum article]:
+    https://spectrum.ieee.org/an-engineering-career-only-a-young-persons-game
+
+<!-- prettier-ignore-end -->

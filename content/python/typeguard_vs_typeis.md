@@ -13,7 +13,7 @@ tags:
 The handful of times I've reached for `typing.TypeGuard` in Python, I've always been
 confused by its behavior and ended up ditching it with a `# type: ignore` comment.
 
-For the uninitiated, `TypeGuard` allows you to apply custom type narrowing[^1]. For example,
+For the uninitiated, `TypeGuard` allows you to apply custom [type narrowing]. For example,
 let's say you have a function named `pretty_print` that accepts a few different types and
 prints them differently onto the console:
 
@@ -81,7 +81,7 @@ function is `bool`, typing it with `TypeGuard[Person]` signals the type checker 
 inbound value satisfies all the constraints and the checker function returns `True`, the
 underlying type of `val` is `Person`.
 
-You can see more examples of `TypeGuard` in PEP-647[^2].
+You can see more examples of `TypeGuard` in [PEP 647].
 
 All good. However, I find the behavior of `TypeGuard` a bit unintuitive whenever I need to
 couple it with union types. For example:
@@ -109,7 +109,7 @@ we get `str | int | float` as the narrowed type. While there might be a valid re
 this design choice, the resulting behavior with union types made `TypeGuard` fairly useless
 for cases I wanted to use it for.
 
-`TypeIs` has been introduced via PEP-742[^3] to fix exactly that. The PEP agrees that people
+`TypeIs` has been introduced via [PEP 742] to fix exactly that. The PEP agrees that people
 might find the current behavior of `TypeGuard` a bit unexpected and introducing another
 construct with a slightly different behavior doesn't make things any less confusing.
 
@@ -147,7 +147,7 @@ Notice that `TypeIs` has now correctly narrowed the type in the `else` branch as
 would've also worked had we returned early from the `pretty_print` function in the `if`
 branch and skipped the `else` branch altogether. Exactly what I need!
 
-Here are a few typeshed stubs[^4] for the stdlib functions in the `inspect` module that are
+Here are a few [typeshed stubs] for the stdlib functions in the `inspect` module that are
 already taking advantage of the new `TypeIs` construct:
 
 ```py
@@ -162,11 +162,19 @@ def istraceback(object: object) -> TypeIs[TracebackType]: ...
 # and so on and so forth
 ```
 
-[^1]: [Type narrowing](https://mypy.readthedocs.io/en/latest/type_narrowing.html)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^2]: [PEP 647 – User-Defined Type Guards](https://peps.python.org/pep-0647/)
+[type narrowing]:
+    https://mypy.readthedocs.io/en/latest/type_narrowing.html
 
-[^3]: [PEP 742 – Narrowing types with TypeIs](https://peps.python.org/pep-0742/)
+[pep 647]:
+    https://peps.python.org/pep-0647/
 
-[^4]:
-    [Typeshed stubs taking advantage of TypeIs](https://github.com/python/typeshed/blob/bdf75023dfe3930deac1c6b4e269770427b106c4/stdlib/inspect.pyi)
+[pep 742]:
+    https://peps.python.org/pep-0742/
+
+[typeshed stubs]:
+    https://github.com/python/typeshed/blob/bdf75023dfe3930deac1c6b4e269770427b106c4/stdlib/inspect.pyi
+
+<!-- prettier-ignore-end -->

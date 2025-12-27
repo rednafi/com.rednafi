@@ -11,7 +11,7 @@ tags:
 Whether you like it or not, the split world of sync and async functions in the Python
 ecosystem is something we'll have to live with; at least for now. So, having to write things
 that work with both sync and async code is an inevitable part of the journey. Projects like
-Starlette[^1], HTTPx[^2] can give you some clever pointers on how to craft APIs that are
+[Starlette], [HTTPx] can give you some clever pointers on how to craft APIs that are
 compatible with both sync and async code.
 
 > Lately, I've been calling constructs that are compatible with both synchronous and
@@ -23,7 +23,7 @@ tagging I mean, the decorator will attach a `_tags` attribute to the wrapped fun
 the value of the tag can be passed as the function parameter.
 
 This type of tagging can be helpful if you want to write code that'll classify functions
-based on their tags and do interesting things with them. Locust[^3] uses this concept of
+based on their tags and do interesting things with them. [Locust] uses this concept of
 tagging to select and deselect load-testing routines in the CLI. Also, `@pytest.mark.*`
 utilizes a similar concept.
 
@@ -112,12 +112,23 @@ it adds quite a bit of noise that might obfuscate the primary intent of the code
 Also, typing a decorator that returns either a sync or async callable based on the control
 flow is tricky.
 
-[^1]: [Starlette](https://www.starlette.io/)
+## Further reading
 
-[^2]: [HTTPx](https://www.python-httpx.org/)
+- [Amphibian decorator in Starlette's source code]
 
-[^3]: [Locust](http://docs.locust.io/en/stable/api.html#locust.tag)
+<!-- references -->
+<!-- prettier-ignore-start -->
 
-[^4]:
-    [Amphibian decorator in Starlette's source code](https://github.com/encode/starlette/blob/424351cb231c67798a65c091b0b7d42790f5e444/starlette/authentication.py#L19)
-    [^4]
+[starlette]:
+    https://www.starlette.io/
+
+[httpx]:
+    https://www.python-httpx.org/
+
+[locust]:
+    http://docs.locust.io/en/stable/api.html#locust.tag
+
+[amphibian decorator in starlette's source code]:
+    https://github.com/encode/starlette/blob/424351cb231c67798a65c091b0b7d42790f5e444/starlette/authentication.py#L19
+
+<!-- prettier-ignore-end -->

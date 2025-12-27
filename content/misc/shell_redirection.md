@@ -1,7 +1,7 @@
 ---
-Title: Shell redirection syntax soup
-Date: 2024-09-12
-Tags:
+title: Shell redirection syntax soup
+date: 2024-09-12
+tags:
     - Shell
 slug: shell-redirection
 aliases:

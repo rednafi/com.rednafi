@@ -36,7 +36,7 @@ addition and multiplication need different kinds of setup and teardown for some 
 I know I'm reaching, but bear with me. I'd rather make the point without dragging in mocks,
 databases, or [testcontainers] and getting lost in details. But you can find similar setup
 in a real codebase everywhere where you might be talking to a database and your read and
-write path have separate [lifecycles].
+write path have separate [test lifecycles].
 
 ## Keep it flat until you can't
 
@@ -493,7 +493,7 @@ pretty much the same thing.
 In my experience, even in large codebases, a bit of discipline is usually enough to get by
 with manual subtest grouping.
 
-<!-- References -->
+<!-- references -->
 <!-- prettier-ignore-start -->
 [support for subtests]:
     https://go.dev/blog/subtests
@@ -501,7 +501,7 @@ with manual subtest grouping.
 [testcontainers]:
     https://golang.testcontainers.org/
 
-[lifecycles]:
+[test lifecycles]:
     /go/lifecycle-management-in-tests/
 
 [group discovery function]:
