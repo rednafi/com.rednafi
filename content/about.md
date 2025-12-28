@@ -22,9 +22,9 @@ ShowShareButtons: false
 Hey there! I'm Redowan Delowar - also go by the handle "rednafi" on the web.
 
 I dabble in platform engineering, which mostly means working with a giant distributed ball
-of mud and fighting to keep the house of cards from falling over. Lately, I've been
-focused on persistence, resilience, observability - or whatever else is currently on fire.
-When not at the keyboard, I'm probably running or reading sci-fi.
+of mud and fighting to keep the house of cards from falling over. Lately, I've been focused
+on persistence, resilience, and observability - or whatever else is currently on fire. When
+not at the keyboard, I'm probably running or reading sci-fi.
 
 Talking points: Go, Python, persistence, consistency, resilience, HA, and sci-fi.
 
