@@ -51,9 +51,9 @@ params:
       - "https://bsky.app/profile/rednafi.com"
       - "https://fosstodon.org/@rednafi"
 
-  title: Redowan's Reflections
   description: >-
-    Hi, I'm Redowan Delowar — A software engineer with a flair for words and wires.
+    Personal site of Redowan Delowar - a roving amateur fumbling through software, systems, and
+    sundry.
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
@@ -98,7 +98,6 @@ params:
     disableHLJS: true
 
   label:
-    text: "Redowan's Reflections"
     icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
     iconHeight: 23
     iconWidth: 23
@@ -111,7 +110,7 @@ params:
       <path d="M4 4a16 16 0 0 1 16 16"/> <circle cx="5" cy="19" r="1"/> </svg> </a>
     Content: >
       <div>
-        A roving amateur with a flair for words and wires.
+        A roving amateur fumbling through software, systems, & sundry.
       </div>
 
   analytics:
