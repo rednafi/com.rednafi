@@ -52,8 +52,8 @@ params:
       - "https://fosstodon.org/@rednafi"
 
   description: >-
-    Personal site of Redowan Delowar - a roving amateur fumbling through software, systems, and
-    sundry.
+    Personal site of Redowan Delowar - a roving amateur fumbling through software, systems,
+    and sundry.
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
