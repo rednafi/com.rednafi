@@ -19,14 +19,14 @@ ShowShareButtons: false
 
 ---
 
-Hi! I'm Redowan Delowar — also go by "rednafi" on the web.
+Hey there! I'm Redowan Delowar - also go by the handle "rednafi" on the web.
 
-I err on infra-leaning software work, but on occasion I've done and enjoyed product work
-along the way. Generally, I skirt around distributed systems, databases, streaming
-platforms, and observability work.
+I dabble in platform engineering, which mostly means working with a giant distributed ball
+of mud and fighting to keep the house of cards from falling over. Lately, I've been
+focused on persistence, resilience, observability - or whatever else is currently on fire.
+When not at the keyboard, I'm probably running or reading sci-fi.
 
-Recurring themes: Go, Python, distributed databases, eventual consistency, resilience
-patterns, high availability, observability, SRE practices, and sci-fi.
+Talking points: Go, Python, persistence, consistency, resilience, HA, and sci-fi.
 
 ## Curriculum vitae
 
@@ -34,10 +34,10 @@ For the paper trail inclined, here's [my CV].
 
 ## Contact
 
--   [Email]
--   [Bluesky]
--   [GitHub]
--   [LinkedIn]
+- [Email]
+- [Bluesky]
+- [GitHub]
+- [LinkedIn]
 
 ## Colophon
 
@@ -49,26 +49,26 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Breadcrumbs
 
--   The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my
-    nickname _Nafi_, which my parents and a few close friends still use.
--   I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
--   I think through writing and not the other way around. Most of the blogs on this site
-    take way longer to write than I'd like to admit.
+- The handle _"rednafi"_ is just a portmanteau of my first name, _Redowan_, and my nickname
+  _Nafi_, which my parents and a few close friends still use.
+- I like sci-fis, and my all-time favourite book is _[Stanislaw Lem's Solaris]_.
+- I think through writing and not the other way around. Most of the blogs on this site take
+  way longer to write than I'd like to admit.
 
 ## Greatest hits
 
--   [Oh my poor business logic]
--   [The diminishing half-life of knowledge]
--   [Annotating args and kwargs in Python]
--   [An ode to the neo-grotesque web]
--   [HTTP requests via /dev/tcp]
--   [You probably don't need a DI framework]
--   [Dotfiles stewardship for the indolent]
--   [Configuring options in Go]
--   [Recipes from Python SQLite docs]
--   [Limit goroutines with buffered channels]
--   [Pesky little scripts]
--   [I kind of like rebasing]
+- [Oh my poor business logic]
+- [The diminishing half-life of knowledge]
+- [Annotating args and kwargs in Python]
+- [An ode to the neo-grotesque web]
+- [HTTP requests via /dev/tcp]
+- [You probably don't need a DI framework]
+- [Dotfiles stewardship for the indolent]
+- [Configuring options in Go]
+- [Recipes from Python SQLite docs]
+- [Limit goroutines with buffered channels]
+- [Pesky little scripts]
+- [I kind of like rebasing]
 
 <!-- References -->
 <!-- prettier-ignore-start -->
