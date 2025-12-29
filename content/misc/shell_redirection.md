@@ -6,6 +6,9 @@ tags:
 slug: shell-redirection
 aliases:
     - /misc/shell_redirection/
+description: >-
+  Complete guide to Bash redirection. Master stdout, stderr, pipes, tee, file
+  descriptors, and shorthand syntax with practical examples for every case.
 ---
 
 I always struggle with the syntax for redirecting multiple streams to another command or a

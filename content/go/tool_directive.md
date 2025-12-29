@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Pin tool versions in Go 1.24 with the new 'tool' directive. Replace tools.go pattern
+  with native go.mod support for project tooling.
 ---
 
 Go 1.24 added a new `tool` directive that makes it easier to manage your project's tooling.

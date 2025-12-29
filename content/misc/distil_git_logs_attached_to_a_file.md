@@ -8,6 +8,9 @@ tags:
     - Shell
     - Git
     - TIL
+description: >-
+  View git commit history for a single file with git log --follow. Learn to track
+  multiple files with xargs and concatenate their commit logs.
 ---
 
 I run `git log --oneline` to list out the commit logs all the time. It prints out a compact

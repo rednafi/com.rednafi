@@ -6,6 +6,9 @@ aliases:
     - /zephyr/an_ode_to_the_neo_grotesque_web/
 tags:
     - Essay
+description: >-
+  Exploring minimalist web design that prioritizes content over frameworks, celebrating
+  the raw spirit of the early internet.
 ---
 
 Every once in a while, I love browsing the [Wayback Machine] to catch a glimpse of the early

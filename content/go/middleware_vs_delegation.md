@@ -7,6 +7,9 @@ aliases:
 tags:
   - Go
   - API
+description: >-
+  Compare middleware stacking with embedded delegation in Go HTTP servers. Learn when to
+  override ServeHTTP for simpler request handling.
 ---
 
 Middleware is usually the go-to pattern in Go HTTP servers for tweaking request behavior.

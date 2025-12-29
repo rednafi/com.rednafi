@@ -6,6 +6,9 @@ aliases:
     - /python/config_management_with_pydantic/
 tags:
     - Python
+description: >-
+  Build a scalable Python configuration system with Pydantic and dotenv. Manage dev,
+  staging, and production configs with type validation.
 ---
 
 Managing configurations in your Python applications isn't something you think about much

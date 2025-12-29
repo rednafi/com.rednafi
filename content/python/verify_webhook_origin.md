@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - API
+description: >-
+  Secure webhooks by verifying payload authenticity using HMAC hash signatures with
+  shared secrets, preventing man-in-the-middle attacks.
 ---
 
 While working with GitHub webhooks, I discovered a common [webhook security pattern] a

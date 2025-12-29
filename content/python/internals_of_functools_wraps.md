@@ -6,6 +6,9 @@ aliases:
     - /python/internals_of_functools_wraps/
 tags:
     - Python
+description: >-
+  Explore how functools.wraps preserves function identity by copying metadata from
+  wrapped functions using update_wrapper and partial application.
 ---
 
 The `functools.wraps` decorator allows you to keep your function's identity intact after

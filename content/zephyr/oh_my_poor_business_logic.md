@@ -6,6 +6,9 @@ aliases:
     - /zephyr/oh_my_poor_business_logic/
 tags:
     - Essay
+description: >-
+  How resume-driven development and technical maximalism distract engineers from solving
+  real business problems and delivering value.
 ---
 
 Adopting existing tools that work, applying them to the business problems at hand, and

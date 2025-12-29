@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Testing
+description: >-
+  Organize Go tests with in-package, external _test packages, and integration tests.
+  Learn white-box vs black-box testing conventions.
 ---
 
 When it comes to test organization, Go's standard `testing` library only gives you a few

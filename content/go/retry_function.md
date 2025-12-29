@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Build retry logic in Go without reflection using generics. Implement exponential
+  backoff and configurable retry strategies with type safety.
 ---
 
 I used reach for reflection whenever I needed a `Retry` function in Go. It's fun to write,

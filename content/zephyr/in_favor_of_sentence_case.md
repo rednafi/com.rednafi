@@ -6,6 +6,9 @@ aliases:
     - /zephyr/in_favor_of_sentence_case/
 tags:
     - Essay
+description: >-
+  Embracing sentence case over title case in technical writing eliminates capitalization
+  ambiguity and improves readability.
 ---
 
 Up until now, I've always preferred **Title Case** to demarcate titles and section headers

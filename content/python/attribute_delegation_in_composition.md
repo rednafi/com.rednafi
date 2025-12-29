@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Implement automatic attribute delegation in Python composition using __getattr__ magic
+  method for inheritance-like attribute access patterns.
 ---
 
 While trying to avoid inheritance in an API that I was working on, I came across this neat

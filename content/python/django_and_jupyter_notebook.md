@@ -7,6 +7,9 @@ aliases:
 tags:
   - Python
   - Django
+description: >-
+  Connect Jupyter Notebook to Dockerized Django apps using ipykernel and
+  django-extensions for interactive debugging and data exploration.
 ---
 
 Back in the days when I was working as a data analyst, I used to spend hours inside Jupyter

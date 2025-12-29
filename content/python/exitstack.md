@@ -6,6 +6,9 @@ tags:
 slug: exitstack
 aliases:
     - /python/exitstack/
+description: >-
+  Master Python's ExitStack for managing multiple context managers, conditional
+  callbacks, request rollbacks, and avoiding nested with statements.
 ---
 
 Over the years, I've used Python's `contextlib.ExitStack` in a few interesting ways. The

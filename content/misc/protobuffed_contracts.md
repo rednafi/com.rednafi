@@ -7,6 +7,9 @@ aliases:
 tags:
     - API
     - Networking
+description: >-
+  Define service contracts with Protocol Buffers for non-gRPC systems. Generate
+  serializers, maintain self-documented APIs, and ensure cross-language compatibility.
 ---
 
 People typically associate Google's [Protocol Buffer] with [gRPC] services, and rightfully

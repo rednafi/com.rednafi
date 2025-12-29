@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Networking
+description: >-
+  Stream real-time server updates to web clients using Server-Sent Events (SSE) as a
+  simpler alternative to WebSockets for unidirectional data flow.
 ---
 
 In multi-page web applications, a common workflow is where a user:

@@ -7,6 +7,9 @@ aliases:
 tags:
     - TIL
     - Python
+description: >-
+  Create reusable generators by implementing __iter__ in a class, allowing multiple lazy
+  iterations without memory overhead or repeated function calls.
 ---
 
 The current title of this post is probably incorrect and may even be misleading. I had a

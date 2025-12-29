@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Format terminal output with tput instead of ANSI codes. Set colors, bold text,
+  underlines, and backgrounds with simple commands in shell scripts.
 ---
 
 When writing shell scripts, I'd often resort to using hardcoded [ANSI escape codes] to

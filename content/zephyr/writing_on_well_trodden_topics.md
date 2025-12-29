@@ -6,6 +6,9 @@ aliases:
     - /zephyr/writing_on_well_trodden_topics/
 tags:
     - Essay
+description: >-
+  Why writing about common topics matters for personal growth, even when countless others
+  have covered the same ground before you.
 ---
 
 I enjoy writing about software — the things I learn, the tools I use, and the work I do.

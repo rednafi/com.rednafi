@@ -8,6 +8,9 @@ tags:
     - TypeScript
     - Python
     - Typing
+description: >-
+  Master TypeScript's never type and Python's NoReturn for exhaustiveness checking.
+  Flatten nested conditionals with guard clauses for cleaner code.
 ---
 
 Nested conditionals suck. They're hard to write and even harder to read. I've rarely

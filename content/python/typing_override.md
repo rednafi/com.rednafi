@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Catch method override errors at type-check time with Python's @override decorator from
+  PEP 698, preventing typos and signature mismatches.
 ---
 
 Although I've been using Python 3.12 in production for nearly a year, one neat feature in

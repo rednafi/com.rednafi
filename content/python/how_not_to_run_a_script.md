@@ -6,6 +6,9 @@ aliases:
     - /python/how_not_to_run_a_script/
 tags:
     - Python
+description: >-
+  Fix Python ModuleNotFoundError by using python -m instead of direct script execution to
+  ensure correct sys.path handling for imports.
 ---
 
 When I first started working with Python, nothing stumped me more than how bizarre Python's

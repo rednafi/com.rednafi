@@ -6,6 +6,9 @@ tags:
 slug: pathlib
 aliases:
     - /python/pathlib/
+description: >-
+  Replace os.path with Python's pathlib for elegant, object-oriented path manipulation
+  with intuitive operators and unified file operations.
 ---
 
 When I first encountered Python's `pathlib` module for path manipulation, I brushed it aside

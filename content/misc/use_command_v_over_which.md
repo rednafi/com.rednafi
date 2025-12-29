@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Replace which with command -v for POSIX-compliant executable lookup. Learn why command
+  -v is the portable alternative for finding program paths.
 ---
 
 One thing that came to me as news is that the command `which` — which is the de-facto tool

@@ -6,6 +6,9 @@ aliases:
     - /python/decouple_with_generators/
 tags:
     - Python
+description: >-
+  Learn how Python generators decouple data production from consumption, enabling cleaner
+  code for streaming, polling, and pipeline patterns.
 ---
 
 Generators can help you decouple the production and consumption of iterables — making your

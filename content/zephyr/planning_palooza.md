@@ -6,6 +6,9 @@ aliases:
     - /zephyr/planning_palooza/
 tags:
     - Essay
+description: >-
+  Why scattered planning documents across RFCs, ADRs, and multiple tools hinder
+  productivity compared to centralized documentation.
 ---
 
 When I started my career in a tightly-knit team of six engineers at a small e-commerce

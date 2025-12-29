@@ -8,6 +8,9 @@ tags:
     - Database
     - Python
     - System
+description: >-
+  Build multi-level rate limiting with Redis sorted sets and Lua. Enforce global and
+  category-specific limits with ZREMRANGEBYSCORE and ZCARD commands.
 ---
 
 Recently at work, we ran into this problem:
@@ -15,9 +18,9 @@ Recently at work, we ran into this problem:
 We needed to send Slack notifications for specific events but had to enforce rate limits to
 avoid overwhelming the channel. Here's how the limits worked:
 
--   **Global limit**: Max 100 requests every 30 minutes.
--   **Category limit**: Each event type (e.g., errors, warnings) capped at 10 requests per
-    30 minutes.
+- **Global limit**: Max 100 requests every 30 minutes.
+- **Category limit**: Each event type (e.g., errors, warnings) capped at 10 requests per 30
+  minutes.
 
 Now, imagine this:
 
@@ -33,9 +36,9 @@ This created a **hierarchy of limits**:
 
 Every 30 minutes, the system resets. Here are two issues that could arise:
 
--   If some event types are busier, the global limit could block quieter ones.
--   Even with room under the global limit, some event types might still hit their category
-    caps.
+- If some event types are busier, the global limit could block quieter ones.
+- Even with room under the global limit, some event types might still hit their category
+  caps.
 
 In our case, the event types are limited, and the category limits are both uniform and
 significantly smaller than the global limit, so this isn't a concern.
@@ -55,17 +58,17 @@ reliable, even when the notification sender scales to multiple instances.
 Sorted sets in Redis track notifications within a rolling time window by using timestamps as
 scores, which keeps entries ordered by time. The implementation:
 
--   Maintains a global sorted set to enforce the overall limit (e.g., 100 notifications per
-    30 minutes).
--   Uses category-specific sorted sets to enforce category limits for each event type (e.g.,
-    10 notifications per 30 minutes for errors, warnings, etc.).
+- Maintains a global sorted set to enforce the overall limit (e.g., 100 notifications per 30
+  minutes).
+- Uses category-specific sorted sets to enforce category limits for each event type (e.g.,
+  10 notifications per 30 minutes for errors, warnings, etc.).
 
 The limits are enforced with two Redis commands:
 
--   `ZREMRANGEBYSCORE` removes entries with timestamps outside the rolling time window,
-    keeping only recent notifications.
--   `ZCARD` counts the remaining entries in a set to check whether the global or
-    category-specific limits have been reached.
+- `ZREMRANGEBYSCORE` removes entries with timestamps outside the rolling time window,
+  keeping only recent notifications.
+- `ZCARD` counts the remaining entries in a set to check whether the global or
+  category-specific limits have been reached.
 
 ## Lua script
 
@@ -73,9 +76,9 @@ Instead of embedding the rate-limiting logic directly into the notification send
 to implement it as a Lua script in Redis. While we could write the logic in the code and run
 it in a Redis pipeline, we opted not to, for the following reasons:
 
--   A dedicated script keeps the rate-limiting logic separate and independently auditable.
--   It saves a few TCP calls, as the entire logic runs within Redis itself.
--   And most importantly, I wanted to write some Lua.
+- A dedicated script keeps the rate-limiting logic separate and independently auditable.
+- It saves a few TCP calls, as the entire logic runs within Redis itself.
+- And most importantly, I wanted to write some Lua.
 
 The script is as follows:
 
@@ -133,7 +136,6 @@ return check_rate_limit(
 The script performs the following operations in order:
 
 1. **Remove expired entries**:
-
     - It uses `ZREMRANGEBYSCORE` to remove notifications older than the time window
       (`current_time - window`). This ensures that only active notifications are considered
       for the limits.
@@ -143,13 +145,11 @@ The script performs the following operations in order:
       during each invocation.
 
 2. **Check the global limit**:
-
     - `ZCARD` counts the number of active notifications in the global sorted set.
     - If this count equals or exceeds the global limit (e.g., 100), the request is rejected
       (`return 0`).
 
 3. **Check the category-specific limit**:
-
     - `ZCARD` is used again to count the active notifications for the specific category.
     - If this count equals or exceeds the category limit (e.g., 10), the request is rejected
       (`return 0`).

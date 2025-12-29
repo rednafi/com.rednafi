@@ -6,6 +6,9 @@ aliases:
     - /go/di_frameworks_bleh/
 tags:
     - Go
+description: >-
+  Dependency injection in Go doesn't need Dig or Wire. Learn why manual wiring beats
+  reflection magic and how Go's design makes DI frameworks overkill.
 ---
 
 When working with Go in an [industrial programming] context, I feel like dependency

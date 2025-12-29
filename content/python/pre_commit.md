@@ -6,6 +6,9 @@ aliases:
     - /python/pre_commit/
 tags:
     - Python
+description: >-
+  Automate Python code quality with pre-commit hooks running Black, isort, flake8, and
+  mypy before each git commit for consistent formatting.
 ---
 
 [Pre-commit hooks] can be a neat way to run automated ad-hoc _tasks_ before submitting a new

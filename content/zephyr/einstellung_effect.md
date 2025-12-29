@@ -6,6 +6,9 @@ aliases:
     - /zephyr/einstellung_effect/
 tags:
     - Essay
+description: >-
+  Why accumulated knowledge can prevent learning new paradigms, and how past expertise
+  becomes the barrier to future growth.
 ---
 
 In 9th grade, when I first learned about [Lenz's law] in Physics class, I was fascinated by

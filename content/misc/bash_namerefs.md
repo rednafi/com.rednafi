@@ -7,6 +7,9 @@ aliases:
 tags:
   - Shell
   - TIL
+description: >-
+  Master Bash namerefs with declare -n to create dynamic variable references. Build
+  generic functions for arrays and associative arrays without eval.
 ---
 
 While going through a script at work today, I came across Bash's `nameref` feature. It uses

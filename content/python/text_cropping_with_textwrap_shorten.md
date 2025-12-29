@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Crop text to character limits without breaking words using Python's textwrap.shorten
+  for clean truncation with customizable placeholders.
 ---
 
 ## Problem

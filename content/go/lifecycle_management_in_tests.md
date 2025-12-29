@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Testing
+description: >-
+  Master Go test lifecycle with t.Cleanup(), subtests, and TestMain. Learn per-test,
+  grouped, and package-wide setup patterns effectively.
 ---
 
 Unlike pytest or JUnit, Go's standard testing framework doesn't give you as many knobs for

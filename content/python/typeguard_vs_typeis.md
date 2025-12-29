@@ -8,6 +8,9 @@ tags:
     - Python
     - Typing
     - TIL
+description: >-
+  Understand TypeIs vs TypeGuard in Python: TypeIs provides more intuitive type narrowing
+  by narrowing both positive and negative branches.
 ---
 
 The handful of times I've reached for `typing.TypeGuard` in Python, I've always been

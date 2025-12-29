@@ -6,6 +6,9 @@ aliases:
     - /misc/audit_commit_messages_on_github/
 tags:
     - GitHub
+description: >-
+  Automate commit message validation with GitHub Actions. Enforce refs and closes
+  patterns to maintain clean Git history and link commits to issues.
 ---
 
 After reading Simon Willison's [amazing piece on how he builds a feature], I wanted to adopt

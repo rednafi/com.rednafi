@@ -7,6 +7,9 @@ tags:
 slug: install
 aliases:
     - /misc/install/
+description: >-
+  Replace mkdir, cp, and chmod with a single install command. Copy files, create
+  directories, and set permissions in one step with GNU coreutils.
 ---
 
 TIL about the `install` command on \*nix systems. A quick [GitHub search for the term]

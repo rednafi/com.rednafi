@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Use Python's Self type from PEP 673 to annotate methods returning class instances,
+  eliminating complex forward references and TypeVars.
 ---
 
 [PEP-673] introduces the `Self` type and it's coming to Python 3.11. However, you can

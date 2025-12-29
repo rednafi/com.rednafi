@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Django
+description: >-
+  Use Django query expressions like Replace, Upper, Lower, Concat, and Substr for
+  efficient database-level text manipulation without fetching data.
 ---
 
 I was working with a table that had a similar (simplified) structure like this:

@@ -4,6 +4,9 @@ date: 2025-11-16
 slug: test-subprocesses
 tags:
     - Go
+description: >-
+  Test Go subprocesses with the re-exec pattern: spawn your test binary as a subprocess
+  to emulate real command behavior reliably.
 ---
 
 When testing Go code that spawns subprocesses, you usually have three options.

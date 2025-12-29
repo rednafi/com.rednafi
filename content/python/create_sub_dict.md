@@ -7,6 +7,9 @@ date: 2022-01-30
 tags:
     - Python
     - TIL
+description: >-
+  Optimize Python dictionary slicing from O(DK) to O(K) complexity using direct key
+  lookups instead of iterating through all items.
 ---
 
 How'd you create a sub dictionary from a dictionary where the keys of the sub-dict are

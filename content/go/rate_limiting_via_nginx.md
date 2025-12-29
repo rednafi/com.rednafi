@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Networking
+description: >-
+  Implement rate limiting at the infrastructure layer with Nginx reverse proxy. Protect
+  Go services from DDoS with leaky bucket algorithm.
 ---
 
 I needed to integrate rate limiting into a relatively small service that complements a

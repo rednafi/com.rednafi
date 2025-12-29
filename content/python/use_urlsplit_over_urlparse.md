@@ -6,6 +6,9 @@ aliases:
 date: 2022-09-10
 tags:
     - Python
+description: >-
+  Use Python's urlsplit instead of urlparse for faster URL parsing by skipping the
+  rarely-needed params component in URL decomposition.
 ---
 
 TIL from this [video by Anthony Sottile] that Python's [urlparse] is quite slow at parsing

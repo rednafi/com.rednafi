@@ -8,6 +8,9 @@ tags:
     - Python
     - JavaScript
     - Go
+description: >-
+  Why you should define API response structures explicitly. Compare approaches in Python,
+  JavaScript, and Go with Pydantic, Zod, and structs.
 ---
 
 I love dynamically typed languages as much as the next person. They let us make ergonomic

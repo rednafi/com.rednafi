@@ -6,6 +6,9 @@ aliases:
     - /python/inspect_docstring_with_pydoc/
 tags:
     - Python
+description: >-
+  View Python docstrings from the command line with pydoc or serve them as HTML
+  documentation for modules, classes, and functions.
 ---
 
 How come I didn't know about the `python -m pydoc` command before today!

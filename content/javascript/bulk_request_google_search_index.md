@@ -7,6 +7,9 @@ aliases:
 tags:
     - JavaScript
     - API
+description: >-
+  Learn how to programmatically request Google search indexing for multiple URLs using
+  the Indexing API and NodeJS for faster reindexing.
 ---
 
 Recently, I purchased a domain for this blog and migrated the content from
