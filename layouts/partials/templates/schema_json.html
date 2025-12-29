@@ -45,6 +45,13 @@
   "@id": {{ printf "%s#website" site.Home.Permalink }},
   "url": {{ site.Home.Permalink }},
   "name": {{ site.Title }},
+  "description": {{ site.Params.description | plainify | safeHTML }},
+  "author": {
+    "@id": {{ $authorId }}
+  },
+  "publisher": {
+    "@id": {{ $authorId }}
+  },
   "potentialAction": {
     "@type": "SearchAction",
     "target": {{ $searchTarget }},
@@ -52,6 +59,81 @@
   }
 }
 </script>
+
+{{/* CollectionPage for blog homepage */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": {{ printf "%s#collectionpage" site.Home.Permalink }},
+  "url": {{ site.Home.Permalink }},
+  "name": {{ site.Title }},
+  "description": {{ site.Params.description | plainify | safeHTML }},
+  "isPartOf": {
+    "@id": {{ printf "%s#website" site.Home.Permalink }}
+  },
+  "about": {
+    "@type": "Blog",
+    "name": {{ site.Title }},
+    "description": {{ site.Params.description | plainify | safeHTML }}
+  }
+}
+</script>
+
+{{/* ItemList for recent blog posts */}}
+{{- $recentPosts := where site.RegularPages "Type" "in" site.Params.mainSections | first 10 }}
+{{- if $recentPosts }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {{- range $index, $page := $recentPosts }}
+    {{- if $index }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $index 1 }},
+      "url": {{ $page.Permalink }},
+      "name": {{ $page.Title | plainify }},
+      "item": {
+        "@type": "BlogPosting",
+        "@id": {{ $page.Permalink }},
+        "url": {{ $page.Permalink }},
+        "headline": {{ $page.Title | plainify }},
+        "datePublished": {{ $page.PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
+        "dateModified": {{ $page.Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
+        "author": {
+          "@id": {{ $authorId }}
+        }
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
+
+{{/* SiteNavigationElement for main menu */}}
+{{- if site.Menus.main }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "@id": {{ printf "%s#navigation" site.Home.Permalink }},
+  "name": "Site Navigation",
+  "hasPart": [
+    {{- range $index, $item := site.Menus.main }}
+    {{- if $index }},{{ end }}
+    {
+      "@type": "WebPage",
+      "name": {{ $item.Name }},
+      "url": {{ $item.URL | absURL }}
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
 
 {{- else if (or .IsPage .IsSection) }}
 
@@ -163,11 +245,24 @@
     "url": {{ $authorPage }}
   },
   "publisher": {
-    "@id": {{ $authorId }}
+    "@type": "Person",
+    "@id": {{ $authorId }},
+    "name": {{ .Params.author | default site.Params.author }},
+    "url": {{ $authorPage }}
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": {{ .Permalink | safeHTML }}
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": {{ printf "%s#collectionpage" site.Home.Permalink }},
+    "name": {{ site.Title }}
+  },
+  "articleSection": {{ .Section | title }},
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".post-title", ".post-content"]
   }
 }
 </script>
