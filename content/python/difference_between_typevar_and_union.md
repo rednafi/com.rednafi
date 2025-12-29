@@ -8,6 +8,9 @@ tags:
     - Python
     - Typing
     - TIL
+description: >-
+  Understand when to use constrained TypeVar vs Union in Python type hints for consistent
+  types across function parameters and return values.
 ---
 
 If you want to define a variable that can accept values of multiple possible types, using

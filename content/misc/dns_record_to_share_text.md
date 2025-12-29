@@ -8,6 +8,9 @@ tags:
     - Shell
     - TIL
     - Networking
+description: >-
+  Share data via DNS TXT records using dig and base64 encoding. Learn limitations,
+  security concerns, and practical use cases for DNS tunneling.
 ---
 
 This morning, while browsing Hacker News, I came across a neat trick for [sharing data via

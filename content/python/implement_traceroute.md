@@ -8,6 +8,9 @@ tags:
     - Shell
 aliases:
     - /python/implement_traceroute/
+description: >-
+  Build a traceroute clone in Python using UDP and ICMP sockets to trace network packet
+  routes and measure hop latency with TTL manipulation.
 ---
 
 I was watching [Storytelling with traceroute] lightning talk by Karla Burnett and wanted to

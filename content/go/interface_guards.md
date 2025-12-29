@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Use compile-time interface guards to verify type conformity in Go without runtime
+  overhead. Learn the var _ Interface = (*Type)(nil) pattern.
 ---
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs

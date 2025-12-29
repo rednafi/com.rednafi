@@ -6,6 +6,9 @@ aliases:
     - /misc/on_rebasing/
 tags:
     - git
+description: >-
+  Master git rebase for cleaner commit history. Learn interactive rebasing, squashing
+  commits, and rebasing feature branches onto main with practical examples.
 ---
 
 People tend to get pretty passionate about Git workflows on different online forums. Some

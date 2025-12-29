@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Build a TOTP-based 2FA client in Go using the standard library. Generate time-based
+  one-time passwords like Google Authenticator.
 ---
 
 A [TOTP] based 2FA system has two parts. One is a client that generates the TOTP code. The

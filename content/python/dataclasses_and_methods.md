@@ -6,6 +6,9 @@ aliases:
     - /python/dataclasses_and_methods/
 tags:
     - Python
+description: >-
+  Why you shouldn't add state-mutating methods to Python dataclasses. Maintain semantic
+  clarity and use dataclasses as pure data containers.
 ---
 
 Data classes are containers for your data — not behavior. The delineation is right there in

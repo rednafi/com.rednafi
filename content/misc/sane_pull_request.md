@@ -6,6 +6,9 @@ aliases:
     - /misc/sane_pull_request/
 tags:
     - Git
+description: >-
+  Make pull requests easier to review. Learn commit organization, diff filtering,
+  annotations, and context that helps reviewers understand changes faster.
 ---
 
 One of the reasons why I'm a big advocate of rebasing and cleaning up feature branches, even

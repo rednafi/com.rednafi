@@ -7,6 +7,9 @@ aliases:
 tags:
     - Networking
     - Go
+description: >-
+  Troubleshoot CORS errors with this practical guide. Learn Access-Control-Allow-Origin
+  headers, preflight requests, and domain allowlisting in Go.
 ---
 
 Every once in a while, I find myself skimming through the MDN docs to jog my memory on how

@@ -6,6 +6,9 @@ aliases:
     - /zephyr/footnotes_for_the_win/
 tags:
     - Essay
+description: >-
+  Why footnote-style reference links create cleaner Markdown documents and improve the
+  writing experience over inline links.
 ---
 
 There are a few ways you can add URLs to your Markdown documents:

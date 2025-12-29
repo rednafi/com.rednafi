@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Speed up Python module imports with __getattr__ from PEP 562 for lazy loading,
+  deprecation warnings, and dynamic attribute access.
 ---
 
 This morning, someone on Twitter pointed me to [PEP 562], which introduces `__getattr__` and

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Testing
+description: >-
+  Control Go test behavior with custom flags instead of build tags or env vars. Enable
+  integration and snapshot tests with discoverable CLI options.
 ---
 
 As your test suite grows, you need ways to toggle certain kinds of tests on or off. Maybe

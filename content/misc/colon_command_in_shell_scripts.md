@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Use the colon : command as a no-op in Bash scripts for cleaner debug output with -x
+  flag. Alternative to echo for section markers and comments.
 ---
 
 The colon `:` command is a shell utility that represents a truthy value. It can be thought

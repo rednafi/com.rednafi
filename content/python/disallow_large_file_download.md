@@ -6,6 +6,9 @@ aliases:
     - /python/disallow_large_file_download/
 tags:
     - Python
+description: >-
+  Prevent excessive file downloads in Python by streaming with HTTPX and limiting file
+  size with chunk-based validation and memory-safe processing.
 ---
 
 I was working on a DRF POST API endpoint where the consumer is expected to add a URL

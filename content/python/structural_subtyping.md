@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Implement Go-style structural subtyping in Python with Protocol for duck typing and
+  interface-based APIs without inheritance dependencies.
 ---
 
 I love using Go's interface feature to declaratively define my public API structure.

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Run background health checks in CI with nohup and ampersand. Test server readiness with
+  retry loops and automatic cleanup on success or failure.
 ---
 
 While working on a project with [EdgeDB] and [FastAPI], I wanted to perform health checks

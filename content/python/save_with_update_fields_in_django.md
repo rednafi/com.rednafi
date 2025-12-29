@@ -8,6 +8,9 @@ tags:
     - Python
     - Django
     - TIL
+description: >-
+  Optimize Django model saves with update_fields parameter to generate leaner SQL queries
+  and improve performance in tight update loops.
 ---
 
 TIL that you can specify `update_fields` while saving a Django model to generate a leaner

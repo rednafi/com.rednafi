@@ -7,6 +7,9 @@ aliases:
 tags:
     - Git
     - TIL
+description: >-
+  Fix divergent branch errors with git pull --rebase. Learn when to rebase local commits
+  on top of remote changes for cleaner Git history.
 ---
 
 Whenever your local branch diverges from the remote branch, you can't directly pull from the

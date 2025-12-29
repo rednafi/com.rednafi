@@ -6,6 +6,9 @@ aliases:
     - /python/declaratively_transform_dataclass_fields/
 tags:
     - Python
+description: >-
+  Leverage Python's __post_init__ hook to declaratively transform dataclass fields.
+  Automatically serialize data with clean, maintainable code.
 ---
 
 While writing microservices in Python, I like to declaratively define the shape of the data

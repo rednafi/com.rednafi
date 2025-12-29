@@ -8,6 +8,9 @@ tags:
     - Python
     - Database
     - TIL
+description: >-
+  Poll multiple data sources in a single thread using Python generators with
+  itertools.cycle to alternate between infinite data streams efficiently.
 ---
 
 I was working on a project where I needed to poll multiple data sources and consume the

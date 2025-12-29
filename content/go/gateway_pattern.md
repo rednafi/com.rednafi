@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Distributed Systems
+description: >-
+  Separate business logic from external service calls using the Gateway pattern. Apply
+  dependency inversion and interface segregation in Go.
 ---
 
 No matter which language you're writing your service in, it's generally a good idea to

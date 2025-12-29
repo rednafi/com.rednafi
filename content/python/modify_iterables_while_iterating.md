@@ -6,6 +6,9 @@ aliases:
     - /python/modify_iterables_while_iterating/
 tags:
     - Python
+description: >-
+  Safely modify lists, sets, and dictionaries while iterating using list comprehensions,
+  filters, or copying to avoid skipping elements.
 ---
 
 If you try to mutate a sequence while traversing through it, Python usually doesn't

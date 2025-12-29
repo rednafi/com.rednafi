@@ -6,6 +6,9 @@ aliases:
     - /python/early_bound_function_defaults/
 tags:
     - Python
+description: >-
+  Avoid Python function default argument pitfalls caused by early binding, where mutable
+  defaults and function calls bind at definition time.
 ---
 
 I was reading a tweet about it yesterday and that didn't stop me from pushing a code change
