@@ -6,6 +6,9 @@ tags:
 slug: singledispatch
 aliases:
     - /python/singledispatch/
+description: >-
+  Replace complex if-elif chains with functools.singledispatch for type-based function
+  dispatch and cleaner polymorphic behavior in Python.
 ---
 
 **_Updated on 2022-02-13_**: _Change import style of `functools.singledispatch`._

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Testing
+description: >-
+  Mock chained datetime methods in Python tests using unittest.mock to handle immutable
+  datetime objects without external dependencies.
 ---
 
 This is the 4th time in a row that I've wasted time figuring out how to mock out a function

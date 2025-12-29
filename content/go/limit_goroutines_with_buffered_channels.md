@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Control goroutine concurrency with buffered channels as semaphores. Prevent resource
+  exhaustion with backpressure patterns in Go workers.
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when

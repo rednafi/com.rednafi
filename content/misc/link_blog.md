@@ -6,6 +6,9 @@ aliases:
 date: 2025-01-06
 tags:
     - Essay
+description: >-
+  Build a link blog without a backend using Hugo and markdown. Track reading, articles,
+  and activities with yearly detail pages and RSS filtering.
 ---
 
 One of my 2025 resolutions is doing things that don't scale and doing them faster without

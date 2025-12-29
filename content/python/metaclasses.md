@@ -6,6 +6,9 @@ tags:
 slug: metaclasses
 aliases:
     - /python/metaclasses/
+description: >-
+  Explore Python metaclasses for metaprogramming: learn how classes are created,
+  customize class behavior, and understand type as the default metaclass.
 ---
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._

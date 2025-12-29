@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Understand how return values work in Bash functions. Learn exit codes, status
+  evaluation patterns, and proper boolean returns with true/false commands.
 ---
 
 TIL that returning a value from a function in bash doesn't do what I thought it does.

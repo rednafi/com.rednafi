@@ -1,13 +1,16 @@
 ---
 title: Compose multiple levels of fixtures in pytest
 date: 2022-07-21
-slug: compose-multiple-levels-of-pytest-fixtures
+slug: compose-multiple-levels-of-pytest_fixtures
 aliases:
     - /python/compose_multiple_levels_of_pytest_fixtures/
 tags:
     - Python
     - Testing
     - TIL
+description: >-
+  Combine session and function-scoped pytest fixtures to avoid expensive test setup while
+  maintaining test isolation and preventing state coupling.
 ---
 
 While reading the second version of [Brian Okken's pytest book], I came across this neat

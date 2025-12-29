@@ -8,6 +8,9 @@ tags:
     - Go
     - Testing
     - TIL
+description: >-
+  Test functions that write to stdout/stderr in Go by capturing output with os.Pipe.
+  Learn patterns to avoid deadlocks in concurrent tests.
 ---
 
 Ideally, every function that writes to the stdout probably should ask for a `io.Writer` and

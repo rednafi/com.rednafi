@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Learn efficient patterns for caching database connection objects in Python without
+  import-time side effects or lru_cache complexity.
 ---
 
 To avoid instantiating multiple DB connections in Python apps, a common approach is to

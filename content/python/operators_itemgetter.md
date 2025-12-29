@@ -6,6 +6,9 @@ aliases:
     - /python/operators_itemgetter/
 tags:
     - Python
+description: >-
+  Use operator.itemgetter for faster sorting and element access with graceful KeyError
+  handling via methodcaller for safer operations.
 ---
 
 Python's `operator.itemgetter` is quite versatile. It works on pretty much any iterables and

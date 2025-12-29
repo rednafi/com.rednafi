@@ -6,6 +6,9 @@ aliases:
     - /go/slice_gotchas/
 tags:
     - Go
+description: >-
+  Avoid common Go slice mistakes: shared backing arrays, nil vs empty slices, append
+  behavior, and slice copying pitfalls explained.
 ---
 
 Just like any other dynamically growable container structure, Go slices come with a few

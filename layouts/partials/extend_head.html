@@ -8,7 +8,5 @@
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 {{- end -}}
 
-{{- /* Preload critical fonts (above-the-fold) */ -}}
+{{- /* Preload critical fonts (above-the-fold) - only preload primary body font */ -}}
 <link rel="preload" href="/fonts/google-sans-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" href="/fonts/google-sans-latin-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" href="/fonts/jetbrains-mono-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">

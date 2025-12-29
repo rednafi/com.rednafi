@@ -6,6 +6,9 @@ tags:
 slug: ssh-saga
 aliases:
     - /misc/ssh_saga/
+description: >-
+  Complete SSH setup guide: key pairs, authorized_keys, sshd_config, ssh_config,
+  known_hosts, agent forwarding, and hardening for secure remote access.
 ---
 
 Setting up SSH access to a new VM usually follows the same routine: generate a key pair,

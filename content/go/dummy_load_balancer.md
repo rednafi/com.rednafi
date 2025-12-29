@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Build a working round-robin load balancer in Go with goroutines and the standard
+  library. No dependencies needed for this educational prototype.
 ---
 
 I was curious to see if I could prototype a simple load balancer in a single Go script. Go's

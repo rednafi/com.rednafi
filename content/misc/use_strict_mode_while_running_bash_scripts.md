@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Enable Bash strict mode with set -euo pipefail to catch errors early. Exit on failures,
+  treat unset variables as errors, and handle pipeline failures properly.
 ---
 
 Use unofficial bash strict mode while writing scripts. Bash has a few gotchas and this helps

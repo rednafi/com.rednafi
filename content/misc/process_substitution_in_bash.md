@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Use process substitution <() to treat command output as files in Bash. Compare
+  directories, process data, and avoid temporary files with this technique.
 ---
 
 I needed to compare two large directories with thousands of similarly named PDF files and

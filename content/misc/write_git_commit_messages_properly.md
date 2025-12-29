@@ -6,6 +6,9 @@ aliases:
     - /misc/write_git_commit_messages_properly/
 tags:
     - Git
+description: >-
+  Master Git commit message conventions: imperative mood, 50-character subject, proper
+  capitalization. Build coherent project history with consistent formatting.
 ---
 
 Writing consistent commit messages helps you to weave a coherent story with your git

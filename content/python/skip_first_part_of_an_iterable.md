@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Skip elements in iterables until a condition is met using itertools.dropwhile for
+  efficient lazy evaluation that works with generators.
 ---
 
 Consider this iterable:

@@ -8,6 +8,9 @@ tags:
     - Python
     - Shell
     - Networking
+description: >-
+  Build Unix domain socket servers and clients with Python and socat. Access Docker API
+  via UDS, create HTTP servers, and optimize inter-process communication.
 ---
 
 I've always had a vague idea about what Unix domain sockets are from my experience working

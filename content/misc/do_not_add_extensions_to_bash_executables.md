@@ -8,6 +8,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Why executable scripts shouldn't have extensions. Learn GitHub's
+  scripts-to-rule-them-all pattern for language-agnostic project automation.
 ---
 
 I was browsing through the source code of Tom Christie's [typesystem] library and discovered

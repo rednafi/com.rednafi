@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
 mermaid: true
+description: >-
+  Implement topological sorting in Go to order tasks by dependencies. Process directed
+  acyclic graphs for build systems and scheduling.
 ---
 
 I was fiddling with `graphlib` in the Python stdlib and found it quite nifty. It processes a

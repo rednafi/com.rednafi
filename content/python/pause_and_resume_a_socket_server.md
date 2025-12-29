@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Networking
+description: >-
+  Build a pausable socket server with Python's socketserver module using threading for
+  intermittent request handling and background tasks.
 ---
 
 I needed to write a socket server in Python that would allow me to intermittently pause the

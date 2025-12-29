@@ -6,6 +6,9 @@ aliases:
     - /python/concurrent_futures/
 tags:
     - Python
+description: >-
+  Master Python's concurrent.futures module for easy threading and multiprocessing. Learn
+  ThreadPoolExecutor and ProcessPoolExecutor with examples.
 ---
 
 Writing concurrent code in Python can be tricky. Before you even start, you have to worry

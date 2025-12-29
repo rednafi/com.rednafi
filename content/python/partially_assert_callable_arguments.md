@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Testing
+description: >-
+  Assert specific mock call arguments while ignoring others using unittest.mock.ANY for
+  flexible test assertions without brittle checks.
 ---
 
 I just found out that you can use Python's `unittest.mock.ANY` to make assertions about

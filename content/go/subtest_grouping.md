@@ -5,6 +5,9 @@ slug: subtest-grouping
 tags:
     - Go
     - Testing
+description: >-
+  Organize Go subtests with t.Run nesting and parallel execution. Learn patterns for
+  setup, teardown, and readable test hierarchies.
 ---
 
 Go has [support for subtests] starting from version 1.7. With `t.Run`, you can nest tests,

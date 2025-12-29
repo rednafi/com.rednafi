@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Avoid memory leaks when caching instance methods with lru_cache by making cache
+  containers local to instances instead of global.
 ---
 
 Recently, fell into this trap as I wanted to speed up a slow instance method by caching it.

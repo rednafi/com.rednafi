@@ -6,6 +6,9 @@ tags:
 slug: mixins
 aliases:
     - /python/mixins/
+description: >-
+  Build custom data structures with Python's collection.abc mixins, abstract base
+  classes, and interfaces for dict-like and set-like objects.
 ---
 
 Imagine a custom _set-like_ data structure that doesn't perform hashing and trades

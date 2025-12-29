@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Use Python's TypeGuard to create custom type narrowing functions that help static type
+  checkers understand runtime type checks and validations.
 ---
 
 Static type checkers like Mypy follow your code flow and statically try to figure out the

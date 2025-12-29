@@ -8,6 +8,9 @@ tags:
     - Shell
     - Python
     - Go
+description: >-
+  Prevent multiple script instances with file locking. Use flock in Bash, fcntl in
+  Python, and syscall.Flock in Go for single-instance processes.
 ---
 
 I've been having a ton of fun fiddling with [Tailscale] over the past few days. While

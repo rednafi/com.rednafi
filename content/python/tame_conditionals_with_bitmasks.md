@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Replace complex nested conditionals with Python's enum.Flag and bitmasks for cleaner,
+  more maintainable logic using bitwise operations.
 ---
 
 The 100k context window of [Claude 2] has been a huge boon for me since now I can paste a

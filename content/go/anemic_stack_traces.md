@@ -6,6 +6,9 @@ aliases:
     - /go/anemic_stack_traces/
 tags:
     - Go
+description: >-
+  Learn how to build custom error types in Go to create stack traces without runtime
+  overhead, inspired by Rob Pike's Upspin error handling.
 ---
 
 While I like Go's approach of treating errors as values as much as the next person, it

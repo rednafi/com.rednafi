@@ -6,6 +6,9 @@ aliases:
     - /go/func_types_and_smis/
 tags:
     - Go
+description: >-
+  Implement single-method interfaces with function types instead of structs. Master
+  http.HandlerFunc patterns for middlewares, mocks, and adapters.
 ---
 
 People love single-method interfaces (SMIs) in Go. They're simple to implement and easy to

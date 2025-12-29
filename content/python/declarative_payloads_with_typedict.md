@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Use Python TypedDict to declaratively define API payload structures. Get type safety
+  for nested dictionaries and improve code maintainability.
 ---
 
 While working with microservices in Python, a common pattern that I see is — the usage of

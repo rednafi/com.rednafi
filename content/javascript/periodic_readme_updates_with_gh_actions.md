@@ -7,6 +7,9 @@ aliases:
 tags:
     - JavaScript
     - GitHub
+description: >-
+  Automate your GitHub profile README with periodic updates using Actions. Parse RSS
+  feeds and dynamically display latest blog posts with NodeJS.
 ---
 
 I recently gave my [personal blog] a fresh new look and decided it was time to spruce up my

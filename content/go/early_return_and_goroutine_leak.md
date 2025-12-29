@@ -6,7 +6,9 @@ aliases:
     - /go/early_return_and_goroutine_leak/
 tags:
     - Go
-
+description: >-
+  Prevent goroutine leaks caused by early returns with unbuffered channels. Learn
+  buffering, draining, errgroup patterns, and goleak testing.
 ---
 
 At work, a common mistake I notice when reviewing candidates' home assignments is how they

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Test literal booleans correctly in Python unittest using assertIs instead of
+  assertTrue/assertFalse to avoid truthy/falsy confusion.
 ---
 
 I used to use Unittest's `self.assertTrue` / `self.assertFalse` to check both **literal

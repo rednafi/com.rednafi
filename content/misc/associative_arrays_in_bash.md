@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Learn how to use associative arrays in Bash to create key-value pairs, mimic
+  dictionaries, and manage complex data structures in shell scripts.
 ---
 
 One of my favorite pastimes these days is to set BingChat to creative mode, ask it to teach

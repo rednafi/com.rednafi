@@ -8,6 +8,9 @@ tags:
     - Python
     - Django
     - TIL
+description: >-
+  Standardize Django REST Framework error responses using custom exception handlers to
+  match Microsoft's REST API guidelines format.
 ---
 
 Django Rest Framework exposes a neat hook to customize the response payload of your API when

@@ -8,6 +8,9 @@ tags:
     - Python
     - API
     - Django
+description: >-
+  Fix Django REST Framework to return JSON error responses for 403, 404, 500 errors using
+  middleware instead of default HTML pages.
 ---
 
 At my workplace, we have a large Django monolith that powers the main website and works as

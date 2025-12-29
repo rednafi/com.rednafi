@@ -6,6 +6,9 @@ aliases:
     - /python/apply_constraint_with_assert/
 tags:
     - Python
+description: >-
+  Use Python assert statements to apply runtime constraints more succinctly than raising
+  ValueError. Learn the trade-offs and best practices.
 ---
 
 Whenever I need to apply some runtime constraints on a value while building an API, I
