@@ -6,6 +6,9 @@ aliases:
     - /go/configure_options/
 tags:
     - Go
+description: >-
+  Compare three Go option patterns: exposed structs, option constructors, and functional
+  options. Learn when to use each for clean APIs.
 ---
 
 Suppose, you have a function that takes an option struct and a message as input. Then it

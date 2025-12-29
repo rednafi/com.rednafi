@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Build Unix-style command pipelines in Python using subprocess.run with stdout piping
+  for efficient process chaining and output capture.
 ---
 
 Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and run

@@ -6,6 +6,9 @@ aliases:
     - /python/annotate_args_and_kwargs/
 tags:
     - TIL
+description: >-
+  Properly annotate Python *args and **kwargs with heterogeneous types using Unpack,
+  TypedDict, and modern type hints from PEP-692.
 ---
 
 While I tend to avoid `*args` and `**kwargs` in my function signatures, it's not always

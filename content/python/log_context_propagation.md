@@ -1,5 +1,4 @@
 ---
-
 title: Log context propagation in Python ASGI apps
 date: 2024-08-06
 slug: log-context-propagation
@@ -8,7 +7,9 @@ aliases:
 tags:
     - Python
     - API
-
+description: >-
+  Automatically tag Python logs with request context using middlew and contextvars for
+  distributed tracing in ASGI web applications.
 ---
 
 Let's say you have a web app that emits log messages from different layers. Your log shipper

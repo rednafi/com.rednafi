@@ -7,6 +7,9 @@ aliases:
 tags:
     - Database
     - SQL
+description: >-
+  Emulate Python's random.choice in SQLite using JSON arrays and the random() function.
+  Populate tables with realistic test data efficiently.
 ---
 
 Python has a `random.choice` routine in the standard library that allows you to pick a

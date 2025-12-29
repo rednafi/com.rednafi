@@ -8,6 +8,9 @@ tag:
     - Go
     - TIL
 mermaid: true
+description: >-
+  Build a CGI script from scratch using Go's stdlib and Bash. Understand why Common
+  Gateway Interface fell out of favor for modern web apps.
 ---
 
 I've always had a thing for old-school web tech. By the time I joined the digital fray, CGI

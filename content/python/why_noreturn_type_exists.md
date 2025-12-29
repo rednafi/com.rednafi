@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Use Python's NoReturn type to annotate functions that never return normally, helping
+  type checkers understand exception-raising and infinite loop code.
 ---
 
 Technically, the type of `None` in Python is `NoneType`. However, you'll rarely see

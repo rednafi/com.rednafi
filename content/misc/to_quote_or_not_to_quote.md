@@ -6,6 +6,9 @@ aliases:
     - /misc/to_quote_or_not_to_quote/
 tags:
     - Shell
+description: >-
+  Master shell quoting rules: single vs double quotes, backticks vs $(). Learn when to
+  quote variables to prevent spaces and special characters from breaking commands.
 ---
 
 My [grug brain] can never remember the correct semantics of quoting commands and variables

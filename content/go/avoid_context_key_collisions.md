@@ -4,6 +4,9 @@ date: 2025-10-22
 slug: avoid-context-key-collisions
 tags:
     - Go
+description: >-
+  Master Go context keys with custom types, avoid collisions using empty structs, and
+  learn accessor patterns for safe request-scoped values.
 ---
 
 Along with propagating deadlines and cancellation signals, Go's `context` package can also

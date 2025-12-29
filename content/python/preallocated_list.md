@@ -6,6 +6,9 @@ aliases:
     - /python/preallocated_list/
 tags:
     - Python
+description: >-
+  Understand CPython list memory allocation: how lists store pointer references, grow
+  dynamically, and when pre-allocation with [None]*n helps.
 ---
 
 In CPython, elements of a list are stored as pointers to the elements rather than the values

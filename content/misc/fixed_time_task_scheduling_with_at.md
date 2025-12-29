@@ -8,6 +8,9 @@ tags:
     - Shell
     - JavaScript
     - Networking
+description: >-
+  Schedule one-time commands with UNIX at command. Learn job queuing, remote scheduling
+  via HTTP API, and managing atd/atrun daemons.
 ---
 
 This weekend, I was working on a fun project that required a fixed-time job scheduler to run

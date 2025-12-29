@@ -6,6 +6,9 @@ aliases:
     - /zephyr/descending_into_the_aether/
 tags:
     - Essay
+description: >-
+  A reflection on choosing the MacBook Air M2 15-inch for portability without sacrificing
+  screen size and development capabilities.
 ---
 
 <img

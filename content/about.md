@@ -12,6 +12,8 @@ ShowShareButtons: false
     <figure style="margin: auto;">
         <img src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
              alt="Profile picture"
+             width="400"
+             height="400"
              class="loading"
              style="display: block; margin: 0 auto; width: 400px; height: auto; border-radius: 20px;">
     </figure>

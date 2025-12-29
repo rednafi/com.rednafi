@@ -6,6 +6,9 @@ aliases:
     - /go/dysfunctional_options_pattern/
 tags:
     - Go
+description: >-
+  Discover a simpler alternative to functional options: method chaining with
+  builder-style configuration that's 76x faster and easier to understand.
 ---
 
 Ever since Rob Pike published the text on the [functional options pattern], there's been no

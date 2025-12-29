@@ -6,6 +6,9 @@ aliases:
     - /python/read_s3_file_in_memory/
 tags:
     - Python
+description: >-
+  Download and process S3 CSV files in memory using boto3 and tempfile.NamedTemporaryFile
+  without cluttering disk with temporary files.
 ---
 
 I frequently have to write ad-hoc scripts that download a CSV file from [AWS S3], do some

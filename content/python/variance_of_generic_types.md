@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Understand covariance, contravariance, and invariance in Python generics with practical
+  examples of type relationships and subtyping rules.
 ---
 
 I've always had a hard time explaining **variance** of generic types while working with type

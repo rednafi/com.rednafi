@@ -6,6 +6,9 @@ aliases:
     - /zephyr/diminishing_half_life_of_knowledge/
 tags:
     - Essay
+description: >-
+  How technical skills decay faster than ever in software engineering, and strategies for
+  continuous learning in a rapidly changing field.
 ---
 
 Ever been in a situation where you landed a software engineering job with a particular tech

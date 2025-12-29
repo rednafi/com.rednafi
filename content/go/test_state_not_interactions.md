@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Testing
+description: >-
+  Avoid brittle AI-generated tests that check implementation details. Write maintainable
+  tests that verify behavior, not method calls.
 ---
 
 With the advent of LLMs, the temptation to churn out a flood of unit tests for a false

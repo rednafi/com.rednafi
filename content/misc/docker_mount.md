@@ -7,6 +7,9 @@ tags:
 slug: docker-mount
 aliases:
     - /misc/docker_mount/
+description: >-
+  Master Docker mount types: volumes, bind mounts, tmpfs, and build cache. Clear syntax
+  comparison between -v and --mount options with docker-compose.
 ---
 
 I always get tripped up by Docker's different mount types and their syntax, whether I'm

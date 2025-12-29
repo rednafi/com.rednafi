@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - GitHub
+description: >-
+  Production-ready GitHub Actions workflow for Python with multi-OS testing, dependency
+  caching, automated updates, and daily scheduled runs.
 ---
 
 Five traits that almost all the GitHub Action workflows in my Python projects share are:

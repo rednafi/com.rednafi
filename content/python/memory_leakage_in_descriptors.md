@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Prevent memory leaks in Python descriptors by using weakref to avoid hard references
+  that prevent garbage collection of validated objects.
 ---
 
 Unless I'm hand rolling my own ORM-like feature or validation logic, I rarely need to write

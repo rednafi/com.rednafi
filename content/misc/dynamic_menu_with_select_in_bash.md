@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Build interactive CLI menus with Bash select statement. Create user-friendly
+  command-line tools with option selection and function dispatch.
 ---
 
 Whenever I need to whip up a quick command line tool, my go-to is usually Python. Python's

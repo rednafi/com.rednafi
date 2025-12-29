@@ -6,6 +6,9 @@ tags:
 slug: contextmanager
 aliases:
     - /python/contextmanager/
+description: >-
+  Deep dive into Python context managers. Learn to write custom managers with
+  __enter__/__exit__, use contextlib decorators, and manage resources elegantly.
 ---
 
 Python's context managers are great for resource management and stopping the propagation of

@@ -7,6 +7,9 @@ aliases:
 tags:
   - Python
   - TIL
+description: >-
+  Clean up pytest test signatures using @pytest.mark.usefixtures to inject implicit
+  fixtures without autouse or unused parameter warnings.
 ---
 
 Sometimes, when writing tests in Pytest, I find myself using fixtures that the test

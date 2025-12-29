@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Incident Post-mortem
+description: >-
+  Learn from a production outage caused by loading large CSV files into memory. Stream
+  process files to prevent OOM errors and crashes.
 ---
 
 Python makes it freakishly easy to load the whole content of any file into memory and

@@ -6,6 +6,9 @@ aliases:
     - /zephyr/notes_on_exit_interviews/
 tags:
     - Essay
+description: >-
+  Practical advice for navigating exit interviews from an employee's perspective,
+  minimizing risk while maintaining professionalism.
 ---
 
 If you're a manager, then there's no shortage of information for you on how to conduct exit
