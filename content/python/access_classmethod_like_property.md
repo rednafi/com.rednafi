@@ -6,6 +6,9 @@ aliases:
     - /python/access_classmethod_like_property/
 tags:
     - Python
+description: >-
+  Learn how to access Python classmethods like property methods using metaclasses or
+  Python 3.9+ decorator stacking for Enum classes.
 ---
 
 I wanted to add a helper method to an Enum class. However, I didn't want to make it a

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Prevent shell commands from executing immediately when pasting. Use curly braces to
+  safely paste multi-line commands with hidden newline characters.
 ---
 
 Pasting shell commands can be a pain when they include hidden return `\n` characters. In

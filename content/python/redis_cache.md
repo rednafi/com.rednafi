@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - API
+description: >-
+  Cache API responses with Redis in Python to reduce redundant requests, improve response
+  times, and handle expiring key-value pairs efficiently.
 ---
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._

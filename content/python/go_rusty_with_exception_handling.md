@@ -6,6 +6,9 @@ aliases:
     - /python/go_rusty_with_exception_handling/
 tags:
     - Python
+description: >-
+  Implement Rust-style Result types for type-safe exception handling in Python using
+  generic Ok and Err types inspired by Black formatter.
 ---
 
 While grokking Black formatter's codebase, I came across this [Rust-influenced error

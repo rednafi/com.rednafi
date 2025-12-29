@@ -6,6 +6,9 @@ tags:
 slug: dataclasses
 aliases:
     - /python/dataclasses/
+description: >-
+  Master Python dataclasses to eliminate boilerplate code. Learn ordering, immutability,
+  hashing, default values, and post-init processing.
 ---
 
 Recently, my work needed me to create lots of custom data types and draw comparison among

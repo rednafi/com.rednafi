@@ -6,6 +6,9 @@ tags:
 slug: decorators
 aliases:
     - /python/decorators/
+description: >-
+  Complete guide to Python decorators from first principles. Learn closures, higher-order
+  functions, decorator patterns, and advanced techniques.
 ---
 
 **_Updated on 2022-02-13_**: _Change functools import style._

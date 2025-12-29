@@ -6,6 +6,9 @@ aliases:
     - /go/nil_interface_comparison/
 tags:
     - Go
+description: >-
+  Debug tricky nil comparisons in Go interfaces. Understand dynamic types, type
+  assertions, and use reflect for generic nil checking.
 ---
 
 Comparing interface values in Go has caught me off guard a few times, especially with nils.

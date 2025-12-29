@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - AWS
+description: >-
+  Configure Python logging for AWS Lambda's pre-configured handlers while maintaining
+  compatibility with local development environments.
 ---
 
 At my workplace, while working on a [Lambda] function, I noticed that my Python logs weren't

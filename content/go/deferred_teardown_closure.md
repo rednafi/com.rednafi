@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - Testing
+description: >-
+  Return teardown closures from test helpers to manage cleanup elegantly. Learn patterns
+  for temp files, mock servers, and t.Cleanup() usage.
 ---
 
 While watching [Mitchell Hashimoto's Advanced Testing with Go talk], I came across this neat

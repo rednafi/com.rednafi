@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Track dev dependencies like golangci-lint in go.mod with a tools.go file and build tags
+  to exclude them from production binaries.
 ---
 
 As of now, unlike Python or NodeJS, Go doesn't allow you to specify your development

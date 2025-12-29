@@ -6,6 +6,9 @@ aliases:
     - /zephyr/finding_flow_amid_chaos/
 tags:
     - Essay
+description: >-
+  Strategies for achieving deep work and focus time as an engineer drowning in meetings,
+  Slack messages, and corporate interruptions.
 ---
 
 Despite being an IC for the bulk of my career, finding my groove amidst the daily torrent of

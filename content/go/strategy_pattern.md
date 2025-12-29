@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Replace inheritance with the Strategy pattern in Go using interfaces. Achieve
+  composable, testable code without class hierarchies.
 ---
 
 These days, I don't build hierarchical types through inheritance even when writing languages

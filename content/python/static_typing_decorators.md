@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Typing
+description: >-
+  Type Python decorators accurately using ParamSpec and Concatenate to preserve wrapped
+  function signatures and enable proper static analysis.
 ---
 
 Accurately static typing decorators in Python is an icky business. The **wrapper** function

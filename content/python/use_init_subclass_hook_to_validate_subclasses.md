@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Validate subclass schemas at definition time with Python's __init_subclass__ hook, a
+  cleaner alternative to metaclasses for enforcing structure.
 ---
 
 At my workplace, we have a fairly large Celery config file where you're expected to subclass

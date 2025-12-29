@@ -1,5 +1,4 @@
 ---
-
 title: Shades of testing HTTP requests in Python
 date: 2024-09-02
 slug: testing-http-requests
@@ -9,7 +8,9 @@ tags:
     - API
     - Testing
     - TIL
-
+description: >-
+  Test HTTP requests in Python with pytest-httpx for full mocking, respx for pattern
+  matching, or VCR.py for recording real responses.
 ---
 
 Here's a Python snippet that makes an HTTP POST request:

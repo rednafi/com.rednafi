@@ -7,6 +7,9 @@ tags:
 slug: direnv
 aliases:
     - /misc/direnv/
+description: >-
+  Automate environment variables per directory with direnv. Load .envrc files on entry,
+  unload on exit. Integrate with Python venv and uv workflow.
 ---
 
 I'm not a big fan of shims — code that messes with commands in the shell or prompt. That's

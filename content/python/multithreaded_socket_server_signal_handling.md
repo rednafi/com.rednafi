@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Networking
+description: >-
+  Gracefully shutdown Python's ThreadingTCPServer with signal handlers for SIGINT,
+  SIGTERM handling and client notification on server shutdown.
 ---
 
 While working on a multithreaded socket server in an embedded environment, I realized that

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Testing
+description: >-
+  Master Python mocking: patch objects at their import location, not where they're
+  defined, to avoid common unittest.mock pitfalls.
 ---
 
 I was reading Ned Bachelder's blog [Why your mock doesn't work] and it triggered an epiphany

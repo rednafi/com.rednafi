@@ -6,6 +6,9 @@ aliases:
     - /python/deduplicate_iterables_while_preserving_order/
 tags:
     - Python
+description: >-
+  Master techniques to remove duplicates from Python iterables while maintaining original
+  order using sets, OrderedDict, and nested deduplication.
 ---
 
 Whenever I need to deduplicate the items of an iterable in Python, my usual approach is to

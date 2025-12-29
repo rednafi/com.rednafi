@@ -8,6 +8,9 @@ tags:
     - Networking
     - Go
 mermaid: true
+description: >-
+  Build a production-ready circuit breaker in Go from scratch with closed, open, and
+  half-open states to prevent cascading failures.
 ---
 
 Besides retries, [circuit breakers] are probably one of the most commonly employed

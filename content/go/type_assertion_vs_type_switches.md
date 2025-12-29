@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Master Go type assertions with i.(T) syntax and type switches. Extract concrete types
+  from interfaces safely with ok idiom examples.
 ---
 
 Despite moonlighting as a gopher for a while, the syntax for type assertion and type

@@ -7,6 +7,9 @@ aliases:
 tags:
     - Shell
     - TIL
+description: >-
+  Learn variable indirection in Bash with ${!var} syntax. Build context-aware configs,
+  function dispatch, and dynamic variable name resolution.
 ---
 
 I came across a weird shell syntax today — dynamic shell variables. It lets you dynamically

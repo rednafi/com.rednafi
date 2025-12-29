@@ -7,6 +7,9 @@ aliases:
 tags:
     - Go
     - TIL
+description: >-
+  Master Go 1.21's log/slog package for structured logging with levels, JSON output, and
+  attribute grouping. No third-party libraries needed.
 ---
 
 Before the release of version 1.21, you couldn't set levels for your log messages in Go

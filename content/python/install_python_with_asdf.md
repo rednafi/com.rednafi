@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - TIL
+description: >-
+  Manage multiple Python versions on macOS using asdf, a unified version manager
+  replacing pyenv, nvm, and language-specific tools.
 ---
 
 I've just migrated from Ubuntu to macOS for work and am still in the process of setting up

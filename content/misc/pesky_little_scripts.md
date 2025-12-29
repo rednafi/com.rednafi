@@ -6,6 +6,9 @@ aliases:
     - /misc/pesky_little_scripts/
 tags:
     - Shell
+description: >-
+  Organize custom scripts with comma-prefixed naming. Improve tab completion and
+  eliminate clutter by prefixing script names with special characters.
 ---
 
 I like writing custom scripts to automate stuff or fix repetitive headaches. Most of them

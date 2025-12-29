@@ -7,6 +7,9 @@ aliases:
 tags:
     - Python
     - Django
+description: >-
+  Speed up Django bulk operations with ProcessPoolExecutor while preserving signals and
+  hooks that bulk_create/bulk_update bypass.
 ---
 
 I've rarely been able to take advantage of Django's `bulk_create / bulk_update` APIs in

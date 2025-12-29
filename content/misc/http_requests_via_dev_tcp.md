@@ -1,5 +1,4 @@
 ---
-
 title: HTTP requests via /dev/tcp
 date: 2024-08-08
 slug: http-requests-via-dev-tcp
@@ -8,6 +7,9 @@ aliases:
 tags:
     - TIL
     - Shell
+description: >-
+  Make raw HTTP requests with Bash's /dev/tcp file descriptor. Build health check scripts
+  without curl or wget using TCP socket connections.
 ---
 
 I learned this neat Bash trick today where you can make a raw HTTP request using the
