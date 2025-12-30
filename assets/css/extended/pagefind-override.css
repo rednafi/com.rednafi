@@ -92,11 +92,22 @@ body.dark #search mark {
   background: var(--entry);
   color: var(--primary);
   border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #search .pagefind-ui__button:hover {
   background: var(--code-bg);
   border-color: var(--primary);
+}
+
+/* Clear button */
+#search .pagefind-ui__search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* Tags - hide them */
