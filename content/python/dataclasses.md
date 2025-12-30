@@ -34,7 +34,7 @@ print(CartesianPoint(1, 2, 3))
 
 This class only creates a `CartesianPoint` type and shows a pretty output of the instances
 created from it. However, it already has two methods inside, `__init__` and `__repr__` that
-do not do much.
+don't do much.
 
 ## Dataclasses
 
@@ -207,7 +207,7 @@ class CartesianPoint:
     z: float = field(compare=False)
 
 
-# create intance where only the x attributes are equal
+# create instance where only the x attributes are equal
 point_1 = CartesianPoint(1, 3, 5)
 point_2 = CartesianPoint(1, 4, 6)
 
@@ -245,9 +245,9 @@ class CartesianPoint:
         return math.sqrt(self.x**2 + self.y**2 + self.z**2)
 
 
-# create a new instance and use method `abs_val`
+# create a new instance and use method `dist`
 point = CartesianPoint(5, 6, 7)
-norm = point.abs_val()
+norm = point.dist()
 
 print(norm)
 ```
@@ -258,7 +258,7 @@ print(norm)
 
 ## Making instances immutable
 
-By default, instances of dataclasses are immutable. If you want to prevent mutating your
+By default, instances of dataclasses are mutable. If you want to prevent mutating your
 instance attributes, you can set `frozen=True` while defining your dataclass.
 
 ```py
@@ -300,8 +300,8 @@ FrozenInstanceError: cannot assign to field 'x'
 
 You can turn on the `unsafe_hash` parameter of the `dataclass` decorator to make the class
 instances hashable. This may come in handy when you want to use your instances as dictionary
-keys or want to perform set operation on them. However, if you are using `unsafe_hash` make
-sure that your dataclasses do not contain any mutable data structure in it.
+keys or want to perform set operation on them. However, if you're using `unsafe_hash` make
+sure that your dataclasses don't contain any mutable data structure in it.
 
 ```py
 from dataclasses import dataclass
@@ -342,7 +342,7 @@ print(asdict(point))
 
 ## Post-init processing
 
-When dataclass generates the `__init__` method, internally it'll call `_post_init__` method.
+When dataclass generates the `__init__` method, internally it'll call `__post_init__` method.
 You can add additional processing in the `__post_init__` method. Here, I've added another
 attribute `tup` that returns the cartesian point as a tuple.
 

@@ -27,7 +27,7 @@ everything that `os.path` offers and comes with some additional cherries on top.
 
 Traditionally, Python has represented file paths as regular text strings. So far, using
 paths as strings with `os.path` module has been adequate although a bit cumbersome. However,
-paths are not actually strings and this has necessitated the usage of multiple modules to
+paths aren't actually strings and this has necessitated the usage of multiple modules to
 provide disparate functionalities that are scattered all around the standard library,
 including libraries like `os`, `glob`, and `shutil`. The following code uses three modules
 just to copy multiple python files from current directory to another directory called `src`:
@@ -82,7 +82,7 @@ print("file_another_path:", file_another_path)
 You can use the usual string methods to transform the paths but generally, that's not a good
 idea. So, instead of joining two paths with `+` like regular strings, you should use
 `os.path.join()` to join the components of a path. This is because different operating
-systems do not define paths in the same way. Windows uses `"\"` while Mac and \*nix based
+systems don't define paths in the same way. Windows uses `"\"` while Mac and \*nix based
 OSes use `"/"` as a separator. Joining with `os.path.join()` ensures correct path separator
 on the corresponding operating system. Pathlib module uses `"/"` operator overloading and
 make this a little less painful.

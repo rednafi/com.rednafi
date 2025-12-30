@@ -316,7 +316,7 @@ set the standard, need to come from you. They define what correctness means in y
 and give the ensuing tests a model to follow. If you hand that job to an LLM, you give up
 the chance to shape how the rest of the suite grows.
 
-This is not to disparage mocking libraries either. But I have seen people armed with
+This isn't to disparage mocking libraries either. But I have seen people armed with
 overzealous LLMs and mocks wreak havoc on a test suite and then unironically ask reviewers
 to review the mess. Instead of validating behavior, the suite fills up with fragile
 interaction checks that break on refactors and stay green through real bugs.
