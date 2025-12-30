@@ -27,3 +27,27 @@ body {
 .social-icons a:not(:last-of-type) {
   margin-inline-end: 12px;
 }
+
+/* Skip to content link - hidden until focused */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+.skip-to-content:focus {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: var(--theme);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius);
+}
