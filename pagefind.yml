@@ -1,7 +1,7 @@
 site: public
 
-# Only index blog content directories at root level, exclude tags and other meta pages
-glob: '{python,go,zephyr,misc,javascript}/**/*.html'
+# Only index individual blog posts, not category listing pages
+glob: '{python,go,zephyr,misc,javascript}/*/*.html'
 
 # Exclude metadata and navigation elements from indexing
 exclude_selectors:
