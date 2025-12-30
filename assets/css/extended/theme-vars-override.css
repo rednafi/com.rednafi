@@ -17,23 +17,24 @@
   --secondary: #101010;
   --tertiary: #d6d6d6;
   --content: #101010;
-  --hljs-bg: #f2f1eb;
   --code-bg: #f2f1eb;
+  --code-block-bg: #f2f1eb;
   --secondary-urls: #516727;
   --code-color: #202020;
   --border: #e8e8e8;
 }
 
 /* Dark theme variables */
-.dark {
+.dark,
+:root[data-theme="dark"] {
   --theme: #212529;
   --entry: #212529;
   --primary: #e8e8e8;
   --secondary: #e8e8e8;
   --tertiary: #505050;
   --content: #e8e8e8;
-  --hljs-bg: #2c3034;
   --code-bg: #2c3034;
+  --code-block-bg: #2c3034;
   --secondary-urls: #9bb55a;
   --code-color: #e8e8e8;
   --border: #505050;
