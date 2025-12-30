@@ -23,7 +23,10 @@
             showSubResults: true,
             showImages: false,
             excerptLength: 15,
-            placeholder: "{{ .Params.placeholder | default (printf "%s" .Title) }}"
+            placeholder: "{{ .Params.placeholder | default (printf "%s" .Title) }}",
+            processTerm: (term) => {
+                return term.length >= 3 ? term : null;
+            }
         });
     });
 </script>
