@@ -115,8 +115,7 @@ func main() {
 
         sem <- struct{}{} // acquire BEFORE spawning; applies backpressure
 
-        // Use a closure to wrap the original worker so that concurrency
-        // primitives like semaphores don't pollute the core worker function.
+        // Wrap worker in closure to keep semaphore logic separate
         go func() {
             defer func() { <-sem }() // release when done
             worker(id, msg)

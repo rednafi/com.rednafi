@@ -138,7 +138,7 @@ The `Call` method is the primary interface for executing functions through the c
 breaker. It dispatches the appropriate state handler based on the current state.
 
 ```go
-// Call attempts to execute the provided function, managing state transitions
+// Call executes fn and manages state transitions
 func (cb *circuitBreaker) Call(fn func() (any, error)) (any, error) {
     cb.mu.Lock()
     defer cb.mu.Unlock()
@@ -294,8 +294,10 @@ a timeout mechanism. You probably noticed that inside each state handler we call
 wrapped functions with `runWithTimeout`.
 
 ```go
-// runWithTimeout executes the provided function with a timeout
-func (cb *circuitBreaker) runWithTimeout(fn func() (any, error)) (any, error) {
+// runWithTimeout executes fn with a timeout
+func (cb *circuitBreaker) runWithTimeout(
+    fn func() (any, error),
+) (any, error) {
     ctx, cancel := context.WithTimeout(context.Background(), cb.timeout)
     defer cancel()
 

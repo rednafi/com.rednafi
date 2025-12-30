@@ -94,13 +94,13 @@ I ran this naive benchmark in an ipython console:
 ...
 
 In [3]: %timeit {k: v for k, v in main_dict.items() if k in sub_keys}
-886 ns ± 7.68 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+886 ns ± 7.68 ns per loop (mean ± std. dev. of 7 runs)
 
 In [4]: %timeit {k:main_dict[k] for k in sub_keys}
-340 ns ± 2.87 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+340 ns ± 2.87 ns per loop (mean ± std. dev. of 7 runs)
 
 In [5]: %timeit dict(zip(sub_keys, itemgetter(*sub_keys)(main_dict)))
-581 ns ± 2.73 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+581 ns ± 2.73 ns per loop (mean ± std. dev. of 7 runs)
 
 ...
 ```

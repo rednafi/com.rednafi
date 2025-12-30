@@ -477,7 +477,7 @@ class Calculation:
             logging.exception("ZeroDivisionError")
 
     def main_func(self):
-        """Function that we want to save from nasty error handling logic."""
+        """Function we want to save from error handling logic."""
 
         with self.errorhandler():
             return self.a / self.b

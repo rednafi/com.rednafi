@@ -129,7 +129,8 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 func main() {
     mux := http.NewServeMux()
-    mux.Handle("/hello", corsMiddleware(http.HandlerFunc(helloNameHandler)))
+    handler := http.HandlerFunc(helloNameHandler)
+    mux.Handle("/hello", corsMiddleware(handler))
 
     fmt.Println("Server is running on http://localhost:7676")
     http.ListenAndServe(":7676", mux)

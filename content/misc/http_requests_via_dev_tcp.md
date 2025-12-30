@@ -21,14 +21,13 @@ The following script opens a TCP connection and makes a simple GET request to `e
 ```sh
 #!/bin/bash
 
-# Open a TCP connection to example.com on port 80 and assign file descriptor 3
-# The exec command keeps /dev/fd/3 open throughout the lifetime of the script
-# 3<> enables bidirectional read-write
+# Open TCP connection to example.com:80 and assign file descriptor 3
+# exec keeps /dev/fd/3 open; 3<> enables bidirectional read-write
 exec 3<>/dev/tcp/example.com/80
 
-# Send the HTTP GET request to the server
-# >& redirects stdout to /dev/fd/3
-echo -e "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n" >&3
+# Send the HTTP GET request to the server (>& redirects to /dev/fd/3)
+echo -e \
+    "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n" >&3
 
 # Read and print the server's response
 # <& redirects the output of /dev/fd/3 to cat
@@ -88,8 +87,8 @@ exec 3<>"/dev/tcp/${HOST}/${PORT}"
 
 # Send the HTTP GET request to the server
 echo -e \
-"GET ${HEALTH_PATH} HTTP/1.1\r\nHost: ${HOST}\r\nConnection: close\r\n\r\n" \
-    >&3
+    "GET ${HEALTH_PATH} HTTP/1.1\r\n"\
+"Host: ${HOST}\r\nConnection: close\r\n\r\n" >&3
 
 # Read the HTTP status from the server's response
 read -r HTTP_RESPONSE <&3

@@ -60,7 +60,7 @@ func main() {
         w.Write([]byte("Hello, world!"))
     })
 
-    // The middleware chain applies special handling then logs every request.
+    // Middleware chain: special handling then logging.
     handler := loggingMiddleware(specialMiddleware(mux))
     http.ListenAndServe(":8080", handler)
 }
@@ -115,8 +115,8 @@ func main() {
         w.Write([]byte("Hello, world!"))
     })
 
-    // The middleware chain applies special handling then logs every request.
-    // specialMiddleware is applied before loggingMiddleware, just like before.
+    // Middleware chain: special handling then logging.
+    // specialMiddleware is applied before loggingMiddleware.
     handler := applyMiddleware(mux, loggingMiddleware, specialMiddleware)
     http.ListenAndServe(":8080", handler)
 }

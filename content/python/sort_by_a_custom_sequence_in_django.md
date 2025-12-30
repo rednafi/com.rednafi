@@ -216,7 +216,9 @@ preferred = Case(
         for pos, id in enumerate(order_ids, start=1)
     )
 )
-products_sorted = products.filter(order__id__in=order_ids).order_by(preferred)
+products_sorted = products.filter(
+    order__id__in=order_ids
+).order_by(preferred)
 ```
 
 Here's what the `Product` and `Order` models look like:

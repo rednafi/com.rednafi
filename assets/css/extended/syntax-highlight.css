@@ -13,7 +13,7 @@
 /* PreWrapper */
 .chroma {
   color: #101010;
-  background-color: #fff;
+  background-color: var(--code-block-bg);
 }
 /* LineLink */
 .chroma .lnlinks {
@@ -321,7 +321,7 @@
 /* PreWrapper */
 .dark .chroma {
   color: #e8e8e8;
-  background-color: #000;
+  background-color: var(--code-block-bg);
 }
 /* LineLink */
 .dark .chroma .lnlinks {
