@@ -24,19 +24,24 @@
   src: url("/fonts/jetbrains-mono-latin-regular.woff2") format("woff2");
 }
 
-/* Logo and headers use Inter */
-.logo a {
+/* Logo */
+.nav .logo a {
   font-family: "Google Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
-  font-weight: 700 !important;
+  font-weight: 700;
+}
+
+/* Menu links */
+#menu a {
+  font-size: 17px;
 }
 
 #menu .active {
-  font-weight: 400 !important;
+  font-weight: 400;
   border-bottom: 2px solid currentColor;
 }
 
-/* Simple hamburger menu */
+/* Hamburger menu */
 .hamburger-menu {
   position: relative;
 }
@@ -49,7 +54,7 @@
 
 .hamburger-label {
   color: var(--primary);
-  font-size: 16px;
+  font-size: 17px;
   line-height: var(--header-height);
   cursor: pointer;
 }
@@ -79,27 +84,28 @@
   transform: translateY(0);
 }
 
-.hamburger-dropdown li {
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
+/* Higher specificity to override #menu styles */
+#menu .hamburger-dropdown li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.hamburger-dropdown a {
-  display: block !important;
-  padding: 8px 16px !important;
-  margin: 0 !important;
-  text-align: left !important;
-  text-indent: 0 !important;
-  color: var(--primary) !important;
-  text-decoration: none !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  line-height: 1.2 !important;
-  border: none !important;
+#menu .hamburger-dropdown a {
+  display: block;
+  padding: 8px 16px;
+  margin: 0;
+  text-align: left;
+  text-indent: 0;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  border: none;
 }
 
-.hamburger-dropdown a:hover {
+#menu .hamburger-dropdown a:hover {
   background: var(--tertiary);
 }
 

@@ -2,7 +2,7 @@
   padding: 4px 10px;
   width: 100%;
   color: var(--primary);
-  font-weight: 400 !important;
+  font-weight: 400;
   border: 2px solid var(--tertiary);
   border-radius: var(--radius);
 }
