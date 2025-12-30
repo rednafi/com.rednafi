@@ -10,7 +10,7 @@ body {
   line-height: 1.55;
   word-break: break-word;
   background: var(--theme);
-  font-weight: 400 !important;
+  font-weight: 400;
   margin: 0;
   padding: 0;
 }

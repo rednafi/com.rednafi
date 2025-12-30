@@ -28,12 +28,12 @@
   font-size: 0.9em;
   line-height: 1.5;
   border-radius: 2px;
-  color: var(--code-color) !important;
+  color: var(--code-color);
   font-family: "JetBrains Mono", monospace;
 }
 
 .post-content pre code {
-  background: var(--code-bg) !important;
+  background: var(--code-bg);
   font-family: "JetBrains Mono", monospace;
 }
 
@@ -47,7 +47,7 @@
 
 /* Remove bottom margin from last element in blockquotes */
 .post-content blockquote > *:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 .toc {
@@ -57,7 +57,7 @@
 
 .toc .details {
   display: inline;
-  font-weight: 400 !important;
+  font-weight: 400;
 }
 
 h1:hover .anchor,
@@ -69,7 +69,7 @@ h6:hover .anchor {
   display: inline-flex;
   color: var(--secondary);
   margin-inline-start: 8px;
-  font-weight: 400 !important;
+  font-weight: 400;
   user-select: none;
 }
 
