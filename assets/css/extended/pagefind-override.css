@@ -13,7 +13,8 @@
   font-size: 24px;
   font-weight: 600;
   color: var(--primary);
-  margin-bottom: 8px;
+  line-height: 1.3;
+  margin: 0 0 8px 0;
 }
 
 /* Result body - site body size (17px) */
@@ -30,6 +31,7 @@
   color: var(--primary);
   border: 1px solid var(--border);
   font-size: 17px;
+  line-height: 1.5;
 }
 
 #search .pagefind-ui__search-input::placeholder {
@@ -38,11 +40,17 @@
 
 /* Result cards - match post-entry spacing */
 #search .pagefind-ui__result {
+  position: relative;
   background: var(--entry);
   border: 1px solid var(--border);
   padding: var(--gap);
   margin-bottom: var(--gap);
   border-radius: var(--radius);
+}
+
+#search .pagefind-ui__result-inner {
+  margin: 0;
+  padding: 0;
 }
 
 #search .pagefind-ui__result:hover {
