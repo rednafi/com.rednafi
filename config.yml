@@ -1,4 +1,5 @@
 baseURL: "https://rednafi.com"
+languageCode: en
 title: Redowan's Reflections
 theme: PaperMod
 pluralizelisttitles: false
