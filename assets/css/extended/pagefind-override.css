@@ -3,6 +3,11 @@
  * Reuses vars from theme-vars-override.css and patterns from post-entry.css
  */
 
+/* Match site font */
+#search {
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+}
+
 /* Search result cards - match .post-entry */
 #search .pagefind-ui__result {
   position: relative;
