@@ -29,14 +29,8 @@ update:
 	npm update
 
 dev:
-	@echo "Starting dev server (search will not work, use 'make dev-search' if needed)..."
-	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
-
-dev-search:
-	@echo "Building site with search index for development..."
 	hugo --environment production --minify --gc --cleanDestinationDir
 	npx -y pagefind --site public
-	@echo "Starting dev server with working search..."
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
 build:
