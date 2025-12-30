@@ -3,7 +3,7 @@
 <article class="post-single">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title">
+    <h1 class="post-title" data-pagefind-weight="10">
       {{ .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h1>
@@ -59,11 +59,11 @@
 {{- end }}
 
 {{- if not $exclude }}
-  <div align="center">
+  <div align="center" data-pagefind-ignore>
     ~~~
   </div>
-  <h2>Recent posts</h2>
-  <ul>
+  <h2 data-pagefind-ignore>Recent posts</h2>
+  <ul data-pagefind-ignore>
     {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
     {{- $.Scratch.Set "count" 0 }}
 
