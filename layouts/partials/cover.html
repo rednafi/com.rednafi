@@ -5,7 +5,7 @@
     {{- $fetchpriority := cond $.IsSingle "high" "auto" }}
     {{- $addLink := (and site.Params.cover.linkFullImages $.IsSingle) }}
     {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
-    {{- $alt := (.Params.cover.alt | default .Params.cover.caption | plainify) }}
+    {{- $alt := (.Params.cover.alt | default .Params.cover.caption | default .Title | plainify) }}
     {{- $responsiveImages := (.Params.cover.responsiveImages | default site.Params.cover.responsiveImages) | default true }}
 
     {{- $pageBundleCover := (.Resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
