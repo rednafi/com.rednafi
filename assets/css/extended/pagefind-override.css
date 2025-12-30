@@ -2,10 +2,9 @@
  * Pagefind Search UI - Match site typography and theme
  */
 
-/* Typography - match site fonts */
-#search .pagefind-ui__form,
-#search .pagefind-ui__result,
-#search .pagefind-ui__message {
+/* Typography - all elements use site font */
+#search,
+#search * {
   font-family: "Google Sans", "Helvetica Neue", sans-serif;
 }
 
