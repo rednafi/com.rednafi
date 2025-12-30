@@ -169,7 +169,8 @@ type Error struct {
 func (e *Error) Error() string {
     if e.Debug {
         return fmt.Sprintf(
-            "%s: %s: %s\n\t%s:%d", e.Op, e.Path, e.Err, e.FileName, e.LineNo,
+            "%s: %s: %s\n\t%s:%d",
+            e.Op, e.Path, e.Err, e.FileName, e.LineNo,
         )
     }
     msg := e.Err.Error()

@@ -21,7 +21,7 @@ uncommon:
 # src.py
 
 with open("foo.csv", "r") as f:
-    # Load the whole content of the file as a string in memory and return it.
+    # Load whole content of the file as a string in memory.
     f_content = f.read()
 
     # ...do your processing here.

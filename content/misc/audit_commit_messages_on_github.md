@@ -90,9 +90,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Get the commit payload from GH Actions event.
-          # https://docs.github.com/en/developers/webhooks-and-events/events/
-          # github-event-types#pushevent
+          # Get the commit payload from GH Actions push event.
+          # See GitHub's webhook-events docs for details
           commits='${{ toJSON(github.event.commits) }}'
 
           # Exit with 0 if no new commit is found.

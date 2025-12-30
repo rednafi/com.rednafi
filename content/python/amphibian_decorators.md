@@ -52,7 +52,9 @@ def tag(*names: str) -> Callable:
 
         if inspect.iscoroutinefunction(func):
             @wraps(func)
-            async def async_wrapped(*args: Any, **kwargs: Any) -> Awaitable:
+            async def async_wrapped(
+                *args: Any, **kwargs: Any
+            ) -> Awaitable:
                 return await func(*args, **kwargs)
             return async_wrapped
 

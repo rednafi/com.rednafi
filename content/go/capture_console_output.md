@@ -162,7 +162,7 @@ func captureOut(f func()) string {
     // Create a channel to read the output from the pipe
     out := make(chan string)
 
-    // Use a goroutine to read from the pipe and send the output to the channel
+    // Goroutine reads from pipe and sends output to channel
     var wg sync.WaitGroup
     wg.Add(1)
     go func() {

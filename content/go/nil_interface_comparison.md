@@ -174,9 +174,13 @@ func isNil(i any) bool {
     if i == nil {
         return true
     }
-    // Note: Arrays are not nilable, so we don't check for reflect.Array.
+    // Arrays are not nilable, so we skip reflect.Array.
     switch reflect.TypeOf(i).Kind() {
-    case reflect.Ptr, reflect.Map, reflect.Chan, reflect.Slice, reflect.Func:
+    case reflect.Ptr,
+        reflect.Map,
+        reflect.Chan,
+        reflect.Slice,
+        reflect.Func:
         return reflect.ValueOf(i).IsNil()
     }
     return false

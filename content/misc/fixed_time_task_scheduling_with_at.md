@@ -343,7 +343,7 @@ Now, from a different console panel, you can schedule a remote task as follows:
 ```sh
 curl -X POST -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
-  --data "{\"command\":\"echo 'ping -c 5 rednafi.com >> foo.txt' | at now +1min\"}" \
+  --data '{"command":"echo ping -c 5 google.com | at now +1min"}' \
   http://localhost:3000/run-command
 ```
 

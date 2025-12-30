@@ -48,8 +48,7 @@ Ideally, you'd to use the classes as a good citizen as follows:
 engine = Engine("w16", "vroom")
 car = Car(engine, "supercar", 3_000_000)
 
-# If you want to access an attribute on the 'engine' instance from the 'car'
-# instance, you'll do it like this:
+# Access 'engine' attribute from 'car' instance:
 
 print(car.engine.name)
 print(car.engine.sound)

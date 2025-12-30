@@ -24,12 +24,10 @@ Often, in shell scripts I need to:
 It usually looks like this:
 
 ```sh
-# Create the directory hierarchy. The -p flag creates the parent directories
-# if they don't exist
+# Create directory hierarchy (-p creates parent directories)
 mkdir -p ~/.config/app
 
-# Copy the current config to the newly created directory. Here, conf already
-# exists in the current folder
+# Copy current config to the newly created directory
 cp conf ~/.config/app/conf
 
 # Set the file permission

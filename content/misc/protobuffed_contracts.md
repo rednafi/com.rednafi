@@ -109,7 +109,9 @@ from contracts.protos.message_pb2 import SearchRequest
 
 def serialize(query: str, page_number: int, results_per_page: int) -> str:
     search_request = SearchRequest(
-        query=query, page_number=page_number, results_per_page=results_per_page
+        query=query,
+        page_number=page_number,
+        results_per_page=results_per_page,
     )
 
     # Serialize the search request to a compact binary string

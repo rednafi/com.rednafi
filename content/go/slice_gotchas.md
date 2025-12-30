@@ -84,7 +84,8 @@ slice2 := make([]int, len(original[2:])) // -> [0 0 0]
 copy(slice2, original[2:])              // -> [3 4 5]
 
 // Modify the first element of slice1 (doesn't affect others)
-slice1[0] = 100 // -> original: [1 2 3 4 5], slice1: [100 3 4], slice2: [3 4 5]
+// -> original: [1 2 3 4 5], slice1: [100 3 4], slice2: [3 4 5]
+slice1[0] = 100
 ```
 
 ## Append may reallocate
@@ -335,7 +336,7 @@ is by using a temporary buffer. Even then it's messy.
 ```go
 data := []int{1, 2, 3, 4, 5}
 src := data[:]
-dst := make([]int, len(src)-2) // Create dst as a NEW slice, shorter than src
+dst := make([]int, len(src)-2) // New slice, shorter than src
 
 // Use a temporary buffer
 temp := make([]int, len(src))

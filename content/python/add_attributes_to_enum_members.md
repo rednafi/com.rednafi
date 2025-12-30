@@ -83,7 +83,8 @@ you'll probably use it:
 
 for c in Color:
     print(
-        f"title={c.value[0]}, hex_code={c.value[1]}, description={c.value[2]}"
+        f"title={c.value[0]}, hex_code={c.value[1]}, "
+        f"description={c.value[2]}"
     )
 ```
 
@@ -156,7 +157,8 @@ print(f"{Color.GREEN.description=}")
 # Iterate through all the memebers.
 for c in Color:
     print(
-        f"title={c.value}, hex_code={c.hex_code}, description={c.description}"
+        f"title={c.value}, hex_code={c.hex_code}, "
+        f"description={c.description}"
     )
 ```
 

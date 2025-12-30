@@ -109,7 +109,7 @@ func main() {
 
     body, _ := io.ReadAll(response.Body)
 
-    _ = json.Unmarshal(body, &product) // project the response into the struct
+    _ = json.Unmarshal(body, &product) // project into struct
 
     // Do processing with product instance
     fmt.Println(product.ID, product.Title, product.Description)
@@ -185,7 +185,7 @@ class Product:
 
     @classmethod
     def from_dict(cls, d: dict) -> Self:
-        # This is needed to reconcile the snake_case and camelCase variables
+        # Reconcile snake_case and camelCase variables
         discount_percentage = d.pop("discountPercentage", None)
         return cls(discount_percentage=discount_percentage, **d)
 

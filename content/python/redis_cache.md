@@ -158,13 +158,13 @@ def get_routes_from_api(coordinates: str) -> dict:
     """Data from mapbox api."""
 
     with httpx.Client() as client:
-        base_url = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        base = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
 
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
 
         url = (
-            f"{base_url}/{coordinates}?geometries={geometries}"
+            f"{base}/{coordinates}?geometries={geometries}"
             f"&access_token={access_token}"
         )
         response = client.get(url)
@@ -314,13 +314,13 @@ def get_routes_from_api(coordinates: str) -> dict:
     """Data from mapbox api."""
 
     with httpx.Client() as client:
-        base_url = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
+        base = "https://api.mapbox.com/optimized-trips/v1/mapbox/driving"
 
         geometries = "geojson"
         access_token = "Your-MapBox-API-token"
 
         url = (
-            f"{base_url}/{coordinates}?geometries={geometries}"
+            f"{base}/{coordinates}?geometries={geometries}"
             f"&access_token={access_token}"
         )
         response = client.get(url)

@@ -204,9 +204,11 @@ We use it as follows:
 
 ```go
 func main() {
-    handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, World!")
-    })
+    handler := http.HandlerFunc(
+        func(w http.ResponseWriter, r *http.Request) {
+            fmt.Fprintf(w, "Hello, World!")
+        },
+    )
 
     http.Handle("/", LoggingMiddleware(handler))
     http.ListenAndServe(":8080", nil)

@@ -164,7 +164,9 @@ def traceroute(
     with ExitStack() as stack:
         # Create an ICMP socket connection for receiving packets
         rx = stack.enter_context(
-            socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+            socket.socket(
+                socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP
+            )
         )
 
         # Create a UDP socket connection for sending packets
@@ -192,7 +194,7 @@ def traceroute(
                 # Start the timer
                 start_time = time.perf_counter_ns()
 
-                # Receive the response packet and extract the source address
+                # Receive response packet and extract source address
                 _, curr_addr = rx.recvfrom(512)
                 curr_addr = curr_addr[0]
 
@@ -220,7 +222,7 @@ def main() -> None:
 
     # Print the traceroute header
     print(f"Traceroute to {dest_name} ({dest_addr})")
-    print(f"{'Hop':<5s}{'IP Address':<20s}{'Hostname':<50s}{'Time (ms)':<10s}")
+    print(f"{'Hop':<5s}{'IP Address':<20s}{'Hostname':<50s}{'Time':<10s}")
     print("-" * 90)
 
     # Iterate over the traceroute results and print each hop information
@@ -232,7 +234,7 @@ def main() -> None:
             except socket.error:
                 host = ""
             # Print the hop information
-            print(f"{i+1:<5d}{addr:<20s}{host:<50s}{elapsed_time:<10.3f} ms")
+            print(f"{i+1:<5d}{addr:<20s}{host:<50s}{elapsed_time:.3f}ms")
         else:
             # Print "*" for hops with no response
             print(f"{i+1:<5d}{'*':<20s}{'*':<50s}{'*':<10s}")
@@ -250,18 +252,18 @@ sudo python script.py example.com
 
 ```txt
 Traceroute to example.com (93.184.216.34)
-Hop  IP Address          Hostname                                          Time (ms)
-----------------------------------------------------------------------------------------
-1    192.168.1.1                                                           1.420      ms
-2    142.254.158.201     142-254-158-201.inf.spectrum.com                  9.669      ms
-3    65.25.145.149       lag-63.uparohgd02h.netops.charter.com             139.603    ms
-4    24.33.161.216       lag-31.clmcohib01r.netops.charter.com             14.493     ms
-5    65.29.1.38          lag-27.rcr01clevohek.netops.charter.com           19.221     ms
-6    66.109.6.70         lag-17.vinnva0510w-bcr00.netops.charter.com       25.803     ms
-7    66.109.3.24         lag-21.asbnva1611w-bcr00.netops.charter.com       24.969     ms
-8    209.18.36.1         xe-7-3-1.cr0.chi10.tbone.rr.com                   24.351     ms
-9    152.195.64.129      ae-65.core1.dcb.edgecastcdn.net                   25.114     ms
-10   93.184.216.34                                                         23.546     ms
+Hop  IP Address          Hostname                                          Time
+----------------------------------------------------------------------------------
+1    192.168.1.1                                                           1.420ms
+2    142.254.158.201     142-254-158-201.inf.spectrum.com                  9.669ms
+3    65.25.145.149       lag-63.uparohgd02h.netops.charter.com             139.603ms
+4    24.33.161.216       lag-31.clmcohib01r.netops.charter.com             14.493ms
+5    65.29.1.38          lag-27.rcr01clevohek.netops.charter.com           19.221ms
+6    66.109.6.70         lag-17.vinnva0510w-bcr00.netops.charter.com       25.803ms
+7    66.109.3.24         lag-21.asbnva1611w-bcr00.netops.charter.com       24.969ms
+8    209.18.36.1         xe-7-3-1.cr0.chi10.tbone.rr.com                   24.351ms
+9    152.195.64.129      ae-65.core1.dcb.edgecastcdn.net                   25.114ms
+10   93.184.216.34                                                         23.546ms
 ```
 
 <!-- references -->

@@ -64,7 +64,8 @@ docker run \
 Or using shorthands:
 
 ```sh
-docker run --mount type=volume,src=myvolume,dst=/usr/share/nginx/html,ro nginx
+docker run \
+    --mount type=volume,src=myvolume,dst=/usr/share/nginx/html,ro nginx
 ```
 
 I find this syntax more explicit and less error-prone, even if it's a bit more verbose.
@@ -136,7 +137,7 @@ Using `--mount` for a bind mount:
 ```sh
 docker run \
     --mount \
-    type=bind,source=/path/on/host,target=/usr/share/nginx/html,readonly nginx
+    type=bind,src=/path/on/host,dst=/usr/share/nginx/html,ro nginx
 ```
 
 This syntax makes it clear that you're using a bind mount and specifies exactly which paths

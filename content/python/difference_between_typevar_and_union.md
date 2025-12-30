@@ -76,7 +76,7 @@ def add(a: T, b: T) -> T:
 
 add("hello", "world")  # This is allowed.
 add(1, 2)  # This is fine as well.
-add("hello", 1)  # Mypy will complain about this one and it'll fail in runtime.
+add("hello", 1)  # Mypy will complain; also fails in runtime.
 ```
 
 If you run Mypy against the above snippet, you'll get this:

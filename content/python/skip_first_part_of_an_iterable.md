@@ -23,7 +23,9 @@ starting from the element `0`. Usually, I'd do this:
 
 ```py
 # This returns (0, 4, 5, 6, 7).
-from_zero = tuple(elem for idx, elem in enumerate(it) if idx >= it.index(0))
+from_zero = tuple(
+    elem for idx, elem in enumerate(it) if idx >= it.index(0)
+)
 ```
 
 While this is quite terse and does the job, it won't work with a generator. There's an even

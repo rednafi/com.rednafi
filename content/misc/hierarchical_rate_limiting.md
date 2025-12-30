@@ -89,7 +89,7 @@ local function check_rate_limit(
 )
   -- Get the current timestamp in seconds (including microseconds)
   local current_time_raw = redis.call('TIME') -- {secs, usecs}
-  local current_time = current_time_raw[1] + (current_time_raw[2] / 1000000)
+  local current_time = current_time_raw[1] + current_time_raw[2] / 1e6
 
   -- Step 1: Remove expired entries
   redis.call('ZREMRANGEBYSCORE', global_key, 0, current_time - window)
@@ -202,7 +202,7 @@ def send_notification(
 
 if __name__ == "__main__":
     # Connect to Redis
-    redis_client = Redis(host="localhost", port=6379, decode_responses=True)
+    redis_client = Redis(host="localhost", port=6379)
 
     # Load and register the Lua script
     script_path = "rate_limiter.lua"
@@ -259,7 +259,7 @@ import time
 
 def main() -> None:
     # Connect to Redis
-    redis_client = Redis(host="localhost", port=6379, decode_responses=True)
+    redis_client = Redis(host="localhost", port=6379)
 
     # Load the Lua script
     with open("rate_limiter.lua", "r") as file:
@@ -290,7 +290,7 @@ def main() -> None:
         else:
             # Blocked: drop the notification
             print(
-                f"{i}. Notification dropped (rate limit exceeded): {message}"
+                f"{i}. Notification dropped (rate limited): {message}"
             )
 
 

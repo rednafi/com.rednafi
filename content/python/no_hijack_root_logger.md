@@ -186,7 +186,8 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 
 # Define a formatter
-console_formatter = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+fmt = "%(name)s - %(levelname)s - %(message)s"
+console_formatter = logging.Formatter(fmt)
 
 # Add the handler to the library's logger instance
 httpx_logger.addHandler(console_handler)

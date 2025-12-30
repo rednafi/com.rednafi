@@ -156,7 +156,9 @@ that enables printing `Debug` messages:
 
 ```go
 var programLevel = new(slog.LevelVar) // Info by default
-h := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: programLevel})
+h := slog.NewTextHandler(
+    os.Stdout, &slog.HandlerOptions{Level: programLevel},
+)
 
 slog.SetDefault(slog.New(h))
 programLevel.Set(slog.LevelDebug) // Update log level to Debug
@@ -467,7 +469,9 @@ speed, we can use the `LogAttrs()` instead of `Log()`.
 For example:
 
 ```go
-logger.LogAttrs(nil, slog.LevelInfo, "info message", slog.Int("some int", 7))
+logger.LogAttrs(
+    nil, slog.LevelInfo, "info message", slog.Int("some int", 7),
+)
 ```
 
 This avoids extra allocations while giving the same result as:

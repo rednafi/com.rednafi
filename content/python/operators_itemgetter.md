@@ -39,7 +39,7 @@ In [8]: %timeit sorted(l, key=itemgetter(0))
 386 ns ± 4.2 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
 
 In [9]: %timeit sorted(l, key=lambda x: x[0])
-498 ns ± 0.444 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+498 ns ± 0.444 ns per loop (mean ± std. dev. of 7 runs)
 ```
 
 You can also use `itemgetter` to extract multiple values from a dictionary in a single pass.
