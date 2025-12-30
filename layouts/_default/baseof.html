@@ -17,7 +17,8 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
-    <main class="main">
+    <main class="main"
+    {{- if or (eq .Layout "archives") (eq .Layout "search") (eq .Kind "taxonomy") (eq .Kind "term") (in .RelPermalink "/about/") (in .RelPermalink "/blogroll/") (in .RelPermalink "/talks/") (in .RelPermalink "/lore/") }} data-pagefind-ignore{{- end }}>
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
