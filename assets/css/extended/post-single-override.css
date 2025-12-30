@@ -37,6 +37,7 @@
 }
 
 .post-content pre code {
+  color: inherit;
   background: var(--code-bg);
   font-family: "JetBrains Mono", monospace;
 }

@@ -139,7 +139,7 @@ type config struct {
 
 type option func(*config)
 
-// The value of each optional configuration attribute can be overridden with
+// Each optional config attribute can be overridden with
 // an associated function
 func WithFizz(fizz int) option {
     return func(c *config) {

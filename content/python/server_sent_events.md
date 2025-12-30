@@ -325,7 +325,9 @@ def background() -> str:
 async def index(request: Request) -> Response:
     task_id = background.apply_async(queue="default")
     logging.info("Task id: %s", task_id)
-    response = templates.TemplateResponse("index.html", {"request": request})
+    response = templates.TemplateResponse(
+        "index.html", {"request": request}
+    )
     response.set_cookie("task_id", task_id)
     return response
 
@@ -444,11 +446,11 @@ Now on the client side, the `index.html` looks like this:
 
         if(data.state === "SUCCESS") {
           document.getElementById("message").innerHTML = message;
-          eventSource.close(); // Close the connection from the client side.
+          eventSource.close(); // Close the connection.
 
         } else if(data.state === "UNFINISHED") {
           document.getElementById("message").innerHTML = message;
-          eventSource.close(); // Close the connection from the client side.
+          eventSource.close(); // Close the connection.
         }
       };
 

@@ -168,7 +168,9 @@ from starlette.routing import Route
 
 async def receive_webhook(request: Request) -> JSONResponse:
     # Get the payload signature from the request headers.
-    x_payload_signature_256 = request.headers.get("X-Payload-Signature-256")
+    x_payload_signature_256 = request.headers.get(
+        "X-Payload-Signature-256"
+    )
 
     # Disallow empty signature.
     if x_payload_signature_256 is None:

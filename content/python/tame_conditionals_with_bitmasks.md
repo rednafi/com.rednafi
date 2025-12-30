@@ -59,7 +59,7 @@ send notifications while maintaining the business constraints.
 
 ```py
 def notify(client: Client) -> None:
-    """Apply business logic and invoke the desired notification handlers."""
+    """Apply business logic and invoke notification handlers."""
 
     if client.email and not client.url and not client.address:
         send_email()

@@ -139,7 +139,7 @@ class TestCrop(unittest.TestCase):
     def setUp(self):
         self.text = "This is an example of speech synthesis in English."
         self.text_complex = """
-        wrap(), fill() and shorten() work by creating a TextWrapper instance
+        wrap(), fill() and shorten() work by creating a TextWrapper
         and calling a single method on it.
         """
 

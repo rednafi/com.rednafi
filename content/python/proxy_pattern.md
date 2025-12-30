@@ -447,7 +447,7 @@ class ExcFetchUrl(IFetchUrl):
 class CacheFetchUrl(IFetchUrl):
     def __init__(self) -> None:
         self._fetch_url = ExcFetchUrl()
-        self.get_data = functools.lru_cache()(self.get_data)  # type: ignore
+        self.get_data = functools.lru_cache()(self.get_data)  # noqa
 
     def get_data(self, url: str) -> D:
         data = self._fetch_url.get_data(url)
@@ -467,7 +467,7 @@ if __name__ == "__main__":
 
     fetch = CacheFetchUrl()
     for arg1, arg2 in zip([1, 2, 3, 1, 2, 3], [1, 2, 3, 1, 2, 3]):
-        url = f"https://postman-echo.com/get?foo1=bar_{arg1}&foo2=bar_{arg2}"
+        url = f"https://postman-echo.com/get?foo1={arg1}&foo2={arg2}"
         print(f"\n {'-'*75}\n")
         data = fetch.get_data(url)
         print(f"Cache Info: {fetch.get_data.cache_info()}")  # type: ignore

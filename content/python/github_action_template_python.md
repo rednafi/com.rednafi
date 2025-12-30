@@ -81,8 +81,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.path }}
-          key: "${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}\
-            -${{ hashFiles('**/requirements-dev.txt') }}"
+          key: "${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}"
           restore-keys: |
             ${{ runner.os }}-pip-
 
