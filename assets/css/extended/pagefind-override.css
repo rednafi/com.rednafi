@@ -37,13 +37,17 @@
   color: var(--secondary);
 }
 
-/* Result cards */
+/* Result cards - match h3 spacing (28px top, 14px bottom) */
 #search .pagefind-ui__result {
   background: var(--entry);
   border: 1px solid var(--border);
   padding: 20px;
-  margin-bottom: 16px;
+  margin: 28px 0 14px;
   border-radius: var(--radius);
+}
+
+#search .pagefind-ui__result:first-child {
+  margin-top: 14px;
 }
 
 #search .pagefind-ui__result:hover {
