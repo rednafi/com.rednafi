@@ -91,9 +91,13 @@ body.dark #search mark {
   border-color: var(--primary);
 }
 
-/* Tags - hide them */
+/* Tags */
 #search .pagefind-ui__result-tag {
-  display: none;
+  background: var(--code-bg);
+  color: var(--content);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
 }
 
 /* Messages and loading */
