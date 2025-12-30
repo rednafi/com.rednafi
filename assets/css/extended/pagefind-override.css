@@ -1,0 +1,140 @@
+/*
+ * Pagefind Search UI Overrides
+ * Match search results to site theme and typography
+ */
+
+/* Use site font family */
+#search .pagefind-ui__form,
+#search .pagefind-ui__result,
+#search .pagefind-ui__message {
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Result title: Match h3 heading size (24px) */
+#search .pagefind-ui__result-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* Result excerpt: Match body text size (17px) */
+#search .pagefind-ui__result-excerpt {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--content);
+  margin: 0;
+}
+
+/* Search input styling */
+#search .pagefind-ui__search-input {
+  background: var(--entry);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  font-size: 17px;
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+}
+
+#search .pagefind-ui__search-input::placeholder {
+  color: var(--secondary);
+}
+
+/* Result container */
+#search .pagefind-ui__result {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+}
+
+#search .pagefind-ui__result:hover {
+  border-color: var(--primary);
+}
+
+/* Result link */
+#search .pagefind-ui__result-link {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+#search .pagefind-ui__result-link:hover {
+  color: var(--secondary-urls);
+}
+
+/* Result metadata (URL, etc.) */
+#search .pagefind-ui__result-url {
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+/* Highlight/mark text in results */
+#search mark {
+  background-color: var(--hljs-bg);
+  color: var(--primary);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Message text */
+#search .pagefind-ui__message {
+  color: var(--secondary);
+  font-size: 17px;
+}
+
+/* Button styling */
+#search .pagefind-ui__button {
+  background: var(--entry);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  font-family: "Google Sans", "Helvetica Neue", sans-serif;
+}
+
+#search .pagefind-ui__button:hover {
+  background: var(--code-bg);
+  border-color: var(--primary);
+}
+
+/* Search clear button */
+#search .pagefind-ui__search-clear {
+  color: var(--secondary);
+}
+
+#search .pagefind-ui__search-clear:hover {
+  color: var(--primary);
+}
+
+/* Loading indicator */
+#search .pagefind-ui__loading {
+  color: var(--secondary);
+}
+
+/* Dark theme support - variables are already in place via var() */
+/* The dark class on body automatically switches all var() values */
+
+/* Ensure proper contrast in dark mode for highlights */
+.dark #search mark {
+  background-color: var(--code-bg);
+  color: var(--primary);
+}
+
+/* Result tags/filters if present */
+#search .pagefind-ui__result-tag {
+  background: var(--code-bg);
+  color: var(--content);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* Result inner content wrapper */
+#search .pagefind-ui__result-inner {
+  gap: 8px;
+}
+
+/* Nested results if enabled */
+#search .pagefind-ui__result-nested {
+  border-left: 2px solid var(--border);
+  padding-left: 16px;
+  margin-top: 12px;
+}
