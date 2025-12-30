@@ -74,20 +74,7 @@
 <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
 {{- end }}
 
-{{- /* Search */}}
-{{- if (eq .Layout `search`) -}}
-{{- /* Removed preload hint - search index is now lazy-loaded on user interaction */}}
-{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify }}
-{{- $fusejs := resources.Get "js/fuse.basic.min.js" }}
-{{- $license_js := resources.Get "js/license.js" }}
-{{- if not site.Params.assets.disableFingerprinting }}
-{{- $search := (slice $fusejs $license_js $fastsearch ) | resources.Concat "assets/js/search.js" | fingerprint }}
-<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
-{{- else }}
-{{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" }}
-<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
-{{- end }}
-{{- end -}}
+{{- /* Search is now handled by Pagefind in search.html layout */ -}}
 
 {{- /* Favicons */}}
 <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
