@@ -14,7 +14,7 @@ description: >-
 Imagine a custom _set-like_ data structure that doesn't perform hashing and trades
 performance for tighter memory footprint. Or imagine a _dict-like_ data structure that
 automatically stores data in a PostgreSQL or Redis database the moment you initialize it;
-also it lets you to _get-set-delete_ key-value pairs using the usual
+also it lets you _get-set-delete_ key-value pairs using the usual
 _retrieval-assignment-deletion_ syntax associated with built-in dictionaries. Custom data
 structures can give you the power of choice and writing them will make you understand how
 the built-in data structures in Python are constructed.
@@ -37,7 +37,7 @@ architect custom data structures with amazing capabilities. Let's dive in.
 
 Python interfaces can help you write classes based on common structures. They ensure that
 classes that provide similar functionalities will also have similar footprints. Interfaces
-are not as popular in Python as they are in other statically typed language. The dynamic
+aren't as popular in Python as they are in other statically typed languages. The dynamic
 nature and duck-typing capabilities of Python often make them redundant.
 
 However, in larger applications, interfaces can make you avoid writing code that is poorly
@@ -49,7 +49,7 @@ classes which can help you achieve DRY nirvana.
 
 At a high level, an interface acts as a blueprint for designing classes. In Python, an
 interface is a specialized abstract class that defines one or more abstract methods.
-Abstract classes differs from concrete classes in the sense that they aren't intended to
+Abstract classes differ from concrete classes in the sense that they aren't intended to
 stand on their own and the methods they define shouldn't have any implementation.
 
 Usually, you inherit from an interface and implement the methods defined in the abstract
@@ -192,9 +192,9 @@ functionalities of the previously defined `Calc` class. Here, I've inherited fro
 informal interface `ICalc` and implemented all the methods with additional info logging
 capability.
 
-Although writing informal interfaces is trivial, there are multiple issues that plagues
+Although writing informal interfaces is trivial, there are multiple issues that plague
 them. The user of the interface class can still instantiate it like a normal class and won't
-be able to tell the difference between a it and a concrete class until she tries to use any
+be able to tell the difference between it and a concrete class until she tries to use any
 of the methods define inside the interface. Only then the methods will throw exceptions.
 This can have unintended side effects.
 
@@ -206,7 +206,7 @@ This means even if `issubclass(ConcreteSubClass, Interface)` shows `True`, you c
 it since it doesn't give you the guarantee that the `ConcreteSubClass` has implemented all
 the methods defined in the `Interface`.
 
-Let's create another class `FakeCalc` an only implement one method defined in the `ICalc`
+Let's create another class `FakeCalc` and only implement one method defined in the `ICalc`
 abstract class:
 
 ```py
@@ -257,7 +257,7 @@ to detect. Formal interfaces try to overcome these issues.
 
 ## Formal interfaces
 
-Formal interfaces do not suffer from the problems that plague informal interfaces. So if you
+Formal interfaces don't suffer from the problems that plague informal interfaces. So if you
 want to implement an interface that the users can't initiate independently and that forces
 them to implement all the methods in the concrete sub classes, formal interface is the way
 to go. In Python, the idiomatic way to define formal interfaces is via the `abc` module.
@@ -312,7 +312,7 @@ add, div, mul, sub
 ```
 
 The error message clearly states that you can't instantiate the class `ICalc` directly at
-all. You've make a subclass of `ICalc` and implement all the abstract methods and only then
+all. You have to make a subclass of `ICalc` and implement all the abstract methods and only then
 you'll be able to make an instance of the subclass. The subclassing and implementation part
 is same as before.
 
@@ -355,7 +355,7 @@ special case of Abstract Base Classes.
 It's imperative that all the methods of an interface are abstract methods and the classes
 don't store any state (instance variables). However, in case of abstract base classes, the
 methods are generally abstract but there can also be methods that provide implementation
-(concrete methods) and also, these classes can have instance variables. This generic
+(concrete methods) and also, these classes can have instance variables. These generic
 abstract base classes can get very interesting and they can be used as _mixins_ but more on
 that in the later sections.
 
@@ -516,8 +516,8 @@ Imagine you're baking chocolate brownies. Now, you can have them without any ext
 which is fine or you can top them with cream cheese, caramel sauce, chocolate chips etc.
 Usually you don't make the extra toppings yourself, rather you prepare the brownies and use
 off the shelf toppings. This also gives you the ability to mix and match different
-combinations of toppings to spruce up the flavors quickly. However, making the the toppings
-from scratch would be a lengthy process and doing it over an over again can ruin the fun of
+combinations of toppings to spruce up the flavors quickly. However, making the toppings
+from scratch would be a lengthy process and doing it over and over again can ruin the fun of
 baking.
 
 While creating software, there's sometimes a limit to the depth we should go. When pieces of
@@ -529,7 +529,7 @@ different ways. In Python, mixins are supported via multiple inheritance.
 ### Overview
 
 In the context of Python especially, a mixin is a parent class that provides functionality
-to subclasses but is not intended to be instantiated itself. This should already incite deja
+to subclasses but isn't intended to be instantiated itself. This should already incite deja
 vu in you since **classes that aren't intended to be instantiated** and can have both
 concrete and abstract methods are basically **abstract base classes**. Mixins can be
 regarded as a specific strain of abstract base classes where they can house both concrete
@@ -595,7 +595,7 @@ I'll explore them in a dedicated section.
 
 ### Differences between interfaces, abstract classes and mixins
 
-In order to better understand mixins, it's be useful to compare mixins with abstract classes
+In order to better understand mixins, it'd be useful to compare mixins with abstract classes
 and interfaces from a code/implementation perspective:
 
 **Interfaces**
@@ -609,7 +609,7 @@ Abstract classes can contain abstract methods, concrete methods and internal sta
 
 **Mixins**
 
-Like interfaces, mixins do not contain any internal state. But like abstract classes, they
+Like interfaces, mixins don't contain any internal state. But like abstract classes, they
 can contain one or more concrete methods. **_So mixins are basically abstract classes
 without any internal states._**
 
@@ -673,7 +673,7 @@ Factor: 10, Argument: 20,  Result: 200
 The `FactorMult` class takes in a number as a factor and the `multiply` method simply
 multiplies an argument with the factor. The mixin class `DisplayFactorMult` provides an
 additional method `multiply_show` that enhances the `multiply` method of the concrete class.
-Method `multiply_show` prints the value of the factor, arguments an the result before
+Method `multiply_show` prints the value of the factor, arguments and the result before
 returning the result. Here, `DisplayFactoryMult` is a mixin since it houses an abstract
 method `multiply`, a concrete method `multiply_show` and doesn't store any instance
 variable.
@@ -829,7 +829,7 @@ particular tuple operation occurs.
 
 This is a list-like data structure that acts exactly like the built-in list but with one
 exception. Like `VerboseTuple`, it'll also print out the special methods underneath when you
-perform any operation on or with it.`
+perform any operation on or with it.
 
 ```py
 from collections.abc import MutableSequence
@@ -1117,7 +1117,7 @@ True
 
 ### Verbose dict
 
-The `VerboseDict` data structure is the mutable version of `VerboseFrozedDict`. It supports
+The `VerboseDict` data structure is the mutable version of `VerboseFrozenDict`. It supports
 all the operations of `VerboseFrozenDict` with some additional features like adding and
 deleting key-value pairs, updating values corresponding to different keys etc.
 
@@ -1434,7 +1434,7 @@ It's also a mutable dict-like structure that can automatically store key-value p
 SQLAlchemy supported relational database when initialized.
 
 I was inspired to write this one from the same Raymond Hettinger talk that I mentioned
-before. For demonstration purposes, I've chosen `SQLite` databse to store the key value
+before. For demonstration purposes, I've chosen `SQLite` database to store the key value
 pairs.
 
 This structure gives you immense power since you can abstract away the entire process of

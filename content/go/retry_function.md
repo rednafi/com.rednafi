@@ -114,13 +114,13 @@ trading off some flexibility for shorter and more type-safe code. Here's how:
 type Func[T any] func() (T, error)
 
 func Retry[T any](
-    fn Func[T], args []any, maxRetry int,
+    fn Func[T], maxRetry int,
     startBackoff, maxBackoff time.Duration) (T, error) {
 
     var zero T // Zero value for the function's return type
 
     for attempt := 0; attempt < maxRetry; attempt++ {
-        result, err := fn(args...)
+        result, err := fn()
 
         if err == nil {
             return result, nil
@@ -154,16 +154,13 @@ Here's how you'd use the generic `Retry` function:
 
 ```go
 func main() {
-    someFunc := func(a, b int) (int, error) {
+    a, b := 42, 100
+    someFunc := func() (int, error) {
         fmt.Printf("Function called with a: %d and b: %d\n", a, b)
         return 42, errors.New("some error")
     }
-    wrappedFunc := func(args ...any) (any, error) {
-        return someFunc(args[0].(int), args[1].(int))
-    }
     result, err := Retry(
-        wrappedFunc,
-        []any{42, 100},
+        someFunc,
         3,
         1*time.Second,
         4*time.Second,
@@ -178,8 +175,8 @@ func main() {
 
 Running it will give you the same output as before.
 
-Notice how `someFunc` is wrapped in `wrappedFunc` to match the signature `Retry` expects.
-This adaptation is necessary for type safety. I don't mind it if it means avoiding
+Notice how `someFunc` uses a closure to capture `a` and `b` rather than accepting them as
+arguments. This adaptation is necessary for type safety. I don't mind it if it means avoiding
 reflection—plus the generic version is slightly faster.
 
 After this entry went live, [Anton Zhiyanov pointed out on Twitter] that there's a

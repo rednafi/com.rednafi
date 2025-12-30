@@ -378,7 +378,7 @@ This prints:
 2024/10/06 17:24:27 INFO Making a request state=closed
 2024/10/06 17:24:27 INFO Request succeeded in closed state
 2024/10/06 17:24:27 INFO Circuit reset to closed state
-2024/10/06 17:24:27 INFO Service request succeeded result=42
+2024/10/06 17:24:27 INFO Service request succeeded result=Success!
 2024/10/06 17:24:28 -----------------------------------------------
 2024/10/06 17:24:28 INFO Making a request state=closed
 2024/10/06 17:24:28 WARN Request failed in closed state failureCount=1
@@ -387,7 +387,7 @@ This prints:
 2024/10/06 17:24:29 INFO Making a request state=closed
 2024/10/06 17:24:29 INFO Request succeeded in closed state
 2024/10/06 17:24:29 INFO Circuit reset to closed state
-2024/10/06 17:24:29 INFO Service request succeeded result=42
+2024/10/06 17:24:29 INFO Service request succeeded result=Success!
 2024/10/06 17:24:30 -----------------------------------------------
 2024/10/06 17:24:30 INFO Making a request state=closed
 2024/10/06 17:24:30 WARN Request failed in closed state failureCount=1
@@ -396,7 +396,7 @@ This prints:
 2024/10/06 17:24:31 INFO Making a request state=closed
 2024/10/06 17:24:31 INFO Request succeeded in closed state
 2024/10/06 17:24:31 INFO Circuit reset to closed state
-2024/10/06 17:24:31 INFO Service request succeeded result=42
+2024/10/06 17:24:31 INFO Service request succeeded result=Success!
 2024/10/06 17:24:32 -----------------------------------------------
 ```
 
