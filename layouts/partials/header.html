@@ -60,10 +60,10 @@
                             {{- $img = $img.Resize "x30" }}
                         {{- end }}
                     {{- end }}
-                    <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
+                    <img src="{{ $img.Permalink }}" alt="{{ $label_text }} logo"
                         height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- else }}
-                <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
+                <img src="{{- site.Params.label.icon | absURL -}}" alt="{{ $label_text }} logo"
                     height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- end -}}
                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
@@ -124,9 +124,9 @@
             {{- end }}
             {{- if site.Menus.hamburger }}
             <li class="hamburger-menu">
-                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox">
-                <label for="hamburger-toggle" class="hamburger-label">etc ☰</label>
-                <ul class="hamburger-dropdown">
+                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox" aria-hidden="true">
+                <label for="hamburger-toggle" class="hamburger-label" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">etc ☰</label>
+                <ul class="hamburger-dropdown" role="menu">
                     {{- range site.Menus.hamburger }}
                     {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
                     {{- $page_url:= $currentPage.Permalink | absLangURL }}
