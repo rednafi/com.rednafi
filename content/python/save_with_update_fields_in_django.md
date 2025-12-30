@@ -25,7 +25,7 @@ In [1]: from django.contrib.auth import User
 In [2]: for i in range(1000):
    ...:     fname, lname = f'foo_{i}', f'bar_{i}'
    ...:     User.objects.create(
-   ...:         first_name=fname, last_name=lname, username=f'{fname}-{lname}')
+   ...:         first_name=fname, last_name=lname, username=fname)
    ...:
 ```
 
@@ -145,7 +145,7 @@ print(f"User.save(update_fields=[...]): {t2:.2f}s")
 ###############################################################
 
 print(
-    f"User.save(update_fields=[...] is {t1 / t2:.2f}x faster than User.save()"
+    f"save(update_fields=[...]) is {t1 / t2:.2f}x faster than save()"
 )
 ```
 

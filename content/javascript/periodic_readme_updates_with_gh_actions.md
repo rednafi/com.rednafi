@@ -92,7 +92,7 @@ getRssData()
     output += "| Title | Published On |\n";
     output += "| ----- | ------------ |\n";
 
-    // Loop through the posts and add a row for each post to the output string
+    // Loop through posts and add a row for each to output
     for (let post of posts) {
       // Strip the time from the pubDate
       const date = post.pubDate[0].slice(0, 16);
@@ -124,8 +124,7 @@ token] with write access to the repo where the CI runs.
 name: CI
 
 on:
-  # Since we're pushing from this CI, don't run this on the push event because
-  # that'll trigger an infinite loop
+  # Don't run on push; this CI pushes (would cause infinite loop)
   # push: [ main ]
 
   # Add a schedule to run the job every day at 0:00 UTC
@@ -143,8 +142,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          # Otherwise, there would be errors pushing refs to the destination
-          # repository
+          # Required for pushing refs to destination repository
           fetch-depth: 0
           ref: ${{ github.head_ref }}
           token: ${{ secrets.ACCESS_TOKEN }}

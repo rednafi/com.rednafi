@@ -131,7 +131,7 @@ text_formatter = TextFormatter.new
 json_formatter = JsonFormatter.new
 
 display("Hello, World!", text_formatter) # Prints "Hello, World!"
-display("Hello, World!", json_formatter) # Prints "{"message":"Hello, World!"}"
+display("Hello, World!", json_formatter) # {"message":"Hello, World!"}
 ```
 
 Now whenever you need to test the `display` function, you can just create a fake formatter

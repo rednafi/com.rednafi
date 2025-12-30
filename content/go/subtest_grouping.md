@@ -373,7 +373,7 @@ func (CalcSuite) TestMultiplication(t *testing.T) {
         }
     })
     t.Run("3*3=9", func(t *testing.T) {
-        // call t.Parallel() here if overlapping with other subtests is safe
+        // call t.Parallel() here if overlapping is safe
         if 3*3 != 9 {
             t.Fatal("want 9")
         }
@@ -464,7 +464,9 @@ func (g *CalcGroup) Multiplication(t *testgroup.T) {
     t.Run("3*3=9", func(t *testgroup.T) { t.Equal(9, 3*3) })
 }
 
-func TestCalcSerial(t *testing.T)   { testgroup.RunSerially(t, &CalcGroup{}) }
+func TestCalcSerial(t *testing.T) {
+    testgroup.RunSerially(t, &CalcGroup{})
+}
 
 // Or run in parallel.
 // Don't call t.Parallel inside methods

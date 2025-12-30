@@ -166,10 +166,10 @@ are tasks with no unmet dependencies.
 
 ```go
 func (g *Graph) GetReady() []string {
-    batch := make([]string, len(g.queue)) // Create a batch from the queue
-    copy(batch, g.queue)                  // Copy tasks to the batch
-    g.queue = []string{}                  // Clear the queue after processing
-    return batch                          // Return the ready batch
+    batch := make([]string, len(g.queue)) // Create batch
+    copy(batch, g.queue)                  // Copy tasks
+    g.queue = []string{}                  // Clear queue
+    return batch                          // Return batch
 }
 ```
 
@@ -186,13 +186,13 @@ tasks that depend on them.
 func (g *Graph) Done(tasks ...string) {
     for _, task := range tasks { // For each completed task
         for _, dependent := range g.vertices[task] {
-            g.inDegree[dependent]--          // Decrement dependent's in-degree
-            if g.inDegree[dependent] == 0 {  // If ready, add to the queue
+            g.inDegree[dependent]--         // Decrement in-degree
+            if g.inDegree[dependent] == 0 { // If ready, enqueue
                 g.queue = append(g.queue, dependent)
             }
         }
     }
-    g.active = len(g.queue) // Update the active count
+    g.active = len(g.queue) // Update active count
 }
 ```
 
@@ -325,7 +325,7 @@ func TopologicalSortBatch(graph *Graph) {
     for graph.IsActive() { // Process tasks while there are active ones
         batch := graph.GetReady()         // Get the next batch
         fmt.Println("Next batch:", batch) // Output batch
-        graph.Done(batch...)              // Mark tasks in the batch as done
+        graph.Done(batch...)              // Mark batch as done
     }
 }
 

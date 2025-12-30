@@ -63,8 +63,7 @@ type DB interface {
 
 type server struct{ db DB }
 
-// NewServer accepts a concrete implementation of the DB interface in runtime
-// and passes it to the server struct.
+// NewServer accepts a DB implementation and passes it to server
 func NewServer(db DB) *server { return &server{db: db} }
 ```
 
@@ -150,8 +149,7 @@ func BuildContainer() *dig.Container {
 }
 
 func main() {
-    // Invoke kicks off the whole graph. dig topologically sorts, calls each
-    // constructor, and finally hands *server to your callback.
+    // Invoke starts the graph; dig sorts and calls constructors
     if err := BuildContainer().Invoke(
         func(s *server) { s.Run() }); err != nil {
         panic(err)

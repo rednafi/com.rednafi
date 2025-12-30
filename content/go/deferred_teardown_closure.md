@@ -275,7 +275,7 @@ And the test:
 
 ```go
 func TestInsertUser(t *testing.T) {
-    db := getTestDB(t) // This opens a test DB connection; defined elsewhere.
+    db := getTestDB(t) // Opens test DB; defined elsewhere
     cleanup := setupTestTable(t, db)
     defer cleanup()
 

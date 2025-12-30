@@ -167,7 +167,9 @@ import concurrent.futures
 
 
 with concurrent.futures.Executor() as executor:
-    futures = {executor.submit(perform, task): task for task in get_tasks()}
+    futures = {
+        executor.submit(perform, task): task for task in get_tasks()
+    }
 
     for fut in concurrent.futures.as_completed(futures):
         original_task = futures[fut]

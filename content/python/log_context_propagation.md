@@ -118,9 +118,8 @@ class ContextAwareJsonFormatter(logging.Formatter):
             "message": record.getMessage(),
             # Add millisecond precision timestamp
             "timestamp": int(time.time() * 1000),
-            # Get context from ContextVar (concurrency-safe)
-            # The context will be set in the middleware, so .get() will always
-            # return the current context
+            # Get context from ContextVar (concurrency-safe).
+            # Context is set in middleware; .get() returns current
             "tags": log_context_var.get(),
         }
         return json.dumps(log_data)

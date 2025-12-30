@@ -83,10 +83,9 @@ class Base(ABC):
 
 class Sub(Base):
     def abstract_method(self) -> None:
-        """Providing a concrete implementation for the 'abstract_method' from
-        the Base class."""
+        """Providing concrete implementation for 'abstract_method'."""
         print(
-            "I'm a concrete implementation of the 'abstract_method' of Base."
+            "I'm concrete implementation of 'abstract_method' of Base."
         )
 ```
 
@@ -95,7 +94,7 @@ This is how you use it:
 ```py
 sub = Sub()
 
-# Notice how we're only using the 'concrete_method' defined in the Base class
+# Using only the 'concrete_method' defined in the Base class
 sub.concrete_method()
 ```
 
@@ -274,8 +273,7 @@ class Webhook(BaseWebhook):
         self.message = message
 
     def get_message(self) -> dict[str, str]:
-        # Assume that we're doing other side effects and adding more data in
-        # runtime
+        # Assume we're doing side effects and adding data in runtime
         return asdict(self.message)
 
     def get_url(self) -> str:
@@ -366,8 +364,7 @@ class Dispatcher(Protocol):
 
 class HookRetriever:
     def get_message(self, message: Message) -> dict[str, str]:
-        # Assume that we're doing other side effects and adding more data in
-        # runtime
+        # Assume we're doing side effects and adding data in runtime
         return asdict(message)
 
     def get_url(self) -> str:

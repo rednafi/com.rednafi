@@ -16,7 +16,7 @@ VM using GitHub Actions. In the last step of the workflow, the CI SSHs into the 
 several commands using a [here document] in bash. The simplified version looks like this:
 
 ```sh
-# SSH into the remote machine and run a bunch of commands to deploy the service
+# SSH into the remote machine and run commands to deploy the service
 ssh $SSH_USER@$SSH_HOST <<EOF
     # Go to the work directory
     cd $WORK_DIR

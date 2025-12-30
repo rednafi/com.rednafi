@@ -239,8 +239,12 @@ Each variable points to a distinct struct, making them unique by pointer identit
 The [serve_test.go] file uses these keys like this:
 
 ```go
-ctx := context.WithValue(context.Background(), http.ServerContextKey, srv)
-srv2, ok := ctx.Value(http.ServerContextKey).(*http.Server) // type assertion
+ctx := context.WithValue(
+    context.Background(), http.ServerContextKey, srv,
+)
+
+// Type assertion to recover the concrete type
+srv2, ok := ctx.Value(http.ServerContextKey).(*http.Server)
 if ok {
     fmt.Println(srv == srv2) // true
 }

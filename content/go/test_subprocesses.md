@@ -152,7 +152,7 @@ import (
     "os/exec"
 )
 
-// handleGitSwitch runs a command and returns its combined output and error.
+// handleGitSwitch runs a command and returns its output and error.
 func handleGitSwitch(cmd *exec.Cmd) (string, error) {
     out, err := cmd.CombinedOutput()
     return string(out), err
