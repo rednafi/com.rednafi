@@ -13,14 +13,14 @@
   font-size: 24px;
   font-weight: 600;
   color: var(--primary);
-  line-height: 1.3;
+  line-height: 1.55;
   margin: 0 0 8px 0;
 }
 
 /* Result body - site body size (17px) */
 #search .pagefind-ui__result-excerpt {
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--content);
   margin: 0;
 }
@@ -31,7 +31,7 @@
   color: var(--primary);
   border: 1px solid var(--border);
   font-size: 17px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 #search .pagefind-ui__search-input::placeholder {
