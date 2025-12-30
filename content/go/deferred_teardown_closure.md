@@ -290,7 +290,7 @@ func TestInsertUser(t *testing.T) {
 
 _P.S. I learned about this after the blog went live._
 
-Go 1.20 added the `t.Cleanup()` method, which lets you avoid returning the teardown closures
+Go 1.14 added the `t.Cleanup()` method, which lets you avoid returning the teardown closures
 from helper functions altogether. It also runs the cleanup logic in the correct order
 (LIFO). So, you could rewrite the first example in this post as follows:
 

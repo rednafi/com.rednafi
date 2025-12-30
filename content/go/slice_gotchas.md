@@ -160,7 +160,7 @@ mySlice = modifySliceCorrected(mySlice)
 
 `append` returns a _new_ slice. If you don't reassign the result back to the original slice
 variable, the slice remains unchanged after the `append` operation. We already saw this in
-last section but I think it deserves a section of its own.
+the last section but I think it deserves a section of its own.
 
 ```go
 slice := []int{1, 2, 3}  // -> [1 2 3]

@@ -8,7 +8,7 @@ tags:
     - Python
     - API
 description: >-
-  Automatically tag Python logs with request context using middlew and contextvars for
+  Automatically tag Python logs with request context using middleware and contextvars for
   distributed tracing in ASGI web applications.
 ---
 

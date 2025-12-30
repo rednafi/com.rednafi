@@ -101,7 +101,7 @@ from sys import getsizeof
 
 l = []
 for i in range(6):
-    l.append(l)
+    l.append(i)
 
 print(getsizeof(l))
 ```
