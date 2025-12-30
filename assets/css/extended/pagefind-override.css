@@ -4,7 +4,11 @@
  */
 
 /* Match site font */
-#search {
+#search,
+#search .pagefind-ui__result-title,
+#search .pagefind-ui__result-excerpt,
+#search .pagefind-ui__search-input,
+#search .pagefind-ui__message {
   font-family: "Google Sans", "Helvetica Neue", sans-serif;
 }
 
