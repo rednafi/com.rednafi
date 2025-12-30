@@ -111,7 +111,7 @@ The snippet above utilizes `node-fetch` to make HTTP calls,`xml2js` for XML pars
 built-in `fs` module's `promises` for handling file system operations.
 
 Next, it defines an async function `getRssData` responsible for fetching the XML data from
-the [https://rednafi.com/index.html] URL. It extracts the blog URLs and publication dates,
+the [https://rednafi.com/index.xml] URL. It extracts the blog URLs and publication dates,
 and returns the parsed data as a list of objects. Another async function, `writeOutputFile`,
 writes the parsed XML content as a Markdown table and saves it to the `README.md` file.
 

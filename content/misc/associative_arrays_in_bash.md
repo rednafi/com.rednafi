@@ -203,9 +203,6 @@ a convenient way to keep track of the RFCs we want to download. Each key in the 
 represents a unique identifier for an RFC, while the corresponding value holds the complete
 URL to download that specific RFC.
 
-Next, we set the `base_url` variable to `https://www.rfc-editor.org/rfc`, which will be used
-as the base URL for all RFC downloads.
-
 Inside a loop that iterates over the keys of the `rfc_urls` array, we retrieve the URL value
 associated with each key. To provide a progress update, we echo a message indicating the RFC
 being downloaded.

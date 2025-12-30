@@ -18,7 +18,7 @@ reason about. The standard library is packed with SMIs like `io.Reader`, `io.Wri
 One cool thing about SMIs is that you don't always need to create a full-blown struct with a
 method to satisfy the interface. You can define a function type, attach the interface method
 to it, and use it right away. This approach works well when there's no state to maintain, so
-the extra struct becomes unnecessary. However, I find the syntax for this a bit abstruce.
+the extra struct becomes unnecessary. However, I find the syntax for this a bit abstruse.
 So, I'm jotting down a few examples here to reference later.
 
 ## Using a struct to implement an interface
@@ -77,7 +77,7 @@ Buffer content: Hello, world!
 
 Instead of defining the `LoggingWriter` struct, you can use a function type to satisfy
 `io.Writer`. This works well for SMIs but doesn't make sense for interfaces with multiple
-methods. In those cases, we need to resort back to the methods-on-struct approach.
+methods. In those cases, we need to resort to the methods-on-struct approach.
 
 Here's how it looks:
 
@@ -268,7 +268,7 @@ func (rf RetryFunc) Retry(fn func() error) error {
 `RetryFunc` converts functions with the matching signature into a `Retryer`, letting you
 swap retry strategies or create test versions.
 
-We use it as such:
+Here's how to use it:
 
 ```go
 func main() {

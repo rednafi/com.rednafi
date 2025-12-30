@@ -334,7 +334,7 @@ slog.Info("info message", group)
 // For TextHandler
 textHandler := slog.NewTextHandler(os.Stdout, nil)
 textLogger := slog.New(textHandler)
-textLogger.Warning("warning message", group)
+textLogger.Warn("warning message", group)
 
 // For JSONHandler
 jsonHandler := slog.NewJSONHandler(os.Stdout, nil)

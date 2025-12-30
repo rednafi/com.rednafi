@@ -48,10 +48,10 @@ following is quite common:
 mystore/
 ├── controllers/
 │   ├── order_controller.go
-│   └── user_controller.go.go
+│   └── user_controller.go
 ├── models/
 │   ├── order.go
-│   └── user.go.go
+│   └── user.go
 ├── handlers/
 │   ├── http_handler.go
 │   └── webhook_handler.go
@@ -88,7 +88,7 @@ import "mystore/handlers"
 
 There is no file level delineation in Go. If you put different domains under the same
 `models` directory, there is no indication at import time what domain a model belongs to.
-The only clue is the identifier name. This is not ideal when you want clear separation
+The only clue is the identifier name. This isn't ideal when you want clear separation
 between domains.
 
 > _In Go, packages define your [bounded context], not files within a package. Domains should
@@ -119,7 +119,7 @@ code, you go to `order`. If you need user code, you go to `user`. Nothing is smo
 together under a generic bucket.
 
 The details around how you layer your app can differ based on requirements, but the
-important point is that your top level directories should not just be generic buckets
+important point is that your top level directories shouldn't just be generic buckets
 containing all domains. That makes navigation harder. A better approach is letting the
 domain guide the structure and only layering in technology when it matters.
 
@@ -178,7 +178,7 @@ mystore/
 
 The rule of thumb is that top level domains should never import anything from technology
 folders like `http` or `postgres`. Instead, `http` and `postgres` should always import from
-domain packages. You can add a linter to enforce this rule but since Go does not allow
+domain packages. You can add a linter to enforce this rule but since Go doesn't allow
 import cycles, this is automatically enforced by the compiler.
 
 ```
@@ -206,7 +206,7 @@ independent.
 Astute readers might notice that I have left out any discussion around the `internal`
 directory. This is intentional. Depending on your requirements, you might opt in for an
 `internal` directory or not. This isn't important for our discussion. The main point I
-wanted to emphasize is that technology or architecture patterns should not guide your app
+wanted to emphasize is that technology or architecture patterns shouldn't guide your app
 structure. It should be based on something more persistent and nothing is more persistent
 than your application's domain.
 

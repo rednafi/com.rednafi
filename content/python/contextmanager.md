@@ -62,7 +62,7 @@ with CustomFileOpen("file.txt", "wt") as f:
 
 ## From generators to context managers
 
-Creating context managers by writing a class with `__enter__` and `__exit__` methods, is not
+Creating context managers by writing a class with `__enter__` and `__exit__` methods isn't
 difficult. However, you can achieve better brevity by defining them using
 `contextlib.contextmanager` decorator. This decorator converts a generator function into a
 context manager. The blueprint for creating context manager decorators goes something like
@@ -453,7 +453,7 @@ logging.getLogger(__name__)
 
 logging.basicConfig(
     level=logging.INFO,
-    format="\n(asctime)s [%(levelname)s] %(message)s",
+    format="\n%(asctime)s [%(levelname)s] %(message)s",
     handlers=[logging.FileHandler("./debug.log"), logging.StreamHandler()],
 )
 

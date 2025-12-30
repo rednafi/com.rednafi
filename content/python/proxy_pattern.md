@@ -73,7 +73,7 @@ states:
 > breaking the application. That requires the objects of your subclasses to behave in the
 > same way as the objects of your superclass.
 
-The `Door` object can be replaced by the `SecuredDoor` and the `SecuredDoor` class does not
+The `Door` object can be replaced by the `SecuredDoor` and the `SecuredDoor` class doesn't
 introduce any new methods, it only extends the functionality of the `open_method` of the
 `Door` class.
 
@@ -97,11 +97,11 @@ pattern].
 
 ### Loose coupling
 
-Proxy pattern let's you easily decouple your core logic from the added functionalities that
+Proxy pattern lets you easily decouple your core logic from the added functionalities that
 might be needed on top of that. The modular nature of the code makes maintaining and
 extending the functionalities of your primary logic a lot quicker and easier.
 
-Suppose, you're defining a `division` function that takes takes two integer as arguments and
+Suppose, you're defining a `division` function that takes two integers as arguments and
 returns the result of the division between them. It also handles edge cases like
 `ZeroDivisionError` or `TypeError` and logs them properly.
 
@@ -216,7 +216,7 @@ single method. Usually your primary class will have multiple methods and they wi
 multiple sophisticated tasks. By now, you probably have grasped the fact that the proxy
 classes need to implement all of the methods of the primary class. While writing a proxy
 class for a complicated primary class, the author of that class might forget to implement
-all the methods of the primary class.This will lead to a violation of the proxy pattern.
+all the methods of the primary class. This will lead to a violation of the proxy pattern.
 Also, it can be hard to follow all the methods of the primary class if the class is large
 and complicated.
 
@@ -527,7 +527,7 @@ orchestrating declarative solution with the proxy pattern. It's not viable to wr
 this manner in a throwaway script that you don't have to maintain in the long run. Also,
 this OOP-cursed additional layers of abstraction can make your code subjectively unreadable.
 So use the pattern wisely. On the flip side, proxy pattern can come in handy when you need
-to extend the functionality of some class arbitrarily as it can work a gateway to the El
+to extend the functionality of some class arbitrarily as it can work as a gateway to the El
 Dorado of loose coupling.
 
 ## Further reading

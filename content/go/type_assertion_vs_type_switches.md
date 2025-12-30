@@ -83,7 +83,7 @@ var i foobarer = &thing{}
 
 func main() {
     if v, ok := i.(fooer); ok {
-        fmt.Println("i satiesfies fooer:", v)
+        fmt.Println("i satisfies fooer:", v)
     }
 }
 ```
@@ -93,7 +93,7 @@ interface type. Here struct `i` implements both `foo()` and `bar()` methods; sat
 `foobarer` interface.
 
 Then in the `main` function, we check whether `i` satisfies `fooer` interface and print a
-message if it does. Running this snippet will print `i satiesfies fooer: &{}`.
+message if it does. Running this snippet will print `i satisfies fooer: &{}`.
 
 ### Dynamically checking for certain methods
 

@@ -88,7 +88,7 @@ func ExampleDrain() error {
 
 This is safe but it means you always wait for both workers even when the first one already
 failed and the second result is irrelevant. If you want to return early without leaking,
-another option is to use buffered channels so the producers do not block on send. A buffer
+another option is to use buffered channels so the producers don't block on send. A buffer
 of size one is enough for this pattern.
 
 ```go
@@ -190,11 +190,11 @@ func ExampleErrgroupWithContext() error {
 At this point it is natural to ask if tools can catch the original bug for you. `go vet`
 cannot. Vet is static analysis that runs at build time. Whether a send blocks depends on
 runtime control flow and timing. Vet cannot prove that the function returns before a
-particular receive in a general way, so it does not flag this pattern.
+particular receive in a general way, so it doesn't flag this pattern.
 
 `go test -race` cannot either. The race detector detects unsynchronized concurrent memory
-access. A goroutine stuck on a channel send is not a data race. You may see a test hang
-until timeout, but the tool will not point to a leaking goroutine.
+access. A goroutine stuck on a channel send isn't a data race. You may see a test hang
+until timeout, but the tool won't point to a leaking goroutine.
 
 You can turn this into a failing test with [goleak] from Uber. `goleak` fails if goroutines
 are still alive when a test ends. It snapshots all goroutines via the runtime, filters out
