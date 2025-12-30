@@ -30,10 +30,10 @@
   margin: 0 0 8px 0;
 }
 
-/* Result excerpt - match .entry-content */
+/* Result excerpt - match .post-entry .entry-content */
 #search .pagefind-ui__result-excerpt {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.55;
   color: var(--secondary);
 }
 
