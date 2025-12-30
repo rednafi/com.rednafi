@@ -433,7 +433,7 @@ import "slices"
 
 func main() {
     arr := [4]int{10, 20, 30, 40}
-    // compile-time error: cannot use arr (value of type [4]int) as type []int
+    // compile-time error: cannot use arr (type [4]int) as []int
     slices.Sort(arr)
 }
 ```

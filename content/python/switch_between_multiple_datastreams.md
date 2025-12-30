@@ -168,7 +168,7 @@ from itertools import cycle
 def consume() -> None:
     streams = (stream_even(), stream_odd())
 
-    for stream in cycle(streams):  # Use itertools.cycle instead of while ...
+    for stream in cycle(streams):  # Use itertools.cycle
         time.sleep(1)
         if (result := next(stream, None)) is None:
             break

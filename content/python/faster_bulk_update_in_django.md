@@ -62,7 +62,7 @@ e1 = time.perf_counter()
 # Print the time taken.
 print(f"Time taken to update 100k users: {e1 - s1} seconds.")
 
-# Print a few usernames to see that the script has changed them as expected.
+# Print a few usernames to verify the script changed them.
 print("Updated usernames:")
 print("===================")
 for username in User.objects.values_list("username", flat=True)[:5]:
@@ -158,8 +158,10 @@ def main():
 
 
 def update_users(user_chunk):
-    # The batch_size determines how many records will be saved at once.
-    User.objects.bulk_update(user_chunk, ["username"], batch_size=CHUNK_SIZE)
+    # batch_size determines how many records are saved at once.
+    User.objects.bulk_update(
+        user_chunk, ["username"], batch_size=CHUNK_SIZE
+    )
 
 
 if __name__ == "__main__":

@@ -128,7 +128,7 @@ http {
     limit_req_zone $binary_remote_addr zone=mylimit:10m rate=50r/s;
 
     # Custom error pages should be defined within a server block
-    # It's better to define this in the specific server configuration files.
+    # Define this in the specific server configuration files.
 
     # Include server configurations from conf.d directory
     include /etc/nginx/conf.d/*.conf;
@@ -211,7 +211,7 @@ server {
     location / {
         # Apply rate limiting
         limit_req zone=mylimit burst=10 nodelay;
-        limit_req_status 429;  # Set the status code for rate-limited requests
+        limit_req_status 429;  # Status code for rate-limited reqs
 
         # Proxy settings - adjust as necessary for your application
         proxy_pass http://app:8080;

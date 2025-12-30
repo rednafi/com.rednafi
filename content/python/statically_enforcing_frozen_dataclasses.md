@@ -82,7 +82,7 @@ if TYPE_CHECKING:
     def frozen(cls: type[T]) -> type[T]: ...
 
 else:
-    frozen = dataclass  # or dataclass(slots=True) for even faster performance
+    frozen = dataclass  # or dataclass(slots=True) for faster perf
 
 
 @frozen

@@ -258,7 +258,7 @@ start_time = time.perf_counter()
 result = foo_1.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
+print(f"Took {end_time - start_time} seconds, result: {result}.")
 
 
 start_time = time.perf_counter()
@@ -266,15 +266,15 @@ start_time = time.perf_counter()
 result = foo_2.bar(2)
 # ----------------------------------------------
 end_time = time.perf_counter()
-print(f"Calculation took {end_time - start_time} seconds, result: {result}.")
+print(f"Took {end_time - start_time} seconds, result: {result}.")
 ```
 
 You can inspect the garbage collection behavior here:
 
 ```txt
 $ python src_3.py
-Calculation took 2.0022965140015003 seconds, result: 42.
-Calculation took 4.4819971662946045e-06 seconds, result: 42.
+Took 2.0022965140015003 seconds, result: 42.
+Took 4.4819971662946045e-06 seconds, result: 42.
 >>> foo_1 = None
 Deleting instance ...
 >>>

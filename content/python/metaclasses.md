@@ -611,7 +611,7 @@ class TimerMeta(type):
     def __new__(metacls, cls, bases, classdict):
         new_cls = super().__new__(metacls, cls, bases, classdict)
 
-        # key is attribute name and val is attribute value in attribute dict
+        # key is attr name and val is attr value in attribute dict
         for key, val in classdict.items():
             if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, timefunc(val))
@@ -706,7 +706,7 @@ class DebugMeta(type):
     def __new__(metacls, cls, bases, classdict):
         new_cls = super().__new__(metacls, cls, bases, classdict)
 
-        # key is attribute name and val is attribute value in the attrs dict
+        # key is attr name and val is attr value in the attrs dict
         for key, val in classdict.items():
             if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, debug(val))
@@ -769,7 +769,7 @@ class ExceptionMeta(type):
     def __new__(metacls, cls, bases, classdict):
         new_cls = super().__new__(metacls, cls, bases, classdict)
 
-        # key is attribute name and val is attribute value in attribute dict
+        # key is attr name and val is attr value in attribute dict
         for key, val in classdict.items():
             if inspect.isfunction(val) or inspect.ismethoddescriptor(val):
                 setattr(new_cls, key, exc_handler(val))

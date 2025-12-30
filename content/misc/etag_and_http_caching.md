@@ -162,7 +162,7 @@ func main() {
         ifNoneMatch := strings.TrimPrefix(
             strings.Trim(r.Header.Get("If-None-Match"), "\""), "W/")
 
-        // Generate a hash of the content without the W/ prefix for comparison
+        // Hash content without W/ prefix for comparison
         contentHash := strings.TrimPrefix(eTag, "W/")
 
         // Check if the ETag matches; if so, return 304 Not Modified

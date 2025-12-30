@@ -107,7 +107,7 @@ func ExampleBuffered() error {
         return res1.err
     }
 
-    // If we do continue, still read from ch2 to consume the buffered value.
+    // Still read ch2 to consume its buffered value
     res2 := <-ch2
     if res2.err != nil {
         return res2.err

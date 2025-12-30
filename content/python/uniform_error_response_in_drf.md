@@ -68,7 +68,8 @@ router.register(r"users", UserViewSet)
 urlpatterns = [
     path("", include(router.urls)),
     path(
-        "api-auth/", include("rest_framework.urls", namespace="rest_framework")
+        "api-auth/",
+        include("rest_framework.urls", namespace="rest_framework"),
     ),
 ]
 ```
@@ -118,7 +119,9 @@ from rest_framework.views import Response
 ...
 
 
-def api_exception_handler(exc: Exception, context: dict[str, Any]) -> Response:
+def api_exception_handler(
+    exc: Exception, context: dict[str, Any]
+) -> Response:
     """Custom API exception handler."""
 
     # Call REST framework's default exception handler first,

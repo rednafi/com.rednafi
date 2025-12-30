@@ -211,8 +211,8 @@ abstract class:
 
 ```py
 class FakeCalc(ICalc):
-    """Concrete Class: Fake calculator that doesn't implement all the methods
-    defined in the interface."""
+    """Concrete Class: Fake calculator that doesn't implement
+    all the methods defined in the interface."""
 
     def add(self, a, b):
         return a + b
@@ -1323,7 +1323,8 @@ class BitSet(MutableSet):
 
     def __repr__(self):
         return (
-            f"{type(self).__name__}(limit={self.limit}, iterable={list(self)})"
+            f"{type(self).__name__}"
+            f"(limit={self.limit}, iterable={list(self)})"
         )
 
     def _from_iterable(self, iterable):

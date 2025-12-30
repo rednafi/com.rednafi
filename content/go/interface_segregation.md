@@ -201,7 +201,9 @@ or addition to this interface can ripple through your code and tests for no good
 For example, if your code uploads files, it only needs the `PutObject` method:
 
 ```go
-func UploadReport(ctx context.Context, client S3Client, data []byte) error {
+func UploadReport(
+    ctx context.Context, client S3Client, data []byte,
+) error {
     _, err := client.PutObject(
         ctx,
         &s3.PutObjectInput{
