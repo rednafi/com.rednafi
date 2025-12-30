@@ -107,7 +107,9 @@ body.dark #search mark {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   line-height: 1;
+  vertical-align: middle;
 }
 
 /* Tags - hide them */
