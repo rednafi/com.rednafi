@@ -180,7 +180,7 @@ hello mars
 ```
 
 This performs a comparison between the sorted outputs of two separate commands using `comm`.
-The `com` command expects two files but we're using process substitution to make two
+The `comm` command expects two files but we're using process substitution to make two
 file-like objects from stdout.
 
 Within the first process substitution `<()`, `echo` is used to generate a string containing

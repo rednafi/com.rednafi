@@ -384,7 +384,7 @@ builtin `wraps` decorator from the `functools` module. This will make sure that 
 identity of the decorated function stays preserved.
 
 ```py
-import functools
+from functools import wraps
 
 
 def yell(func):
@@ -723,7 +723,7 @@ the order of the decorators and see what happens!
 While defining the `retry` decorator in the previous section, you may have noticed that I've
 hard coded the number of times I'd like the function to retry if an error occurs. It'd be
 handy if you could inject the number of tries as a parameter into the decorator and make it
-work accordingly. This is not a trivial task and you'll need three levels of nested
+work accordingly. This isn't a trivial task and you'll need three levels of nested
 functions to achieve that.
 
 Before doing that let's cook up a trivial example of how you can define decorators with
@@ -957,7 +957,7 @@ resp2 = getdata_("https://httpbin.org/get/1")
     retrying... (1)
 ```
 
-In this case, you do not have to write three level nested functions and the
+In this case, you don't have to write three level nested functions and the
 `functools. partial` takes care of that. Partials can be used to make new derived functions
 that have some input parameters pre-assigned.Roughly `partial` does the following:
 

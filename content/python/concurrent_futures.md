@@ -12,13 +12,13 @@ description: >-
 ---
 
 Writing concurrent code in Python can be tricky. Before you even start, you have to worry
-about all these icky stuff like whether the task at hand is I/O or CPU bound or whether
+about all this icky stuff like whether the task at hand is I/O or CPU bound or whether
 putting the extra effort to achieve concurrency is even going to give you the boost you
 need. Also, the presence of Global Interpreter Lock, [GIL] foists further limitations on
 writing truly concurrent code. But for the sake of sanity, you can oversimplify it like this
 without being blatantly incorrect:
 
-> _In Python, if the task at hand is I/O bound, you can use use standard library's
+> _In Python, if the task at hand is I/O bound, you can use the standard library's
 > `threading` module or if the task is CPU bound then `multiprocessing` module can be your
 > friend. These APIs give you a lot of control and flexibility but they come at the cost of
 > having to write relatively low-level verbose code that adds extra layers of complexity on
@@ -66,7 +66,7 @@ creates an instance of the appropriate executor class and then submits them for 
 When each task is started, a `Future` instance is returned. When the result of the task is
 needed, an application can use the `Future` object to block until the result is available.
 Various APIs are provided to make it convenient to wait for tasks to complete, so that the
-`Future` objects do not need to be managed directly.
+`Future` objects don't need to be managed directly.
 
 ## Executor objects
 

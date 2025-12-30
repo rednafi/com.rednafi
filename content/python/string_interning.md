@@ -54,7 +54,7 @@ y = "This is a string" * 300
 print(x is y)  # prints False
 ```
 
-This will print `False` on the console and the strings are not interned.
+This will print `False` on the console and the strings aren't interned.
 
 ## Explicit string interning
 
@@ -122,7 +122,7 @@ d["#" * 4097] = 1
 print(d.popitem()[0] is k)  # prints False
 ```
 
-This will print `False` as the key in this case, will not be interned. Dictionary value
+This will print `False` as the key in this case won't be interned. Dictionary value
 access is slower if the key isn't interned. Let's test that out:
 
 ```py
@@ -196,13 +196,9 @@ for _ in range(10000):
 t3 = time.perf_counter()
 
 
-print(t1 - t0)
-print((t3 - t2) / (t1 - t0))
 print(f"Implicitly interned dict creation & access: {t1-t0} seconds")
 print(f"Explicitly interned dict creation & access: {t3-t2} seconds")
-print(
-    f"Explicit interning is {(t3-t2)/(t1-t0)} times slower"
-)
+print(f"Ratio (explicit/implicit): {(t3-t2)/(t1-t0):.2f}")
 ```
 
 This prints:
@@ -210,7 +206,7 @@ This prints:
 ```txt
 Implicitly interned dict creation & access: 0.002887188999011414 seconds
 Explicitly interned dict creation & access: 0.002545474999351427 seconds
-Explicitly interned creation & access is 1.1264793204711423 times slower
+Ratio (explicit/implicit): 0.88
 ```
 
 Here, implicitly and explicitly interned dict creation and key access are almost equally
