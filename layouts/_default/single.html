@@ -2,13 +2,15 @@
 
 <article class="post-single">
   <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
+    <div data-pagefind-ignore>
+      {{ partial "breadcrumbs.html" . }}
+    </div>
     <h1 class="post-title" data-pagefind-weight="10">
       {{ .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h1>
     {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
+    <div class="post-meta" data-pagefind-ignore>
       {{- partial "post_meta.html" . -}}
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
@@ -17,7 +19,7 @@
     {{- /* Add tags on new line after other meta information */ -}}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     {{- with ($.GetTerms $tags) }}
-    <div class="post-meta post-tags-meta">
+    <div class="post-meta post-tags-meta" data-pagefind-ignore>
       <ul class="post-tags">
         {{- range . }}
         <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
@@ -95,7 +97,7 @@
   </div>
   {{- end }}
 
-  <footer class="post-footer">
+  <footer class="post-footer" data-pagefind-ignore>
     {{- if (.Param "ShowPostNavLinks") }}
     {{- partial "post_nav_links.html" . }}
     {{- end }}
