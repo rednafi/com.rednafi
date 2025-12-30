@@ -2,9 +2,3 @@ site: public
 
 # Only index blog content directories, skip meta pages entirely
 glob: '**/{python,go,zephyr,misc,javascript}/**/*.html'
-
-# Search ranking: title > description > body
-ranking:
-  title: 10.0
-  meta_description: 5.0
-  page_content: 1.0
