@@ -113,6 +113,9 @@ params:
         A roving amateur fumbling through software, systems, & sundry.
       </div>
 
+  social:
+    twitter: "raboroham"
+
   analytics:
     google:
       SiteVerificationTag: "google-site-verification=GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
