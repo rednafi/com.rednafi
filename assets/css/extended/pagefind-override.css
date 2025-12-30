@@ -30,9 +30,9 @@
   margin: 0 0 8px 0;
 }
 
-/* Result excerpt - match .post-entry .entry-content */
+/* Result excerpt */
 #search .pagefind-ui__result-excerpt {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
   color: var(--secondary);
 }
@@ -42,6 +42,7 @@
   background: var(--entry);
   color: var(--primary);
   border: 1px solid var(--border);
+  font-size: 17px;
 }
 
 #search .pagefind-ui__search-input::placeholder {
