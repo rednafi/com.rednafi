@@ -69,12 +69,17 @@
   font-size: 14px;
 }
 
-/* Highlighted text */
+/* Highlighted text - greenish for both light and dark themes */
 #search mark {
-  background-color: var(--hljs-bg);
+  background-color: rgba(74, 222, 128, 0.25);
   color: var(--primary);
   padding: 2px 4px;
   border-radius: 3px;
+  font-weight: 500;
+}
+
+body.dark #search mark {
+  background-color: rgba(74, 222, 128, 0.2);
 }
 
 /* Buttons */
