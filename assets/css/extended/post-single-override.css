@@ -27,7 +27,7 @@
 }
 
 .post-content code {
-  margin: auto 4px;
+  margin: 0 4px;
   padding: 4px 6px;
   font-size: 0.9em;
   line-height: 1.5;
@@ -57,7 +57,7 @@
 
 .toc {
   font-size: 16px;
-  margin: 0 2px 20px 2px;
+  margin: 0 0 20px 0;
 }
 
 .toc .details {
