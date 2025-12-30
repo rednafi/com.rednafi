@@ -17,8 +17,7 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
-    <main class="main"
-    {{- if or (.Param "searchHidden") (.Param "hideMeta") (eq .Layout "search") (eq .Kind "taxonomy") (eq .Kind "term") }} data-pagefind-ignore{{- end }}>
+    <main class="main">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

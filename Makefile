@@ -30,12 +30,12 @@ update:
 
 dev:
 	hugo --environment production --minify --gc --cleanDestinationDir
-	npx -y pagefind --site public
+	npx -y pagefind
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
 build:
 	hugo --environment production --minify --gc --cleanDestinationDir
-	npx -y pagefind --site public
+	npx -y pagefind
 
 upload-image:
 	@if [ -z "$(local_path)" ] || [ -z "$(remote_path)" ]; then \

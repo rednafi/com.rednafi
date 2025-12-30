@@ -1,0 +1,4 @@
+site: public
+
+# Only index blog content directories, skip meta pages entirely
+glob: '**/{python,go,zephyr,misc,javascript}/**/*.html'
