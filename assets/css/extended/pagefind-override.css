@@ -41,7 +41,7 @@
 
 /* Result excerpt */
 #search .pagefind-ui__result-excerpt {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
   color: var(--secondary);
 }
