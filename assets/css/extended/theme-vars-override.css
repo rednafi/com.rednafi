@@ -13,14 +13,14 @@
   --radius: 6px;
   --theme: #fefcf6;
   --entry: #fefcf6;
-  --primary: #0a0a0a;
-  --secondary: #2a2a2a;
+  --primary: #000000;
+  --secondary: #1a1a1a;
   --tertiary: #d6d6d6;
-  --content: #0a0a0a;
+  --content: #000000;
   --code-bg: #f2f1eb;
   --code-block-bg: #f2f1eb;
-  --secondary-urls: #2a2a2a;
-  --code-color: #0a0a0a;
+  --secondary-urls: #1a1a1a;
+  --code-color: #000000;
   --border: #e8e8e8;
 }
 
