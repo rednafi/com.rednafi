@@ -9,7 +9,7 @@
 #search .pagefind-ui__result-excerpt,
 #search .pagefind-ui__search-input,
 #search .pagefind-ui__message {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Flex", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Search result cards - match .post-entry */
@@ -41,7 +41,7 @@
 
 /* Result excerpt */
 #search .pagefind-ui__result-excerpt {
-  font-size: 0.9rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
   color: var(--secondary);
 }
