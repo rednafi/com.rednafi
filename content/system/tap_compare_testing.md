@@ -226,7 +226,8 @@ func TapHandleGetUser(w http.ResponseWriter, r *http.Request) {
         }
     }()
 
-    // Optional debugging response for whoever is calling the tap endpoint.
+    // Optional debugging response for whoever is calling the tap
+    // endpoint.
     w.WriteHeader(http.StatusNoContent)
 }
 ```
