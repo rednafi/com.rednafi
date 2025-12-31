@@ -5,8 +5,8 @@
   padding: 15px;
 }
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1rem;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.03125rem;
   line-height: 1.5;
   word-break: break-word;
   background: var(--theme);
