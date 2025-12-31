@@ -49,13 +49,13 @@
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Geist Mono", monospace;
 }
 
 .post-content pre code {
   color: inherit;
   background: var(--code-bg);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Geist Mono", monospace;
 }
 
 /* Blockquotes with same background as code */
@@ -73,6 +73,7 @@
 
 .toc {
   margin: 0 0 20px 0;
+  font-size: 0.95rem;
 }
 
 .toc .details {
