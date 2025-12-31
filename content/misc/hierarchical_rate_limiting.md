@@ -289,9 +289,7 @@ def main() -> None:
             # Add actual notification-sending logic here
         else:
             # Blocked: drop the notification
-            print(
-                f"{i}. Notification dropped (rate limited): {message}"
-            )
+            print(f"{i}. Notification dropped (rate limited): {message}")
 
 
 if __name__ == "__main__":
