@@ -164,9 +164,7 @@ def traceroute(
     with ExitStack() as stack:
         # Create an ICMP socket connection for receiving packets
         rx = stack.enter_context(
-            socket.socket(
-                socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP
-            )
+            socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
         )
 
         # Create a UDP socket connection for sending packets

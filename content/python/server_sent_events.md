@@ -325,9 +325,7 @@ def background() -> str:
 async def index(request: Request) -> Response:
     task_id = background.apply_async(queue="default")
     logging.info("Task id: %s", task_id)
-    response = templates.TemplateResponse(
-        "index.html", {"request": request}
-    )
+    response = templates.TemplateResponse("index.html", {"request": request})
     response.set_cookie("task_id", task_id)
     return response
 

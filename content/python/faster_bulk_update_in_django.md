@@ -159,9 +159,7 @@ def main():
 
 def update_users(user_chunk):
     # batch_size determines how many records are saved at once.
-    User.objects.bulk_update(
-        user_chunk, ["username"], batch_size=CHUNK_SIZE
-    )
+    User.objects.bulk_update(user_chunk, ["username"], batch_size=CHUNK_SIZE)
 
 
 if __name__ == "__main__":
