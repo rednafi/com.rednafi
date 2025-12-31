@@ -2,6 +2,27 @@
   max-width: 720px;
 }
 
+/* Links - match syntax highlight strings */
+.post-content a {
+  color: #2544bb;
+  text-decoration: none;
+  font-style: normal;
+  box-shadow: none;
+}
+
+.post-content a:hover {
+  color: #1a3388;
+  text-decoration: none;
+}
+
+.dark .post-content a {
+  color: #79a8ff;
+}
+
+.dark .post-content a:hover {
+  color: #99bcff;
+}
+
 .post-header {
   margin: 20px auto var(--content-gap) auto;
 }
