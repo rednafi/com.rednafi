@@ -1,10 +1,10 @@
-/* Roboto Flex - variable font for body text */
+/* Inter - variable font for body text */
 @font-face {
-  font-family: "Roboto Flex";
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/roboto-latin.woff2") format("woff2");
+  src: url("/fonts/inter-latin.woff2") format("woff2");
 }
 
 /* JetBrains Mono - code */
@@ -18,7 +18,7 @@
 
 /* Logo */
 .nav .logo a {
-  font-family: "Roboto Flex", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
 }
