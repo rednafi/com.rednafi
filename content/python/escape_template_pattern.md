@@ -84,9 +84,7 @@ class Base(ABC):
 class Sub(Base):
     def abstract_method(self) -> None:
         """Providing concrete implementation for 'abstract_method'."""
-        print(
-            "I'm concrete implementation of 'abstract_method' of Base."
-        )
+        print("I'm concrete implementation of 'abstract_method' of Base.")
 ```
 
 This is how you use it:
