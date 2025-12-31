@@ -51,7 +51,7 @@
   background: var(--entry);
   color: var(--primary);
   border: 1px solid var(--border);
-  font-size: 1rem;
+  font-size: 1.03125rem;
 }
 
 #search .pagefind-ui__search-input::placeholder {
