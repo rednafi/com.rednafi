@@ -1,5 +1,5 @@
 .post-content {
-  max-width: 720px;
+  max-width: 740px;
 }
 
 .post-header {
@@ -29,17 +29,17 @@
 .post-content code {
   margin: 0 4px;
   padding: 4px 6px;
-  font-size: 0.9em;
+  font-size: 0.85rem;
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Martian Mono", monospace;
 }
 
 .post-content pre code {
   color: inherit;
   background: var(--code-bg);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Martian Mono", monospace;
 }
 
 /* Blockquotes with same background as code */
