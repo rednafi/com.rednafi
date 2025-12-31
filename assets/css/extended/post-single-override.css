@@ -1,5 +1,5 @@
 .post-content {
-  max-width: 740px;
+  max-width: 720px;
 }
 
 .post-header {
@@ -29,7 +29,7 @@
 .post-content code {
   margin: 0 4px;
   padding: 4px 6px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color);
