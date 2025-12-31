@@ -50,12 +50,14 @@
   border-radius: 2px;
   color: var(--code-color);
   font-family: "Geist Mono", monospace;
+  font-weight: 430;
 }
 
 .post-content pre code {
   color: inherit;
   background: var(--code-bg);
   font-family: "Geist Mono", monospace;
+  font-weight: 430;
 }
 
 /* Blockquotes with same background as code */
