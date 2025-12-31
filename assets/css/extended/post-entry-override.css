@@ -9,6 +9,7 @@
 .first-entry .entry-content {
   font-size: 1rem;
   line-height: 1.5;
+  color: var(--primary);
 }
 .entry-header h2 {
   font-size: 1.5rem;
