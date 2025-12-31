@@ -5,8 +5,8 @@
   padding: 15px;
 }
 body {
-  font-family: "Bricolage Grotesque", "Helvetica Neue", sans-serif;
-  font-size: 17.5px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
   line-height: 1.5;
   word-break: break-word;
   background: var(--theme);
