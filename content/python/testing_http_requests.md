@@ -159,9 +159,7 @@ import asyncio
 from typing import Any
 
 
-async def make_request(
-    url: str, client: httpx.AsyncClient
-) -> dict[str, Any]:
+async def make_request(url: str, client: httpx.AsyncClient) -> dict[str, Any]:
     # We don't want to initiate the ctx manager in every request
     # AsyncClient.__enter__ will be called once and passed here
     response = await client.post(
