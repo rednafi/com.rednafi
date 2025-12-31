@@ -7,8 +7,15 @@
   color: #2544bb;
 }
 
-.dark .post-content a {
+.dark .post-content a,
+[data-theme="dark"] .post-content a {
   color: #79a8ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .post-content a {
+    color: #79a8ff;
+  }
 }
 
 .post-header {
