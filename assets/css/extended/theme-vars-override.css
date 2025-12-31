@@ -39,3 +39,20 @@
   --code-color: #e8e8e8;
   --border: #505050;
 }
+
+/* System preference dark mode */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --theme: #212529;
+    --entry: #212529;
+    --primary: #e8e8e8;
+    --secondary: #e8e8e8;
+    --tertiary: #505050;
+    --content: #e8e8e8;
+    --code-bg: #2c3034;
+    --code-block-bg: #2c3034;
+    --secondary-urls: #58a6ff;
+    --code-color: #e8e8e8;
+    --border: #505050;
+  }
+}
