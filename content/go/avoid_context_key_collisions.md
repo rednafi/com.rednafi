@@ -302,7 +302,9 @@ everywhere.
 - **[net/http/httptrace]**
 
     ```go
-    func WithClientTrace(ctx context.Context, trace *ClientTrace) context.Context
+    func WithClientTrace(
+        ctx context.Context, trace *ClientTrace,
+    ) context.Context
     func ContextClientTrace(ctx context.Context) *ClientTrace
     ```
 
