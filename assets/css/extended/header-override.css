@@ -1,31 +1,31 @@
-/* Inter - variable font for body text */
+/* Geist Sans - variable font for body text */
 @font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
+  src: url("/fonts/geist-sans-latin.woff2") format("woff2");
 }
 
-/* JetBrains Mono - code */
+/* Geist Mono - code */
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "Geist Mono";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
 }
 
 /* Logo */
 .nav .logo a {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
 }
 
 /* Menu links */
 #menu a {
-  font-size: 1rem;
+  font-size: 1.03125rem;
 }
 
 #menu .active {
@@ -46,7 +46,7 @@
 
 .hamburger-label {
   color: var(--primary);
-  font-size: 1rem;
+  font-size: 1.03125rem;
   line-height: var(--header-height);
   cursor: pointer;
 }
@@ -91,7 +91,7 @@
   text-indent: 0;
   color: var(--primary);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.03125rem;
   font-weight: 400;
   line-height: 1.2;
   border: none;
