@@ -1,31 +1,31 @@
-/* Bricolage Grotesque - variable font for body text */
+/* Inter - variable font for body text */
 @font-face {
-  font-family: "Bricolage Grotesque";
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+  src: url("/fonts/inter-latin.woff2") format("woff2");
 }
 
-/* Martian Mono - code */
+/* JetBrains Mono - code */
 @font-face {
-  font-family: "Martian Mono";
+  font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/martian-mono-latin.woff2") format("woff2");
+  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
 }
 
 /* Logo */
 .nav .logo a {
-  font-family: "Bricolage Grotesque", "Helvetica Neue", sans-serif;
-  font-size: 20px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 /* Menu links */
 #menu a {
-  font-size: 17px;
+  font-size: 1rem;
 }
 
 #menu .active {
@@ -46,7 +46,7 @@
 
 .hamburger-label {
   color: var(--primary);
-  font-size: 17px;
+  font-size: 1rem;
   line-height: var(--header-height);
   cursor: pointer;
 }
@@ -91,7 +91,7 @@
   text-indent: 0;
   color: var(--primary);
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.2;
   border: none;
