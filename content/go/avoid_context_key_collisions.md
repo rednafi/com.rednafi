@@ -197,7 +197,7 @@ exported keys remain unique even when shared between packages.
 When exposing context values across APIs, you can approach it in two ways depending on how
 much control and safety you want to give your users.
 
-### 1. Expose keys directly
+## 1. Expose keys directly
 
 You can export the key itself and let users interact with it freely:
 
@@ -253,7 +253,7 @@ if ok {
 The server value is stored in the context and later retrieved using the same pointer key.
 The user must perform a type assertion and handle it safely.
 
-### 2. Expose accessor functions
+## 2. Expose accessor functions
 
 The other approach is to hide the key and provide accessor functions to set and retrieve
 values. This removes the need for users to remember the right key type or perform type
