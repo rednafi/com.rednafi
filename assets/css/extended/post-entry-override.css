@@ -1,19 +1,36 @@
+/* Minimalist card shape */
+.post-entry {
+  padding: 1.4rem 1.65rem;
+  border-radius: 12px;
+}
+
 .first-entry {
   min-height: 150px;
   text-align: left;
   margin: 0.5rem;
+  padding: 1.4rem 1.65rem;
+  border-radius: 12px;
 }
+
+.home-info {
+  margin: 0.5rem;
+  padding: 0;
+}
+
 .first-entry .entry-header h1 {
   font-size: 2rem;
 }
+
 .first-entry .entry-content {
   font-size: 1.03125rem;
   line-height: 1.5;
   color: var(--primary);
 }
+
 .entry-header h2 {
   font-size: 1.5rem;
 }
+
 .post-entry .entry-content {
   font-size: 0.96875rem;
   line-height: 1.5;
