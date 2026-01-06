@@ -90,24 +90,22 @@ params:
     - system
 
   assets:
-    favicon: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.webp"
+    favicon: "https://blob.rednafi.com/static/images/home/favicon.svg"
+    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon.svg"
+    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.svg"
+    apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.svg"
+    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.svg"
     disableFingerprinting: false
     disableHLJS: true
 
   label:
-    icon: "https://blob.rednafi.com/static/images/home/favicon.webp"
-    iconHeight: 23
-    iconWidth: 23
+    iconSVG: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="2" x2="4" y2="22"/><polyline points="10,7 18,12 10,17"/></svg>'
 
   homeInfoParams:
     Title:
       Hi, I'm [Redowan](/about) <a href="/index.xml" title="RSS" aria-label="RSS"> <svg
       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" height="23"> <path d="M4 11a9 9 0 0 1 9 9"/>
+      stroke="currentColor" stroke-width="2.5" height="23"> <path d="M4 11a9 9 0 0 1 9 9"/>
       <path d="M4 4a16 16 0 0 1 16 16"/> <circle cx="5" cy="19" r="1"/> </svg> </a>
     Content: >
       <div>
