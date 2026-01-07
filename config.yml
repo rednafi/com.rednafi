@@ -209,9 +209,23 @@ markup:
       unsafe: true
       xhtml: false
 
+uglyURLs: true
+
+mediaTypes:
+  text/markdown:
+    suffixes: ["md"]
+
+outputFormats:
+  HTML:
+    noUgly: true
+  markdown:
+    mediaType: text/markdown
+    isPlainText: true
+    notAlternative: true
+
 outputs:
   home: ["HTML", "RSS", "JSON"]
-  page: ["HTML"]
+  page: ["HTML", "markdown"]
   section: ["HTML", "RSS"]
   taxonomy: ["HTML", "RSS"]
   term: ["HTML", "RSS"]
