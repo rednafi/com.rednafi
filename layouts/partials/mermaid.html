@@ -1,12 +1,14 @@
 <script
-  type="application/javascript"
+  defer
   src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
 ></script>
 <script>
-  const config = {
-    startOnLoad: true,
-    theme: "default",
-    fontSize: 24,
-  };
-  mermaid.initialize(config);
+  document.addEventListener('DOMContentLoaded', function() {
+    const config = {
+      startOnLoad: true,
+      theme: "default",
+      fontSize: 24,
+    };
+    mermaid.initialize(config);
+  });
 </script>
