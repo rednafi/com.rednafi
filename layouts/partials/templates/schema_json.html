@@ -2,13 +2,6 @@
 {{- $authorPage := ("about/" | absURL) -}}
 {{- $authorId := printf "%s#person" $authorPage -}}
 
-{{/* Build a SearchAction target.
-     If params.searchUrl is set (e.g., "/search?q={search_term_string}"), use it.
-     Otherwise default to "<home>/search?q={search_term_string}". */}}
-{{- $defaultSearch := printf "%ssearch?q={search_term_string}" site.Home.Permalink -}}
-{{- $hasSearch := isset site.Params "searchUrl" -}}
-{{- $searchTarget := cond $hasSearch site.Params.searchUrl $defaultSearch -}}
-
 {{ if .IsHome }}
 <script type="application/ld+json">
 {
@@ -17,7 +10,12 @@
   "name": {{ site.Params.author }},
   "url": {{ site.Home.Permalink }},
   "description": {{ site.Params.description | plainify | safeHTML }},
-  "image": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | default "favicon.ico" | absURL }},
+    "width": 400,
+    "height": 400
+  },
   {{- with site.Params.schema.jobTitle }}
   "jobTitle": {{ . }},
   {{- end }}
@@ -37,7 +35,7 @@
 }
 </script>
 
-{{/* WebSite entity with Sitelinks Search Box */}}
+{{/* WebSite entity */}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,11 +49,6 @@
   },
   "publisher": {
     "@id": {{ $authorId }}
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {{ $searchTarget }},
-    "query-input": "required name=search_term_string"
   }
 }
 </script>
@@ -222,18 +215,25 @@
   "wordCount": "{{ .WordCount }}",
   "inLanguage": {{ .Language.Lang | default "en-us" }},
   {{- if .Params.cover.image }}
-  "image": [
-    {{- /* Single URL wrapped in array for future multi-aspect support */ -}}
-    {{- if (ne .Params.cover.relative true) -}}
-      {{ .Params.cover.image | absURL }}
-    {{- else -}}
-      {{ (path.Join .RelPermalink .Params.cover.image) | absURL }}
-    {{- end -}}
-  ],
+  "image": {
+    "@type": "ImageObject",
+    {{- if (ne .Params.cover.relative true) }}
+    "url": {{ .Params.cover.image | absURL }},
+    {{- else }}
+    "url": {{ (path.Join .RelPermalink .Params.cover.image) | absURL }},
+    {{- end }}
+    "width": 1200,
+    "height": 630
+  },
   {{- else }}
     {{- $images := partial "templates/_funcs/get-page-images" . }}
     {{- with index $images 0 }}
-  "image": [ {{ .Permalink }} ],
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ .Permalink }},
+    "width": 1200,
+    "height": 630
+  },
     {{- end }}
   {{- end }}
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},

@@ -37,6 +37,7 @@ params:
   schema:
     publisherType: Person
     jobTitle: Software Engineer
+    profileImage: "https://blob.rednafi.com/static/images/home/cover.png"
     knowsAbout:
       - API Design
       - Databases
@@ -55,6 +56,22 @@ params:
   description: >-
     Personal site of Redowan Delowar - a roving amateur fumbling through software, systems,
     and sundry.
+
+  taxonomyDescriptions:
+    go: "Deep dives into Go programming: concurrency patterns, testing strategies, error handling, and idiomatic code practices."
+    python: "Python tutorials covering Django, type hints, decorators, context managers, pytest fixtures, and Pythonic design patterns."
+    til: "Today I Learned: bite-sized technical discoveries and quick tips across programming languages and tools."
+    shell: "Bash scripting, shell one-liners, terminal productivity, and Unix command-line techniques."
+    testing: "Software testing strategies: unit tests, integration tests, mocking, fixtures, and test-driven development."
+    networking: "HTTP, DNS, TCP/IP, APIs, and network programming fundamentals."
+    essay: "Long-form reflections on software engineering, career growth, and technical decision-making."
+    database: "Database design, SQL optimization, PostgreSQL, SQLite, and data persistence patterns."
+    docker: "Container orchestration, Docker best practices, and deployment strategies."
+    aws: "Amazon Web Services guides: Lambda, S3, EC2, and cloud architecture patterns."
+    sql: "SQL queries, database optimization, and relational database concepts."
+    system: "Systems programming, OS internals, and low-level computing concepts."
+    typescript: "TypeScript type system, advanced types, and JavaScript ecosystem tools."
+    javascript: "JavaScript patterns, Node.js, and modern web development."
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
