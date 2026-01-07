@@ -1,0 +1,22 @@
+{{- define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">Page Not Found</h1>
+  </header>
+  <div class="post-content">
+    <p>The page you're looking for doesn't exist or has been moved.</p>
+
+    <h2>Try searching</h2>
+    <p><a href="/search/">Search the site</a> to find what you're looking for.</p>
+
+    <h2>Recent posts</h2>
+    <ul>
+      {{- range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+      {{- end }}
+    </ul>
+
+    <p><a href="/">Back to homepage</a></p>
+  </div>
+</article>
+{{- end }}
