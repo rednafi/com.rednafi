@@ -38,15 +38,6 @@ params:
     publisherType: Person
     jobTitle: Software Engineer
     profileImage: "https://blob.rednafi.com/static/images/home/cover.png"
-    knowsAbout:
-      - API Design
-      - Databases
-      - Distributed Systems
-      - Go
-      - Industrial Programming
-      - Observability
-      - Python
-      - Software Engineering
     sameAs:
       - "https://github.com/rednafi"
       - "https://www.linkedin.com/in/rednafi/"
