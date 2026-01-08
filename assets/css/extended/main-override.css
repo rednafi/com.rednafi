@@ -42,5 +42,5 @@ body {
 
 /* Ensure readable line length when zoomed on any device */
 .main {
-  max-width: min(var(--main-width), 96vw);
+  max-width: min(var(--main-width), 98vw);
 }
