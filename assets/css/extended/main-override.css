@@ -40,7 +40,9 @@ body {
   top: 0;
 }
 
-/* Ensure readable line length when zoomed on any device */
-.main {
-  max-width: min(var(--main-width), 98vw);
+/* Tablet: cap content width when zoomed */
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+  .main {
+    max-width: min(var(--main-width), 96vw);
+  }
 }
