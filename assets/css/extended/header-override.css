@@ -36,7 +36,7 @@
 /* Menu links */
 #menu a {
   font-size: 1.03125rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primary);
 }
 
@@ -59,7 +59,7 @@
 .hamburger-label {
   color: var(--primary);
   font-size: 1.03125rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: var(--header-height);
   cursor: pointer;
 }
