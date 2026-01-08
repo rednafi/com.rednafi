@@ -39,3 +39,8 @@ body {
 .skip-link:focus {
   top: 0;
 }
+
+/* Ensure readable line length when zoomed on any device */
+.main {
+  max-width: min(var(--main-width), 92vw);
+}
