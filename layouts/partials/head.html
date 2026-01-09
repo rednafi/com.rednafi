@@ -1,8 +1,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="light dark">
+<meta name="format-detection" content="telephone=no">
 {{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
@@ -87,11 +89,24 @@
 
 {{- /* RSS */}}
 {{ range .AlternativeOutputFormats -}}
-<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}">
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ site.Title }}">
 {{ end -}}
 {{- range .AllTranslations -}}
 <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
 {{ end -}}
+
+{{- /* Sitemap */}}
+<link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
+
+{{- /* IndieWeb: Webmention endpoints */ -}}
+{{- with site.Params.webmention -}}
+<link rel="webmention" href="https://webmention.io/{{ $.Site.BaseURL | replaceRE "https?://" "" | replaceRE "/$" "" }}/webmention">
+<link rel="pingback" href="https://webmention.io/{{ $.Site.BaseURL | replaceRE "https?://" "" | replaceRE "/$" "" }}/xmlrpc">
+{{- end -}}
+
+{{- /* IndieWeb: IndieAuth */ -}}
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
+<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
 
 <noscript>
     <style>
@@ -105,15 +120,15 @@
     <style>
         @media (prefers-color-scheme: dark) {
             :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
+                --theme: #212529;
+                --entry: #292e33;
+                --primary: #e0e0e0;
+                --secondary: #e0e0e0;
+                --tertiary: #505050;
+                --content: #e0e0e0;
+                --code-block-bg: #2c3034;
+                --code-bg: #2c3034;
+                --border: #404550;
             }
 
             .list {
