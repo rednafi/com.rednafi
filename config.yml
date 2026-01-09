@@ -123,11 +123,13 @@ params:
   social:
     twitter: "raboroham"
 
+  # IndieWeb
+  webmention: true
+  indieauth: true
+
   analytics:
     google:
       SiteVerificationTag: "google-site-verification=GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
-    bing:
-      SiteVerificationTag: "XYZabc"
     yandex:
       SiteVerificationTag: "cb037a09f985e313"
     naver:
@@ -138,17 +140,6 @@ params:
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: false # hide on single page
     image: "https://blob.rednafi.com/static/images/home/cover.png"
-
-  # for search
-  # https://fusejs.io/api/options.html
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 200
-    threshold: 0.3
-    minMatchCharLength: 2
-    keys: ["title", "tags", "permalink", "summary", "content"]
 
 menu:
   main:

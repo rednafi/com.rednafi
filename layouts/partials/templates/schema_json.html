@@ -19,11 +19,11 @@
   {{- with site.Params.schema.jobTitle }}
   "jobTitle": {{ . }},
   {{- end }}
-  {{- with site.Params.schema.knowsAbout }}
-  "knowsAbout": [
-    {{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}
-  ],
-  {{- end }}
+  "knowsAbout": ["Software Engineering", "Go", "Python", "Web Development", "System Design", "Backend Development"],
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "Software Industry"
+  },
   "sameAs": [
     {{- if site.Params.schema.sameAs }}
       {{ range $i, $e := site.Params.schema.sameAs }}{{ if $i }}, {{ end }}{{ trim $e " " }}{{ end }}
@@ -35,7 +35,7 @@
 }
 </script>
 
-{{/* WebSite entity */}}
+{{/* WebSite entity with SearchAction for sitelinks searchbox */}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,6 +44,15 @@
   "url": {{ site.Home.Permalink }},
   "name": {{ site.Title }},
   "description": {{ site.Params.description | plainify | safeHTML }},
+  "inLanguage": "en-US",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": {{ printf "%ssearch/?q={search_term_string}" site.Home.Permalink }}
+    },
+    "query-input": "required name=search_term_string"
+  },
   "author": {
     "@id": {{ $authorId }}
   },
@@ -140,6 +149,7 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": {{ printf "%s#breadcrumb" .Permalink }},
   "itemListElement": [
   {{- range $index, $element := $bc_list }}
     {{- $scratch.Add "path" (printf "%s/" $element ) | safeJS }}
@@ -193,12 +203,38 @@
 </script>
 {{- end }}
 
+{{/* ---------- WebPage for article pages ---------- */}}
+{{- if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": {{ printf "%s#webpage" .Permalink }},
+  "url": {{ .Permalink | safeHTML }},
+  "name": {{ .Title | plainify }},
+  "description": {{ with .Description | plainify }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }},
+  "isPartOf": {
+    "@id": {{ printf "%s#website" site.Home.Permalink }}
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | absURL }}
+  },
+  "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
+  "breadcrumb": {
+    "@id": {{ printf "%s#breadcrumb" .Permalink }}
+  }
+}
+</script>
+{{- end }}
+
 {{/* ---------- BlogPosting (articles) ---------- */}}
 {{- if .IsPage }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  "@type": ["BlogPosting", "TechArticle"],
   "@id": {{ .Permalink | safeHTML }},
   "url": {{ .Permalink | safeHTML }},
   "headline": {{ .Title | plainify }},
@@ -213,7 +249,12 @@
   ],
   "articleBody": {{ .Content | safeJS | htmlUnescape | plainify }},
   "wordCount": "{{ .WordCount }}",
-  "inLanguage": {{ .Language.Lang | default "en-us" }},
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "copyrightYear": {{ .PublishDate.Format "2006" }},
+  "copyrightHolder": {
+    "@id": {{ $authorId }}
+  },
   {{- if .Params.cover.image }}
   "image": {
     "@type": "ImageObject",
@@ -225,6 +266,7 @@
     "width": 1200,
     "height": 630
   },
+  "thumbnailUrl": {{ if (ne .Params.cover.relative true) }}{{ .Params.cover.image | absURL }}{{ else }}{{ (path.Join .RelPermalink .Params.cover.image) | absURL }}{{ end }},
   {{- else }}
     {{- $images := partial "templates/_funcs/get-page-images" . }}
     {{- with index $images 0 }}
@@ -234,10 +276,12 @@
     "width": 1200,
     "height": 630
   },
+  "thumbnailUrl": {{ .Permalink }},
     {{- end }}
   {{- end }}
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
+  "dateCreated": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "author": {
     "@type": "Person",
     "@id": {{ $authorId }},
@@ -248,7 +292,11 @@
     "@type": "Person",
     "@id": {{ $authorId }},
     "name": {{ .Params.author | default site.Params.author }},
-    "url": {{ $authorPage }}
+    "url": {{ $authorPage }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | absURL }}
+    }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -260,10 +308,21 @@
     "name": {{ site.Title }}
   },
   "articleSection": {{ .Section | title }},
+  "about": {
+    "@type": "Thing",
+    "name": {{ .Section | title }},
+    "description": {{ with index site.Params.taxonomyDescriptions (lower .Section) }}{{ . }}{{ else }}{{ printf "Articles about %s" ($.Section | title) }}{{ end }}
+  },
+  "genre": "Technology",
+  "potentialAction": {
+    "@type": "ReadAction",
+    "target": {{ .Permalink | safeHTML }}
+  },
   "speakable": {
     "@type": "SpeakableSpecification",
-    "cssSelector": [".post-title", ".post-content"]
-  }
+    "cssSelector": [".post-title", ".post-content p:first-of-type", ".post-content h2"]
+  },
+  "timeRequired": "PT{{ div .WordCount 200 }}M"
 }
 </script>
 {{- end }}{{/* .IsPage end */}}

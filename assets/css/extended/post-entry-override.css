@@ -1,5 +1,6 @@
 /* Minimalist card shape */
-.post-entry {
+.post-entry,
+.first-entry {
   padding: 1.4rem 1.65rem;
   border-radius: 12px;
 }
@@ -8,8 +9,6 @@
   min-height: 150px;
   text-align: left;
   margin: 0.5rem;
-  padding: 1.4rem 1.65rem;
-  border-radius: 12px;
 }
 
 .home-info {

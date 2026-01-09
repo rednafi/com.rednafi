@@ -4,19 +4,15 @@
 SHELL := /bin/bash -ex
 MAKEFLAGS += --silent
 
-# Define packages as a space-separated list
-BREW_PACKAGES := gh hugo prettier uv
+BREW_PACKAGES := gh hugo prettier
 
 init:
 	git submodule update --init --recursive
 	npm install
-	npm install -g wrangler
 	for pkg in $(BREW_PACKAGES); do \
 		brew list $$pkg &>/dev/null || brew install $$pkg; \
 	done
-	uv venv -p 3.14
-	uv tool install pre-commit
-	uv pip install black blacken-docs mypy pytest pytest-cov ruff
+	uvx pre-commit install
 
 format:
 	./scripts/lint-codeblocks.sh
