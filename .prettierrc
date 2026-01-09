@@ -6,22 +6,13 @@
   "trailingComma": "none",
   "printWidth": 92,
   "proseWrap": "always",
-  "arrowParens": "always",
   "embeddedLanguageFormatting": "off",
-  "overrides":
-    [
-      {
-        "files": "**/*.md",
-        "options":
-          {
-            "tabWidth": 4,
-            "singleQuote": false,
-            "trailingComma": "all",
-            "arrowParens": "avoid",
-            "printWidth": 92,
-            "proseWrap": "always",
-            "embeddedLanguageFormatting": "off"
-          }
+  "overrides": [
+    {
+      "files": "**/*.md",
+      "options": {
+        "tabWidth": 4
       }
-    ]
+    }
+  ]
 }

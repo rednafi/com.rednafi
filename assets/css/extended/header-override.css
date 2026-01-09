@@ -91,6 +91,14 @@ button#theme-toggle svg {
   transition: all 0.1s ease;
 }
 
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hamburger-dropdown {
+    transition: none;
+    transform: none;
+  }
+}
+
 .hamburger-checkbox:checked + .hamburger-label + .hamburger-dropdown {
   opacity: 1;
   visibility: visible;

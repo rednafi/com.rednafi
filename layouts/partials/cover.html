@@ -32,7 +32,7 @@
     {{- if $cover -}}
         {{/* i.e it is present in page bundle */}}
         {{- if (and (in $processableFormats $cover.MediaType.SubType) ($responsiveImages) (eq $prod true)) }}
-            <img loading="{{$loading}}" fetchpriority="{{ $fetchpriority }}"
+            <img loading="{{$loading}}" fetchpriority="{{ $fetchpriority }}" decoding="async"
                 srcset='{{- range $size := $sizes -}}
                             {{- if (ge $cover.Width $size) }}
                                 {{- printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw," $size) }}
@@ -44,11 +44,11 @@
                 width="{{ $cover.Width }}" height="{{ $cover.Height }}"
                 alt="{{ $alt }}">
         {{- else }}{{/* Unprocessable image or responsive images disabled */}}
-            <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" src="{{ $imgdl }}" alt="{{ $alt }}">
+            <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}">
         {{- end }}
     {{- else }}
         {{- /* For absolute urls and external links, no img processing here */}}
-        <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" src="{{ $imgdl }}" alt="{{ $alt }}">
+        <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}">
     {{- end }}
 
     {{- if $addLink }}

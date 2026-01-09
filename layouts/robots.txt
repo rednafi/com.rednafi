@@ -1,0 +1,53 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: {{ "sitemap.xml" | absURL }}
+
+# Crawl-delay for polite crawling (optional, not all bots respect this)
+# Crawl-delay: 1
+
+# Disallow search result pages to prevent duplicate content
+Disallow: /search/
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# AI crawlers - allow for training/indexing (opt-in for visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Social media crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

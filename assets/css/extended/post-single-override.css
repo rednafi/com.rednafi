@@ -2,9 +2,20 @@
   max-width: 720px;
 }
 
-/* Links */
+/* Improved paragraph spacing for better readability */
+.post-content p {
+  margin-bottom: 1.25em;
+}
+
+/* Links with better visibility */
 .post-content a {
-  color: #2544bb;
+  color: #1a4bbf;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.post-content a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .dark .post-content a,
@@ -60,6 +71,24 @@
   font-weight: 400;
 }
 
+/* Improved code block readability */
+.post-content pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  tab-size: 4;
+}
+
+/* Better line numbers visibility */
+.post-content .chroma .lnt {
+  opacity: 0.6;
+}
+
+/* Highlight line on hover for better tracking */
+.post-content .chroma .line:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
 /* Blockquotes with same background as code */
 .post-content blockquote {
   background: var(--code-bg);
@@ -83,17 +112,39 @@
   font-weight: 400;
 }
 
+/* Heading anchors - visible on hover and focus */
+.anchor {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  text-decoration: none;
+}
+
 h1:hover .anchor,
 h2:hover .anchor,
 h3:hover .anchor,
 h4:hover .anchor,
 h5:hover .anchor,
-h6:hover .anchor {
+h6:hover .anchor,
+h1:focus-within .anchor,
+h2:focus-within .anchor,
+h3:focus-within .anchor,
+h4:focus-within .anchor,
+h5:focus-within .anchor,
+h6:focus-within .anchor,
+.anchor:focus {
+  opacity: 1;
   display: inline-flex;
   color: var(--secondary);
   margin-inline-start: 8px;
   font-weight: 400;
   user-select: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .anchor {
+    transition: none;
+  }
 }
 
 .post-content img {
@@ -127,4 +178,28 @@ a.footnote-ref::after {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Improved list spacing for better scanability */
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.25em;
+}
+
+.post-content li {
+  margin-bottom: 0.4em;
+}
+
+.post-content li:last-child {
+  margin-bottom: 0;
+}
+
+/* Post separator for recent posts section */
+.post-separator {
+  text-align: center;
+}
+
+/* Search icon alignment */
+.search-icon {
+  vertical-align: middle;
 }
