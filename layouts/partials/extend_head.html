@@ -26,6 +26,14 @@
       { "not": { "href_matches": "/search/*" } }
     ]},
     "eagerness": "moderate"
+  }],
+  "prerender": [{
+    "where": { "and": [
+      { "href_matches": "/*" },
+      { "not": { "href_matches": "/search/*" } },
+      { "not": { "selector_matches": "[rel~=external]" } }
+    ]},
+    "eagerness": "conservative"
   }]
 }
 </script>
