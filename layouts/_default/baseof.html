@@ -23,10 +23,12 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
-    <main class="main" id="main">
+    <main class="main" id="main" role="main" aria-label="Main content">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
+    {{/* Screen reader announcements for dynamic content */}}
+    <div aria-live="polite" aria-atomic="true" class="sr-only" id="sr-announcements"></div>
 </body>
 
 </html>

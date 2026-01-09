@@ -1,9 +1,10 @@
 {{- define "main" }}
 
-<article class="post-single">
+{{/* h-entry microformat for IndieWeb */}}
+<article class="post-single h-entry">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title" data-pagefind-weight="10">
+    <h1 class="post-title p-name" data-pagefind-weight="10">
       {{ .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h1>
@@ -13,6 +14,13 @@
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}
+      {{/* Hidden microformat data */}}
+      <a class="u-url u-uid" href="{{ .Permalink }}" hidden></a>
+      <time class="dt-published" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}" hidden>{{ .PublishDate.Format "2006-01-02" }}</time>
+      {{- if ne .Lastmod .PublishDate }}
+      <time class="dt-updated" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" hidden>{{ .Lastmod.Format "2006-01-02" }}</time>
+      {{- end }}
+      <a class="p-author h-card" href="{{ "about/" | absURL }}" hidden>{{ site.Params.author }}</a>
     </div>
     {{- /* Add tags on new line after other meta information */ -}}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
@@ -20,7 +28,7 @@
     <div class="post-meta post-tags-meta">
       <ul class="post-tags">
         {{- range . }}
-        <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+        <li><a href="{{ .Permalink }}" class="p-category">{{ .LinkTitle }}</a></li>
         {{- end }}
       </ul>
     </div>
@@ -34,7 +42,8 @@
   {{- end }}
 
   {{- if .Content }}
-  <div class="post-content">
+  <div class="post-content e-content">
+    {{- with .Description }}<p class="p-summary" hidden>{{ . }}</p>{{ end }}
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
@@ -59,7 +68,7 @@
 {{- end }}
 
 {{- if not $exclude }}
-  <div style="text-align:center" data-pagefind-ignore>
+  <div class="post-separator" data-pagefind-ignore>
     ~~~
   </div>
   <h2 data-pagefind-ignore>Recent posts</h2>

@@ -55,7 +55,7 @@ jobs:
         if: env.hugo_update_needed == 'true'
         run: |
           wget -O hugo.deb \
-            "https://github.com/gohugoio/hugo/releases/download/v${{ env.LATEST_HUGO_VERSION }}/hugo_${{ env.LATEST_HUGO_VERSION }}_linux-amd64.deb"
+            "https://github.com/gohugoio/hugo/releases/download/v${{ env.LATEST_HUGO_VERSION }}/hugo_extended_${{ env.LATEST_HUGO_VERSION }}_linux-amd64.deb"
           sudo dpkg -i hugo.deb
 
       - name: Build site with updated Hugo
@@ -75,7 +75,6 @@ jobs:
 
       - name: Push changes
         if: success() && env.hugo_update_needed == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT_TOKEN }}
-          branch: ${{ github.ref }}
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
