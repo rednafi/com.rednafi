@@ -6,6 +6,9 @@ editPost:
     disabled: true
 hideMeta: true
 ShowShareButtons: false
+description: >-
+  Collection of software engineering wisdoms, aphorisms, and pointed observations.
+  Principles and mental models for building better systems.
 ---
 
 Wisdoms, aphorisms, and pointed observations — fragments I find myself frequently quoting in

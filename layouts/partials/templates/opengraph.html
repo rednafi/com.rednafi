@@ -1,5 +1,5 @@
 <meta property="og:title" content="{{ .Title }}" />
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .Data.Term}}{{ with index site.Params.taxonomyDescriptions (lower .Data.Term) }}{{ . }}{{ else }}Articles about {{ .Title }} on {{ site.Title }}.{{ end }}{{ else if .IsPage}}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:site_name" content="{{ site.Title }}" />
