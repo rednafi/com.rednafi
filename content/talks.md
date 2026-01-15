@@ -6,6 +6,9 @@ editPost:
     disabled: true
 hideMeta: true
 ShowShareButtons: false
+description: >-
+  Conference talks and presentations on Go programming, interface design, testing strategies,
+  and software engineering practices.
 ---
 
 Oratories on paraphernalia.
