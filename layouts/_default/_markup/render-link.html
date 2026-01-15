@@ -1,0 +1,16 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $siteURL := urls.Parse site.BaseURL -}}
+{{- $isExternal := and $u.IsAbs (ne $u.Host $siteURL.Host) -}}
+{{- $attrs := dict "href" .Destination "title" (.Title | transform.HTMLEscape) -}}
+{{- if $isExternal -}}
+  {{- $attrs = merge $attrs (dict "rel" "noopener noreferrer" "target" "_blank") -}}
+{{- end -}}
+<a
+  {{- range $k, $v := $attrs -}}
+    {{- if $v -}}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}>
+  {{- or .Text .PlainText -}}
+</a>
+{{- /**/ -}}

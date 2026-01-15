@@ -6,6 +6,9 @@ editPost:
     disabled: true
 hideMeta: true
 ShowShareButtons: false
+description: >-
+  About Redowan Delowar (rednafi) - platform engineer writing about distributed systems,
+  Go, Python, testing strategies, and software design patterns.
 ---
 
 <div style="text-align: center;">
