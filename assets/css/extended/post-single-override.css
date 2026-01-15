@@ -35,7 +35,7 @@
 
 .post-title {
   margin-bottom: 2px;
-  font-size: 1.65em;
+  font-size: 1.75em;
 }
 
 .post-content h1 {
@@ -58,7 +58,7 @@
   padding: 4px 6px;
   font-size: 0.87em;
   line-height: 1.5;
-  border-radius: 2px;
+  border-radius: 12px;
   color: var(--code-color);
   font-family: "JetBrains Mono", monospace;
   font-weight: 400;
@@ -89,12 +89,26 @@
   background: rgba(128, 128, 128, 0.1);
 }
 
+/* Code blocks with same rounded edges as cards */
+.post-content .highlight:not(table) {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.post-content .highlight table {
+  border-radius: 12px !important;
+}
+
+.post-content .highlight pre {
+  border-radius: 12px !important;
+}
+
 /* Blockquotes with same background as code */
 .post-content blockquote {
   background: var(--code-bg);
   margin: 20px 0;
   padding: 10px 10px;
-  border-radius: var(--radius);
+  border-radius: 12px;
 }
 
 /* Remove bottom margin from last element in blockquotes */
@@ -105,6 +119,7 @@
 .toc {
   margin: 0 0 20px 0;
   font-size: 0.95rem;
+  border-radius: 12px !important;
 }
 
 .toc .details {
