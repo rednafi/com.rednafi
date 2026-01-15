@@ -132,6 +132,11 @@
   opacity: 0;
   transition: opacity 0.15s ease;
   text-decoration: none;
+  display: inline-flex !important;
+}
+
+.anchor[hidden] {
+  display: inline-flex !important;
 }
 
 h1:hover .anchor,
