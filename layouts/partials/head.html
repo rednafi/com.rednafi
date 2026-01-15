@@ -3,7 +3,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">
-{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="referrer" content="no-referrer-when-downgrade">
+{{- if or (eq .Kind "404") .Params.robotsNoIndex }}
+<meta name="robots" content="noindex, follow">
+{{- else if hugo.IsProduction | or (eq site.Params.env "production") }}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
@@ -97,6 +100,16 @@
 
 {{- /* Sitemap */}}
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
+
+{{- /* Pagination link tags for SEO */ -}}
+{{- if and (or .IsHome .IsSection) (gt .Paginator.TotalPages 1) }}
+  {{- if .Paginator.HasPrev }}
+<link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
+  {{- end }}
+  {{- if .Paginator.HasNext }}
+<link rel="next" href="{{ .Paginator.Next.URL | absURL }}">
+  {{- end }}
+{{- end }}
 
 {{- /* IndieWeb: Webmention endpoints */ -}}
 {{- with site.Params.webmention -}}
