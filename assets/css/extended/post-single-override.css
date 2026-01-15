@@ -1,5 +1,5 @@
 .post-content {
-  max-width: 720px;
+  max-width: 100%;
 }
 
 /* Improved paragraph spacing for better readability */
@@ -35,11 +35,11 @@
 
 .post-title {
   margin-bottom: 2px;
-  font-size: 2em;
+  font-size: 1.65em;
 }
 
 .post-content h1 {
-  font-size: 2em;
+  font-size: 1.65em;
   margin: 40px auto 24px;
 }
 
@@ -56,7 +56,7 @@
 .post-content code {
   margin: 0 4px;
   padding: 4px 6px;
-  font-size: 0.92rem;
+  font-size: 0.87em;
   line-height: 1.5;
   border-radius: 2px;
   color: var(--code-color);

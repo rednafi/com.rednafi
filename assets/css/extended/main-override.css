@@ -3,9 +3,9 @@
 }
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1.03125rem;
+  font-size: 17.5px;
   letter-spacing: -0.01em;
-  line-height: 1.5;
+  line-height: 1.6;
   word-break: break-word;
   background: var(--theme);
   font-weight: 400;
