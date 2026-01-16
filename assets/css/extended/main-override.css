@@ -167,6 +167,9 @@ body {
 .top-link {
   font-size: 0.9375rem;
   color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Mermaid diagrams */
