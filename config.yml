@@ -217,6 +217,10 @@ outputs:
   taxonomy: ["HTML", "RSS"]
   term: ["HTML", "RSS"]
 
+services:
+  rss:
+    limit: 50
+
 security:
   funcs:
     getenv:
