@@ -8,7 +8,6 @@ BREW_PACKAGES := gh hugo prettier
 
 init:
 	git submodule update --init --recursive
-	npm install
 	for pkg in $(BREW_PACKAGES); do \
 		brew list $$pkg &>/dev/null || brew install $$pkg; \
 	done
@@ -22,7 +21,6 @@ format:
 update:
 	git submodule update --remote --merge
 	uvx pre-commit autoupdate -j 4
-	npm update
 
 dev:
 	hugo --environment production --minify --gc --cleanDestinationDir

@@ -1,6 +1,8 @@
-{{/* Define reusable author constants */}}
+{{/* Define reusable constants */}}
 {{- $authorPage := ("about/" | absURL) -}}
 {{- $authorId := printf "%s#person" $authorPage -}}
+{{- $profileImage := site.Params.schema.profileImage | default site.Params.assets.favicon | default "favicon.ico" | absURL -}}
+{{- $siteDesc := site.Params.description | plainify | safeHTML -}}
 
 {{ if .IsHome }}
 <script type="application/ld+json">
@@ -9,10 +11,10 @@
   "@type": "{{ (site.Params.schema.publisherType | default "Person") | title }}",
   "name": {{ site.Params.author }},
   "url": {{ site.Home.Permalink }},
-  "description": {{ site.Params.description | plainify | safeHTML }},
+  "description": {{ $siteDesc }},
   "image": {
     "@type": "ImageObject",
-    "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | default "favicon.ico" | absURL }},
+    "url": {{ $profileImage }},
     "width": 400,
     "height": 400
   },
@@ -43,7 +45,7 @@
   "@id": {{ printf "%s#website" site.Home.Permalink }},
   "url": {{ site.Home.Permalink }},
   "name": {{ site.Title }},
-  "description": {{ site.Params.description | plainify | safeHTML }},
+  "description": {{ $siteDesc }},
   "inLanguage": "en-US",
   "potentialAction": {
     "@type": "SearchAction",
@@ -70,14 +72,14 @@
   "@id": {{ printf "%s#collectionpage" site.Home.Permalink }},
   "url": {{ site.Home.Permalink }},
   "name": {{ site.Title }},
-  "description": {{ site.Params.description | plainify | safeHTML }},
+  "description": {{ $siteDesc }},
   "isPartOf": {
     "@id": {{ printf "%s#website" site.Home.Permalink }}
   },
   "about": {
     "@type": "Blog",
     "name": {{ site.Title }},
-    "description": {{ site.Params.description | plainify | safeHTML }}
+    "description": {{ $siteDesc }}
   }
 }
 </script>
@@ -218,7 +220,7 @@
   },
   "primaryImageOfPage": {
     "@type": "ImageObject",
-    "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | absURL }}
+    "url": {{ $profileImage }}
   },
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
@@ -281,7 +283,6 @@
   {{- end }}
   "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
-  "dateCreated": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
   "author": {
     "@type": "Person",
     "@id": {{ $authorId }},
@@ -295,7 +296,7 @@
     "url": {{ $authorPage }},
     "logo": {
       "@type": "ImageObject",
-      "url": {{ site.Params.schema.profileImage | default site.Params.assets.favicon | absURL }}
+      "url": {{ $profileImage }}
     }
   },
   "mainEntityOfPage": {

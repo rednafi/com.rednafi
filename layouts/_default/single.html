@@ -53,52 +53,39 @@
     {{ partial "mermaid.html" }}
     {{ end }}
 
-<!-- Custom logic: add links to recent posts starts -->
-{{- $current := . }}
-{{- $excludeUrls := slice }}
+{{- /* Recent posts section - exclude hamburger menu pages */ -}}
+{{- $excludePrefixes := slice }}
 {{- range site.Menus.hamburger }}
-  {{- $excludeUrls = $excludeUrls | append .URL }}
-{{- end }}
-{{- $exclude := false }}
-
-{{- range $excludeUrls }}
-  {{- if strings.HasPrefix $current.RelPermalink . }}
-    {{- $exclude = true }}
-  {{- end }}
+  {{- $excludePrefixes = $excludePrefixes | append .URL }}
 {{- end }}
 
-{{- if not $exclude }}
-  <div class="post-separator" data-pagefind-ignore>
-    ~~~
-  </div>
-  <h2 data-pagefind-ignore>Recent posts</h2>
-  <ul data-pagefind-ignore>
-    {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections | first 11 }}
-    {{- $.Scratch.Set "count" 0 }}
+{{- /* Check if current page should be excluded */ -}}
+{{- $showRecent := true }}
+{{- range $excludePrefixes }}
+  {{- if strings.HasPrefix $.RelPermalink . }}{{ $showRecent = false }}{{ end }}
+{{- end }}
 
-    {{- range $pages }}
-      {{- $page := . }} <!-- Save the current page context -->
-      {{- $pageExclude := false }}
-
-      {{- range $excludeUrls }}
-        {{- if strings.HasPrefix $page.RelPermalink . }} <!-- Use $page to ensure proper context -->
-          {{- $pageExclude = true }}
-        {{- end }}
+{{- if $showRecent }}
+<div class="post-separator" data-pagefind-ignore>~~~</div>
+<h2 data-pagefind-ignore>Recent posts</h2>
+<ul data-pagefind-ignore>
+  {{- $current := . }}
+  {{- $count := 0 }}
+  {{- range where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{- if and (lt $count 10) (ne . $current) }}
+      {{- $page := . }}
+      {{- $skip := false }}
+      {{- range $excludePrefixes }}
+        {{- if strings.HasPrefix $page.RelPermalink . }}{{ $skip = true }}{{ end }}
       {{- end }}
-
-      {{- if not $pageExclude }}
-        {{- if lt ($.Scratch.Get "count") 10 }}
-          {{- if ne $page $current }}
-            <li><a href="{{ $page.Permalink }}">{{ $page.LinkTitle }}</a></li>
-            {{- $.Scratch.Add "count" 1 }}
-          {{- end }}
-        {{- end }}
+      {{- if not $skip }}
+        <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+        {{- $count = add $count 1 }}
       {{- end }}
-
     {{- end }}
-  </ul>
+  {{- end }}
+</ul>
 {{- end }}
-<!-- Custom logic: add links to recent posts ends -->
 </div>
 
   </div>
