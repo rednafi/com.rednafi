@@ -5,9 +5,6 @@ theme: PaperMod
 pluralizelisttitles: false
 
 enableRobotsTXT: true
-buildDrafts: false
-buildFuture: false
-buildExpired: false
 googleAnalytics: G-11NK905JK8
 enableGitInfo: true
 
@@ -32,7 +29,6 @@ pagination:
 
 params:
   env: production
-  robotsNoIndex: false
 
   schema:
     publisherType: Person
@@ -87,23 +83,13 @@ params:
 
   DateFormat: "January 2, 2006"
   defaultTheme: light
-  disableThemeToggle: false
-  ShowReadingTime: false
-  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
-  ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
   disableSpecial1stPost: true
-  disableScrollToTop: false
-  comments: false
-  hidemeta: false
-  hideSummary: false
   showtoc: true
-  tocopen: false
-  hideFooter: false
   ShowAllPagesInArchive: true
   ShowFullTextinRSS: true
 
@@ -122,11 +108,7 @@ params:
     favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.svg"
     apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.svg"
     safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.svg"
-    disableFingerprinting: false
     disableHLJS: true
-
-  label:
-    iconSVG: ""
 
   homeInfoParams:
     Title:
@@ -155,9 +137,6 @@ params:
       SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aaeea1b1a50be20"
 
   cover:
-    hidden: false # hide everywhere but not in structured data
-    hiddenInList: false # hide on list pages and home
-    hiddenInSingle: false # hide on single page
     image: "https://blob.rednafi.com/static/images/home/cover.png"
 
 menu:
@@ -209,23 +188,13 @@ markup:
     extensions:
       definitionList: true
       footnote: true
-      linkify: true
-      linkifyProtocol: https
-      strikethrough: true
-      table: true
-      taskList: true
       typographer: true
     parser:
       attribute:
         block: true
         title: true
-      autoHeadingID: true
-      autoHeadingIDType: github
-      wrapStandAloneImageWithinParagraph: true
     renderer:
-      hardWraps: false
       unsafe: true
-      xhtml: false
 
 uglyURLs: true
 
@@ -252,8 +221,3 @@ security:
   funcs:
     getenv:
       - "^HUGO_"
-
-module:
-  mounts:
-    - source: static
-      target: static
