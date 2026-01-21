@@ -53,16 +53,10 @@
     {{ partial "mermaid.html" }}
     {{ end }}
 
-{{- /* Recent posts section - exclude hamburger menu pages */ -}}
-{{- $excludePrefixes := slice }}
-{{- range site.Menus.hamburger }}
-  {{- $excludePrefixes = $excludePrefixes | append .URL }}
-{{- end }}
-
-{{- /* Check if current page should be excluded */ -}}
+{{- /* Recent posts section - only show on main content pages */ -}}
 {{- $showRecent := true }}
-{{- range $excludePrefixes }}
-  {{- if strings.HasPrefix $.RelPermalink . }}{{ $showRecent = false }}{{ end }}
+{{- range site.Menus.hamburger }}
+  {{- if strings.HasPrefix $.RelPermalink .URL }}{{ $showRecent = false }}{{ end }}
 {{- end }}
 
 {{- if $showRecent }}
@@ -70,18 +64,12 @@
 <h2 data-pagefind-ignore>Recent posts</h2>
 <ul data-pagefind-ignore>
   {{- $current := . }}
+  {{- $recentPages := first 11 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
   {{- $count := 0 }}
-  {{- range where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{- range $recentPages }}
     {{- if and (lt $count 10) (ne . $current) }}
-      {{- $page := . }}
-      {{- $skip := false }}
-      {{- range $excludePrefixes }}
-        {{- if strings.HasPrefix $page.RelPermalink . }}{{ $skip = true }}{{ end }}
-      {{- end }}
-      {{- if not $skip }}
-        <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-        {{- $count = add $count 1 }}
-      {{- end }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- $count = add $count 1 }}
     {{- end }}
   {{- end }}
 </ul>
