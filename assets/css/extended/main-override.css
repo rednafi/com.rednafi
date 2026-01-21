@@ -161,3 +161,24 @@ body {
     widows: 3;
   }
 }
+
+/* Footer and scroll-to-top */
+.footer,
+.top-link {
+  font-size: 0.9375rem;
+  color: var(--secondary);
+}
+
+/* Mermaid diagrams */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 25px 0;
+}
+
+/* Terms/tags page */
+.terms-tags li {
+  display: inline-block;
+  margin: 10px;
+  font-weight: 400;
+}

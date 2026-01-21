@@ -2,20 +2,17 @@ name: Update Hugo version
 
 on:
   schedule:
-    - cron: "0 0 * * 1" # Runs every Monday at midnight
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
   check-and-update-hugo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-          # Otherwise, the token used is the GITHUB_TOKEN, instead of your personal
-          # access token
           persist-credentials: false
-          # Otherwise, there would be errors pushing refs to the destination repository
           fetch-depth: 0
 
       - name: Get current Hugo version
@@ -62,9 +59,7 @@ jobs:
         if: env.hugo_update_needed == 'true'
         run: |
           git submodule update --init --recursive
-          npm ci || true
           hugo --gc --minify
-        continue-on-error: false
 
       - name: Commit version update
         if: success() && env.hugo_update_needed == 'true'
