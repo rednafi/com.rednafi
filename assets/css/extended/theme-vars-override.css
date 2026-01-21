@@ -19,7 +19,6 @@
   --content: #1a1a1a;
   --code-bg: #f2f1eb;
   --code-block-bg: #f2f1eb;
-  --secondary-urls: #0066cc;
   --code-color: #1a1a1a;
   --border: #e8e8e8;
 }
@@ -35,7 +34,6 @@
   --content: #e0e0e0;
   --code-bg: #2c3034;
   --code-block-bg: #2c3034;
-  --secondary-urls: #58a6ff;
   --code-color: #e0e0e0;
   --border: #404550;
 }
@@ -51,7 +49,6 @@
     --content: #e0e0e0;
     --code-bg: #2c3034;
     --code-block-bg: #2c3034;
-    --secondary-urls: #58a6ff;
     --code-color: #e0e0e0;
     --border: #404550;
   }
