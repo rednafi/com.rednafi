@@ -128,8 +128,8 @@
             {{- end }}
             {{- if site.Menus.hamburger }}
             <li class="hamburger-menu">
-                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox" aria-hidden="true">
-                <label for="hamburger-toggle" class="hamburger-label" aria-haspopup="true" aria-expanded="false">etc ☰</label>
+                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox" tabindex="-1">
+                <label for="hamburger-toggle" class="hamburger-label" role="button" aria-haspopup="menu" aria-expanded="false">etc ☰</label>
                 <ul class="hamburger-dropdown" role="menu">
                     {{- range site.Menus.hamburger }}
                     {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
