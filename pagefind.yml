@@ -1,12 +1,12 @@
 site: public
 
 # Only index individual blog posts, not category listing pages
-glob: '{python,go,zephyr,misc,javascript,typescript,system}/*/*.html'
+glob: "{python,go,zephyr,misc,javascript,typescript,system}/*/*.html"
 
 # Exclude metadata and navigation elements from indexing
 exclude_selectors:
-  - '.breadcrumbs'
-  - '.post-meta'
-  - '.post-tags'
-  - '.post-tags-meta'
-  - '.post-footer'
+  - ".breadcrumbs"
+  - ".post-meta"
+  - ".post-tags"
+  - ".post-tags-meta"
+  - ".post-footer"

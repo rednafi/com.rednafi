@@ -17,10 +17,10 @@ write, but gets messy quite quickly.
 
 Here's a rudimentary `Retry` function that does the following:
 
--   It takes in another function that accepts arbitrary arguments.
--   Then tries to execute the wrapped function.
--   If the wrapped function returns an error after execution, `Retry` attempts to run the
-    underlying function `n` times with some backoff.
+- It takes in another function that accepts arbitrary arguments.
+- Then tries to execute the wrapped function.
+- If the wrapped function returns an error after execution, `Retry` attempts to run the
+  underlying function `n` times with some backoff.
 
 The following implementation leverages the `reflect` module to achieve the above goals.
 We're intentionally avoiding complex retry logic for brevity:
@@ -144,11 +144,11 @@ func Retry[T any](
 Functionally, the generic implementation works the same way as the previous one. However, it
 has a few limitations:
 
--   The generic `Retry` assumes the wrapped function returns `(result, error)`. This fits
-    Go's common idiom, but the reflection version could handle varied return patterns.
+- The generic `Retry` assumes the wrapped function returns `(result, error)`. This fits Go's
+  common idiom, but the reflection version could handle varied return patterns.
 
--   The reflection-based `Retry` wraps any function via the empty interface. The generic
-    version requires a matching signature, so you need a thin wrapper to adapt it.
+- The reflection-based `Retry` wraps any function via the empty interface. The generic
+  version requires a matching signature, so you need a thin wrapper to adapt it.
 
 Here's how you'd use the generic `Retry` function:
 
@@ -176,8 +176,8 @@ func main() {
 Running it will give you the same output as before.
 
 Notice how `someFunc` uses a closure to capture `a` and `b` rather than accepting them as
-arguments. This adaptation is necessary for type safety. I don't mind it if it means avoiding
-reflection—plus the generic version is slightly faster.
+arguments. This adaptation is necessary for type safety. I don't mind it if it means
+avoiding reflection—plus the generic version is slightly faster.
 
 After this entry went live, [Anton Zhiyanov pointed out on Twitter] that there's a
 closure-based approach that's even simpler and eliminates the need for generics. The
