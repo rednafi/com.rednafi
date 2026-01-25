@@ -15,10 +15,9 @@ Oratories on paraphernalia.
 
 ## Go interface segregation redux - Dec 3, 2025, GDG Berlin
 
--   [Slides]
--   [Video]
+- [Slides]
+- [Video]
 
 [slides]:
     https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU/edit?usp=sharing
-[video]:
-    https://www.youtube.com/watch?v=AtSutJ2rSr8
+[video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
