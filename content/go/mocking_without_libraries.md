@@ -1,7 +1,7 @@
 ---
-title: Mocking Go code without a library
+title: Your Go tests probably don't need a mocking library
 date: 2026-01-23
-slug: mocking-without-libraries
+slug: mocking-libraries-bleh
 tags:
     - Go
     - Testing
