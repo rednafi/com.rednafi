@@ -178,8 +178,8 @@ mystore/
 
 The rule of thumb is that top level domains should never import anything from technology
 folders like `http` or `postgres`. Instead, `http` and `postgres` should always import from
-domain packages. You can add a linter to enforce this rule but since Go doesn't allow
-import cycles, this is automatically enforced by the compiler.
+domain packages. You can add a linter to enforce this rule but since Go doesn't allow import
+cycles, this is automatically enforced by the compiler.
 
 ```
    +-----------+     +-----------+
