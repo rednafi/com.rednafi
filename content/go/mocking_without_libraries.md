@@ -2,8 +2,6 @@
 title: Mocking Go code without a library
 date: 2026-01-23
 slug: mocking-without-libraries
-aliases:
-    - /go/mocking_without_libraries/
 tags:
     - Go
     - Testing
