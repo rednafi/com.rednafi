@@ -51,6 +51,19 @@ jobs:
       - name: Build Pagefind search index
         run: npx -y pagefind
 
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: false
+
+      - name: Test URL reachability
+        run: |
+          hugo server --port 1313 &
+          sleep 3
+          go run scripts/test_urls.go -url http://localhost:1313
+          pkill -f "hugo server" || true
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
