@@ -754,7 +754,7 @@ interactions].
     https://github.com/vektra/mockery
 
 [spooky action at a distance]:
-    https://en.wikipedia.org/wiki/Action_at_a_distance_\(computer_programming\)
+    https://en.wikipedia.org/wiki/Action_at_a_distance_(computer_programming)
 
 [mocking a method on a type]:
     #mocking-a-method-on-a-type
