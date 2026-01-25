@@ -192,7 +192,7 @@ func TestPublishOrderCreated(t *testing.T) {
     }
 
     PublishOrderCreated(
-        context.Background(), []string{"kafka:9092"}, "ord-1",
+        t.Context(), []string{"kafka:9092"}, "ord-1",
     )
 
     if got := string(fake.key); got != "ord-1" {  // (4)
@@ -309,7 +309,7 @@ func (f *fakeIntents) Create(
 func TestChargeCustomer(t *testing.T) {
     fake := &fakeIntents{id: "pi_123"}  // (3)
     svc := &Service{intents: fake}
-    id, _ := svc.ChargeCustomer(context.Background(), "cus_abc", 5000)
+    id, _ := svc.ChargeCustomer(t.Context(), "cus_abc", 5000)
     // assert id == "pi_123"
 }
 ```
@@ -393,7 +393,7 @@ func TestGetUserByID(t *testing.T) {
             "email": &types.AttributeValueMemberS{Value: "a@b.com"},
         },
     }
-    user, _ := GetUserByID(context.Background(), fake, "u-1")  // (3)
+    user, _ := GetUserByID(t.Context(), fake, "u-1")  // (3)
     // assert user.Email == "a@b.com"
 }
 ```
@@ -467,7 +467,7 @@ func (f *fakeS3) PutObject(
 func TestUploadReport(t *testing.T) {
     fake := &fakeS3{}
     err := UploadReport(
-        context.Background(),
+        t.Context(),
         fake,  // (3)
         "my-bucket",
         "reports/q1.csv",
