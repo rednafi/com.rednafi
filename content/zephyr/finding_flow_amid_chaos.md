@@ -4,6 +4,7 @@ date: 2023-11-25
 slug: finding-flow-amid-chaos
 aliases:
     - /zephyr/finding_flow_amid_chaos/
+    - /misc/finding_flow_amid_chaos/
 tags:
     - Essay
 description: >-
