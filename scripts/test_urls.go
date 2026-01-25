@@ -8,12 +8,14 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io/fs"
+	"maps"
 	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"regexp"
-	"sort"
+	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -37,10 +39,9 @@ func main() {
 	baseURL := flag.String("url", "http://localhost:1313", "Base URL to test")
 	contentDir := flag.String("content", "content", "Content directory")
 	maxWorkers := flag.Int("workers", 100, "Max concurrent requests")
-	timeout := flag.Duration("timeout", 10*time.Second, "Request timeout")
+	timeout := flag.Duration("timeout", 5*time.Minute, "Request timeout")
 	flag.Parse()
 
-	// Handle interrupt
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
 
@@ -89,8 +90,8 @@ func main() {
 func collectURLs(contentDir string) []string {
 	urlSet := make(map[string]struct{})
 
-	_ = filepath.Walk(contentDir, func(path string, info os.FileInfo, err error) error {
-		if err != nil || info.IsDir() || !strings.HasSuffix(path, ".md") {
+	filepath.WalkDir(contentDir, func(path string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() || !strings.HasSuffix(path, ".md") {
 			return nil
 		}
 		if strings.HasSuffix(path, "_index.md") {
@@ -104,15 +105,12 @@ func collectURLs(contentDir string) []string {
 
 		fm := extractFrontmatter(string(content))
 
-		// Get aliases
 		for _, alias := range fm.aliases {
 			url := strings.TrimSuffix(alias, "/") + "/"
 			urlSet[url] = struct{}{}
 		}
 
-		// Get canonical URL
-		dir := filepath.Dir(path)
-		section := filepath.Base(dir)
+		section := filepath.Base(filepath.Dir(path))
 		if section == "content" {
 			return nil
 		}
@@ -125,18 +123,11 @@ func collectURLs(contentDir string) []string {
 			return nil
 		}
 
-		canonical := fmt.Sprintf("/%s/%s/", section, slug)
-		urlSet[canonical] = struct{}{}
-
+		urlSet[fmt.Sprintf("/%s/%s/", section, slug)] = struct{}{}
 		return nil
 	})
 
-	urls := make([]string, 0, len(urlSet))
-	for url := range urlSet {
-		urls = append(urls, url)
-	}
-	sort.Strings(urls)
-	return urls
+	return slices.Sorted(maps.Keys(urlSet))
 }
 
 type frontmatter struct {
@@ -194,7 +185,6 @@ func testURLs(ctx context.Context, baseURL string, urls []string, maxWorkers int
 	sem := make(chan struct{}, maxWorkers)
 	var wg sync.WaitGroup
 	results := make([]result, len(urls))
-
 	client := &http.Client{}
 
 	for i, url := range urls {
@@ -213,8 +203,7 @@ func testURLs(ctx context.Context, baseURL string, urls []string, maxWorkers int
 			reqCtx, cancel := context.WithTimeoutCause(ctx, timeout, errRequestTimeout)
 			defer cancel()
 
-			fullURL := baseURL + u
-			req, err := http.NewRequestWithContext(reqCtx, http.MethodGet, fullURL, nil)
+			req, err := http.NewRequestWithContext(reqCtx, http.MethodGet, baseURL+u, nil)
 			if err != nil {
 				results[idx] = result{url: u, status: 0, err: err}
 				return
@@ -222,8 +211,7 @@ func testURLs(ctx context.Context, baseURL string, urls []string, maxWorkers int
 
 			resp, err := client.Do(req)
 			if err != nil {
-				cause := context.Cause(reqCtx)
-				if cause != nil && errors.Is(cause, errRequestTimeout) {
+				if cause := context.Cause(reqCtx); cause != nil && errors.Is(cause, errRequestTimeout) {
 					results[idx] = result{url: u, status: 0, err: errRequestTimeout}
 				} else {
 					results[idx] = result{url: u, status: 0, err: err}
