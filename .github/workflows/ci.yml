@@ -48,20 +48,6 @@ jobs:
           HUGO_ENV: production
         run: hugo --gc --minify
 
-      - name: Create directories for alias redirects
-        run: |
-          # Find alias redirect files (small HTML with meta refresh) and create
-          # directory versions so both /path and /path/ work
-          find public -name "*.html" -size -1k | while read f; do
-            if grep -q 'http-equiv=refresh' "$f" 2>/dev/null; then
-              dir="${f%.html}"
-              if [ ! -d "$dir" ]; then
-                mkdir -p "$dir"
-                cp "$f" "$dir/index.html"
-              fi
-            fi
-          done
-
       - name: Build Pagefind search index
         run: npx -y pagefind
 
