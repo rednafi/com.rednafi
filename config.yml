@@ -196,19 +196,16 @@ markup:
     renderer:
       unsafe: true
 
-uglyURLs: true
-
 mediaTypes:
   text/markdown:
     suffixes: ["md"]
 
 outputFormats:
-  HTML:
-    noUgly: true
   markdown:
     mediaType: text/markdown
     isPlainText: true
     notAlternative: true
+    ugly: true
 
 outputs:
   home: ["HTML", "RSS", "JSON"]
