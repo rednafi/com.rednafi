@@ -192,11 +192,11 @@ functionalities of the previously defined `Calc` class. Here, I've inherited fro
 informal interface `ICalc` and implemented all the methods with additional info logging
 capability.
 
-Although writing informal interfaces is trivial, there are multiple issues that plague
-them. The user of the interface class can still instantiate it like a normal class and won't
-be able to tell the difference between it and a concrete class until she tries to use any
-of the methods define inside the interface. Only then the methods will throw exceptions.
-This can have unintended side effects.
+Although writing informal interfaces is trivial, there are multiple issues that plague them.
+The user of the interface class can still instantiate it like a normal class and won't be
+able to tell the difference between it and a concrete class until she tries to use any of
+the methods define inside the interface. Only then the methods will throw exceptions. This
+can have unintended side effects.
 
 Moreover, informal interfaces won't compel you to implement all the methods in the
 subclasses. You can easily get away without implementing a particular method defined in the
@@ -312,9 +312,9 @@ add, div, mul, sub
 ```
 
 The error message clearly states that you can't instantiate the class `ICalc` directly at
-all. You have to make a subclass of `ICalc` and implement all the abstract methods and only then
-you'll be able to make an instance of the subclass. The subclassing and implementation part
-is same as before.
+all. You have to make a subclass of `ICalc` and implement all the abstract methods and only
+then you'll be able to make an instance of the subclass. The subclassing and implementation
+part is same as before.
 
 ```py
 class Calc(ICalc):
@@ -516,8 +516,8 @@ Imagine you're baking chocolate brownies. Now, you can have them without any ext
 which is fine or you can top them with cream cheese, caramel sauce, chocolate chips etc.
 Usually you don't make the extra toppings yourself, rather you prepare the brownies and use
 off the shelf toppings. This also gives you the ability to mix and match different
-combinations of toppings to spruce up the flavors quickly. However, making the toppings
-from scratch would be a lengthy process and doing it over and over again can ruin the fun of
+combinations of toppings to spruce up the flavors quickly. However, making the toppings from
+scratch would be a lengthy process and doing it over and over again can ruin the fun of
 baking.
 
 While creating software, there's sometimes a limit to the depth we should go. When pieces of

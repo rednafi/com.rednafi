@@ -723,8 +723,8 @@ the order of the decorators and see what happens!
 While defining the `retry` decorator in the previous section, you may have noticed that I've
 hard coded the number of times I'd like the function to retry if an error occurs. It'd be
 handy if you could inject the number of tries as a parameter into the decorator and make it
-work accordingly. This isn't a trivial task and you'll need three levels of nested
-functions to achieve that.
+work accordingly. This isn't a trivial task and you'll need three levels of nested functions
+to achieve that.
 
 Before doing that let's cook up a trivial example of how you can define decorators with
 parameters.

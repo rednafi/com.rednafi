@@ -122,8 +122,8 @@ d["#" * 4097] = 1
 print(d.popitem()[0] is k)  # prints False
 ```
 
-This will print `False` as the key in this case won't be interned. Dictionary value
-access is slower if the key isn't interned. Let's test that out:
+This will print `False` as the key in this case won't be interned. Dictionary value access
+is slower if the key isn't interned. Let's test that out:
 
 ```py
 # src.py
