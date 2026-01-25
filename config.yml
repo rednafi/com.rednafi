@@ -196,20 +196,9 @@ markup:
     renderer:
       unsafe: true
 
-mediaTypes:
-  text/markdown:
-    suffixes: ["md"]
-
-outputFormats:
-  markdown:
-    mediaType: text/markdown
-    isPlainText: true
-    notAlternative: true
-    ugly: true
-
 outputs:
   home: ["HTML", "RSS", "JSON"]
-  page: ["HTML", "markdown"]
+  page: ["HTML"]
   section: ["HTML", "RSS"]
   taxonomy: ["HTML", "RSS"]
   term: ["HTML", "RSS"]
