@@ -4,10 +4,13 @@ package main
 
 import (
 	"bufio"
+	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"regexp"
 	"sort"
@@ -22,16 +25,24 @@ const (
 	colorReset = "\033[0m"
 )
 
+var errRequestTimeout = errors.New("request timeout")
+
 type result struct {
 	url    string
 	status int
+	err    error
 }
 
 func main() {
 	baseURL := flag.String("url", "http://localhost:1313", "Base URL to test")
 	contentDir := flag.String("content", "content", "Content directory")
 	maxWorkers := flag.Int("workers", 100, "Max concurrent requests")
+	timeout := flag.Duration("timeout", 10*time.Second, "Request timeout")
 	flag.Parse()
+
+	// Handle interrupt
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer cancel()
 
 	fmt.Printf("Testing URLs against: %s\n", *baseURL)
 	fmt.Println(strings.Repeat("=", 50))
@@ -40,7 +51,7 @@ func main() {
 	fmt.Printf("\nCollected %d URLs to test\n", len(urls))
 	fmt.Println(strings.Repeat("-", 50))
 
-	results := testURLs(*baseURL, urls, *maxWorkers)
+	results := testURLs(ctx, *baseURL, urls, *maxWorkers, *timeout)
 
 	var passed, failed int
 	var failedURLs []result
@@ -50,7 +61,11 @@ func main() {
 			fmt.Printf("%s✓%s %s\n", colorGreen, colorReset, r.url)
 			passed++
 		} else {
-			fmt.Printf("%s✗%s %s (status: %d)\n", colorRed, colorReset, r.url, r.status)
+			errMsg := ""
+			if r.err != nil {
+				errMsg = fmt.Sprintf(", err: %v", r.err)
+			}
+			fmt.Printf("%s✗%s %s (status: %d%s)\n", colorRed, colorReset, r.url, r.status, errMsg)
 			failed++
 			failedURLs = append(failedURLs, r)
 		}
@@ -175,35 +190,49 @@ func extractFrontmatter(content string) frontmatter {
 	return fm
 }
 
-func testURLs(baseURL string, urls []string, maxWorkers int) []result {
-	// Buffered channel as semaphore
+func testURLs(ctx context.Context, baseURL string, urls []string, maxWorkers int, timeout time.Duration) []result {
 	sem := make(chan struct{}, maxWorkers)
 	var wg sync.WaitGroup
 	results := make([]result, len(urls))
 
-	client := &http.Client{
-		Timeout: 10 * time.Second,
-	}
+	client := &http.Client{}
 
 	for i, url := range urls {
 		wg.Add(1)
 		go func(idx int, u string) {
 			defer wg.Done()
 
-			sem <- struct{}{}        // Acquire
-			defer func() { <-sem }() // Release
+			select {
+			case <-ctx.Done():
+				results[idx] = result{url: u, status: 0, err: ctx.Err()}
+				return
+			case sem <- struct{}{}:
+				defer func() { <-sem }()
+			}
+
+			reqCtx, cancel := context.WithTimeoutCause(ctx, timeout, errRequestTimeout)
+			defer cancel()
 
 			fullURL := baseURL + u
-			resp, err := client.Get(fullURL)
-
-			r := result{url: u}
+			req, err := http.NewRequestWithContext(reqCtx, http.MethodGet, fullURL, nil)
 			if err != nil {
-				r.status = 0
-			} else {
-				r.status = resp.StatusCode
-				resp.Body.Close()
+				results[idx] = result{url: u, status: 0, err: err}
+				return
 			}
-			results[idx] = r
+
+			resp, err := client.Do(req)
+			if err != nil {
+				cause := context.Cause(reqCtx)
+				if cause != nil && errors.Is(cause, errRequestTimeout) {
+					results[idx] = result{url: u, status: 0, err: errRequestTimeout}
+				} else {
+					results[idx] = result{url: u, status: 0, err: err}
+				}
+				return
+			}
+			defer resp.Body.Close()
+
+			results[idx] = result{url: u, status: resp.StatusCode}
 		}(i, url)
 	}
 
