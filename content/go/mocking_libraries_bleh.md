@@ -10,6 +10,14 @@ description: >-
     functions, methods, interfaces, HTTP calls, and time using only the standard library
 ---
 
+> _There are frameworks that generate those kind of fakes, and one of them is called
+> GoMock... they're fine, but I find that on balance, the handwritten fakes tend to be
+> easier to reason about and clearer to sort of see what's going on, but I'm not an
+> enterprise Go programmer so maybe people do need that, so I don't know, but that's my
+> advice._
+>
+> _— Andrew Gerrand, [Testing Techniques (46:44)]_
+
 I have nothing against mocking libraries like [gomock] or [mockery]. I use them all the
 time, both at work and outside. But one thing I've noticed is that generating mocks often
 leads to poorly designed tests and increases onboarding time for a codebase.
@@ -779,5 +787,8 @@ interactions].
 
 [durably blocked]:
     https://pkg.go.dev/testing/synctest#hdr-Blocking
+
+[Testing Techniques (46:44)]:
+    https://www.youtube.com/watch?v=ndmB0bj7eyw&t=2804s
 
 <!-- prettier-ignore-end -->
