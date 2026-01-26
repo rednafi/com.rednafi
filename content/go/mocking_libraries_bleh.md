@@ -12,8 +12,8 @@ description: >-
 
 > _There are frameworks that generate those kind of fakes, and one of them is called
 > GoMock... they're fine, but I find that on balance, the handwritten fakes tend to be
-> easier to reason about and clearer to sort of see what's going on, but I'm not an
-> enterprise Go programmer so maybe people do need that, so I don't know, but that's my
+> easier to reason about and clearer to sort of see what's going on. But I'm not an
+> enterprise Go programmer. Maybe people do need that, so I don't know, but that's my
 > advice._
 >
 > _— Andrew Gerrand, [Testing Techniques (46:44)]_
