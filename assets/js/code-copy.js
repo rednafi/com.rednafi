@@ -4,12 +4,21 @@ document.querySelectorAll('pre > code').forEach(function(codeblock) {
 
     var copybutton = document.createElement('button');
     copybutton.classList.add('copy-code');
+    copybutton.type = 'button';
+    copybutton.setAttribute('aria-label', 'Copy code to clipboard');
     copybutton.innerHTML = window.codeCopyText || 'copy';
 
     function copyingDone() {
         copybutton.innerHTML = window.codeCopiedText || 'copied!';
+        copybutton.setAttribute('aria-label', 'Code copied to clipboard');
+        // Announce to screen readers
+        var announcer = document.getElementById('sr-announcements');
+        if (announcer) {
+            announcer.textContent = 'Code copied to clipboard';
+        }
         setTimeout(function() {
             copybutton.innerHTML = window.codeCopyText || 'copy';
+            copybutton.setAttribute('aria-label', 'Copy code to clipboard');
         }, 2000);
     }
 

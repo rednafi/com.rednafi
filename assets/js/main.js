@@ -1,8 +1,14 @@
-// Menu scroll position persistence
+// Menu scroll position persistence (deferred to avoid forced reflow during load)
 (function() {
     var menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        // Defer scroll restoration to after paint to avoid blocking LCP
+        requestAnimationFrame(function() {
+            var savedPosition = localStorage.getItem("menu-scroll-position");
+            if (savedPosition) {
+                menu.scrollLeft = savedPosition;
+            }
+        });
         var scrollTimeout;
         menu.onscroll = function() {
             clearTimeout(scrollTimeout);
@@ -69,6 +75,17 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 document.body.classList.add('dark');
                 localStorage.setItem("pref-theme", 'dark');
             }
+        });
+    }
+})();
+
+// Hamburger menu aria-expanded toggle
+(function() {
+    var hamburgerToggle = document.getElementById("hamburger-toggle");
+    var hamburgerLabel = document.querySelector('.hamburger-label');
+    if (hamburgerToggle && hamburgerLabel) {
+        hamburgerToggle.addEventListener("change", function() {
+            hamburgerLabel.setAttribute("aria-expanded", this.checked ? "true" : "false");
         });
     }
 })();
