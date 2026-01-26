@@ -8,7 +8,7 @@
 {{- end }}
 
 {{- if (not site.Params.disableScrollToTop) }}
-<a href="#top" aria-label="Go to top of page" title="Go to Top" class="top-link" id="top-link" accesskey="g" role="button">
+<a href="#top" aria-label="Go to top of page" title="Go to Top" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor" width="12" height="6" aria-hidden="true">
         <path d="M12 6H0l6-6z" />
     </svg>
@@ -16,6 +16,11 @@
 {{- end }}
 
 {{- partial "extend_footer.html" . }}
+
+{{- /* Google Analytics - loaded after main content for better performance */ -}}
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- partial "google_analytics.html" . }}
+{{- end }}
 
 {{- /* Consolidated and minified JavaScript */ -}}
 {{- $mainJS := resources.Get "js/main.js" | minify | fingerprint }}
