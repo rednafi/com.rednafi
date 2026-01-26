@@ -105,6 +105,12 @@ button#theme-toggle svg {
   transform: translateY(0);
 }
 
+/* Focus style for keyboard accessibility */
+.hamburger-checkbox:focus-visible + .hamburger-label {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 /* Higher specificity to override #menu styles */
 #menu .hamburger-dropdown li {
   margin: 0;
