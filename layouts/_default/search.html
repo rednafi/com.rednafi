@@ -27,6 +27,10 @@
             placeholder: "{{ .Params.placeholder | default (printf "%s" .Title) }}",
             processTerm: (term) => {
                 return term.length >= 3 ? term : null;
+            },
+            ranking: {
+                pageWeight: 5.0,
+                termFrequency: 0.5
             }
         });
     });
