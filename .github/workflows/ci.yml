@@ -1,4 +1,4 @@
-name: Deploy Hugo site to Pages
+name: Deploy Hugo site to Cloudflare Pages
 
 on:
   push:
@@ -7,45 +7,37 @@ on:
   schedule:
     - cron: "0 0 * * 1"
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: false
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.154.2
     steps:
-      - name: Install Hugo CLI
-        run: "wget -O ${{ runner.temp }}/hugo.deb https://github.com/\
-          gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}\
-          _linux-amd64.deb\
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb"
-
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+      - name: Cache Hugo
+        uses: actions/cache@v4
+        id: cache-hugo
+        with:
+          path: ~/hugo.deb
+          key: hugo-${{ env.HUGO_VERSION }}
+
+      - name: Download Hugo
+        if: steps.cache-hugo.outputs.cache-hit != 'true'
+        run: wget -q -O ~/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+
+      - name: Install Hugo
+        run: sudo dpkg -i ~/hugo.deb
 
       - name: Build with Hugo
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
         run: hugo --gc --minify
 
       - name: Build Pagefind search index
@@ -64,30 +56,9 @@ jobs:
           go run scripts/test_urls.go -url http://localhost:1313
           pkill -f serve || true
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./public
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./public
-
-      - name: Extract artifact
-        run: |
-          cd public
-          tar -xvf artifact.tar
-          rm artifact.tar
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: f2c208344e8adb0cf3ea1e48dccf7218
-          command: pages deploy ./public --project-name=rednafi-com
+          command: pages deploy ./public --project-name=rednafi
