@@ -57,8 +57,7 @@ jobs:
           pkill -f serve || true
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: f2c208344e8adb0cf3ea1e48dccf7218
-          command: pages deploy ./public --project-name=rednafi
+        run: npx wrangler pages deploy ./public --project-name=rednafi
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: f2c208344e8adb0cf3ea1e48dccf7218
