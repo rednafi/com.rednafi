@@ -736,13 +736,13 @@ instantly rather than waiting for real time to pass.
 
 These are the most common ones where I typically avoid opting for mocking libraries. But
 there are cases when I still like to generate mocks for an interface. One example that comes
-to mind is testing gRPC servers. I’m sure I’m forgetting some other cases where I regularly
+to mind is testing gRPC servers. I'm sure I'm forgetting some other cases where I regularly
 use mocking libraries.
 
 The point is not to discourage the use of mocking libraries or to make a general statement
-that "all mocking libraries are bad." It’s that these mocking libraries have costs
+that "all mocking libraries are bad." It's that these mocking libraries have costs
 associated with them. Code generation is fun, but it's one extra step that you have to teach
-someone who’s onboarding to your codebase.
+someone who's onboarding to your codebase.
 
 Also, if you're using LLMs to generate tests, you may want to write some tests manually to
 give the tool a sense of how you want your tests written, so it doesn't pull in the universe
