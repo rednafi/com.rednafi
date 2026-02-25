@@ -261,7 +261,6 @@ details of authentication and the actual endpoint of the MapBox API.
 ```py
 from fastapi import FastAPI
 
-
 app = FastAPI()
 
 

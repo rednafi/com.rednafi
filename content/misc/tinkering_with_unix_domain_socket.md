@@ -318,10 +318,8 @@ from starlette.routing import Route
 
 
 async def index(request: Request) -> HTMLResponse:
-    return HTMLResponse(
-        """<h1>Hello, world!</h1>
-    <p>This is the index page.</p>"""
-    )
+    return HTMLResponse("""<h1>Hello, world!</h1>
+    <p>This is the index page.</p>""")
 
 
 app = Starlette(

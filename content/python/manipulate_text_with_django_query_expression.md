@@ -83,7 +83,6 @@ from django.db.models.functions import (
     StrIndex,
 )
 
-
 file_cabinet = polls_models.FileCabinet.objects.annotate(
     last_occur=StrIndex(Reverse(F("file_path")), Value("/")),
     file_name=Right(F("file_path"), F("last_occur") - 1),
