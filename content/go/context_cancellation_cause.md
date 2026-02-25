@@ -467,15 +467,20 @@ most useful for reasons set by your own code.
 
 ## Closing words
 
-I default to the manual timer pattern now. The extra three lines over `WithTimeoutCause`
-buy you causes on every path, and you stop wondering why things were canceled.
+Most of the time, `WithCancelCause` is all you need. It covers explicit cancellation with
+a specific reason, and `context.Cause` gives you a way to read it back. If you also need a
+timeout, `WithTimeoutCause` labels the deadline path without extra wiring. The gotcha is
+that `defer cancel()` on the normal return path discards the cause, so if you need causes
+on every path, including normal completion, the manual timer pattern fills that gap. The
+stacked approach on top of that is for when downstream code also needs `DeadlineExceeded`.
 
 The cause APIs have seen steady adoption since Go 1.20. `golang.org/x/sync/errgroup` uses
 `WithCancelCause` internally since v0.3.0, so `context.Cause(ctx)` on an errgroup-canceled
-context returns the actual goroutine error. [docker cli] uses it to distinguish OS signals from normal cancellation.
-[kubernetes cluster-api] migrated its codebase to the `*Cause` variants. gRPC-Go had a
-[proposal] to use it for telling apart client disconnects, gRPC timeouts, and connection
-closures (closed without implementation, but the motivation shows the pattern's appeal).
+context returns the actual goroutine error. [docker cli] uses it to distinguish OS signals
+from normal cancellation. [kubernetes cluster-api] migrated its codebase to the `*Cause`
+variants. gRPC-Go had a [proposal] to use it for telling apart client disconnects, gRPC
+timeouts, and connection closures (closed without implementation, but the motivation shows
+the pattern's appeal).
 
 Runnable examples:
 
