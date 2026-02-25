@@ -478,9 +478,8 @@ The cause APIs have seen steady adoption since Go 1.20. `golang.org/x/sync/errgr
 `WithCancelCause` internally since v0.3.0, so `context.Cause(ctx)` on an errgroup-canceled
 context returns the actual goroutine error. [docker cli] uses it to distinguish OS signals
 from normal cancellation. [kubernetes cluster-api] migrated its codebase to the `*Cause`
-variants. gRPC-Go had a [proposal] to use it for telling apart client disconnects, gRPC
-timeouts, and connection closures (closed without implementation, but the motivation shows
-the pattern's appeal).
+variants. gRPC-Go had a [proposal] to use it for distinguishing client disconnects from gRPC
+timeouts and connection closures.
 
 Runnable examples:
 
@@ -495,7 +494,7 @@ Runnable examples:
 <!-- prettier-ignore-start -->
 
 [context package documentation]:
-    https://pkg.go.dev/context
+    https://pkg.go.dev/context#WithCancel
 
 [go 1.20]:
     https://go.dev/doc/go1.20#context
