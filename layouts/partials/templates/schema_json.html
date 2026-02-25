@@ -45,6 +45,7 @@
   "@id": {{ printf "%s#website" site.Home.Permalink }},
   "url": {{ site.Home.Permalink }},
   "name": {{ site.Title }},
+  "alternateName": [{{ site.Params.author }}, "rednafi.com"],
   "description": {{ $siteDesc }},
   "inLanguage": "en-US",
   "potentialAction": {
@@ -59,6 +60,9 @@
     "@id": {{ $authorId }}
   },
   "publisher": {
+    "@id": {{ $authorId }}
+  },
+  "mainEntity": {
     "@id": {{ $authorId }}
   }
 }
