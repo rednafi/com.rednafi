@@ -733,11 +733,9 @@ vt = VerboseTuple(1, 3, 4)
 
 print(vt)
 print(f"Abstract Methods: {set(Sequence.__abstractmethods__)}")
-print(
-    f"Mixin Methods: {
+print(f"Mixin Methods: {
     {k for k, v in Sequence.__dict__.items() if callable(v)}
-}"
-)
+}")
 ```
 
 ```txt
@@ -884,11 +882,9 @@ vl2 = VerboseList(7, 8, 9)
 
 print(vl)
 print(f"Abstract Methods: {set(MutableSequence.__abstractmethods__)}")
-print(
-    f"Mixin Methods: {
+print(f"Mixin Methods: {
         {k for k, v in MutableSequence.__dict__.items() if callable(v)}
-    }"
-)
+    }")
 ```
 
 ```txt
@@ -1017,11 +1013,9 @@ vf2 = VerboseFrozenDict(**{"b": "orange", "c": "mango"})
 
 print(vf)
 print(f"Abstract Methods: {set(Mapping.__abstractmethods__)}")
-print(
-    f"Mixin Methods: {
+print(f"Mixin Methods: {
         {k for k, v in Mapping.__dict__.items() if callable(v)}
-    }"
-)
+    }")
 ```
 
 ```txt
@@ -1174,11 +1168,9 @@ vd = VerboseDict(**{"a": "apple", "b": "ball", "c": "cat"})
 
 print(vd)
 print(f"Abstract Methods: {set(MutableMapping.__abstractmethods__)}")
-print(
-    f"Mixin Methods: {
+print(f"Mixin Methods: {
         {k for k, v in MutableMapping.__dict__.items() if callable(v)}
-    }"
-)
+    }")
 ```
 
 ```txt
