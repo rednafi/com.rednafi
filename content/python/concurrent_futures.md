@@ -137,7 +137,6 @@ complete and then you can collect the results.
 ```py
 import concurrent.futures
 
-
 with concurrent.futures.Executor() as executor:
     futures = {executor.submit(perform, task) for task in get_tasks()}
 
@@ -165,7 +164,6 @@ tasks, you need to track those yourself.
 ```py
 import concurrent.futures
 
-
 with concurrent.futures.Executor() as executor:
     futures = {executor.submit(perform, task): task for task in get_tasks()}
 
@@ -184,7 +182,6 @@ Another way the results can be collected in the same order they're scheduled is 
 
 ```py
 import concurrent.futures
-
 
 with concurrent.futures.Executor() as executor:
     for arg, res in zip(get_tasks(), executor.map(perform, get_tasks())):

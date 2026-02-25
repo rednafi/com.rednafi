@@ -375,7 +375,6 @@ import httpx
 from httpx import ConnectTimeout, ReadTimeout
 from typing import Any
 
-
 logging.basicConfig(level=logging.INFO)
 
 D = dict[str, Any]

@@ -31,12 +31,10 @@ conn = sqlite3.connect(":memory:")
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
     create table if not exists
         stat (id integer primary key, cat text, score real);
-    """
-    )
+    """)
 
     c.execute("""insert into stat (cat, score) values ('a', 1.0);""")
     c.execute("""insert into stat (cat, score) values ('b', 2.0);""")
@@ -62,12 +60,10 @@ conn = sqlite3.connect(":memory:")
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
     create table if not exists
         stat (id integer primary key, cat text, score real);
-    """
-    )
+    """)
 
     # Data needs to be passed as an iterable of tuples.
     data = (
@@ -123,14 +119,12 @@ def sha256(t: str) -> str:
 conn.create_function("sha256", 1, sha256)
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists users (
             username text,
             password text
         );
-    """
-    )
+    """)
     c.execute(
         "insert into users values (?, sha256(?));",
         ("admin", "password"),
@@ -190,13 +184,11 @@ class Mult:
 conn.create_aggregate("mult", 1, Mult)
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists series (
             val integer
         );
-    """
-    )
+    """)
     c.execute("insert into series (val) values (?);", (2,))
     c.execute("insert into series (val) values (?);", (3,))
 
@@ -258,13 +250,11 @@ class Color(enum.Enum):
 sqlite3.register_adapter(Color, lambda color: color.value)
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists colors (
             name integer
         );
-    """
-    )
+    """)
     c.execute("insert into colors (name) values (?);", (Color.RED,))
     c.execute("insert into colors (name) values (?);", (Color.GREEN,))
 
@@ -317,13 +307,11 @@ conn = sqlite3.connect(
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists colors (
             name text
         );
-    """
-    )
+    """)
     c.execute("insert into colors (name) values (?);", ("red",))
     c.execute("insert into colors (name) values (?);", ("green",))
     c.execute("insert into colors (name) values (?);", ("blue",))
@@ -374,11 +362,9 @@ conn = sqlite3.connect(
 
 with conn:
     c = conn.cursor()
-    c.execute(
-        """
+    c.execute("""
         create table if not exists
-        timekeeper (id integer primary key, d date, dt timestamp);"""
-    )
+        timekeeper (id integer primary key, d date, dt timestamp);""")
     tz = zoneinfo.ZoneInfo("America/New_York")
     dt = datetime.datetime.now(tz)
     d = dt.date()
@@ -387,12 +373,10 @@ with conn:
         "insert into timekeeper (d, dt) values (?, ?);",
         ((d, dt)),
     )
-    result = c.execute(
-        """
+    result = c.execute("""
         select
             d as "d [date]", dt as "dt [timestamp]"
-            from timekeeper;"""
-    ).fetchall()
+            from timekeeper;""").fetchall()
     print(result)
 ```
 
@@ -453,13 +437,11 @@ def authorizer(action, arg1, arg2, dbname, trigger):
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists colors (
             name text
         );
-    """
-    )
+    """)
     # After creating the table, let's make sure users can't perform
     # certain DDL operations.
     conn.set_authorizer(authorizer)
@@ -508,7 +490,6 @@ result comes out as a list of dictionaries instead of a list of tuples.
 # src.py
 import sqlite3
 
-
 conn = sqlite3.connect(":memory:")
 
 
@@ -531,14 +512,12 @@ conn.row_factory = row_factory
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists colors (
             name text,
             hex text
         );
-    """
-    )
+    """)
 
     c.execute(
         "insert into colors (name, hex) values (?, ?);",
@@ -593,14 +572,12 @@ conn.row_factory = sqlite3.Row
 c = conn.cursor()
 
 with conn:
-    c.execute(
-        """
+    c.execute("""
         create table if not exists colors (
             name text,
             hex text
         );
-    """
-    )
+    """)
 
     c.executemany(
         "insert into colors (name, hex) values (?, ?);",
@@ -646,7 +623,6 @@ function to the text columns to translate the color names to English.
 ```py
 # src.py
 import sqlite3
-
 
 conn = sqlite3.connect(":memory:")
 
@@ -717,10 +693,8 @@ with conn:
         (("το κόκκινο",), ("সবুজ",)),
     )
 
-    result = c.execute(
-        """select * from colors
-            order by name collate reverse;"""
-    ).fetchall()
+    result = c.execute("""select * from colors
+            order by name collate reverse;""").fetchall()
     print(result)
 ```
 
@@ -864,14 +838,12 @@ with ExitStack() as stack:
 
     cursor_src = conn_src.cursor()
 
-    cursor_src.execute(
-        """
+    cursor_src.execute("""
         create table if not exists colors (
             name text,
             hex text
         );
-    """
-    )
+    """)
 
     cursor_src.executemany(
         "insert into colors (name, hex) values (?, ?);",
@@ -919,14 +891,12 @@ conn_dst = sqlite3.connect(":memory:")
 with conn_src:
     cursor_src = conn_src.cursor()
 
-    cursor_src.execute(
-        """
+    cursor_src.execute("""
         create table if not exists colors (
             name text,
             hex text
         );
-    """
-    )
+    """)
 
     cursor_src.executemany(
         "insert into colors (name, hex) values (?, ?);",
@@ -967,14 +937,12 @@ conn_dst = sqlite3.connect("dst.db")
 with conn_src:
     cursor_src = conn_src.cursor()
 
-    cursor_src.execute(
-        """
+    cursor_src.execute("""
         create table if not exists colors (
             name text,
             hex text
         );
-    """
-    )
+    """)
 
     cursor_src.executemany(
         "insert into colors (name, hex) values (?, ?);",
@@ -1023,11 +991,9 @@ with conn:
     c = conn.cursor()
 
     # Unindexed ensures that uuid field doesn't appear in the ft5 index.
-    c.execute(
-        """
+    c.execute("""
         create virtual table
-        if not exists colors using fts5(uuid unindexed, name, hex);"""
-    )
+        if not exists colors using fts5(uuid unindexed, name, hex);""")
     get_uuid = lambda: str(uuid.uuid4())  # noqa: E731
 
     color_data = (
@@ -1041,10 +1007,8 @@ with conn:
         (get_uuid(), "white", "#ffffff"),
     )
     c.executemany("insert into colors values (?, ?, ?);", color_data)
-    result = c.execute(
-        """select * from colors where name match
-            'cyan OR red NOT magenta';"""
-    ).fetchall()
+    result = c.execute("""select * from colors where name match
+            'cyan OR red NOT magenta';""").fetchall()
     print(result)
 ```
 
