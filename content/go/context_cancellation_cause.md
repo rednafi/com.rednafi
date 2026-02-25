@@ -1,5 +1,5 @@
 ---
-title: Debugging context cancellation in Go
+title: What canceled my Go context?
 date: 2026-02-24
 slug: context-cancellation-cause
 aliases:
@@ -21,14 +21,13 @@ It could be any of:
 - The server started shutting down
 - Some code somewhere called `cancel()` explicitly
 
-By default, there's no reason attached. Go 1.20 and 1.21 added cause-tracking functions to
-the `context` package that fix this, but there's a subtlety with `WithTimeoutCause` that
-most examples skip.
+Go 1.20 and 1.21 added cause-tracking functions to the `context` package that fix this,
+but there's a subtlety with `WithTimeoutCause` that most examples skip.
 
 ## What "context canceled" actually tells you
 
-To see why this is frustrating, take something like this. A function that processes an
-order by calling three services, one after another, under a shared 5-second timeout:
+Here's a function that processes an order by calling three services under a shared 5-second
+timeout:
 
 ```go
 func processOrder(ctx context.Context, orderID string) error {
@@ -50,8 +49,7 @@ func processOrder(ctx context.Context, orderID string) error {
   [context package documentation]
 - (3) if anything goes wrong, including a context cancellation, the error is returned as-is
 
-The `return err` on line (3) is the common pattern, and it's where the debugging problem
-starts. When a context gets canceled, the underlying reason is either `context.Canceled` or
+When a context gets canceled, the underlying reason is either `context.Canceled` or
 `context.DeadlineExceeded`. Libraries wrap these in their own types (`*url.Error` for
 `net/http`, gRPC status codes for `grpc`), but `errors.Is` still matches the sentinel.
 
@@ -115,7 +113,7 @@ production experience:
 >
 > _-- [bullgare on #51365]_
 
-That proposal resulted in the cause APIs that shipped in [go 1.20 release notes].
+That proposal led to the cause APIs that shipped in [go 1.20].
 
 ## Attaching a cause with WithCancelCause
 
@@ -456,7 +454,7 @@ func withCause(next http.Handler) http.Handler {
 - (1) wrap the request context with `WithCancelCause`
 - (2) default cause for normal completion
 - (3) only fires if the context was canceled *during* request handling (client disconnect,
-  handler cancel), not on normal completion — `defer cancel(...)` hasn't run yet at this
+  handler cancel), not on normal completion; `defer cancel(...)` hasn't run yet at this
   point
 
 Any handler deeper in the stack that calls `cancel(specificErr)` sets the cause. First
@@ -494,8 +492,8 @@ Runnable examples:
 [context package documentation]:
     https://pkg.go.dev/context
 
-[go 1.20 release notes]:
-    https://go.dev/blog/go1.20
+[go 1.20]:
+    https://go.dev/doc/go1.20#context
 
 [proposal #51365]:
     https://github.com/golang/go/issues/51365
