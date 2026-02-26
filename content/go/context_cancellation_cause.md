@@ -12,17 +12,18 @@ description: >-
     covers every path.
 ---
 
-I've spent more time than I'd like debugging `context canceled` and
-`context deadline exceeded` errors. The error tells you a context was canceled but not why.
-It could be any of:
+I've spent way more hours than I'd like to admit debugging `context canceled` and
+`context deadline exceeded` errors. These errors usually tell you that a context was
+canceled, but not exactly why. In a typical client-server scenario, the reason could be any
+of the following:
 
 - The client disconnected
 - A parent deadline expired
 - The server started shutting down
 - Some code somewhere called `cancel()` explicitly
 
-Go 1.20 and 1.21 added cause-tracking functions to the `context` package that fix this,
-but there's a subtlety with `WithTimeoutCause` that most examples skip.
+Go 1.20 and 1.21 added cause-tracking functions to the `context` package that fix this, but
+there's a subtlety with `WithTimeoutCause` that most examples skip.
 
 ## What "context canceled" actually tells you
 
@@ -45,8 +46,8 @@ func processOrder(ctx context.Context, orderID string) error {
 ```
 
 - (1) creates a derived context that automatically cancels after 5 seconds
-- (2) cleans up the timer when the function returns, standard practice per the
-  [context package documentation]
+- (2) cleans up the timer when the function returns, standard practice per the [context
+  package documentation]
 - (3) if anything goes wrong, including a context cancellation, the error is returned as-is
 
 When a context gets canceled, the underlying reason is either `context.Canceled` or
@@ -66,8 +67,8 @@ If the 5-second timeout fires while `chargePayment` is waiting on a slow payment
 context deadline exceeded
 ```
 
-Two sentinel errors. No reason, no origin, nothing. The caller of `processOrder` has no
-idea what actually happened.
+Two sentinel errors. No reason, no origin, nothing. The caller of `processOrder` has no idea
+what actually happened.
 
 You'd think wrapping the error helps:
 
@@ -83,9 +84,9 @@ Now the log says:
 checking inventory for ord-123: context canceled
 ```
 
-Better. You know it happened during the inventory check. But you still don't know *why*
-the context was canceled. Was it the 5-second timeout? A parent context's deadline? The
-client hanging up? A graceful shutdown signal? The error doesn't say.
+Better. You know it happened during the inventory check. But you still don't know _why_ the
+context was canceled. Was it the 5-second timeout? A parent context's deadline? The client
+hanging up? A graceful shutdown signal? The error doesn't say.
 
 Without the cause, you can't tell whether to retry, alert, or ignore, and your logs don't
 give on-call enough to triage.
@@ -93,14 +94,15 @@ give on-call enough to triage.
 When this happens in production, you end up scanning logs for other errors around the same
 timestamp, hoping something nearby gives you a clue. If the logs don't help, you trace the
 context from where it was created, through every function that receives it, looking for
-cancel calls and timeouts. In a small service this takes a few minutes. In a larger
-codebase with middleware, interceptors, and nested timeouts, it can take a lot longer.
+cancel calls and timeouts. In a small service this takes a few minutes. In a larger codebase
+with middleware, interceptors, and nested timeouts, it can take a lot longer.
 
-This has been a known pain point in the Go community for years. Bryan C. Mills noted this in [issue #26356] back in 2018:
+This has been a known pain point in the Go community for years. Bryan C. Mills noted this in
+[issue #26356] back in 2018:
 
-> _I've seen this sort of issue crop up several times now. I wonder if context.Context should
-> record a bit of caller information... Then we could add a debugging hook to interrogate
-> *why* a particular context.Context was cancelled._
+> _I've seen this sort of issue crop up several times now. I wonder if `context.Context`
+> should record a bit of caller information... Then we could add a debugging hook to
+> interrogate *why* a particular `context.Context` was cancelled._
 >
 > _-- [bcmills on #26356]_
 
@@ -142,11 +144,11 @@ func processOrder(ctx context.Context, orderID string) error {
 ```
 
 - (1) `cancel(nil)` as the default, sets the cause to `context.Canceled`
-- (2) before returning the error, records a specific reason that includes the original
-  error via `%w`
+- (2) before returning the error, records a specific reason that includes the original error
+  via `%w`
 
-Now you can read the cause with `context.Cause(ctx)`. If `checkInventory` fails because of
-a connection error, the cause comes back as:
+Now you can read the cause with `context.Cause(ctx)`. If `checkInventory` fails because of a
+connection error, the cause comes back as:
 
 ```
 order ord-123: inventory check failed: connection refused
@@ -169,8 +171,8 @@ context that wasn't created with one of the cause-aware functions, it returns wh
 `ctx.Err()` returns. On an uncanceled context, it returns `nil`.
 
 This handles explicit cancellation, but the function still has no timeout. The original
-version used `WithTimeout` for the 5-second deadline. To label that timeout with a cause,
-Go 1.21 added `WithTimeoutCause`:
+version used `WithTimeout` for the 5-second deadline. To label that timeout with a cause, Go
+1.21 added `WithTimeoutCause`:
 
 ```go
 ctx, cancel := context.WithTimeoutCause(
@@ -233,26 +235,26 @@ This isn't a bug. `WithTimeoutCause` is a new function, so it could have returne
 `CancelCauseFunc`. The Go team chose not to. rsc explained the reasoning when closing
 [proposal #51365]:
 
-> _WithDeadlineCause and WithTimeoutCause require you to say ahead of time what the cause
-> will be when the timer goes off, and then that cause is used in place of the generic
-> DeadlineExceeded. The cancel functions they return are plain CancelFuncs (with no
-> user-specified cause), not CancelCauseFuncs, the reasoning being that the cancel on one of
-> these is typically just for cleanup and/or to signal teardown that doesn't look at the
+> _`WithDeadlineCause` and `WithTimeoutCause` require you to say ahead of time what the
+> cause will be when the timer goes off, and then that cause is used in place of the generic
+> `DeadlineExceeded`. The cancel functions they return are plain `CancelFuncs` (with no
+> user-specified cause), not `CancelCauseFuncs`, the reasoning being that the cancel on one
+> of these is typically just for cleanup and/or to signal teardown that doesn't look at the
 > cause anyway._
 >
 > _-- [rsc on #51365]_
 
 He also acknowledged that this creates a subtle distinction between the two APIs:
 
-> _That distinction makes sense, but it makes WithDeadlineCause and WithTimeoutCause
-> different in an important, subtle way from WithCancelCause. We missed that in the
+> _That distinction makes sense, but it makes `WithDeadlineCause` and `WithTimeoutCause`
+> different in an important, subtle way from `WithCancelCause`. We missed that in the
 > discussion..._
 >
 > _-- [rsc on #51365]_
 
 So `WithTimeoutCause` only carries the custom cause when the timeout actually fires. On the
-normal return path and on any explicit cancellation path, `defer cancel()` discards it. If you
-have a middleware that logs `context.Cause(ctx)` for every request, it'll see
+normal return path and on any explicit cancellation path, `defer cancel()` discards it. If
+you have a middleware that logs `context.Cause(ctx)` for every request, it'll see
 `context.Canceled` instead of something useful on the most common path.
 
 ## Covering every path with a manual timer
@@ -306,8 +308,8 @@ On normal completion:
 processOrder completed
 ```
 
-This is actually what the stdlib does internally; `WithDeadline` uses `time.AfterFunc`
-under the hood.
+This is actually what the stdlib does internally; `WithDeadline` uses `time.AfterFunc` under
+the hood.
 
 The trade-off is that `ctx.Err()` always returns `context.Canceled`, never
 `context.DeadlineExceeded`, because you're using `WithCancelCause` instead of `WithTimeout`.
@@ -361,8 +363,8 @@ inner. On normal completion, `cancelCause("processOrder completed")` runs first 
 LIFO defer ordering, canceling the outer and propagating to the inner. Then
 `cancelTimeout()` finds the inner already canceled and does nothing.
 
-> Notice the defer ordering. `cancelCause` must be deferred *after* `cancelTimeout` so it
-> runs *before* it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner context
+> Notice the defer ordering. `cancelCause` must be deferred _after_ `cancelTimeout` so it
+> runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner context
 > with `context.Canceled` before `cancelCause` gets a chance to set a meaningful cause.
 
 One subtlety: after line (2), `ctx` points to the inner context. If you call
@@ -372,8 +374,8 @@ lives on the outer context. In practice this doesn't matter because the caller i
 returned `error`, not `context.Cause`, but it's worth knowing if you add logging inside
 `processOrder` itself.
 
-The manual timer pattern is simpler and covers most cases. This stacked approach is for
-when downstream code specifically relies on `errors.Is(err, context.DeadlineExceeded)`.
+The manual timer pattern is simpler and covers most cases. This stacked approach is for when
+downstream code specifically relies on `errors.Is(err, context.DeadlineExceeded)`.
 
 ## Reading and logging the cause
 
@@ -382,8 +384,8 @@ on it. Since the cause in `processOrder` wraps the original error with `%w`, you
 through it to reach the underlying error.
 
 If `checkInventory` failed because the inventory service refused the connection, the cause
-is `"order ord-123: inventory check failed: connection refused"`, and the wrapped error is
-a `*net.OpError`. You can pull it out:
+is `"order ord-123: inventory check failed: connection refused"`, and the wrapped error is a
+`*net.OpError`. You can pull it out:
 
 ```go
 cause := context.Cause(ctx)
@@ -453,7 +455,7 @@ func withCause(next http.Handler) http.Handler {
 
 - (1) wrap the request context with `WithCancelCause`
 - (2) default cause for normal completion
-- (3) only fires if the context was canceled *during* request handling (client disconnect,
+- (3) only fires if the context was canceled _during_ request handling (client disconnect,
   handler cancel), not on normal completion; `defer cancel(...)` hasn't run yet at this
   point
 
@@ -467,11 +469,11 @@ most useful for reasons set by your own code.
 
 ## Closing words
 
-Most of the time, `WithCancelCause` is all you need. It covers explicit cancellation with
-a specific reason, and `context.Cause` gives you a way to read it back. If you also need a
+Most of the time, `WithCancelCause` is all you need. It covers explicit cancellation with a
+specific reason, and `context.Cause` gives you a way to read it back. If you also need a
 timeout, `WithTimeoutCause` labels the deadline path without extra wiring. The gotcha is
-that `defer cancel()` on the normal return path discards the cause, so if you need causes
-on every path, including normal completion, the manual timer pattern fills that gap. The
+that `defer cancel()` on the normal return path discards the cause, so if you need causes on
+every path, including normal completion, the manual timer pattern fills that gap. The
 stacked approach on top of that is for when downstream code also needs `DeadlineExceeded`.
 
 The cause APIs have seen steady adoption since Go 1.20. `golang.org/x/sync/errgroup` uses
