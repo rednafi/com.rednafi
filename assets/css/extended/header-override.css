@@ -43,7 +43,7 @@
 
 /* Menu links */
 #menu a {
-  font-size: 16.5px;
+  font-size: 1.0625rem;
   font-weight: 400;
   color: var(--primary);
 }
