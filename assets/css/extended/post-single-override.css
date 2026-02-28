@@ -35,28 +35,28 @@
 
 .post-title {
   margin-bottom: 2px;
-  font-size: 1.65em;
+  font-size: 1.75em;
 }
 
 .post-content h1 {
-  font-size: 1.55em;
+  font-size: 1.65em;
   margin: 40px auto 24px;
 }
 
 .post-content h2 {
-  font-size: 1.4em;
+  font-size: 1.5em;
   margin: 36px auto 18px;
 }
 
 .post-content h3 {
-  font-size: 1.2em;
+  font-size: 1.25em;
   margin: 28px auto 14px;
 }
 
 .post-content code {
   margin: 0;
   padding: 2px 4px;
-  font-size: 0.90em;
+  font-size: 0.88em;
   line-height: 1.5;
   border-radius: 12px;
   color: var(--code-color);
