@@ -274,7 +274,9 @@ func processOrder(ctx context.Context, orderID string) error {
     defer timer.Stop()  // (4)
 
     if err := checkInventory(ctx, orderID); err != nil {
-        cancel(fmt.Errorf("order %s: inventory check failed: %w", orderID, err))
+        cancel(fmt.Errorf(
+            "order %s: inventory check failed: %w", orderID, err,
+        ))
         return err
     }
     if err := chargePayment(ctx, orderID); err != nil {
