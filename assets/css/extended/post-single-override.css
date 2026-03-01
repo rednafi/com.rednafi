@@ -56,18 +56,18 @@
 .post-content code {
   margin: 0;
   padding: 2px 4px;
-  font-size: 0.88em;
+  font-size: 0.86em;
   line-height: 1.5;
   border-radius: 12px;
   color: var(--code-color);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Geist Mono", monospace;
   font-weight: 400;
 }
 
 .post-content pre code {
   color: inherit;
   background: var(--code-bg);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Geist Mono", monospace;
   font-weight: 400;
 }
 

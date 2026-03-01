@@ -3,8 +3,8 @@
   max-width: calc(720px + var(--gap) * 2);
 }
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 17px;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17.5px;
   line-height: 1.55;
   word-break: break-word;
   background: var(--theme);

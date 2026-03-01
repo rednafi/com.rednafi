@@ -1,32 +1,24 @@
-/* Inter - variable font for body text */
+/* Geist - variable font for body text */
 @font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
+  src: url("/fonts/geist-latin.woff2") format("woff2");
 }
 
+/* Geist Mono - code */
 @font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/inter-latin-italic.woff2") format("woff2");
-}
-
-/* JetBrains Mono - code */
-@font-face {
-  font-family: "JetBrains Mono";
+  font-family: "Geist Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
 }
 
 /* Logo */
 .nav .logo a {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary);
