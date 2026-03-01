@@ -20,6 +20,7 @@
 <meta name="twitter:image:alt" content="{{ .Title }} - {{ site.Title }}" />
 <meta name="twitter:title" content="{{ .Title }}"/>
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .Data.Term}}{{ with index site.Params.taxonomyDescriptions (lower .Data.Term) }}{{ . }}{{ else }}Articles about {{ .Title }} on {{ site.Title }}.{{ end }}{{ else if .IsPage}}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}"/>
+<meta name="twitter:url" content="{{ .Permalink }}" />
 {{ with site.Params.social.twitter -}}
 <meta name="twitter:site" content="@{{ . }}"/>
 <meta name="twitter:creator" content="@{{ . }}"/>
