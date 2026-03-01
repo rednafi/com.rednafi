@@ -190,9 +190,9 @@ menu:
       name: talks
       url: /talks/
       weight: 1
-    - identifier: lore
-      name: lore
-      url: /lore/
+    - identifier: maxims
+      name: maxims
+      url: /maxims/
       weight: 2
     - identifier: blogroll
       name: blogroll
