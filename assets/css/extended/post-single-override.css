@@ -110,7 +110,7 @@
   padding: 24px 24px 24px 40px;
   border-radius: 12px;
   position: relative;
-  font-style: normal;
+  font-style: italic;
 }
 
 .post-content blockquote::before {
