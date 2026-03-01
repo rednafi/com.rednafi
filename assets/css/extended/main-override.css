@@ -14,10 +14,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Fix italic font appearing larger */
-em, i {
-  font-size: 0.98em;
-}
 .page-header h1 {
   font-size: 2rem;
 }
