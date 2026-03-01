@@ -100,20 +100,20 @@ with middleware, interceptors, and nested timeouts, it can take a lot longer.
 This has been a known pain point in the Go community for years. Bryan C. Mills noted this in
 [issue #26356] back in 2018:
 
-> _I've seen this sort of issue crop up several times now. I wonder if `context.Context`
+> I've seen this sort of issue crop up several times now. I wonder if `context.Context`
 > should record a bit of caller information... Then we could add a debugging hook to
-> interrogate *why* a particular `context.Context` was cancelled._
+> interrogate _why_ a particular `context.Context` was cancelled.
 >
-> _-- [bcmills on #26356]_
+> -- [bcmills on #26356]
 
 On [proposal #51365], which eventually led to the cause APIs, bullgare described the
 production experience:
 
-> _I had a case when on production I got random "context canceled" log messages. And in the
+> I had a case when on production I got random "context canceled" log messages. And in the
 > case like that you don't even know where to dig and how to investigate it further. Or how
-> to reproduce it on a local machine._
+> to reproduce it on a local machine.
 >
-> _-- [bullgare on #51365]_
+> -- [bullgare on #51365]
 
 That proposal led to the cause APIs that shipped in [go 1.20].
 
@@ -235,22 +235,22 @@ This isn't a bug. `WithTimeoutCause` is a new function, so it could have returne
 `CancelCauseFunc`. The Go team chose not to. rsc explained the reasoning when closing
 [proposal #51365]:
 
-> _`WithDeadlineCause` and `WithTimeoutCause` require you to say ahead of time what the
-> cause will be when the timer goes off, and then that cause is used in place of the generic
+> `WithDeadlineCause` and `WithTimeoutCause` require you to say ahead of time what the cause
+> will be when the timer goes off, and then that cause is used in place of the generic
 > `DeadlineExceeded`. The cancel functions they return are plain `CancelFuncs` (with no
 > user-specified cause), not `CancelCauseFuncs`, the reasoning being that the cancel on one
 > of these is typically just for cleanup and/or to signal teardown that doesn't look at the
-> cause anyway._
+> cause anyway.
 >
-> _-- [rsc on #51365]_
+> -- [rsc on #51365]
 
 He also acknowledged that this creates a subtle distinction between the two APIs:
 
-> _That distinction makes sense, but it makes `WithDeadlineCause` and `WithTimeoutCause`
+> That distinction makes sense, but it makes `WithDeadlineCause` and `WithTimeoutCause`
 > different in an important, subtle way from `WithCancelCause`. We missed that in the
-> discussion..._
+> discussion...
 >
-> _-- [rsc on #51365]_
+> -- [rsc on #51365]
 
 So `WithTimeoutCause` only carries the custom cause when the timeout actually fires. On the
 normal return path and on any explicit cancellation path, `defer cancel()` discards it. If
@@ -365,9 +365,10 @@ inner. On normal completion, `cancelCause("processOrder completed")` runs first 
 LIFO defer ordering, canceling the outer and propagating to the inner. Then
 `cancelTimeout()` finds the inner already canceled and does nothing.
 
-> Notice the defer ordering. `cancelCause` must be deferred _after_ `cancelTimeout` so it
-> runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner context
-> with `context.Canceled` before `cancelCause` gets a chance to set a meaningful cause.
+> [!NOTE] Notice the defer ordering. `cancelCause` must be deferred _after_ `cancelTimeout`
+> so it runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner
+> context with `context.Canceled` before `cancelCause` gets a chance to set a meaningful
+> cause.
 
 One subtlety: after line (2), `ctx` points to the inner context. If you call
 `context.Cause(ctx)` on it after a `cancelCause(specificErr)` call, you'll see
