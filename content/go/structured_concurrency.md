@@ -572,7 +572,7 @@ caused by Go-specific issues around message passing and goroutine management.
     https://songlh.github.io/paper/go-study.pdf
 
 [Practical Go]:
-    https://dave.cheney.net/practical-go/presentations/qcon-china.html
+    https://dave.cheney.net/practical-go/presentations/qcon-china.html#_never_start_a_goroutine_without_knowning_when_it_will_stop
 
 [early return and goroutine leak]:
     /go/early-return-and-goroutine-leak/
