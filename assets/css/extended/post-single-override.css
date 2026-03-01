@@ -394,7 +394,7 @@ a.footnote-ref::after {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: var(--secondary);
+  color: var(--primary);
   opacity: 1;
   font-size: 1.8em;
 }
