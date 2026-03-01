@@ -122,10 +122,10 @@ Wrapping this function with `WriteFunc` lets it implement the `io.Writer` interf
 `.Write` method is called on the wrapped function to log stats and write data to the buffer.
 Finally, the buffer's content is printed to verify everything worked.
 
-> _For a simple example like this, using a function type to implement an interface might
-> feel like overkill. But there are cases where it simplifies things. The next sections
-> explore real-world examples where function types make interface implementation a bit more
-> ergonomic._
+> [!NOTE] For a simple example like this, using a function type to implement an interface
+> might feel like overkill. But there are cases where it simplifies things. The next
+> sections explore real-world examples where function types make interface implementation a
+> bit more ergonomic.
 
 ## Mocking interfaces for testing
 

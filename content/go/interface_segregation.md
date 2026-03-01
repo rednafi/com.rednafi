@@ -24,9 +24,9 @@ So I wanted to revisit ISP in the context of Go and show how [small interfaces],
 implementation], and [consumer-defined contracts] make interface segregation feel natural
 and lead to code that's easier to test and maintain.
 
-> _Clients should not be forced to depend on methods they do not use._
+> Clients should not be forced to depend on methods they do not use.
 >
-> _— Robert C. Martin (SOLID, interface segregation principle)_
+> — Robert C. Martin (SOLID, interface segregation principle)
 
 Or, put simply: your code shouldn't accept anything it doesn't use.
 
@@ -160,10 +160,10 @@ producer's interface can ripple across your codebase unnecessarily.
 
 From Go [code review comments]:
 
-> _Go interfaces generally belong in the package that uses values of the interface type, not
+> Go interfaces generally belong in the package that uses values of the interface type, not
 > the package that implements those values. The implementing package should return concrete
 > (usually pointer or struct) types: that way, new methods can be added to implementations
-> without requiring extensive refactoring._
+> without requiring extensive refactoring.
 
 This isn't a strict rule. The standard library defines producer-side interfaces like
 `io.Reader` and `io.Writer`, which is fine because they're stable and general-purpose. But
@@ -222,9 +222,9 @@ A fake must implement all the methods just to satisfy it.
 It's better to define a small, consumer-side interface that captures only the operations you
 need. This is exactly what the [AWS SDK doc] recommends for testing.
 
-> _To support mocking, use Go interfaces instead of concrete service client, paginators, and
+> To support mocking, use Go interfaces instead of concrete service client, paginators, and
 > waiter types, such as s3.Client. This allows your application to use patterns like
-> dependency injection to test your application logic._
+> dependency injection to test your application logic.
 
 Similar to what we've seen before, you can define a single method interface:
 
@@ -269,8 +269,8 @@ func (FakeUploader) PutObject(
 
 If we distill the workflow as a general rule of thumb, it'd look like this:
 
-> _Insert a seam between two tightly coupled components by placing a consumer-side interface
-> that exposes only the methods the caller invokes._
+> Insert a seam between two tightly coupled components by placing a consumer-side interface
+> that exposes only the methods the caller invokes.
 
 Fin!
 
