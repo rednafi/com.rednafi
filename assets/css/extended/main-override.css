@@ -4,7 +4,7 @@
 }
 body {
   font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 17.5px;
+  font-size: 17px;
   line-height: 1.55;
   word-break: break-word;
   background: var(--theme);
