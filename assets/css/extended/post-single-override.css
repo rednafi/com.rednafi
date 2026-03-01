@@ -387,10 +387,34 @@ a.footnote-ref::after {
   margin-bottom: 0;
 }
 
-/* Post separator for recent posts section */
-.post-separator {
-  text-align: center;
+/* Ornamental divider before recent posts */
+.post-ornament {
+  border: none;
+  margin: 48px 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--secondary);
+  opacity: 1;
+  font-size: 1.8em;
 }
+
+.post-ornament::before,
+.post-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.post-ornament::before {
+  background: linear-gradient(to right, transparent, var(--secondary));
+}
+
+.post-ornament::after {
+  background: linear-gradient(to left, transparent, var(--secondary));
+}
+
 
 /* Search icon alignment */
 .search-icon {

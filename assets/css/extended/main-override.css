@@ -185,3 +185,20 @@ body {
   margin: 10px;
   font-weight: 400;
 }
+
+/* Archive year jump links */
+.archive-jump {
+  margin-bottom: 24px;
+  font-size: 0.9em;
+  color: var(--secondary);
+}
+
+.archive-jump a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.archive-jump a:hover {
+  text-decoration: underline;
+}
+
