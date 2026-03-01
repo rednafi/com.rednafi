@@ -365,10 +365,11 @@ inner. On normal completion, `cancelCause("processOrder completed")` runs first 
 LIFO defer ordering, canceling the outer and propagating to the inner. Then
 `cancelTimeout()` finds the inner already canceled and does nothing.
 
-> [!NOTE] Notice the defer ordering. `cancelCause` must be deferred _after_ `cancelTimeout`
-> so it runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner
-> context with `context.Canceled` before `cancelCause` gets a chance to set a meaningful
-> cause.
+> [!NOTE]
+>
+> Notice the defer ordering. `cancelCause` must be deferred _after_ `cancelTimeout` so it
+> runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner context
+> with `context.Canceled` before `cancelCause` gets a chance to set a meaningful cause.
 
 One subtlety: after line (2), `ctx` points to the inner context. If you call
 `context.Cause(ctx)` on it after a `cancelCause(specificErr)` call, you'll see
