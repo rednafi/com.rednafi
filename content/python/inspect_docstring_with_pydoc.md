@@ -13,8 +13,8 @@ description: >-
 
 How come I didn't know about the `python -m pydoc` command before today!
 
-> _It lets you inspect the docstrings of any modules, classes, functions, or methods in
-> Python._
+> It lets you inspect the docstrings of any modules, classes, functions, or methods in
+> Python.
 
 I'm running the commands from a Python 3.10 virtual environment but it'll work on any Python
 version. Let's print out the docstrings of the `functools.lru_cache` function. Run:

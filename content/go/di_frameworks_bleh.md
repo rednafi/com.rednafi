@@ -16,9 +16,9 @@ injection (DI) often gets a bad rep because of _DI frameworks_. But DI as a tech
 quite useful. It just tends to get explained with too many OO jargons and triggers PTSD
 among those who came to Go to escape GoF theology.
 
-> _Dependency Injection is a 25-dollar term for a 5-cent concept._
+> Dependency Injection is a 25-dollar term for a 5-cent concept.
 >
-> _— James Shore_
+> — James Shore
 
 DI basically means _passing values into a constructor instead of creating them inside it_.
 That's really it. Observe:
@@ -131,9 +131,9 @@ harder to tell which constructor feeds which one. Some constructor takes one par
 takes three. There's no single place you can glance at to understand the wiring. It's all
 figured out inside the container at runtime.
 
-> _Let the container figure it out!_
+> Let the container figure it out!
 >
-> _— every DI framework ever_
+> — every DI framework ever
 
 ```go
 func BuildContainer() *dig.Container {
@@ -291,9 +291,9 @@ compile times hurt. Go already gives you:
 
 A DI framework often fixes problems Go already solved and trades away readability to do it.
 
-> _The most magical thing about Go is how little magic it allows._
+> The most magical thing about Go is how little magic it allows.
 >
-> _— Some Gopher on Reddit_
+> — Some Gopher on Reddit
 
 ## You might still want a framework
 

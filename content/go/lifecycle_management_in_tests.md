@@ -36,8 +36,8 @@ a small harness that drives them. The harness then runs the binary and reports r
 
 From the ["go test" command doc]:
 
-> _"go test" automates testing the packages named by the import paths. \[...] recompiles
-> each package along with any files with names matching the file pattern "\*\_test.go"._
+> "go test" automates testing the packages named by the import paths. \[...] recompiles each
+> package along with any files with names matching the file pattern "\*\_test.go".
 
 ### Discovery
 

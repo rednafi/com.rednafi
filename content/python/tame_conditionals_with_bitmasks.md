@@ -95,9 +95,9 @@ powers of 2: `2^4=16`, `2^5=32`, `2^6=64` ... and so on. Then our tests will nee
 to verify each of these branches. We can try to apply De Morgan's law to simplify some of
 the negation logic.
 
-> _De Morgan's laws allow us to take the negation of a conditional statement and distribute
+> De Morgan's laws allow us to take the negation of a conditional statement and distribute
 > it across the operators, changing ANDs to ORs and vice versa, and flipping the negation of
-> each component. This can help simplify complex boolean logic statements._
+> each component. This can help simplify complex boolean logic statements.
 
 So this:
 

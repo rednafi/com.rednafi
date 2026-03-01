@@ -52,6 +52,6 @@ and hyper-specialization, and most of the time, being more of a jack-of-all-trad
 bad thing. At the same time, it's neat to be able to identify those rare opportunities where
 getting involved early can yield outsized returns.
 
-> _P.S. Domain knowledge around a business and knowledge related to specialized tools are
-> two different concepts. I realize this post might've blurred the lines, mostly for lack of
-> a better term._
+> P.S. Domain knowledge around a business and knowledge related to specialized tools are two
+> different concepts. I realize this post might've blurred the lines, mostly for lack of a
+> better term.
