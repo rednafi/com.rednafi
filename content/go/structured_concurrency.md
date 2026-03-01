@@ -29,9 +29,9 @@ In 1968, Dijkstra wrote a letter to the editor of Communications of the ACM titl
 Statement Considered Harmful]. His core argument was that unrestricted use of `goto` made
 programs nearly impossible to reason about:
 
-> _The unbridled use of the go to statement has as an immediate consequence that it becomes
+> The unbridled use of the go to statement has as an immediate consequence that it becomes
 > terribly hard to find a meaningful set of coordinates in which to describe the process
-> progress._
+> progress.
 
 Structured programming replaced `goto` with scoped constructs like `if`, `while`, and
 functions. The key insight was that control flow should be lexically scoped: you can look at
@@ -50,28 +50,28 @@ Martin Sustrik, creator of ZeroMQ, coined the term "structured concurrency" in h
 [Structured Concurrency] blog post. He framed the idea as an extension of how block
 lifetimes work in structured programming:
 
-> _Structured concurrency prevents lifetime of green thread B launched by green thread A to
-> exceed lifetime of A._
+> Structured concurrency prevents lifetime of green thread B launched by green thread A to
+> exceed lifetime of A.
 
 Eric Niebler later expanded on Sustrik's idea, tying it directly to how function calls work
 in sequential code:
 
-> _"Structured concurrency" refers to a way to structure async computations so that child
+> "Structured concurrency" refers to a way to structure async computations so that child
 > operations are guaranteed to complete before their parents, just the way a function is
-> guaranteed to complete before its caller._
+> guaranteed to complete before its caller.
 >
-> _-- Eric Niebler, [Structured Concurrency (Niebler)]_
+> -- Eric Niebler, [Structured Concurrency (Niebler)]
 
 Nathaniel J. Smith (NJS) took this further in his essay [Notes on structured concurrency]:
 
-> _That's right: go statements are a form of goto statement._
+> That's right: go statements are a form of goto statement.
 
 NJS's broader point was that spawning a background task breaks function abstraction the same
 way `goto` does. Once a function can spawn work that outlives it, the caller can no longer
 reason about when the function's effects are complete:
 
-> _Every time our control splits into multiple concurrent paths, we want to make sure that
-> they join up again._
+> Every time our control splits into multiple concurrent paths, we want to make sure that
+> they join up again.
 
 Structured concurrency boils down to a few rules:
 
@@ -83,10 +83,10 @@ Structured concurrency boils down to a few rules:
 This essay prompted [Go proposal #29011], filed by smurfix, which proposed adding structured
 concurrency to Go. NJS participated in the discussion and made a point that stuck with me:
 
-> _Right now you can structure things this way in Go, but it's way more cumbersome than just
-> typing `go myfunc()`, so Go ends up encouraging the "unstructured" style._
+> Right now you can structure things this way in Go, but it's way more cumbersome than just
+> typing `go myfunc()`, so Go ends up encouraging the "unstructured" style.
 >
-> _-- Nathaniel J. Smith, [Go proposal #29011]_
+> -- Nathaniel J. Smith, [Go proposal #29011]
 
 The proposal was eventually closed. Before getting into Go's approach, it helps to see what
 structured concurrency actually looks like in practice across the three languages.
@@ -414,14 +414,14 @@ defaults.
 
 [Go proposal #29011] was closed after Ian Lance Taylor pointed out the practical problem:
 
-> _I think these ideas are definitely interesting. But your specific suggestion would break
-> essentially all existing Go code, so that is a non-starter._
+> I think these ideas are definitely interesting. But your specific suggestion would break
+> essentially all existing Go code, so that is a non-starter.
 
 In a later comment, he acknowledged that there are good ideas in the space but argued for
 improving existing primitives rather than changing the language:
 
-> _There are likely good ideas in the area of structured concurrency that we can do better
-> at, in the language or the standard library or both._
+> There are likely good ideas in the area of structured concurrency that we can do better
+> at, in the language or the standard library or both.
 
 NJS also noted that structured concurrency helps with error propagation, because when a
 goroutine exits with an error, there is somewhere to propagate that error to. That's a real
@@ -442,9 +442,9 @@ Go's `WaitGroup` API seemed like they'd be trivially prevented by structured con
 If you're writing Go and want structured concurrency, there are a few practices that help.
 The core idea is:
 
-> _Never start a goroutine without knowing when it will stop._
+> Never start a goroutine without knowing when it will stop.
 >
-> _-- Dave Cheney, [Practical Go]_
+> -- Dave Cheney, [Practical Go]
 
 Here are some concrete ways to follow that:
 

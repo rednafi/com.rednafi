@@ -39,10 +39,10 @@ screen, and definitely better speakers. Personally, I already have all those per
 device. And boy, it didn't disappoint. I went for the 16/256 config and snagged it for
 around 1500 USD.
 
-> _This isn't a product review, and I honestly don't know a squat about reviewing things.
+> This isn't a product review, and I honestly don't know a squat about reviewing things.
 > It's simply a brief piece sharing my thoughts on a product I purchased with my own money.
 > You won't find any affiliated links here — just my genius opinions. Also, this comes from
-> the perspective of a person who won't be using this as their main work machine._
+> the perspective of a person who won't be using this as their main work machine.
 
 I was worried that I'd have a hard time adjusting to the smaller 15" screen and wouldn't
 find the keyboard as spacious. However, the good thing is that the differences were barely

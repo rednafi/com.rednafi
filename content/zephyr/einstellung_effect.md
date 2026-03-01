@@ -14,7 +14,7 @@ description: >-
 In 9th grade, when I first learned about [Lenz's law] in Physics class, I was fascinated by
 its implications. It states:
 
-> _The direction of an induced current will always oppose the motion causing it._
+> The direction of an induced current will always oppose the motion causing it.
 
 In simpler terms, imagine you have a hoop and a magnet. If you move the magnet close to the
 hoop, the hoop generates a magnetic field that pushes the magnet away. Conversely, if you

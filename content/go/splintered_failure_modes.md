@@ -9,7 +9,7 @@ description: >-
   return boolean vs error for clearer failure modes.
 ---
 
-> _A man with a watch knows what time it is. A man with two watches is never sure._
+> A man with a watch knows what time it is. A man with two watches is never sure.
 >
 > — [Segal's Law]
 

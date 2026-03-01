@@ -18,29 +18,29 @@ use `apt` or `brew` for installs, depending on the OS.
 
 Then recently, I saw [Hynek extolling direnv]:
 
-> _If you're old-school like me, my `.envrc` looks like this:_
+> If you're old-school like me, my `.envrc` looks like this:
 >
 > ```sh
 > uv sync --frozen
 > source .venv/bin/activate
 > ```
 >
-> _The sync ensures there's always a `.venv`, so no memory-baking required._
+> The sync ensures there's always a `.venv`, so no memory-baking required.
 
 And [Brandur doing the same]:
 
-> _This is embarrassing, but after using direnv for 10+ years, I only discovered the
-> `source_env` directive yesterday._
+> This is embarrassing, but after using direnv for 10+ years, I only discovered the
+> `source_env` directive yesterday.
 >
-> _Game changer. I used it to improve our project's dev configuration ergonomics so new
-> environment variables are easily distributed via Git._
+> Game changer. I used it to improve our project's dev configuration ergonomics so new
+> environment variables are easily distributed via Git.
 
 So I got curious and wanted to try the tool to see if it fits into my workflow, or if I'll
 quickly abandon it when something goes wrong.
 
 When I first visited their [landing page], I was a bit confused by the tagline:
 
-> _direnv – unclutter your .profile_
+> direnv – unclutter your .profile
 
 But I don't have anything custom in my `.profile`, or more specifically, my `.zprofile`.
 Here's what's in it currently:

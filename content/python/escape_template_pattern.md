@@ -458,8 +458,8 @@ composable one. It usually requires planning and designing from the ground up, w
 might decide that the ROI isn't good enough to justify the effort of refactoring. Plus, in a
 language like Python, you can't always escape inheritance, nor should you try to do so.
 
-> _Yet behold, it need not be the customary stratagem that thou graspest at each moment
-> thine heart yearns to commune code amidst classes._
+> Yet behold, it need not be the customary stratagem that thou graspest at each moment thine
+> heart yearns to commune code amidst classes.
 
 ## Further reading
 

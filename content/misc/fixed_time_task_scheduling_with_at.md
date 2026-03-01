@@ -21,8 +21,8 @@ in terms of resolving programming queries.
 
 So, I asked Bard:
 
-> _What's the simplest solution I could get away with to run a shell command at a future
-> datetime?_
+> What's the simplest solution I could get away with to run a shell command at a future
+> datetime?
 
 It introduced me to the UNIX `at` command that does exactly what I needed. Cron wouldn't be
 a good fit for this particular use case, and I wasn't aware of the existence of `at` before.
@@ -36,8 +36,8 @@ The command `at` in UNIX is used to schedule one-time jobs or commands to be exe
 specific time in the future. Internally, the system maintains a queue that adds a new entry
 when a job is scheduled, and once it gets executed, the job is removed from the queue.
 
-> **_NOTE:_** _By default, the jobs will be scheduled using the targeted machine's local
-> timezone._
+> **_NOTE:_** \_By default, the jobs will be scheduled using the targeted machine's local
+> timezone.
 
 ## Prerequisites
 

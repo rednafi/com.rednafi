@@ -90,8 +90,8 @@ they'll have full access to unexported details in the package.
 
 The [Go documentation] explains it as:
 
-> _The test file can be in the same package as the one being tested. If the test file is in
-> the same package, it may refer to unexported identifiers within the package._
+> The test file can be in the same package as the one being tested. If the test file is in
+> the same package, it may refer to unexported identifiers within the package.
 
 This approach is called _white-box testing_. Your test code has full access to the package
 internals, allowing you to test them directly when needed. For example, if there's an
@@ -152,9 +152,9 @@ refactors don't break exported APIs.
 
 As noted in the official testing package docs:
 
-> _If the file is in a separate `_test` package, the package being tested must be imported
+> If the file is in a separate `_test` package, the package being tested must be imported
 > explicitly, and only its exported identifiers may be used. This is known as “black-box"
-> testing._
+> testing.
 
 It's a neat way to test your package from the outside without moving your tests into a
 separate directory tree. You can find examples of this style in [net/http], [context], and

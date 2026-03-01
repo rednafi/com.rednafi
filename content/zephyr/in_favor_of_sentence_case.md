@@ -25,11 +25,11 @@ majority of them preferred **Sentence case** where you'd only capitalize the fir
 the first word of a sentence and then the capitilization of words would conform to the usual
 grammatical rules. So instead of this:
 
-> _Dataclasses in Python Eliminates Class Initialization Boilerplates._
+> Dataclasses in Python Eliminates Class Initialization Boilerplates.
 
 you'd do this:
 
-> _Dataclasses in Python eliminates class initialization boilerplates._
+> Dataclasses in Python eliminates class initialization boilerplates.
 
 This allows me not to waste those few precious seconds thinking about the rules of upper
 casing and whether or not sentences with technical words in them will look awkward. Also, it

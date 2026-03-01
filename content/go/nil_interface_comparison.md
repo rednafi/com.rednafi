@@ -116,8 +116,8 @@ Even though `b` is nil, assigning it to the interface variable `r` gives `r` a n
 dynamic type (`*bytes.Buffer`) with a nil dynamic value. Since `r` still holds type
 information, `r == nil` returns `false`, even though the underlying value is nil.
 
-> _When comparing an interface variable, Go checks both the dynamic type and the value. The
-> variable evaluates to nil only if both are nil._
+> When comparing an interface variable, Go checks both the dynamic type and the value. The
+> variable evaluates to nil only if both are nil.
 
 ### Using type assertions for reliable nil checks
 

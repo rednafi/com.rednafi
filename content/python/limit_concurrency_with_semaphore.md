@@ -117,9 +117,9 @@ shared resource. All concurrency primitives in Python have semaphores to help yo
 resource access. This means if you're using any of the — `multiprocessing`, `threading`, or
 `asyncio` module, you can take advantage of it. From the `asyncio` docs:
 
-> _A semaphore manages an internal counter which is decremented by each `acquire()` call and
+> A semaphore manages an internal counter which is decremented by each `acquire()` call and
 > incremented by each `release()` call. The counter can never go below zero; when
-> `acquire()` finds that it is zero, it blocks, waiting until some task calls `release()`._
+> `acquire()` finds that it is zero, it blocks, waiting until some task calls `release()`.
 
 You can use the semaphores in the above script as follows:
 

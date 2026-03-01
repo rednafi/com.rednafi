@@ -130,9 +130,9 @@ starts, it opens the file in write mode and tries to lock it with `fcntl.flock` 
 exclusive lock (`LOCK_EX`). The `LOCK_NB` flag makes the operation non-blocking. If another
 process holds the lock, the script exits with a message.
 
-> _This approach works on both Linux and macOS, as both support `fcntl` for file-based
-> locks. The lock is automatically released when the file is closed, either at the end of
-> the script or the `with` block._
+> This approach works on both Linux and macOS, as both support `fcntl` for file-based locks.
+> The lock is automatically released when the file is closed, either at the end of the
+> script or the `with` block.
 
 ## With Go
 

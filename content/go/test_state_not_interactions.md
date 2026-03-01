@@ -55,17 +55,17 @@ with canned responses from upstream calls rather than testing which method is be
 The salient point is: _test outcomes, not implementation details._ As the book [Software
 Engineering at Google] puts it: _test state, not interactions:_
 
-> _With state testing, you observe the system itself to see what it looks like after
-> invoking with it. With interaction testing, you instead check that the system took an
-> expected sequence of actions on its collaborators in response to invoking it. Many tests
-> will perform a combination of state and interaction validation._
+> With state testing, you observe the system itself to see what it looks like after invoking
+> with it. With interaction testing, you instead check that the system took an expected
+> sequence of actions on its collaborators in response to invoking it. Many tests will
+> perform a combination of state and interaction validation.
 
 And the guidance that follows:
 
-> _By far the most important way to ensure this is to write tests that invoke the system
+> By far the most important way to ensure this is to write tests that invoke the system
 > being tested in the same way its users would; that is, make calls against its public API
 > rather than its implementation details. If tests work the same way as the system's users,
-> by definition, change that breaks a test might also break a user._
+> by definition, change that breaks a test might also break a user.
 
 I think the first step in the right direction is to accept that LLMs can't substitute for
 thought. The first few critical tests in your systems shouldn't be written by LLMs and you

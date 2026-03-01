@@ -27,8 +27,8 @@ candidates' assignments in the hiring pipeline. While there is no objectively ri
 way to structure an app, I do see a common pitfall in candidates' submissions that is
 usually frowned upon in a Go application.
 
-> _App structure should be driven by what it does and not what it's built with. Let the
-> domain guide the structure, not technology or the current language specific zeitgeist._
+> App structure should be driven by what it does and not what it's built with. Let the
+> domain guide the structure, not technology or the current language specific zeitgeist.
 
 Ben Johnson's [Standard Package Layout] is a good reference for this. He points out why
 approaches like monolithic packages, Rails style layouts, or grouping by module don't fit
@@ -91,8 +91,8 @@ There is no file level delineation in Go. If you put different domains under the
 The only clue is the identifier name. This isn't ideal when you want clear separation
 between domains.
 
-> _In Go, packages define your [bounded context], not files within a package. Domains should
-> be delineated by top level packages, not by file names._
+> In Go, packages define your [bounded context], not files within a package. Domains should
+> be delineated by top level packages, not by file names.
 
 For your top level business logic, you want package level separation between domains. Order
 logic should live in `order`, user logic should live in `user`. These packages will be

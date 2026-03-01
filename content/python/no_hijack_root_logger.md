@@ -82,11 +82,11 @@ meddle with it.
 This makes things confusing for the library user, and the [Logging how-to] doc advises
 against doing so:
 
-> _It is strongly advised that you do not log to the root logger in your library. Instead,
+> It is strongly advised that you do not log to the root logger in your library. Instead,
 > use a logger with a unique and easily identifiable name, such as the **name** for your
 > library's top-level package or module. Logging to the root logger will make it difficult
 > or impossible for the application developer to configure the logging verbosity or handlers
-> of your library as they wish._
+> of your library as they wish.
 
 Solving this is quite straightforward. Avoid using the root logger in your library code.
 Instead, instantiate your own logger instance and configure it with your heart's content.
@@ -155,12 +155,12 @@ Also, you should avoid adding any handlers to your library's logger. Doing so ca
 things for users who may want to attach their own handlers. The logging how-to guide
 strongly warns against this:
 
-> _It is strongly advised that you do not add any handlers other than `NullHandler` to your
+> It is strongly advised that you do not add any handlers other than `NullHandler` to your
 > library's loggers. This is because the configuration of handlers is the prerogative of the
 > application developer who uses your library. The application developer knows their target
 > audience and what handlers are most appropriate for their application: if you add handlers
 > ‘under the hood', you might well interfere with their ability to carry out unit tests and
-> deliver logs which suit their requirements._
+> deliver logs which suit their requirements.
 
 If you're looking for a real-life example of how to minimally configure your library's
 logger, check out the [httpx codebase]. The logging behavior is well-documented there.

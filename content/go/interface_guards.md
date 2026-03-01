@@ -85,9 +85,9 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 Neat, but don't abuse this. [Effective Go warns]:
 
-> _Don't do this for every type that satisfies an interface, though. By convention, such
+> Don't do this for every type that satisfies an interface, though. By convention, such
 > declarations are only used when there are no static conversions already present in the
-> code, which is a rare event._
+> code, which is a rare event.
 
 ## Further reading
 
