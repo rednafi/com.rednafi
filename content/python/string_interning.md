@@ -100,7 +100,7 @@ foo = Foo("hello", "hello")
 print(foo.bar is foo.baz)  # prints True
 ```
 
-In both of these above cases, the print statement will print `True` on the console - 
+In both of these above cases, the print statement will print `True` on the console -
 confirming the fact that dictionary keys and object attributes are interned. Having interned
 attributes and keys means that the access operation is faster since the string comparison
 operation is now just doing a pointer comparison.

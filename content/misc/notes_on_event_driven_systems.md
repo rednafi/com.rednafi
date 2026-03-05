@@ -121,7 +121,7 @@ system more flexible and scalable. A consumer can be added or removed without im
 producer. The broker ensures that events are delivered, allowing the system to continue
 functioning smoothly even as it evolves.
 
-However, one responsibility remains: _"The schema of your event - the format of that event - 
+However, one responsibility remains: _"The schema of your event - the format of that event -
 is the biggest part of the coupling that you will see in event-driven architecture."_ While
 runtime coupling is removed, semantic coupling still exists. Producers must ensure that the
 event schema doesn't change in ways that break existing consumers.
