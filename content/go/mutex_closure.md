@@ -49,8 +49,8 @@ fmt.Println(counter.Get()) // 42
 ```
 
 This works fine when you're replacing the value wholesale - just call `counter.Set(42)` and
-move on. But when your mutation depends on the current value, `Get` and `Set` can race against each
-other.
+move on. But when your mutation depends on the current value, `Get` and `Set` can race
+against each other.
 
 ## The problem with Set
 
@@ -332,7 +332,7 @@ operation.
 
 If `T` is small and you only ever replace the whole value without reading it first, a plain
 `Set` works. A boolean flag that gets toggled from one place, a config value that gets
-swapped wholesale-those are fine.
+swapped wholesale - those are fine.
 
 But most state doesn't stay that simple. You start with a single integer, it becomes a
 struct with three fields, and now you need to update two of them based on the third. At that
@@ -342,7 +342,7 @@ point, `Set(func(*T))` is the only safe option.
 >
 > The proposal benchmarks showed about 35% overhead for the closure-based approach (14.65
 > ns/op vs 10.82 ns/op for direct lock/unlock) due to closures and `defer` not being
-> inlineable. In practice this rarely matters-if your critical section does any real work,
+> inlineable. In practice this rarely matters. If your critical section does any real work,
 > the lock overhead dominates.
 
 <!-- references -->
