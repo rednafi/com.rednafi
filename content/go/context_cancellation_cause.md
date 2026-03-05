@@ -435,17 +435,21 @@ level=ERROR msg="request failed" err="context deadline exceeded"
 ```
 
 A useful pattern is wrapping the request context with `WithCancelCause` at the middleware
-level so every handler downstream gets automatic cause tracking:
+level so every handler downstream gets automatic cause tracking. The cancel function is
+stashed in the context via `WithValue` so handlers can pull it out and set a specific cause:
 
 ```go
+type cancelCauseKey struct{}
+
 func withCause(next http.Handler) http.Handler {
     return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        ctx, cancel := context.WithCancelCause(r.Context())  // (1)
-        defer cancel(errors.New("request completed"))         // (2)
+        ctx, cancel := context.WithCancelCause(r.Context())    // (1)
+        defer cancel(errors.New("request completed"))           // (2)
 
+        ctx = context.WithValue(ctx, cancelCauseKey{}, cancel)  // (3)
         next.ServeHTTP(w, r.WithContext(ctx))
 
-        if ctx.Err() != nil {  // (3)
+        if ctx.Err() != nil {  // (4)
             slog.Error("request context canceled",
                 "method", r.Method,
                 "path", r.URL.Path,
@@ -459,12 +463,29 @@ func withCause(next http.Handler) http.Handler {
 
 - (1) wrap the request context with `WithCancelCause`
 - (2) default cause for normal completion
-- (3) only fires if the context was canceled _during_ request handling (client disconnect,
+- (3) stash the cancel function so downstream handlers can reach it
+- (4) only fires if the context was canceled _during_ request handling (client disconnect,
   handler cancel), not on normal completion; `defer cancel(...)` hasn't run yet at this
   point
 
-Any handler deeper in the stack that calls `cancel(specificErr)` sets the cause. First
-cancel wins, so the most specific reason is what shows up in the logs.
+Any handler can pull the cancel function out and set a cause:
+
+```go
+func handleOrder(w http.ResponseWriter, r *http.Request) {
+    cancel, _ := r.Context().Value(cancelCauseKey{}).(context.CancelCauseFunc)
+
+    if err := processOrder(r.Context()); err != nil {
+        cancel(fmt.Errorf("order processing failed: %w", err))
+        http.Error(w, "order failed", http.StatusInternalServerError)
+        return
+    }
+    // ...
+}
+```
+
+First cancel wins, so the most specific reason is what shows up in the middleware log.
+[streamingfast/substreams] uses this approach in production, storing a `CancelCauseFunc` in
+the request context so worker pools downstream can cancel with a specific error.
 
 One thing to know: the stdlib's HTTP server and most third-party libraries cancel contexts
 without setting a cause, since they predate Go 1.20. If a client disconnects,
@@ -531,6 +552,9 @@ Runnable examples:
 
 [proposal]:
     https://github.com/grpc/grpc-go/issues/7541
+
+[streamingfast/substreams]:
+    https://github.com/streamingfast/substreams/blob/develop/reqctx/context.go
 
 [playground: the debugging problem]:
     https://go.dev/play/p/sxY1R_yD15S
