@@ -94,7 +94,7 @@ table. There are two types of callbacks that you can apply:
 
 ### Applying user-defined scalar functions
 
-In the following example, I've created a table called `users` with two text type columns - 
+In the following example, I've created a table called `users` with two text type columns -
 `username` and `password`. Here, we define a transformation scalar function named `sha256`
 that applies sha256 hashing to all the elements of the `password` column. The function is
 then registered via the `connection_obj.create_function(func_name, narg, func)` API.
@@ -474,7 +474,7 @@ a way that the result might come out as a list of dictionaries or a list of cust
 ### Via an arbitrary container object as the row factory
 
 You can attach a callback to the `connection_obj.row_factory` attribute to change how you
-want to display the rows in a result list. The factory callback takes in two arguments - 
+want to display the rows in a result list. The factory callback takes in two arguments -
 `cursor` and `row` where `cursor` is a tuple containing some metadata related to a single
 table record and `row` is the default representation of a single database row as a tuple.
 

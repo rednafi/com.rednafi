@@ -82,7 +82,7 @@ Then you can run the tool with:
 go tool golangci-lint run ./...
 ```
 
-One thing to keep in mind: the first time you run a tool this way, it might take a second - 
+One thing to keep in mind: the first time you run a tool this way, it might take a second -
 Go needs to compile it before running if it isn't already compiled. After that, it's cached,
 so subsequent runs are fast.
 

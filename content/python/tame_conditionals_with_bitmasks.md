@@ -208,7 +208,7 @@ With all the intros and primers out of the way, we can now start working towards
   as input, apply the business logic and return the appropriate `NotifyStatus` enum variant.
   This function won't be responsible for dispatching the actual notification handlers;
   rather, it'll just map the attribute values of the `Client` instance to a fitting enum
-  variant. We do this to keep the core business logic devoid of any external dependencies - 
+  variant. We do this to keep the core business logic devoid of any external dependencies -
   following Gary Bernhardt's [functional core, imperative shell] ethos.
 
 - Finally, we'll define the `notify` function that'll just accept the enum variant returned

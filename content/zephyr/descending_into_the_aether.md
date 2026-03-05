@@ -73,7 +73,7 @@ Airbnb?
 Finally, I won't even talk about the insanely good battery life, as the Airs have been the
 reigning champion in that department for years. The 16" MBP already has great battery life,
 and the Air matches that with a smaller battery due to having less powerful but more
-efficient internals. Overall, even considering my [recency bias], this is certainly one of - 
+efficient internals. Overall, even considering my [recency bias], this is certainly one of -
 if not the most - prudent tech purchases that I made this year!
 
 <!-- references -->
