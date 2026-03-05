@@ -12,8 +12,8 @@ description: >-
   -v is the portable alternative for finding program paths.
 ---
 
-One thing that came to me as news is that the command `which` — which is the de-facto tool
-to find the path of an executable — is not POSIX compliant. The recent [Debian which hunt]
+One thing that came to me as news is that the command `which` - which is the de-facto tool
+to find the path of an executable - is not POSIX compliant. The recent [Debian which hunt]
 brought it to my attention. The POSIX-compliant way of finding an executable program is
 `command -v`, which is usually built into most of the shells.
 

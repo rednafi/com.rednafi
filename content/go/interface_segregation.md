@@ -26,7 +26,7 @@ and lead to code that's easier to test and maintain.
 
 > Clients should not be forced to depend on methods they do not use.
 >
-> — Robert C. Martin (SOLID, interface segregation principle)
+> -- Robert C. Martin (SOLID, interface segregation principle)
 
 Or, put simply: your code shouldn't accept anything it doesn't use.
 

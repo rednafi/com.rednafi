@@ -442,7 +442,7 @@ Here's the [complete implementation on GitHub] with tests.
 <!-- references -->
 <!-- prettier-ignore-start -->
 
-<!-- circuit breaker  —  martin fowler -->
+<!-- circuit breaker - martin fowler -->
 [circuit breakers]:
     https://martinfowler.com/bliki/CircuitBreaker.html
 

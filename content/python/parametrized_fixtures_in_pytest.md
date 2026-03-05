@@ -47,7 +47,7 @@ function. The fixture yields the path of the directory and the created file.
 Later on, the `test_file_creation` function just checks whether the fixture is working as
 expected. This snippet will pass successfully if you execute it with the `pytest` command.
 
-Now, if you needed to create three files — `foo.md`, `bar.md`, `baz.md` — how'd you do that
+Now, if you needed to create three files - `foo.md`, `bar.md`, `baz.md` - how'd you do that
 in the fixture? You could hardcode the names of the three files in the fixture as follows:
 
 ```py
@@ -128,7 +128,7 @@ In this case, the fixture `create_file` takes an additional parameter called `fi
 then yields the directory path and the file path; just as the first snippet. Later on, in
 the `test_file_creation` function, the desired values of the `filename` parameter is
 injected into the fixture via the `@pytest.mark.parametrize` decorator. In the above
-snippet, pytest runs the fixture 3 times and creates the desired files in 3 passes — just
+snippet, pytest runs the fixture 3 times and creates the desired files in 3 passes - just
 like how a normal function call would behave.
 
 ## Further reading

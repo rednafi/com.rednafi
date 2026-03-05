@@ -177,7 +177,7 @@ Running it will give you the same output as before.
 
 Notice how `someFunc` uses a closure to capture `a` and `b` rather than accepting them as
 arguments. This adaptation is necessary for type safety. I don't mind it if it means
-avoiding reflection—plus the generic version is slightly faster.
+avoiding reflection - plus the generic version is slightly faster.
 
 After this entry went live, [Anton Zhiyanov pointed out on Twitter] that there's a
 closure-based approach that's even simpler and eliminates the need for generics. The
@@ -206,7 +206,7 @@ func Retry(
 }
 ```
 
-Now calling `Retry` is easier since the closure signature is static—you don't need to adapt
+Now calling `Retry` is easier since the closure signature is static - you don't need to adapt
 the call when the wrapped function's signature changes:
 
 ```go

@@ -14,7 +14,7 @@ description: >-
   Principles and mental models for building better systems.
 ---
 
-Wisdoms, aphorisms, and pointed observations — fragments I find myself frequently quoting in
+Wisdoms, aphorisms, and pointed observations - fragments I find myself frequently quoting in
 conversations about software, philosophy, and ways of working.
 
 ### [Chesterton's fence]

@@ -170,7 +170,7 @@ This script divides the updated user list into a list of multiple user chunks an
 that to the `user_chunks` variable. The `update_users` function takes a single user chunk
 and runs `.bulk_update` on that. Then we fork a bunch of processes and run the
 `update_users` function over the `user_chunks` via `multiprocessing.Pool.map`. Each process
-consumes `10` chunks of users in a single go — determined by the `chunksize` parameter of
+consumes `10` chunks of users in a single go - determined by the `chunksize` parameter of
 the `pool.map` function. Running the updated script will give you similar output as before
 but with a much smaller runtime:
 

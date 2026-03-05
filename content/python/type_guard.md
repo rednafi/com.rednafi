@@ -50,7 +50,7 @@ types.
 > more precise type of an expression within a program's code flow. When type narrowing is
 > applied within a block of code based on a conditional code flow statement (such as if and
 > while statements), the conditional expression is sometimes referred to as a 'type guard'.
-> — PEP-647
+> -- PEP-647
 
 So, in the above snippet, Mypy performed **type narrowing** to determine the more precise
 type of the variable `x`; and the `if ... else` conditionals, in this case, is known as
@@ -106,8 +106,8 @@ Found 1 error in 1 file (checked 1 source file)
 
 The type checker can't figure out that the container type is `list[str]`.
 
-Functions like `check_sequence_str` that — checks the type of an input object and returns a
-boolean — are called **type guard functions**. PEP-647 proposed a `TypeGuard` class to help
+Functions like `check_sequence_str` that - checks the type of an input object and returns a
+boolean - are called **type guard functions**. PEP-647 proposed a `TypeGuard` class to help
 the type checkers to narrow down types from more complex expressions. Python 3.10 added the
 `TypeGuard` class to the `typing` module. You can use it like this:
 
@@ -143,7 +143,7 @@ through a few more checks.
 > When TypeGuard is used to annotate the return type of a function or method that accepts at
 > least one parameter, that function or method is treated by type checkers as a user-defined
 > type guard. The type argument provided for TypeGuard indicates the type that has been
-> validated by the function. — PEP-647
+> validated by the function. - PEP-647
 
 - Usually, a type guard function only takes a single parameter and returns a boolean value
   based on the conformity of the type of the incoming object with the expected type. The
@@ -163,7 +163,7 @@ through a few more checks.
 > The return type of a user-defined type guard function will normally refer to a type that
 > is strictly "narrower" than the type of the first argument (that is, it's a more specific
 > type that can be assigned to the more general type). However, it is not required that the
-> return type be strictly narrower. — PEP-647
+> return type be strictly narrower. - PEP-647
 
 ## Generic type guard functions
 

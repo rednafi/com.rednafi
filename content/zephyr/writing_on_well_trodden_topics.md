@@ -11,7 +11,7 @@ description: >-
   have covered the same ground before you.
 ---
 
-I enjoy writing about software — the things I learn, the tools I use, and the work I do.
+I enjoy writing about software - the things I learn, the tools I use, and the work I do.
 Owing to the constraints of the corporate software world, more often than not, you can't
 showcase your work or talk about them. At least that's how it always has been throughout my
 career. At the same time, as you grow older and start having a life outside of the computer
