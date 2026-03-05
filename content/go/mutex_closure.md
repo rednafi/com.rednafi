@@ -1,5 +1,5 @@
 ---
-title: Safe mutation with mutex closures
+title: Mutate your locked state inside a closure
 date: 2026-03-05
 slug: mutex-closure
 aliases:
