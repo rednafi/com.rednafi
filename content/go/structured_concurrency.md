@@ -258,9 +258,7 @@ func run() []error {
     urls := []string{"/api/users", "/api/orders", "/api/products"}
 
     for _, url := range urls {
-        wg.Add(1)  // (1)
-        go func() {
-            defer wg.Done()
+        wg.Go(func() {  // (1)
             time.Sleep(100 * time.Millisecond)
             if url == "/api/orders" {
                 mu.Lock()
@@ -270,7 +268,7 @@ func run() []error {
                 return
             }
             fmt.Printf("fetched %s\n", url)
-        }()
+        })
     }
 
     wg.Wait()  // (3)
@@ -281,9 +279,9 @@ func run() []error {
 
 Here:
 
-- (1) each goroutine increments the counter before launch
+- (1) `Go` launches a goroutine and handles `Add`/`Done` internally (Go 1.25+)
 - (2) errors are collected but don't affect other goroutines
-- (3) `Wait` blocks until all goroutines call `Done`
+- (3) `Wait` blocks until all goroutines finish
 
 Those two examples cover Go's equivalents of the structured patterns in Python and Kotlin.
 But the code looks noticeably different, and the reason comes down to how these runtimes
