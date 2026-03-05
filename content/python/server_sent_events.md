@@ -579,7 +579,7 @@ Notice, how the server pushes the result of the task automatically once it finis
 
 ## Limitations
 
-While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts —
+While SSE-driven pages are much easier to bootstrap than their WebSocket counterparts - 
 apart from only supporting unidirectional communication, they suffer from a few other
 limitations:
 

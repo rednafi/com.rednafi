@@ -69,7 +69,7 @@ You can [play around with the example] on Go Playground. Running it will print:
 Even if you don't speak Go, you can just take a look at the `Geometry` interface and
 instantly know that the function `measure` expects a struct that implements the `Geometry`
 interface where the `Geometry` interface is satisfied when the struct implements two methods
-— `area` and `perim`. The function `measure` doesn't care whether the struct is a rectangle,
+ - `area` and `perim`. The function `measure` doesn't care whether the struct is a rectangle,
 a circle, or a square. As long as it implements the interface `Geometry`, `measure` can work
 on it and calculate the area and the perimeter.
 
@@ -158,7 +158,7 @@ about every type that a variable can expect. There's a better way!
 
 Enter [structural subtyping]. We know that the value of `haystack` can be anything that has
 the `__contains__` method. So, instead of explicitly defining the name of all the allowed
-types — we can create a class, add the `__contains__` method to it, and signal mypy the fact
+types - we can create a class, add the `__contains__` method to it, and signal mypy the fact
 that `haystack` can be anything that has the `__contains__` method. Python's
 `typing.Protocol` class allows us to do that. Let's use that:
 

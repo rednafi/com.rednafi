@@ -81,7 +81,7 @@ src.py .                                              [100%]
 
 ## Further reading
 
-- [Python test using mock with datetime.utcnow — Stackoverflow]
+- [Python test using mock with datetime.utcnow - Stackoverflow]
 
 <!-- references -->
 <!-- prettier-ignore-start -->
@@ -89,7 +89,7 @@ src.py .                                              [100%]
 [freezegun]:
     https://github.com/spulec/freezegun
 
-[python test using mock with datetime.utcnow — stackoverflow]:
+[python test using mock with datetime.utcnow - stackoverflow]:
     https://stackoverflow.com/questions/57671585/python-test-using-mock-with-datetime-utcnow
 
 <!-- prettier-ignore-end -->

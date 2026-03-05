@@ -13,7 +13,7 @@ description: >-
 ---
 
 Middleware is usually the go-to pattern in Go HTTP servers for tweaking request behavior.
-Typically, you wrap your base handler with layers of middleware — one might log every
+Typically, you wrap your base handler with layers of middleware - one might log every
 request, while another intercepts specific routes like `/special` to serve a custom
 response.
 
@@ -136,12 +136,12 @@ functions. The next section talks about that.
 Embedded delegation (or the delegation pattern) means you embed the standard HTTP
 multiplexer inside your own struct and override its `ServeHTTP` method.
 
-It's a bit like inheritance — overriding a method in a subclass to add extra functionality
+It's a bit like inheritance - overriding a method in a subclass to add extra functionality
 and then delegating the call to the original method. Although Go doesn't have a class
 hierarchy, you can still delegate responsibilities to the embedded type's method.
 
-The following example implements the same behavior — logging every request and intercepting
-the `/special` route — directly within a custom mux:
+The following example implements the same behavior - logging every request and intercepting
+the `/special` route - directly within a custom mux:
 
 ```go
 package main

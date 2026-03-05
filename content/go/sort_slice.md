@@ -23,7 +23,7 @@ approaches for posterity.
 ## Using sort.Interface
 
 The oldest technique is based on `sort.Interface`. You create a custom type that wraps your
-slice and implement three methods — `Len`, `Less`, and `Swap` — to satisfy the interface.
+slice and implement three methods - `Len`, `Less`, and `Swap` - to satisfy the interface.
 Then you pass this custom type to `sort.Sort()`.
 
 ### Sorting a slice of integers
@@ -79,7 +79,7 @@ Just reversing the order requires you to define a separate type and implement th
 methods again!
 
 Luckily, for the basic types, the `sort` package provides `sort.IntSlice`,
-`sort.Float64Slice`, and `sort.StringSlice` — which already implement `sort.Interface`. So
+`sort.Float64Slice`, and `sort.StringSlice` - which already implement `sort.Interface`. So
 you don't have to do the above for sorting a slice of primitive elements. Instead, you can
 do this:
 

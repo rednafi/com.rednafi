@@ -35,7 +35,7 @@ axiom:
 > abstractions. Abstractions should not depend on details. Details should depend on
 > abstractions.
 >
-> — Dependency inversion principle (D in SOLID), Uncle Bob
+> -- Dependency inversion principle (D in SOLID), Uncle Bob
 
 In this scenario, our business logic in the `order` package is the _high-level module_ and
 `external` is the _low-level module_, as the latter concerns itself with transport details.
@@ -112,7 +112,7 @@ the provider].
 > Go interfaces generally belong in the package that uses values of the interface type, not
 > the package that implements those values.
 >
-> — Go code review comments
+> -- Go code review comments
 
 That gives the consumer full control over what it wants to depend on, and nothing more. You
 don't accidentally couple your code to a bloated interface just because the implementation
@@ -120,7 +120,7 @@ provided one. You define exactly the shape you need and mock that in your tests.
 
 > Clients should not be forced to depend on methods they do not use.
 >
-> — Interface segregation principle (I in SOLID), Uncle Bob
+> -- Interface segregation principle (I in SOLID), Uncle Bob
 
 So, in the `order` package, we define a tiny private interface that reflects the use case.
 

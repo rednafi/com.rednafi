@@ -16,7 +16,7 @@ description: >-
 > enterprise Go programmer. Maybe people do need that, so I don't know, but that's my
 > advice.
 >
-> — Andrew Gerrand, [Testing Techniques (46:44)]
+> -- Andrew Gerrand, [Testing Techniques (46:44)]
 
 No shade against mocking libraries like [gomock] or [mockery]. I use them all the time, both
 at work and outside. But one thing I've noticed is that generating mocks often leads to

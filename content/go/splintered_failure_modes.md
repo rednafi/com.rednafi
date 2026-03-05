@@ -11,7 +11,7 @@ description: >-
 
 > A man with a watch knows what time it is. A man with two watches is never sure.
 >
-> — [Segal's Law]
+> -- [Segal's Law]
 
 Take this example:
 

@@ -33,7 +33,7 @@ def crop(text: str, limit: int) -> str:
     return cropped_text
 ```
 
-For example, if `text` looks like this —
+For example, if `text` looks like this:
 
 ```txt
 "A quick brown fox jumps over the lazy dog."

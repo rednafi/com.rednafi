@@ -23,7 +23,7 @@ are:
 
 While many of these prototypes become full-fledged projects, most end up being just one-time
 journies. One common theme among all of these endeavors is that I always include
-instructions in the `readme.md` on how to get the project up and running — no matter how
+instructions in the `readme.md` on how to get the project up and running - no matter how
 small it is. Also, I tend to configure a rudimentary CI pipeline that runs the linters and
 tests. GitHub Actions and [Dependabot] make it simple to configure a basic CI workflow.
 Dependabot keeps the dependencies fresh and makes pull requests automatically when there's a

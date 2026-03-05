@@ -13,7 +13,7 @@ description: >-
   skips, custom IDs, and structured test data.
 ---
 
-I love [pytest.mark.parametrize] — so much so that I sometimes shoehorn my tests to fit into
+I love [pytest.mark.parametrize] - so much so that I sometimes shoehorn my tests to fit into
 it. But the default style of writing tests with `parametrize` can quickly turn into an
 unreadable mess as the test complexity grows. For example:
 
