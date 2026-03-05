@@ -11,9 +11,26 @@ description: >-
     with examples from the standard library and Tailscale.
 ---
 
-When you have shared mutable state in Go, a common approach is to bundle the value and its
-mutex into a small generic wrapper. Callers get methods like `Get` and `Set` instead of
-touching the fields directly. Something like this:
+When multiple goroutines need to read and write the same value, you need a mutex to make sure
+they don't step on each other. Without one, concurrent writes can corrupt the state - two
+goroutines might read the same value, both modify it, and one silently overwrites the other's
+change. The usual approach is to put a `sync.Mutex` next to the fields it protects:
+
+```go
+var (
+    mu      sync.Mutex
+    counter int
+)
+
+mu.Lock()
+counter++
+mu.Unlock()
+```
+
+This works, but nothing enforces it. The compiler won't stop you from accessing `counter`
+without holding the lock. Forget to lock in one spot and you have a data race. One way to
+make this safer is to bundle the value and its mutex into a small generic wrapper that only
+exposes locked access through methods:
 
 ```go
 type Locked[T any] struct {
@@ -47,6 +64,10 @@ counter := NewLocked(0)
 counter.Set(42)
 fmt.Println(counter.Get()) // 42
 ```
+
+Now callers can't touch the underlying value without going through the lock. This doesn't
+prevent misuse within the same package, but it makes unprotected access from other packages
+impossible.
 
 This works fine when you're replacing the value wholesale - just call `counter.Set(42)` and
 move on. But when your mutation depends on the current value, `Get` and `Set` can race
