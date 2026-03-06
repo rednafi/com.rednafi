@@ -8,11 +8,11 @@
 .first-entry {
   min-height: 150px;
   text-align: left;
-  margin: 0.5rem;
+  margin: var(--gap) 0 calc(var(--gap) * 2) 0;
 }
 
 .home-info {
-  margin: 0.5rem;
+  margin: var(--gap) 0;
   padding: 0;
 }
 
