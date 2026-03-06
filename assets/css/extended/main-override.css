@@ -1,6 +1,10 @@
 .main {
-  padding: 15px;
+  padding: var(--gap);
   max-width: calc(720px + var(--gap) * 2);
+}
+
+.post-entry:active {
+  transform: none;
 }
 body {
   font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;

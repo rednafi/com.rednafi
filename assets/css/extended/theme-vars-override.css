@@ -38,6 +38,13 @@
   --border: #404550;
 }
 
+/* Mobile gap reduction */
+@media screen and (max-width: 768px) {
+  :root {
+    --gap: 14px;
+  }
+}
+
 /* System preference dark mode */
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
