@@ -1,21 +1,27 @@
-name: Deploy Hugo site to Cloudflare Pages
+name: Deploy Hugo site to GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * 1"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.154.2
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -37,6 +43,10 @@ jobs:
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build with Hugo
         run: hugo --gc --minify
 
@@ -46,7 +56,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.25"
+          go-version: "1.26"
           cache: false
 
       - name: Test URL reachability
@@ -56,8 +66,11 @@ jobs:
           go run scripts/test_urls.go -url http://localhost:1313
           pkill -f serve || true
 
-      - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy ./public --project-name=rednafi
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: f2c208344e8adb0cf3ea1e48dccf7218
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
