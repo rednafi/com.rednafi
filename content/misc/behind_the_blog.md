@@ -7,8 +7,8 @@ aliases:
 tags:
   - Essay
 description: >-
-  How this blog is built: Hugo static site generator, GitHub Actions CI,
-  Cloudflare Pages hosting, and R2 storage. Simple, stable, and cost-free.
+  How this blog is built: Hugo static site generator, GitHub Actions deployment,
+  Cloudflare caching, and R2 storage. Simple, stable, and cost-free.
 ---
 
 When I started writing here about five years ago, I made a promise to myself that I wouldn't
@@ -47,12 +47,10 @@ This workflow is heavily inspired by [Simon Willison's blog] on his workflow.
 
 ![image_1]
 
-## GitHub Actions and Cloudflare Pages
+## GitHub Actions and GitHub Pages
 
 Once I push content to the main branch, [GitHub Actions] automatically runs, checks the
-linter, builds the site, and deploys it to [Cloudflare Pages]. I recently migrated from
-GitHub Pages to Cloudflare Pages to consolidate everything under one roof since I was
-already using Cloudflare for DNS, caching, and R2 storage. There's nothing to maintain, and
+linter, builds the site, and deploys it to [GitHub Pages]. There's nothing to maintain, and
 I don't have to worry about scaling, even if one of my posts hits the front page of Hacker
 News. Aside from the domain, this site costs me nothing to run, and I plan to keep it that
 way.
@@ -131,8 +129,8 @@ The [source code] and content for this site are all publicly available on GitHub
 [github actions]:
     https://github.com/features/actions
 
-[cloudflare pages]:
-    https://pages.cloudflare.com/
+[github pages]:
+    https://pages.github.com/
 
 [cloudflare r2]:
     https://developers.cloudflare.com/r2/
