@@ -89,3 +89,44 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         });
     }
 })();
+
+// Reading progress bar
+(function() {
+    var progressBar = document.getElementById('reading-progress');
+    if (!progressBar) return;
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                progressBar.style.width = progress + '%';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+})();
+
+// Active TOC highlighting
+(function() {
+    var toc = document.querySelector('.toc');
+    if (!toc) return;
+    var headings = document.querySelectorAll(
+        '.post-content h1[id], .post-content h2[id], .post-content h3[id], .post-content h4[id]'
+    );
+    if (!headings.length) return;
+    var tocLinks = toc.querySelectorAll('a');
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(function(link) { link.classList.remove('active'); });
+                var id = entry.target.getAttribute('id');
+                var activeLink = toc.querySelector('a[href="#' + id + '"]');
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-80px 0px -66% 0px' });
+    headings.forEach(function(heading) { observer.observe(heading); });
+})();
