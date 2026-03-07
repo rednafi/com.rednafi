@@ -1,3 +1,8 @@
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
 .main {
   padding: var(--gap);
   max-width: calc(720px + var(--gap) * 2);
@@ -18,8 +23,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Smooth theme transitions */
+body,
+.header,
+.post-entry,
+.nav {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 .page-header h1 {
   font-size: 2rem;
+  text-wrap: balance;
 }
 .social-icons a svg {
   height: 15px;
@@ -176,6 +190,10 @@ body {
   align-items: center;
 }
 
+.top-link {
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
 /* Mermaid diagrams */
 .mermaid {
   display: flex;
@@ -204,4 +222,46 @@ body {
 
 .archive-jump a:hover {
   text-decoration: underline;
+}
+
+/* Custom text selection */
+::selection {
+  background: rgba(26, 75, 191, 0.15);
+}
+
+.dark ::selection,
+[data-theme="dark"] ::selection {
+  background: rgba(121, 168, 255, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] ::selection {
+    background: rgba(121, 168, 255, 0.25);
+  }
+}
+
+/* Cross-document view transitions (progressive enhancement) */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.15s;
+}
+
+/* Reduced motion: disable transitions and view transitions */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .header,
+  .post-entry,
+  .nav,
+  .top-link {
+    transition: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0s;
+  }
 }

@@ -5,6 +5,7 @@
 /* Improved paragraph spacing for better readability */
 .post-content p {
   margin-bottom: 1.25em;
+  text-wrap: pretty;
 }
 
 /* Links with better visibility */
@@ -12,6 +13,7 @@
   color: #1a4bbf;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  transition: text-decoration-thickness 0.15s ease;
 }
 
 .post-content a:hover {
@@ -36,21 +38,28 @@
 .post-title {
   margin-bottom: 2px;
   font-size: 1.75em;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .post-content h1 {
   font-size: 1.65em;
   margin: 40px auto 24px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .post-content h2 {
   font-size: 1.5em;
   margin: 36px auto 18px;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .post-content h3 {
   font-size: 1.25em;
   margin: 28px auto 14px;
+  text-wrap: balance;
 }
 
 .post-content code {
@@ -91,16 +100,16 @@
 
 /* Code blocks with same rounded edges as cards */
 .post-content .highlight:not(table) {
-  border-radius: 12px !important;
+  border-radius: 8px !important;
   overflow: hidden;
 }
 
 .post-content .highlight table {
-  border-radius: 12px !important;
+  border-radius: 8px !important;
 }
 
 .post-content .highlight pre {
-  border-radius: 12px !important;
+  border-radius: 8px !important;
 }
 
 /* Blockquotes with decorative quotation marks */
@@ -108,7 +117,7 @@
   background: var(--code-bg);
   margin: 20px 0;
   padding: 24px 24px 24px 40px;
-  border-radius: 12px;
+  border-radius: 8px;
   position: relative;
   font-style: italic;
 }
@@ -133,7 +142,7 @@
 .post-content .alert {
   margin: 20px 0;
   padding: 16px 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   border-left: 4px solid;
 }
 
@@ -292,7 +301,7 @@
 .toc {
   margin: 0 0 20px 0;
   font-size: 0.95rem;
-  border-radius: 12px !important;
+  border-radius: 8px !important;
 }
 
 .toc .details {
@@ -416,7 +425,42 @@ a.footnote-ref::after {
 }
 
 
+/* Smooth scroll target offset */
+.post-content h1[id],
+.post-content h2[id],
+.post-content h3[id],
+.post-content h4[id],
+.post-content h5[id],
+.post-content h6[id] {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--primary);
+  opacity: 0.4;
+  z-index: 9999;
+  width: 0%;
+  pointer-events: none;
+}
+
+/* Active TOC link */
+.toc a.active {
+  font-weight: 600;
+  color: var(--primary);
+}
+
 /* Search icon alignment */
 .search-icon {
   vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-content a {
+    transition: none;
+  }
 }

@@ -1,8 +1,13 @@
 /* Minimalist card shape */
 .post-entry,
 .first-entry {
-  padding: 1.4rem 1.65rem;
-  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.post-entry:hover {
+  background: var(--code-bg);
 }
 
 .first-entry {
