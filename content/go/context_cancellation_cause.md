@@ -472,7 +472,8 @@ Any handler can pull the cancel function out and set a cause:
 
 ```go
 func handleOrder(w http.ResponseWriter, r *http.Request) {
-    cancel, _ := r.Context().Value(cancelCauseKey{}).(context.CancelCauseFunc)
+    cancel, _ := r.Context().
+        Value(cancelCauseKey{}).(context.CancelCauseFunc)
 
     if err := processOrder(r.Context()); err != nil {
         cancel(fmt.Errorf("order processing failed: %w", err))
