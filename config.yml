@@ -226,13 +226,13 @@ markup:
 outputs:
   home: ["HTML", "RSS", "JSON"]
   page: ["HTML"]
-  section: ["HTML", "RSS"]
-  taxonomy: ["HTML", "RSS"]
-  term: ["HTML", "RSS"]
+  section: ["HTML"]
+  taxonomy: ["HTML"]
+  term: ["HTML"]
 
 services:
   rss:
-    limit: 50
+    limit: 10
 
 security:
   funcs:

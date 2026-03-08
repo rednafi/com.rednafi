@@ -90,25 +90,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     }
 })();
 
-// Reading progress bar
-(function() {
-    var progressBar = document.getElementById('reading-progress');
-    if (!progressBar) return;
-    var ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-                progressBar.style.width = progress + '%';
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-})();
-
 // Active TOC highlighting
 (function() {
     var toc = document.querySelector('.toc');

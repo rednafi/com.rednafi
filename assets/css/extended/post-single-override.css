@@ -435,18 +435,6 @@ a.footnote-ref::after {
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
-/* Reading progress bar */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--primary);
-  opacity: 0.4;
-  z-index: 9999;
-  width: 0%;
-  pointer-events: none;
-}
 
 /* Active TOC link */
 .toc a.active {
