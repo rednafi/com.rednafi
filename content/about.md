@@ -11,13 +11,16 @@ description: >-
   Go, Python, testing strategies, and software design patterns.
 ---
 
-<div style="text-align: center;">
+<div class="h-card" style="text-align: center;">
+    <a class="u-url u-uid" href="https://rednafi.com" hidden></a>
+    <span class="p-name" hidden>Redowan Delowar</span>
+    <span class="p-nickname" hidden>rednafi</span>
     <figure style="margin: auto;">
-        <img src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
-             alt="Profile picture"
+        <img class="u-photo loading"
+             src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
+             alt="Redowan Delowar"
              width="300"
              height="300"
-             class="loading"
              style="display: block; margin: 0 auto; width: 300px; height: 300px; object-fit: cover; border-radius: 50%;">
     </figure>
 </div>

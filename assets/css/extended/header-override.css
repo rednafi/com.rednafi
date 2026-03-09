@@ -89,6 +89,17 @@ button#theme-toggle svg {
   stroke: var(--primary);
 }
 
+/* In auto mode, .dark on body is the source of truth (set by JS on load).
+   When dark: hide moon (already dark), show sun (offer light).
+   When not dark: hide sun, show moon (offer dark). */
+.dark #moon {
+  display: none;
+}
+
+body:not(.dark) #sun {
+  display: none;
+}
+
 .hamburger-dropdown {
   position: absolute;
   top: calc(100% + 4px);
