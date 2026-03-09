@@ -19,9 +19,9 @@
 
 <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({
+        var pf = new PagefindUI({
             element: "#search",
-            showSubResults: true,
+            showSubResults: false,
             showImages: false,
             excerptLength: 15,
             placeholder: "{{ .Params.placeholder | default (printf "%s" .Title) }}",
@@ -30,9 +30,19 @@
             },
             ranking: {
                 pageWeight: 5.0,
-                termFrequency: 0.5
+                termFrequency: 1.0,
+                termSimilarity: 5.0,
+                termSaturation: 1.2
             }
         });
+        var q = new URLSearchParams(window.location.search).get("q");
+        if (q) {
+            var input = document.querySelector("#search input[type='text']");
+            if (input) {
+                input.value = q;
+                input.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+        }
     });
 </script>
 
