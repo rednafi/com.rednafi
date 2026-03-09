@@ -424,7 +424,6 @@ a.footnote-ref::after {
   background: linear-gradient(to left, transparent, var(--secondary));
 }
 
-
 /* Smooth scroll target offset */
 .post-content h1[id],
 .post-content h2[id],
@@ -445,6 +444,22 @@ a.footnote-ref::after {
 /* Search icon alignment */
 .search-icon {
   vertical-align: middle;
+}
+
+/* Dinkus — literary section break */
+.post-content hr {
+  border: none;
+  text-align: center;
+  margin: 2em 0;
+  height: auto;
+  background: none;
+}
+
+.post-content hr::after {
+  content: "*\2002*\2002*";
+  color: var(--secondary);
+  font-size: 1em;
+  letter-spacing: 0.1em;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,6 @@ date: 2021-11-23
 slug: do-not-add-extensions-to-bash-executables
 aliases:
     - /misc/do_not_add_extensions_to_bash_executables/
-    - /misc/do_not_add_extenstions_to_bash_executables/
 tags:
     - Shell
     - TIL
