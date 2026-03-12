@@ -8,8 +8,8 @@
 :root {
   --gap: 20px;
   --content-gap: 20px;
-  --header-height: 60px;
-  --footer-height: 60px;
+  --header-height: 32px;
+  --footer-height: 32px;
   --radius: 6px;
   --theme: #fefcf6;
   --entry: #fefcf6;
@@ -21,6 +21,8 @@
   --code-block-bg: #f2f1eb;
   --code-color: #1a1a1a;
   --border: #d9d9d9;
+  --accent: #6b3a6b;
+  --accent-rgb: 107, 58, 107;
 }
 
 /* Dark theme variables */
@@ -36,6 +38,8 @@
   --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
   --border: #404550;
+  --accent: #6b3a6b;
+  --accent-rgb: 107, 58, 107;
 }
 
 /* Mobile gap reduction */
@@ -48,15 +52,17 @@
 /* System preference dark mode */
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
-    --theme: #212529;
-    --entry: #292e33;
+    --theme: #231f26;
+    --entry: #2b252d;
     --primary: #e0e0e0;
     --secondary: #e0e0e0;
-    --tertiary: #505050;
+    --tertiary: #504558;
     --content: #e0e0e0;
-    --code-bg: #2c3034;
-    --code-block-bg: #2c3034;
+    --code-bg: #2d272f;
+    --code-block-bg: #2d272f;
     --code-color: #e0e0e0;
-    --border: #404550;
+    --border: #403848;
+    --accent: #6b3a6b;
+    --accent-rgb: 107, 58, 107;
   }
 }

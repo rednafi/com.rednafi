@@ -10,7 +10,7 @@
 
 /* Links with better visibility */
 .post-content a {
-  color: #1a4bbf;
+  color: #680840;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
   transition: text-decoration-thickness 0.15s ease;
@@ -22,12 +22,12 @@
 
 .dark .post-content a,
 [data-theme="dark"] .post-content a {
-  color: #79a8ff;
+  color: #d4a0c8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] .post-content a {
-    color: #79a8ff;
+    color: #d4a0c8;
   }
 }
 
@@ -129,8 +129,19 @@
   left: 10px;
   font-size: 2.5em;
   line-height: 1;
-  color: var(--secondary);
-  opacity: 0.4;
+  color: #680840;
+  opacity: 0.5;
+}
+
+.dark .post-content blockquote::before,
+[data-theme="dark"] .post-content blockquote::before {
+  color: #d4a0c8;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .post-content blockquote::before {
+    color: #d4a0c8;
+  }
 }
 
 /* Remove bottom margin from last element in blockquotes */
@@ -232,7 +243,7 @@
 }
 .dark .post-content .alert-important .alert-title,
 [data-theme="dark"] .post-content .alert-important .alert-title {
-  color: #c58aff;
+  color: #d4a0c8;
 }
 
 .dark .post-content .alert-warning,
@@ -278,7 +289,7 @@
     background: rgba(197, 138, 255, 0.10);
   }
   [data-theme="auto"] .post-content .alert-important .alert-title {
-    color: #c58aff;
+    color: #d4a0c8;
   }
 
   [data-theme="auto"] .post-content .alert-warning {
@@ -438,7 +449,18 @@ a.footnote-ref::after {
 /* Active TOC link */
 .toc a.active {
   font-weight: 600;
-  color: var(--primary);
+  color: #680840;
+}
+
+.dark .toc a.active,
+[data-theme="dark"] .toc a.active {
+  color: #d4a0c8;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .toc a.active {
+    color: #d4a0c8;
+  }
 }
 
 /* Search icon alignment */
@@ -460,6 +482,32 @@ a.footnote-ref::after {
   color: var(--secondary);
   font-size: 1em;
   letter-spacing: 0.1em;
+}
+
+/* Related posts section */
+.related-posts {
+  margin-top: 0;
+}
+
+.related-posts h2 {
+  font-size: 1.3em;
+  margin: 0 0 12px 0;
+}
+
+.related-posts ul {
+  list-style-type: square;
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+.related-posts li {
+  padding: 3px 0;
+  line-height: 1.5;
+}
+
+.related-posts a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

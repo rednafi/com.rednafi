@@ -33,17 +33,22 @@
 }
 
 
+/* Header - full accent background */
+.header {
+  background: var(--accent);
+}
+
 /* Logo */
 .nav .logo a {
   font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: #fff;
 }
 
 .logo a svg {
   margin-inline-end: 0.25em;
-  stroke: var(--primary);
+  stroke: #fff;
 }
 
 .logo-switches {
@@ -54,12 +59,17 @@
 #menu a {
   font-size: 1.0625rem;
   font-weight: 400;
-  color: var(--primary);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#menu a:hover {
+  color: #fff;
 }
 
 #menu .active {
   font-weight: 400;
-  border-bottom: 2px solid currentColor;
+  color: #fff;
+  border-bottom: 2px solid #fff;
 }
 
 /* Hamburger menu */
@@ -74,7 +84,7 @@
 }
 
 .hamburger-label {
-  color: var(--primary);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: var(--header-height);
@@ -82,11 +92,11 @@
 }
 
 button#theme-toggle {
-  color: var(--primary);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 button#theme-toggle svg {
-  stroke: var(--primary);
+  stroke: rgba(255, 255, 255, 0.85);
 }
 
 .hamburger-dropdown {
