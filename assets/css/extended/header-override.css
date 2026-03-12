@@ -167,3 +167,19 @@ button#theme-toggle svg {
 #menu {
   overflow: visible;
 }
+
+/* Mobile-only items hidden on desktop */
+.hamburger-dropdown .mobile-only {
+  display: none;
+}
+
+/* Mobile: collapse nav into hamburger */
+@media screen and (max-width: 768px) {
+  #menu > li:not(.hamburger-menu) {
+    display: none;
+  }
+
+  .hamburger-dropdown .mobile-only {
+    display: block;
+  }
+}
