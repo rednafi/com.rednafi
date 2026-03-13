@@ -1,6 +1,5 @@
 html {
   overflow-y: auto;
-  scrollbar-gutter: stable;
 }
 
 .main {
@@ -229,9 +228,14 @@ html, body {
     #005e70 100%
   );
   height: var(--header-height);
-  color: rgba(255, 255, 255, 0.85);
   max-width: none;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.85);
   padding: 0;
+  margin: 0;
+  text-align: center;
+  line-height: var(--header-height);
+  font-size: 0.857em;
 }
 
 .footer a {
@@ -246,7 +250,6 @@ html, body {
   margin: 0 6px;
 }
 
-.footer,
 .top-link {
   font-size: 0.857em;
   display: flex;
@@ -449,7 +452,7 @@ body.home .main {
 .sidebar-links li { margin-bottom: 4px; }
 
 .sidebar-links a {
-  font-size: 0.9em;
+  font-size: 0.95em;
   color: var(--accent);
   text-decoration: none;
   font-weight: 450;
@@ -467,7 +470,7 @@ body.home .main {
   padding: 2px 8px;
   background: rgba(var(--accent-rgb), 0.1);
   border-radius: calc(var(--radius) / 2);
-  font-size: 0.8em;
+  font-size: 0.85em;
   color: var(--primary);
   text-decoration: none;
 }
@@ -478,7 +481,7 @@ body.home .main {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 
 .sidebar-years a {

@@ -25,10 +25,10 @@
         {{- if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}
       {{- end }}
       {{- $sorted := sort $years "value" "desc" }}
-      {{- range first 5 $sorted }}
+      {{- range first 4 $sorted }}
       <a href="/archive/#{{ . }}">{{ . }}</a>
       {{- end }}
-      {{- if gt (len $sorted) 5 }}
+      {{- if gt (len $sorted) 4 }}
       <a href="/archive/" class="sidebar-more">&hellip;</a>
       {{- end }}
     </div>
