@@ -32,17 +32,14 @@
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 <meta name="author" content="{{ (partial "author.html" . ) }}">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
-{{- if site.Params.analytics.google.SiteVerificationTag }}
-<meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.yandex.SiteVerificationTag }}
-<meta name="yandex-verification" content="{{ site.Params.analytics.yandex.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.bing.SiteVerificationTag }}
-<meta name="msvalidate.01" content="{{ site.Params.analytics.bing.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.naver.SiteVerificationTag }}
-<meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
+{{- $verifications := dict
+  "google-site-verification" site.Params.analytics.google.SiteVerificationTag
+  "yandex-verification" site.Params.analytics.yandex.SiteVerificationTag
+  "naver-site-verification" site.Params.analytics.naver.SiteVerificationTag
+}}
+{{- range $name, $content := $verifications }}
+{{- with $content }}<meta name="{{ $name }}" content="{{ . }}">
+{{ end }}
 {{- end }}
 
 {{- /* Styles */}}

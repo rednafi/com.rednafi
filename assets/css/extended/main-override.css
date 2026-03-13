@@ -312,8 +312,7 @@ body,
   background: rgba(var(--accent-rgb), 0.15);
 }
 
-.dark ::selection,
-[data-theme="dark"] ::selection {
+:is(.dark, [data-theme="dark"]) ::selection {
   background: rgba(var(--accent-rgb), 0.25);
 }
 
