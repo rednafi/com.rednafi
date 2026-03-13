@@ -37,6 +37,38 @@
 </header>
 {{- end }}
 
+{{- if eq .Kind "term" }}
+{{- $currentTag := .Data.Term }}
+{{- $tagCounts := dict }}
+{{- range .Pages }}
+  {{- range .GetTerms "tags" }}
+    {{- $name := .Data.Term }}
+    {{- if ne $name $currentTag }}
+      {{- $prev := index $tagCounts $name | default 0 }}
+      {{- $tagCounts = merge $tagCounts (dict $name (add $prev 1)) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if $tagCounts }}
+{{- $sorted := sort (slice) }}
+{{- range $name, $count := $tagCounts }}
+  {{- $sorted = $sorted | append (dict "name" $name "count" $count) }}
+{{- end }}
+{{- $sorted = sort $sorted "count" "desc" }}
+{{- $limit := math.Min 8 (len $sorted) }}
+<nav class="related-tags" aria-label="Related tags">
+  <span class="related-tags-label">Related:</span>
+  <ul class="related-tags-list">
+    {{- range first $limit $sorted }}
+    {{- with site.GetPage (printf "/tags/%s" .name) }}
+    <li><a href="{{ .Permalink }}">{{ .Name }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+{{- end }}
+
 {{- if .Content }}
 <div class="post-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
