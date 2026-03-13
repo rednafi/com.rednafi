@@ -81,7 +81,7 @@
 
 {{- if .IsHome }}
   {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "notes") }}
+  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
   {{- $pages = union $articles $notes }}
   {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
   {{- $pages = $pages.ByDate.Reverse }}
@@ -114,16 +114,16 @@
           {{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}
         </time>
         <span class="feed-meta-sep">&middot;</span>
-        {{- if $isLink }}
-        <span class="feed-type">link</span>
-        <span class="feed-meta-sep">&middot;</span>
-        <span class="feed-domain">{{ .Params.link | replaceRE "^https?://(www\\.)?" "" | replaceRE "/.*$" "" }}</span>
-        {{- else if eq .Section (site.Params.notesSection | default "notes") }}
-        <span class="feed-type">note</span>
+        {{- if eq .Section (site.Params.notesSection | default "shards") }}
+        <span class="feed-type feed-type-shard">shard</span>
         {{- else }}
-        <span class="feed-section">{{ .Section }}</span>
+        <span class="feed-type feed-type-article">article</span>
         {{- if .ReadingTime }}<span class="feed-meta-sep">&middot;</span>
         <span class="feed-readtime">{{ .ReadingTime }} min</span>{{ end }}
+        {{- end }}
+        {{- if $isLink }}
+        <span class="feed-meta-sep">&middot;</span>
+        <span class="feed-domain">{{ .Params.link | replaceRE "^https?://(www\\.)?" "" | replaceRE "/.*$" "" }}</span>
         {{- end }}
       </div>
     </header>
