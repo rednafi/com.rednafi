@@ -8,6 +8,7 @@
 
 .post-entry:hover {
   background: var(--code-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .first-entry {

@@ -23,6 +23,9 @@
   --border: #d9d9d9;
   --accent: #00687C;
   --accent-rgb: 0, 104, 124;
+  --scrollbar-thumb: rgba(0, 104, 124, 0.35);
+  --scrollbar-thumb-hover: rgba(0, 104, 124, 0.5);
+  --scrollbar-border: 5px;
 }
 
 /* Dark theme variables */
@@ -40,6 +43,9 @@
   --border: #404550;
   --accent: #7cc8e8;
   --accent-rgb: 124, 200, 232;
+  --scrollbar-thumb: var(--accent);
+  --scrollbar-thumb-hover: var(--accent);
+  --scrollbar-border: 0;
 }
 
 /* Mobile gap reduction */
@@ -64,5 +70,8 @@
     --border: #404550;
     --accent: #7cc8e8;
     --accent-rgb: 124, 200, 232;
+    --scrollbar-thumb: var(--accent);
+    --scrollbar-thumb-hover: var(--accent);
+    --scrollbar-border: 0;
   }
 }
