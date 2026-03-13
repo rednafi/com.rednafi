@@ -182,7 +182,12 @@ body,
 
 /* Footer and scroll-to-top */
 .footer {
-  background: var(--accent);
+  background: linear-gradient(
+    to bottom,
+    #0e7a90 0%,
+    #005a6c 49%,
+    #005e70 100%
+  );
   height: var(--header-height);
   color: rgba(255, 255, 255, 0.85);
   max-width: none;
