@@ -1,7 +1,7 @@
 {{- $pages := slice }}
 {{- if .IsHome }}
   {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "notes") }}
+  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
   {{- $pages = union $articles $notes }}
   {{- $pages = $pages.ByDate.Reverse }}
 {{- else if .IsSection }}

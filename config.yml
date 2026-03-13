@@ -117,7 +117,7 @@ params:
   ShowAllPagesInArchive: true
   ShowFullTextinRSS: true
 
-  notesSection: "notes"
+  notesSection: "shards"
 
   mainSections:
     - javascript
@@ -164,18 +164,14 @@ menu:
       name: search
       url: /search/
       weight: 1
-    - identifier: notes
-      name: notes
-      url: /notes/
+    - identifier: shards
+      name: shards
+      url: /shards/
       weight: 2
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 3
     - identifier: about
       name: about
       url: /about/
-      weight: 4
+      weight: 3
 
 markup:
   highlight:
