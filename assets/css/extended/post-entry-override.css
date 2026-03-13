@@ -42,17 +42,16 @@
   line-height: 1.5;
 }
 
-/* Feed entries (homepage) — match post-entry card style */
+/* Feed entries (homepage) */
 .feed-entry {
-  padding: 1.25rem 1.5rem;
+  padding: 0.75rem 0;
   position: relative;
-  border-radius: var(--radius);
-  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--border);
 }
 
-.feed-entry:hover {
-  background: var(--code-bg);
-  box-shadow: inset 3px 0 0 var(--accent);
+.feed-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .feed-title {
@@ -88,8 +87,6 @@
 
 .feed-summary {
   margin: 6px 0 0;
-  font-size: 0.886em;
-  line-height: 1.5;
 }
 
 .feed-summary h1,
