@@ -1,18 +1,6 @@
 html {
   overflow-y: auto;
   scrollbar-gutter: stable;
-  scrollbar-color: var(--scrollbar-thumb) transparent;
-}
-
-/* Page scrollbar (webkit) */
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb) !important;
-  border: var(--scrollbar-border) solid var(--theme) !important;
-  border-radius: var(--radius) !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover) !important;
 }
 
 .main {
@@ -225,21 +213,6 @@ body,
   justify-content: center;
   align-items: center;
 }
-
-.top-link {
-  background: rgba(var(--accent-rgb), 0.15);
-  color: var(--accent);
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
-
-.top-link:hover {
-  background: rgba(var(--accent-rgb), 0.25);
-}
-
-.top-link svg {
-  fill: var(--accent);
-}
-
 
 /* Social icons with accent color */
 .social-icons a {

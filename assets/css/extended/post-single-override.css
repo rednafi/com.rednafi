@@ -75,24 +75,7 @@
 .post-content pre {
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(var(--accent-rgb), 0.3) transparent;
   tab-size: 4;
-}
-
-/* Code block copy button */
-.copy-code {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(var(--accent-rgb), 0.6);
-}
-
-/* Code block scrollbar (webkit) */
-.post-content :not(table) ::-webkit-scrollbar-thumb {
-  border: 2px solid var(--code-block-bg);
-  background: rgba(var(--accent-rgb), 0.35);
-}
-
-.post-content :not(table) ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--accent-rgb), 0.5);
 }
 
 /* Better line numbers visibility */
