@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Typing
 description: >-
   Catch method override errors at type-check time with Python's @override decorator from
   PEP 698, preventing typos and signature mismatches.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Design Patterns
 description: >-
   Learn efficient patterns for caching database connection objects in Python without
   import-time side effects or lru_cache complexity.

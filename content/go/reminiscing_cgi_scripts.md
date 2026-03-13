@@ -7,6 +7,7 @@ aliases:
 tag:
     - Go
     - TIL
+    - Web
 mermaid: true
 description: >-
   Build a CGI script from scratch using Go's stdlib and Bash. Understand why Common

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Learn variable indirection in Bash with ${!var} syntax. Build context-aware configs,
   function dispatch, and dynamic variable name resolution.

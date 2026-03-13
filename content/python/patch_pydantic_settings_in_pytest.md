@@ -7,6 +7,8 @@ aliases:
 tags:
     - Python
     - TIL
+    - Testing
+    - Pytest
 description: >-
   Mock pydantic_settings in pytest tests by patching the settings class to prevent flaky
   tests from environment variable dependencies.

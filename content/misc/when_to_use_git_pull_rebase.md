@@ -7,6 +7,7 @@ aliases:
 tags:
     - Git
     - TIL
+    - GitHub
 description: >-
   Fix divergent branch errors with git pull --rebase. Learn when to rebase local commits
   on top of remote changes for cleaner Git history.

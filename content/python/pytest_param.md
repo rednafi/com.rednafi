@@ -8,6 +8,7 @@ tags:
     - Python
     - Testing
     - TIL
+    - Pytest
 description: >-
   Write readable parametrized tests with pytest.param for better test names, conditional
   skips, custom IDs, and structured test data.

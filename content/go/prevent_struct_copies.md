@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Concurrency
 description: >-
   Prevent dangerous struct copies with noCopy sentinel and go vet's copylock checker.
   Protect mutexes and sync primitives from value copies.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - API
     - Go
+    - Web
 description: >-
   Implement client-side HTTP caching with ETag headers. Learn If-None-Match, 304 Not
   Modified responses, and weak validation in Go servers.

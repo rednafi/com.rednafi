@@ -6,6 +6,7 @@ aliases:
     - /python/amphibian_decorators/
 tags:
     - Python
+    - Async
 description: >-
   Build Python decorators that work seamlessly with both sync and async functions using
   inspect.iscoroutinefunction for maximum flexibility.

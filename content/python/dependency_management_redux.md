@@ -6,6 +6,7 @@ aliases:
     - /python/dependency_management_redux/
 tags:
     - Python
+    - DevOps
 description: >-
   Modern Python dependency management using pip-tools, hatch, and PEP-621 for web apps
   and libraries with reproducible builds.

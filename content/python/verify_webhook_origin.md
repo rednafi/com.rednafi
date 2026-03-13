@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - API
+    - Security
 description: >-
   Secure webhooks by verifying payload authenticity using HMAC hash signatures with
   shared secrets, preventing man-in-the-middle attacks.

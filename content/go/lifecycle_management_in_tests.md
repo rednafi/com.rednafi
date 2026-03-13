@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - Testing
+    - API
 description: >-
   Master Go test lifecycle with t.Cleanup(), subtests, and TestMain. Learn per-test,
   grouped, and package-wide setup patterns effectively.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Testing
+    - Pytest
 description: >-
   Create dynamic pytest fixtures with @pytest.fixture(params) to run tests with multiple
   configurations and parameter combinations.

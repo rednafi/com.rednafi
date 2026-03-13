@@ -10,7 +10,7 @@
 
 /* Links with better visibility */
 .post-content a {
-  color: #680840;
+  color: #00687C;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
   transition: text-decoration-thickness 0.15s ease;
@@ -22,12 +22,12 @@
 
 .dark .post-content a,
 [data-theme="dark"] .post-content a {
-  color: #d4a0c8;
+  color: #7cc8e8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] .post-content a {
-    color: #d4a0c8;
+    color: #7cc8e8;
   }
 }
 
@@ -129,18 +129,17 @@
   left: 10px;
   font-size: 2.5em;
   line-height: 1;
-  color: #680840;
-  opacity: 0.5;
+  color: #00687C;
 }
 
 .dark .post-content blockquote::before,
 [data-theme="dark"] .post-content blockquote::before {
-  color: #d4a0c8;
+  color: #7cc8e8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] .post-content blockquote::before {
-    color: #d4a0c8;
+    color: #7cc8e8;
   }
 }
 
@@ -243,7 +242,7 @@
 }
 .dark .post-content .alert-important .alert-title,
 [data-theme="dark"] .post-content .alert-important .alert-title {
-  color: #d4a0c8;
+  color: #7cc8e8;
 }
 
 .dark .post-content .alert-warning,
@@ -289,7 +288,7 @@
     background: rgba(197, 138, 255, 0.10);
   }
   [data-theme="auto"] .post-content .alert-important .alert-title {
-    color: #d4a0c8;
+    color: #7cc8e8;
   }
 
   [data-theme="auto"] .post-content .alert-warning {
@@ -449,17 +448,17 @@ a.footnote-ref::after {
 /* Active TOC link */
 .toc a.active {
   font-weight: 600;
-  color: #680840;
+  color: #00687C;
 }
 
 .dark .toc a.active,
 [data-theme="dark"] .toc a.active {
-  color: #d4a0c8;
+  color: #7cc8e8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] .toc a.active {
-    color: #d4a0c8;
+    color: #7cc8e8;
   }
 }
 

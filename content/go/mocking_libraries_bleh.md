@@ -5,6 +5,7 @@ slug: mocking-libraries-bleh
 tags:
     - Go
     - Testing
+    - API
 description: >-
     Practical patterns for mocking in Go without external libraries. Learn to mock
     functions, methods, interfaces, HTTP calls, and time using only the standard library

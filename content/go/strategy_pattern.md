@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Design Patterns
 description: >-
   Replace inheritance with the Strategy pattern in Go using interfaces. Achieve
   composable, testable code without class hierarchies.

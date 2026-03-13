@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Typing
+    - API
 description: >-
   Use Python TypedDict to declaratively define API payload structures. Get type safety
   for nested dictionaries and improve code maintainability.

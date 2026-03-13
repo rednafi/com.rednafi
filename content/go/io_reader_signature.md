@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Performance
 description: >-
   Understand why io.Reader takes a byte slice parameter instead of returning one. Learn
   about heap allocations and buffer reuse in Go streams.

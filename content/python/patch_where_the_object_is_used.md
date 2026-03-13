@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Testing
+    - Pytest
 description: >-
   Master Python mocking: patch objects at their import location, not where they're
   defined, to avoid common unittest.mock pitfalls.

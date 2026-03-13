@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - API
+    - Logging
 description: >-
   Automatically tag Python logs with request context using middleware and contextvars for
   distributed tracing in ASGI web applications.

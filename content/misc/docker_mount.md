@@ -4,6 +4,7 @@ date: 2024-10-22
 tags:
     - TIL
     - Docker
+    - DevOps
 slug: docker-mount
 aliases:
     - /misc/docker_mount/

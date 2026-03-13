@@ -4,6 +4,7 @@ date: 2025-11-30
 slug: splintered-failure-modes
 tags:
     - Go
+    - Error Handling
 description: >-
   Simplify Go error handling by consolidating validation and system errors. Learn when to
   return boolean vs error for clearer failure modes.

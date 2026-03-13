@@ -7,6 +7,7 @@ aliases:
 tags:
     - Database
     - Python
+    - SQL
 description: >-
   Practical SQLite recipes for Python: execute statements, batch operations,
   transactions, row factories, and context managers with sqlite3.

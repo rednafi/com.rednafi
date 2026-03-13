@@ -6,6 +6,7 @@ aliases:
     - /python/escape_template_pattern/
 tags:
     - Python
+    - Design Patterns
 description: >-
   Replace inheritance-based template pattern with composition and Protocol types to
   create cleaner, testable Python code without namespace pollution.

@@ -6,6 +6,8 @@ aliases:
     - /python/pre_commit/
 tags:
     - Python
+    - Git
+    - DevOps
 description: >-
   Automate Python code quality with pre-commit hooks running Black, isort, flake8, and
   mypy before each git commit for consistent formatting.
@@ -135,11 +137,11 @@ any conflicts.
 - repo: https://github.com/asottile/seed-isort-config
   rev: v1.9.3
   hooks:
-  - id: seed-isort-config
+    - id: seed-isort-config
 - repo: https://github.com/pre-commit/mirrors-isort
   rev: v4.3.21
   hooks:
-  - id: isort
+    - id: isort
 
 # black
 - repo: https://github.com/ambv/black

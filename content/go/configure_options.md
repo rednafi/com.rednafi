@@ -6,6 +6,8 @@ aliases:
     - /go/configure_options/
 tags:
     - Go
+    - API
+    - Design Patterns
 description: >-
   Compare three Go option patterns: exposed structs, option constructors, and functional
   options. Learn when to use each for clean APIs.

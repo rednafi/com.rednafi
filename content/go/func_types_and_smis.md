@@ -6,6 +6,8 @@ aliases:
     - /go/func_types_and_smis/
 tags:
     - Go
+    - API
+    - Testing
 description: >-
   Implement single-method interfaces with function types instead of structs. Master
   http.HandlerFunc patterns for middlewares, mocks, and adapters.

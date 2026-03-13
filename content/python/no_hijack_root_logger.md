@@ -6,6 +6,7 @@ aliases:
     - /python/no_hijack_root_logger/
 tags:
     - Python
+    - Logging
 description: >-
   Avoid configuring Python's root logger in libraries; use named loggers with NullHandler
   to let application code control logging behavior.

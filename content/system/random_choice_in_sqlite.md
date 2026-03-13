@@ -7,6 +7,7 @@ aliases:
 tags:
     - Database
     - SQL
+    - Data Structures
 description: >-
   Emulate Python's random.choice in SQLite using JSON arrays and the random() function.
   Populate tables with realistic test data efficiently.

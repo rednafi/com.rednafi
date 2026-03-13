@@ -6,6 +6,7 @@ aliases:
     - /go/sort_slice/
 tags:
     - Go
+    - Data Structures
 description: >-
   Compare three Go slice sorting methods: sort.Interface, sort.Slice with closures, and
   modern generic slices.Sort with type safety.

@@ -5,6 +5,7 @@ slug: testing-http-requests
 aliases:
     - /python/testing_http_requests/
 tags:
+    - Python
     - API
     - Testing
     - TIL

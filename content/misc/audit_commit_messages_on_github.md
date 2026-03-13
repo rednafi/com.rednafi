@@ -6,6 +6,8 @@ aliases:
     - /misc/audit_commit_messages_on_github/
 tags:
     - GitHub
+    - DevOps
+    - Shell
 description: >-
   Automate commit message validation with GitHub Actions. Enforce refs and closes
   patterns to maintain clean Git history and link commits to issues.

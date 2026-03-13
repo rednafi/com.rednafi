@@ -6,6 +6,8 @@ aliases:
     - /python/disallow_large_file_download/
 tags:
     - Python
+    - API
+    - Security
 description: >-
   Prevent excessive file downloads in Python by streaming with HTTPX and limiting file
   size with chunk-based validation and memory-safe processing.

@@ -5,8 +5,9 @@ slug: bash-namerefs
 aliases:
     - /misc/bash_namerefs/
 tags:
-  - Shell
-  - TIL
+    - Shell
+    - TIL
+    - CLI
 description: >-
   Master Bash namerefs with declare -n to create dynamic variable references. Build
   generic functions for arrays and associative arrays without eval.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Networking
     - Go
+    - Design Patterns
 mermaid: true
 description: >-
   Build a production-ready circuit breaker in Go from scratch with closed, open, and

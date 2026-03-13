@@ -7,6 +7,8 @@ aliases:
 tags:
     - Python
     - Incident Post-mortem
+    - Django
+    - Performance
 description: >-
   Learn from a production outage caused by loading large CSV files into memory. Stream
   process files to prevent OOM errors and crashes.

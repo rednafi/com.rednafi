@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - Networking
+    - Docker
 description: >-
   Implement rate limiting at the infrastructure layer with Nginx reverse proxy. Protect
   Go services from DDoS with leaky bucket algorithm.

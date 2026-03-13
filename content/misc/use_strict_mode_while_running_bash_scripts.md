@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - Error Handling
 description: >-
   Enable Bash strict mode with set -euo pipefail to catch errors early. Exit on failures,
   treat unset variables as errors, and handle pipeline failures properly.

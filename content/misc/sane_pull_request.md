@@ -6,6 +6,7 @@ aliases:
     - /misc/sane_pull_request/
 tags:
     - Git
+    - GitHub
 description: >-
   Make pull requests easier to review. Learn commit organization, diff filtering,
   annotations, and context that helps reviewers understand changes faster.

@@ -6,6 +6,8 @@ aliases:
     - /python/preallocated_list/
 tags:
     - Python
+    - Performance
+    - Data Structures
 description: >-
   Understand CPython list memory allocation: how lists store pointer references, grow
   dynamically, and when pre-allocation with [None]*n helps.

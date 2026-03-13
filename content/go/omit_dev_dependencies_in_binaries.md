@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - DevOps
 description: >-
   Track dev dependencies like golangci-lint in go.mod with a tools.go file and build tags
   to exclude them from production binaries.

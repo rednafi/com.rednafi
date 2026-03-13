@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - Testing
+    - API
 description: >-
   Return teardown closures from test helpers to manage cleanup elegantly. Learn patterns
   for temp files, mock servers, and t.Cleanup() usage.

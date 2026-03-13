@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Performance
 description: >-
   Avoid memory leaks when caching instance methods with lru_cache by making cache
   containers local to instances instead of global.

@@ -3,6 +3,8 @@ title: SSH saga
 date: 2024-12-17
 tags:
     - Shell
+    - Networking
+    - Security
 slug: ssh-saga
 aliases:
     - /misc/ssh_saga/

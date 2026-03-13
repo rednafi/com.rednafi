@@ -21,8 +21,8 @@
   --code-block-bg: #f2f1eb;
   --code-color: #1a1a1a;
   --border: #d9d9d9;
-  --accent: #6b3a6b;
-  --accent-rgb: 107, 58, 107;
+  --accent: #00687C;
+  --accent-rgb: 0, 104, 124;
 }
 
 /* Dark theme variables */
@@ -38,8 +38,8 @@
   --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
   --border: #404550;
-  --accent: #6b3a6b;
-  --accent-rgb: 107, 58, 107;
+  --accent: #00687C;
+  --accent-rgb: 0, 104, 124;
 }
 
 /* Mobile gap reduction */
@@ -62,7 +62,7 @@
     --code-block-bg: #2d272f;
     --code-color: #e0e0e0;
     --border: #403848;
-    --accent: #6b3a6b;
-    --accent-rgb: 107, 58, 107;
+    --accent: #00687C;
+    --accent-rgb: 0, 104, 124;
   }
 }

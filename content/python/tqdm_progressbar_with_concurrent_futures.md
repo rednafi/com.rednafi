@@ -6,6 +6,7 @@ aliases:
     - /python/tqdm_progressbar_with_concurrent_futures/
 tags:
     - Python
+    - Concurrency
 description: >-
   Display progress bars for concurrent Python tasks using tqdm with ThreadPoolExecutor
   and as_completed for real-time execution monitoring.

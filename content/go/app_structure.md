@@ -6,6 +6,8 @@ aliases:
     - /go/app_structure/
 tags:
     - Go
+    - API
+    - Web
 description: >-
   Organize Go apps by domain, not technology. Learn why models/controllers structure
   hurts and how bounded contexts create better separation.

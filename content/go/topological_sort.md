@@ -6,6 +6,7 @@ aliases:
     - /go/topological_sort/
 tags:
     - Go
+    - Data Structures
 mermaid: true
 description: >-
   Implement topological sorting in Go to order tasks by dependencies. Process directed

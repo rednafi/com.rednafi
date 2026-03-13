@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Django
+    - Database
 description: >-
   Sort Django querysets by custom attribute sequences using Case and When expressions for
   database-level ordering with SQL CASE statements.

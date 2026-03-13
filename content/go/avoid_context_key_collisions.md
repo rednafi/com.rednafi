@@ -4,6 +4,8 @@ date: 2025-10-22
 slug: avoid-context-key-collisions
 tags:
     - Go
+    - API
+    - Performance
 description: >-
   Master Go context keys with custom types, avoid collisions using empty structs, and
   learn accessor patterns for safe request-scoped values.

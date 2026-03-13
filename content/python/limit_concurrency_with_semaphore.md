@@ -6,6 +6,8 @@ aliases:
     - /python/limit_concurrency_with_semaphore/
 tags:
     - Python
+    - Async
+    - Concurrency
 description: >-
   Control concurrent async requests with Python asyncio.Semaphore to respect rate limits
   and prevent overwhelming APIs or services.

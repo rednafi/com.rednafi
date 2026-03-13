@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Logging
 description: >-
   Master Go 1.21's log/slog package for structured logging with levels, JSON output, and
   attribute grouping. No third-party libraries needed.

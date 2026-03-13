@@ -5,8 +5,10 @@ slug: inject-pytest-fixture
 aliases:
     - /python/inject_pytest_fixture/
 tags:
-  - Python
-  - TIL
+    - Python
+    - TIL
+    - Pytest
+    - Testing
 description: >-
   Clean up pytest test signatures using @pytest.mark.usefixtures to inject implicit
   fixtures without autouse or unused parameter warnings.

@@ -6,6 +6,7 @@ aliases:
     - /go/nil_interface_comparison/
 tags:
     - Go
+    - Data Structures
 description: >-
   Debug tricky nil comparisons in Go interfaces. Understand dynamic types, type
   assertions, and use reflect for generic nil checking.

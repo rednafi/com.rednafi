@@ -6,6 +6,7 @@ aliases:
     - /python/string_interning/
 tags:
     - Python
+    - Performance
 description: >-
   Learn how Python's string interning optimizes memory by caching strings and using
   sys.intern() for custom string caching to improve performance.

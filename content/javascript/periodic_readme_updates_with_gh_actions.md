@@ -7,6 +7,7 @@ aliases:
 tags:
     - JavaScript
     - GitHub
+    - DevOps
 description: >-
   Automate your GitHub profile README with periodic updates using Actions. Parse RSS
   feeds and dynamically display latest blog posts with NodeJS.

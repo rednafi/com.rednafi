@@ -8,6 +8,7 @@ tags:
     - Database
     - Python
     - System
+    - Redis
 description: >-
   Build multi-level rate limiting with Redis sorted sets and Lua. Enforce global and
   category-specific limits with ZREMRANGEBYSCORE and ZCARD commands.

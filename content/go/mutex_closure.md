@@ -6,6 +6,8 @@ aliases:
     - /go/mutex_closure/
 tags:
     - Go
+    - Concurrency
+    - API
 description: >-
     Why your mutex wrapper should accept a closure for mutation instead of a plain value,
     with examples from the standard library and Tailscale.
