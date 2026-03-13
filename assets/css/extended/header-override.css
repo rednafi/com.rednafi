@@ -41,6 +41,7 @@
     #005a6c 49%,
     #005e70 100%
   );
+  max-width: none;
 }
 
 /* Logo */
@@ -88,4 +89,23 @@ button#theme-toggle svg {
 .nav,
 #menu {
   overflow: visible;
+}
+
+/* Mobile: shrink nav to fit */
+@media screen and (max-width: 768px) {
+  #menu a {
+    font-size: 0.85em;
+  }
+
+  #menu li {
+    margin: 0;
+  }
+
+  .nav .logo a {
+    font-size: 0.85em;
+  }
+
+  .logo-switches {
+    margin-inline-start: 6px;
+  }
 }
