@@ -33,9 +33,14 @@
 }
 
 
-/* Header - full accent background */
+/* Header - accent gradient for subtle depth */
 .header {
-  background: var(--accent);
+  background: linear-gradient(
+    to bottom,
+    #0e7a90 0%,
+    #005a6c 49%,
+    #005e70 100%
+  );
 }
 
 /* Logo */
