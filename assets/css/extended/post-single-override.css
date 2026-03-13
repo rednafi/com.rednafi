@@ -2,6 +2,7 @@
   max-width: 100%;
 }
 
+
 /* Improved paragraph spacing for better readability */
 .post-content p {
   margin-bottom: 1.25em;
@@ -142,7 +143,7 @@
 }
 
 .post-content .alert-title {
-  font-weight: 700;
+  font-weight: 650;
   margin-bottom: 0.5em;
 }
 
@@ -418,7 +419,7 @@ a.footnote-ref::after {
 
 /* Active TOC link */
 .toc a.active {
-  font-weight: 600;
+  font-weight: 650;
   color: var(--accent);
 }
 

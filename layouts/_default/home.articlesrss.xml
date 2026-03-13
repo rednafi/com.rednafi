@@ -1,14 +1,4 @@
-{{- $pages := slice }}
-{{- if .IsHome }}
-  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "notes") }}
-  {{- $pages = union $articles $notes }}
-  {{- $pages = $pages.ByDate.Reverse }}
-{{- else if .IsSection }}
-  {{- $pages = .RegularPages }}
-{{- else }}
-  {{- $pages = .Pages }}
-{{- end }}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $limit := site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
 {{- $pages = $pages | first $limit }}
@@ -16,9 +6,9 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ site.Title }}{{ end }}</title>
+    <title>{{ site.Title }} — Articles</title>
     <link>{{ .Permalink }}</link>
-    <description>Recent content {{ if ne .Title site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ site.Title }}</description>
+    <description>Articles on {{ site.Title }}</description>
     {{- with site.Params.images }}
     <image>
       <title>{{ site.Title }}</title>
@@ -27,13 +17,9 @@
     </image>
     {{- end }}
     <generator>Hugo -- {{ hugo.Version }}</generator>
-    <language>{{ site.Language.LanguageCode }}</language>
-    {{- with site.Copyright }}
-    <copyright>{{ . | markdownify | plainify | strings.TrimPrefix "© " }}</copyright>{{ end }}{{ if not .Date.IsZero }}
+    <language>{{ site.Language.LanguageCode }}</language>{{ if not .Date.IsZero }}
     <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
-    {{- with .OutputFormats.Get "RSS" }}
-    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
-    {{- end }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" (.Permalink | replaceRE "/$" "/articles.xml") "application/rss+xml" | safeHTML }}
     {{- range $pages }}
     {{- if and (ne .Layout `search`) (ne .Layout `archives`) }}
     <item>

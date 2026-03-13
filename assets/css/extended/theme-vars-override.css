@@ -29,7 +29,7 @@
 .dark,
 :root[data-theme="dark"] {
   --theme: #212529;
-  --entry: #292e33;
+  --entry: #212529;
   --primary: #e0e0e0;
   --secondary: #e0e0e0;
   --tertiary: #505050;
@@ -53,7 +53,7 @@
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
     --theme: #212529;
-    --entry: #292e33;
+    --entry: #212529;
     --primary: #e0e0e0;
     --secondary: #e0e0e0;
     --tertiary: #505050;

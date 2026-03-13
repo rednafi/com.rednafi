@@ -77,25 +77,6 @@
   border-bottom: 2px solid #fff;
 }
 
-/* Hamburger menu */
-.hamburger-menu {
-  position: relative;
-}
-
-.hamburger-checkbox {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
-}
-
-.hamburger-label {
-  color: #fff;
-  font-size: 0.971em;
-  font-weight: 400;
-  line-height: var(--header-height);
-  cursor: pointer;
-}
-
 button#theme-toggle {
   color: #fff;
 }
@@ -104,92 +85,7 @@ button#theme-toggle svg {
   stroke: #fff;
 }
 
-.hamburger-dropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  right: 0;
-  background: var(--theme);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 120px;
-  z-index: 1000;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: all 0.1s ease;
-}
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .hamburger-dropdown {
-    transition: none;
-    transform: none;
-  }
-}
-
-.hamburger-checkbox:checked + .hamburger-label + .hamburger-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Focus style for keyboard accessibility */
-.hamburger-checkbox:focus-visible + .hamburger-label {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Higher specificity to override #menu styles */
-#menu .hamburger-dropdown li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#menu .hamburger-dropdown a {
-  display: block;
-  padding: 8px 16px;
-  margin: 0;
-  text-align: left;
-  text-indent: 0;
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 0.971em;
-  font-weight: 400;
-  line-height: 1.2;
-  border: none;
-}
-
-#menu .hamburger-dropdown a:hover {
-  background: var(--tertiary);
-}
-
-#menu .hamburger-dropdown a.active {
-  font-weight: 500;
-  color: var(--accent);
-}
-
 .nav,
 #menu {
   overflow: visible;
-}
-
-/* Mobile-only items hidden on desktop */
-.hamburger-dropdown .mobile-only {
-  display: none;
-}
-
-/* Mobile: collapse nav into hamburger */
-@media screen and (max-width: 768px) {
-  #menu > li:not(.hamburger-menu) {
-    display: none;
-  }
-
-  .hamburger-dropdown .mobile-only {
-    display: block;
-  }
 }

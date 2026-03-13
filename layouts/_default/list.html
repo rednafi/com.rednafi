@@ -80,8 +80,11 @@
 {{- $pages := union .RegularPages .Sections }}
 
 {{- if .IsHome }}
-{{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
+  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "notes") }}
+  {{- $pages = union $articles $notes }}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+  {{- $pages = $pages.ByDate.Reverse }}
 {{- end }}
 
 {{- $paginator := .Paginate $pages }}
@@ -95,50 +98,72 @@
 {{- if .IsHome }}
 <div class="h-feed">
   <data class="p-name" value="{{ site.Title }}" hidden></data>
+<div class="home-grid">
+  <div class="home-feed">
 {{- end }}
 
 {{- range $index, $page := $paginator.Pages }}
 
-{{- $class := "post-entry" }}
-
-{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
-{{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
-{{- $class = "first-entry" }}
-{{- else if $term }}
-{{- $class = "post-entry tag-entry" }}
+{{- if $.IsHome }}
+  {{- $isLink := isset $page.Params "link" }}
+  <article class="feed-entry h-entry">
+    <header class="feed-header">
+      <h2 class="feed-title">{{ .Title }}{{ if .Draft }} <span class="entry-hint">[draft]</span>{{ end }}</h2>
+      <div class="feed-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}
+        </time>
+        <span class="feed-meta-sep">&middot;</span>
+        {{- if $isLink }}
+        <span class="feed-type">link</span>
+        <span class="feed-meta-sep">&middot;</span>
+        <span class="feed-domain">{{ .Params.link | replaceRE "^https?://(www\\.)?" "" | replaceRE "/.*$" "" }}</span>
+        {{- else if eq .Section (site.Params.notesSection | default "notes") }}
+        <span class="feed-type">note</span>
+        {{- else }}
+        <span class="feed-section">{{ .Section }}</span>
+        {{- if .ReadingTime }}<span class="feed-meta-sep">&middot;</span>
+        <span class="feed-readtime">{{ .ReadingTime }} min</span>{{ end }}
+        {{- end }}
+      </div>
+    </header>
+    {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+    {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+    {{- if (ne (.Param "hideSummary") true) }}
+    <div class="feed-summary post-content">
+      {{ .Summary }}
+    </div>
+    {{- end }}
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  </article>
+{{- else }}
+  <article class="feed-entry">
+    <header class="feed-header">
+      <h2 class="feed-title">{{ .Title }}{{ if .Draft }} <span class="entry-hint">[draft]</span>{{ end }}</h2>
+      <div class="feed-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}
+        </time>
+        {{- if .ReadingTime }}
+        <span class="feed-meta-sep">&middot;</span>
+        <span class="feed-readtime">{{ .ReadingTime }} min</span>
+        {{- end }}
+      </div>
+    </header>
+    {{- if (ne (.Param "hideSummary") true) }}
+    <div class="feed-summary post-content">
+      {{ .Summary }}
+    </div>
+    {{- end }}
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  </article>
 {{- end }}
-
-<article class="{{ $class }}{{ if $.IsHome }} h-entry{{ end }}">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-      {{- .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h2>
-  </header>
-  {{- if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-  </div>
-  {{- end }}
-  {{- if not (.Param "hideMeta") }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-  </footer>
-  {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
 {{- end }}
 
 {{- if .IsHome }}
+  </div>
+  {{- partial "sidebar.html" . }}
+</div>
 </div>
 {{- end }}
 
