@@ -28,16 +28,16 @@
 /* Dark theme variables */
 .dark,
 :root[data-theme="dark"] {
-  --theme: #152228;
-  --entry: #1c2a31;
+  --theme: #212529;
+  --entry: #292e33;
   --primary: #e0e0e0;
   --secondary: #e0e0e0;
-  --tertiary: #334a52;
+  --tertiary: #505050;
   --content: #e0e0e0;
-  --code-bg: #1f2d34;
-  --code-block-bg: #1f2d34;
+  --code-bg: #2c3034;
+  --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
-  --border: #304048;
+  --border: #404550;
   --accent: #00687C;
   --accent-rgb: 0, 104, 124;
 }
@@ -52,16 +52,16 @@
 /* System preference dark mode */
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
-    --theme: #152228;
-    --entry: #1c2a31;
+    --theme: #212529;
+    --entry: #292e33;
     --primary: #e0e0e0;
     --secondary: #e0e0e0;
-    --tertiary: #334a52;
+    --tertiary: #505050;
     --content: #e0e0e0;
-    --code-bg: #1f2d34;
-    --code-block-bg: #1f2d34;
+    --code-bg: #2c3034;
+    --code-block-bg: #2c3034;
     --code-color: #e0e0e0;
-    --border: #304048;
+    --border: #404550;
     --accent: #00687C;
     --accent-rgb: 0, 104, 124;
   }
