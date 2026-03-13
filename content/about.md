@@ -66,18 +66,19 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Greatest hits
 
-- [Oh my poor business logic]
-- [The diminishing half-life of knowledge]
-- [Annotating args and kwargs in Python]
-- [An ode to the neo-grotesque web]
-- [HTTP requests via /dev/tcp]
-- [You probably don't need a DI framework]
-- [Dotfiles stewardship for the indolent]
-- [Configuring options in Go]
-- [Recipes from Python SQLite docs]
-- [Limit goroutines with buffered channels]
-- [Pesky little scripts]
 - [I kind of like rebasing]
+- [Oh my poor business logic]
+- [What canceled my Go context?]
+- [The diminishing half-life of knowledge]
+- [Preventing accidental struct copies in Go]
+- [You probably don't need a DI framework]
+- [ETag and HTTP caching]
+- [Writing a circuit breaker in Go]
+- [Structured concurrency & Go]
+- [Revisiting interface segregation in Go]
+- [Reminiscing CGI scripts]
+- [Let the domain guide your application structure]
+- [Your Go tests probably don't need a mocking library]
 
 <!-- References -->
 <!-- prettier-ignore-start -->
@@ -119,18 +120,18 @@ More on the [stack, deployment, and writing process] if you're curious.
     https://www.goodreads.com/book/show/95558.Solaris
 
 <!-- Greatest hits -->
-[oh my poor business logic]: /zephyr/oh-my-poor-business-logic/
-[the diminishing half-life of knowledge]: /zephyr/diminishing-half-life-of-knowledge/
-[annotating args and kwargs in python]: /python/annotate-args-and-kwargs/
-[an ode to the neo-grotesque web]: /zephyr/an-ode-to-the-neo-grotesque-web/
-[http requests via /dev/tcp]: /misc/http-requests-via-dev-tcp/
-[writing on well-trodden topics]: /zephyr/writing-on-well-trodden-topics/
-[you probably don't need a di framework]: /go/di-frameworks-bleh/
-[dotfiles stewardship for the indolent]: /misc/dotfile-stewardship-for-the-indolent/
-[configuring options in Go]: /go/configure-options/
-[recipes from python sqlite docs]: /python/recipes-from-python-sqlite-docs/
-[limit goroutines with buffered channels]: /go/limit-goroutines-with-buffered-channels/
-[pesky little scripts]: /misc/pesky-little-scripts/
 [i kind of like rebasing]: /misc/on-rebasing/
+[oh my poor business logic]: /zephyr/oh-my-poor-business-logic/
+[what canceled my go context?]: /go/context-cancellation-cause/
+[the diminishing half-life of knowledge]: /zephyr/diminishing-half-life-of-knowledge/
+[preventing accidental struct copies in go]: /go/prevent-struct-copies/
+[you probably don't need a di framework]: /go/di-frameworks-bleh/
+[etag and http caching]: /misc/etag-and-http-caching/
+[writing a circuit breaker in go]: /go/circuit-breaker/
+[structured concurrency & go]: /go/structured-concurrency/
+[revisiting interface segregation in go]: /go/interface-segregation/
+[reminiscing cgi scripts]: /go/reminiscing-cgi-scripts/
+[let the domain guide your application structure]: /go/app-structure/
+[your go tests probably don't need a mocking library]: /go/mocking-libraries-bleh/
 
 <!-- prettier-ignore-end -->
