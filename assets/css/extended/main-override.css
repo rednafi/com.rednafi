@@ -31,7 +31,7 @@ body,
 }
 
 .page-header h1 {
-  font-size: 2rem;
+  font-size: 1.829em;
   text-wrap: balance;
   margin-bottom: 0;
 }
@@ -76,6 +76,13 @@ body,
 /* Ensure hidden elements are truly hidden */
 [hidden] {
   display: none !important;
+}
+
+/* Mobile: slightly smaller base font */
+@media screen and (max-width: 499px) {
+  body {
+    font-size: 16.5px;
+  }
 }
 
 /* Tablet: cap content width when zoomed */
@@ -208,7 +215,7 @@ body,
 
 .footer,
 .top-link {
-  font-size: 0.9375rem;
+  font-size: 0.857em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,7 +286,7 @@ body,
   background: var(--tertiary);
   border-radius: var(--radius);
   color: var(--primary);
-  font-size: 0.95rem;
+  font-size: 0.869em;
   transition: transform 0.1s;
 }
 

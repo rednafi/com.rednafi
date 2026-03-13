@@ -22,11 +22,11 @@
 }
 
 .first-entry .entry-header h1 {
-  font-size: 2rem;
+  font-size: 1.829em;
 }
 
 .first-entry .entry-content {
-  font-size: 1.0625rem;
+  font-size: 0.971em;
   line-height: 1.5;
   color: var(--primary);
 }
@@ -36,7 +36,7 @@
 }
 
 .post-entry .entry-content {
-  font-size: 0.96875rem;
+  font-size: 0.886em;
   line-height: 1.5;
 }
 

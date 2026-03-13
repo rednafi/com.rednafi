@@ -276,7 +276,7 @@
 
 .toc {
   margin: 0 0 20px 0;
-  font-size: 0.95rem;
+  font-size: 0.869em;
   border-radius: var(--radius) !important;
 }
 
@@ -353,7 +353,7 @@ a.footnote-ref::after {
   background: var(--tertiary);
   border: none;
   border-radius: var(--radius);
-  font-size: 0.95rem;
+  font-size: 0.869em;
   line-height: 1.4;
   color: var(--primary);
 }
