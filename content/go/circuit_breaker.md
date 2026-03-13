@@ -12,6 +12,9 @@ mermaid: true
 description: >-
   Build a production-ready circuit breaker in Go from scratch with closed, open, and
   half-open states to prevent cascading failures.
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1i5n5sc/
 ---
 
 Besides retries, [circuit breakers] are probably one of the most commonly employed

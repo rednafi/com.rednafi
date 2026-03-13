@@ -9,6 +9,9 @@ tags:
 description: >-
     Practical patterns for mocking in Go without external libraries. Learn to mock
     functions, methods, interfaces, HTTP calls, and time using only the standard library
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1qmfjzh/
 ---
 
 > There are frameworks that generate those kind of fakes, and one of them is called

@@ -10,6 +10,11 @@ tags:
 description: >-
   How technical skills decay faster than ever in software engineering, and strategies for
   continuous learning in a rapidly changing field.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=38551512
+    - label: Reddit
+      url: https://www.reddit.com/r/programming/comments/19bv4xd/
 ---
 
 Ever been in a situation where you landed a software engineering job with a particular tech

@@ -11,6 +11,9 @@ tags:
 description: >-
   Prevent dangerous struct copies with noCopy sentinel and go vet's copylock checker.
   Protect mutexes and sync primitives from value copies.
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1k5aqkc/
 ---
 
 By default, Go copies values when you pass them around. But sometimes, that can be

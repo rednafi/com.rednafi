@@ -12,6 +12,11 @@ mermaid: true
 description: >-
   Build a CGI script from scratch using Go's stdlib and Bash. Understand why Common
   Gateway Interface fell out of favor for modern web apps.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=38779443
+    - label: Reddit
+      url: https://www.reddit.com/r/programming/comments/18rz3vf/
 ---
 
 I've always had a thing for old-school web tech. By the time I joined the digital fray, CGI
