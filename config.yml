@@ -181,18 +181,14 @@ menu:
       weight: 3
 
   hamburger:
-    - identifier: archive
-      name: archive
-      url: /archive/
-      weight: 0
     - identifier: talks
       name: talks
       url: /talks/
-      weight: 1
+      weight: 0
     - identifier: maxims
       name: maxims
       url: /maxims/
-      weight: 2
+      weight: 1
 
 markup:
   highlight:
