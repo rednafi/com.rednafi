@@ -114,7 +114,6 @@ params:
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
-  disableSpecial1stPost: true
   showtoc: true
   ShowAllPagesInArchive: true
   ShowFullTextinRSS: true
@@ -146,9 +145,6 @@ params:
       <div>
         <em>A roving amateur fumbling through software, systems, & sundry.</em>
       </div>
-
-  social:
-    twitter: "raboroham"
 
   # IndieWeb
   webmention: true
@@ -211,7 +207,7 @@ markup:
       unsafe: true
 
 outputs:
-  home: ["HTML", "RSS", "JSON"]
+  home: ["HTML", "RSS"]
   page: ["HTML"]
   section: ["HTML", "RSS"]
   taxonomy: ["HTML"]

@@ -82,7 +82,7 @@
   border-radius: 3px;
 }
 
-body.dark #search mark {
+:is(body.dark, [data-theme="dark"]) #search mark {
   background-color: rgba(var(--accent-rgb), 0.3);
 }
 
