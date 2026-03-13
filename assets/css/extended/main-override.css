@@ -100,8 +100,29 @@ body,
 
 /* Prevent horizontal overflow on small screens */
 html, body {
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
+}
+
+.feed-summary pre,
+.post-content pre {
+  overflow-x: auto;
+}
+
+.feed-summary code,
+.post-content code {
+  word-break: break-all;
+}
+
+.feed-summary pre code,
+.post-content pre code {
+  word-break: normal;
+}
+
+.feed-summary,
+.feed-entry {
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 /* Improved focus visibility for accessibility */
@@ -381,6 +402,11 @@ body.home .main {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--gap);
+  min-width: 0;
+}
+
+.home-feed {
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
