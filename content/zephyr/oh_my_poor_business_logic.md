@@ -10,6 +10,9 @@ tags:
 description: >-
   How resume-driven development and technical maximalism distract engineers from solving
   real business problems and delivering value.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=38159363
 ---
 
 Adopting existing tools that work, applying them to the business problems at hand, and

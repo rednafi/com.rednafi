@@ -9,6 +9,11 @@ tags:
 description: >-
   Apply SOLID's Interface Segregation Principle in Go with consumer-defined contracts.
   Learn why small interfaces and implicit implementation matter.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=45789218
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1olzq5m/
 ---
 
 Object-oriented (OO) patterns get a lot of flak in the Go community, and often for good

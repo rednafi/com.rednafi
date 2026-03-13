@@ -12,6 +12,11 @@ description: >-
     How Go 1.20's WithCancelCause and Go 1.21's WithTimeoutCause let you attach a reason
     to context cancellation, plus a gotcha with manual cancel and the stdlib pattern that
     covers every path.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=47244882
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1rhzdxd/
 ---
 
 I've spent way more hours than I'd like to admit debugging `context canceled` and

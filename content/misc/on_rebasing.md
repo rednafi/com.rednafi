@@ -11,6 +11,9 @@ tags:
 description: >-
   Master git rebase for cleaner commit history. Learn interactive rebasing, squashing
   commits, and rebasing feature branches onto main with practical examples.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=40742628
 ---
 
 People tend to get pretty passionate about Git workflows on different online forums. Some

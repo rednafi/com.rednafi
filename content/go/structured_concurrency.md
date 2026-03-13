@@ -12,6 +12,9 @@ tags:
 description: >-
     How Python and Kotlin provide structured concurrency out of the box while Go achieves
     the same patterns explicitly using errgroup, WaitGroup, and context.
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1rat6lm/
 ---
 
 At my workplace, a lot of folks are coming to Go from Python and Kotlin. Both languages have
