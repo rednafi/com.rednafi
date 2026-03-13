@@ -7,6 +7,7 @@ aliases:
 tags:
     - API
     - Networking
+    - Distributed Systems
 description: >-
   Define service contracts with Protocol Buffers for non-gRPC systems. Generate
   serializers, maintain self-documented APIs, and ensure cross-language compatibility.

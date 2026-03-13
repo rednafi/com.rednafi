@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Docker
 description: >-
   Set up VSCode debugger for containerized Python applications using debugpy.
   Step-by-step guide with Docker Compose and launch configurations.

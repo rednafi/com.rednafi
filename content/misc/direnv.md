@@ -4,6 +4,7 @@ date: 2024-10-02
 tags:
     - TIL
     - Shell
+    - CLI
 slug: direnv
 aliases:
     - /misc/direnv/

@@ -6,6 +6,7 @@ aliases:
     - /go/to_wrap_or_not_to_wrap/
 tags:
     - Go
+    - Error Handling
 description: >-
     Exploring the tradeoffs between wrapping errors at every return site versus
     wrapping only at boundaries, with no definitive answer - just honest tradeoffs

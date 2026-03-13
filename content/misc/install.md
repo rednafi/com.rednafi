@@ -4,6 +4,7 @@ date: 2024-07-28
 tags:
     - Shell
     - TIL
+    - CLI
 slug: install
 aliases:
     - /misc/install/

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - Distributed Systems
+    - Design Patterns
 description: >-
   Separate business logic from external service calls using the Gateway pattern. Apply
   dependency inversion and interface segregation in Go.

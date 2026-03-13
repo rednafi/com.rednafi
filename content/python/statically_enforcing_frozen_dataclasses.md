@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Typing
 description: >-
   Enforce immutable dataclasses at type-check time with @final decorator to catch
   mutations before runtime without frozen=True performance cost.

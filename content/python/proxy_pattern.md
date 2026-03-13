@@ -6,6 +6,7 @@ aliases:
     - /python/proxy_pattern/
 tags:
     - Python
+    - Design Patterns
 description: >-
   Learn the proxy design pattern in Python to add access control, caching, and validation
   layers without modifying core functionality.

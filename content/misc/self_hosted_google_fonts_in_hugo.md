@@ -6,6 +6,8 @@ aliases:
     - /misc/self_hosted_google_fonts_in_hugo/
 tags:
     - TIL
+    - Hugo
+    - Web
 description: >-
   Host Google Fonts locally in Hugo without CDN dependency. Download woff2 files,
   configure CSS, and improve performance while maintaining GDPR compliance.

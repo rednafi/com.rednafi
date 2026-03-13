@@ -59,7 +59,7 @@
 #menu a {
   font-size: 1.0625rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
 }
 
 #menu a:hover {
@@ -84,7 +84,7 @@
 }
 
 .hamburger-label {
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: var(--header-height);
@@ -92,11 +92,11 @@
 }
 
 button#theme-toggle {
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
 }
 
 button#theme-toggle svg {
-  stroke: rgba(255, 255, 255, 0.85);
+  stroke: #fff;
 }
 
 .hamburger-dropdown {

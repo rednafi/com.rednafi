@@ -5,8 +5,9 @@ slug: middleware-vs-delegation
 aliases:
     - /go/middleware_vs_delegation/
 tags:
-  - Go
-  - API
+    - Go
+    - API
+    - Web
 description: >-
   Compare middleware stacking with embedded delegation in Go HTTP servers. Learn when to
   override ServeHTTP for simpler request handling.

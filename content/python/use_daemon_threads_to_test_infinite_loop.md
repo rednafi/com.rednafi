@@ -6,6 +6,8 @@ aliases:
     - /python/use_daemon_threads_to_test_infinite_loop/
 tags:
     - Python
+    - Testing
+    - Concurrency
 description: >-
   Test Python infinite loops safely using daemon threads with timeouts, allowing tests to
   complete without hanging or blocking execution.

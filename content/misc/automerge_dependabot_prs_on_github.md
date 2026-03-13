@@ -6,6 +6,8 @@ aliases:
     - /misc/automerge_dependabot_prs_on_github/
 tags:
     - GitHub
+    - DevOps
+    - CLI
 description: >-
   Automatically merge Dependabot pull requests using GitHub Actions. Configure branch
   protection and status checks for safe automated dependency updates.

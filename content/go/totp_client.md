@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Security
 description: >-
   Build a TOTP-based 2FA client in Go using the standard library. Generate time-based
   one-time passwords like Google Authenticator.

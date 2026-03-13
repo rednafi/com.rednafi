@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Testing
+    - Pytest
 description: >-
   Combine pytest fixtures with unittest.mock.patch for clean, reusable test mocking
   patterns that integrate seamlessly with pytest's ecosystem.

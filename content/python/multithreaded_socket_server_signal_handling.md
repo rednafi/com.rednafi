@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Networking
+    - Concurrency
 description: >-
   Gracefully shutdown Python's ThreadingTCPServer with signal handlers for SIGINT,
   SIGTERM handling and client notification on server shutdown.

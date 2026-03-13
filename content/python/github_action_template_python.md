@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - GitHub
+    - DevOps
 description: >-
   Production-ready GitHub Actions workflow for Python with multi-OS testing, dependency
   caching, automated updates, and daily scheduled runs.
@@ -115,13 +116,13 @@ The dependabot config looks as follows:
 
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values.
+    - package-ecosystem: "pip" # See documentation for possible values.
     directory: "/" # Location of package manifests.
     schedule:
       interval: "daily"
 
   # Maintain dependencies for GitHub Actions.
-  - package-ecosystem: "github-actions"
+    - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Testing
 description: >-
   Test literal booleans correctly in Python unittest using assertIs instead of
   assertTrue/assertFalse to avoid truthy/falsy confusion.

@@ -6,6 +6,8 @@ aliases:
     - /misc/notes_on_event_driven_systems/
 tags:
     - Networking
+    - Distributed Systems
+    - Design Patterns
 description: >-
   Deep dive into event-driven architecture patterns. Learn publish-subscribe, CQRS,
   outbox pattern, eventual consistency, and handling microservice coupling.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Performance
 description: >-
   Speed up Python module imports with __getattr__ from PEP 562 for lazy loading,
   deprecation warnings, and dynamic attribute access.

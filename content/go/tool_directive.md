@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - DevOps
 description: >-
   Pin tool versions in Go 1.24 with the new 'tool' directive. Replace tools.go pattern
   with native go.mod support for project tooling.

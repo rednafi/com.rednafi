@@ -26,6 +26,13 @@
   <div class="post-description">
     {{ .Description | markdownify }}
   </div>
+  {{- else if eq .Kind "term" }}
+  {{- $desc := index site.Params.taxonomyDescriptions (lower .Data.Term) }}
+  {{- with $desc }}
+  <div class="post-description taxonomy-description">
+    {{ . | markdownify }}
+  </div>
+  {{- end }}
   {{- end }}
 </header>
 {{- end }}

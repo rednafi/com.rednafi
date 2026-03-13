@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - DevOps
 description: >-
   Run background health checks in CI with nohup and ampersand. Test server readiness with
   retry loops and automatic cleanup on success or failure.

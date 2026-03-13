@@ -4,6 +4,7 @@ date: 2025-11-16
 slug: test-subprocesses
 tags:
     - Go
+    - Testing
 description: >-
   Test Go subprocesses with the re-exec pattern: spawn your test binary as a subprocess
   to emulate real command behavior reliably.

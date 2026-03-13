@@ -8,6 +8,7 @@ tags:
     - Go
     - Python
     - Kotlin
+    - Concurrency
 description: >-
     How Python and Kotlin provide structured concurrency out of the box while Go achieves
     the same patterns explicitly using errgroup, WaitGroup, and context.

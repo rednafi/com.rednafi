@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Use the colon : command as a no-op in Bash scripts for cleaner debug output with -x
   flag. Alternative to echo for section markers and comments.

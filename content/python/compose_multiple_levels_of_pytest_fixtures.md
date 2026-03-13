@@ -9,6 +9,7 @@ tags:
     - Python
     - Testing
     - TIL
+    - Pytest
 description: >-
   Combine session and function-scoped pytest fixtures to avoid expensive test setup while
   maintaining test isolation and preventing state coupling.

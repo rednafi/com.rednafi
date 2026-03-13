@@ -7,6 +7,8 @@ aliases:
 tags:
     - Python
     - Django
+    - Concurrency
+    - Database
 description: >-
   Speed up Django bulk operations with ProcessPoolExecutor while preserving signals and
   hooks that bulk_create/bulk_update bypass.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - API
 description: >-
   Use compile-time interface guards to verify type conformity in Go without runtime
   overhead. Learn the var _ Interface = (*Type)(nil) pattern.

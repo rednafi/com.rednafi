@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Networking
+    - Concurrency
 description: >-
   Process large CSV files without OOM errors by streaming content line-by-line with HTTPX
   and concurrent.futures for parallel processing.

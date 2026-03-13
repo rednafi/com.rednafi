@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Manage dotfiles across devices with GNU Stow. Symlink configuration files from git repo
   to home directory with simple, idempotent commands.

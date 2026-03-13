@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Django
+    - Database
 description: >-
   Use Django query expressions like Replace, Upper, Lower, Concat, and Substr for
   efficient database-level text manipulation without fetching data.

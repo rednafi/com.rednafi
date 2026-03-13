@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Why executable scripts shouldn't have extensions. Learn GitHub's
   scripts-to-rule-them-all pattern for language-agnostic project automation.

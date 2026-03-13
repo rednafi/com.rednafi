@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - Testing
+    - CLI
 description: >-
   Control Go test behavior with custom flags instead of build tags or env vars. Enable
   integration and snapshot tests with discoverable CLI options.

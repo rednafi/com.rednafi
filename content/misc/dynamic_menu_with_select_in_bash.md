@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Build interactive CLI menus with Bash select statement. Create user-friendly
   command-line tools with option selection and function dispatch.

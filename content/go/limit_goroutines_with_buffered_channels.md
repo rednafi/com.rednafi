@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Concurrency
 description: >-
   Control goroutine concurrency with buffered channels as semaphores. Prevent resource
   exhaustion with backpressure patterns in Go workers.

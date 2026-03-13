@@ -4,6 +4,8 @@ date: 2025-11-01
 slug: interface-segregation
 tags:
     - Go
+    - API
+    - Testing
 description: >-
   Apply SOLID's Interface Segregation Principle in Go with consumer-defined contracts.
   Learn why small interfaces and implicit implementation matter.

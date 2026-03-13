@@ -5,6 +5,8 @@ slug: annotate-args-and-kwargs
 aliases:
     - /python/annotate_args_and_kwargs/
 tags:
+    - Python
+    - Typing
     - TIL
 description: >-
   Properly annotate Python *args and **kwargs with heterogeneous types using Unpack,

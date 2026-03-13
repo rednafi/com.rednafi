@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Testing
+    - Pytest
 description: >-
   Mock chained datetime methods in Python tests using unittest.mock to handle immutable
   datetime objects without external dependencies.

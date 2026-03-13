@@ -6,6 +6,7 @@ aliases:
     - /go/slice_gotchas/
 tags:
     - Go
+    - Data Structures
 description: >-
   Avoid common Go slice mistakes: shared backing arrays, nil vs empty slices, append
   behavior, and slice copying pitfalls explained.

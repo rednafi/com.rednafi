@@ -5,7 +5,9 @@ slug: behind-the-blog
 aliases:
     - /misc/behind_the_blog/
 tags:
-  - Essay
+    - Essay
+    - Hugo
+    - DevOps
 description: >-
   How this blog is built: Hugo static site generator, GitHub Actions deployment,
   Cloudflare caching, and R2 storage. Simple, stable, and cost-free.

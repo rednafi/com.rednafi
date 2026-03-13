@@ -53,26 +53,33 @@
     {{ partial "mermaid.html" }}
     {{ end }}
 
-{{- /* Recent posts section - only show on main content pages */ -}}
+{{- /* Only show related/recent posts on main content pages */ -}}
 {{- $showRecent := true }}
 {{- range site.Menus.hamburger }}
   {{- if strings.HasPrefix $.RelPermalink .URL }}{{ $showRecent = false }}{{ end }}
 {{- end }}
 
 {{- if $showRecent }}
+{{- $current := . }}
+
+{{- /* Related posts - matched by tags, section, date */ -}}
+{{- $related := site.RegularPages.Related . | first 5 }}
+{{- if lt (len $related) 3 }}
+  {{- $sectionPages := where site.RegularPages "Section" .Section }}
+  {{- $related = $sectionPages | complement (slice $current) | first 5 }}
+{{- end }}
+{{- with $related }}
 <div class="post-ornament" data-pagefind-ignore>§</div>
-<h2 data-pagefind-ignore>Recent posts</h2>
-<ul data-pagefind-ignore>
-  {{- $current := . }}
-  {{- $recentPages := first 11 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
-  {{- $count := 0 }}
-  {{- range $recentPages }}
-    {{- if and (lt $count 10) (ne . $current) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- $count = add $count 1 }}
+<nav class="related-posts" data-pagefind-ignore>
+  <h2>Related posts</h2>
+  <ul>
+    {{- range . }}
+    <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
     {{- end }}
-  {{- end }}
-</ul>
+  </ul>
+</nav>
+{{- end }}
+
 {{- end }}
 </div>
 

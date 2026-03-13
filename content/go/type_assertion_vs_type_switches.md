@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Data Structures
 description: >-
   Master Go type assertions with i.(T) syntax and type switches. Extract concrete types
   from interfaces safely with ok idiom examples.

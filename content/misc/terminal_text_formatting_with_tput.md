@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Format terminal output with tput instead of ANSI codes. Set colors, bold text,
   underlines, and backgrounds with simple commands in shell scripts.

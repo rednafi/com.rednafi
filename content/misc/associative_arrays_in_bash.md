@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - Data Structures
 description: >-
   Learn how to use associative arrays in Bash to create key-value pairs, mimic
   dictionaries, and manage complex data structures in shell scripts.

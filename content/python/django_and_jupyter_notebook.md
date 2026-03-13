@@ -5,8 +5,9 @@ slug: django-and-jupyter-notebook
 aliases:
     - /python/django_and_jupyter_notebook/
 tags:
-  - Python
-  - Django
+    - Python
+    - Django
+    - Docker
 description: >-
   Connect Jupyter Notebook to Dockerized Django apps using ipykernel and
   django-extensions for interactive debugging and data exploration.

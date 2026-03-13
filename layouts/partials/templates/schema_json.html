@@ -37,7 +37,7 @@
 }
 </script>
 
-{{/* WebSite entity with SearchAction for sitelinks searchbox */}}
+{{/* WebSite entity */}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,14 +48,6 @@
   "alternateName": [{{ site.Params.author }}, "rednafi.com"],
   "description": {{ $siteDesc }},
   "inLanguage": "en-US",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": {{ printf "%ssearch/?q={search_term_string}" site.Home.Permalink }}
-    },
-    "query-input": "required name=search_term_string"
-  },
   "author": {
     "@id": {{ $authorId }}
   },

@@ -6,6 +6,7 @@ aliases:
     - /javascript/exploring_observable_notebooks/
 tags:
     - JavaScript
+    - Web
 description: >-
   Create a client-side CSV comparison tool using ObservableHQ notebooks and ChatGPT.
   Learn to build interactive data apps without deployment hassles.

@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Networking
 description: >-
   Build a working round-robin load balancer in Go with goroutines and the standard
   library. No dependencies needed for this educational prototype.

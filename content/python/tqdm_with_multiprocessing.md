@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - TIL
+    - Concurrency
 description: >-
   Integrate tqdm progress bars with multiprocessing.imap_unordered for visual feedback on
   parallel task execution across worker processes.

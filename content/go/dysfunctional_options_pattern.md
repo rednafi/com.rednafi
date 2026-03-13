@@ -6,6 +6,8 @@ aliases:
     - /go/dysfunctional_options_pattern/
 tags:
     - Go
+    - API
+    - Performance
 description: >-
   Discover a simpler alternative to functional options: method chaining with
   builder-style configuration that's 76x faster and easier to understand.

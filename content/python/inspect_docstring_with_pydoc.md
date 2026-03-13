@@ -6,6 +6,7 @@ aliases:
     - /python/inspect_docstring_with_pydoc/
 tags:
     - Python
+    - CLI
 description: >-
   View Python docstrings from the command line with pydoc or serve them as HTML
   documentation for modules, classes, and functions.

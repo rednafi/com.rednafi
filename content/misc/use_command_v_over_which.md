@@ -7,6 +7,7 @@ aliases:
 tags:
     - Shell
     - TIL
+    - CLI
 description: >-
   Replace which with command -v for POSIX-compliant executable lookup. Learn why command
   -v is the portable alternative for finding program paths.

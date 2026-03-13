@@ -8,6 +8,7 @@ tags:
     - Python
     - Django
     - TIL
+    - API
 description: >-
   Standardize Django REST Framework error responses using custom exception handlers to
   match Microsoft's REST API guidelines format.

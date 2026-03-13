@@ -7,6 +7,7 @@ aliases:
 tags:
     - Go
     - TIL
+    - Error Handling
 description: >-
   Build retry logic in Go without reflection using generics. Implement exponential
   backoff and configurable retry strategies with type safety.

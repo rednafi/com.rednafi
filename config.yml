@@ -17,6 +17,18 @@ frontmatter:
 taxonomies:
   tag: tags
 
+related:
+  includeNewer: true
+  threshold: 20
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+      type: basic
+    - name: date
+      weight: 10
+      pattern: "2006"
+
 permalinks:
   posts: "/:section/:slug/"
 
@@ -57,54 +69,41 @@ params:
     - software architecture
 
   taxonomyDescriptions:
-    api:
-      "API design, REST principles, GraphQL, versioning strategies, and best practices for
-      building maintainable web APIs."
-    aws: "Amazon Web Services guides: Lambda, S3, EC2, and cloud architecture patterns."
-    database:
-      "Database design, SQL optimization, PostgreSQL, SQLite, and data persistence patterns."
-    "distributed systems":
-      "Distributed system patterns, microservices architecture, event-driven design,
-      consistency models, and scalability."
-    django:
-      "Django web framework tutorials: ORM, views, templates, middleware, and building
-      robust Python web applications."
-    docker: "Container orchestration, Docker best practices, and deployment strategies."
-    essay:
-      "Long-form reflections on software engineering, career growth, and technical
-      decision-making."
-    git:
-      "Git version control workflows, branching strategies, rebasing, and collaborative
-      development practices."
-    github:
-      "GitHub features, pull requests, CI/CD workflows, GitHub Actions, and open source
-      collaboration."
-    go:
-      "Deep dives into Go programming: concurrency patterns, testing strategies, error
-      handling, and idiomatic code practices."
-    "incident post-mortem":
-      "Post-mortem analysis of production incidents, outage reviews, and lessons learned
-      from system failures."
-    javascript: "JavaScript patterns, Node.js, and modern web development."
-    networking: "HTTP, DNS, TCP/IP, APIs, and network programming fundamentals."
-    python:
-      "Python tutorials covering Django, type hints, decorators, context managers, pytest
-      fixtures, and Pythonic design patterns."
-    shell:
-      "Bash scripting, shell one-liners, terminal productivity, and Unix command-line
-      techniques."
-    sql: "SQL queries, database optimization, and relational database concepts."
-    system: "Systems programming, OS internals, and low-level computing concepts."
-    testing:
-      "Software testing strategies: unit tests, integration tests, mocking, fixtures, and
-      test-driven development."
-    til:
-      "Today I Learned: bite-sized technical discoveries and quick tips across programming
-      languages and tools."
-    typescript: "TypeScript type system, advanced types, and JavaScript ecosystem tools."
-    typing:
-      "Type systems, type hints, static analysis, and type-safe programming across
-      languages."
+    api: "Designing and consuming web APIs."
+    async: "Async/await, event loops, and non-blocking I/O."
+    aws: "[Amazon Web Services](https://aws.amazon.com/)."
+    cli: "Command-line tools and terminal applications."
+    concurrency: "Goroutines, threads, and parallel execution."
+    "data structures": "Slices, maps, iterables, dataclasses, and other collections."
+    database: "Database design, queries, and persistence."
+    "design patterns": "Recurring solutions to common software design problems."
+    devops: "CI/CD, deployment, and infrastructure automation."
+    "distributed systems": "Systems that run across multiple machines."
+    django: "The [Django](https://www.djangoproject.com/) web framework."
+    docker: "[Docker](https://www.docker.com/) containers."
+    "error handling": "Exceptions, error wrapping, and failure modes."
+    essay: "Long-form reflections on software and engineering culture."
+    git: "[Git](https://git-scm.com/) version control."
+    github: "[GitHub](https://github.com/) features and workflows."
+    go: "The [Go](https://go.dev/) programming language."
+    hugo: "The [Hugo](https://gohugo.io/) static site generator."
+    "incident post-mortem": "Post-incident reviews and lessons learned."
+    javascript: "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language."
+    networking: "HTTP, DNS, TCP/IP, and network programming."
+    performance: "Making things faster."
+    postgresql: "The [PostgreSQL](https://www.postgresql.org/) database."
+    pytest: "The [pytest](https://docs.pytest.org/) testing framework."
+    python: "The [Python](https://www.python.org/) programming language."
+    redis: "The [Redis](https://redis.io/) data store."
+    security: "Authentication, authorization, and secure coding."
+    shell: "Bash scripting and Unix command-line tools."
+    sql: "SQL queries and relational databases."
+    system: "Systems programming and OS-level concerns."
+    testing: "Writing and running tests."
+    til: "Short posts about things I learned."
+    typescript: "The [TypeScript](https://www.typescriptlang.org/) programming language."
+    typing: "Type systems, type hints, and static analysis."
+    web: "Web development, HTTP, and server-side concerns."
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
@@ -176,14 +175,10 @@ menu:
       name: tags
       url: /tags/
       weight: 2
-    - identifier: archive
-      name: archive
-      url: /archive/
-      weight: 3
     - identifier: about
       name: about
       url: /about/
-      weight: 4
+      weight: 3
 
   hamburger:
     - identifier: talks
@@ -194,14 +189,6 @@ menu:
       name: maxims
       url: /maxims/
       weight: 2
-    - identifier: blogroll
-      name: blogroll
-      url: /blogroll/
-      weight: 3
-    - identifier: feed
-      name: "2025"
-      url: /feed/2025
-      weight: 4
 
 markup:
   highlight:

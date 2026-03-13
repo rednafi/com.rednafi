@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Networking
+    - Concurrency
 description: >-
   Build a pausable socket server with Python's socketserver module using threading for
   intermittent request handling and background tasks.

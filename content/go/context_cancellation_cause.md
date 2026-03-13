@@ -6,6 +6,8 @@ aliases:
     - /go/context_cancellation_cause/
 tags:
     - Go
+    - Error Handling
+    - Concurrency
 description: >-
     How Go 1.20's WithCancelCause and Go 1.21's WithTimeoutCause let you attach a reason
     to context cancellation, plus a gotcha with manual cancel and the stdlib pattern that

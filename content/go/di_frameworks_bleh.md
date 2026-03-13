@@ -6,6 +6,8 @@ aliases:
     - /go/di_frameworks_bleh/
 tags:
     - Go
+    - Testing
+    - API
 description: >-
   Dependency injection in Go doesn't need Dig or Wire. Learn why manual wiring beats
   reflection magic and how Go's design makes DI frameworks overkill.

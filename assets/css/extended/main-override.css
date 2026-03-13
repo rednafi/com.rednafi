@@ -190,8 +190,15 @@ body,
 }
 
 .footer a {
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
   border-bottom: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.footer-sep {
+  margin: 0 6px;
 }
 
 .footer,
@@ -234,18 +241,18 @@ body,
 }
 
 .archive-jump a {
-  color: #680840;
+  color: #00687C;
   text-decoration: none;
 }
 
 .dark .archive-jump a,
 [data-theme="dark"] .archive-jump a {
-  color: #d4a0c8;
+  color: #7cc8e8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] .archive-jump a {
-    color: #d4a0c8;
+    color: #7cc8e8;
   }
 }
 

@@ -6,6 +6,8 @@ aliases:
     - /misc/heredoc_headache/
 tags:
     - Shell
+    - DevOps
+    - GitHub
 description: >-
   Avoid here-doc pitfalls when running remote commands via SSH. Learn variable expansion
   gotchas and simpler alternatives for deployment scripts.
