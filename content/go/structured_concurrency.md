@@ -2,8 +2,6 @@
 title: Structured concurrency & Go
 date: 2026-02-21
 slug: structured-concurrency
-aliases:
-    - /go/structured_concurrency/
 tags:
     - Go
     - Python

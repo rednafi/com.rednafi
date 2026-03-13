@@ -2,8 +2,6 @@
 title: What canceled my Go context?
 date: 2026-02-24
 slug: context-cancellation-cause
-aliases:
-    - /go/context_cancellation_cause/
 tags:
     - Go
     - Error Handling

@@ -2,8 +2,6 @@
 title: Mutate your locked state inside a closure
 date: 2026-03-05
 slug: mutex-closure
-aliases:
-    - /go/mutex_closure/
 tags:
     - Go
     - Concurrency

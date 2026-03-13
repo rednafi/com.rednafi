@@ -1,9 +1,7 @@
 ---
-title: "Go errors: to wrap or not to wrap"
+title: "Go errors: to wrap or not to wrap?"
 date: 2026-03-07
 slug: to-wrap-or-not-to-wrap
-aliases:
-    - /go/to_wrap_or_not_to_wrap/
 tags:
     - Go
     - Error Handling
