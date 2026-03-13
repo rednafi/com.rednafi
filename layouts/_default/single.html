@@ -54,7 +54,7 @@
     {{ end }}
 
 {{- /* Only show related/recent posts on main content pages */ -}}
-{{- $showRecent := true }}
+{{- $showRecent := not .Params.hideRelated }}
 {{- range site.Menus.hamburger }}
   {{- if strings.HasPrefix $.RelPermalink .URL }}{{ $showRecent = false }}{{ end }}
 {{- end }}

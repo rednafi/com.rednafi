@@ -104,7 +104,7 @@
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
 
 {{- /* Pagination link tags for SEO */ -}}
-{{- if and (or .IsHome .IsSection) (gt .Paginator.TotalPages 1) }}
+{{- if and (or .IsHome .IsSection (eq .Kind "term")) (gt .Paginator.TotalPages 1) }}
   {{- if .Paginator.HasPrev }}
 <link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
   {{- end }}
@@ -143,7 +143,10 @@
                 --content: #e0e0e0;
                 --code-block-bg: #2c3034;
                 --code-bg: #2c3034;
+                --code-color: #e0e0e0;
                 --border: #404550;
+                --accent: #7cc8e8;
+                --accent-rgb: 124, 200, 232;
             }
 
             .list {

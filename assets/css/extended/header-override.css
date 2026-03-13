@@ -168,6 +168,11 @@ button#theme-toggle svg {
   background: var(--tertiary);
 }
 
+#menu .hamburger-dropdown a.active {
+  font-weight: 500;
+  color: var(--accent);
+}
+
 .nav,
 #menu {
   overflow: visible;

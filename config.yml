@@ -69,40 +69,40 @@ params:
     - software architecture
 
   taxonomyDescriptions:
-    api: "Designing and consuming web APIs."
-    async: "Async/await, event loops, and non-blocking I/O."
+    api: "Web APIs."
+    async: "Asynchronous programming."
     aws: "[Amazon Web Services](https://aws.amazon.com/)."
-    cli: "Command-line tools and terminal applications."
-    concurrency: "Goroutines, threads, and parallel execution."
-    "data structures": "Slices, maps, iterables, dataclasses, and other collections."
-    database: "Database design, queries, and persistence."
-    "design patterns": "Recurring solutions to common software design problems."
-    devops: "CI/CD, deployment, and infrastructure automation."
-    "distributed systems": "Systems that run across multiple machines."
+    cli: "Command-line tools."
+    concurrency: "Concurrent and parallel programming."
+    "data structures": "Data structures and collections."
+    database: "Databases and persistence."
+    "design patterns": "Software design patterns."
+    devops: "Deployment and infrastructure."
+    "distributed systems": "Distributed systems."
     django: "The [Django](https://www.djangoproject.com/) web framework."
     docker: "[Docker](https://www.docker.com/) containers."
-    "error handling": "Exceptions, error wrapping, and failure modes."
-    essay: "Long-form reflections on software and engineering culture."
+    "error handling": "Error handling."
+    essay: "Long-form essays."
     git: "[Git](https://git-scm.com/) version control."
-    github: "[GitHub](https://github.com/) features and workflows."
+    github: "[GitHub](https://github.com/)."
     go: "The [Go](https://go.dev/) programming language."
     hugo: "The [Hugo](https://gohugo.io/) static site generator."
-    "incident post-mortem": "Post-incident reviews and lessons learned."
+    "incident post-mortem": "Incident post-mortems."
     javascript: "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language."
-    networking: "HTTP, DNS, TCP/IP, and network programming."
-    performance: "Making things faster."
+    networking: "Networking and protocols."
+    performance: "Performance optimization."
     postgresql: "The [PostgreSQL](https://www.postgresql.org/) database."
     pytest: "The [pytest](https://docs.pytest.org/) testing framework."
     python: "The [Python](https://www.python.org/) programming language."
     redis: "The [Redis](https://redis.io/) data store."
-    security: "Authentication, authorization, and secure coding."
-    shell: "Bash scripting and Unix command-line tools."
-    sql: "SQL queries and relational databases."
-    system: "Systems programming and OS-level concerns."
-    testing: "Writing and running tests."
-    til: "Short posts about things I learned."
+    security: "Security."
+    shell: "Shell scripting."
+    sql: "SQL and relational databases."
+    system: "Systems programming."
+    testing: "Testing."
+    til: "Things I learned."
     typescript: "The [TypeScript](https://www.typescriptlang.org/) programming language."
-    typing: "Type systems, type hints, and static analysis."
+    typing: "Type systems and static analysis."
     web: "Web development, HTTP, and server-side concerns."
   author: "Redowan Delowar"
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
@@ -144,7 +144,7 @@ params:
       <path d="M4 4a16 16 0 0 1 16 16"/> <circle cx="5" cy="19" r="1"/> </svg> </a>
     Content: >
       <div>
-        A roving amateur fumbling through software, systems, & sundry.
+        <em>A roving amateur fumbling through software, systems, & sundry.</em>
       </div>
 
   social:
@@ -181,6 +181,10 @@ menu:
       weight: 3
 
   hamburger:
+    - identifier: archive
+      name: archive
+      url: /archive/
+      weight: 0
     - identifier: talks
       name: talks
       url: /talks/
@@ -213,9 +217,9 @@ markup:
 outputs:
   home: ["HTML", "RSS", "JSON"]
   page: ["HTML"]
-  section: ["HTML"]
+  section: ["HTML", "RSS"]
   taxonomy: ["HTML"]
-  term: ["HTML"]
+  term: ["HTML", "RSS"]
 
 services:
   rss:
