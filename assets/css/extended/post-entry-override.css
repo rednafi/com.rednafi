@@ -42,16 +42,17 @@
   line-height: 1.5;
 }
 
-/* Dense feed entries (homepage) */
+/* Feed entries (homepage) — match post-entry card style */
 .feed-entry {
-  padding: 0.75rem 0;
+  padding: 1.25rem 1.5rem;
   position: relative;
-  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
 }
 
-.feed-entry:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.feed-entry:hover {
+  background: var(--code-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .feed-title {
@@ -87,6 +88,8 @@
 
 .feed-summary {
   margin: 6px 0 0;
+  font-size: 0.886em;
+  line-height: 1.5;
 }
 
 .feed-summary h1,
