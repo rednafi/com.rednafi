@@ -2,7 +2,7 @@
 .post-entry,
 .first-entry {
   padding: 1.25rem 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--radius);
   transition: background-color 0.2s ease;
 }
 

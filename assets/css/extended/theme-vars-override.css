@@ -10,11 +10,11 @@
   --content-gap: 20px;
   --header-height: 32px;
   --footer-height: 32px;
-  --radius: 6px;
+  --radius: 8px;
   --theme: #fefcf6;
   --entry: #fefcf6;
   --primary: #111111;
-  --secondary: #1a1a1a;
+  --secondary: #555555;
   --tertiary: #d6d6d6;
   --content: #111111;
   --code-bg: #f2f1eb;
@@ -38,8 +38,8 @@
   --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
   --border: #404550;
-  --accent: #00687C;
-  --accent-rgb: 0, 104, 124;
+  --accent: #7cc8e8;
+  --accent-rgb: 124, 200, 232;
 }
 
 /* Mobile gap reduction */
@@ -62,7 +62,7 @@
     --code-block-bg: #2c3034;
     --code-color: #e0e0e0;
     --border: #404550;
-    --accent: #00687C;
-    --accent-rgb: 0, 104, 124;
+    --accent: #7cc8e8;
+    --accent-rgb: 124, 200, 232;
   }
 }

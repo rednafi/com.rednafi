@@ -20,7 +20,6 @@ body {
   font-weight: 400;
   margin: 0;
   padding: 0;
-  text-rendering: optimizeLegibility;
 }
 
 /* Smooth theme transitions */
@@ -34,6 +33,7 @@ body,
 .page-header h1 {
   font-size: 2rem;
   text-wrap: balance;
+  margin-bottom: 0;
 }
 .social-icons a svg {
   height: 15px;
@@ -235,7 +235,15 @@ body,
 .taxonomy-description {
   font-style: italic;
   color: var(--secondary);
-  opacity: 0.7;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.taxonomy-description a {
+  color: var(--secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  box-shadow: none;
 }
 
 .related-tags {
@@ -243,12 +251,12 @@ body,
   align-items: baseline;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
-  font-size: 0.85em;
+  margin-top: 12px;
+  margin-bottom: 16px;
 }
 
 .related-tags-label {
-  color: var(--secondary);
+  color: var(--primary);
   margin-right: 2px;
 }
 
@@ -267,10 +275,11 @@ body,
 
 .related-tags-list a {
   display: block;
-  padding: 2px 10px;
+  padding: 3px 10px;
   background: var(--tertiary);
-  border-radius: 6px;
-  color: var(--secondary);
+  border-radius: var(--radius);
+  color: var(--primary);
+  font-size: 0.95rem;
   transition: transform 0.1s;
 }
 
@@ -290,19 +299,8 @@ body,
 }
 
 .archive-jump a {
-  color: #00687C;
+  color: var(--accent);
   text-decoration: none;
-}
-
-.dark .archive-jump a,
-[data-theme="dark"] .archive-jump a {
-  color: #7cc8e8;
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-theme="auto"] .archive-jump a {
-    color: #7cc8e8;
-  }
 }
 
 .archive-jump a:hover {
