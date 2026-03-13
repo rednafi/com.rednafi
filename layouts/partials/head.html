@@ -17,7 +17,7 @@
 {{- end }}
 
 {{- /* Title */}}
-<title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.author }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}{{ end }}</title>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}{{ end }}</title>
 
 {{- /* Meta */}}
 {{- if .IsHome }}
@@ -81,10 +81,12 @@
 {{- /* Search is now handled by Pagefind in search.html layout */ -}}
 
 {{- /* Favicons */}}
-<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
-<link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
-<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
-<link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
+<link rel="icon" type="image/png" sizes="48x48" href="https://blob.rednafi.com/static/images/home/favicon-48x48.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon.ico" | absURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<link rel="icon" sizes="192x192" href="https://blob.rednafi.com/static/images/home/favicon-192x192.png?v=2">
+<link rel="icon" sizes="512x512" href="https://blob.rednafi.com/static/images/home/favicon-512x512.png?v=2">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ site.Params.assets.theme_color | default "#fefcf6" }}">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#212529">
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
