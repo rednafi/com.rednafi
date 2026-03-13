@@ -64,6 +64,12 @@ More on the [stack, deployment, and writing process] if you're curious.
 - I think through writing and not the other way around. Most of the blogs on this site take
   way longer to write than I'd like to admit.
 
+## Disclosure
+
+I don't receive any compensation for writing here and don't accept sponsorships. If that ever
+changes, I'll disclose it. All opinions expressed on this site are my own and don't reflect
+those of my employer.
+
 ## Greatest hits
 
 - [I kind of like rebasing]
