@@ -60,6 +60,14 @@ contract: all observable behaviours of your system will be depended on by somebo
 [hyrum's law (the law of implicit interfaces)]:
     https://github.com/dwmkerr/hacker-laws#hyrums-law-the-law-of-implicit-interfaces
 
+### [Jevons' paradox]
+
+In 1865, economist William Stanley Jevons observed that improvements in coal-burning engine
+efficiency led to increased coal consumption, not decreased. More efficient engines made coal
+economically attractive for more applications, driving overall demand higher.
+
+[jevons' paradox]: https://github.com/dwmkerr/hacker-laws#jevons-paradox
+
 ### [Kernighan's law]
 
 Debugging is twice as hard as writing the code in the first place. Therefore, if you write
@@ -72,6 +80,15 @@ the code as cleverly as possible, you are, by definition, not smart enough to de
 Entities should not be multiplied without necessity.
 
 [occam's razor]: https://github.com/dwmkerr/hacker-laws#occams-razor
+
+### [Overton window]
+
+At any given time, only a narrow range of ideas are considered acceptable by the mainstream.
+Politicians and decision-makers operate within this window, not outside it. The window isn't
+fixed though - it shifts as people push more extreme positions, gradually making previously
+unthinkable ideas seem reasonable.
+
+[overton window]: https://en.wikipedia.org/wiki/Overton_window
 
 ### [Parkinson's law]
 
