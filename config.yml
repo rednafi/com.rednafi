@@ -37,7 +37,7 @@ minify:
   minifyOutput: true
 
 pagination:
-  pagerSize: 20
+  pagerSize: 10
 
 params:
   env: production
@@ -53,8 +53,7 @@ params:
       - "https://fosstodon.org/@rednafi"
 
   description: >-
-    Personal site of Redowan Delowar - a roving amateur fumbling through software, systems,
-    and sundry.
+    Redowan Delowar — a roving amateur fumbling through software, systems, and sundry.
 
   keywords:
     - software engineering
@@ -118,6 +117,8 @@ params:
   ShowAllPagesInArchive: true
   ShowFullTextinRSS: true
 
+  notesSection: "notes"
+
   mainSections:
     - javascript
     - misc
@@ -128,19 +129,15 @@ params:
     - system
 
   assets:
-    favicon: "https://blob.rednafi.com/static/images/home/favicon.svg"
-    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon.svg"
-    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon.svg"
-    apple_touch_icon: "https://blob.rednafi.com/static/images/home/favicon.svg"
-    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.svg"
+    favicon: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=2"
+    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon-16x16.png?v=2"
+    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=2"
+    apple_touch_icon: "https://blob.rednafi.com/static/images/home/apple-touch-icon.png?v=2"
+    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=2"
     disableHLJS: true
 
   homeInfoParams:
-    Title:
-      Hi, I'm [Redowan](/about) <a href="/index.xml" title="RSS" aria-label="RSS"> <svg
-      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2.5" height="23"> <path d="M4 11a9 9 0 0 1 9 9"/>
-      <path d="M4 4a16 16 0 0 1 16 16"/> <circle cx="5" cy="19" r="1"/> </svg> </a>
+    Title: "Hi, I'm [Redowan](/about)"
     Content: >
       <div>
         <em>A roving amateur fumbling through software, systems, & sundry.</em>
@@ -167,24 +164,18 @@ menu:
       name: search
       url: /search/
       weight: 1
+    - identifier: notes
+      name: notes
+      url: /notes/
+      weight: 2
     - identifier: tags
       name: tags
       url: /tags/
-      weight: 2
+      weight: 3
     - identifier: about
       name: about
       url: /about/
-      weight: 3
-
-  hamburger:
-    - identifier: talks
-      name: talks
-      url: /talks/
-      weight: 0
-    - identifier: maxims
-      name: maxims
-      url: /maxims/
-      weight: 1
+      weight: 4
 
 markup:
   highlight:
@@ -207,7 +198,7 @@ markup:
       unsafe: true
 
 outputs:
-  home: ["HTML", "RSS"]
+  home: ["HTML", "RSS", "ArticlesRSS"]
   page: ["HTML"]
   section: ["HTML", "RSS"]
   taxonomy: ["HTML"]
@@ -215,7 +206,22 @@ outputs:
 
 services:
   rss:
-    limit: 25
+    limit: 30
+
+mediaTypes:
+  application/articles+xml:
+    suffixes:
+      - xml
+
+outputFormats:
+  ArticlesRSS:
+    mediaType: application/articles+xml
+    baseName: articles
+    isPlainText: false
+    rel: alternate
+    isHTML: false
+    noUgly: true
+    permalinkable: false
 
 security:
   funcs:
