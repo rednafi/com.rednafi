@@ -91,21 +91,81 @@ button#theme-toggle svg {
   overflow: visible;
 }
 
-/* Mobile: shrink nav to fit */
+/* Hamburger: hidden on desktop */
+.hamburger-menu {
+  display: none;
+  position: relative;
+}
+
+.hamburger-checkbox {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.hamburger-label {
+  color: #fff;
+  font-size: 0.971em;
+  font-weight: 400;
+  line-height: var(--header-height);
+  cursor: pointer;
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.1s ease;
+}
+
+.hamburger-checkbox:checked + .hamburger-label + .hamburger-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#menu .hamburger-dropdown li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#menu .hamburger-dropdown a {
+  display: block;
+  padding: 8px 16px;
+  margin: 0;
+  text-align: left;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.971em;
+  font-weight: 400;
+  line-height: 1.2;
+  border: none;
+}
+
+#menu .hamburger-dropdown a:hover {
+  background: var(--tertiary);
+}
+
+/* Mobile: collapse nav into hamburger */
 @media screen and (max-width: 768px) {
-  #menu a {
-    font-size: 0.85em;
+  #menu > li:not(.hamburger-menu) {
+    display: none;
   }
 
-  #menu li {
-    margin: 0;
-  }
-
-  .nav .logo a {
-    font-size: 0.85em;
-  }
-
-  .logo-switches {
-    margin-inline-start: 6px;
+  .hamburger-menu {
+    display: block;
   }
 }
