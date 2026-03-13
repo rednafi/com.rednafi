@@ -91,9 +91,9 @@ button#theme-toggle svg {
   overflow: visible;
 }
 
-/* Hamburger menu */
+/* Hamburger: hidden on desktop */
 .hamburger-menu {
-  display: block;
+  display: none;
   position: relative;
 }
 
@@ -159,7 +159,13 @@ button#theme-toggle svg {
   background: var(--tertiary);
 }
 
-/* Hide inline menu items — everything goes through hamburger */
-#menu > li:not(.hamburger-menu) {
-  display: none;
+/* Mobile: collapse nav into hamburger */
+@media screen and (max-width: 768px) {
+  #menu > li:not(.hamburger-menu) {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
 }
