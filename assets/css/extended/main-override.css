@@ -110,7 +110,7 @@ html, body {
 
 .feed-summary code,
 .post-content code {
-  word-break: break-all;
+  word-break: keep-all;
 }
 
 .feed-summary pre code,
@@ -441,7 +441,9 @@ body.home .main {
 }
 
 .sidebar-section { margin-bottom: 20px; }
-.sidebar-section:first-child { padding-top: 1.45rem; }
+@media (min-width: 1024px) {
+  .sidebar-section:first-child { padding-top: 1.45rem; }
+}
 
 .sidebar-links {
   list-style: none;

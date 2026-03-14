@@ -134,6 +134,13 @@
       {{ .Summary }}
     </div>
     {{- end }}
+    {{- with .Params.tags }}
+    <div class="feed-tags">
+      {{- range . }}
+      <a href="{{ absURL (printf "tags/%s/" (. | urlize)) }}" class="feed-tag">{{ . }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
     <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
   </article>
 {{- else }}
@@ -153,6 +160,13 @@
     {{- if (ne (.Param "hideSummary") true) }}
     <div class="feed-summary post-content">
       {{ .Summary }}
+    </div>
+    {{- end }}
+    {{- with .Params.tags }}
+    <div class="feed-tags">
+      {{- range . }}
+      <a href="{{ absURL (printf "tags/%s/" (. | urlize)) }}" class="feed-tag">{{ . }}</a>
+      {{- end }}
     </div>
     {{- end }}
     <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
