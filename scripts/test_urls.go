@@ -110,8 +110,8 @@ func collectURLs(contentDir string) []string {
 			urlSet[url] = struct{}{}
 		}
 
-		section := filepath.Base(filepath.Dir(path))
-		if section == "content" {
+		rel, err := filepath.Rel(contentDir, filepath.Dir(path))
+		if err != nil || rel == "." {
 			return nil
 		}
 
@@ -123,7 +123,7 @@ func collectURLs(contentDir string) []string {
 			return nil
 		}
 
-		urlSet[fmt.Sprintf("/%s/%s/", section, slug)] = struct{}{}
+		urlSet[fmt.Sprintf("/%s/%s/", rel, slug)] = struct{}{}
 		return nil
 	})
 
