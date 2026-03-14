@@ -43,6 +43,10 @@ your protobufs and [generated code]. Some other things I picked up:
 - Proto definitions live under [api/], separated into subpackages like `etcdserverpb`,
   `mvccpb`, `authpb`. Generated Go code lives alongside the proto files.
 
+- The RPC handler implementations live under [server/etcdserver/api/v3rpc]. [key.go]
+  implements the KV service (Range, Put, DeleteRange, Txn, Compact), and the other services
+  follow the same pattern in `watch.go`, `lease.go`, `member.go`, `maintenance.go`, `auth.go`.
+
 - [grpc.go] shows how to assemble a gRPC server with chained unary and stream interceptors
   using [go-grpc-middleware].
 
@@ -115,5 +119,11 @@ when we need to make decisions.
 
 [Raft]:
     https://raft.github.io/
+
+[server/etcdserver/api/v3rpc]:
+    https://github.com/etcd-io/etcd/tree/main/server/etcdserver/api/v3rpc
+
+[key.go]:
+    https://github.com/etcd-io/etcd/blob/main/server/etcdserver/api/v3rpc/key.go
 
 <!-- prettier-ignore-end -->
