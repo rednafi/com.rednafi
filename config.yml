@@ -164,14 +164,10 @@ menu:
       name: search
       url: /search/
       weight: 1
-    - identifier: shards
-      name: shards
-      url: /shards/
-      weight: 2
     - identifier: about
       name: about
       url: /about/
-      weight: 3
+      weight: 2
 
 markup:
   highlight:

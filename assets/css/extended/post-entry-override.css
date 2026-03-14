@@ -108,6 +108,29 @@
   display: none;
 }
 
+/* Tags in feed entries */
+.feed-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.feed-tag {
+  padding: 2px 9px;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 9999px;
+  font-size: 0.8em;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.feed-tag:hover {
+  background: rgba(var(--accent-rgb), 0.2);
+}
+
 /* Cover image in feed entries */
 .feed-entry .entry-cover {
   margin: 8px 0 4px;
@@ -122,4 +145,3 @@
   border-radius: calc(var(--radius) / 2);
   border: 1px solid var(--border);
 }
-

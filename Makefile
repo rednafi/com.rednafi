@@ -15,8 +15,8 @@ init:
 
 format:
 	./scripts/lint-codeblocks.sh
-	git status --porcelain | awk '{print $$2}' | xargs -r uvx pre-commit run --files
-	git status --porcelain | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
+	git status --porcelain -u | awk '{print $$2}' | xargs -r uvx pre-commit run --files
+	git status --porcelain -u | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
 
 update:
 	git submodule update --remote --merge
