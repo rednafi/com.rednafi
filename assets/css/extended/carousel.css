@@ -1,0 +1,81 @@
+/* Carousel wrapper — positions arrows relative to this */
+.carousel-wrap {
+  position: relative;
+}
+
+/* Scroll track */
+.img-carousel {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.img-carousel::-webkit-scrollbar { display: none; }
+
+.img-carousel figure {
+  scroll-snap-align: start;
+  flex: 0 0 85%;
+  margin: 0;
+}
+
+.img-carousel img {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post-content .img-carousel figcaption,
+.post-content figure > figcaption {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 0.35rem;
+}
+
+/* Arrow buttons — on the wrapper, not inside the scroll container */
+.carousel-btn {
+  position: absolute;
+  top: calc(50% - 1rem);
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--theme);
+  color: var(--primary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+  z-index: 2;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover { opacity: 1; }
+.carousel-btn.hidden { display: none; }
+.carousel-prev { left: 0.5rem; }
+.carousel-next { right: 0.5rem; }
+
+/* Mobile variant — side-by-side at capped height, no arrows */
+.img-carousel.mobile figure {
+  flex: 0 0 auto;
+}
+
+.img-carousel.mobile img {
+  width: auto;
+  max-height: 400px;
+}
+
+.carousel-wrap:has(.img-carousel.mobile) .carousel-btn {
+  display: none;
+}
