@@ -16,14 +16,12 @@ jobs:
           fetch-depth: 0
 
       - name: Get current Hugo version
-        id: get_current_hugo_version
         run: |
           current_version=$(grep 'HUGO_VERSION:' .github/workflows/ci.yml | awk '{print $2}')
           echo "Current Hugo version is ${current_version}"
           echo "CURRENT_HUGO_VERSION=${current_version}" >> "${GITHUB_ENV}"
 
       - name: Fetch latest Hugo version
-        id: fetch_latest_hugo_version
         run: |
           latest_version=$(curl --silent "https://api.github.com/repos/gohugoio/hugo/releases/latest" \
             | jq -r .tag_name | sed 's/v//')
@@ -31,7 +29,6 @@ jobs:
           echo "LATEST_HUGO_VERSION=${latest_version}" >> "${GITHUB_ENV}"
 
       - name: Check if update is needed
-        id: check_update
         run: |
           if [[ "${LATEST_HUGO_VERSION}" == "${CURRENT_HUGO_VERSION}" ]]; then
             echo "Hugo is up to date. No update needed."
