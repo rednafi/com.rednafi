@@ -29,9 +29,6 @@ related:
       weight: 10
       pattern: "2006"
 
-permalinks:
-  posts: "/:section/:slug/"
-
 minify:
   disableXML: true
   minifyOutput: true
@@ -90,7 +87,6 @@ params:
     javascript: "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language."
     networking: "Networking and protocols."
     performance: "Performance optimization."
-    postgresql: "The [PostgreSQL](https://www.postgresql.org/) database."
     pytest: "The [pytest](https://docs.pytest.org/) testing framework."
     python: "The [Python](https://www.python.org/) programming language."
     redis: "The [Redis](https://redis.io/) data store."
@@ -145,7 +141,6 @@ params:
 
   # IndieWeb
   webmention: true
-  indieauth: true
 
   analytics:
     google:
