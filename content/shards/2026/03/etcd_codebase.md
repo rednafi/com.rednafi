@@ -118,7 +118,7 @@ when we need to make decisions.
     https://github.com/grpc-ecosystem/go-grpc-prometheus
 
 [Raft]:
-    https://raft.github.io/
+    https://github.com/etcd-io/raft
 
 [server/etcdserver/api/v3rpc]:
     https://github.com/etcd-io/etcd/tree/main/server/etcdserver/api/v3rpc
