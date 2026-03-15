@@ -6,6 +6,7 @@ tags:
     - Go
     - gRPC
     - API
+    - Distributed Systems
 description: >-
     How to wrap a generated gRPC client behind a clean Go API so users never
     have to touch protobuf types or connection management directly.
