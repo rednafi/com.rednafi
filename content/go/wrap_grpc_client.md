@@ -233,8 +233,8 @@ without spinning up a gRPC server or importing any gRPC packages.
 
 > [!IMPORTANT]
 >
-> `KV` is a producer-side interface. I wrote about when these make sense in the [interface >
-> > segregation post].
+> `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting
+> interface segregation in Go].
 
 Then the struct and constructor:
 
@@ -305,8 +305,8 @@ status and convert it to our own `ErrNotFound` sentinel so callers can check it 
 `errors.Is` instead of parsing gRPC status codes themselves. For everything else, we wrap
 with `%v` instead of `%w`. If we used `%w`, callers could unwrap the error with `errors.As`
 and reach the underlying gRPC status types, which would re-couple them to gRPC internals and
-defeat the whole point of having a wrapper. I wrote about this tradeoff in the [error
-wrapping post].
+defeat the whole point of having a wrapper. I wrote about this tradeoff in [Go errors: to
+wrap or not to wrap?].
 
 ## Plugging in retries and metrics
 
@@ -375,7 +375,7 @@ go get github.com/rednafi/examples/wrapping-grpc-client/client@latest
 [clientv3 package]:
     https://github.com/etcd-io/etcd/tree/main/client/v3
 
-[error wrapping post]:
+[Go errors: to wrap or not to wrap?]:
     /go/to-wrap-or-not-to-wrap
 
 [GitHub]:
@@ -384,7 +384,7 @@ go get github.com/rednafi/examples/wrapping-grpc-client/client@latest
 [go-grpc-middleware]:
     https://github.com/grpc-ecosystem/go-grpc-middleware
 
-[interface segregation post]:
+[Revisiting interface segregation in Go]:
     /go/interface-segregation
 
 [grpcprom]:
