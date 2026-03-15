@@ -52,7 +52,7 @@ kv/
 the library you ship. Other teams add it to their `go.mod` and never touch proto types
 directly.
 
-## The proto and generated code
+## Defining the service
 
 The KV store has three RPCs: put, get, and delete.
 
@@ -135,7 +135,7 @@ is the status code the wrapper will catch and turn into a Go error.
 I've elided the `Put` and `Delete` methods since they follow the same structure. The full
 server code is on [GitHub].
 
-## Calling the server without a wrapper
+## Using the generated client directly
 
 Without a wrapper, callers use the generated `KVClient` directly. Pay attention to the
 imports:
