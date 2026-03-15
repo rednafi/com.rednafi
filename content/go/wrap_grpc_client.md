@@ -28,8 +28,10 @@ and parse `codes.NotFound` from `google.golang.org/grpc/status`. That's a lot of
 plumbing for someone who just wants to consume my service.
 
 This post walks through wrapping a generated gRPC client behind a higher level Go API,
-following the same pattern etcd uses. I'll use a small in-memory KV store as the running
-example.
+following the same pattern etcd uses. The idea is to give the user a wrapper client that
+abstracts out the generated client.
+
+I'll use a small in-memory KV store as the running example.
 
 ## Layout
 
@@ -86,18 +88,21 @@ looks like this:
 type KVClient interface {
     Put(ctx context.Context, in *PutRequest,
         opts ...grpc.CallOption) (*PutResponse, error)
-    // Get, Delete have the same shape
+    Get(ctx context.Context, in *GetRequest,
+        opts ...grpc.CallOption) (*GetResponse, error)
+    Delete(ctx context.Context, in *DeleteRequest,
+        opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 ```
 
 Every method takes a `context.Context`, a protobuf request struct, and variadic
-`grpc.CallOption`s, and returns a protobuf response plus an error. Anyone calling the service
-has to import protobuf types, construct request structs like `&api.PutRequest{}`, and
-understand gRPC call options, even for a simple "get this key" call.
+`grpc.CallOption`s, and returns a protobuf response plus an error. Anyone calling the
+service has to import protobuf types, construct request structs like `&api.PutRequest{}`,
+and understand gRPC call options, even for a simple "get this key" call.
 
 The server implements the other side with an in-memory map. What we care about for the
 wrapper is that it returns a gRPC `NOT_FOUND` status when a key doesn't exist. The wrapper
-translates that into a Go sentinel error:
+translates that into a Go sentinel error. Here's the server code:
 
 ```go
 // server/main.go
@@ -123,8 +128,12 @@ func (s *server) Get(
 ```
 
 The server embeds `UnimplementedKVServer`, the standard gRPC pattern. It provides no-op
-implementations for all RPCs so the code compiles even before you've written the real logic. The `Get` method checks the map and returns `codes.NotFound` when the key isn't there.
-This is the status code the wrapper will catch and turn into a Go error.
+implementations for all RPCs so the code compiles even before you've written the real logic.
+The `Get` method checks the map and returns `codes.NotFound` when the key isn't there. This
+is the status code the wrapper will catch and turn into a Go error.
+
+I've elided the `Put` and `Delete` methods since they follow the same structure. The full
+server code is on [GitHub].
 
 ## Calling the server without a wrapper
 
@@ -153,13 +162,13 @@ _, err = kv.Put(ctx, &api.PutRequest{
 
 Three imports just to put a key. The caller manages the gRPC connection, constructs
 `&api.PutRequest{}` structs for every call, and has to parse gRPC status codes to check if a
-key exists. For internal code where everyone knows gRPC, this is fine. For a library you ship
-to other teams, it's a lot of ceremony.
+key exists. For internal code where everyone knows gRPC, this is fine. For a library you
+ship to other teams, it's a lot of ceremony.
 
 ## Calling the server with the wrapper
 
-Here's the same sequence (put a key, get it back, handle a missing key) using the wrapper
-instead:
+This is the API we actually want to give our users. Same sequence as before (put a key, get
+it back, handle a missing key) but without any gRPC or protobuf leaking through:
 
 ```go
 // example/main.go (with the wrapper)
@@ -179,9 +188,20 @@ _, err = c.Get(ctx, "missing")
 if errors.Is(err, client.ErrNotFound) { ... }
 ```
 
-One import. No gRPC or protobuf packages. `Put` takes a string and a byte slice. `Get`
-returns `[]byte`. Missing keys come back as `client.ErrNotFound`, checked with `errors.Is`.
-The rest of this post builds the wrapper that makes this work.
+One import instead of three. No gRPC or protobuf packages in sight. `Put` takes a string and
+a byte slice. `Get` returns `[]byte`. Missing keys come back as `client.ErrNotFound`,
+checked with `errors.Is` like any other Go error. The caller doesn't need to know that gRPC
+is involved at all.
+
+> [!NOTE]
+>
+> The wrapper hides three things from the caller: protobuf types (`&api.PutRequest{}`),
+> connection management (`grpc.NewClient`, dial options, TLS), and gRPC error codes
+> (`codes.NotFound`). Callers work with plain Go types, a constructor that takes an address,
+> and standard `error` values.
+
+The rest of this post builds the wrapper that turns the generated `KVClient` from the
+previous section into this API.
 
 ## Building the wrapper
 
@@ -189,7 +209,7 @@ The `client/` package is the only thing users import. It hides the generated `ap
 behind a struct and re-exposes the same operations using plain Go types. The whole wrapper
 lives in a single file (`client/client.go`).
 
-First, a sentinel error and a testable interface:
+The wrapper starts with a sentinel error and a testable interface:
 
 ```go
 // client/client.go
@@ -206,12 +226,19 @@ type KV interface {
 `ErrNotFound` replaces the gRPC `NOT_FOUND` status code. Callers check it with `errors.Is`
 and never import `google.golang.org/grpc/codes`.
 
-`KV` is an interface with the same methods as `Client` but using only standard Go types, no
-protobuf or gRPC. Other packages that depend on your client can accept a `KV` instead of a
-`*Client`, which means their tests can swap in a simple in-memory fake without spinning up a
-gRPC server or importing any gRPC packages.
+`Client` implements `KV`, and `KV` uses only standard Go types instead of protobuf or gRPC
+types. This is intentionally a producer-side interface: we define it in the same package as
+`Client` because we know the full set of operations the service supports and we want to
+offer a ready-made contract for consumers. Other packages that depend on your client can
+accept a `KV` in their function signatures and swap in a simple in-memory fake during tests
+without spinning up a gRPC server or importing any gRPC packages.
 
-Next, the struct and constructor:
+> [!IMPORTANT]
+>
+> `KV` is a producer-side interface. I wrote about when these make sense in the [interface
+> segregation post].
+
+Then the struct and constructor:
 
 ```go
 type Client struct {
@@ -236,17 +263,22 @@ func (c *Client) Close() error { return c.conn.Close() }
 ```
 
 `Client` holds the gRPC connection and the generated `api.KVClient` as unexported fields.
-The generated client is not embedded on purpose. If you embed `api.KVClient`, its methods
-like `Put(ctx, *PutRequest, ...CallOption)` show up on `Client` directly, and callers can
-bypass the wrapper to make raw gRPC calls. Keeping it as a private field means the only way
-to talk to the server is through the wrapper methods.
+The generated client is stored as a private field, not embedded. If you embedded
+`api.KVClient`, its methods like `Put(ctx, *PutRequest, ...CallOption)` would show up on
+`Client` directly, and callers could bypass the wrapper to make raw gRPC calls.
+
+> [!WARNING]
+>
+> Don't embed the generated client. Keep it as a private field so the only way to talk to
+> the server is through the wrapper methods.
 
 `New` creates the gRPC connection and builds the generated client from it. The variadic
 `grpc.DialOption` lets callers pass custom TLS, keepalive, or interceptor config. If they
 pass nothing, the default is insecure credentials for local dev. The retries section below
 shows what a production setup looks like.
 
-Finally, the wrapper methods. `Get` shows the core pattern:
+With the types in place, we can look at the wrapper methods. `Get` shows the pattern all
+three follow:
 
 ```go
 func (c *Client) Get(ctx context.Context, key string) ([]byte, error) {
@@ -264,13 +296,16 @@ func (c *Client) Get(ctx context.Context, key string) ([]byte, error) {
 // Put and Delete follow the same shape.
 ```
 
-Each wrapper method does the same thing: take the caller's plain Go arguments, build the
-protobuf request, call the generated client, and translate the response back into Go types.
+Each wrapper method follows the same pattern: take the caller's Go arguments, build the
+protobuf request internally, call the generated client, and return plain Go types.
 
-The error handling matters. When the server returns `NOT_FOUND`, we convert it to our own
-`ErrNotFound` sentinel. For all other errors, we wrap with `%v` instead of `%w`. `%w` would
-let callers `errors.As` into gRPC status types, which re-couples them to gRPC internals. I
-covered this tradeoff in the [error wrapping post].
+Pay attention to the error handling. When the server returns `NOT_FOUND`, we catch that gRPC
+status and convert it to our own `ErrNotFound` sentinel so callers can check it with
+`errors.Is` instead of parsing gRPC status codes themselves. For everything else, we wrap
+with `%v` instead of `%w`. If we used `%w`, callers could unwrap the error with `errors.As`
+and reach the underlying gRPC status types, which would re-couple them to gRPC internals and
+defeat the whole point of having a wrapper. I wrote about this tradeoff in the [error
+wrapping post].
 
 ## Plugging in retries and metrics
 
@@ -333,7 +368,6 @@ Or add the client library to your own project:
 go get github.com/rednafi/examples/wrapping-grpc-client/client@latest
 ```
 
-
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -348,6 +382,9 @@ go get github.com/rednafi/examples/wrapping-grpc-client/client@latest
 
 [go-grpc-middleware]:
     https://github.com/grpc-ecosystem/go-grpc-middleware
+
+[interface segregation post]:
+    /go/interface-segregation
 
 [grpcprom]:
     https://pkg.go.dev/github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus
