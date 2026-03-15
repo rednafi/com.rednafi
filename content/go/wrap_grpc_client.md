@@ -17,9 +17,9 @@ was how the [clientv3 package] abstracts out the underlying gRPC machinery.
 
 etcd is a distributed key-value store where the server and client communicate over gRPC. But
 if you've only ever used `clientv3` and never peeked into the internals, you wouldn't know
-that. You call `client.Put(ctx, "key", "value")` and get back a response. It feels like a
-regular Go library. The fact that gRPC and protobuf are involved is an implementation detail
-that the client wrapper keeps away from you.
+that. You call `resp, err := client.Put(ctx, "key", "value")` and get back a `*PutResponse`.
+It feels like a regular Go library. The fact that gRPC and protobuf are involved is an
+implementation detail that the client wrapper keeps away from you.
 
 I've been building a few gRPC services at work lately, and I keep running into the same
 question: what API do the users of my client library see? The server ships as a binary. The
@@ -234,7 +234,7 @@ without spinning up a gRPC server or importing any gRPC packages.
 > [!IMPORTANT]
 >
 > `KV` is a producer-side interface. I wrote about when these make sense in the [interface >
-> segregation post].
+> > segregation post].
 
 Then the struct and constructor:
 
