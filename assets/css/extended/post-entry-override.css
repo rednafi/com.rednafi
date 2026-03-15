@@ -85,8 +85,8 @@
 }
 
 .feed-type-article {
-  background: rgba(109, 40, 217, 0.1);
-  color: #6d28d9;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
 }
 
 .feed-type-shard {
@@ -96,8 +96,8 @@
 
 .dark .feed-type-article,
 :root[data-theme="dark"] .feed-type-article {
-  background: rgba(167, 139, 250, 0.15);
-  color: #a78bfa;
+  background: rgba(99, 179, 255, 0.2);
+  color: #63b3ff;
 }
 
 .dark .feed-type-shard,
@@ -108,8 +108,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] .feed-type-article {
-    background: rgba(167, 139, 250, 0.15);
-    color: #a78bfa;
+    background: rgba(99, 179, 255, 0.2);
+    color: #63b3ff;
   }
   :root[data-theme="auto"] .feed-type-shard {
     background: rgba(250, 204, 21, 0.15);
