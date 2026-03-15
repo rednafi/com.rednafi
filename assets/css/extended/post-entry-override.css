@@ -70,20 +70,56 @@
   gap: 4px;
 }
 
-.feed-meta-sep { opacity: 0.5; }
+.feed-meta-sep {
+  opacity: 0.5;
+}
 
 .feed-type,
 .feed-section {
   display: inline-block;
   padding: 1px 7px;
   border-radius: 9999px;
-  font-size: 0.85em;
   line-height: 1.4;
   background: rgba(var(--accent-rgb), 0.1);
   color: var(--accent);
 }
 
-.feed-domain { opacity: 0.7; }
+.feed-type-article {
+  background: rgba(109, 40, 217, 0.1);
+  color: #6d28d9;
+}
+
+.feed-type-shard {
+  background: rgba(161, 98, 7, 0.1);
+  color: #a16207;
+}
+
+.dark .feed-type-article,
+:root[data-theme="dark"] .feed-type-article {
+  background: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+}
+
+.dark .feed-type-shard,
+:root[data-theme="dark"] .feed-type-shard {
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .feed-type-article {
+    background: rgba(167, 139, 250, 0.15);
+    color: #a78bfa;
+  }
+  :root[data-theme="auto"] .feed-type-shard {
+    background: rgba(250, 204, 21, 0.15);
+    color: #facc15;
+  }
+}
+
+.feed-domain {
+  opacity: 0.7;
+}
 
 .feed-summary {
   margin: 6px 0 0;
