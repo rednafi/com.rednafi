@@ -125,16 +125,13 @@ func (s *server) Get(
     }, nil
 }
 // Put and Delete follow the same shape.
-// Full code is on [GitHub].
 ```
 
 The server embeds `UnimplementedKVServer`, the standard gRPC pattern. It provides no-op
 implementations for all RPCs so the code compiles even before you've written the real logic.
 The `Get` method checks the map and returns `codes.NotFound` when the key isn't there. This
-is the status code the wrapper will catch and turn into a Go error.
-
-I've elided the `Put` and `Delete` methods since they follow the same structure. The full
-server code is on [GitHub].
+is the status code the wrapper will catch and turn into a Go error. I've elided `Put` and
+`Delete` since they follow the same structure.
 
 ## Using the generated client directly
 
@@ -236,7 +233,7 @@ without spinning up a gRPC server or importing any gRPC packages.
 
 > [!IMPORTANT]
 >
-> `KV` is a producer-side interface. I wrote about when these make sense in the [interface
+> `KV` is a producer-side interface. I wrote about when these make sense in the [interface >
 > segregation post].
 
 Then the struct and constructor:
@@ -264,14 +261,17 @@ func (c *Client) Close() error { return c.conn.Close() }
 ```
 
 `Client` holds the gRPC connection and the generated `api.KVClient` as unexported fields.
-The generated client is stored as a private field, not embedded. If you embedded
-`api.KVClient`, its methods like `Put(ctx, *PutRequest, ...CallOption)` would show up on
-`Client` directly, and callers could bypass the wrapper to make raw gRPC calls.
+Note that `api.KVClient` is an interface, not a concrete struct. The gRPC codegen doesn't
+expose the actual client struct at all; you get back a `KVClient` interface from
+`api.NewKVClient(conn)`. We store it as a regular field rather than embedding it. If you
+embedded the `api.KVClient` interface, all its methods like
+`Put(ctx, *PutRequest, ...CallOption)` would be promoted onto `Client` directly, and callers
+could bypass the wrapper to make raw gRPC calls.
 
 > [!WARNING]
 >
-> Don't embed the generated client. Keep it as a private field so the only way to talk to
-> the server is through the wrapper methods.
+> Don't embed the generated client interface. Keep it as a private field so the only way to
+> talk to the server is through the wrapper methods.
 
 `New` creates the gRPC connection and builds the generated client from it. The variadic
 `grpc.DialOption` lets callers pass custom TLS, keepalive, or interceptor config. If they
