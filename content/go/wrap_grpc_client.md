@@ -193,10 +193,10 @@ is involved at all.
 
 > [!NOTE]
 >
-> The wrapper hides three things from the caller: protobuf types (`&api.PutRequest{}`),
-> connection management (`grpc.NewClient`, dial options, TLS), and gRPC error codes
-> (`codes.NotFound`). Callers work with plain Go types, a constructor that takes an address,
-> and standard `error` values.
+> The wrapper hides protobuf types, connection management, and gRPC error codes from the
+> caller. They never have to build an `api.PutRequest`, call `grpc.NewClient`, configure
+> TLS, or check `codes.NotFound`. They just pass strings and byte slices, get Go errors
+> back, and move on.
 
 The rest of this post builds the wrapper that turns the generated `KVClient` from the
 previous section into this API.
@@ -233,7 +233,7 @@ without spinning up a gRPC server or importing any gRPC packages.
 
 > [!IMPORTANT]
 >
-> `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting
+> `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting >
 > interface segregation in Go].
 
 Then the struct and constructor:
