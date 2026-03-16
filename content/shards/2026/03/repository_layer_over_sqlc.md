@@ -4,6 +4,7 @@ date: 2026-03-16
 slug: repository-layer-over-sqlc
 tags:
     - Go
+    - Database
 description: >-
   Decoupling business logic from storage with a small interface in Go.
 ---
