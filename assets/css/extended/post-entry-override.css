@@ -181,3 +181,63 @@
   border-radius: calc(var(--radius) / 2);
   border: 1px solid var(--border);
 }
+
+/* Compact section list (articles, shards) */
+.compact-list {
+  width: 100%;
+}
+
+.compact-entry {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.compact-entry:last-child {
+  border-bottom: none;
+}
+
+.compact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.compact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.compact-title {
+  font-size: inherit;
+}
+
+.compact-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.compact-tag {
+  padding: 1px 7px;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-radius: 9999px;
+  font-size: 0.85em;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.compact-tag:hover {
+  background: rgba(var(--accent-rgb), 0.18);
+}
+
+.compact-date {
+  font-size: 0.85em;
+  color: var(--secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
