@@ -102,8 +102,10 @@
 {{- /* Sitemap */}}
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
 
-{{- /* Pagination link tags for SEO */ -}}
-{{- if and (or .IsHome .IsSection (eq .Kind "term")) (gt .Paginator.TotalPages 1) }}
+{{- /* Pagination link tags for SEO – skip sections with virtual page collections
+     (e.g. /articles/) so .Paginator doesn't cache an empty result before the
+     template calls .Paginate with the real collection. */ -}}
+{{- if and (or .IsHome .IsSection (eq .Kind "term")) (ne .Section "articles") (gt .Paginator.TotalPages 1) }}
   {{- if .Paginator.HasPrev }}
 <link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
   {{- end }}

@@ -85,6 +85,8 @@
   {{- $pages = union $articles $notes }}
   {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
   {{- $pages = $pages.ByDate.Reverse }}
+{{- else if eq .Section "articles" }}
+  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- end }}
 
 {{- $paginator := .Paginate $pages }}
