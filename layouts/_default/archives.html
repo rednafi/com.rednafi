@@ -35,10 +35,9 @@
 
 {{- /* Year jump links */ -}}
 {{- $years := slice }}
-{{- range $pages.GroupByPublishDate "2006" }}
-  {{- $year := replace .Key "0001" "" }}
-  {{- if and (ne .Key "0001") (ge (int $year) 2000) }}
-    {{- $years = $years | append $year }}
+{{- range $pages.GroupByDate "2006" }}
+  {{- if and (ne .Key "0001") (ge (int .Key) 2000) }}
+    {{- $years = $years | append .Key }}
   {{- end }}
 {{- end }}
 {{- if gt (len $years) 1 }}
@@ -49,10 +48,10 @@
 </nav>
 {{- end }}
 
-{{- range $pages.GroupByPublishDate "2006" }}
-{{- if ne .Key "0001" }}
+{{- range $pages.GroupByDate "2006" }}
+{{- if and (ne .Key "0001") (ge (int .Key) 2000) }}
 <div class="archive-year">
-  {{- $year := replace .Key "0001" "" }}
+  {{- $year := .Key }}
   <h2 class="archive-year-header" id="{{ $year }}">
     {{- $year -}}
     <sup class="archive-count">&nbsp;{{ len .Pages }}</sup>
