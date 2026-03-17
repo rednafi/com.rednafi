@@ -230,6 +230,7 @@ offer a ready-made contract for consumers. Other packages that depend on your cl
 accept a `KV` in their function signatures and swap in a simple in-memory fake during tests
 without spinning up a gRPC server or importing any gRPC packages.
 
+<!-- prettier-ignore -->
 > [!IMPORTANT]
 >
 > `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting >
