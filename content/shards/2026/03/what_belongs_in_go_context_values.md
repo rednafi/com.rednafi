@@ -10,7 +10,7 @@ description: >-
   A simple litmus test for when to use context values in Go.
 ---
 
-Another common question popped up in [r/golang]:
+Another common [question] popped up in r/golang:
 
 > I've been reading mixed opinions lately about using context to pass values like
 > request IDs, auth info, or tenant IDs through middleware layers. Some people argue
@@ -133,7 +133,7 @@ test: if the function can't work without it, it's a parameter, not a context val
 <!-- references -->
 <!-- prettier-ignore-start -->
 
-[r/golang]:
+[question]:
     https://www.reddit.com/r/golang/comments/1rvjpyw/
 
 [comment]:
