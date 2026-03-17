@@ -195,10 +195,9 @@ special methods and their execution order.
 > the time it's invoked, the object has already been created, seeing as it's passed in as
 > self. The real constructor is a far less famous function: `__new__`. The reason you might
 > never hear about it or use it - is that allocation doesn't mean that much in Python, which
-> manages memory for you. So if you do override `__new__`, it'd be just like your `__init__`
->
-> - except you'll have to call into Python to actually create the object, and then return
->   that object afterward.
+> manages memory for you. So if you do override `__new__`, it'd be just like your
+> `__init__` - except you'll have to call into Python to actually create the object, and
+> then return that object afterward.
 
 ```py
 class ExampleMeta(type):

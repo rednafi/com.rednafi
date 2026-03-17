@@ -44,11 +44,10 @@ Slice Header              Underlying Array
 +-------------+
 ```
 
-This makes slices efficient. Passing a slice by value doesn't mean copying all its elements
-
-- only the small slice struct gets copied, while the data stays where it is. But this
-  behavior is also the source of much confusion. The next sections cover some common
-  pitfalls.
+This makes slices efficient. Passing a slice by value doesn't mean copying all its
+elements - only the small slice struct gets copied, while the data stays where it is.
+But this behavior is also the source of much confusion. The next sections cover some
+common pitfalls.
 
 ## Sliced slices share the underlying array
 

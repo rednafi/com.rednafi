@@ -6,14 +6,9 @@ aliases:
     - /go/app_structure/
 tags:
     - Go
-    - API
-    - Web
 description: >-
   Organize Go apps by domain, not technology. Learn why models/controllers structure
   hurts and how bounded contexts create better separation.
-discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1nlxkc9/
 ---
 
 I like to make the distinction between application structure and architecture. Structure is
@@ -32,8 +27,8 @@ candidates' assignments in the hiring pipeline. While there is no objectively ri
 way to structure an app, I do see a common pitfall in candidates' submissions that is
 usually frowned upon in a Go application.
 
-> App structure should be driven by what it does and not what it's built with. Let the
-> domain guide the structure, not technology or the current language specific zeitgeist.
+> _App structure should be driven by what it does and not what it's built with. Let the
+> domain guide the structure, not technology or the current language specific zeitgeist._
 
 Ben Johnson's [Standard Package Layout] is a good reference for this. He points out why
 approaches like monolithic packages, Rails style layouts, or grouping by module don't fit
@@ -96,8 +91,8 @@ There is no file level delineation in Go. If you put different domains under the
 The only clue is the identifier name. This isn't ideal when you want clear separation
 between domains.
 
-> In Go, packages define your [bounded context], not files within a package. Domains should
-> be delineated by top level packages, not by file names.
+> _In Go, packages define your [bounded context], not files within a package. Domains should
+> be delineated by top level packages, not by file names._
 
 For your top level business logic, you want package level separation between domains. Order
 logic should live in `order`, user logic should live in `user`. These packages will be
@@ -183,8 +178,8 @@ mystore/
 
 The rule of thumb is that top level domains should never import anything from technology
 folders like `http` or `postgres`. Instead, `http` and `postgres` should always import from
-domain packages. You can add a linter to enforce this rule but since Go doesn't allow import
-cycles, this is automatically enforced by the compiler.
+domain packages. You can add a linter to enforce this rule but since Go doesn't allow
+import cycles, this is automatically enforced by the compiler.
 
 ```
    +-----------+     +-----------+
