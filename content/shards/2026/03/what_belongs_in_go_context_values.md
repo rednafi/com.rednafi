@@ -12,15 +12,15 @@ description: >-
 
 Another common [question] popped up in r/golang:
 
-> I've been reading mixed opinions lately about using context to pass values like
-> request IDs, auth info, or tenant IDs through middleware layers. Some people argue
-> it's fine and exactly what context was extended for after 1.7. Others say it's a code
-> smell that leads to hidden dependencies and untestable code. I see both sides. On one
-> hand it keeps function signatures clean. On the other hand you lose compile-time safety
-> and it's not obvious what a function needs from ctx.
+> I've been reading mixed opinions lately about using context to pass values like request
+> IDs, auth info, or tenant IDs through middleware layers. Some people argue it's fine and
+> exactly what context was extended for after 1.7. Others say it's a code smell that leads
+> to hidden dependencies and untestable code. I see both sides. On one hand it keeps
+> function signatures clean. On the other hand you lose compile-time safety and it's not
+> obvious what a function needs from ctx.
 >
-> Curious how the community here approaches this. Do you use typed getters and setters
-> with context or avoid it entirely in favor of explicit parameters?
+> Curious how the community here approaches this. Do you use typed getters and setters with
+> context or avoid it entirely in favor of explicit parameters?
 
 ---
 
@@ -30,18 +30,18 @@ expanding on it, the canonical definition of `context` from the [stdlib doc] hel
 > Package context defines the Context type, which carries deadlines, cancellation signals,
 > and other request-scoped values across API boundaries and between processes.
 
-So context exists for three things: deadlines, cancellation signals, and request-scoped values.
-Anything that doesn't fall into one of those three shouldn't be in a context. The first two are
-clear enough. "Request-scoped values" is where people get confused.
+So context exists for three things: deadlines, cancellation signals, and request-scoped
+values. Anything that doesn't fall into one of those three shouldn't be in a context. The
+first two are clear enough. "Request-scoped values" is where people get confused.
 
 There's a simpler litmus test for it. If your code cannot proceed without some value, that
 value should not go in a context. All context values must be optional, but not all optional
 values belong in context.
 
 Your application can't do much without a user ID or a database connection. Those are hard
-dependencies. Your function needs them to do its job, so they belong in the function signature.
-On the other hand, your app runs just fine without a trace ID or a request ID. Nothing breaks
-if they're missing. That's context territory.
+dependencies. Your function needs them to do its job, so they belong in the function
+signature. On the other hand, your app runs just fine without a trace ID or a request ID.
+Nothing breaks if they're missing. That's context territory.
 
 The [Google Go Style Guide] says the same thing:
 
@@ -50,12 +50,12 @@ The [Google Go Style Guide] says the same thing:
 
 And separately:
 
-> If you have application data to pass around, put it in a parameter, in the receiver,
-> in globals, or in a `Context` value if it truly belongs there.
+> If you have application data to pass around, put it in a parameter, in the receiver, in
+> globals, or in a `Context` value if it truly belongs there.
 
 Notice what the style guide lists as context-appropriate: security credentials, tracing
-information, deadlines, cancellation signals. All cross-cutting infrastructure concerns. They
-flow through the call chain without affecting what your function actually computes.
+information, deadlines, cancellation signals. All cross-cutting infrastructure concerns.
+They flow through the call chain without affecting what your function actually computes.
 
 What belongs in context values:
 
@@ -122,13 +122,13 @@ func EnsureTrace(
 ```
 
 Both follow the same pattern. The context values are infrastructure concerns, not business
-inputs. Prometheus uses it for query observability. etcd uses it for operation tracing. Neither
-changes the outcome of the core operation. The code works correctly with or without the value
-being present.
+inputs. Prometheus uses it for query observability. etcd uses it for operation tracing.
+Neither changes the outcome of the core operation. The code works correctly with or without
+the value being present.
 
 So no, using context for request-scoped values isn't an anti-pattern. It's what context was
-designed for. The confusion comes from a loose reading of "request-scoped." Stick to the litmus
-test: if the function can't work without it, it's a parameter, not a context value.
+designed for. The confusion comes from a loose reading of "request-scoped." Stick to the
+litmus test: if the function can't work without it, it's a parameter, not a context value.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
