@@ -7,12 +7,5 @@
   "printWidth": 92,
   "proseWrap": "always",
   "embeddedLanguageFormatting": "off",
-  "overrides": [
-    {
-      "files": "**/*.md",
-      "options": {
-        "tabWidth": 4
-      }
-    }
-  ]
+  "overrides": [{ "files": "**/*.md", "options": { "tabWidth": 4 } }]
 }
