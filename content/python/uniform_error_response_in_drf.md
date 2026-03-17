@@ -104,11 +104,10 @@ While this is okay, there's one gotcha here. The error payload isn't consistent.
 on the type of error, the shape of the response payload will change. This can be a problem
 if your system has custom error handling logic that expects a consistent response.
 
-I wanted the error payload to have a predictable shape while carrying more information like
-
-- HTTP error code, error message, etc. You can do it by wrapping the default
-  `rest_framework.views.exception_handler` function in a custom exception handler function.
-  Let's write the `api_exception_handler`:
+I wanted the error payload to have a predictable shape while carrying more information
+like - HTTP error code, error message, etc. You can do it by wrapping the default
+`rest_framework.views.exception_handler` function in a custom exception handler function.
+Let's write the `api_exception_handler`:
 
 ```py
 # urls.py

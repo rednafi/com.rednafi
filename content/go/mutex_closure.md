@@ -11,10 +11,10 @@ description: >-
     with examples from the standard library and Tailscale.
 ---
 
-When multiple goroutines need to read and write the same value, you need a mutex to make
-sure they don't step on each other. Without one, concurrent writes can corrupt the state -
-two goroutines might read the same value, both modify it, and one silently overwrites the
-other's change. The usual approach is to put a `sync.Mutex` next to the fields it protects:
+When multiple goroutines need to read and write the same value, you need a mutex to make sure
+they don't step on each other. Without one, concurrent writes can corrupt the state - two
+goroutines might read the same value, both modify it, and one silently overwrites the other's
+change. The usual approach is to put a `sync.Mutex` next to the fields it protects:
 
 ```go
 var (

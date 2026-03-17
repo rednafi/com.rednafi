@@ -18,5 +18,8 @@ Oratories on paraphernalia.
 - [Slides]
 - [Video]
 
-[slides]: https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU/edit?usp=sharing
+<!-- prettier-ignore-start -->
+[slides]:
+    https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU/edit?usp=sharing
 [video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
+<!-- prettier-ignore-end -->
