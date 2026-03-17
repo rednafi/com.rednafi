@@ -32,21 +32,19 @@
   src: url("/fonts/geist-mono-latin-italic.woff2") format("woff2");
 }
 
-
 /* Header - accent gradient for subtle depth */
 .header {
-  background: linear-gradient(
-    to bottom,
-    #0e7a90 0%,
-    #005a6c 49%,
-    #005e70 100%
-  );
+  background: linear-gradient(to bottom, #0e7a90 0%, #005a6c 49%, #005e70 100%);
   max-width: none;
 }
 
 /* Logo */
 .nav .logo a {
-  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-size: 0.971em;
   font-weight: 400;
   color: #fff;

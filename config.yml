@@ -84,7 +84,9 @@ params:
     go: "The [Go](https://go.dev/) programming language."
     hugo: "The [Hugo](https://gohugo.io/) static site generator."
     "incident post-mortem": "Incident post-mortems."
-    javascript: "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language."
+    javascript:
+      "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming
+      language."
     networking: "Networking and protocols."
     performance: "Performance optimization."
     pytest: "The [pytest](https://docs.pytest.org/) testing framework."

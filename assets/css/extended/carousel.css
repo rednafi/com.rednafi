@@ -13,7 +13,9 @@
   scrollbar-width: none;
 }
 
-.img-carousel::-webkit-scrollbar { display: none; }
+.img-carousel::-webkit-scrollbar {
+  display: none;
+}
 
 .img-carousel figure {
   scroll-snap-align: start;
@@ -61,10 +63,18 @@
   justify-content: center;
 }
 
-.carousel-btn:hover { opacity: 1; }
-.carousel-btn.hidden { display: none; }
-.carousel-prev { left: 0.5rem; }
-.carousel-next { right: 0.5rem; }
+.carousel-btn:hover {
+  opacity: 1;
+}
+.carousel-btn.hidden {
+  display: none;
+}
+.carousel-prev {
+  left: 0.5rem;
+}
+.carousel-next {
+  right: 0.5rem;
+}
 
 /* Mobile variant — side-by-side at capped height, no arrows */
 .img-carousel.mobile figure {
