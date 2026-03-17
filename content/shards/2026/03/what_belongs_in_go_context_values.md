@@ -1,5 +1,5 @@
 ---
-title: What belongs in Go's context values
+title: What belongs in Go's context values?
 date: 2026-03-17
 slug: what-belongs-in-go-context-values
 tags:
