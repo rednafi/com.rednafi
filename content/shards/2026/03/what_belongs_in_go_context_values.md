@@ -134,7 +134,7 @@ test: if the function can't work without it, it's a parameter, not a context val
 <!-- prettier-ignore-start -->
 
 [r/golang]:
-    https://www.reddit.com/r/golang/
+    https://www.reddit.com/r/golang/comments/1rvjpyw/
 
 [comment]:
     https://www.reddit.com/r/golang/comments/1rvjpyw/comment/oazfcay/
