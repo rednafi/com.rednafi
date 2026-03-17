@@ -303,8 +303,7 @@ class Foo:
 
 - [functools.lru_cache - Python Docs]
 - [Don't lru_cache methods! (intermediate) anthony explains #382]
-- [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod
-  or classmethod decorator]
+- [Python LRU cache in a class disregards maxsize limit when decorated with a staticmethod or classmethod decorator]
 
 <!-- references -->
 <!-- prettier-ignore-start -->

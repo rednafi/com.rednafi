@@ -752,8 +752,8 @@ Also, if you're using LLMs to generate tests, you may want to write some tests m
 give the tool a sense of how you want your tests written, so it doesn't pull in the universe
 just to mock something that can be mocked natively using Go constructs.
 
-For more on why handwritten fakes often beat generated mocks, see [Test state, not
-interactions].
+For more on why handwritten fakes often beat generated mocks, see
+[Test state, not interactions].
 
 <!-- references -->
 

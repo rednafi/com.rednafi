@@ -148,9 +148,8 @@ search
 ## Deserialize and consume
 
 On the consumer side, if you have access to the proto files, you can generate the interface
-code again via the same commands as before and use it to deserialize the message
-
-as follows:
+code again via the same commands as before and use it to deserialize the message as
+follows:
 
 ```py
 # ./search/services/consume.py
