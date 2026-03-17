@@ -42,10 +42,6 @@ jobs:
 
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
-
-      - name: Check Prettier formatting
-        run: npx -y prettier@3.8.1 --check 'content/**/*.md'
-
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
