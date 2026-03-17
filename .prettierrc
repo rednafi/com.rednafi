@@ -5,7 +5,7 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "printWidth": 92,
-  "proseWrap": "always",
+  "proseWrap": "preserve",
   "embeddedLanguageFormatting": "off",
   "overrides": [{ "files": "**/*.md", "options": { "tabWidth": 4 } }]
 }
