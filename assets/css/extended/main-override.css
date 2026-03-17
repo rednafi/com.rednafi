@@ -95,13 +95,6 @@ body,
   display: none !important;
 }
 
-/* Mobile: slightly smaller base font */
-@media screen and (max-width: 767px) {
-  body {
-    font-size: 17px;
-  }
-}
-
 /* Tablet: cap content width when zoomed */
 @media screen and (min-width: 500px) and (max-width: 1100px) {
   .main {
