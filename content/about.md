@@ -66,9 +66,9 @@ More on the [stack, deployment, and writing process] if you're curious.
 
 ## Disclosure
 
-I don't receive any compensation for writing here and don't accept sponsorships. If that ever
-changes, I'll disclose it. All opinions expressed on this site are my own and don't reflect
-those of my employer.
+I don't receive any compensation for writing here and don't accept sponsorships. If that
+ever changes, I'll disclose it. All opinions expressed on this site are my own and don't
+reflect those of my employer.
 
 ## Greatest hits
 
