@@ -232,7 +232,7 @@ without spinning up a gRPC server or importing any gRPC packages.
 
 > [!IMPORTANT]
 >
-> `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting
+> `KV` is a producer-side interface. I wrote about when these make sense in [Revisiting >
 > interface segregation in Go].
 
 Then the struct and constructor:

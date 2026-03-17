@@ -65,7 +65,8 @@ To explain: `.*profile` files (like `.profile` or `.bash_profile`) are used by l
 which are started when you log into a system, such as through SSH or a terminal login. In
 contrast, files like `.bashrc` or `.zshrc` are for interactive shells, meaning they run when
 you open a new terminal window or tab. For Zsh, `.zshenv` is sourced by all types of shells
- - both login and interactive - making it useful for global environment settings.
+
+- both login and interactive - making it useful for global environment settings.
 
 ## What problem it solves
 

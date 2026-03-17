@@ -69,9 +69,10 @@ You can [play around with the example] on Go Playground. Running it will print:
 Even if you don't speak Go, you can just take a look at the `Geometry` interface and
 instantly know that the function `measure` expects a struct that implements the `Geometry`
 interface where the `Geometry` interface is satisfied when the struct implements two methods
- - `area` and `perim`. The function `measure` doesn't care whether the struct is a rectangle,
-a circle, or a square. As long as it implements the interface `Geometry`, `measure` can work
-on it and calculate the area and the perimeter.
+
+- `area` and `perim`. The function `measure` doesn't care whether the struct is a rectangle,
+  a circle, or a square. As long as it implements the interface `Geometry`, `measure` can
+  work on it and calculate the area and the perimeter.
 
 This is extremely powerful as it allows you to achieve polymorphism like dynamic languages
 without letting go of type safety. If you try to pass a struct that doesn't fully implement
