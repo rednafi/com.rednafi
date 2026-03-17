@@ -32,10 +32,10 @@ the pattern goes as follows:
   a key like the following. Notice how the digest is prefixed with the name of the algorithm
   `sha256`:
 
-```txt
-X-Hub-Signature-256=\
-    sha-256=e863e1f6370b60981bbbcbc2da3313321e65eaaac36f9d1262af415965df9320
-```
+    ```txt
+    X-Hub-Signature-256=\
+        sha-256=e863e1f6370b60981bbbcbc2da3313321e65eaaac36f9d1262af415965df9320
+    ```
 
 - The webhook receiver is then expected to hash the received JSON payload with the same
   algorithm found in the prefix of the header and sign with the common secret token known to
@@ -130,10 +130,10 @@ Here, I've implemented a simple POST API that:
 - Adds the digest to the request header to the receiver. The header has a key called
   `X-Payload-Signature-256` that contains the prefixed payload digest:
 
-```txt
-X-Payload-Signature-256: \
-    sha-256=e863e1f6370b60981bbbcbc2da3313321e65eaaac36f9d1262af415965df9320
-```
+    ```txt
+    X-Payload-Signature-256: \
+        sha-256=e863e1f6370b60981bbbcbc2da3313321e65eaaac36f9d1262af415965df9320
+    ```
 
 - After hashing, the sender sends the payload to the receiver via HTTP POST request. Here,
   I'm using HTTPx to send the request to the receiver. For demonstration purposes, I'm

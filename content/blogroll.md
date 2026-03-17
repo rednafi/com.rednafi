@@ -31,7 +31,7 @@ description: >-
 - [Simon Willison's Weblog]
 
 <!-- references -->
-<!-- prettier-format-start -->
+<!-- prettier-ignore-start -->
 
 <!-- friends -->
 
@@ -52,4 +52,4 @@ description: >-
 [peter bourgon]: https://peter.bourgon.org/
 [simon willison's weblog]: https://simonwillison.net/
 
-<!-- prettier-format-end -->
+<!-- prettier-ignore-end -->
