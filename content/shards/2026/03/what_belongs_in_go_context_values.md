@@ -130,8 +130,20 @@ So no, using context for request-scoped values isn't an anti-pattern. It's what 
 designed for. The confusion comes from a loose reading of "request-scoped." Stick to the litmus
 test: if the function can't work without it, it's a parameter, not a context value.
 
+---
+
+_[Paweł Grzybek] asked whether passing a user ID from auth middleware to a handler through
+context violates the litmus test above. The short answer is no. I answered in a
+[follow-up shard]._
+
 <!-- references -->
 <!-- prettier-ignore-start -->
+
+[Paweł Grzybek]:
+    https://bsky.app/profile/pawelgrzybek.com
+
+[follow-up shard]:
+    /shards/2026/03/user-id-through-context/
 
 [question]:
     https://www.reddit.com/r/golang/comments/1rvjpyw/
