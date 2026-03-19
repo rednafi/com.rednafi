@@ -34,3 +34,22 @@
   font-size: 0.96875rem;
   line-height: 1.5;
 }
+
+/* Shard/article type label */
+.feed-meta-sep {
+  opacity: 0.5;
+}
+
+.feed-type-label {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: var(--code-bg);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.feed-type-label:hover {
+  background: var(--border);
+}
+
