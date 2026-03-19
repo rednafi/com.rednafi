@@ -28,27 +28,27 @@
 
 .post-title {
   margin-bottom: 2px;
-  font-size: 1.75em;
+  font-size: 1.65em;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .post-content h1 {
-  font-size: 1.65em;
+  font-size: 1.55em;
   margin: 40px auto 24px;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .post-content h2 {
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin: 36px auto 18px;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
 .post-content h3 {
-  font-size: 1.25em;
+  font-size: 1.15em;
   margin: 28px auto 14px;
   text-wrap: balance;
 }
@@ -56,7 +56,7 @@
 .post-content code {
   margin: 0;
   padding: 2px 4px;
-  font-size: 0.86em;
+  font-size: 0.85em;
   line-height: 1.5;
   border-radius: calc(var(--radius) / 2);
   color: var(--code-color);
@@ -105,7 +105,7 @@
   margin: 20px 0;
   padding: 24px 24px 24px 40px;
   border-radius: var(--radius);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--primary);
   position: relative;
   font-style: italic;
 }
@@ -117,7 +117,7 @@
   left: 10px;
   font-size: 2.5em;
   line-height: 1;
-  color: var(--accent);
+  color: var(--secondary);
 }
 
 /* Remove bottom margin from last element in blockquotes */
@@ -351,7 +351,7 @@ a.footnote-ref::after {
 
 .post-tags a {
   padding: 3px 10px;
-  background: rgba(var(--accent-rgb), 0.1);
+  background: var(--code-bg);
   border: none;
   border-radius: var(--radius);
   font-size: 1em;
@@ -360,7 +360,7 @@ a.footnote-ref::after {
 }
 
 .post-tags a:hover {
-  background: rgba(var(--accent-rgb), 0.15);
+  background: var(--border);
 }
 
 /* Improved list spacing for better scanability */
@@ -384,7 +384,7 @@ a.footnote-ref::after {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: var(--accent);
+  color: var(--secondary);
   opacity: 1;
   font-size: 1.8em;
 }
@@ -398,11 +398,11 @@ a.footnote-ref::after {
 }
 
 .post-ornament::before {
-  border-image: linear-gradient(to right, transparent, var(--accent)) 1;
+  border-image: linear-gradient(to right, transparent, var(--border)) 1;
 }
 
 .post-ornament::after {
-  border-image: linear-gradient(to left, transparent, var(--accent)) 1;
+  border-image: linear-gradient(to left, transparent, var(--border)) 1;
 }
 
 /* Smooth scroll target offset */
@@ -418,7 +418,7 @@ a.footnote-ref::after {
 /* Active TOC link */
 .toc a.active {
   font-weight: 650;
-  color: var(--accent);
+  color: var(--primary);
 }
 
 /* Search icon alignment */
@@ -437,7 +437,7 @@ a.footnote-ref::after {
 
 .post-content hr::after {
   content: "*\2002*\2002*";
-  color: var(--accent);
+  color: var(--secondary);
   font-size: 1em;
   letter-spacing: 0.1em;
 }

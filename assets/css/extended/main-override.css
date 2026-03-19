@@ -233,11 +233,12 @@ body {
 
 /* Footer and scroll-to-top */
 .footer {
-  background: linear-gradient(to bottom, #0e7a90 0%, #005a6c 49%, #005e70 100%);
+  background: var(--theme);
+  box-shadow: inset 0 1px 0 var(--border);
   height: var(--header-height);
   max-width: none;
   width: 100%;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--secondary);
   padding: 0;
   margin: 0;
   text-align: center;
@@ -246,7 +247,7 @@ body {
 }
 
 .footer a {
-  color: #fff;
+  color: var(--secondary);
   border-bottom: none;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -264,9 +265,9 @@ body {
   align-items: center;
 }
 
-/* Social icons with accent color */
+/* Social icons */
 .social-icons a {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 /* Mermaid diagrams */
@@ -327,7 +328,7 @@ body {
 .related-tags-list a {
   display: block;
   padding: 3px 10px;
-  background: rgba(var(--accent-rgb), 0.1);
+  background: var(--code-bg);
   border-radius: var(--radius);
   color: var(--primary);
   font-size: 0.869em;
@@ -335,7 +336,7 @@ body {
 }
 
 .related-tags-list a:hover {
-  background: rgba(var(--accent-rgb), 0.15);
+  background: var(--border);
 }
 
 .related-tags-list a:active {
@@ -350,7 +351,7 @@ body {
 }
 
 .archive-jump a {
-  color: var(--accent);
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -360,16 +361,16 @@ body {
 
 /* Custom text selection */
 ::selection {
-  background: rgba(var(--accent-rgb), 0.15);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 :is(.dark, [data-theme="dark"]) ::selection {
-  background: rgba(var(--accent-rgb), 0.25);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="auto"] ::selection {
-    background: rgba(var(--accent-rgb), 0.25);
+    background: rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -379,7 +380,7 @@ body {
 }
 
 .pagination a {
-  background: var(--accent);
+  background: var(--primary);
 }
 
 /* Cross-document view transitions (progressive enhancement) */
@@ -471,7 +472,7 @@ body.home .main {
 
 .sidebar-links a {
   font-size: 0.95em;
-  color: var(--accent);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 450;
 }
@@ -488,7 +489,7 @@ body.home .main {
 
 .sidebar-tag {
   padding: 2px 8px;
-  background: rgba(var(--accent-rgb), 0.1);
+  background: var(--code-bg);
   border-radius: calc(var(--radius) / 2);
   font-size: 0.85em;
   color: var(--primary);
@@ -496,7 +497,7 @@ body.home .main {
 }
 
 .sidebar-tag:hover {
-  background: rgba(var(--accent-rgb), 0.2);
+  background: var(--border);
 }
 
 .sidebar-years {
@@ -507,7 +508,7 @@ body.home .main {
 }
 
 .sidebar-years a {
-  color: var(--accent);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 450;
 }
@@ -519,7 +520,7 @@ body.home .main {
 .rss-icon {
   vertical-align: -1px;
   stroke-width: 3;
-  color: var(--accent);
+  color: var(--primary);
 }
 
 /* Link post source URL on single pages */
@@ -530,7 +531,7 @@ body.home .main {
 }
 
 .note-source-link a {
-  color: var(--accent);
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
