@@ -34,7 +34,8 @@
 
 /* Header - accent gradient for subtle depth */
 .header {
-  background: linear-gradient(to bottom, #0e7a90 0%, #005a6c 49%, #005e70 100%);
+  background: var(--theme);
+  box-shadow: inset 0 -1px 0 var(--border);
   max-width: none;
 }
 
@@ -47,12 +48,12 @@
     sans-serif;
   font-size: 0.971em;
   font-weight: 400;
-  color: #fff;
+  color: var(--primary);
 }
 
 .logo a svg {
   margin-inline-end: 0.25em;
-  stroke: #fff;
+  stroke: var(--primary);
 }
 
 .logo-switches {
@@ -63,25 +64,25 @@
 #menu a {
   font-size: 0.971em;
   font-weight: 400;
-  color: #fff;
+  color: var(--primary);
 }
 
 #menu a:hover {
-  color: #fff;
+  color: var(--primary);
 }
 
 #menu .active {
   font-weight: 400;
-  color: #fff;
-  border-bottom: 2px solid #fff;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
 }
 
 button#theme-toggle {
-  color: #fff;
+  color: var(--primary);
 }
 
 button#theme-toggle svg {
-  stroke: #fff;
+  stroke: var(--primary);
 }
 
 .nav,
@@ -102,7 +103,7 @@ button#theme-toggle svg {
 }
 
 .hamburger-label {
-  color: #fff;
+  color: var(--primary);
   font-size: 0.971em;
   font-weight: 400;
   line-height: var(--header-height);

@@ -21,8 +21,8 @@
   --code-block-bg: #f2f1eb;
   --code-color: #1a1a1a;
   --border: #d9d9d9;
-  --accent: #00687c;
-  --accent-rgb: 0, 104, 124;
+  --accent: #075cc4;
+  --accent-rgb: 7, 92, 196;
 }
 
 /* Dark theme variables */
@@ -38,8 +38,8 @@
   --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
   --border: #404550;
-  --accent: #7cc8e8;
-  --accent-rgb: 124, 200, 232;
+  --accent: #58a6ff;
+  --accent-rgb: 88, 166, 255;
 }
 
 /* Mobile gap reduction */

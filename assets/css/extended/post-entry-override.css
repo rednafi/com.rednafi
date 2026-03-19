@@ -7,8 +7,8 @@
 }
 
 .post-entry:hover {
-  background: var(--code-bg);
-  box-shadow: inset 3px 0 0 var(--accent);
+  background: none;
+  box-shadow: none;
 }
 
 .first-entry {
@@ -34,7 +34,7 @@
 }
 
 .entry-header h2 {
-  font-size: 1.412em;
+  font-size: 1.4em;
 }
 
 .post-entry .entry-content {
@@ -55,7 +55,7 @@
 }
 
 .feed-title {
-  font-size: 1.412em;
+  font-size: 1.4em;
   font-weight: 650;
   margin: 0;
   line-height: 1.3;
@@ -80,8 +80,8 @@
   padding: 1px 7px;
   border-radius: 9999px;
   line-height: 1.4;
-  background: rgba(var(--accent-rgb), 0.1);
-  color: var(--accent);
+  background: var(--code-bg);
+  color: var(--secondary);
 }
 
 .feed-type-article {
@@ -156,7 +156,7 @@
 
 .feed-tag {
   padding: 2px 9px;
-  background: rgba(var(--accent-rgb), 0.1);
+  background: var(--code-bg);
   border-radius: 9999px;
   font-size: 0.8em;
   color: var(--primary);
@@ -164,7 +164,7 @@
 }
 
 .feed-tag:hover {
-  background: rgba(var(--accent-rgb), 0.2);
+  background: var(--border);
 }
 
 /* Cover image in feed entries */
@@ -224,7 +224,7 @@
 
 .compact-tag {
   padding: 1px 7px;
-  background: rgba(var(--accent-rgb), 0.08);
+  background: var(--code-bg);
   border-radius: 9999px;
   font-size: 0.85em;
   color: var(--secondary);
@@ -232,7 +232,7 @@
 }
 
 .compact-tag:hover {
-  background: rgba(var(--accent-rgb), 0.18);
+  background: var(--border);
 }
 
 .compact-date {
