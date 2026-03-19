@@ -36,17 +36,6 @@ strong {
   font-weight: 650;
 }
 
-/* Smooth theme transitions */
-body,
-.header,
-.post-entry,
-.nav {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
-
 .page-header h1 {
   font-size: 1.829em;
   text-wrap: balance;
@@ -234,7 +223,8 @@ body {
 /* Footer and scroll-to-top */
 .footer {
   background: var(--theme);
-  box-shadow: inset 0 1px 0 var(--border);
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(to right, transparent, var(--border), transparent) 1;
   height: var(--header-height);
   max-width: none;
   width: 100%;
@@ -332,15 +322,10 @@ body {
   border-radius: var(--radius);
   color: var(--primary);
   font-size: 0.869em;
-  transition: transform 0.1s;
 }
 
 .related-tags-list a:hover {
   background: var(--border);
-}
-
-.related-tags-list a:active {
-  transform: scale(0.96);
 }
 
 /* Archive year jump links */
@@ -359,21 +344,6 @@ body {
   text-decoration: underline;
 }
 
-/* Custom text selection */
-::selection {
-  background: rgba(0, 0, 0, 0.12);
-}
-
-:is(.dark, [data-theme="dark"]) ::selection {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-theme="auto"] ::selection {
-    background: rgba(255, 255, 255, 0.2);
-  }
-}
-
 /* Pagination */
 .page-footer {
   margin-top: var(--gap);
@@ -381,16 +351,6 @@ body {
 
 .pagination a {
   background: var(--primary);
-}
-
-/* Cross-document view transitions (progressive enhancement) */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.15s;
 }
 
 /* List page background: match blog post background */
@@ -536,18 +496,3 @@ body.home .main {
   text-underline-offset: 2px;
 }
 
-/* Reduced motion: disable transitions and view transitions */
-@media (prefers-reduced-motion: reduce) {
-  body,
-  .header,
-  .post-entry,
-  .nav,
-  .top-link {
-    transition: none !important;
-  }
-
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0s;
-  }
-}

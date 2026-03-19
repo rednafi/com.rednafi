@@ -15,7 +15,6 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  transition: text-decoration-thickness 0.15s ease;
 }
 
 .post-content a:hover {
@@ -81,11 +80,6 @@
 /* Better line numbers visibility */
 .post-content .chroma .lnt {
   opacity: 0.6;
-}
-
-/* Highlight line on hover for better tracking */
-.post-content .chroma .line:hover {
-  background: rgba(128, 128, 128, 0.1);
 }
 
 /* Code blocks with same rounded edges as cards */
@@ -289,7 +283,6 @@
 /* Heading anchors - visible on hover and focus */
 .anchor {
   opacity: 0;
-  transition: opacity 0.15s ease;
   text-decoration: none;
   display: inline-flex !important;
 }
@@ -307,13 +300,6 @@
   margin-inline-start: 8px;
   font-weight: 400;
   user-select: none;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .anchor {
-    transition: none;
-  }
 }
 
 .post-content img {
@@ -377,7 +363,7 @@ a.footnote-ref::after {
   margin-bottom: 0;
 }
 
-/* Ornamental divider before recent posts */
+/* Ornamental divider before related posts */
 .post-ornament {
   border: none;
   margin: 48px 0 28px;
@@ -385,23 +371,22 @@ a.footnote-ref::after {
   align-items: center;
   gap: 20px;
   color: var(--secondary);
-  opacity: 1;
   font-size: 1.8em;
 }
 
-.post-ornament::before,
-.post-ornament::after {
+.post-ornament::before {
   content: "";
   flex: 1;
   height: 0;
-  border-top: 1px solid var(--border);
-}
-
-.post-ornament::before {
+  border-top: 1px solid transparent;
   border-image: linear-gradient(to right, transparent, var(--border)) 1;
 }
 
 .post-ornament::after {
+  content: "";
+  flex: 1;
+  height: 0;
+  border-top: 1px solid transparent;
   border-image: linear-gradient(to left, transparent, var(--border)) 1;
 }
 
@@ -485,8 +470,3 @@ a.footnote-ref::after {
   text-decoration-thickness: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .post-content a {
-    transition: none;
-  }
-}
