@@ -41,8 +41,11 @@
 {{- $pages := union .RegularPages .Sections }}
 
 {{- if .IsHome }}
-{{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
+  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
+  {{- $pages = union $articles $notes }}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+  {{- $pages = $pages.ByDate.Reverse }}
 {{- end }}
 
 {{- $paginator := .Paginate $pages }}
@@ -92,6 +95,14 @@
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
+    {{- if $.IsHome }}
+    <span class="feed-meta-sep">&middot;</span>
+    {{- if eq .Section (site.Params.notesSection | default "shards") }}
+    <a href="{{ "/shards/" | absURL }}" class="feed-type-label">shard</a>
+    {{- else }}
+    <a href="{{ "/articles/" | absURL }}" class="feed-type-label">article</a>
+    {{- end }}
+    {{- end }}
   </footer>
   {{- end }}
   <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
