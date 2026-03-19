@@ -32,12 +32,21 @@
   src: url("/fonts/geist-mono-latin-italic.woff2") format("woff2");
 }
 
-/* Header - accent gradient for subtle depth */
+/* Header */
 .header {
   background: var(--theme);
   max-width: none;
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right, transparent, var(--border), transparent) 1;
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
 }
 
 /* Logo */

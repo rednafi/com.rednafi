@@ -223,8 +223,7 @@ body {
 /* Footer and scroll-to-top */
 .footer {
   background: var(--theme);
-  border-top: 1px solid transparent;
-  border-image: linear-gradient(to right, transparent, var(--border), transparent) 1;
+  position: relative;
   height: var(--header-height);
   max-width: none;
   width: 100%;
@@ -234,6 +233,16 @@ body {
   text-align: center;
   line-height: var(--header-height);
   font-size: 0.857em;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
 }
 
 .footer a {
