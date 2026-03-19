@@ -70,8 +70,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     themeToggle.addEventListener("click", function () {
       var html = document.documentElement
       var isDark = html.dataset.theme === "dark"
-      html.dataset.theme = isDark ? "light" : "dark"
-      localStorage.setItem("pref-theme", isDark ? "light" : "dark")
+      var newTheme = isDark ? "light" : "dark"
+      html.dataset.theme = newTheme
+      document.body.classList.toggle("dark", newTheme === "dark")
+      localStorage.setItem("pref-theme", newTheme)
     })
   }
 })()

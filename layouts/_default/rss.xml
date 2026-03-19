@@ -1,13 +1,10 @@
+{{- $pctx := . }}
+{{- if .IsHome }}{{ $pctx = site }}{{ end }}
 {{- $pages := slice }}
-{{- if .IsHome }}
-  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
-  {{- $pages = union $articles $notes }}
-  {{- $pages = $pages.ByDate.Reverse }}
-{{- else if .IsSection }}
-  {{- $pages = .RegularPages }}
+{{- if or $.IsHome $.IsSection }}
+{{- $pages = $pctx.RegularPages }}
 {{- else }}
-  {{- $pages = .Pages }}
+{{- $pages = $pctx.Pages }}
 {{- end }}
 {{- $limit := site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
@@ -45,9 +42,6 @@
       {{- range .Params.tags }}
       <category>{{ . }}</category>
       {{- end }}
-      {{- with .Params.cover }}{{- with .image }}
-      <enclosure url="{{ . | absURL }}" type="image/{{ cond (strings.HasSuffix . ".gif") "gif" (cond (strings.HasSuffix . ".png") "png" "jpeg") }}" length="0" />
-      {{- end }}{{- end }}
       {{- if and site.Params.ShowFullTextinRSS .Content }}
       <content:encoded>{{ (printf "<![CDATA[%s]]>" .Content) | safeHTML }}</content:encoded>
       {{- end }}

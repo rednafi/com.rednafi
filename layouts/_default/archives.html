@@ -33,36 +33,23 @@
 {{- $pages = site.RegularPages }}
 {{- end }}
 
-{{- /* Year jump links */ -}}
-{{- $years := slice }}
-{{- range $pages.GroupByDate "2006" }}
-  {{- if and (ne .Key "0001") (ge (int .Key) 2000) }}
-    {{- $years = $years | append .Key }}
-  {{- end }}
-{{- end }}
-{{- if gt (len $years) 1 }}
-<nav class="archive-jump" aria-label="Jump to year">
-  {{- range $i, $year := $years }}
-    {{- if $i }} · {{ end }}<a href="#{{ $year }}">{{ $year }}</a>
-  {{- end }}
-</nav>
-{{- end }}
-
-{{- range $pages.GroupByDate "2006" }}
-{{- if and (ne .Key "0001") (ge (int .Key) 2000) }}
+{{- range $pages.GroupByPublishDate "2006" }}
+{{- if ne .Key "0001" }}
 <div class="archive-year">
-  {{- $year := .Key }}
+  {{- $year := replace .Key "0001" "" }}
   <h2 class="archive-year-header" id="{{ $year }}">
-    {{- $year -}}
+    <a class="archive-header-link" href="#{{ $year }}">
+      {{- $year -}}
+    </a>
     <sup class="archive-count">&nbsp;{{ len .Pages }}</sup>
-    <a hidden class="anchor" aria-hidden="true" tabindex="-1" href="#{{ $year }}">#</a>
   </h2>
   {{- range .Pages.GroupByDate "January" }}
   <div class="archive-month">
     <h3 class="archive-month-header" id="{{ $year }}-{{ .Key }}">
-      {{- .Key -}}
+      <a class="archive-header-link" href="#{{ $year }}-{{ .Key }}">
+        {{- .Key -}}
+      </a>
       <sup class="archive-count">&nbsp;{{ len .Pages }}</sup>
-      <a hidden class="anchor" aria-hidden="true" tabindex="-1" href="#{{ $year }}-{{ .Key }}">#</a>
     </h3>
     <div class="archive-posts">
       {{- range .Pages }}

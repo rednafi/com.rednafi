@@ -26,47 +26,8 @@
   <div class="post-description">
     {{ .Description | markdownify }}
   </div>
-  {{- else if eq .Kind "term" }}
-  {{- $desc := index site.Params.taxonomyDescriptions (lower .Data.Term) }}
-  {{- with $desc }}
-  <div class="post-description taxonomy-description">
-    {{ . | markdownify }}
-  </div>
-  {{- end }}
   {{- end }}
 </header>
-{{- end }}
-
-{{- if eq .Kind "term" }}
-{{- $currentTag := .Data.Term }}
-{{- $tagCounts := dict }}
-{{- range .Pages }}
-  {{- range .GetTerms "tags" }}
-    {{- $name := .Data.Term }}
-    {{- if ne $name $currentTag }}
-      {{- $prev := index $tagCounts $name | default 0 }}
-      {{- $tagCounts = merge $tagCounts (dict $name (add $prev 1)) }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-{{- if $tagCounts }}
-{{- $sorted := sort (slice) }}
-{{- range $name, $count := $tagCounts }}
-  {{- $sorted = $sorted | append (dict "name" $name "count" $count) }}
-{{- end }}
-{{- $sorted = sort $sorted "count" "desc" }}
-{{- $limit := math.Min 8 (len $sorted) }}
-<nav class="related-tags" aria-label="Related tags">
-  <span class="related-tags-label">Related:</span>
-  <ul class="related-tags-list">
-    {{- range first $limit $sorted }}
-    {{- with site.GetPage (printf "/tags/%s" .name) }}
-    <li><a href="{{ .Permalink }}">{{ .Name }}</a></li>
-    {{- end }}
-    {{- end }}
-  </ul>
-</nav>
-{{- end }}
 {{- end }}
 
 {{- if .Content }}
@@ -80,130 +41,66 @@
 {{- $pages := union .RegularPages .Sections }}
 
 {{- if .IsHome }}
-  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
-  {{- $pages = union $articles $notes }}
-  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
-  {{- $pages = $pages.ByDate.Reverse }}
-{{- else if eq .Section "articles" }}
-  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
 
-{{- $isCompactSection := and (not .IsHome) (or (eq .Section "articles") (eq .Section (site.Params.notesSection | default "shards"))) -}}
-{{- $paginator := .Paginate $pages (cond $isCompactSection 100 15) }}
+{{- $paginator := .Paginate $pages }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
 {{- partial "home_info.html" . }}
 {{- end }}
 
-{{- $term := .Data.Term }}
-
 {{- if .IsHome }}
-<div class="h-feed">
-  <data class="p-name" value="{{ site.Title }}" hidden></data>
 <div class="home-grid">
-  <div class="home-feed">
+<div class="home-feed">
 {{- end }}
 
-{{- if $isCompactSection }}
-<div class="compact-list">
-{{- end }}
-
+{{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}
 
-{{- if $.IsHome }}
-  {{- $isLink := isset $page.Params "link" }}
-  <article class="feed-entry h-entry">
-    <header class="feed-header">
-      <h2 class="feed-title">{{ .Title }}{{ if .Draft }} <span class="entry-hint">[draft]</span>{{ end }}</h2>
-      <div class="feed-meta">
-        <time datetime="{{ .Date.Format "2006-01-02" }}">
-          {{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}
-        </time>
-        <span class="feed-meta-sep">&middot;</span>
-        {{- if eq .Section (site.Params.notesSection | default "shards") }}
-        <span class="feed-type feed-type-shard">shard</span>
-        {{- else }}
-        <span class="feed-type feed-type-article">article</span>
-        {{- if .ReadingTime }}<span class="feed-meta-sep">&middot;</span>
-        <span class="feed-readtime">{{ .ReadingTime }} min</span>{{ end }}
-        {{- end }}
-        {{- if $isLink }}
-        <span class="feed-meta-sep">&middot;</span>
-        <span class="feed-domain">{{ .Params.link | replaceRE "^https?://(www\\.)?" "" | replaceRE "/.*$" "" }}</span>
-        {{- end }}
-      </div>
-    </header>
-    {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-    {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-    {{- if (ne (.Param "hideSummary") true) }}
-    <div class="feed-summary post-content">
-      {{ .Summary }}
-    </div>
-    {{- end }}
-    {{- with .Params.tags }}
-    <div class="feed-tags">
-      {{- range . }}
-      <a href="{{ absURL (printf "tags/%s/" (. | urlize)) }}" class="feed-tag">{{ . }}</a>
-      {{- end }}
-    </div>
-    {{- end }}
-    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-  </article>
-{{- else if $isCompactSection }}
-  <div class="compact-entry">
-    <div class="compact-left">
-      <div class="compact-row">
-        <span class="compact-title">{{ .Title }}{{ if .Draft }} <sup class="entry-hint">[draft]</sup>{{ end }}</span>
-        <span class="compact-date">{{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}</span>
-      </div>
-      {{- with .Params.tags }}
-      <div class="compact-tags">
-        {{- range . }}
-        <a href="{{ absURL (printf "tags/%s/" (. | urlize)) }}" class="compact-tag">{{ . }}</a>
-        {{- end }}
-      </div>
-      {{- end }}
-    </div>
-    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-  </div>
-{{- else }}
-  <article class="feed-entry">
-    <header class="feed-header">
-      <h2 class="feed-title">{{ .Title }}{{ if .Draft }} <span class="entry-hint">[draft]</span>{{ end }}</h2>
-      <div class="feed-meta">
-        <time datetime="{{ .Date.Format "2006-01-02" }}">
-          {{ .Date | time.Format (default "January 2, 2006" site.Params.DateFormat) }}
-        </time>
-        {{- if .ReadingTime }}
-        <span class="feed-meta-sep">&middot;</span>
-        <span class="feed-readtime">{{ .ReadingTime }} min</span>
-        {{- end }}
-      </div>
-    </header>
-    {{- if (ne (.Param "hideSummary") true) }}
-    <div class="feed-summary post-content">
-      {{ .Summary }}
-    </div>
-    {{- end }}
-    {{- with .Params.tags }}
-    <div class="feed-tags">
-      {{- range . }}
-      <a href="{{ absURL (printf "tags/%s/" (. | urlize)) }}" class="feed-tag">{{ . }}</a>
-      {{- end }}
-    </div>
-    {{- end }}
-    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-  </article>
+{{- $class := "post-entry" }}
+
+{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
+{{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
+{{- $class = "first-entry" }}
+{{- else if $term }}
+{{- $class = "post-entry tag-entry" }}
 {{- end }}
+
+<article class="{{ $class }}">
+  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      {{- .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h2>
+  </header>
+  {{- if (ne (.Param "hideSummary") true) }}
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  {{- end }}
+  {{- if not (.Param "hideMeta") }}
+  <footer class="entry-footer">
+    {{- partial "post_meta.html" . -}}
+  </footer>
+  {{- end }}
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
 {{- end }}
 
 {{- if .IsHome }}
-  </div>
-  {{- partial "sidebar.html" . }}
 </div>
-</div>
-{{- else if $isCompactSection }}
+{{- partial "sidebar.html" . }}
 </div>
 {{- end }}
 

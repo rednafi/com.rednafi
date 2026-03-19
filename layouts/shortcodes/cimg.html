@@ -1,8 +1,0 @@
-<figure>
-  <img src="{{ .Get "src" }}"
-       alt="{{ .Get "alt" }}"
-       loading="lazy"
-       {{ with .Get "width" }}width="{{ . }}"{{ end }}
-       {{ with .Get "height" }}height="{{ . }}"{{ end }}>
-  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
-</figure>

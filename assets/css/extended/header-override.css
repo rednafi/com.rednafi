@@ -34,7 +34,7 @@
 
 /* Header */
 .header {
-  background: var(--theme);
+  background: inherit;
   max-width: none;
   position: relative;
 }
