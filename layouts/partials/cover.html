@@ -44,13 +44,11 @@
                 width="{{ $cover.Width }}" height="{{ $cover.Height }}"
                 alt="{{ $alt }}">
         {{- else }}{{/* Unprocessable image or responsive images disabled */}}
-            <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}"
-                 width="{{ .Params.cover.width | default 1200 }}" height="{{ .Params.cover.height | default 630 }}">
+            <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}">
         {{- end }}
     {{- else }}
         {{- /* For absolute urls and external links, no img processing here */}}
-        <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}"
-             width="{{ .Params.cover.width | default 1200 }}" height="{{ .Params.cover.height | default 630 }}">
+        <img loading="{{ $loading }}" fetchpriority="{{ $fetchpriority }}" decoding="async" src="{{ $imgdl }}" alt="{{ $alt }}">
     {{- end }}
 
     {{- if $addLink }}

@@ -5,12 +5,7 @@
 <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/geist-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-<script>
-if (localStorage.getItem("pref-theme") === "dark") {
-    document.documentElement.dataset.theme = "dark";
-}
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="no-referrer-when-downgrade">
@@ -23,7 +18,7 @@ if (localStorage.getItem("pref-theme") === "dark") {
 {{- end }}
 
 {{- /* Title */}}
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}{{ end }}</title>
+<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
 
 {{- /* Meta */}}
 {{- if .IsHome }}
@@ -38,14 +33,17 @@ if (localStorage.getItem("pref-theme") === "dark") {
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 <meta name="author" content="{{ (partial "author.html" . ) }}">
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
-{{- $verifications := dict
-  "google-site-verification" site.Params.analytics.google.SiteVerificationTag
-  "yandex-verification" site.Params.analytics.yandex.SiteVerificationTag
-  "naver-site-verification" site.Params.analytics.naver.SiteVerificationTag
-}}
-{{- range $name, $content := $verifications }}
-{{- with $content }}<meta name="{{ $name }}" content="{{ . }}">
-{{ end }}
+{{- if site.Params.analytics.google.SiteVerificationTag }}
+<meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
+{{- end }}
+{{- if site.Params.analytics.yandex.SiteVerificationTag }}
+<meta name="yandex-verification" content="{{ site.Params.analytics.yandex.SiteVerificationTag }}">
+{{- end }}
+{{- if site.Params.analytics.bing.SiteVerificationTag }}
+<meta name="msvalidate.01" content="{{ site.Params.analytics.bing.SiteVerificationTag }}">
+{{- end }}
+{{- if site.Params.analytics.naver.SiteVerificationTag }}
+<meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
 
 {{- /* Styles */}}
@@ -87,14 +85,12 @@ if (localStorage.getItem("pref-theme") === "dark") {
 {{- /* Search is now handled by Pagefind in search.html layout */ -}}
 
 {{- /* Favicons */}}
-<link rel="icon" type="image/png" sizes="48x48" href="https://blob.rednafi.com/static/images/home/favicon-48x48.png?v=2">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon.ico" | absURL }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon.ico" | absURL }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
-<link rel="icon" sizes="192x192" href="https://blob.rednafi.com/static/images/home/favicon-192x192.png?v=2">
-<link rel="icon" sizes="512x512" href="https://blob.rednafi.com/static/images/home/favicon-512x512.png?v=2">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ site.Params.assets.theme_color | default "#fefcf6" }}">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#212529">
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
 
 {{- /* RSS */}}
@@ -108,10 +104,8 @@ if (localStorage.getItem("pref-theme") === "dark") {
 {{- /* Sitemap */}}
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
 
-{{- /* Pagination link tags for SEO – skip sections with virtual page collections
-     (e.g. /articles/) so .Paginator doesn't cache an empty result before the
-     template calls .Paginate with the real collection. */ -}}
-{{- if and (or .IsHome .IsSection (eq .Kind "term")) (ne .Section "articles") (gt .Paginator.TotalPages 1) }}
+{{- /* Pagination link tags for SEO */ -}}
+{{- if and (or .IsHome .IsSection) (gt .Paginator.TotalPages 1) }}
   {{- if .Paginator.HasPrev }}
 <link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
   {{- end }}
@@ -150,10 +144,7 @@ if (localStorage.getItem("pref-theme") === "dark") {
                 --content: #e0e0e0;
                 --code-block-bg: #2c3034;
                 --code-bg: #2c3034;
-                --code-color: #e0e0e0;
                 --border: #404550;
-                --accent: #7cc8e8;
-                --accent-rgb: 124, 200, 232;
             }
 
             .list {
@@ -172,6 +163,34 @@ if (localStorage.getItem("pref-theme") === "dark") {
     </style>
     {{- end }}
 </noscript>
+
+{{- if (not site.Params.disableThemeToggle) }}
+{{- if (eq site.Params.defaultTheme "light") }}
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    }
+</script>
+{{- else if (eq site.Params.defaultTheme "dark") }}
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+</script>
+{{- else }}
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+</script>
+{{- end }}
+{{- end }}
 
 {{- partial "extend_head.html" . -}}
 

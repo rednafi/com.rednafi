@@ -1,9 +1,0 @@
-{{- with .Params.discussions }}
-<div class="discussion-links" data-pagefind-ignore>
-  Discuss on
-  {{- range $i, $d := . }}
-    {{- if $i }} · {{ end }}
-    <a href="{{ $d.url }}" target="_blank" rel="noopener noreferrer">{{ $d.label }}</a>
-  {{- end }}
-</div>
-{{- end }}

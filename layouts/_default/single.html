@@ -8,13 +8,6 @@
       {{ .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h1>
-    {{- with .Params.link }}
-    <div class="note-source-link">
-      <a href="{{ . }}" rel="noopener noreferrer" target="_blank">
-        {{ . | replaceRE "^https?://(www\\.)?" "" | replaceRE "/+$" "" | truncate 60 }} ↗
-      </a>
-    </div>
-    {{- end }}
     {{- if not (.Param "hideMeta") }}
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
@@ -42,9 +35,8 @@
     {{- end }}
     {{- end }}
   </header>
-  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+  {{- $isHidden := .Params.cover.hidden | default site.Params.cover.hiddenInSingle | default site.Params.cover.hidden }}
   {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
-
   {{- if (.Param "ShowToc") }}
   {{- partial "toc.html" . }}
   {{- end }}
@@ -61,7 +53,7 @@
     {{ partial "mermaid.html" }}
     {{ end }}
 
-{{- /* Only show related/recent posts on main content pages */ -}}
+{{- /* Related posts - only show on main content pages */ -}}
 {{- $showRecent := not .Params.hideRelated }}
 {{- range site.Menus.hamburger }}
   {{- if strings.HasPrefix $.RelPermalink .URL }}{{ $showRecent = false }}{{ end }}
@@ -70,7 +62,6 @@
 {{- if $showRecent }}
 {{- $current := . }}
 
-{{- /* Related posts - matched by tags, section, date */ -}}
 {{- $related := site.RegularPages.Related . | first 5 }}
 {{- if lt (len $related) 3 }}
   {{- $sectionPages := where site.RegularPages "Section" .Section }}
@@ -90,7 +81,7 @@
 
 {{- end }}
 </div>
-{{ partial "discussion_links.html" . }}
+
   </div>
   {{- end }}
 
