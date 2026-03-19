@@ -11,7 +11,7 @@ description: >-
 ---
 
 [Paweł Grzybek] reached out after reading [What belongs in Go's context values?] with a
-question about their auth [middleware] and the [handler] that consumes the user ID it sets:
+question about their auth [middleware] and the [handler] that reads the user ID from context:
 
 > I validate the session in middleware, and the session record in the DB holds the user ID,
 > which I put in the context for handlers to use later. According to your post, this is an

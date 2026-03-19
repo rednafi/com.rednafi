@@ -3,7 +3,13 @@
 
 {{- /* Preload fonts to avoid FOUT */ -}}
 <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+if (localStorage.getItem("pref-theme") === "dark") {
+    document.documentElement.dataset.theme = "dark";
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">

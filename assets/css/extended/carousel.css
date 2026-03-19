@@ -57,7 +57,6 @@
   cursor: pointer;
   opacity: 0.85;
   z-index: 2;
-  transition: opacity 0.15s;
   display: flex;
   align-items: center;
   justify-content: center;
