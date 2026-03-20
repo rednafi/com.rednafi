@@ -25,7 +25,7 @@ type BookStore interface {
 A service depends on `BookStore`, a concrete `postgres` package satisfies it, and in tests you
 swap in an in-memory fake. The service never imports `database/sql`.
 
-In the [same Reddit thread], user SeerUD [asked]:
+In the [same Reddit thread], user xinoiP [asked]:
 
 > How would you handle transactions with this approach? Since they are very specific to SQL. I
 > tend to use context and store an optional transaction in there that can be used on the
@@ -151,7 +151,7 @@ to verify actual commit/rollback behavior, swap the in-memory store for somethin
 
 ---
 
-Back to SeerUD's approach of storing a `*sql.Tx` in the context: it works, but it leaks storage
+Back to xinoiP's approach of storing a `*sql.Tx` in the context: it works, but it leaks storage
 into the service layer through the back door. The service has to set up the transaction in
 context before calling the store, which means it knows a SQL transaction exists. That's the
 coupling the interface was supposed to prevent.
