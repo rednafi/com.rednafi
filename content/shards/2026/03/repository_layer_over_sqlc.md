@@ -173,6 +173,11 @@ func TestRegisterBook(t *testing.T) {
 Same service code, no database needed. The test exercises `RegisterBook` without touching
 SQL. If the storage layer changes tomorrow, the service and its tests stay the same.
 
+If you're wondering how transactions fit into this - since `Tx` is inherently a SQL concept and
+the interface is supposed to hide storage details - I wrote a [follow-up] about that.
+
+A working example with transactions, tests, and an HTTP server is [on GitHub].
+
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -187,5 +192,11 @@ SQL. If the storage layer changes tomorrow, the service and its tests stay the s
 
 [gorm]:
     https://github.com/go-gorm/gorm
+
+[follow-up]:
+    /shards/2026/03/transactions-with-repository-pattern/
+
+[on GitHub]:
+    https://github.com/rednafi/examples/tree/main/repository-transactions
 
 <!-- prettier-ignore-end -->
