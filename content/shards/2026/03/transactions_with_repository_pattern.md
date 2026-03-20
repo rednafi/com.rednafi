@@ -45,7 +45,8 @@ The key is something sqlc already gives you. It generates a `DBTX` interface tha
 // This is what sqlc generates.
 
 type DBTX interface {
-    ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error)
+    ExecContext(
+        ctx context.Context, query string, args ...any) (sql.Result, error)
     QueryRowContext(ctx context.Context, query string, args ...any) *sql.Row
 }
 ```
