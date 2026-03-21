@@ -178,7 +178,7 @@ A working example with transactions, tests, and an HTTP server is [on GitHub].
 See also:
 
 - [How do you handle transactions with the repository pattern?]
-- [Repository pattern & transactions in Go]
+- [Repositories, transactions, and unit of work in Go]
 
 <!-- references -->
 <!-- prettier-ignore-start -->
@@ -201,7 +201,7 @@ See also:
 [How do you handle transactions with the repository pattern?]:
     /shards/2026/03/transactions-with-repository-pattern/
 
-[Repository pattern & transactions in Go]:
-    /go/repository-pattern-and-transactions/
+[Repositories, transactions, and unit of work in Go]:
+    /go/repo-txn-uow/
 
 <!-- prettier-ignore-end -->
