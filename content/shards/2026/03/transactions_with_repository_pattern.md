@@ -42,7 +42,7 @@ The key is something sqlc already gives you. It generates a `DBTX` interface tha
 `*sql.DB` and `*sql.Tx` satisfy:
 
 ```go
-// This is what sqlc generates.
+// Simplified from what sqlc generates.
 
 type DBTX interface {
     ExecContext(
@@ -93,10 +93,10 @@ func (s *BookStore) Tx(
     if err != nil {
         return err
     }
+    defer tx.Rollback() // no-op after Commit
 
     // Build a new BookStore backed by the tx.
     if err := fn(NewBookStore(tx)); err != nil {
-        _ = tx.Rollback()
         return err
     }
     return tx.Commit()
@@ -165,7 +165,7 @@ The full working example with an HTTP server and SQLite is [on GitHub].
 See also:
 
 - [Do you need a repository layer on top of sqlc?]
-- [Repository pattern & transactions in Go]
+- [Repositories, transactions, and unit of work in Go]
 
 <!-- references -->
 <!-- prettier-ignore-start -->
@@ -185,7 +185,7 @@ See also:
 [Do you need a repository layer on top of sqlc?]:
     /shards/2026/03/repository-layer-over-sqlc/
 
-[Repository pattern & transactions in Go]:
-    /go/repository-pattern-and-transactions/
+[Repositories, transactions, and unit of work in Go]:
+    /go/repo-txn-uow/
 
 <!-- prettier-ignore-end -->
