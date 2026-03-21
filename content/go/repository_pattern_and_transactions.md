@@ -221,7 +221,7 @@ var _ Store = (*memStore)(nil)
 
 type memStore struct {
     mu   sync.Mutex
-    data map[int64]Book
+    books map[int64]Book
     next int64
 }
 
@@ -230,7 +230,7 @@ func (m *memStore) Get(
 
     m.mu.Lock()
     defer m.mu.Unlock()
-    b, ok := m.data[id]
+    b, ok := m.books[id]
     if !ok {
         return Book{}, fmt.Errorf("book %d not found", id)
     }
@@ -244,7 +244,7 @@ func (m *memStore) Create(
     defer m.mu.Unlock()
     m.next++
     b.ID = m.next
-    m.data[b.ID] = b
+    m.books[b.ID] = b
     return b.ID, nil
 }
 ```
@@ -258,7 +258,7 @@ The test looks like production code, minus the database:
 // book/service_test.go
 
 func TestRegisterBook(t *testing.T) {
-    store := &memStore{data: make(map[int64]Book)}
+    store := &memStore{books: make(map[int64]Book)}
     svc := NewService(store)
 
     b, err := svc.RegisterBook(t.Context(), "DDIA")
@@ -605,7 +605,7 @@ the domain grows, you add more fields to it.
 The SQLite implementation starts one transaction and constructs both stores from it:
 
 ```go
-// sqlite/uow.go
+// sqlite/store.go
 
 type UoW struct{ db *sql.DB }
 
