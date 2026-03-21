@@ -830,7 +830,6 @@ throughout.
 That said, I typically skip the ceremony when I'm knocking out something for my own use, or
 working in a smaller codebase, or working in a codebase that doesn't do it already.
 
-
 <!-- references -->
 <!-- prettier-ignore-start -->
 
