@@ -605,7 +605,7 @@ the domain grows, you add more fields to it.
 The SQLite implementation starts one transaction and constructs both stores from it:
 
 ```go
-// sqlite/store.go
+// sqlite/uow.go
 
 type UoW struct{ db *sql.DB }
 
