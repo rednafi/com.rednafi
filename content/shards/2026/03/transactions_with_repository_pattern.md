@@ -70,18 +70,18 @@ type Store interface {
 }
 ```
 
-The Postgres implementation of `Tx` starts a `sql.Tx`, wraps it in a fresh `Store`, and passes
+The Postgres implementation of `Tx` starts a `sql.Tx`, wraps it in a fresh `BookStore`, and passes
 that into the callback. If the callback returns an error, it rolls back. Otherwise it commits:
 
 ```go
 // postgres/store.go
 
-// Previously this was `type Store struct{ db *sql.DB }`.
-type Store struct{ db DBTX }
+// Previously this was `type BookStore struct{ db *sql.DB }`.
+type BookStore struct{ db DBTX }
 
-func NewStore(db DBTX) *Store { return &Store{db: db} }
+func NewBookStore(db DBTX) *BookStore { return &BookStore{db: db} }
 
-func (s *Store) Tx(
+func (s *BookStore) Tx(
     ctx context.Context, fn func(book.Store) error) error {
 
     sqlDB, ok := s.db.(*sql.DB)
@@ -94,8 +94,8 @@ func (s *Store) Tx(
         return err
     }
 
-    // Build a new Store backed by the tx.
-    if err := fn(NewStore(tx)); err != nil {
+    // Build a new BookStore backed by the tx.
+    if err := fn(NewBookStore(tx)); err != nil {
         _ = tx.Rollback()
         return err
     }
@@ -103,7 +103,7 @@ func (s *Store) Tx(
 }
 ```
 
-`NewStore(tx)` works because the struct field is `DBTX`, and `*sql.Tx` satisfies that
+`NewBookStore(tx)` works because the struct field is `DBTX`, and `*sql.Tx` satisfies that
 interface. No new type, no wrapper. The `Get`, `Create`, and `CreateAuditLog` methods on this
 transactional store run their queries against the `tx` automatically.
 

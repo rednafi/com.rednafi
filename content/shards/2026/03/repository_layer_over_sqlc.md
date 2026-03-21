@@ -86,16 +86,16 @@ would live:
 ```go
 // postgres/store.go
 
-type Store struct{ db *sql.DB }
+type BookStore struct{ db *sql.DB }
 
-func NewStore(db *sql.DB) *Store { return &Store{db: db} }
+func NewBookStore(db *sql.DB) *BookStore { return &BookStore{db: db} }
 
-func (s *Store) Get(ctx context.Context, id int64) (book.Book, error) {
+func (s *BookStore) Get(ctx context.Context, id int64) (book.Book, error) {
     // sqlc query or raw sql, doesn't matter
     // ...
 }
 
-func (s *Store) Create(
+func (s *BookStore) Create(
     ctx context.Context, b book.Book) (int64, error) {
     // INSERT INTO books (title) VALUES ($1) RETURNING id
     // ...
@@ -107,7 +107,7 @@ Wire it up at startup:
 ```go
 // cmd/main.go
 
-store := postgres.NewStore(db)
+store := postgres.NewBookStore(db)
 svc := book.NewService(store)
 ```
 
