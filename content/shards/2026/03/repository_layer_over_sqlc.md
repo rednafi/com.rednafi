@@ -34,14 +34,14 @@ Say you're building a service that manages books. Start with the domain type and
 interface:
 
 ```go
-// bookstore/bookstore.go
+// book/book.go
 
 type Book struct {
     ID    int64
     Title string
 }
 
-type BookStore interface {
+type Store interface {
     Get(ctx context.Context, id int64) (Book, error)
     Create(ctx context.Context, b Book) (int64, error)
 }
@@ -50,13 +50,13 @@ type BookStore interface {
 The service depends only on that interface:
 
 ```go
-// bookstore/service.go
+// book/service.go
 
 type Service struct {
-    store BookStore
+    store Store
 }
 
-func NewService(s BookStore) *Service {
+func NewService(s Store) *Service {
     return &Service{store: s}
 }
 
@@ -90,13 +90,13 @@ type Store struct{ db *sql.DB }
 
 func NewStore(db *sql.DB) *Store { return &Store{db: db} }
 
-func (s *Store) Get(ctx context.Context, id int64) (bookstore.Book, error) {
+func (s *Store) Get(ctx context.Context, id int64) (book.Book, error) {
     // sqlc query or raw sql, doesn't matter
     // ...
 }
 
 func (s *Store) Create(
-    ctx context.Context, b bookstore.Book) (int64, error) {
+    ctx context.Context, b book.Book) (int64, error) {
     // INSERT INTO books (title) VALUES ($1) RETURNING id
     // ...
 }
@@ -108,15 +108,15 @@ Wire it up at startup:
 // cmd/main.go
 
 store := postgres.NewStore(db)
-svc := bookstore.NewService(store)
+svc := book.NewService(store)
 ```
 
 In tests, swap in a fake that satisfies the same interface:
 
 ```go
-// bookstore/service_test.go
+// book/service_test.go
 
-var _ BookStore = (*memStore)(nil)
+var _ Store = (*memStore)(nil)
 
 type memStore struct {
     mu   sync.Mutex
@@ -151,7 +151,7 @@ func (m *memStore) Create(
 Now the test reads exactly like production code, minus Postgres:
 
 ```go
-// bookstore/service_test.go
+// book/service_test.go
 
 func TestRegisterBook(t *testing.T) {
     store := &memStore{data: make(map[int64]Book)}
@@ -173,10 +173,12 @@ func TestRegisterBook(t *testing.T) {
 Same service code, no database needed. The test exercises `RegisterBook` without touching
 SQL. If the storage layer changes tomorrow, the service and its tests stay the same.
 
-If you're wondering how transactions fit into this - since `Tx` is inherently a SQL concept and
-the interface is supposed to hide storage details - I wrote a [follow-up] about that.
-
 A working example with transactions, tests, and an HTTP server is [on GitHub].
+
+See also:
+
+- [How do you handle transactions with the repository pattern?]
+- [Repository pattern & transactions in Go]
 
 <!-- references -->
 <!-- prettier-ignore-start -->
@@ -193,10 +195,13 @@ A working example with transactions, tests, and an HTTP server is [on GitHub].
 [gorm]:
     https://github.com/go-gorm/gorm
 
-[follow-up]:
-    /shards/2026/03/transactions-with-repository-pattern/
-
 [on GitHub]:
     https://github.com/rednafi/examples/tree/main/repository-transactions
+
+[How do you handle transactions with the repository pattern?]:
+    /shards/2026/03/transactions-with-repository-pattern/
+
+[Repository pattern & transactions in Go]:
+    /go/repository-pattern-and-transactions/
 
 <!-- prettier-ignore-end -->

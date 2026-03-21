@@ -9,20 +9,20 @@ description: >-
   Adding transaction support to a repository interface without leaking storage details.
 ---
 
-In the [previous shard], I showed how to put a small interface between your service logic and
+[Previously], I showed how to put a small interface between your service logic and
 your storage layer so the service doesn't know whether it's talking to sqlc, raw SQL, or
 anything else. The interface looked like this:
 
 ```go
-// bookstore/bookstore.go
+// book/book.go
 
-type BookStore interface {
+type Store interface {
     Get(ctx context.Context, id int64) (Book, error)
     Create(ctx context.Context, b Book) (int64, error)
 }
 ```
 
-A service depends on `BookStore`, a concrete `postgres` package satisfies it, and in tests you
+A service depends on `Store`, a concrete `postgres` package satisfies it, and in tests you
 swap in an in-memory fake. The service never imports `database/sql`.
 
 In the [same Reddit thread], user xinoiP [asked]:
@@ -57,16 +57,16 @@ executor. That means the interface can offer a `Tx` method that hands the caller
 version of itself:
 
 ```go
-// bookstore/bookstore.go
+// book/book.go
 
-type BookStore interface {
+type Store interface {
     Get(ctx context.Context, id int64) (Book, error)
     Create(ctx context.Context, b Book) (int64, error)
     CreateAuditLog(ctx context.Context, e AuditEntry) error
 
-    // Tx runs fn inside a transaction. The BookStore passed
+    // Tx runs fn inside a transaction. The Store passed
     // to fn executes against that transaction.
-    Tx(ctx context.Context, fn func(BookStore) error) error
+    Tx(ctx context.Context, fn func(Store) error) error
 }
 ```
 
@@ -82,7 +82,7 @@ type Store struct{ db DBTX }
 func NewStore(db DBTX) *Store { return &Store{db: db} }
 
 func (s *Store) Tx(
-    ctx context.Context, fn func(bookstore.BookStore) error) error {
+    ctx context.Context, fn func(book.Store) error) error {
 
     sqlDB, ok := s.db.(*sql.DB)
     if !ok {
@@ -111,14 +111,14 @@ The service uses `Tx` when it needs atomicity. Everything inside the callback go
 transactional store:
 
 ```go
-// bookstore/service.go
+// book/service.go
 
 func (s *Service) RegisterBook(
     ctx context.Context, title string) (Book, error) {
 
     var book Book
 
-    err := s.store.Tx(ctx, func(tx BookStore) error {
+    err := s.store.Tx(ctx, func(tx Store) error {
         id, err := tx.Create(ctx, Book{Title: title})
         if err != nil {
             return err
@@ -138,10 +138,10 @@ anything from `database/sql`. If the audit log insert fails, the book insert is 
 For tests, `Tx` just calls the function directly against the in-memory store:
 
 ```go
-// bookstore/service_test.go
+// book/service_test.go
 
 func (m *memStore) Tx(
-    ctx context.Context, fn func(BookStore) error) error {
+    ctx context.Context, fn func(Store) error) error {
     return fn(m)
 }
 ```
@@ -162,10 +162,15 @@ implement `Tx` differently in the new storage package.
 
 The full working example with an HTTP server and SQLite is [on GitHub].
 
+See also:
+
+- [Do you need a repository layer on top of sqlc?]
+- [Repository pattern & transactions in Go]
+
 <!-- references -->
 <!-- prettier-ignore-start -->
 
-[previous shard]:
+[Previously]:
     /shards/2026/03/repository-layer-over-sqlc/
 
 [same Reddit thread]:
@@ -176,5 +181,11 @@ The full working example with an HTTP server and SQLite is [on GitHub].
 
 [on GitHub]:
     https://github.com/rednafi/examples/tree/main/repository-transactions
+
+[Do you need a repository layer on top of sqlc?]:
+    /shards/2026/03/repository-layer-over-sqlc/
+
+[Repository pattern & transactions in Go]:
+    /go/repository-pattern-and-transactions/
 
 <!-- prettier-ignore-end -->
