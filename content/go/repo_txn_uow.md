@@ -477,8 +477,8 @@ interface was supposed to prevent.
 There's another issue as well. Context values are untyped and invisible. If someone forgets
 to set the transaction in context, or sets it on the wrong context, the store silently falls
 back to the connection pool and the operations aren't atomic. With the callback approach, the
-transactional store is passed as a function argument. It won't catch every mistake — you could
-still accidentally call `s.store` instead of `tx` for one of several operations — but it's
+transactional store is passed as a function argument. It won't catch every mistake - you could
+still accidentally call `s.store` instead of `tx` for one of several operations - but it's
 harder to miss than an invisible context value.
 
 With the callback, the service says "run these operations atomically" and the store decides
