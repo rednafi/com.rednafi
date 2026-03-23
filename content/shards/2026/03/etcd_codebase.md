@@ -65,8 +65,8 @@ your protobufs and [generated code]. Some other things I picked up:
 - [retry_interceptor.go] implements client-side retry with backoff, safe retry classification
   for read-only vs mutation RPCs, and auth token refresh on failure.
 
-- The [clientv3 package] wraps the generated gRPC client behind a nicer Go API. Good
-  reference if you're building an ergonomic client on top of raw protobuf types.
+- The [clientv3 package] wraps the generated gRPC client behind a nicer Go API. I wrote
+  about [wrapping a gRPC client in Go] using a similar approach.
 
 - If you're a distributed systems nerd, etcd uses [Raft] for consensus. That part of the
   codebase is its own rabbit hole.
@@ -125,5 +125,8 @@ when we need to make decisions.
 
 [key.go]:
     https://github.com/etcd-io/etcd/blob/main/server/etcdserver/api/v3rpc/key.go
+
+[wrapping a gRPC client in Go]:
+    /go/wrap-grpc-client/
 
 <!-- prettier-ignore-end -->
