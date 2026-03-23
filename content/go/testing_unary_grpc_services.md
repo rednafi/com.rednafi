@@ -108,9 +108,9 @@ func (s *Server) CreateBook(
     }
     // ... same for author
     if len(violations) > 0 {
-        st := status.New(codes.InvalidArgument,              // (1)
+        st := status.New(codes.InvalidArgument,        // (1)
             "invalid book request")
-        st, err := st.WithDetails(                           // (2)
+        st, err := st.WithDetails(                     // (2)
             &errdetails.BadRequest{
                 FieldViolations: violations,
             })
@@ -124,7 +124,7 @@ func (s *Server) CreateBook(
     id, err := s.store.Create(ctx, req.Title, req.Author)
     if err != nil {
         return nil, status.Errorf(
-            codes.Internal, "creating book: %v", err)        // (3)
+            codes.Internal, "creating book: %v", err) // (3)
     }
     return &api.CreateBookResponse{Id: id}, nil
 }
@@ -210,9 +210,9 @@ With that in place, the test creates a `Server` struct directly and calls `Creat
 
 func TestDirect_CreateAndGetBook(t *testing.T) {
     store := &memStore{books: make(map[int64]Book)}
-    srv := &Server{store: store}                         // (1)
+    srv := &Server{store: store}                  // (1)
 
-    created, err := srv.CreateBook(t.Context(),           // (2)
+    created, err := srv.CreateBook(t.Context(),  // (2)
         &api.CreateBookRequest{
             Title:  "DDIA",
             Author: "Martin Kleppmann",
@@ -335,17 +335,17 @@ func startServer(
 ) api.BookstoreClient {
     t.Helper()
 
-    lis := bufconn.Listen(1 << 20)                          // (2)
-    srv := grpc.NewServer(opts...)                           // (3)
+    lis := bufconn.Listen(1 << 20)                        // (2)
+    srv := grpc.NewServer(opts...)                         // (3)
     RegisterServer(srv, store)
 
-    go srv.Serve(lis)                                        // (4)
-    t.Cleanup(srv.GracefulStop)                              // (5)
+    go srv.Serve(lis)                                      // (4)
+    t.Cleanup(srv.GracefulStop)                            // (5)
 
-    conn, err := grpc.NewClient("passthrough:///bufconn",    // (6)
+    conn, err := grpc.NewClient("passthrough:///bufconn",  // (6)
         grpc.WithContextDialer(
             func(ctx context.Context, _ string) (net.Conn, error) {
-                return lis.DialContext(ctx)                   // (7)
+                return lis.DialContext(ctx)                 // (7)
             },
         ),
         grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -392,7 +392,7 @@ Create a book, then get it back:
 
 func TestCreateAndGetBook(t *testing.T) {
     store := &memStore{books: make(map[int64]Book)}
-    client := startServer(t, store)              // (1)
+    client := startServer(t, store)                 // (1)
 
     created, err := client.CreateBook(t.Context(), // (2)
         &api.CreateBookRequest{
@@ -422,8 +422,8 @@ func TestCreateAndGetBook(t *testing.T) {
 - (2) `client.CreateBook` is now a real gRPC call that goes through protobuf serialization
   and the HTTP/2 transport, unlike the direct test where it was a plain method call
 
-The error code tests follow the same pattern - `startServer`, make a call, check
-`status.FromError`:
+The error code test looks identical to the direct version, but now the `NotFound` status
+travels through the wire as an HTTP/2 trailer instead of staying in-process:
 
 ```go
 // server_test.go
@@ -434,22 +434,21 @@ func TestGetBook_NotFound(t *testing.T) {
 
     _, err := client.GetBook(t.Context(),
         &api.GetBookRequest{Id: 999})
-    // ... status.FromError(err), check codes.NotFound
-}
-
-func TestCreateBook_EmptyTitle(t *testing.T) {
-    store := &memStore{books: make(map[int64]Book)}
-    client := startServer(t, store)
-
-    _, err := client.CreateBook(t.Context(),
-        &api.CreateBookRequest{Title: "", Author: "Someone"})
-    // ... status.FromError(err), check codes.InvalidArgument
+    if err == nil {
+        t.Fatal("expected error")
+    }
+    s, ok := status.FromError(err)
+    if !ok {
+        t.Fatalf("expected gRPC status error, got %v", err)
+    }
+    if s.Code() != codes.NotFound {
+        t.Errorf("code = %v, want NotFound", s.Code())
+    }
 }
 ```
 
-These look similar to the direct tests, but the `NotFound` and `InvalidArgument` status
-codes now travel through the wire format as HTTP/2 trailers, not just as Go values in the
-same process. If the proto definitions or the gRPC transport had a bug, these tests would
+The `InvalidArgument` test for empty titles follows the same pattern. If the proto
+definitions or the gRPC transport had a bug in status code serialization, these tests would
 catch it while the direct tests wouldn't.
 
 ## Testing interceptors
@@ -468,11 +467,11 @@ func RequestIDInterceptor() grpc.UnaryServerInterceptor {
         info *grpc.UnaryServerInfo,
         handler grpc.UnaryHandler,
     ) (any, error) {
-        id := fmt.Sprintf("%d", time.Now().UnixNano())  // (1)
-        grpc.SetHeader(ctx, metadata.Pairs(              // (2)
+        id := fmt.Sprintf("%d", time.Now().UnixNano()) // (1)
+        grpc.SetHeader(ctx, metadata.Pairs(             // (2)
             "x-request-id", id,
         ))
-        return handler(ctx, req)                         // (3)
+        return handler(ctx, req)                        // (3)
     }
 }
 ```
@@ -492,21 +491,21 @@ header:
 func TestRequestIDInterceptor(t *testing.T) {
     store := &memStore{books: make(map[int64]Book)}
     client := startServer(t, store,
-        grpc.UnaryInterceptor(RequestIDInterceptor()),   // (1)
+        grpc.UnaryInterceptor(RequestIDInterceptor()), // (1)
     )
 
-    var header metadata.MD                               // (2)
+    var header metadata.MD                             // (2)
     _, err := client.CreateBook(t.Context(),
         &api.CreateBookRequest{
             Title: "DDIA", Author: "Martin Kleppmann",
         },
-        grpc.Header(&header),                            // (3)
+        grpc.Header(&header),                          // (3)
     )
     if err != nil {
         t.Fatalf("CreateBook: %v", err)
     }
 
-    ids := header.Get("x-request-id")                    // (4)
+    ids := header.Get("x-request-id")                  // (4)
     if len(ids) == 0 {
         t.Fatal("expected x-request-id in response headers")
     }
@@ -550,9 +549,9 @@ func (s *slowStore) Get(
     ctx context.Context, id int64,
 ) (Book, error) {
     select {
-    case <-time.After(s.delay):                          // (1)
+    case <-time.After(s.delay):  // (1)
         return s.memStore.Get(ctx, id)
-    case <-ctx.Done():                                   // (2)
+    case <-ctx.Done():           // (2)
         return Book{}, ctx.Err()
     }
 }
@@ -585,7 +584,8 @@ func TestGetBook_DeadlineExceeded(t *testing.T) {
 
     _, err = client.GetBook(ctx,
         &api.GetBookRequest{Id: created.Id})
-    // ...
+    // ... check err != nil
+    s, _ := status.FromError(err)
     if s.Code() != codes.DeadlineExceeded {
         t.Errorf("code = %v, want DeadlineExceeded",
             s.Code())
@@ -626,10 +626,10 @@ func echoRequestIDInterceptor() grpc.UnaryServerInterceptor {
         info *grpc.UnaryServerInfo,
         handler grpc.UnaryHandler,
     ) (any, error) {
-        md, ok := metadata.FromIncomingContext(ctx)      // (1)
+        md, ok := metadata.FromIncomingContext(ctx) // (1)
         if ok {
             if ids := md.Get("x-request-id"); len(ids) > 0 {
-                grpc.SetHeader(ctx, metadata.Pairs(      // (2)
+                grpc.SetHeader(ctx, metadata.Pairs( // (2)
                     "x-request-id", ids[0],
                 ))
             }
@@ -654,7 +654,7 @@ func TestMetadataPropagation(t *testing.T) {
         grpc.UnaryInterceptor(echoRequestIDInterceptor()),
     )
 
-    ctx := metadata.AppendToOutgoingContext(             // (1)
+    ctx := metadata.AppendToOutgoingContext( // (1)
         t.Context(), "x-request-id", "abc-123",
     )
 
@@ -663,13 +663,13 @@ func TestMetadataPropagation(t *testing.T) {
         &api.CreateBookRequest{
             Title: "DDIA", Author: "Martin Kleppmann",
         },
-        grpc.Header(&header),                            // (2)
+        grpc.Header(&header),                  // (2)
     )
     if err != nil {
         t.Fatalf("CreateBook: %v", err)
     }
 
-    ids := header.Get("x-request-id")                    // (3)
+    ids := header.Get("x-request-id")          // (3)
     if len(ids) == 0 {
         t.Fatal("expected x-request-id in response headers")
     }
@@ -707,13 +707,16 @@ func TestCreateBook_ValidationDetails(t *testing.T) {
 
     _, err := client.CreateBook(t.Context(),
         &api.CreateBookRequest{Title: "", Author: ""})
-    // ... status.FromError(err), check codes.InvalidArgument
+    // ... check err != nil
 
-    details := s.Details()                               // (1)
+    s, _ := status.FromError(err)
+    // ... check s.Code() == codes.InvalidArgument
+
+    details := s.Details()                        // (1)
     if len(details) == 0 {
         t.Fatal("expected error details")
     }
-    br, ok := details[0].(*errdetails.BadRequest)        // (2)
+    br, ok := details[0].(*errdetails.BadRequest) // (2)
     if !ok {
         t.Fatalf("expected BadRequest, got %T", details[0])
     }
