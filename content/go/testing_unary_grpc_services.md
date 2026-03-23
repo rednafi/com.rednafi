@@ -182,12 +182,6 @@ type memStore struct {
     books map[int64]Book
     next  int64
 }
-```
-
-`Create` auto-increments an ID and stashes the book; `Get` looks it up or returns an error:
-
-```go
-// server_test.go
 
 func (m *memStore) Create(
     _ context.Context, title, author string,
@@ -437,7 +431,8 @@ func TestCreateAndGetBook(t *testing.T) {
 - (2) `client.CreateBook` is now a real gRPC call that goes through protobuf serialization
   and the HTTP/2 transport, unlike the direct test where it was a plain method call
 
-Get a nonexistent book, expect `codes.NotFound`:
+The error code tests follow the same pattern - `startServer`, make a call, check
+`status.FromError`:
 
 ```go
 // server_test.go
@@ -448,51 +443,23 @@ func TestGetBook_NotFound(t *testing.T) {
 
     _, err := client.GetBook(t.Context(),
         &api.GetBookRequest{Id: 999})
-    if err == nil {
-        t.Fatal("expected error")
-    }
-    s, ok := status.FromError(err)
-    if !ok {
-        t.Fatalf("expected gRPC status error, got %v", err)
-    }
-    if s.Code() != codes.NotFound {
-        t.Errorf("code = %v, want NotFound", s.Code())
-    }
+    // ... status.FromError(err), check codes.NotFound
 }
-```
-
-Create a book with an empty title, expect `codes.InvalidArgument`:
-
-```go
-// server_test.go
 
 func TestCreateBook_EmptyTitle(t *testing.T) {
     store := &memStore{books: make(map[int64]Book)}
     client := startServer(t, store)
 
     _, err := client.CreateBook(t.Context(),
-        &api.CreateBookRequest{
-            Title: "", Author: "Someone",
-        })
-    if err == nil {
-        t.Fatal("expected error")
-    }
-    s, ok := status.FromError(err)
-    if !ok {
-        t.Fatalf("expected gRPC status error, got %v", err)
-    }
-    if s.Code() != codes.InvalidArgument {
-        t.Errorf("code = %v, want InvalidArgument",
-            s.Code())
-    }
+        &api.CreateBookRequest{Title: "", Author: "Someone"})
+    // ... status.FromError(err), check codes.InvalidArgument
 }
 ```
 
-These look similar to the direct tests, but the request now goes through protobuf
-serialization, the gRPC HTTP/2 transport, the server handler, and back. The `NotFound` and
-`InvalidArgument` status codes travel through the wire format as HTTP/2 trailers, not just
-as Go values in the same process. If the proto definitions or the gRPC transport had a bug,
-these tests would catch it while the direct tests wouldn't.
+These look similar to the direct tests, but the `NotFound` and `InvalidArgument` status
+codes now travel through the wire format as HTTP/2 trailers, not just as Go values in the
+same process. If the proto definitions or the gRPC transport had a bug, these tests would
+catch it while the direct tests wouldn't.
 
 ## Testing interceptors
 
@@ -603,8 +570,8 @@ func (s *slowStore) Get(
 - (1) waits for `delay` before delegating to the real store
 - (2) returns immediately if the context is canceled or its deadline fires
 
-The test wires up a `slowStore` with a 2-second delay and creates a book first (fast, since
-`Create` isn't overridden):
+The test wires up a `slowStore` with a 2-second delay, creates a book (fast, since `Create`
+isn't overridden), then calls `GetBook` with a 100ms timeout:
 
 ```go
 // server_test.go
@@ -614,33 +581,20 @@ func TestGetBook_DeadlineExceeded(t *testing.T) {
     store := &slowStore{memStore: base, delay: 2 * time.Second}
     client := startServer(t, store)
 
+    // CreateBook is fast - slowStore only overrides Get
     created, err := client.CreateBook(t.Context(),
         &api.CreateBookRequest{
             Title: "DDIA", Author: "Martin Kleppmann",
         })
-    if err != nil {
-        t.Fatalf("CreateBook: %v", err)
-    }
     // ...
-```
 
-Then it calls `GetBook` with a 100ms timeout - well before the 2-second delay expires:
-
-```go
-    // ... continued
     ctx, cancel := context.WithTimeout(
         t.Context(), 100*time.Millisecond)
     defer cancel()
 
     _, err = client.GetBook(ctx,
         &api.GetBookRequest{Id: created.Id})
-    if err == nil {
-        t.Fatal("expected error")
-    }
-    s, ok := status.FromError(err)
-    if !ok {
-        t.Fatalf("expected gRPC status error, got %v", err)
-    }
+    // ...
     if s.Code() != codes.DeadlineExceeded {
         t.Errorf("code = %v, want DeadlineExceeded",
             s.Code())
@@ -751,7 +705,7 @@ The `CreateBook` handler uses `status.WithDetails` to attach structured field vi
 validation errors. The details are serialized as protobuf messages in trailing metadata
 during transport. To verify they survive the round trip, we need the real transport.
 
-Send both fields empty to trigger two violations, then check the status code:
+The test sends both fields empty to trigger two violations, then digs into the details:
 
 ```go
 // server_test.go
@@ -762,37 +716,15 @@ func TestCreateBook_ValidationDetails(t *testing.T) {
 
     _, err := client.CreateBook(t.Context(),
         &api.CreateBookRequest{Title: "", Author: ""})
-    if err == nil {
-        t.Fatal("expected error")
-    }
+    // ... status.FromError(err), check codes.InvalidArgument
 
-    s, ok := status.FromError(err)
-    if !ok {
-        t.Fatalf("expected gRPC status error, got %v", err)
-    }
-    if s.Code() != codes.InvalidArgument {
-        t.Errorf("code = %v, want InvalidArgument",
-            s.Code())
-    }
-    // ...
-```
-
-Now extract the details. `s.Details()` deserializes the protobuf messages that `WithDetails`
-attached on the server side - they traveled through trailing metadata in the HTTP/2 response:
-
-```go
-    // ... continued
-    details := s.Details()
+    details := s.Details()                               // (1)
     if len(details) == 0 {
         t.Fatal("expected error details")
     }
-    br, ok := details[0].(*errdetails.BadRequest)        // (1)
+    br, ok := details[0].(*errdetails.BadRequest)        // (2)
     if !ok {
         t.Fatalf("expected BadRequest, got %T", details[0])
-    }
-    if len(br.FieldViolations) != 2 {
-        t.Fatalf("expected 2 field violations, got %d",
-            len(br.FieldViolations))
     }
 
     fields := make(map[string]string)
@@ -810,7 +742,9 @@ attached on the server side - they traveled through trailing metadata in the HTT
 }
 ```
 
-- (1) type-asserts the first detail as `*errdetails.BadRequest` from the [errdetails] package
+- (1) `s.Details()` deserializes the protobuf messages that `WithDetails` attached on the
+  server side. They traveled through trailing metadata in the HTTP/2 response
+- (2) type-asserts the first detail as `*errdetails.BadRequest` from the [errdetails] package
 
 `WithDetails` always marshals each proto message into a `google.protobuf.Any` wrapper, and
 `Details()` always unmarshals them back - that happens even in a direct test. What the direct
