@@ -735,10 +735,7 @@ func TestCreateBook_ValidationDetails(t *testing.T) {
         t.Errorf("title violation = %q, want %q",
             fields["title"], "title is required")
     }
-    if fields["author"] != "author is required" {
-        t.Errorf("author violation = %q, want %q",
-            fields["author"], "author is required")
-    }
+    // ... same check for "author"
 }
 ```
 
