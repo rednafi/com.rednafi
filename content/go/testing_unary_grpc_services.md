@@ -106,13 +106,7 @@ func (s *Server) CreateBook(
                 Description: "title is required",
             })
     }
-    if req.Author == "" {
-        violations = append(violations,
-            &errdetails.BadRequest_FieldViolation{
-                Field:       "author",
-                Description: "author is required",
-            })
-    }
+    // ... same for author
     if len(violations) > 0 {
         st := status.New(codes.InvalidArgument,              // (1)
             "invalid book request")
@@ -420,10 +414,7 @@ func TestCreateAndGetBook(t *testing.T) {
     if got.Title != "DDIA" {
         t.Errorf("title = %q, want DDIA", got.Title)
     }
-    if got.Author != "Martin Kleppmann" {
-        t.Errorf("author = %q, want Martin Kleppmann",
-            got.Author)
-    }
+    // ... same for author
 }
 ```
 
