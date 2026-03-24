@@ -612,12 +612,10 @@ as `codes.NotFound` since it treats all store errors the same way. You'd never s
 Services use it to propagate auth tokens, trace IDs, and request correlation IDs between
 services. Testing that metadata survives the round trip requires the real transport.
 
-> [!NOTE]
+> [!IMPORTANT]
 >
-> gRPC metadata maps to HTTP/2 HEADERS frames, but not everything travels there. Status
-> codes, error messages, and `WithDetails` payloads travel as HTTP/2 trailing HEADERS
-> frames after the response body. The [metadata] package handles the application-level
-> key-value pairs; the status and error detail machinery uses the trailer channel.
+> gRPC uses two HTTP/2 frame types: HEADERS for request/response [metadata], and trailing
+> HEADERS (after the body) for status codes, error messages, and `WithDetails` payloads.
 
 Here's an interceptor that reads `x-request-id` from incoming metadata and echoes it back as
 a response header. This is a test helper, not production code - it isolates the metadata
