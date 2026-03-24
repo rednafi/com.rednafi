@@ -19,8 +19,8 @@ description: >-
 > -- John Doak, [Testing gRPC methods]
 
 That advice is right most of the time. If your handler is a thin shell over business logic
-that lives behind an interface, you can test the logic without gRPC at all. Inject a [fake
-store](#testing-the-handler-directly), call the method, check the result.
+that lives behind an interface, you can test the logic without gRPC at all. Inject a [fake],
+call the method, check the result.
 
 But sometimes you do need to test the gRPC layer. Maybe you want to verify that status codes
 survive the round trip through serialization and HTTP/2 trailers. Maybe you have interceptors
@@ -608,9 +608,18 @@ as `codes.NotFound` since it treats all store errors the same way. You'd never s
 
 ## Testing metadata propagation
 
-[Metadata][metadata] in gRPC is the equivalent of HTTP headers. Services use it to propagate auth tokens,
-trace IDs, and request correlation IDs between services. Testing that metadata survives the
-round trip requires the real transport.
+[Metadata][metadata] in gRPC carries application-defined key-value pairs alongside RPCs.
+Services use it to propagate auth tokens, trace IDs, and request correlation IDs between
+services. Testing that metadata survives the round trip requires the real transport.
+
+> [!NOTE]
+>
+> gRPC metadata is often compared to HTTP headers, but the mapping is more nuanced. Request
+> metadata and response headers travel as HTTP/2 HEADERS frames, while response trailers
+> (which carry status codes, error messages, and `WithDetails` payloads) travel as HTTP/2
+> trailing HEADERS frames after the response body. The [metadata] package handles the
+> application-level key-value pairs; the status and error detail machinery uses the trailer
+> channel.
 
 Here's an interceptor that reads `x-request-id` from incoming metadata and echoes it back as
 a response header. This is a test helper, not production code - it isolates the metadata
@@ -768,6 +777,9 @@ The full working example is on [GitHub].
 
 [Testing gRPC methods]:
     https://medium.com/@johnsiilver/testing-grpc-methods-6a8edad4159d
+
+[fake]:
+    https://rednafi.com/go/mocking-libraries-bleh/
 
 [bufconn]:
     https://pkg.go.dev/google.golang.org/grpc/test/bufconn
