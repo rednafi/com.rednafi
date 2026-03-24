@@ -494,7 +494,7 @@ language like Python, you can't always escape inheritance, nor should you try to
     https://zapier.com/blog/what-are-webhooks/
 
 [structural subtyping]:
-    https://rednafi.com/python/structural-subtyping/
+    /python/structural-subtyping/
 
 [mypy]:
     https://mypy-lang.org/
