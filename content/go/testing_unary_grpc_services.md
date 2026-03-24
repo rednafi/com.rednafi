@@ -777,7 +777,7 @@ The full working example is on [GitHub].
     https://medium.com/@johnsiilver/testing-grpc-methods-6a8edad4159d
 
 [Inject a fake]:
-    https://rednafi.com/go/mocking-libraries-bleh/
+    /go/mocking-libraries-bleh/
 
 [bufconn]:
     https://pkg.go.dev/google.golang.org/grpc/test/bufconn
