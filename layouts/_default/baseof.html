@@ -32,6 +32,10 @@
             document.body.classList.add("dark");
         }
     </script>
+    <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+    <aside id="site-drawer" class="site-drawer" aria-label="Site navigation" aria-hidden="true">
+        {{- partialCached "sidebar.html" . "sidebar" }}
+    </aside>
     {{- partialCached "header.html" . .Page -}}
     <main class="main" id="main" role="main" aria-label="Main content">
         {{- block "main" . }}{{ end }}
