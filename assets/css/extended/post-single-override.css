@@ -66,9 +66,23 @@
 
 .post-content pre code {
   color: inherit;
-  background: var(--code-bg);
+  background: none;
   font-family: "Geist Mono", monospace;
   font-weight: 400;
+}
+
+/* Frosted glass code blocks */
+.post-content .highlight pre,
+.post-content pre {
+  background: rgba(242, 241, 235, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid var(--border);
+}
+
+.dark .post-content .highlight pre,
+.dark .post-content pre {
+  background: rgba(44, 48, 52, 0.6);
 }
 
 /* Improved code block readability */
@@ -103,15 +117,24 @@
   border-radius: 12px !important;
 }
 
-/* Blockquotes with decorative quotation marks */
+/* Frosted glass blockquotes */
 .post-content blockquote {
-  background: var(--code-bg);
+  background: rgba(242, 241, 235, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 3px solid var(--primary);
   margin: 20px 0;
   padding: 24px 24px 24px 40px;
   border-radius: var(--radius);
-  border-left: 3px solid var(--primary);
   position: relative;
   font-style: italic;
+}
+
+.dark .post-content blockquote {
+  background: rgba(44, 48, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
+  border-left-color: var(--primary);
 }
 
 .post-content blockquote::before {
@@ -134,7 +157,15 @@
   margin: 20px 0;
   padding: 16px 20px;
   border-radius: 12px;
+  border: 1px solid var(--border);
   border-left: 4px solid;
+  background: rgba(242, 241, 235, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.dark .post-content .alert {
+  background: rgba(44, 48, 52, 0.6);
 }
 
 .post-content .alert > *:last-child {
@@ -289,10 +320,20 @@
   }
 }
 
+/* Frosted glass TOC */
 .toc {
   margin: 0 0 20px 0;
   font-size: 0.95rem;
   border-radius: 12px !important;
+  background: rgba(242, 241, 235, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .toc {
+  background: rgba(44, 48, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .toc .details {
@@ -358,6 +399,19 @@ a.footnote-ref::before {
 }
 a.footnote-ref::after {
   content: "]";
+}
+
+/* Frosted glass post tags */
+.post-tags a {
+  background: rgba(242, 241, 235, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .post-tags a {
+  background: rgba(44, 48, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 /* Tags in post meta section styling */

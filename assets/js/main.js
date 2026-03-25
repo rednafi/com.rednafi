@@ -117,3 +117,45 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     observer.observe(heading)
   })
 })()
+
+// Navigation drawer toggle
+;(function () {
+  var toggle = document.getElementById("drawer-toggle")
+  var drawer = document.getElementById("site-drawer")
+  var overlay = document.getElementById("drawer-overlay")
+
+  if (!toggle || !drawer || !overlay) return
+
+  function onEscape(e) {
+    if (e.key === "Escape") closeDrawer()
+  }
+
+  function openDrawer() {
+    drawer.classList.add("open")
+    overlay.classList.add("active")
+    document.body.classList.add("drawer-open")
+    toggle.setAttribute("aria-expanded", "true")
+    drawer.setAttribute("aria-hidden", "false")
+    document.addEventListener("keydown", onEscape)
+  }
+
+  function closeDrawer() {
+    if (!drawer.classList.contains("open")) return
+    drawer.classList.remove("open")
+    overlay.classList.remove("active")
+    document.body.classList.remove("drawer-open")
+    toggle.setAttribute("aria-expanded", "false")
+    drawer.setAttribute("aria-hidden", "true")
+    document.removeEventListener("keydown", onEscape)
+  }
+
+  toggle.addEventListener("click", function () {
+    if (drawer.classList.contains("open")) {
+      closeDrawer()
+    } else {
+      openDrawer()
+    }
+  })
+
+  overlay.addEventListener("click", closeDrawer)
+})()

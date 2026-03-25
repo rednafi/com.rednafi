@@ -1,8 +1,25 @@
-/* Minimalist card shape */
+/* Frosted glass cards */
 .post-entry,
 .first-entry {
   padding: 1.4rem 1.65rem;
   border-radius: 12px;
+  background: rgba(254, 252, 246, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dark .post-entry,
+.dark .first-entry {
+  background: rgba(41, 46, 51, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.first-entry.home-info {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
 }
 
 .first-entry {
