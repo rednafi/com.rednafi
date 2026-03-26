@@ -58,6 +58,25 @@
   color: var(--secondary);
 }
 
+/* Clear button */
+#search .pagefind-ui__search-clear {
+  background: var(--code-bg);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  padding: 6px 14px;
+  width: auto;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#search .pagefind-ui__search-clear:hover {
+  background: var(--border);
+}
+
 /* Links */
 #search .pagefind-ui__result-link {
   color: var(--primary);
