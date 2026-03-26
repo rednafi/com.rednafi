@@ -118,6 +118,17 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   })
 })()
 
+// Populate keyboard shortcut hints
+;(function () {
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)
+  var label = isMac ? "\u2318K" : "Ctrl+K"
+  document.querySelectorAll(".kbd-hint").forEach(function (el) {
+    el.textContent = label
+  })
+  var btn = document.getElementById("drawer-toggle")
+  if (btn) btn.title = label
+})()
+
 // Navigation drawer toggle
 ;(function () {
   var toggle = document.getElementById("drawer-toggle")

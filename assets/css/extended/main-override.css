@@ -244,7 +244,7 @@ em, i {
 /* Command palette — frosted glass, centered */
 .site-drawer {
   position: fixed;
-  top: min(5vh, 60px);
+  top: calc(var(--header-height) + var(--gap) * 2 + 5px);
   left: 50%;
   transform: translateX(-50%) scale(0.96);
   width: 420px;
@@ -308,6 +308,42 @@ em, i {
 /* Prevent body scroll when palette is open */
 body.drawer-open {
   overflow: hidden;
+}
+
+/* Keyboard shortcut hints */
+.kbd-hint {
+  font-family: inherit;
+  font-size: 1em;
+  color: var(--secondary);
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.dark .kbd-hint {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+
+
+.palette-hint {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--secondary);
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .palette-hint {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.footer .kbd-hint {
+  font-size: 0.85em;
 }
 
 @media (prefers-reduced-motion: reduce) {
