@@ -53,48 +53,5 @@
                 {{- end }}
             </div>
         </div>
-        {{- $currentPage := . }}
-        <ul id="menu">
-            {{- range site.Menus.main }}
-            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
-            {{- $page_url:= $currentPage.Permalink | absLangURL }}
-            {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
-            <li>
-                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}
-                {{- if eq $menu_item_url $page_url }} aria-current="page"{{- end }}
-                {{- if (findRE "://" .URL) }} rel="noopener noreferrer" target="_blank"{{- end }}>
-                    <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
-                        {{- .Pre }}
-                        {{- .Name -}}
-                        {{ .Post -}}
-                    </span>
-                    {{- if (findRE "://" .URL) }}&nbsp;
-                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                        <path d="M15 3h6v6"></path>
-                        <path d="M10 14L21 3"></path>
-                    </svg>
-                    {{- end }}
-                </a>
-            </li>
-            {{- end }}
-            <li class="hamburger-menu">
-                <input type="checkbox" id="hamburger-toggle" class="hamburger-checkbox">
-                <label for="hamburger-toggle" class="hamburger-label" role="button" aria-haspopup="menu" aria-expanded="false" aria-controls="hamburger-dropdown">☰</label>
-                <ul class="hamburger-dropdown" role="menu" id="hamburger-dropdown">
-                    {{- range site.Menus.main }}
-                    {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
-                    {{- $page_url:= $currentPage.Permalink | absLangURL }}
-                    <li role="none">
-                        <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}" role="menuitem" {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
-                            {{- .Pre }}{{- .Name -}}{{ .Post -}}
-                        </a>
-                    </li>
-                    {{- end }}
-                </ul>
-            </li>
-        </ul>
     </nav>
 </header>

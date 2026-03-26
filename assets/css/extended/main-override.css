@@ -244,12 +244,12 @@ em, i {
 /* Command palette — frosted glass, centered */
 .site-drawer {
   position: fixed;
-  top: min(20vh, 120px);
+  top: min(5vh, 60px);
   left: 50%;
   transform: translateX(-50%) scale(0.96);
   width: 420px;
   max-width: calc(100vw - 32px);
-  max-height: calc(100vh - min(40vh, 240px));
+  max-height: calc(100vh - min(10vh, 120px));
   background: rgba(254, 252, 246, 0.72);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -293,10 +293,16 @@ em, i {
   border: none;
   color: var(--primary);
   cursor: pointer;
-  padding: 4px;
-  margin-right: 8px;
-  display: flex;
+  padding: 0;
+  margin-right: 6px;
+  display: inline-flex;
   align-items: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+#drawer-toggle svg {
+  display: block;
 }
 
 /* Prevent body scroll when palette is open */
@@ -351,18 +357,13 @@ body.drawer-open {
   color: var(--primary);
   text-decoration: none;
   display: block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background 0.15s ease;
+  padding: 4px 0;
+  transition: color 0.15s ease;
 }
 
 .sidebar-links a:hover {
-  background: rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-}
-
-.dark .sidebar-links a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--secondary);
+  text-decoration: underline;
 }
 
 .sidebar-tags {

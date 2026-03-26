@@ -1,4 +1,13 @@
 <div class="drawer-content">
+  <nav class="sidebar-section" aria-label="Site navigation">
+    <h3 class="sidebar-heading">Navigate</h3>
+    <div class="sidebar-tags">
+      {{- range site.Menus.main }}
+      <a href="{{ .URL | absLangURL }}" class="sidebar-tag" title="{{ .Title | default .Name }}">{{ .Name }}</a>
+      {{- end }}
+    </div>
+  </nav>
+
   <nav class="sidebar-section" aria-label="RSS feeds">
     <h3 class="sidebar-heading">Feeds</h3>
     <ul class="sidebar-links sidebar-feeds">
