@@ -122,7 +122,7 @@
   background: rgba(242, 241, 235, 0.6);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
   border-left: 3px solid var(--primary);
   margin: 20px 0;
   padding: 24px 24px 24px 40px;
@@ -133,7 +133,6 @@
 
 .dark .post-content blockquote {
   background: rgba(44, 48, 52, 0.6);
-  border-color: rgba(255, 255, 255, 0.06);
   border-left-color: var(--primary);
 }
 
@@ -328,12 +327,11 @@
   background: rgba(242, 241, 235, 0.6);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
 }
 
 .dark .toc {
   background: rgba(44, 48, 52, 0.6);
-  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .toc .details {
@@ -406,12 +404,11 @@ a.footnote-ref::after {
   background: rgba(242, 241, 235, 0.6);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
 }
 
 .dark .post-tags a {
   background: rgba(44, 48, 52, 0.6);
-  border-color: rgba(255, 255, 255, 0.06);
 }
 
 /* Tags in post meta section styling */

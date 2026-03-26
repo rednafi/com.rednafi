@@ -149,13 +149,21 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     document.removeEventListener("keydown", onEscape)
   }
 
-  toggle.addEventListener("click", function () {
+  function toggleDrawer() {
     if (drawer.classList.contains("open")) {
       closeDrawer()
     } else {
       openDrawer()
     }
-  })
+  }
 
+  toggle.addEventListener("click", toggleDrawer)
   overlay.addEventListener("click", closeDrawer)
+
+  document.addEventListener("keydown", function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault()
+      toggleDrawer()
+    }
+  })
 })()
