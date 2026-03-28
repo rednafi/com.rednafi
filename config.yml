@@ -159,13 +159,13 @@ params:
 
 menu:
   main:
-    - identifier: search
-      name: search
-      url: /search/
-      weight: 1
     - identifier: about
       name: about
       url: /about/
+      weight: 1
+    - identifier: archive
+      name: archive
+      url: /archive/
       weight: 2
 
 markup:

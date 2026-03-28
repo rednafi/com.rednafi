@@ -68,7 +68,14 @@
 }
 
 .logo-switches {
-  margin-inline-start: 10px;
+  margin-inline-start: 6px;
+}
+
+#search-link {
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 button#theme-toggle {

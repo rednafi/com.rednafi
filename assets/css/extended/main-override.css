@@ -294,7 +294,7 @@ em, i {
   color: var(--primary);
   cursor: pointer;
   padding: 0;
-  margin-right: 6px;
+  margin-right: 10px;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;

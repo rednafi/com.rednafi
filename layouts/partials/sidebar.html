@@ -25,24 +25,6 @@
     </div>
   </nav>
 
-  <nav class="sidebar-section" aria-label="Archive by year">
-    <h3 class="sidebar-heading">Archive</h3>
-    <div class="sidebar-years">
-      {{- $years := slice }}
-      {{- range site.RegularPages }}
-        {{- $y := .Date.Format "2006" }}
-        {{- if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}
-      {{- end }}
-      {{- $sorted := sort $years "value" "desc" }}
-      {{- range first 4 $sorted }}
-      <a href="/archive/#{{ . }}">{{ . }}</a>
-      {{- end }}
-      {{- if gt (len $sorted) 4 }}
-      <a href="/archive/" class="sidebar-more">&hellip;</a>
-      {{- end }}
-    </div>
-  </nav>
-
   <nav class="sidebar-section" aria-label="Pages">
     <h3 class="sidebar-heading">Pages</h3>
     <ul class="sidebar-links">
