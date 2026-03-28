@@ -71,12 +71,24 @@
   margin-inline-start: 6px;
 }
 
-#search-link {
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.nav-action-link {
   color: var(--primary);
   display: inline-flex;
   align-items: center;
-  margin-left: auto;
+  text-decoration: none;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.98em;
+  font-weight: 400;
+  text-transform: lowercase;
 }
+
 
 button#theme-toggle {
   color: var(--primary);

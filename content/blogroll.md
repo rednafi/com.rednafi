@@ -5,6 +5,7 @@ ShowToc: false
 editPost:
     disabled: true
 hideMeta: true
+hideRelated: true
 ShowShareButtons: false
 description: >-
   Collection of recommended technical blogs and writers covering software engineering,

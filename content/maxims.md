@@ -8,6 +8,7 @@ ShowToc: false
 editPost:
     disabled: true
 hideMeta: true
+hideRelated: true
 ShowShareButtons: false
 description: >-
   Collection of software engineering wisdoms, aphorisms, and pointed observations.
