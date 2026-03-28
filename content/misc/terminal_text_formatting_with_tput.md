@@ -6,6 +6,7 @@ aliases:
     - /misc/terminal_text_formatting_with_tput/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

@@ -6,6 +6,7 @@ aliases:
     - /misc/return_values_from_a_shell_function/
 tags:
     - Shell
+    - Unix
     - TIL
 description: >-
   Understand how return values work in Bash functions. Learn exit codes, status

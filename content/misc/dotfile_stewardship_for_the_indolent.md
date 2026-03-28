@@ -6,6 +6,7 @@ aliases:
     - /misc/dotfile_stewardship_for_the_indolent/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

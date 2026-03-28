@@ -6,6 +6,7 @@ aliases:
     - /misc/use_curly_braces_while_pasting_shell_commands/
 tags:
     - Shell
+    - Unix
     - TIL
 description: >-
   Prevent shell commands from executing immediately when pasting. Use curly braces to

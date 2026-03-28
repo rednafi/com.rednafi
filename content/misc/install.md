@@ -3,6 +3,7 @@ title: The *nix install command
 date: 2024-07-28
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 slug: install

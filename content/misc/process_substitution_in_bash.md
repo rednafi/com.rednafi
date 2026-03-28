@@ -6,6 +6,7 @@ aliases:
     - /misc/process_substitution_in_bash/
 tags:
     - Shell
+    - Unix
     - TIL
 description: >-
   Use process substitution <() to treat command output as files in Bash. Compare

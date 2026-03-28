@@ -8,6 +8,7 @@ tags:
     - Python
     - TIL
     - Shell
+    - Unix
 description: >-
   Build Unix-style command pipelines in Python using subprocess.run with stdout piping
   for efficient process chaining and output capture.

@@ -6,6 +6,7 @@ aliases:
     - /misc/fixed_time_task_scheduling_with_at/
 tags:
     - Shell
+    - Unix
     - JavaScript
     - Networking
 description: >-

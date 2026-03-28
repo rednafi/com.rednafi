@@ -6,6 +6,7 @@ aliases:
     - /misc/run_single_instance/
 tags:
     - Shell
+    - Unix
     - Python
     - Go
 description: >-

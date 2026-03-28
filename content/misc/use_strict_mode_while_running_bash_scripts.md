@@ -6,6 +6,7 @@ aliases:
     - /misc/use_strict_mode_while_running_bash_scripts/
 tags:
     - Shell
+    - Unix
     - TIL
     - Error Handling
 description: >-

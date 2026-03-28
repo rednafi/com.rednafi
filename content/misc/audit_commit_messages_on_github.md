@@ -8,6 +8,7 @@ tags:
     - GitHub
     - DevOps
     - Shell
+    - Unix
 description: >-
   Automate commit message validation with GitHub Actions. Enforce refs and closes
   patterns to maintain clean Git history and link commits to issues.

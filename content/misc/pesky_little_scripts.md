@@ -6,6 +6,7 @@ aliases:
     - /misc/pesky_little_scripts/
 tags:
     - Shell
+    - Unix
     - CLI
 description: >-
   Organize custom scripts with comma-prefixed naming. Improve tab completion and

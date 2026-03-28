@@ -6,6 +6,7 @@ aliases:
     - /misc/health_check_a_server_with_nohup/
 tags:
     - Shell
+    - Unix
     - TIL
     - DevOps
 description: >-

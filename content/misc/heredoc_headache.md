@@ -6,6 +6,7 @@ aliases:
     - /misc/heredoc_headache/
 tags:
     - Shell
+    - Unix
     - DevOps
     - GitHub
 description: >-

@@ -6,6 +6,7 @@ aliases:
     - /misc/dynamic_menu_with_select_in_bash/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

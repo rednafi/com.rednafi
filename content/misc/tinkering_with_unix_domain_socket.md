@@ -7,6 +7,7 @@ aliases:
 tags:
     - Python
     - Shell
+    - Unix
     - Networking
 description: >-
   Build Unix domain socket servers and clients with Python and socat. Access Docker API

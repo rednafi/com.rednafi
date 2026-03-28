@@ -7,6 +7,7 @@ aliases:
 tags:
     - TIL
     - Shell
+    - Unix
     - Networking
 description: >-
   Make raw HTTP requests with Bash's /dev/tcp file descriptor. Build health check scripts

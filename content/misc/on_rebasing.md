@@ -7,6 +7,7 @@ aliases:
 tags:
     - git
     - Shell
+    - Unix
     - GitHub
 description: >-
   Master git rebase for cleaner commit history. Learn interactive rebasing, squashing

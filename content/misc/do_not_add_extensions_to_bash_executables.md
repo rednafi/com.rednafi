@@ -6,6 +6,7 @@ aliases:
     - /misc/do_not_add_extensions_to_bash_executables/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-
