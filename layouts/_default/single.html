@@ -11,6 +11,12 @@
     {{- if not (.Param "hideMeta") }}
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
+      &nbsp;·&nbsp;
+      {{- if eq .Section (site.Params.notesSection | default "shards") }}
+      <a href="{{ "/shards/" | absURL }}" class="feed-type-label feed-type-shard">shard</a>
+      {{- else }}
+      <a href="{{ "/articles/" | absURL }}" class="feed-type-label feed-type-article">article</a>
+      {{- end }}
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}

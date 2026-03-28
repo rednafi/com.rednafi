@@ -61,12 +61,39 @@
   display: inline-block;
   padding: 1px 7px;
   border-radius: 9999px;
-  background: var(--code-bg);
-  color: var(--primary);
   text-decoration: none;
+  font-weight: 500;
 }
 
-.feed-type-label:hover {
-  background: var(--border);
+/* Shard — yellow-amber */
+.feed-type-shard {
+  background: rgba(202, 138, 4, 0.1);
+  color: #a16207;
+}
+.feed-type-shard:hover {
+  background: rgba(202, 138, 4, 0.18);
+}
+.dark .feed-type-shard {
+  background: rgba(234, 179, 8, 0.14);
+  color: #eab308;
+}
+.dark .feed-type-shard:hover {
+  background: rgba(234, 179, 8, 0.24);
+}
+
+/* Article — blue */
+.feed-type-article {
+  background: rgba(29, 78, 216, 0.08);
+  color: #1e40af;
+}
+.feed-type-article:hover {
+  background: rgba(29, 78, 216, 0.14);
+}
+.dark .feed-type-article {
+  background: rgba(59, 130, 246, 0.14);
+  color: #93bbfd;
+}
+.dark .feed-type-article:hover {
+  background: rgba(59, 130, 246, 0.24);
 }
 
