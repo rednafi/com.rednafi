@@ -6,6 +6,7 @@ aliases:
     - /misc/bash_namerefs/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

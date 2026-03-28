@@ -6,6 +6,7 @@ aliases:
     - /misc/colon_command_in_shell_scripts/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

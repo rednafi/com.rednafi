@@ -6,6 +6,7 @@ tags:
     - Python
     - Networking
     - Shell
+    - Unix
 aliases:
     - /python/implement_traceroute/
 description: >-

@@ -6,6 +6,7 @@ aliases:
     - /misc/use_command_v_over_which/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

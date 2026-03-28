@@ -6,6 +6,7 @@ aliases:
     - /misc/dynamic_shell_variables/
 tags:
     - Shell
+    - Unix
     - TIL
     - CLI
 description: >-

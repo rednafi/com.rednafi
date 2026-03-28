@@ -6,6 +6,7 @@ aliases:
     - /misc/distil_git_logs_attached_to_a_file/
 tags:
     - Shell
+    - Unix
     - Git
     - TIL
 description: >-

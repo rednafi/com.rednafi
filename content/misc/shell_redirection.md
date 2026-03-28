@@ -3,6 +3,7 @@ title: Shell redirection syntax soup
 date: 2024-09-12
 tags:
     - Shell
+    - Unix
 slug: shell-redirection
 aliases:
     - /misc/shell_redirection/

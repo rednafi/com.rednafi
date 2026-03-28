@@ -6,6 +6,7 @@ aliases:
     - /misc/associative_arrays_in_bash/
 tags:
     - Shell
+    - Unix
     - TIL
     - Data Structures
 description: >-

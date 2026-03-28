@@ -3,6 +3,7 @@ title: SSH saga
 date: 2024-12-17
 tags:
     - Shell
+    - Unix
     - Networking
     - Security
 slug: ssh-saga

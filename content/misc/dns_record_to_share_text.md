@@ -6,6 +6,7 @@ aliases:
     - /misc/dns_record_to_share_text/
 tags:
     - Shell
+    - Unix
     - TIL
     - Networking
 description: >-
