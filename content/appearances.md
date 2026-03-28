@@ -23,8 +23,7 @@ Spoke at the Go Developer Group Berlin meetup about applying interface segregati
 keeping interfaces small and consumer-defined.
 
 [talk-1-video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
-[talk-1-slides]:
-    https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
+[talk-1-slides]: https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
 
 ## Podcasts
 
@@ -35,6 +34,5 @@ keeping interfaces small and consumer-defined.
 Chatted with Jonathan Hall and Shay Nehmad about what makes Go different from other languages
 and why you probably don't need a dependency injection framework.
 
-[pod-1-episode]:
-    https://cupogo.dev/episodes/whats-coming-in-go-1-25-plus-redowan-delowar-on-what-makes-go-different-from-other-languages
+[pod-1-episode]: https://cupogo.dev/episodes/whats-coming-in-go-1-25-plus-redowan-delowar-on-what-makes-go-different-from-other-languages
 [you probably don't need a di framework]: /go/di-frameworks-bleh/
