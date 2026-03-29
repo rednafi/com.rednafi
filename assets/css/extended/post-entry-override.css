@@ -1,65 +1,143 @@
-/* Frosted glass cards */
+/* ──────────────────────────────────────────────────
+   Table-style post list — replaces card layout
+   ────────────────────────────────────────────────── */
+
+/* Reset card styles from base theme */
 .post-entry,
 .first-entry {
-  padding: 1.4rem 1.65rem;
-  border-radius: 12px;
-  background: rgba(254, 252, 246, 0.6);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.dark .post-entry,
-.dark .first-entry {
-  background: rgba(41, 46, 51, 0.6);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.first-entry.home-info {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: none;
   border: none;
+  border-radius: 0;
 }
 
-.first-entry {
-  min-height: 150px;
-  text-align: left;
-  margin: 0.5rem;
+/* ── Table rows ── */
+.post-entry {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1.5rem;
+  padding: 0.6rem 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.home-info {
-  margin: 0.5rem;
-  padding: 0;
+.post-entry:active {
+  transform: none;
 }
 
-.first-entry .entry-header h1 {
-  font-size: 2rem;
+.post-entry:hover {
+  background: rgba(0, 0, 0, 0.02);
+  transition: background 0.1s ease;
 }
 
-.first-entry .entry-content {
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  color: var(--primary);
+.dark .post-entry:hover {
+  background: rgba(255, 255, 255, 0.025);
 }
 
-.entry-header h2 {
-  font-size: 1.35em;
+/* Title */
+.entry-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
-.post-entry .entry-content {
-  font-size: 0.96875rem;
-  line-height: 1.5;
+/* Meta column: pill + date */
+.entry-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-/* Shard/article type label */
-.feed-meta-sep {
-  opacity: 0.5;
+.entry-meta time {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.8125em;
+  color: var(--secondary);
+  opacity: 0.65;
 }
 
 .feed-type-label {
   display: inline-block;
-  font-weight: 500;
+  font-size: 0.75em;
+  padding: 1px 7px;
 }
 
+/* ── Home info (not a table row) ── */
+.first-entry {
+  min-height: auto;
+  text-align: left;
+  margin: 0;
+  padding: 0.6rem 0;
+}
 
+.first-entry.home-info,
+.home-info {
+  display: block;
+  margin: 0.5rem 0 1.5rem 0;
+  padding: 0;
+}
+
+.first-entry .entry-header h1 {
+  font-size: 2em;
+}
+
+.first-entry .entry-content,
+.home-info .entry-content {
+  font-size: 1.0625em;
+  line-height: 1.5;
+  color: var(--secondary);
+  opacity: 0.65;
+}
+
+/* Section/page descriptions — faded like home subtitle */
+.post-description {
+  color: var(--secondary);
+  opacity: 0.65;
+  font-style: italic;
+}
+
+/* ── Archive: flatten month grouping, reuse table rows ── */
+.archive-year {
+  margin-top: 2rem;
+}
+
+.archive-year:not(:last-of-type) {
+  border-bottom: none;
+}
+
+.archive-year-header {
+  font-size: 1.4em;
+  margin-bottom: 0.25rem;
+}
+
+.archive-posts .post-entry:last-child {
+  border-bottom: none;
+}
+
+/* ── Pagination spacing ── */
+.page-footer {
+  margin-top: 1rem;
+}
+
+/* ── Mobile: title on top, meta on its own line below ── */
+@media (max-width: 640px) {
+  .post-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+    padding: 0.5rem 0;
+  }
+
+  .entry-meta {
+    gap: 0.4rem;
+  }
+
+  .entry-meta time {
+    font-size: 0.75em;
+  }
+}

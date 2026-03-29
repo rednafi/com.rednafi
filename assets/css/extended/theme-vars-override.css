@@ -6,6 +6,7 @@
  */
 
 :root {
+  --main-width: clamp(640px, 50vw, 720px);
   --gap: 20px;
   --content-gap: 20px;
   --header-height: 50px;
