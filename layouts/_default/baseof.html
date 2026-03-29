@@ -37,7 +37,7 @@
         {{- partialCached "sidebar.html" . "sidebar" }}
     </aside>
     {{- partialCached "header.html" . .Page -}}
-    <main class="main" id="main" role="main" aria-label="Main content">
+    <main class="main" id="main-content" tabindex="-1" role="main" aria-label="Main content">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
