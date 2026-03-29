@@ -46,15 +46,30 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--border) 60%, transparent),
+    transparent
+  );
+}
+
+/* Drawer toggle — WCAG touch target */
+#drawer-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
 }
 
 /* Logo */
 .nav .logo a {
-  font-size: 1em;
+  font-size: var(--fs-body, 1rem);
   font-weight: 400;
   text-transform: lowercase;
   color: var(--primary);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo a svg {
@@ -63,30 +78,36 @@
 }
 
 .logo-switches {
-  margin-inline-start: 6px;
+  margin-inline-start: 8px;
 }
 
 .nav-actions {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  margin-left: auto;
-  margin-right: var(--gap);
+  gap: clamp(10px, 2vw, 14px);
+  margin-inline-start: auto;
+  margin-inline-end: var(--gap, 1.5rem);
 }
 
 .nav-action-link {
   color: var(--primary);
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   text-decoration: none;
   font-size: 0.98em;
   font-weight: 400;
   text-transform: lowercase;
 }
 
-
+/* Theme toggle — WCAG touch target */
 button#theme-toggle {
   color: var(--primary);
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button#theme-toggle svg {
@@ -95,7 +116,24 @@ button#theme-toggle svg {
 
 .nav {
   overflow: visible;
-  max-width: calc(var(--main-width) + var(--gap) * 2);
+  max-width: var(--nav-width, min(1024px, 100vw - 2rem));
   margin-inline: auto;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nav-actions {
+    gap: 8px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .nav-action-link {
+    font-size: var(--fs-sm, 0.875rem);
+  }
+  .nav-actions {
+    margin-inline-end: clamp(8px, 2vw, var(--gap, 1.5rem));
+  }
 }
 
