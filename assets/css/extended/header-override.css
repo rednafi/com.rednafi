@@ -71,6 +71,7 @@
   align-items: center;
   gap: 14px;
   margin-left: auto;
+  margin-right: var(--gap);
 }
 
 .nav-action-link {
