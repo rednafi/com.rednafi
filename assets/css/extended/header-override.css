@@ -51,11 +51,6 @@
 
 /* Logo */
 .nav .logo a {
-  font-family:
-    "Geist",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
   font-size: 1em;
   font-weight: 400;
   text-transform: lowercase;
@@ -83,7 +78,6 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.98em;
   font-weight: 400;
   text-transform: lowercase;
@@ -100,5 +94,7 @@ button#theme-toggle svg {
 
 .nav {
   overflow: visible;
+  max-width: calc(var(--main-width) + var(--gap) * 2);
+  margin-inline: auto;
 }
 

@@ -34,7 +34,7 @@
 }
 
 .first-entry .entry-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .first-entry .entry-content {
@@ -44,7 +44,7 @@
 }
 
 .entry-header h2 {
-  font-size: 1.412em;
+  font-size: 1.3em;
 }
 
 .post-entry .entry-content {
@@ -59,29 +59,7 @@
 
 .feed-type-label {
   display: inline-block;
-  padding: 1px 7px;
-  border-radius: 9999px;
-  text-decoration: none;
   font-weight: 500;
-}
-
-.feed-type-shard,
-.feed-type-article {
-  background: rgba(0, 0, 0, 0.06);
-  color: var(--primary);
-}
-.feed-type-shard:hover,
-.feed-type-article:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-.dark .feed-type-shard,
-.dark .feed-type-article {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--primary);
-}
-.dark .feed-type-shard:hover,
-.dark .feed-type-article:hover {
-  background: rgba(255, 255, 255, 0.16);
 }
 
 
