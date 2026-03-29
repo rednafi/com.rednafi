@@ -98,9 +98,9 @@
     {{- if $.IsHome }}
     <span class="feed-meta-sep">&middot;</span>
     {{- if eq .Section (site.Params.notesSection | default "shards") }}
-    <a href="{{ "/shards/" | absURL }}" class="feed-type-label feed-type-shard">shard</a>
+    <a href="{{ "/shards/" | absURL }}" class="pill feed-type-label">shard</a>
     {{- else }}
-    <a href="{{ "/articles/" | absURL }}" class="feed-type-label feed-type-article">article</a>
+    <a href="{{ "/articles/" | absURL }}" class="pill feed-type-label">article</a>
     {{- end }}
     {{- end }}
   </footer>

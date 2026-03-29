@@ -1,6 +1,6 @@
 .main {
   padding: 15px;
-  max-width: calc(720px + var(--gap) * 2);
+  max-width: calc(var(--main-width) + var(--gap) * 2);
 }
 body {
   font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -20,7 +20,7 @@ em, i {
   font-size: 0.98em;
 }
 .page-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 .social-icons a svg {
   height: 15px;
@@ -408,59 +408,29 @@ body.drawer-open {
   gap: 5px;
 }
 
-.sidebar-tag {
-  padding: 3px 9px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius);
+/* Shared pill style */
+.pill {
+  padding: 2px 8px;
   font-size: 0.8em;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--primary);
   text-decoration: none;
   transition: background 0.15s ease;
 }
 
-.dark .sidebar-tag {
-  background: rgba(255, 255, 255, 0.08);
+.dark .pill {
+  background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.sidebar-tag:hover {
-  background: rgba(0, 0, 0, 0.1);
+.pill:hover {
+  background: rgba(0, 0, 0, 0.08);
 }
 
-.dark .sidebar-tag:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.sidebar-years {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.sidebar-years a {
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 0.8em;
-  padding: 3px 9px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius);
-  transition: background 0.15s ease;
-}
-
-.dark .sidebar-years a {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-years a:hover {
-  background: rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-}
-
-.dark .sidebar-years a:hover {
-  background: rgba(255, 255, 255, 0.15);
+.dark .pill:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .rss-icon {
@@ -474,6 +444,14 @@ body.drawer-open {
   display: flex;
   justify-content: center;
   margin: 10px 0 25px 0;
+}
+
+/* Homepage quick-nav pills */
+.home-quick-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 /* Terms/tags page */

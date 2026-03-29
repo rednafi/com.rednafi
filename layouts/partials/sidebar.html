@@ -3,7 +3,7 @@
     <h3 class="sidebar-heading">Navigate</h3>
     <div class="sidebar-tags">
       {{- range site.Menus.main }}
-      <a href="{{ .URL | absLangURL }}" class="sidebar-tag" title="{{ .Title | default .Name }}">{{ .Name }}</a>
+      <a href="{{ .URL | absLangURL }}" class="pill" title="{{ .Title | default .Name }}">{{ .Name }}</a>
       {{- end }}
     </div>
   </nav>
@@ -20,7 +20,7 @@
     <h3 class="sidebar-heading">Topics</h3>
     <div class="sidebar-tags">
       {{- range first 12 site.Taxonomies.tags.ByCount }}
-      <a href="{{ .Page.Permalink }}" class="sidebar-tag">{{ .Page.Title }}</a>
+      <a href="{{ .Page.Permalink }}" class="pill">{{ .Page.Title }}</a>
       {{- end }}
     </div>
   </nav>
