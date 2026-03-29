@@ -136,4 +136,3 @@ button#theme-toggle svg {
     margin-inline-end: clamp(8px, 2vw, var(--gap, 1.5rem));
   }
 }
-
