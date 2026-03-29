@@ -98,4 +98,3 @@ button#theme-toggle svg {
   max-width: calc(var(--main-width) + var(--gap) * 2);
   margin-inline: auto;
 }
-
