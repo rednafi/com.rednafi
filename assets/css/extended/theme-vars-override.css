@@ -3,14 +3,42 @@
  * Light theme: Warm cream background with dark text
  * Dark theme: Modern dark background with light text
  * Both themes maintain visual consistency and readability
+ *
+ * Fluid typography and spacing use clamp() for smooth scaling
+ * from 320px to 1440px+ viewports.
  */
 
 :root {
-  --gap: 20px;
-  --content-gap: 20px;
+  /* Fluid typography */
+  --fs-body: clamp(0.969rem, 0.935rem + 0.17vw, 1.063rem);
+  --fs-sm: clamp(0.813rem, 0.79rem + 0.11vw, 0.875rem);
+  --fs-xs: clamp(0.75rem, 0.727rem + 0.11vw, 0.813rem);
+  --fs-h1: clamp(1.75rem, 1.568rem + 0.91vw, 2.25rem);
+  --fs-h2: clamp(1.375rem, 1.239rem + 0.68vw, 1.75rem);
+  --fs-h3: clamp(1.125rem, 1.034rem + 0.45vw, 1.375rem);
+  --fs-code: clamp(0.844rem, 0.821rem + 0.11vw, 0.906rem);
+
+  /* Line heights */
+  --lh-body: 1.65;
+  --lh-heading: 1.25;
+  --lh-code: 1.6;
+
+  /* Spacing */
+  --gap: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
+  --content-gap: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
+
+  /* Layout */
   --header-height: 50px;
   --footer-height: 50px;
-  --radius: 6px;
+  --main-width: min(768px, 100vw - 2rem);
+  --nav-width: min(1024px, 100vw - 2rem);
+  --min-tap: 44px;
+
+  /* Radii */
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* Colors — light theme */
   --theme: #fefcf6;
   --entry: #fefcf6;
   --primary: #1a1a1a;
@@ -21,6 +49,7 @@
   --code-block-bg: #f2f1eb;
   --code-color: #1a1a1a;
   --border: #e8e8e8;
+  --muted: #737373;
 }
 
 /* Dark theme variables */
@@ -36,6 +65,7 @@
   --code-block-bg: #2c3034;
   --code-color: #e0e0e0;
   --border: #404550;
+  --muted: #a0a0a0;
 }
 
 /* System preference dark mode */
@@ -51,5 +81,6 @@
     --code-block-bg: #2c3034;
     --code-color: #e0e0e0;
     --border: #404550;
+    --muted: #a0a0a0;
   }
 }
