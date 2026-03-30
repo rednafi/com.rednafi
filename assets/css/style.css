@@ -104,7 +104,7 @@ body.home .site-header {
   display: flex;
 }
 
-.aside-links { text-align: center; font-size: .9rem; }
+.aside-links { text-align: center; line-height: 1.8; font-size: .95rem; }
 
 /* Homepage layout */
 .index { display: flex; }
@@ -118,8 +118,8 @@ body.home .site-header {
   object-fit: cover;
 }
 
-.index aside dt, .index aside dd { font-size: .9rem; }
-.index aside dd:not(:last-child) { margin-bottom: .5rem; }
+.index aside dt, .index aside dd { font-size: .95rem; }
+.index aside dd:not(:last-child) { margin-bottom: .2rem; }
 
 aside dl {
   display: grid;
