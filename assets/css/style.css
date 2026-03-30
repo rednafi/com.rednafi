@@ -50,7 +50,7 @@ body {
 
 a {
   color: var(--link);
-  text-underline-offset: .25rem;
+  text-underline-offset: .2rem;
 }
 
 a:visited {
