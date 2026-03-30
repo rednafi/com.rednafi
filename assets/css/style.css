@@ -136,10 +136,8 @@ dl dd { margin: 0; }
 }
 
 /* Small text — uniform size for all secondary content */
-.breadcrumbs,
 .post-meta,
 .footnotes,
-footer,
 .post-tags,
 .post-list .date,
 .archive-entry .date {
@@ -163,7 +161,7 @@ footer,
 }
 
 /* Breadcrumbs */
-.breadcrumbs { margin-bottom: .5rem; }
+.breadcrumbs { margin-bottom: .5rem; font-size: .9rem; color: var(--muted); }
 
 /* Post list */
 .post-list .post { margin-bottom: 1rem; }
@@ -263,7 +261,7 @@ table th, table td {
 }
 
 /* Footer */
-footer { margin-top: 2rem; text-align: center; }
+footer { margin-top: 2rem; text-align: center; font-size: .9rem; color: var(--muted); }
 
 /* Pagination */
 .pagination { margin-top: 2rem; }
