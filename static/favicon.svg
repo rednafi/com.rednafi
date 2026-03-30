@@ -1,14 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <style>
-    .bg { fill: #1a4bbf; }
-    .mark { stroke: #fff; fill: none; stroke-width: 8; stroke-linecap: round; }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #79a8ff; }
-      .mark { stroke: #212529; }
-    }
-  </style>
-  <polygon class="bg" points="64,4 124,64 64,124 4,64"/>
-  <line class="mark" x1="64" y1="36" x2="64" y2="92"/>
-  <line class="mark" x1="39.8" y1="78" x2="88.2" y2="50"/>
-  <line class="mark" x1="39.8" y1="50" x2="88.2" y2="78"/>
+  <defs>
+    <clipPath id="c"><circle cx="64" cy="64" r="62"/></clipPath>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="64" cy="64" r="64" fill="#2b4a8e"/>
+  <!-- Sky -->
+  <circle cx="64" cy="64" r="62" fill="#4a7ab5"/>
+  <!-- Hills -->
+  <path d="M0 85 Q20 72 40 82 Q58 68 80 78 Q100 70 128 80 L128 128 L0 128Z" fill="#1a2a5c" clip-path="url(#c)"/>
+  <!-- Moon glow -->
+  <circle cx="36" cy="42" r="14" fill="#8a9cc0" opacity=".5"/>
+  <!-- Moon -->
+  <circle cx="36" cy="42" r="10" fill="#fff"/>
+  <!-- Stars (4-pointed) -->
+  <polygon points="70,28 71,31 74,32 71,33 70,36 69,33 66,32 69,31" fill="#fff"/>
+  <polygon points="90,22 91,24 93,25 91,26 90,28 89,26 87,25 89,24" fill="#fff"/>
+  <polygon points="100,40 101,42 103,43 101,44 100,46 99,44 97,43 99,42" fill="#fff"/>
+  <polygon points="85,50 86,52 88,53 86,54 85,56 84,54 82,53 84,52" fill="#fff"/>
+  <polygon points="58,20 59,22 61,23 59,24 58,26 57,24 55,23 57,22" fill="#fff"/>
+  <polygon points="108,58 109,60 111,61 109,62 108,64 107,62 105,61 107,60" fill="#fff"/>
+  <polygon points="50,55 51,57 53,58 51,59 50,61 49,59 47,58 49,57" fill="#fff"/>
+  <polygon points="75,62 76,64 78,65 76,66 75,68 74,66 72,65 74,64" fill="#fff"/>
+  <polygon points="25,65 26,67 28,68 26,69 25,71 24,69 22,68 24,67" fill="#fff"/>
+  <polygon points="95,72 96,73 97,74 96,75 95,76 94,75 93,74 94,73" fill="#fff"/>
+  <polygon points="42,30 43,32 45,33 43,34 42,36 41,34 39,33 41,32" fill="#fff"/>
+  <polygon points="112,32 113,33 114,34 113,35 112,36 111,35 110,34 111,33" fill="#fff"/>
 </svg>

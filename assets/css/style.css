@@ -43,6 +43,7 @@ body {
   padding: 1rem;
   line-height: 1.5;
   overflow-wrap: break-word;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -108,7 +109,7 @@ body.home .site-header {
 /* Homepage layout */
 .index { display: flex; }
 .index .article-list { flex-grow: 1; }
-.index aside { width: 40%; }
+.index aside { width: 40%; min-width: 0; }
 
 .index aside .avatar {
   display: block;
@@ -122,7 +123,7 @@ body.home .site-header {
 
 aside dl {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: .2rem 1rem;
 }
 
@@ -325,10 +326,24 @@ h5:hover .anchor, h6:hover .anchor, .anchor:focus {
 
 /* Section ornament */
 .post-ornament {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 2rem 0;
-  color: var(--faint);
+  color: var(--muted);
+  font-size: 1.3rem;
 }
+
+.post-ornament::before,
+.post-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to var(--dir), var(--border), transparent);
+}
+
+.post-ornament::before { --dir: left; }
+.post-ornament::after { --dir: right; }
 
 /* Horizontal rule */
 hr {
@@ -368,6 +383,7 @@ summary {
 
 /* Pagefind overrides */
 #search {
+  --pagefind-ui-scale: .75;
   --pagefind-ui-primary: var(--link);
   --pagefind-ui-text: var(--text);
   --pagefind-ui-background: var(--bg);
@@ -375,11 +391,6 @@ summary {
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: var(--radius);
   --pagefind-ui-font: sans-serif;
-}
-
-.pagefind-ui__search-input {
-  font-size: .85rem !important;
-  padding: .4rem .6rem .4rem 1.8rem !important;
 }
 
 .pagefind-ui__search-input:focus {
