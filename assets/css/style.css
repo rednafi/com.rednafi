@@ -22,7 +22,7 @@
 
 html {
   font-family: sans-serif;
-  font-size: 16.5px;
+  font-size: 17px;
   color: var(--text);
   background: var(--bg);
   scroll-behavior: smooth;
@@ -183,7 +183,7 @@ article sup { line-height: 1; }
 
 /* Code */
 code, pre, code[class*="language-"] {
-  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-family: ui-monospace, monospace;
   font-size: .84rem !important;
 }
 
