@@ -29,10 +29,10 @@
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 {{- /* Favicons */ -}}
+{{- $png := site.Params.assets.favicon_png | default "favicon.png" | absURL }}
 <link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
-<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<link rel="icon" type="image/png" href="{{ $png }}">
+<link rel="apple-touch-icon" href="{{ $png }}">
 
 {{- /* RSS */ -}}
 {{ range .AlternativeOutputFormats -}}
