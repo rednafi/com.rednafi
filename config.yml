@@ -33,7 +33,7 @@ minify:
   minifyOutput: true
 
 pagination:
-  pagerSize: 50
+  pagerSize: 30
 
 params:
   env: production
@@ -75,10 +75,8 @@ params:
   images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
   assets:
-    favicon16x16: "https://blob.rednafi.com/static/images/home/favicon-16x16.png?v=3"
-    favicon32x32: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=3"
     favicon_svg: "/favicon.svg"
-    apple_touch_icon: "https://blob.rednafi.com/static/images/home/apple-touch-icon.png?v=3"
+    favicon_png: "/favicon.png"
 
   analytics:
     google:
