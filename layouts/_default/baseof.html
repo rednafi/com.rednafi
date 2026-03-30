@@ -2,6 +2,7 @@
 <html lang="{{ site.Language }}">
 <head>
   {{- partial "head.html" . }}
+  {{- block "head-extra" . }}{{ end }}
   <script>
     (function(){
       var t = localStorage.getItem("theme");
@@ -31,6 +32,7 @@
       var dark = d.getAttribute("data-theme") === "dark";
       d.setAttribute("data-theme", dark ? "light" : "dark");
       localStorage.setItem("theme", dark ? "light" : "dark");
+      if(window.__mermaidRerender) window.__mermaidRerender();
     }
   </script>
   {{- if hugo.IsProduction | or (eq site.Params.env "production") }}

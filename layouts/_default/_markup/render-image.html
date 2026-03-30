@@ -1,0 +1,7 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $siteURL := urls.Parse site.BaseURL -}}
+{{- $isExternal := and $u.IsAbs (ne $u.Host $siteURL.Host) -}}
+<img src="{{ .Destination }}"
+  {{- with .Text }} alt="{{ . }}"{{ end -}}
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- if $isExternal }} referrerpolicy="no-referrer"{{ end }} loading="lazy" decoding="async">

@@ -1,9 +1,12 @@
+{{- define "head-extra" }}
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+{{- end }}
+
 {{- define "main" }}
 <div class="content-column">
 
 <h1>{{ .Title }}</h1>
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="/pagefind/pagefind-ui.js" defer></script>
 <div id="search" role="search"></div>
 <script>

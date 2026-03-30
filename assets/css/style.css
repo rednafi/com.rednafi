@@ -7,6 +7,8 @@
   --border: #ddd;
   --link: #1a4bbf;
   --visited: #54457f;
+  --radius: 4px;
+  --content-width: 720px;
 }
 
 [data-theme="dark"] {
@@ -58,7 +60,7 @@ a:visited {
 }
 
 img {
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: .25rem; }
@@ -72,7 +74,7 @@ h3 { font-size: 1.1rem; }
   align-items: center;
   gap: .75rem;
   margin-bottom: 2rem;
-  max-width: 720px;
+  max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
 }
@@ -128,23 +130,20 @@ dl dd { margin: 0; }
 
 /* Content column */
 .content-column {
-  max-width: 720px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
 /* Small text — uniform size for all secondary content */
+.breadcrumbs,
 .post-meta,
 .footnotes,
 footer,
 .post-tags,
 .post-list .date,
-.archive-entry .date {
+.archive-entry .date,
+.toc {
   font-size: .85rem;
-  color: var(--muted);
-}
-
-.breadcrumbs {
-  font-size: .9rem;
   color: var(--muted);
 }
 
@@ -185,9 +184,23 @@ article iframe {
 article sup { line-height: 1; }
 
 /* Code */
-code, pre, code[class*="language-"] {
+pre, code[class*="language-"] {
   font-family: ui-monospace, monospace;
-  font-size: .85rem !important;
+  font-size: .84rem;
+}
+
+code {
+  font-family: ui-monospace, monospace;
+  font-size: .86rem;
+  background-color: var(--code-bg);
+  padding: .08rem .24rem;
+  border-radius: var(--radius);
+}
+
+pre code {
+  font-size: .84rem;
+  padding: 0;
+  background: none;
 }
 
 pre {
@@ -196,46 +209,34 @@ pre {
   margin: 1rem 0;
   max-width: 100%;
   overflow-x: auto;
-  border-radius: 4px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
-  transition: background-color .2s ease, border-color .2s ease;
 }
 
 .highlight { margin: 1rem 0; }
 .highlight pre { margin: 0; }
 
-code {
-  background-color: var(--code-bg);
-  padding: .08rem .24rem;
-  border-radius: 4px;
-  font-size: .9rem !important;
-  transition: background-color .2s ease;
-}
+/* Themed surfaces — shared transition for smooth theme toggle */
+pre { transition: background-color .2s ease, border-color .2s ease; }
+code, blockquote, .alert, summary { transition: background-color .2s ease; }
 
-pre code { padding: 0; background: none; font-size: .85rem !important; }
-
-/* Blockquotes */
-blockquote {
-  border-left: 5px solid #7c6f9f;
+/* Blockquotes & Alerts — shared box style */
+blockquote, .alert {
   background-color: var(--code-bg);
   padding: .5rem 1rem;
   margin: 1rem 0;
-  border-radius: 4px;
-  transition: background-color .2s ease;
+  border-radius: var(--radius);
+}
+
+blockquote {
+  border-left: 5px solid #7c6f9f;
 }
 
 blockquote > p:first-child { margin-top: 0; }
 blockquote > p:last-child { margin-bottom: 0; }
 
-
-/* Alerts */
 .alert {
-  padding: .5rem 1rem;
-  margin: 1rem 0;
   border-left: 5px solid var(--faint);
-  background-color: var(--code-bg);
-  border-radius: 4px;
-  transition: background-color .2s ease;
 }
 
 .alert-title { font-weight: 700; margin: 0 0 .25rem; }
@@ -318,13 +319,17 @@ hr::after {
   color: var(--muted);
 }
 
+/* Table of contents */
+.toc { margin: 1rem 0; }
+.toc nav ul { padding-left: 1.5rem; margin: .5rem 0; }
+.toc nav li { margin-bottom: .25rem; }
+
 /* Details / Summary */
 summary {
   cursor: pointer;
   background-color: var(--code-bg);
   padding: .25rem 1rem;
-  border-radius: 4px;
-  transition: background-color .2s ease;
+  border-radius: var(--radius);
 }
 
 /* Page layout — sticky footer */
@@ -339,13 +344,19 @@ summary {
 }
 
 /* Pagefind overrides */
+#search {
+  --pagefind-ui-primary: var(--link);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--bg);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius);
+  --pagefind-ui-font: sans-serif;
+}
+
 .pagefind-ui__search-input {
   font-size: .85rem !important;
   padding: .4rem .6rem .4rem 1.8rem !important;
-  border-radius: 4px !important;
-  border: 1px solid var(--border) !important;
-  background: var(--bg) !important;
-  color: var(--text) !important;
 }
 
 .pagefind-ui__search-input:focus {

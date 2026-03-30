@@ -1,10 +1,19 @@
+{{- define "head-extra" }}
+{{- if ne .Kind "taxonomy" }}
+{{- with .Paginator }}
+{{- if .HasPrev }}<link rel="prev" href="{{ .Prev.URL }}">{{ end }}
+{{- if .HasNext }}<link rel="next" href="{{ .Next.URL }}">{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{- define "main" }}
 
 {{- if .IsHome }}
 <div class="index">
   <section class="article-list">
     {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-    {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
+    {{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
     {{- $pages := union $articles $notes }}
     {{- $pages = $pages.ByDate.Reverse }}
     {{- $paginator := .Paginate $pages }}
