@@ -1,15 +1,14 @@
-/* Content ring — Vercel-style border around reading area.
-   Negative horizontal margin pushes the ring outward into .main padding
-   so inner content stays exactly the same width as without the ring. */
+/* Content ring — Vercel-style border around reading area */
 .post-single {
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 32px var(--gap);
-  margin: 8px calc(-1 * (var(--gap) + 1px)) 0;
+  padding: 32px 28px;
+  margin-top: 8px;
 }
 
 @media screen and (max-width: 600px) {
   .post-single {
+    padding: 24px 16px;
     border-radius: 10px;
   }
 }
