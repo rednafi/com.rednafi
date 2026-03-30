@@ -15,6 +15,13 @@
 <div class="post-meta">{{ .Date.Format site.Params.DateFormat }}</div>
 {{- end }}
 
+{{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}
+<details class="toc">
+  <summary>Table of contents</summary>
+  {{ .TableOfContents }}
+</details>
+{{- end }}
+
 <article>
   {{ .Content }}
 </article>
@@ -48,8 +55,25 @@
 {{- end }}
 
 {{- if .Params.mermaid }}
-<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.mermaid').forEach(function(el){
+    el.setAttribute('data-source',el.textContent);
+  });
+  var isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  mermaid.initialize({startOnLoad:true,theme:isDark?'dark':'default'});
+  window.__mermaidRerender=function(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    mermaid.initialize({startOnLoad:false,theme:dark?'dark':'default'});
+    document.querySelectorAll('.mermaid').forEach(function(el){
+      var src=el.getAttribute('data-source');
+      if(src){el.removeAttribute('data-processed');el.innerHTML=src;}
+    });
+    mermaid.run();
+  };
+})();
+</script>
 {{- end }}
 
 </div>

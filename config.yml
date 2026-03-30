@@ -39,6 +39,9 @@ params:
   env: production
   author: "Redowan Delowar"
 
+  social:
+    twitter: rednafi
+
   schema:
     jobTitle: Software Engineer
     sameAs:
