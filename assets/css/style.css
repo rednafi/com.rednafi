@@ -115,13 +115,12 @@ body.home .site-header {
 }
 
 .index aside dt { font-size: .85rem; }
-.index aside dd { margin-left: 0; }
 .index aside dd:not(:last-child) { margin-bottom: .5rem; }
 
 aside dl {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-gap: .2rem 1rem;
+  gap: .2rem 1rem;
 }
 
 dl dt { font-weight: 700; }
@@ -134,7 +133,6 @@ dl dd { margin: 0; }
 }
 
 /* Small text — uniform size for all secondary content */
-.breadcrumbs,
 .post-meta,
 .footnotes,
 footer,
@@ -142,6 +140,11 @@ footer,
 .post-list .date,
 .archive-entry .date {
   font-size: .85rem;
+  color: var(--muted);
+}
+
+.breadcrumbs {
+  font-size: .9rem;
   color: var(--muted);
 }
 
@@ -184,12 +187,13 @@ article sup { line-height: 1; }
 /* Code */
 code, pre, code[class*="language-"] {
   font-family: ui-monospace, monospace;
-  font-size: .84rem !important;
+  font-size: .85rem !important;
 }
 
 pre {
   background-color: var(--code-bg);
   padding: .4rem .8rem;
+  margin: 1rem 0;
   max-width: 100%;
   overflow-x: auto;
   border-radius: 4px;
@@ -197,6 +201,7 @@ pre {
   transition: background-color .2s ease, border-color .2s ease;
 }
 
+.highlight { margin: 1rem 0; }
 .highlight pre { margin: 0; }
 
 code {
@@ -207,17 +212,16 @@ code {
   transition: background-color .2s ease;
 }
 
-pre code { padding: 0; background: none; }
+pre code { padding: 0; background: none; font-size: .85rem !important; }
 
 /* Blockquotes */
 blockquote {
-  border-left: 5px solid var(--faint);
+  border-left: 5px solid #7c6f9f;
   background-color: var(--code-bg);
   padding: .5rem 1rem;
   margin: 1rem 0;
-  color: var(--muted);
-  font-style: italic;
   border-radius: 4px;
+  transition: background-color .2s ease;
 }
 
 blockquote > p:first-child { margin-top: 0; }
@@ -231,6 +235,7 @@ blockquote > p:last-child { margin-bottom: 0; }
   border-left: 5px solid var(--faint);
   background-color: var(--code-bg);
   border-radius: 4px;
+  transition: background-color .2s ease;
 }
 
 .alert-title { font-weight: 700; margin: 0 0 .25rem; }
@@ -255,7 +260,7 @@ table thead th {
 }
 
 table th, table td {
-  padding: .4em .75em;
+  padding: .4rem .75rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -319,6 +324,7 @@ summary {
   background-color: var(--code-bg);
   padding: .25rem 1rem;
   border-radius: 4px;
+  transition: background-color .2s ease;
 }
 
 /* Page layout — sticky footer */
