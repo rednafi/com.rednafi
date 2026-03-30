@@ -30,6 +30,7 @@ For the paper trail inclined, here's [my CV].
 - [Bluesky]
 - [GitHub]
 - [LinkedIn]
+
 ## Colophon
 
 [Hugo] powers this blog with a handrolled theme. I write in plain Markdown and push the
