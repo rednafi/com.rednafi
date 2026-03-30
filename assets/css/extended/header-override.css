@@ -100,5 +100,12 @@ button#theme-toggle svg {
 
 .nav {
   overflow: visible;
+  max-width: calc(var(--main-width) + var(--gap) * 2);
+  margin-inline: auto;
+}
+
+.logo,
+.nav-actions {
+  margin: auto 15px;
 }
 
