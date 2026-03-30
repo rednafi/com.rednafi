@@ -15,6 +15,9 @@ mud and fighting to keep the house of cards from falling over. Lately, I've been
 persistence, resilience, and observability - or whatever else is currently on fire. When not
 at the keyboard, I'm probably running or reading sci-fi.
 
+Occasionally I [give talks and appear on podcasts][appearances]. I also keep a
+[blogroll] of writers and blogs I enjoy.
+
 Talking points: Go, Python, persistence, consistency, resilience, HA, and sci-fi.
 
 ## Curriculum vitae
@@ -27,8 +30,6 @@ For the paper trail inclined, here's [my CV].
 - [Bluesky]
 - [GitHub]
 - [LinkedIn]
-- [Appearances]
-
 ## Colophon
 
 [Hugo] powers this blog with a handrolled theme. I write in plain Markdown and push the
@@ -88,8 +89,11 @@ those of my employer.
 [bluesky]:
     https://bsky.app/profile/rednafi.com
 
+<!-- Appearances & Blogroll -->
 [appearances]:
     /appearances/
+[blogroll]:
+    /blogroll/
 
 <!-- Colophon -->
 [hugo]:
