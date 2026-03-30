@@ -16,7 +16,7 @@ description: >-
 [Video][talk-1-video] | [Slides][talk-1-slides]
 
 Spoke at the Go Developer Group Berlin meetup about applying interface segregation in Go,
-keeping interfaces small and consumer-defined.
+keeping interfaces small and consumer-defined. Related post: [Revisiting interface segregation in Go].
 
 [talk-1-video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
 [talk-1-slides]: https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
@@ -32,3 +32,4 @@ and why you probably don't need a dependency injection framework.
 
 [pod-1-episode]: https://cupogo.dev/episodes/whats-coming-in-go-1-25-plus-redowan-delowar-on-what-makes-go-different-from-other-languages
 [you probably don't need a di framework]: /go/di-frameworks-bleh/
+[revisiting interface segregation in go]: /go/interface-segregation/
