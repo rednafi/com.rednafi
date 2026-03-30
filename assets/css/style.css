@@ -203,6 +203,7 @@ code {
   background-color: var(--code-bg);
   padding: .08rem .24rem;
   border-radius: 4px;
+  font-size: .9rem !important;
   transition: background-color .2s ease;
 }
 
@@ -210,7 +211,7 @@ pre code { padding: 0; background: none; }
 
 /* Blockquotes */
 blockquote {
-  border-left: 3px solid var(--faint);
+  border-left: 5px solid var(--faint);
   background-color: var(--code-bg);
   padding: .5rem 1rem;
   margin: 1rem 0;
@@ -221,14 +222,6 @@ blockquote {
 
 blockquote > p:first-child { margin-top: 0; }
 blockquote > p:last-child { margin-bottom: 0; }
-
-blockquote::before {
-  content: "\201C";
-  display: block;
-  font-size: 2.5rem;
-  line-height: .6;
-  margin-bottom: .25rem;
-}
 
 
 /* Alerts */
