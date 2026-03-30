@@ -15,8 +15,8 @@ mud and fighting to keep the house of cards from falling over. Lately, I've been
 persistence, resilience, and observability - or whatever else is currently on fire. When not
 at the keyboard, I'm probably running or reading sci-fi.
 
-Occasionally I [give talks and appear on podcasts][appearances]. I also keep a
-[blogroll] of writers and blogs I enjoy.
+Occasionally I [give talks and appear on podcasts]. I also keep a [blogroll] of writers and
+blogs I enjoy.
 
 Talking points: Go, Python, persistence, consistency, resilience, HA, and sci-fi.
 
@@ -91,7 +91,7 @@ those of my employer.
     https://bsky.app/profile/rednafi.com
 
 <!-- Appearances & Blogroll -->
-[appearances]:
+[give talks and appear on podcasts]:
     /appearances/
 [blogroll]:
     /blogroll/
