@@ -24,16 +24,38 @@
   src: url("/fonts/geist-mono-latin.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Geist Mono";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-italic.woff2") format("woff2");
+}
+
 /* Header */
 .header {
   background: inherit;
   max-width: none;
   position: relative;
-  border-bottom: 1px solid var(--border);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
 }
 
 /* Logo */
 .nav .logo a {
+  font-family:
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-size: 1em;
   font-weight: 400;
   text-transform: lowercase;
@@ -47,7 +69,6 @@
 
 .logo-switches {
   margin-inline-start: 6px;
-  flex-shrink: 0;
 }
 
 .nav-actions {
@@ -55,9 +76,6 @@
   align-items: center;
   gap: 14px;
   margin-left: auto;
-  margin-right: var(--gap);
-  flex-shrink: 0;
-  white-space: nowrap;
 }
 
 .nav-action-link {
@@ -65,6 +83,9 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.98em;
+  font-weight: 400;
   text-transform: lowercase;
 }
 
@@ -79,20 +100,5 @@ button#theme-toggle svg {
 
 .nav {
   overflow: visible;
-  flex-wrap: nowrap;
-  align-items: center;
-  max-width: calc(var(--main-width) + var(--gap) * 2);
-  margin-inline: auto;
-}
-
-.logo {
-  overflow: hidden;
-  min-width: 0;
-}
-
-.logo a {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
