@@ -1,5 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="dns-prefetch" href="https://blob.rednafi.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
 {{- /* Title */ -}}
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
@@ -40,7 +42,6 @@
 {{- /* Sitemap */ -}}
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
 
-{{- /* Pagination SEO — rel prev/next are emitted by the paginator in list templates */ -}}
 
 {{- /* Site verification */ -}}
 {{- with site.Params.analytics.google.SiteVerificationTag }}
@@ -82,6 +83,10 @@
 <meta name="twitter:description" content="{{ $desc }}">
 {{- with site.Params.images }}
 <meta name="twitter:image" content="{{ index . 0 }}">
+{{- end }}
+{{- with site.Params.social.twitter }}
+<meta name="twitter:creator" content="@{{ . }}">
+<meta name="twitter:site" content="@{{ . }}">
 {{- end }}
 
 {{- /* Schema.org JSON-LD */ -}}
