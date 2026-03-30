@@ -52,7 +52,7 @@ body {
 
 a {
   color: var(--link);
-  text-underline-offset: .2rem;
+  text-underline-offset: .24rem;
 }
 
 a:visited {
@@ -103,7 +103,7 @@ body.home .site-header {
   display: flex;
 }
 
-.aside-links { text-align: center; }
+.aside-links { text-align: center; font-size: .9rem; }
 
 /* Homepage layout */
 .index { display: flex; }
@@ -117,7 +117,7 @@ body.home .site-header {
   object-fit: cover;
 }
 
-.index aside dt { font-size: .85rem; }
+.index aside dt, .index aside dd { font-size: .9rem; }
 .index aside dd:not(:last-child) { margin-bottom: .5rem; }
 
 aside dl {
