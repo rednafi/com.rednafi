@@ -1,18 +1,3 @@
-/* Content ring — Vercel-style border around reading area */
-.post-single {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px 28px;
-  margin-top: 8px;
-}
-
-@media screen and (max-width: 600px) {
-  .post-single {
-    padding: 24px 16px;
-    border-radius: 10px;
-  }
-}
-
 .post-content p {
   margin-bottom: 1.25em;
 }
@@ -41,7 +26,6 @@
 .post-content h1,
 .post-content h2,
 .post-content h3 {
-  font-family: "Geist Mono", monospace;
 }
 
 .post-title {

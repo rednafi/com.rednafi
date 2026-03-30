@@ -8,7 +8,7 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-  font-size: 17.5px;
+  font-size: clamp(17px, 1.1vw, 17.5px);
   letter-spacing: -0.01em;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
@@ -21,7 +21,6 @@ i {
 
 .page-header h1 {
   font-size: 2rem;
-  font-family: "Geist Mono", monospace;
 }
 .skip-link {
   position: absolute;
@@ -166,7 +165,6 @@ i {
 .footer {
   position: relative;
   color: var(--secondary);
-  font-family: "Geist Mono", monospace;
   font-size: 0.857em;
   text-align: center;
   max-width: calc(var(--main-width) + var(--gap) * 2);
