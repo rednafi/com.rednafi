@@ -8,7 +8,6 @@ description: >-
   Go, Python, testing strategies, and software design patterns.
 ---
 
-
 Hey there! I'm Redowan Delowar - also go by the handle "rednafi" on the web.
 
 I dabble in platform engineering, which mostly means working with giant distributed balls of
