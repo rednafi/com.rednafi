@@ -1,142 +1,58 @@
 {{- define "main" }}
 
-{{- if (and site.Params.profileMode.enabled .IsHome) }}
-{{- partial "index_profile.html" . }}
-{{- else }} {{/* if not profileMode */}}
+{{- if .IsHome }}
+<div class="index">
+  <section class="article-list">
+    {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
+    {{- $pages := union $articles $notes }}
+    {{- $pages = $pages.ByDate.Reverse }}
+    {{- $paginator := .Paginate $pages }}
 
-{{- if not .IsHome | and .Title }}
-<header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
-  <h1>
-    {{ .Title }}
-    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
-    {{- with .OutputFormats.Get "rss" }}
-    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" height="23">
-        <path d="M4 11a9 9 0 0 1 9 9" />
-        <path d="M4 4a16 16 0 0 1 16 16" />
-        <circle cx="5" cy="19" r="1" />
-      </svg>
-    </a>
-    {{- end }}
-    {{- end }}
-  </h1>
+    {{ partial "post-list.html" $paginator.Pages }}
+    {{ partial "pagination.html" $paginator }}
+  </section>
+
+  <aside>
+    <img src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
+      alt="Redowan Delowar" width="148" height="148" class="avatar" />
+    <div class="aside-links">
+      <a href="/index.xml">rss</a> &middot; <a href="/about/">about</a>
+    </div>
+    <dl>
+      <dt>email</dt>
+      <dd><a href="mailto:redowan.nafi@gmail.com">redowan.nafi@gmail.com</a></dd>
+      <dt>bluesky</dt>
+      <dd><a href="https://bsky.app/profile/rednafi.com">@rednafi.com</a></dd>
+      <dt>github</dt>
+      <dd><a href="https://github.com/rednafi">rednafi</a></dd>
+      <dt>linkedin</dt>
+      <dd><a href="https://www.linkedin.com/in/rednafi/">rednafi</a></dd>
+    </dl>
+  </aside>
+</div>
+
+{{- else }}
+<div class="content-column">
+  <h1>{{ .Title }}</h1>
   {{- if .Description }}
-  <div class="post-description">
-    {{ .Description | markdownify }}
+  <p class="section-desc">{{ .Description | markdownify }}</p>
+  {{- end }}
+
+  {{- if eq .Kind "taxonomy" }}
+  <div class="post-list">
+    {{- range .Pages }}
+    <div class="post">
+      <a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})
+    </div>
+    {{- end }}
   </div>
+  {{- else }}
+  {{- $paginator := .Paginate .RegularPages }}
+  {{ partial "post-list.html" $paginator.Pages }}
+  {{ partial "pagination.html" $paginator }}
   {{- end }}
-</header>
-{{- end }}
-
-{{- if .Content }}
-<div class="post-content">
-  {{- if not (.Param "disableAnchoredHeadings") }}
-  {{- partial "anchored_headings.html" .Content -}}
-  {{- else }}{{ .Content }}{{ end }}
 </div>
 {{- end }}
 
-{{- $pages := union .RegularPages .Sections }}
-
-{{- if .IsHome }}
-  {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{- $notes := where site.RegularPages "Section" (site.Params.notesSection | default "shards") }}
-  {{- $pages = union $articles $notes }}
-  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
-  {{- $pages = $pages.ByDate.Reverse }}
 {{- end }}
-
-{{- $paginator := .Paginate $pages }}
-
-{{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
-{{- end }}
-
-{{- if .IsHome }}
-<div class="home-grid">
-<div class="home-feed">
-{{- end }}
-
-{{- $term := .Data.Term }}
-{{- range $index, $page := $paginator.Pages }}
-
-{{- $class := "post-entry" }}
-
-{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
-{{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
-{{- $class = "first-entry" }}
-{{- else if $term }}
-{{- $class = "post-entry tag-entry" }}
-{{- end }}
-
-<article class="{{ $class }}">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-      {{- .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h2>
-  </header>
-  {{- if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-  </div>
-  {{- end }}
-  {{- if not (.Param "hideMeta") }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-    {{- if $.IsHome }}
-    <span class="feed-meta-sep">&middot;</span>
-    {{- if eq .Section (site.Params.notesSection | default "shards") }}
-    <a href="{{ "/shards/" | absURL }}" class="feed-type-label feed-type-shard">shard</a>
-    {{- else }}
-    <a href="{{ "/articles/" | absURL }}" class="feed-type-label feed-type-article">article</a>
-    {{- end }}
-    {{- end }}
-  </footer>
-  {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
-{{- end }}
-
-{{- if .IsHome }}
-</div>
-</div>
-{{- end }}
-
-{{- if gt $paginator.TotalPages 1 }}
-<footer class="page-footer">
-  <nav class="pagination">
-    {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
-      «&nbsp;{{ i18n "prev_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
-      {{- end }}
-    </a>
-    {{- end }}
-    {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">
-      {{- i18n "next_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
-      {{- end }}&nbsp;»
-    </a>
-    {{- end }}
-  </nav>
-</footer>
-{{- end }}
-
-{{- end }}{{/* end profileMode */}}
-
-{{- end }}{{- /* end main */ -}}

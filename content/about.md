@@ -1,32 +1,13 @@
 ---
 title: 'About'
-layout: post
-ShowToc: false
-editPost:
-    disabled: true
 hideMeta: true
-ShowShareButtons: false
 hideRelated: true
+hideBreadcrumbs: true
 description: >-
   About Redowan Delowar (rednafi) - platform engineer writing about distributed systems,
   Go, Python, testing strategies, and software design patterns.
 ---
 
-<div class="h-card" style="text-align: center;">
-    <a class="u-url u-uid" href="https://rednafi.com" hidden></a>
-    <span class="p-name" hidden>Redowan Delowar</span>
-    <span class="p-nickname" hidden>rednafi</span>
-    <figure style="margin: auto;">
-        <img class="u-photo loading"
-             src="https://blob.rednafi.com/static/images/about/profile-2025.jpg"
-             alt="Redowan Delowar"
-             width="300"
-             height="300"
-             style="display: block; margin: 0 auto; width: 300px; height: 300px; object-fit: cover; border-radius: 50%;">
-    </figure>
-</div>
-
----
 
 Hey there! I'm Redowan Delowar - also go by the handle "rednafi" on the web.
 
@@ -47,12 +28,13 @@ For the paper trail inclined, here's [my CV].
 - [Bluesky]
 - [GitHub]
 - [LinkedIn]
+- [Appearances]
 
 ## Colophon
 
-[Hugo] powers this blog. It's rocking the [Papermod] theme with some handrolled CSS flair. I
-write in plain Markdown and push the [content] to GitHub, triggering the [GitHub Actions]
-CI, which then deploys the site to [GitHub Pages].
+[Hugo] powers this blog with a handrolled theme. I write in plain Markdown and push the
+[content] to GitHub, triggering the [GitHub Actions] CI, which then deploys the site to
+[GitHub Pages].
 
 More on the [stack, deployment, and writing process] if you're curious.
 
@@ -107,11 +89,12 @@ those of my employer.
 [bluesky]:
     https://bsky.app/profile/rednafi.com
 
+[appearances]:
+    /appearances/
+
 <!-- Colophon -->
 [hugo]:
     https://gohugo.io
-[papermod]:
-    https://github.com/adityatelange/hugo-PaperMod
 [stack, deployment, and writing process]:
     /misc/behind-the-blog/
 [content]:
