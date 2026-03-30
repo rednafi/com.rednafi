@@ -1,36 +1,27 @@
 .main {
-  padding: 15px;
+  padding: var(--gap);
   max-width: calc(var(--main-width) + var(--gap) * 2);
 }
 body {
-  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-size: 17.5px;
   letter-spacing: -0.01em;
   line-height: 1.55;
-  word-break: break-word;
-  background: var(--theme);
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
   text-rendering: optimizeLegibility;
 }
 
-/* Fix italic font appearing larger */
-em, i {
+em,
+i {
   font-size: 0.98em;
 }
+
 .page-header h1 {
   font-size: 2rem;
-}
-.social-icons a svg {
-  height: 15px;
-  width: 15px;
-}
-.social-icons {
-  padding: 0;
-}
-.social-icons a:not(:last-of-type) {
-  margin-inline-end: 12px;
+  font-family: "Geist Mono", monospace;
 }
 .skip-link {
   position: absolute;
@@ -122,19 +113,14 @@ em, i {
   .footer,
   .top-link,
   .toc,
-  .post-nav-links,
+  .paginav,
   .post-tags,
   .skip-link,
   #theme-toggle,
   #drawer-toggle,
   .drawer-overlay,
-  .site-drawer,
-  .hamburger-menu {
+  .site-drawer {
     display: none !important;
-  }
-
-  .post-content {
-    max-width: 100%;
   }
 
   .post-content a {
@@ -160,11 +146,17 @@ em, i {
     page-break-inside: avoid;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     page-break-after: avoid;
   }
 
-  p, li {
+  p,
+  li {
     orphans: 3;
     widows: 3;
   }
@@ -174,19 +166,13 @@ em, i {
 .footer {
   position: relative;
   color: var(--secondary);
+  font-family: "Geist Mono", monospace;
   font-size: 0.857em;
   text-align: center;
-  padding: 12px 0;
-}
-
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
+  max-width: calc(var(--main-width) + var(--gap) * 2);
+  margin: auto;
+  padding: 12px var(--gap);
+  border-top: 1px solid var(--border);
 }
 
 .footer a {
@@ -210,15 +196,6 @@ em, i {
   align-items: center;
 }
 
-/* Homepage grid layout */
-.home-grid {
-  display: block;
-}
-
-.home-feed {
-  min-width: 0;
-}
-
 /* Command palette overlay — blurred background */
 .drawer-overlay {
   position: fixed;
@@ -229,7 +206,9 @@ em, i {
   z-index: 1100;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .dark .drawer-overlay {
@@ -262,7 +241,10 @@ em, i {
   z-index: 1200;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -326,8 +308,6 @@ body.drawer-open {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
 }
-
-
 
 .palette-hint {
   text-align: center;
@@ -409,27 +389,36 @@ body.drawer-open {
 }
 
 /* Shared pill style */
-.pill {
-  padding: 2px 8px;
-  font-size: 0.8em;
+.pill,
+.feed-type-label,
+.post-tags a {
+  padding: 1px 7px;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.75rem;
   border-radius: 9999px;
   background: rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  color: var(--primary);
+  color: var(--secondary);
   text-decoration: none;
   transition: background 0.15s ease;
 }
 
-.dark .pill {
+.dark .pill,
+.dark .feed-type-label,
+.dark .post-tags a {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.pill:hover {
+.pill:hover,
+.feed-type-label:hover,
+.post-tags a:hover {
   background: rgba(0, 0, 0, 0.08);
 }
 
-.dark .pill:hover {
+.dark .pill:hover,
+.dark .feed-type-label:hover,
+.dark .post-tags a:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 

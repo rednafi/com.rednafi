@@ -1,6 +1,22 @@
 /* ──────────────────────────────────────────────────
-   Table-style post list — replaces card layout
+   Table-style post list
    ────────────────────────────────────────────────── */
+
+/* Content ring — border around the post list */
+.home-feed,
+.archive-posts {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 16px;
+}
+
+@media (max-width: 640px) {
+  .home-feed,
+  .archive-posts {
+    padding: 0 10px;
+    border-radius: 10px;
+  }
+}
 
 /* Reset card styles from base theme */
 .post-entry,
@@ -14,13 +30,24 @@
 .post-entry {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0 1.5rem;
-  padding: 0.6rem 0;
+  gap: 0 2rem;
+  padding: 0.5rem 0.5rem;
   margin-bottom: 0;
   border-bottom: 1px solid var(--border);
+}
+
+/* Inside a ring container, skip the outer top border */
+.home-feed .post-entry:first-child,
+.archive-posts .post-entry:first-child {
+  border-top: none;
+}
+
+/* Outside a ring container, keep original top border */
+.post-entry:first-child {
+  border-top: 1px solid var(--border);
 }
 
 .post-entry:active {
@@ -28,43 +55,42 @@
 }
 
 .post-entry:hover {
-  background: rgba(0, 0, 0, 0.02);
-  transition: background 0.1s ease;
+  background: rgba(0, 0, 0, 0.025);
 }
 
 .dark .post-entry:hover {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* Title */
+/* Title column */
 .entry-title {
   flex: 1;
   min-width: 0;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Meta column: pill + date */
+/* Meta column: pill + date — fixed width for alignment */
 .entry-meta {
   display: flex;
   align-items: baseline;
   gap: 0.625rem;
   flex-shrink: 0;
   white-space: nowrap;
+  min-width: 14em;
+  justify-content: flex-end;
 }
 
 .entry-meta time {
   font-family: "Geist Mono", monospace;
   font-size: 0.8125em;
   color: var(--secondary);
-  opacity: 0.65;
 }
 
 .feed-type-label {
   display: inline-block;
-  font-size: 0.75em;
-  padding: 1px 7px;
 }
 
 /* ── Home info (not a table row) ── */
@@ -83,7 +109,8 @@
 }
 
 .first-entry .entry-header h1 {
-  font-size: 2em;
+  font-size: 1.7em;
+  font-family: "Geist Mono", monospace;
 }
 
 .first-entry .entry-content,
@@ -91,14 +118,19 @@
   font-size: 1.0625em;
   line-height: 1.5;
   color: var(--secondary);
-  opacity: 0.65;
 }
 
-/* Section/page descriptions — faded like home subtitle */
+/* Section/page descriptions */
 .post-description {
   color: var(--secondary);
-  opacity: 0.65;
   font-style: italic;
+}
+
+/* RSS icon in home heading — scale with font */
+.home-rss svg {
+  height: 0.75em;
+  width: 0.75em;
+  vertical-align: baseline;
 }
 
 /* ── Archive: flatten month grouping, reuse table rows ── */
@@ -112,10 +144,12 @@
 
 .archive-year-header {
   font-size: 1.4em;
+  font-family: "Geist Mono", monospace;
   margin-bottom: 0.25rem;
 }
 
-.archive-posts .post-entry:last-child {
+.archive-posts .post-entry:last-child,
+.home-feed .post-entry:last-child {
   border-bottom: none;
 }
 
@@ -124,16 +158,22 @@
   margin-top: 1rem;
 }
 
-/* ── Mobile: title on top, meta on its own line below ── */
+/* ── Mobile: stack columns ── */
 @media (max-width: 640px) {
   .post-entry {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.125rem;
-    padding: 0.5rem 0;
+    flex-wrap: wrap;
+    gap: 0.125rem 0;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .entry-title {
+    white-space: normal;
+    flex-basis: 100%;
   }
 
   .entry-meta {
+    min-width: 0;
+    justify-content: flex-start;
     gap: 0.4rem;
   }
 
