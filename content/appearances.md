@@ -27,7 +27,7 @@ keeping interfaces small and consumer-defined.
 
 ## Podcasts
 
-### What's coming in Go 1.25? | Cup o' Go — Jun 23, 2025
+### Cup o' Go — Jun 23, 2025
 
 [Episode][pod-1-episode] | Related post: [You probably don't need a DI framework]
 

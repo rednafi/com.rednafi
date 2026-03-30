@@ -1,157 +1,87 @@
-/* ──────────────────────────────────────────────────
-   Table-style post list
-   ────────────────────────────────────────────────── */
-
-/* Reset card styles from base theme */
+/* Frosted glass cards */
 .post-entry,
 .first-entry {
-  background: none;
+  padding: 1.4rem 1.65rem;
+  border-radius: 12px;
+  background: rgba(254, 252, 246, 0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dark .post-entry,
+.dark .first-entry {
+  background: rgba(41, 46, 51, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.first-entry.home-info {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: none;
-  border-radius: 0;
 }
 
-/* ── Table rows ── */
-.post-entry {
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0 2rem;
-  padding: 0.5rem 0.5rem;
-  margin-bottom: 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.post-entry:first-child {
-  border-top: 1px solid var(--border);
-}
-
-.post-entry:active {
-  transform: none;
-}
-
-.post-entry:hover {
-  background: rgba(0, 0, 0, 0.025);
-}
-
-.dark .post-entry:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Title column */
-.entry-title {
-  flex: 1;
-  min-width: 0;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Meta column: pill + date — fixed width for alignment */
-.entry-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  white-space: nowrap;
-  min-width: 14em;
-  justify-content: flex-end;
-}
-
-.entry-meta time {
-  font-family: "Geist Mono", monospace;
-  font-size: 0.8125em;
-  color: var(--secondary);
-}
-
-.feed-type-label {
-  display: inline-block;
-}
-
-/* ── Home info (not a table row) ── */
 .first-entry {
-  min-height: auto;
+  min-height: 150px;
   text-align: left;
-  margin: 0;
-  padding: 0.6rem 0;
+  margin: 0.5rem;
 }
 
-.first-entry.home-info,
 .home-info {
-  display: block;
-  margin: 0.5rem 0 1.5rem 0;
+  margin: 0.5rem;
   padding: 0;
 }
 
 .first-entry .entry-header h1 {
-  font-size: 1.7em;
+  font-size: 2rem;
 }
 
-.first-entry .entry-content,
-.home-info .entry-content {
-  font-size: 1.0625em;
+.first-entry .entry-content {
+  font-size: 1.0625rem;
   line-height: 1.5;
-  color: var(--secondary);
+  color: var(--primary);
 }
 
-/* Section/page descriptions */
-.post-description {
-  color: var(--secondary);
-  font-style: italic;
+.entry-header h2 {
+  font-size: 1.412em;
 }
 
-/* RSS icon in home heading — scale with font */
-.home-rss svg {
-  height: 0.75em;
-  width: 0.75em;
-  vertical-align: baseline;
+.post-entry .entry-content {
+  font-size: 0.96875rem;
+  line-height: 1.5;
 }
 
-/* ── Archive: flatten month grouping, reuse table rows ── */
-.archive-year {
-  margin-top: 2rem;
+/* Shard/article type label */
+.feed-meta-sep {
+  opacity: 0.5;
 }
 
-.archive-year:not(:last-of-type) {
-  border-bottom: none;
+.feed-type-label {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.archive-year-header {
-  font-size: 1.4em;
-  margin-bottom: 0.25rem;
+.feed-type-shard,
+.feed-type-article {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--primary);
+}
+.feed-type-shard:hover,
+.feed-type-article:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.dark .feed-type-shard,
+.dark .feed-type-article {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+}
+.dark .feed-type-shard:hover,
+.dark .feed-type-article:hover {
+  background: rgba(255, 255, 255, 0.16);
 }
 
-.archive-posts .post-entry:last-child {
-  border-bottom: none;
-}
 
-/* ── Pagination spacing ── */
-.page-footer {
-  margin-top: 1rem;
-}
-
-/* ── Mobile: stack columns ── */
-@media (max-width: 640px) {
-  .post-entry {
-    flex-wrap: wrap;
-    gap: 0.125rem 0;
-    padding: 0.5rem 0.25rem;
-  }
-
-  .entry-title {
-    white-space: normal;
-    flex-basis: 100%;
-  }
-
-  .entry-meta {
-    min-width: 0;
-    justify-content: flex-start;
-    gap: 0.4rem;
-  }
-
-  .entry-meta time {
-    font-size: 0.75em;
-  }
-}
