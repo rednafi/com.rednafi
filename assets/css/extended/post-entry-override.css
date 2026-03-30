@@ -2,22 +2,6 @@
    Table-style post list
    ────────────────────────────────────────────────── */
 
-/* Content ring — border around the post list */
-.home-feed,
-.archive-posts {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0 16px;
-}
-
-@media (max-width: 640px) {
-  .home-feed,
-  .archive-posts {
-    padding: 0 10px;
-    border-radius: 10px;
-  }
-}
-
 /* Reset card styles from base theme */
 .post-entry,
 .first-entry {
@@ -39,13 +23,6 @@
   border-bottom: 1px solid var(--border);
 }
 
-/* Inside a ring container, skip the outer top border */
-.home-feed .post-entry:first-child,
-.archive-posts .post-entry:first-child {
-  border-top: none;
-}
-
-/* Outside a ring container, keep original top border */
 .post-entry:first-child {
   border-top: 1px solid var(--border);
 }
@@ -110,7 +87,6 @@
 
 .first-entry .entry-header h1 {
   font-size: 1.7em;
-  font-family: "Geist Mono", monospace;
 }
 
 .first-entry .entry-content,
@@ -144,12 +120,10 @@
 
 .archive-year-header {
   font-size: 1.4em;
-  font-family: "Geist Mono", monospace;
   margin-bottom: 0.25rem;
 }
 
-.archive-posts .post-entry:last-child,
-.home-feed .post-entry:last-child {
+.archive-posts .post-entry:last-child {
   border-bottom: none;
 }
 

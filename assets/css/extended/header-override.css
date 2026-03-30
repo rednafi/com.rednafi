@@ -36,7 +36,6 @@
 .nav .logo a {
   font-size: 1em;
   font-weight: 400;
-  font-family: "Geist Mono", monospace;
   text-transform: lowercase;
   color: var(--primary);
 }
@@ -66,7 +65,6 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  font-family: "Geist Mono", monospace;
   text-transform: lowercase;
 }
 
