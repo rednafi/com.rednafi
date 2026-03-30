@@ -1,202 +1,100 @@
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{{- /* Preload body text fonts; mono loads on demand via font-display: swap */ -}}
-<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/geist-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="color-scheme" content="light dark">
-<meta name="format-detection" content="telephone=no">
-<meta name="referrer" content="no-referrer-when-downgrade">
+{{- /* Title */ -}}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
+
+{{- /* Meta */ -}}
+{{- $desc := .Description | default .Summary | default site.Params.description }}
+<meta name="description" content="{{ $desc }}">
+{{- if .IsHome }}
+{{ with site.Params.keywords }}<meta name="keywords" content="{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ range $i, $e := (.Params.tags | default .Params.keywords) }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">
+{{- end }}
+<meta name="author" content="{{ site.Params.author }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL }}{{ .Params.canonicalURL }}{{ else }}{{ .Permalink }}{{ end }}">
 {{- if or (eq .Kind "404") .Params.robotsNoIndex }}
 <meta name="robots" content="noindex, follow">
 {{- else if hugo.IsProduction | or (eq site.Params.env "production") }}
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="robots" content="index, follow">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
 
-{{- /* Title */}}
-<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+{{- /* Styles */ -}}
+{{- $style := resources.Get "css/style.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-{{- /* Meta */}}
-{{- if .IsHome }}
-{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
-{{- else }}
-<meta name="keywords" content="{{ if .Params.keywords -}}
-    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
-    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
-{{- end }}
-<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if .Data.Term }}{{- with index site.Params.taxonomyDescriptions (lower .Data.Term) }}{{ . }}{{- else }}Articles about {{ .Title }} on {{ site.Title }}. {{ len .Pages }} posts covering {{ .Title }} topics.{{- end }}{{- else if or .IsPage .IsSection}}
-    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
-    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
-<meta name="author" content="{{ (partial "author.html" . ) }}">
-<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
-{{- if site.Params.analytics.google.SiteVerificationTag }}
-<meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.yandex.SiteVerificationTag }}
-<meta name="yandex-verification" content="{{ site.Params.analytics.yandex.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.bing.SiteVerificationTag }}
-<meta name="msvalidate.01" content="{{ site.Params.analytics.bing.SiteVerificationTag }}">
-{{- end }}
-{{- if site.Params.analytics.naver.SiteVerificationTag }}
-<meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
-{{- end }}
-
-{{- /* Styles */}}
-
-{{- /* includes */}}
-{{- $includes := slice }}
-{{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css")}}
-
-{{- if not (eq site.Params.assets.disableScrollBarStyle true) }}
-    {{- $ScrollStyle := (resources.Get "css/includes/scroll-bar.css") }}
-    {{- $includes = (append $ScrollStyle $includes) }}
-{{- end }}
-
-{{- $includes_all := $includes | resources.Concat "assets/css/includes.css" }}
-
-{{- $theme_vars := (resources.Get "css/core/theme-vars.css") }}
-{{- $reset := (resources.Get "css/core/reset.css") }}
-{{- $media := (resources.Get "css/core/zmedia.css") }}
-{{- $license_css := (resources.Get "css/core/license.css") }}
-{{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
-
-{{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") }}
-
-{{- /* order is important */}}
-{{- $core := (slice $theme_vars $reset $common $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
-{{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
-
-{{- /* bundle all required css */}}
-{{- /* Add extended css after theme style */ -}}
-{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css"  }}
-
-{{- if not site.Params.assets.disableFingerprinting }}
-{{- $stylesheet := $stylesheet | fingerprint }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
-{{- else }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
-{{- end }}
-
-{{- /* Search is now handled by Pagefind in search.html layout */ -}}
-
-{{- /* Favicons */}}
+{{- /* Favicons */ -}}
 <link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}">
-<link rel="icon" type="image/png" sizes="48x48" href="{{ site.Params.assets.favicon48x48 | default "favicon-48x48.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
 <link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
-<link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
-<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#1a1a1a" }}">
-<meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#1a1a1a" }}">
 
-{{- /* RSS */}}
+{{- /* RSS */ -}}
 {{ range .AlternativeOutputFormats -}}
-<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ site.Title }}">
-{{ end -}}
-{{- range .AllTranslations -}}
-<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{ end -}}
 
-{{- /* Sitemap */}}
-<link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}" title="Sitemap">
+{{- /* Sitemap */ -}}
+<link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
 
-{{- /* Pagination link tags for SEO */ -}}
-{{- if and (or .IsHome .IsSection) (gt .Paginator.TotalPages 1) }}
-  {{- if .Paginator.HasPrev }}
-<link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
-  {{- end }}
-  {{- if .Paginator.HasNext }}
-<link rel="next" href="{{ .Paginator.Next.URL | absURL }}">
-  {{- end }}
+{{- /* Pagination SEO — rel prev/next are emitted by the paginator in list templates */ -}}
+
+{{- /* Site verification */ -}}
+{{- with site.Params.analytics.google.SiteVerificationTag }}
+<meta name="google-site-verification" content="{{ . }}">
+{{- end }}
+{{- with site.Params.analytics.yandex.SiteVerificationTag }}
+<meta name="yandex-verification" content="{{ . }}">
+{{- end }}
+{{- with site.Params.analytics.naver.SiteVerificationTag }}
+<meta name="naver-site-verification" content="{{ . }}">
 {{- end }}
 
-{{- /* IndieWeb: Webmention endpoints */ -}}
-{{- with site.Params.webmention -}}
-<link rel="webmention" href="https://webmention.io/{{ $.Site.BaseURL | replaceRE "https?://" "" | replaceRE "/$" "" }}/webmention">
-<link rel="pingback" href="https://webmention.io/{{ $.Site.BaseURL | replaceRE "https?://" "" | replaceRE "/$" "" }}/xmlrpc">
-{{- end -}}
-
-{{- /* IndieWeb: IndieAuth */ -}}
-<link rel="authorization_endpoint" href="https://indieauth.com/auth">
-<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #212529;
-                --entry: #292e33;
-                --primary: #e0e0e0;
-                --secondary: #e0e0e0;
-                --tertiary: #505050;
-                --content: #e0e0e0;
-                --code-block-bg: #2c3034;
-                --code-bg: #2c3034;
-                --border: #404550;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-    {{- end }}
-</noscript>
-
-{{- if (not site.Params.disableThemeToggle) }}
-{{- if (eq site.Params.defaultTheme "light") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    }
-</script>
-{{- else if (eq site.Params.defaultTheme "dark") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-</script>
-{{- else }}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-</script>
-{{- end }}
-{{- end }}
-
-{{- partial "extend_head.html" . -}}
-
-{{- /* Misc */}}
+{{- /* Open Graph */ -}}
+{{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-{{- partial "templates/opengraph.html" . }}
-{{- partial "templates/twitter_cards.html" . }}
-{{- partial "templates/schema_json.html" . }}
-{{- end -}}
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+{{- with site.Params.images }}
+<meta property="og:image" content="{{ index . 0 }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{- end }}
+{{- if .IsPage }}
+<meta property="article:author" content="{{ .Params.author | default site.Params.author }}">
+<meta property="article:section" content="{{ .Section }}">
+{{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $iso8601 }}">{{ end }}
+{{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format $iso8601 }}">{{ end }}
+{{- with .Params.tags }}{{ range first 6 . }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}{{ end }}
+{{- end }}
+
+{{- /* Twitter Cards */ -}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with site.Params.images }}
+<meta name="twitter:image" content="{{ index . 0 }}">
+{{- end }}
+
+{{- /* Schema.org JSON-LD */ -}}
+{{- if .IsHome }}
+{{- $person := dict "@type" "Person" "name" site.Params.author "url" ("about/" | absURL) }}
+{{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
+{{- with site.Params.schema.sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice (dict "@type" "WebSite" "name" site.Title "url" site.BaseURL "description" site.Params.description) $person) }}
+{{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+{{- else if .IsPage }}
+{{- $author := dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" ("about/" | absURL) }}
+{{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601) "author" $author "publisher" (dict "@type" "Person" "name" site.Params.author) "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) }}
+{{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
+{{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+{{- end }}
+{{- end }}
