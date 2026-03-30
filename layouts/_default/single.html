@@ -1,81 +1,42 @@
 {{- define "main" }}
+<div class="content-column">
 
-{{/* h-entry microformat for IndieWeb */}}
-<article class="post-single h-entry">
-  <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title p-name" data-pagefind-weight="10">
-      {{ .Title }}
-      {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
-    </h1>
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
-      &nbsp;·&nbsp;
-      {{- if eq .Section (site.Params.notesSection | default "shards") }}
-      <a href="{{ "/shards/" | absURL }}" class="feed-type-label feed-type-shard">shard</a>
-      {{- else }}
-      <a href="{{ "/articles/" | absURL }}" class="feed-type-label feed-type-article">article</a>
-      {{- end }}
-      {{- partial "translation_list.html" . -}}
-      {{- partial "edit_post.html" . -}}
-      {{- partial "post_canonical.html" . -}}
-      {{/* Hidden microformat data */}}
-      <a class="u-url u-uid" href="{{ .Permalink }}" hidden></a>
-      <time class="dt-published" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}" hidden>{{ .PublishDate.Format "2006-01-02" }}</time>
-      {{- if ne .Lastmod .PublishDate }}
-      <time class="dt-updated" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" hidden>{{ .Lastmod.Format "2006-01-02" }}</time>
-      {{- end }}
-      <a class="p-author h-card" href="{{ "about/" | absURL }}" hidden>{{ site.Params.author }}</a>
-    </div>
-    {{- /* Add tags on new line after other meta information */ -}}
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    {{- with ($.GetTerms $tags) }}
-    <div class="post-meta post-tags-meta">
-      <ul class="post-tags">
-        {{- range . }}
-        <li><a href="{{ .Permalink }}" class="p-category">{{ .LinkTitle }}</a></li>
-        {{- end }}
-      </ul>
-    </div>
-    {{- end }}
-    {{- end }}
-  </header>
-  {{- $isHidden := .Params.cover.hidden | default site.Params.cover.hiddenInSingle | default site.Params.cover.hidden }}
-  {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
-  {{- if (.Param "ShowToc") }}
-  {{- partial "toc.html" . }}
+{{- if not .Params.hideBreadcrumbs }}
+<nav class="breadcrumbs">
+  <a href="/">home</a>
+  {{- with .Section }}
+  &rsaquo; <a href="{{ printf "/%s/" . }}">{{ . }}</a>
   {{- end }}
-
-  {{- if .Content }}
-  <div class="post-content e-content">
-    {{- with .Description }}<p class="p-summary" hidden>{{ . }}</p>{{ end }}
-    {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
-
-    <!-- Add mermaid min js file -->
-    {{ if (.Params.mermaid) }}
-    {{ partial "mermaid.html" }}
-    {{ end }}
-
-{{- /* Related posts - only show on main content pages */ -}}
-{{- $showRecent := not .Params.hideRelated }}
-{{- range site.Menus.hamburger }}
-  {{- if strings.HasPrefix $.RelPermalink .URL }}{{ $showRecent = false }}{{ end }}
+</nav>
 {{- end }}
 
-{{- if $showRecent }}
-{{- $current := . }}
+<h1>{{ .Title }}{{ if .Draft }}<sup>[draft]</sup>{{ end }}</h1>
+{{- if not (.Param "hideMeta") }}
+<div class="post-meta">{{ .Date.Format site.Params.DateFormat }}</div>
+{{- end }}
 
+<article>
+  {{ .Content }}
+</article>
+
+{{- $tags := .GetTerms "tags" }}
+{{- with $tags }}
+<ul class="post-tags">
+  {{- range . }}
+  <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}
+
+{{- if not .Params.hideRelated }}
 {{- $related := site.RegularPages.Related . | first 5 }}
 {{- if lt (len $related) 3 }}
   {{- $sectionPages := where site.RegularPages "Section" .Section }}
-  {{- $related = $sectionPages | complement (slice $current) | first 5 }}
+  {{- $related = $sectionPages | complement (slice .) | first 5 }}
 {{- end }}
 {{- with $related }}
-<div class="post-ornament" data-pagefind-ignore>§</div>
-<nav class="related-posts" data-pagefind-ignore>
+<div class="post-ornament">&sect;</div>
+<nav class="related-posts">
   <h2>Related posts</h2>
   <ul>
     {{- range . }}
@@ -84,25 +45,12 @@
   </ul>
 </nav>
 {{- end }}
-
 {{- end }}
+
+{{- if .Params.mermaid }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+{{- end }}
+
 </div>
-
-  </div>
-  {{- end }}
-
-  <footer class="post-footer">
-    {{- if (.Param "ShowPostNavLinks") }}
-    {{- partial "post_nav_links.html" . }}
-    {{- end }}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-    {{- partial "share_icons.html" . -}}
-    {{- end }}
-  </footer>
-
-  {{- if (.Param "comments") }}
-  {{- partial "comments.html" . }}
-  {{- end }}
-</article>
-
-{{- end }}{{/* end main */}}
+{{- end }}

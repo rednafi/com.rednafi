@@ -2,13 +2,9 @@
 title: Appearances
 aliases:
     - /talks/
-layout: post
-ShowToc: false
-editPost:
-    disabled: true
 hideMeta: true
 hideRelated: true
-ShowShareButtons: false
+hideBreadcrumbs: true
 description: >-
     Conference talks, podcast appearances, and presentations on software engineering practices.
 ---

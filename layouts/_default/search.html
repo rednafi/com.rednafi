@@ -1,39 +1,23 @@
 {{- define "main" }}
+<div class="content-column">
 
-<header class="page-header">
-    <h1>{{- (printf "%s&nbsp;" .Title ) | htmlUnescape -}}
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="search-icon" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </h1>
-</header>
+<h1>{{ .Title }}</h1>
 
-{{- /* Pagefind search UI */ -}}
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="/pagefind/pagefind-ui.js" defer></script>
-
 <div id="search" role="search"></div>
-
 <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({
-            element: "#search",
-            showSubResults: true,
-            showImages: false,
-            excerptLength: 15,
-            placeholder: "{{ .Params.placeholder | default (printf "%s" .Title) }}",
-            processTerm: (term) => {
-                return term.length >= 3 ? term : null;
-            },
-            ranking: {
-                pageWeight: 5.0,
-                termFrequency: 0.5
-            }
-        });
+  window.addEventListener('DOMContentLoaded', function() {
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      showImages: false,
+      excerptLength: 15,
+      placeholder: "Search...",
+      processTerm: function(term) { return term.length >= 3 ? term : null; }
     });
+  });
 </script>
 
-{{- end }}{{/* end main */}}
+</div>
+{{- end }}

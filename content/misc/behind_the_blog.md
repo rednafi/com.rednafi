@@ -37,9 +37,8 @@ at work, so messing with Hugo templates or its source code gives me a reason to 
 with Go.
 
 I initially tried some JS-based SSGs but dropped them pretty quickly because I couldn't keep
-up with the constant tooling changes in the JavaScript universe. I use the [papermod] theme
-and have tweaked the CSS over time. Papermod handles the SEO stuff, which I like to pretend
-I don't care about.
+up with the constant tooling changes in the JavaScript universe. I use a handrolled theme
+and have tweaked the CSS over time.
 
 ## GitHub Issues
 
@@ -117,9 +116,6 @@ The [source code] and content for this site are all publicly available on GitHub
 
 [hugo]:
     https://gohugo.io/
-
-[papermod]:
-    https://github.com/adityatelange/hugo-PaperMod
 
 <!-- i usually use github issues like this -->
 [github issues]:

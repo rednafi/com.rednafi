@@ -1,48 +1,40 @@
-<!DOCTYPE html>
-{{- if (eq site.Params.defaultTheme "dark") }}
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="dark">
-{{- else if (eq site.Params.defaultTheme "light") }}
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="light">
-{{- else }}
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="auto">
-{{- end }}
-
+<!doctype html>
+<html lang="{{ site.Language }}">
 <head>
-    {{- partial "head.html" . }}
-    {{- range site.Params.schema.sameAs }}
-    <link rel="me" href="{{ . }}">
-    {{- end }}
+  {{- partial "head.html" . }}
+  <script>
+    (function(){
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
-
-<body class="
-{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
-{{- print "list" -}}
-{{- end -}}
-{{- if eq site.Params.defaultTheme `dark` -}}
-{{- print " dark" }}
-{{- end -}}
-{{- if eq .IsHome true }} home{{ end -}}
-" id="top">
-    <script>
-        if (localStorage.getItem("pref-theme") === "dark") {
-            document.body.classList.add("dark");
-        } else if (localStorage.getItem("pref-theme") === "light") {
-            document.body.classList.remove("dark");
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.body.classList.add("dark");
-        }
-    </script>
-    <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
-    <aside id="site-drawer" class="site-drawer" aria-label="Site navigation" aria-hidden="true">
-        {{- partialCached "sidebar.html" . "sidebar" }}
-    </aside>
-    {{- partialCached "header.html" . .Page -}}
-    <main class="main" id="main" role="main" aria-label="Main content">
-        {{- block "main" . }}{{ end }}
-    </main>
-    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
-    {{/* Screen reader announcements for dynamic content */}}
-    <div aria-live="polite" aria-atomic="true" class="sr-only" id="sr-announcements"></div>
+<body{{ if .IsHome }} class="home"{{ end }}>
+  <div class="page">
+    <div class="page-content">
+      {{- partial "site-header.html" . }}
+      {{- block "main" . }}{{ end }}
+    </div>
+    <footer>
+      <a href="/about/">about</a> &middot;
+      <a href="/archive/">archive</a> &middot;
+      <a href="/tags/">tags</a> &middot;
+      <a href="/search/">search</a> &middot;
+      <a href="/blogroll/">blogroll</a>
+    </footer>
+  </div>
+  <script>
+    function toggleTheme(){
+      var d = document.documentElement;
+      var dark = d.getAttribute("data-theme") === "dark";
+      d.setAttribute("data-theme", dark ? "light" : "dark");
+      localStorage.setItem("theme", dark ? "light" : "dark");
+    }
+  </script>
+  {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+  {{ template "_internal/google_analytics.html" . }}
+  {{- end }}
 </body>
-
 </html>

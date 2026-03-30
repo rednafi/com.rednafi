@@ -1,7 +1,6 @@
 baseURL: "https://rednafi.com"
 languageCode: en
-title: redowan's reflections
-theme: PaperMod
+title: Redowan's Reflections
 pluralizelisttitles: false
 
 enableRobotsTXT: true
@@ -34,21 +33,18 @@ minify:
   minifyOutput: true
 
 pagination:
-  pagerSize: 15
+  pagerSize: 50
 
 params:
   env: production
+  author: "Redowan Delowar"
 
   schema:
-    publisherType: Person
     jobTitle: Software Engineer
-    profileImage: "https://blob.rednafi.com/static/images/home/cover.png"
     sameAs:
       - "https://github.com/rednafi"
       - "https://www.linkedin.com/in/rednafi/"
       - "https://bsky.app/profile/rednafi.com"
-      - "https://fosstodon.org/@rednafi"
-
   description: >-
     Redowan Delowar — a roving amateur fumbling through software, systems, and sundry.
 
@@ -57,65 +53,10 @@ params:
     - Go programming
     - Python development
     - distributed systems
-    - system design
-    - testing strategies
     - backend development
-    - web development
     - technical writing
-    - software architecture
-
-  taxonomyDescriptions:
-    api: "Web APIs."
-    async: "Asynchronous programming."
-    aws: "[Amazon Web Services](https://aws.amazon.com/)."
-    cli: "Command-line tools."
-    concurrency: "Concurrent and parallel programming."
-    "data structures": "Data structures and collections."
-    database: "Databases and persistence."
-    "design patterns": "Software design patterns."
-    devops: "Deployment and infrastructure."
-    "distributed systems": "Distributed systems."
-    django: "The [Django](https://www.djangoproject.com/) web framework."
-    docker: "[Docker](https://www.docker.com/) containers."
-    "error handling": "Error handling."
-    essay: "Long-form essays."
-    git: "[Git](https://git-scm.com/) version control."
-    github: "[GitHub](https://github.com/)."
-    go: "The [Go](https://go.dev/) programming language."
-    hugo: "The [Hugo](https://gohugo.io/) static site generator."
-    "incident post-mortem": "Incident post-mortems."
-    javascript:
-      "The [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming
-      language."
-    networking: "Networking and protocols."
-    performance: "Performance optimization."
-    pytest: "The [pytest](https://docs.pytest.org/) testing framework."
-    python: "The [Python](https://www.python.org/) programming language."
-    redis: "The [Redis](https://redis.io/) data store."
-    security: "Security."
-    shell: "Shell scripting."
-    sql: "SQL and relational databases."
-    system: "Systems programming."
-    testing: "Testing."
-    til: "Things I learned."
-    typescript: "The [TypeScript](https://www.typescriptlang.org/) programming language."
-    typing: "Type systems and static analysis."
-    web: "Web development, HTTP, and server-side concerns."
-  author: "Redowan Delowar"
-  images: ["https://blob.rednafi.com/static/images/home/cover.png"]
 
   DateFormat: "January 2, 2006"
-  defaultTheme: light
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
-  ShowRssButtonInSectionTermList: true
-  UseHugoToc: true
-  showtoc: true
-  ShowAllPagesInArchive: true
-  ShowFullTextinRSS: true
-
-  notesSection: "shards"
 
   mainSections:
     - javascript
@@ -126,25 +67,15 @@ params:
     - go
     - system
 
+  notesSection: "shards"
+
+  images: ["https://blob.rednafi.com/static/images/home/cover.png"]
+
   assets:
-    favicon: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=3"
     favicon16x16: "https://blob.rednafi.com/static/images/home/favicon-16x16.png?v=3"
     favicon32x32: "https://blob.rednafi.com/static/images/home/favicon-32x32.png?v=3"
-    favicon48x48: "https://blob.rednafi.com/static/images/home/favicon-48x48.png?v=3"
     favicon_svg: "https://blob.rednafi.com/static/images/home/favicon.svg?v=3"
     apple_touch_icon: "https://blob.rednafi.com/static/images/home/apple-touch-icon.png?v=3"
-    safari_pinned_tab: "https://blob.rednafi.com/static/images/home/favicon.svg?v=3"
-    disableHLJS: true
-
-  homeInfoParams:
-    Title: "Hi, I'm [Redowan](/about)"
-    Content: >
-      <div>
-        <em>A roving amateur fumbling through software, systems, & sundry.</em>
-      </div>
-
-  # IndieWeb
-  webmention: true
 
   analytics:
     google:
@@ -154,26 +85,11 @@ params:
     naver:
       SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aaeea1b1a50be20"
 
-  cover:
-    image: "https://blob.rednafi.com/static/images/home/cover.png"
-
-menu:
-  main:
-    - identifier: about
-      name: about
-      url: /about/
-      weight: 1
-    - identifier: archive
-      name: archive
-      url: /archive/
-      weight: 2
-
 markup:
   highlight:
     noClasses: false
     codeFences: true
-    guessSyntax: true
-    style: syntax-highlight
+    guessSyntax: false
     tabWidth: 4
 
   goldmark:

@@ -1,12 +1,8 @@
 ---
 title: Blogroll
-layout: post
-ShowToc: false
-editPost:
-    disabled: true
 hideMeta: true
 hideRelated: true
-ShowShareButtons: false
+hideBreadcrumbs: true
 description: >-
   Collection of recommended technical blogs and writers covering software engineering,
   systems programming, and developer tools.

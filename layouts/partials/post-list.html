@@ -1,0 +1,9 @@
+{{- $notes := site.Params.notesSection | default "shards" }}
+<div class="post-list">
+  {{- range . }}
+  <div class="post">
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <span class="date">{{ .Date.Format site.Params.DateFormat }} · {{ if eq .Section $notes }}<a href="/{{ $notes }}/" class="type-label">shard</a>{{ else }}<a href="/articles/" class="type-label">article</a>{{ end }}</span>
+  </div>
+  {{- end }}
+</div>
