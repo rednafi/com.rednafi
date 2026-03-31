@@ -39,7 +39,8 @@ func Convert(srcPath, dstPath string) error {
     case ".webp":
         return convertWEBP(srcPath, dstPath)
     default:
-        return fmt.Errorf("unsupported source format: %s", filepath.Ext(srcPath))
+        return fmt.Errorf(
+            "unsupported source format: %s", filepath.Ext(srcPath))
     }
 }
 ```
