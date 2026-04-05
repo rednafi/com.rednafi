@@ -11,6 +11,15 @@ description: >-
 
 ## Talks
 
+### Cheap rigor — TBD
+
+[Video][talk-2-video] | [Slides][talk-2-slides]
+
+On Go, agents, and doing the right things from commit one.
+
+[talk-2-video]: #
+[talk-2-slides]: https://docs.google.com/presentation/d/146GjJEe3u6SZyR5LNjq9hGoG0Xdz1eWUbbuJUW3dp-M
+
 ### Go interface segregation redux — Dec 3, 2025, GDG Berlin
 
 [Video][talk-1-video] | [Slides][talk-1-slides]
