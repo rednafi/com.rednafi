@@ -5,7 +5,7 @@
 <nav class="breadcrumbs">
   <a href="/">home</a>
   {{- with .Section }}
-  &rsaquo; <a href="{{ printf "/%s/" . }}">{{ . }}</a>
+  / <a href="{{ printf "/%s/" . }}">{{ . }}</a>
   {{- end }}
 </nav>
 {{- end }}
