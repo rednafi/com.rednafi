@@ -1,3 +1,37 @@
+/* Geist — variable font for body text */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/geist-latin-italic.woff2") format("woff2");
+}
+
+/* Geist Mono — code */
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-italic.woff2") format("woff2");
+}
+
 :root {
   --bg: #fefcf6;
   --text: #1a1a1a;
@@ -7,6 +41,7 @@
   --border: #ddd;
   --link: #1a4bbf;
   --visited: #54457f;
+  --accent-quote: #7c6f9f;
   --radius: 4px;
   --content-width: 720px;
 }
@@ -20,10 +55,11 @@
   --border: #404550;
   --link: #79a8ff;
   --visited: #b4a7d6;
+  --accent-quote: #a892d6;
 }
 
 html {
-  font-family: sans-serif;
+  font-family: "Geist", sans-serif;
   font-size: 17px;
   color: var(--text);
   background: var(--bg);
@@ -32,9 +68,14 @@ html {
   transition: background-color .2s ease, color .2s ease;
 }
 
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }
 
 body {
@@ -44,6 +85,7 @@ body {
   line-height: 1.5;
   overflow-wrap: break-word;
   overflow-x: hidden;
+  animation: fade-in .3s ease;
 }
 
 ::selection {
@@ -64,10 +106,9 @@ img {
   border-radius: var(--radius);
 }
 
-h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: .25rem; }
-h2 { font-size: 1.3rem; }
-h3 { font-size: 1.1rem; }
-
+h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1rem; letter-spacing: -.02em; }
+h2 { font-size: 1.3rem; letter-spacing: -.015em; }
+h3 { font-size: 1.1rem; letter-spacing: -.01em; }
 
 /* Site header */
 .site-header {
@@ -86,9 +127,10 @@ body.home .site-header {
   margin-right: 0;
 }
 
+
 .site-title {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 19px;
   text-decoration: none;
   color: var(--text);
 }
@@ -102,33 +144,43 @@ body.home .site-header {
   color: var(--text);
   padding: 0;
   display: flex;
+  align-items: center;
 }
 
-.aside-links { text-align: center; line-height: 1.8; font-size: .95rem; }
+.aside-section:first-child h4 {
+  margin-top: 1rem;
+}
+
+.aside-section h4 {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--faint);
+  margin: 0 0 .3rem;
+}
+
+.aside-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.aside-section li { margin-bottom: .35rem; }
+
+.aside-section a { font-size: .9rem; }
 
 /* Homepage layout */
 .index { display: flex; }
 .index .article-list { flex-grow: 1; }
-.index aside { width: 40%; min-width: 0; }
+.index aside { width: 40%; min-width: 0; align-self: flex-start; }
 
-.index aside .avatar {
-  display: block;
-  margin: 0 auto 1rem;
+/* About avatar */
+.about-avatar {
+  width: 256px;
+  height: 256px;
   border-radius: 50%;
   object-fit: cover;
 }
-
-.index aside dt, .index aside dd { font-size: .95rem; }
-.index aside dd:not(:last-child) { margin-bottom: .2rem; }
-
-aside dl {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: .2rem 1rem;
-}
-
-dl dt { font-weight: 700; }
-dl dd { margin: 0; }
 
 /* Content column */
 .content-column {
@@ -162,13 +214,38 @@ dl dd { margin: 0; }
 }
 
 /* Breadcrumbs */
-.breadcrumbs { margin-bottom: .5rem; font-size: .9rem; color: var(--muted); }
+.breadcrumbs { margin-bottom: .5rem; font-size: .85rem; color: var(--faint); }
 
 /* Post list */
-.post-list .post { margin-bottom: 1rem; }
+.post-list .post {
+  padding: .5rem;
+  border-radius: var(--radius);
+  transition: background-color .15s ease;
+  background-image: linear-gradient(to right, var(--border) 60%, transparent);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.post-list .post:hover { background-color: var(--code-bg); }
+
+.post-list .post:first-child {
+  background-image:
+    linear-gradient(to right, var(--border) 60%, transparent),
+    linear-gradient(to right, var(--border) 60%, transparent);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top, bottom;
+}
+
 .post-list .date { display: block; margin-top: .15rem; }
 
 /* Article content */
+.post-list a,
+.toc a,
+.content-column li a { text-decoration: none; }
+.post-list a:hover,
+.toc a:hover,
+.content-column li a:hover { text-decoration: underline; }
 .content-column li { margin-bottom: .5rem; }
 article ul, article ol { padding-left: 1.5rem; }
 
@@ -184,7 +261,7 @@ article sup { line-height: 1; }
 
 /* Code */
 pre, code, code[class*="language-"] {
-  font-family: ui-monospace, monospace;
+  font-family: "Geist Mono", ui-monospace, monospace;
   font-size: .85rem;
 }
 
@@ -225,7 +302,24 @@ blockquote, .alert {
 }
 
 blockquote {
-  border-left: 5px solid #7c6f9f;
+  border-left: 5px solid var(--accent-quote);
+}
+
+blockquote:not(.alert) {
+  font-style: italic;
+  position: relative;
+  padding-left: 2rem;
+}
+
+blockquote:not(.alert)::before {
+  content: "\201C";
+  position: absolute;
+  left: .5rem;
+  top: .1rem;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-style: normal;
+  color: var(--accent-quote);
 }
 
 blockquote > p:first-child { margin-top: 0; }
@@ -244,7 +338,6 @@ blockquote > p:last-child { margin-bottom: 0; }
 
 /* Tables */
 table {
-  color: var(--text);
   border-collapse: collapse;
   width: 100%;
   font-size: .85rem;
@@ -262,7 +355,26 @@ table th, table td {
 }
 
 /* Footer */
-footer { margin-top: 2rem; text-align: center; font-size: .9rem; color: var(--muted); }
+footer {
+  margin-top: 2rem;
+  padding: .75rem 0;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--faint);
+  border-top: 1px solid var(--border);
+}
+
+.aside-section a,
+footer a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.aside-section a:visited,
+footer a:visited { color: var(--muted); }
+
+.aside-section a:hover,
+footer a:hover { color: var(--link); }
 
 /* Pagination */
 .pagination { margin-top: 2rem; }
@@ -272,15 +384,29 @@ footer { margin-top: 2rem; text-align: center; font-size: .9rem; color: var(--mu
 .archive-month h3 { font-size: 1rem; margin-top: 1rem; }
 .archive-entry { margin-bottom: .5rem; }
 
-/* Tags — plain links, no pills */
+/* Tags */
 .post-tags {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: .4rem;
   margin-top: 1.5rem;
 }
+
+.post-tags a {
+  display: inline-block;
+  padding: .15rem .6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: .8rem;
+  color: var(--muted);
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.post-tags a:visited { color: var(--muted); }
+.post-tags a:hover { background-color: var(--code-bg); color: var(--text); }
 
 /* Heading anchors */
 .anchor {
@@ -390,7 +516,7 @@ summary {
   --pagefind-ui-border: var(--border);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: var(--radius);
-  --pagefind-ui-font: sans-serif;
+  --pagefind-ui-font: "Geist", sans-serif;
 }
 
 .pagefind-ui__search-input:focus {
@@ -424,7 +550,7 @@ summary {
 .chroma .l, .chroma .ld, .chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color:#0000c0 }
 .chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color:#2544bb }
 .chroma .o, .chroma .ow { color:#00538b }
-.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp, .chroma .cpf { color:#505050 }
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp, .chroma .cpf { color:#505050; font-style:italic }
 
 /* Chroma — modus vivendi (dark) */
 [data-theme="dark"] pre, [data-theme="dark"] .chroma { color:#fff }
