@@ -17,7 +17,9 @@ protocols like HTTP or gRPC.
 
 One common thing I often see is emitting log lines from all three layers. When an
 error occurs, each layer logs it as it bubbles up, producing a stack of duplicate
-lines for the same failure that makes incidents harder to debug.
+lines for the same failure. At low throughput this is just noisy. At high throughput
+it genuinely taxes the logging pipeline. We've seen stacked logging from a 250k rps
+service put enough pressure on the o11y infrastructure to cause its own incidents.
 
 ## One error, three log lines
 
@@ -93,11 +95,6 @@ The handler gets `userService.GetUser: userRepo.GetByID: query user abc123:
 connection refused`. The full call chain is in the error string and no layer had
 to log independently.
 
-There are two ways to do the actual logging at the top. You can log in the handler
-itself, or you can log in a middleware that wraps the handler.
-
-## Option 1: log in the handler
-
 The handler logs the error once with request context:
 
 ```go
@@ -117,23 +114,19 @@ func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-One error, one log line. This works well for simpler services where each handler
-knows what's worth logging. The downside is that the handler only has access to
-what's in the request and the error string. If you need diagnostic data from lower
-layers - query timing, cache hit/miss, downstream call latency - the handler has
-no way to get it. The error string carries the failure chain, but not the
-operational details. For that, you need the middleware approach.
+One error, one log line. The handler has the request context and the full wrapped
+error chain. For error logging, this is enough.
 
-## Option 2: log in middleware
+## Collecting log fields on the way up
 
-A middleware can handle the logging for all handlers automatically. It wraps the
-handler chain, captures the response, and emits one structured line when the
-request completes. The handlers don't log at all - they just return errors.
+Error wrapping solves the failure case. But what about non-error diagnostic data -
+query timing, cache hit/miss, downstream call latency? The handler only has access
+to the request and the error string. It can't know how long the database query took
+unless the repository tells it somehow.
 
-This requires a way for lower layers to pass data up without logging. The approach
-is to stash a mutable field collector in `context.Context` at the start of a
-request. Lower layers append to it. The middleware reads it back and includes
-everything in one log line.
+The approach is to stash a mutable field collector in `context.Context` at the
+start of a request. Lower layers append to it. A middleware reads it back and emits
+one structured line when the request completes.
 
 Start with a thread-safe container for log fields:
 
@@ -212,9 +205,11 @@ func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
 }
 ```
 
-The service layer could do the same for cache hit/miss, feature flag evaluations,
-calls to other services. None of them emit a log line. They just call `AddLogField`
-and move on.
+The service layer could do the same for cache hit/miss, downstream call latency,
+or which code path a feature flag selected. None of them emit a log line. They
+just call `AddLogField` and move on. If a lower layer genuinely needs to record
+a decision - like falling back from a primary to a secondary node - that's a
+different kind of log, not the duplicate error logging this post is about.
 
 The middleware at the top collects all of it and emits one line. If the repository
 called `AddLogField(ctx, "db_duration", ...)` and the request returned a 200, the
@@ -240,10 +235,9 @@ pattern.
 
 ## Canonical log line
 
-Stripe took the middleware approach to its logical conclusion with what they call
-the [canonical log line]. Every request produces a single structured line
-containing everything that happened during that request - auth type, DB query
-count, rate limit status, team ownership:
+Stripe took this further with what they call the [canonical log line]: one
+structured line per request, but with every dimension you might want to query
+on. Auth type, DB query count, rate limit status, team ownership:
 
 ```txt
 canonical-log-line alloc_count=9123 auth_type=api_key
@@ -255,10 +249,44 @@ canonical-log-line alloc_count=9123 auth_type=api_key
 ```
 
 Fields like `database_queries=34` come from lower layers injecting into context,
-exactly the middleware pattern described above. Brandur Leach, who worked on this
-at Stripe, called it "[the single, simplest, best method of getting easy insight
-into production that there is]." [go-chi/httplog] implements the same idea in Go
-on top of `log/slog`.
+exactly the middleware pattern from the previous section. The canonical log line
+is about queryable dimensions, not verbose error details - for the full error
+chain you still have the wrapped error that the handler logged. Brandur Leach,
+who worked on this at Stripe, called it "[the single, simplest, best method of
+getting easy insight into production that there is]." [go-chi/httplog] implements
+the same idea in Go on top of `log/slog`.
+
+---
+
+A few things that came up when I [posted this on Reddit][reddit-thread]:
+
+_"What about debug logs in lower layers?"_ - Debug-level logs in the repository
+or service layer are fine as long as they're disabled by default in production.
+The problem is when info or error level logs fire from every layer on every
+request. Debug logs you flip on for a specific investigation are a different
+thing.
+
+_"Some lower-layer logs aren't duplicates though."_ - True. A service layer
+logging that it fell back from primary to secondary, or that a feature flag
+changed the code path, is recording a decision, not repeating an error. Those
+are worth keeping. The problem this post targets is the same error or the same
+"processing request" message repeated at every layer with no new information.
+
+_"Canonical log lines are tracing at home."_ - They're not a replacement for
+distributed tracing. They fill a different niche: request-level telemetry you
+can query ad-hoc without a trace viewer. They work best alongside metrics and
+traces, not instead of them.
+
+_"You still need normal logs for verbose error details."_ - Yes. The canonical
+log line carries queryable dimensions like `database_queries=34` or
+`rate_allowed=false`. The full error chain still comes from the wrapped error
+that the handler logged. These are complementary.
+
+_"Won't the canonical log line get too big?"_ - It can. Most log aggregators
+have a max line size. The canonical log line should carry structured fields
+like counts, durations, and identifiers - not full request/response bodies or
+long error messages. Keep the fields narrow and let the error wrapping carry
+the verbose details separately.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
@@ -289,5 +317,8 @@ on top of `log/slog`.
 
 [go-chi/httplog]:
     https://github.com/go-chi/httplog
+
+[reddit-thread]:
+    https://www.reddit.com/r/golang/comments/TODO
 
 <!-- prettier-ignore-end -->
