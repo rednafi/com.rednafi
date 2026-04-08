@@ -80,8 +80,8 @@ that each logged the same failure three times.
 
 ## Move the log line to the top
 
-Lower layers should return errors with context, not log them. Wrap each error on
-the way up:
+Lower layers should return errors with context and leave logging to the handler.
+Wrap each error on the way up:
 
 ```go
 // Repository
@@ -208,8 +208,8 @@ func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
 The service layer could do the same for cache hit/miss, downstream call latency,
 or which code path a feature flag selected. None of them emit a log line. They
 just call `AddLogField` and move on. If a lower layer genuinely needs to record
-a decision - like falling back from a primary to a secondary node - that's a
-different kind of log, not the duplicate error logging this post is about.
+a decision - like falling back from a primary to a secondary node - that's fine.
+It's a separate concern from the duplicate error logging this post is about.
 
 The middleware at the top collects all of it and emits one line. If the repository
 called `AddLogField(ctx, "db_duration", ...)` and the request returned a 200, the
@@ -250,8 +250,8 @@ canonical-log-line alloc_count=9123 auth_type=api_key
 
 Fields like `database_queries=34` come from lower layers injecting into context,
 exactly the middleware pattern from the previous section. The canonical log line
-is about queryable dimensions, not verbose error details - for the full error
-chain you still have the wrapped error that the handler logged. Brandur Leach,
+carries queryable dimensions. For the full error chain you still have the
+wrapped error that the handler logged. Brandur Leach,
 who worked on this at Stripe, called it "[the single, simplest, best method of
 getting easy insight into production that there is]." [go-chi/httplog] implements
 the same idea in Go on top of `log/slog`.
@@ -268,14 +268,13 @@ thing.
 
 _"Some lower-layer logs aren't duplicates though."_ - True. A service layer
 logging that it fell back from primary to secondary, or that a feature flag
-changed the code path, is recording a decision, not repeating an error. Those
+changed the code path, is recording a decision and adds information. Those
 are worth keeping. The problem this post targets is the same error or the same
 "processing request" message repeated at every layer with no new information.
 
 _"Canonical log lines are tracing at home."_ - They're not a replacement for
 distributed tracing. They fill a different niche: request-level telemetry you
-can query ad-hoc without a trace viewer. They work best alongside metrics and
-traces, not instead of them.
+can query ad-hoc without a trace viewer. They work best alongside metrics and traces.
 
 _"You still need normal logs for verbose error details."_ - Yes. The canonical
 log line carries queryable dimensions like `database_queries=34` or
