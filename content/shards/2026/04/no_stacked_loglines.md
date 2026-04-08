@@ -18,7 +18,7 @@ protocols like HTTP or gRPC.
 One common thing I often see is emitting log lines from all three layers. When an
 error occurs, each layer logs it as it bubbles up, producing a stack of duplicate
 lines for the same failure. At low throughput this is just noisy. At high throughput
-it genuinely taxes the logging pipeline. We've seen stacked logging from a 250k rps
+it taxes the logging pipeline. We've seen stacked logging from a 250k rps
 service put enough pressure on the o11y infrastructure to cause its own incidents.
 
 ## One error, three log lines
@@ -115,7 +115,7 @@ func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
 ```
 
 One error, one log line. The handler has the request context and the full wrapped
-error chain. For error logging, this is enough.
+error chain, which is all you need for error logging.
 
 ## Collecting log fields on the way up
 
@@ -124,9 +124,9 @@ query timing, cache hit/miss, downstream call latency? The handler only has acce
 to the request and the error string. It can't know how long the database query took
 unless the repository tells it somehow.
 
-The approach is to stash a mutable field collector in `context.Context` at the
-start of a request. Lower layers append to it. A middleware reads it back and emits
-one structured line when the request completes.
+You can stash a mutable field collector in `context.Context` at the start of a
+request. Lower layers append to it. A middleware reads it back and emits one
+structured line when the request completes.
 
 Start with a thread-safe container for log fields:
 
@@ -280,7 +280,7 @@ traces, not instead of them.
 _"You still need normal logs for verbose error details."_ - Yes. The canonical
 log line carries queryable dimensions like `database_queries=34` or
 `rate_allowed=false`. The full error chain still comes from the wrapped error
-that the handler logged. These are complementary.
+that the handler logged separately.
 
 _"Won't the canonical log line get too big?"_ - It can. Most log aggregators
 have a max line size. The canonical log line should carry structured fields
