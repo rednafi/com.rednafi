@@ -78,8 +78,8 @@ that each logged the same failure three times.
 
 ## Move the log line to the top
 
-Lower layers should return errors with context, not log them. Wrap each error on the
-way up:
+Lower layers should return errors with context, not log them. Wrap each error on
+the way up:
 
 ```go
 // Repository
@@ -90,8 +90,15 @@ return User{}, fmt.Errorf("userService.GetUser: %w", err)
 ```
 
 The handler gets `userService.GetUser: userRepo.GetByID: query user abc123:
-connection refused`. The full call chain is in the error string and no layer had to
-log independently. The handler logs it once:
+connection refused`. The full call chain is in the error string and no layer had
+to log independently.
+
+There are two ways to do the actual logging at the top. You can log in the handler
+itself, or you can log in a middleware that wraps the handler. Pick one, not both.
+
+## Option 1: log in the handler
+
+The handler logs the error once with request context:
 
 ```go
 func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
@@ -110,19 +117,22 @@ func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-One error, one log line, with request context attached.
+One error, one log line. This works well for simpler services where each handler
+knows what's worth logging. The downside is that the handler only has access to
+what's in the request and the error string. If you need diagnostic data from lower
+layers - query timing, cache hit/miss, downstream call latency - the handler has
+no way to get it. The error string carries the failure chain, but not the
+operational details. For that, you need the middleware approach.
 
-Caddy's deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same pattern -
-one structured log line at the boundary, nothing below it.
+## Option 2: log in middleware
 
-## Collecting log fields on the way up
+A middleware can handle the logging for all handlers automatically. It wraps the
+handler chain, captures the response, and emits one structured line when the
+request completes. The handlers don't log at all - they just return errors.
 
-Error wrapping gets failure details to the handler. But what about things like how many
-database queries a request made, or how long a downstream call took? The handler
-doesn't know these things unless the lower layers pass them up.
-
-The approach is to stash a mutable field collector in `context.Context` at the start
-of a request. Lower layers append to it. The handler reads it back and includes
+This requires a way for lower layers to pass data up without logging. The approach
+is to stash a mutable field collector in `context.Context` at the start of a
+request. Lower layers append to it. The middleware reads it back and includes
 everything in one log line.
 
 Start with a thread-safe container for log fields:
@@ -148,8 +158,8 @@ func AddLogField(ctx context.Context, key string, value any) {
 }
 ```
 
-The middleware creates the collector, passes it down through context, and emits one
-log line after the handler chain completes:
+The middleware creates the collector, passes it down through context, and emits
+the log line after the handler chain completes:
 
 ```go
 func LoggingMiddleware(next http.Handler) http.Handler {
@@ -174,7 +184,7 @@ func LoggingMiddleware(next http.Handler) http.Handler {
         if rec.status >= 500 {
             level = slog.LevelError // (4)
         }
-        slog.LogAttrs(ctx, level, "request", attrs...)
+        slog.LogAttrs(ctx, level, "request", attrs...) // 5
     })
 }
 ```
@@ -185,8 +195,10 @@ Here:
 - (2) runs the handler chain; lower layers may call `AddLogField` during this
 - (3) merges request fields with whatever lower layers attached
 - (4) only two log levels: `Info` for normal requests, `Error` for 5xx
+- (5) emit the log line
 
-Now a repository can attach timing data without emitting a log line:
+Now each layer can inject fields into the context without logging. The repository
+attaches query timing:
 
 ```go
 func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
@@ -200,17 +212,24 @@ func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
 }
 ```
 
-The middleware's log line includes `db_duration` alongside method, path, status, and
-duration. The repository contributed diagnostic data without logging anything itself.
+The service layer could do the same for cache hit/miss, feature flag evaluations,
+calls to other services. None of them emit a log line. They just call `AddLogField`
+and move on.
+
+The middleware at the top collects all of it and emits one line: method, path,
+status, duration, `db_duration`, and whatever else the layers below attached. One
+request, one log line, with context from every layer.
 
 The Kubernetes API server does exactly this with [AddKeyValue] and [respLogger].
-Caddy does the same with `ExtraLogFieldsCtxKey`.
+Caddy's deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same
+pattern.
 
-Stripe took this pattern to its logical conclusion with the [canonical log line] -
-one rich structured line per request containing everything that happened during that
-request. Brandur Leach, who worked on the pattern at Stripe, called it "[the single,
-simplest, best method of getting easy insight into production that there is]." A
-canonical log line from Stripe:
+## The canonical log line
+
+Stripe took the middleware approach to its logical conclusion with what they call
+the [canonical log line]. Every request produces a single structured line
+containing everything that happened during that request - auth type, DB query
+count, rate limit status, team ownership:
 
 ```txt
 canonical-log-line alloc_count=9123 auth_type=api_key
@@ -221,9 +240,11 @@ canonical-log-line alloc_count=9123 auth_type=api_key
   team=acquiring user_id=usr_123
 ```
 
-The `database_queries=34` and `alloc_count=9123` fields are exactly the kind of
-non-error context that lower layers attached via the middleware pattern described
-above. [go-chi/httplog] implements this in Go on top of `log/slog`.
+Fields like `database_queries=34` come from lower layers injecting into context,
+exactly the middleware pattern described above. Brandur Leach, who worked on this
+at Stripe, called it "[the single, simplest, best method of getting easy insight
+into production that there is]." [go-chi/httplog] implements the same idea in Go
+on top of `log/slog`.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
