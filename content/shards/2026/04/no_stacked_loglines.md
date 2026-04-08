@@ -250,11 +250,11 @@ canonical-log-line alloc_count=9123 auth_type=api_key
 
 Fields like `database_queries=34` come from lower layers injecting into context,
 exactly the middleware pattern from the previous section. The canonical log line
-carries queryable dimensions. For the full error chain you still have the
-wrapped error that the handler logged. Brandur Leach,
-who worked on this at Stripe, called it "[the single, simplest, best method of
-getting easy insight into production that there is]." [go-chi/httplog] implements
-the same idea in Go on top of `log/slog`.
+carries queryable dimensions. For the full error chain you still have the wrapped
+error that the handler logged. Brandur Leach, who worked on this at Stripe,
+called it "[the single, simplest, best method of getting easy insight into
+production that there is]." [go-chi/httplog] implements the same idea in Go on
+top of `log/slog`.
 
 ---
 
@@ -271,10 +271,12 @@ logging that it fell back from primary to secondary, or that a feature flag
 changed the code path, is recording a decision and adds information. Those
 are worth keeping. The problem this post targets is the same error or the same
 "processing request" message repeated at every layer with no new information.
+Nevertheless, hoisting your log lines to the upper layer is a general rule of thumb.
 
 _"Canonical log lines are tracing at home."_ - They're not a replacement for
 distributed tracing. They fill a different niche: request-level telemetry you
-can query ad-hoc without a trace viewer. They work best alongside metrics and traces.
+can query ad-hoc without a trace viewer. They work best alongside metrics and
+traces.
 
 _"You still need normal logs for verbose error details."_ - Yes. The canonical
 log line carries queryable dimensions like `database_queries=34` or
