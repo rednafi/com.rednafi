@@ -224,7 +224,7 @@ The Kubernetes API server does exactly this with [AddKeyValue] and [respLogger].
 Caddy's deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same
 pattern.
 
-## The canonical log line
+## Canonical log line
 
 Stripe took the middleware approach to its logical conclusion with what they call
 the [canonical log line]. Every request produces a single structured line
