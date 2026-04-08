@@ -94,7 +94,7 @@ connection refused`. The full call chain is in the error string and no layer had
 to log independently.
 
 There are two ways to do the actual logging at the top. You can log in the handler
-itself, or you can log in a middleware that wraps the handler. 
+itself, or you can log in a middleware that wraps the handler.
 
 ## Option 1: log in the handler
 
