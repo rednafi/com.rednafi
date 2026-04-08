@@ -216,9 +216,23 @@ The service layer could do the same for cache hit/miss, feature flag evaluations
 calls to other services. None of them emit a log line. They just call `AddLogField`
 and move on.
 
-The middleware at the top collects all of it and emits one line: method, path,
-status, duration, `db_duration`, and whatever else the layers below attached. One
-request, one log line, with context from every layer.
+The middleware at the top collects all of it and emits one line. If the repository
+called `AddLogField(ctx, "db_duration", ...)` and the request returned a 200, the
+output looks something like:
+
+```json
+{
+  "level": "INFO",
+  "msg": "request",
+  "method": "GET",
+  "path": "/users/abc123",
+  "status": 200,
+  "duration": "4.123ms",
+  "db_duration": "3.561ms"
+}
+```
+
+One request, one log line, with context from every layer.
 
 The Kubernetes API server does exactly this with [AddKeyValue] and [respLogger].
 Caddy's deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same
