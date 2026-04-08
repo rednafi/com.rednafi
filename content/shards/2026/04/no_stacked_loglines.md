@@ -258,7 +258,7 @@ the same idea in Go on top of `log/slog`.
 
 ---
 
-A few things that came up when I [posted this on Reddit][reddit-thread]:
+A few things that came up when I [posted this on Reddit]:
 
 _"What about debug logs in lower layers?"_ - Debug-level logs in the repository
 or service layer are fine as long as they're disabled by default in production.
@@ -318,7 +318,7 @@ the verbose details separately.
 [go-chi/httplog]:
     https://github.com/go-chi/httplog
 
-[reddit-thread]:
+[posted this on Reddit]:
     https://www.reddit.com/r/golang/comments/TODO
 
 <!-- prettier-ignore-end -->
