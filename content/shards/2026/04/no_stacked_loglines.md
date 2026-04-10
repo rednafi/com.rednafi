@@ -320,6 +320,6 @@ the verbose details separately.
     https://github.com/go-chi/httplog
 
 [posted this on Reddit]:
-    https://www.reddit.com/r/golang/comments/TODO
+    https://www.reddit.com/r/golang/comments/1sfvks6/stacked_log_lines_considered_harmful/
 
 <!-- prettier-ignore-end -->
