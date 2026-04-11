@@ -36,7 +36,7 @@
   --bg: #fefcf6;
   --text: #1a1a1a;
   --muted: #3d3d3d;
-  --faint: #777;
+  --faint: #6e6e6e;
   --code-bg: #f2f1eb;
   --border: #ddd;
   --link: #1a4bbf;
@@ -50,7 +50,7 @@
   --bg: #212529;
   --text: #e0e0e0;
   --muted: #aaa;
-  --faint: #666;
+  --faint: #8c8c8c;
   --code-bg: #2c3034;
   --border: #404550;
   --link: #79a8ff;
@@ -129,7 +129,6 @@ body.home .site-header {
   margin-left: 0;
   margin-right: 0;
 }
-
 
 .site-title {
   font-weight: 700;
@@ -236,6 +235,22 @@ body.home .site-header {
 
 .post-list .date { display: block; margin-top: .15rem; }
 
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: .5rem 1rem;
+  background: var(--bg);
+  color: var(--link);
+}
+
+.skip-link:focus {
+  left: .5rem;
+  top: .5rem;
+}
+
 /* Focus styles */
 :focus-visible {
   outline: 2px solid var(--link);
@@ -284,7 +299,7 @@ article iframe {
 article sup { line-height: 1; }
 
 /* Code */
-pre, code, code[class*="language-"] {
+pre, code {
   font-family: "Geist Mono", ui-monospace, monospace;
   font-size: .85rem;
 }
@@ -308,13 +323,13 @@ pre {
   overflow-x: auto;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  transition: background-color .2s ease, border-color .2s ease;
 }
 
 .highlight { margin: 1rem 0; }
 .highlight pre { margin: 0; }
 
-/* Themed surfaces — shared transition for smooth theme toggle */
-pre { transition: background-color .2s ease, border-color .2s ease; }
+/* Themed surfaces — smooth theme toggle */
 code, blockquote, .alert, summary { transition: background-color .2s ease; }
 
 /* Blockquotes & Alerts — shared box style */
@@ -584,7 +599,6 @@ summary {
   .index { display: block; }
   .index aside {
     width: 100%;
-    position: static;
     display: flex;
     flex-wrap: wrap;
     gap: 0 2rem;
@@ -605,7 +619,7 @@ summary {
 
 /* Print */
 @media print {
-  .site-header, footer, .breadcrumbs, .post-tags, .related-posts, .post-ornament, .pagination { display: none; }
+  .site-header, footer, .breadcrumbs, .post-tags, .related-posts, .post-ornament, .pagination, .skip-link, .back-to-top { display: none; }
   body { max-width: 100%; }
   a { color: inherit; text-decoration: underline; }
   a[href]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
