@@ -1,5 +1,5 @@
 {{- define "head-extra" }}
-{{- if ne .Kind "taxonomy" }}
+{{- if and (ne .Kind "taxonomy") (not .IsHome) }}
 {{- with .Paginator }}
 {{- if .HasPrev }}<link rel="prev" href="{{ .Prev.URL }}">{{ end }}
 {{- if .HasNext }}<link rel="next" href="{{ .Next.URL }}">{{ end }}
@@ -39,7 +39,7 @@
         {{- end }}
       </ul>
     </div>
-    <div class="aside-section">
+<div class="aside-section">
       <h4>Connect</h4>
       <ul>
         <li><a href="mailto:redowan.nafi@gmail.com">Email <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-.1em"><path d="M0 4v16h24V4H0zm12 10L2 6h20L12 14z"/></svg></a></li>

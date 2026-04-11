@@ -17,6 +17,9 @@ menu:
     - name: Maxims
       url: /maxims/
       weight: 4
+    - name: Papers
+      url: /papers/
+      weight: 5
   browse:
     - name: Archive
       url: /archive/
@@ -75,14 +78,6 @@ params:
       - "https://bsky.app/profile/rednafi.com"
   description: >-
     Redowan Delowar — a roving amateur fumbling through software, systems, and sundry.
-
-  keywords:
-    - software engineering
-    - Go programming
-    - Python development
-    - distributed systems
-    - backend development
-    - technical writing
 
   DateFormat: "January 2, 2006"
 

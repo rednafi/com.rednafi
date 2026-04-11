@@ -31,6 +31,9 @@ build:
 	hugo --environment production --minify --gc --cleanDestinationDir
 	npx -y pagefind
 
+test: build
+	cd tests && go test -v -count=1 ./...
+
 upload-image:
 	@if [ -z "$(local_path)" ] || [ -z "$(remote_path)" ]; then \
 		echo "Usage: make upload-image local_path=<file> remote_path=<bucket_path>"; \
