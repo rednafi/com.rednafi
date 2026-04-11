@@ -16,12 +16,14 @@
       <a href="#{{ $.Key }}-{{ .Key }}">{{ .Key }}</a>
       <sup>&nbsp;{{ len .Pages }}</sup>
     </h3>
+    <div class="post-list">
     {{- range .Pages }}
-    <div class="archive-entry">
-      <span class="date">{{ .Date.Format "Jan 2" }}</span>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </div>
+      <div class="post">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <span class="date">{{ .Date.Format site.Params.DateFormat }}</span>
+      </div>
     {{- end }}
+    </div>
   </div>
   {{- end }}
 </div>
