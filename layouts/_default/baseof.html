@@ -13,10 +13,13 @@
   </script>
 </head>
 <body{{ if .IsHome }} class="home"{{ end }}>
+  <a href="#main" class="skip-link">Skip to content</a>
   <div class="page">
     <div class="page-content">
       {{- partial "site-header.html" . }}
-      {{- block "main" . }}{{ end }}
+      <main id="main">
+        {{- block "main" . }}{{ end }}
+      </main>
     </div>
     <footer>
       <a href="/about/">about</a> &middot;

@@ -3,7 +3,7 @@
   {{- range . }}
   <div class="post">
     <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="date">{{ .Date.Format site.Params.DateFormat }} · {{ if eq .Section $notes }}<a href="/{{ $notes }}/" class="type-label">shard</a>{{ else }}<a href="/articles/" class="type-label">article</a>{{ end }}</span>
+    <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time> · {{ if eq .Section $notes }}<a href="/{{ $notes }}/" class="type-label">shard</a>{{ else }}<a href="/articles/" class="type-label">article</a>{{ end }}</span>
   </div>
   {{- end }}
 </div>
