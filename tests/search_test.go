@@ -53,6 +53,44 @@ func TestSearchFunctionality(t *testing.T) {
 	})
 }
 
+// TestSearchIndexCoversAllSections verifies content from every main section
+// (including shards) appears in the Pagefind index. If the pagefind.yml glob
+// misses a section, that content silently disappears from search.
+func TestSearchIndexCoversAllSections(t *testing.T) {
+	t.Parallel()
+
+	// Each entry: a unique term that only appears in that section's content.
+	sectionTerms := map[string]string{
+		"go":     "goroutine",
+		"python": "decorator",
+		"shards": "dynamo",
+	}
+
+	for section, term := range sectionTerms {
+		t.Run(section+"/"+term, func(t *testing.T) {
+			page := newPage(t)
+			goto_(t, page, "/search/")
+
+			err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
+				Timeout: new(10000.0),
+			})
+			require.NoError(t, err)
+
+			require.NoError(t, page.Locator(".pagefind-ui__search-input").Fill(term))
+			err = page.Locator(".pagefind-ui__result").First().WaitFor(playwright.LocatorWaitForOptions{
+				Timeout: new(10000.0),
+			})
+			require.NoError(t, err)
+
+			count, err := page.Locator(".pagefind-ui__result").Count()
+			require.NoError(t, err)
+			assert.Greater(t, count, 0,
+				"search for %q (section %s) should return results — check pagefind.yml glob",
+				term, section)
+		})
+	}
+}
+
 // TestSearchPageCSS verifies pagefind CSS overrides are applied.
 func TestSearchPageCSS(t *testing.T) {
 	t.Parallel()
