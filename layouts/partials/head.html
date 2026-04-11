@@ -9,13 +9,8 @@
 {{- /* Meta */ -}}
 {{- $desc := .Description | default .Summary | default site.Params.description }}
 <meta name="description" content="{{ $desc }}">
-{{- if .IsHome }}
-{{ with site.Params.keywords }}<meta name="keywords" content="{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
-{{- else }}
-<meta name="keywords" content="{{ range $i, $e := (.Params.tags | default .Params.keywords) }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">
-{{- end }}
 <meta name="author" content="{{ site.Params.author }}">
-<link rel="canonical" href="{{ if .Params.canonicalURL }}{{ .Params.canonicalURL }}{{ else }}{{ .Permalink }}{{ end }}">
+<link rel="canonical" href="{{ .Params.canonicalURL | default .Permalink }}">
 {{- if or (eq .Kind "404") .Params.robotsNoIndex }}
 <meta name="robots" content="noindex, follow">
 {{- else if hugo.IsProduction | or (eq site.Params.env "production") }}
@@ -37,6 +32,8 @@
 <link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}">
 <link rel="icon" type="image/png" href="{{ $png }}">
 <link rel="apple-touch-icon" href="{{ $png }}">
+<meta name="theme-color" content="#fefcf6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#212529" media="(prefers-color-scheme: dark)">
 
 {{- /* RSS */ -}}
 {{ range .AlternativeOutputFormats -}}
@@ -45,7 +42,6 @@
 
 {{- /* Sitemap */ -}}
 <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
-
 
 {{- /* Site verification */ -}}
 {{- with site.Params.analytics.google.SiteVerificationTag }}
@@ -81,13 +77,8 @@
 {{- end }}{{ end }}
 {{- end }}
 
-{{- /* Twitter Cards */ -}}
+{{- /* Twitter Cards — title/desc/image fall back to OG tags */ -}}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ .Title }}">
-<meta name="twitter:description" content="{{ $desc }}">
-{{- with site.Params.images }}
-<meta name="twitter:image" content="{{ index . 0 }}">
-{{- end }}
 {{- with site.Params.social.twitter }}
 <meta name="twitter:creator" content="@{{ . }}">
 <meta name="twitter:site" content="@{{ . }}">

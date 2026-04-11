@@ -20,7 +20,7 @@
     {{- range .Pages }}
       <div class="post">
         <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <span class="date">{{ .Date.Format site.Params.DateFormat }}</span>
+        <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></span>
       </div>
     {{- end }}
     </div>

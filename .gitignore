@@ -22,6 +22,10 @@ __pycache__/
 # Wrangler
 .wrangler/
 
+# Playwright
+tests/test-results/
+
 # Cache
 .cache/
 .claude/
+public-test/

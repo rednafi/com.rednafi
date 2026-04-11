@@ -12,7 +12,7 @@
 
 <h1>{{ .Title }}{{ if .Draft }}<sup>[draft]</sup>{{ end }}</h1>
 {{- if not (.Param "hideMeta") }}
-<div class="post-meta">{{ .Date.Format site.Params.DateFormat }}</div>
+<div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></div>
 {{- end }}
 
 {{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}
@@ -75,7 +75,6 @@
 })();
 </script>
 {{- end }}
-
 
 </div>
 {{- end }}
