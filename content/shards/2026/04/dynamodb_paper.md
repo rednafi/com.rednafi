@@ -1,5 +1,5 @@
 ---
-title: "Dynamo: Amazon's Highly Available Key-value Store"
+title: "Dynamo: Amazon's highly available key-value store"
 date: 2026-04-11
 slug: dynamo
 tags:
