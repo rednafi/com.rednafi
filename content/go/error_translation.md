@@ -428,10 +428,10 @@ can follow the 404 all the way back to the storage call that failed.
 
 ## The standard library does the same thing
 
-`io.EOF` is the most familiar example of this pattern. An `*os.File`
-returns it when the read syscall gets 0 bytes. A `*net.TCPConn` returns it
-when the peer hangs up. A `*bytes.Reader` returns it when the buffer runs
-out. Three different mechanisms, one error. Callers write
+`io.EOF` is the most familiar example of this pattern. Reading a file
+returns it when the read syscall gets 0 bytes. Reading a TCP connection
+returns it when the peer hangs up. Reading a byte buffer returns it when
+there's nothing left. Three different mechanisms, one error. Callers write
 `if err == io.EOF` and never think about what's underneath.
 
 `fs.ErrNotExist` works the same way across platforms. On Linux, a missing
