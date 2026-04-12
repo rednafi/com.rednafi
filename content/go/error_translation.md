@@ -433,7 +433,7 @@ On Linux, opening a missing file fails with `syscall.ENOENT`. On Windows,
 it fails with `ERROR_FILE_NOT_FOUND`. But callers never see either:
 
 ```go
-// From os/file.go (simplified)
+// Example usage
 
 f, err := os.Open("/etc/missing.yaml")
 if errors.Is(err, fs.ErrNotExist) {
