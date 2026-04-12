@@ -33,12 +33,12 @@
 }
 
 :root {
-  --bg: #fefcf6;
+  --bg: #fafafa;
   --text: #1a1a1a;
   --muted: #3d3d3d;
   --faint: #6e6e6e;
-  --code-bg: #f2f1eb;
-  --border: #ddd;
+  --code-bg: #f0f0f0;
+  --border: #e5e5e5;
   --link: #1a4bbf;
   --visited: #54457f;
   --accent-quote: #7c6f9f;
@@ -47,12 +47,12 @@
 }
 
 [data-theme="dark"] {
-  --bg: #212529;
+  --bg: #161616;
   --text: #e0e0e0;
   --muted: #aaa;
   --faint: #8c8c8c;
-  --code-bg: #2c3034;
-  --border: #404550;
+  --code-bg: #222222;
+  --border: #333;
   --link: #79a8ff;
   --visited: #b4a7d6;
   --accent-quote: #a892d6;
@@ -89,8 +89,8 @@ body {
 }
 
 ::selection {
-  background: var(--link);
-  color: var(--bg);
+  background: color-mix(in srgb, var(--link) 25%, transparent);
+  color: var(--text);
 }
 
 a {
@@ -119,6 +119,7 @@ h3 { font-size: 1.1rem; letter-spacing: -.01em; }
   margin-bottom: 1.5rem;
   padding-bottom: .75rem;
   border-bottom: 1px solid var(--border);
+  transition: border-color .2s ease;
   max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
@@ -176,9 +177,16 @@ body.home .site-header {
 .aside-section a { font-size: .9rem; }
 
 /* Homepage layout */
-.index { display: flex; gap: 1rem; }
+.index { display: flex; gap: 2.5rem; }
 .index .article-list { flex-grow: 1; min-width: 0; }
-.index aside { width: 30%; min-width: 0; align-self: flex-start; }
+.index aside {
+  width: 28%;
+  min-width: 0;
+  align-self: flex-start;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+  transition: border-color .2s ease;
+}
 
 /* About avatar */
 .about-avatar {
@@ -226,11 +234,19 @@ body.home .site-header {
   padding: .6rem .5rem;
   border-radius: var(--radius);
   transition: background-color .15s ease;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
+  background-image: linear-gradient(to right, var(--border) 85%, transparent);
+  background-size: 100% 1px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.post-list .post:last-child {
+  background-image: none;
 }
 
 .post-list .post:hover {
-  background-color: var(--code-bg);
+  background: var(--code-bg);
 }
 
 .post-list .date { display: block; margin-top: .15rem; }
@@ -272,9 +288,9 @@ article a {
   text-decoration: none;
   background-image: linear-gradient(var(--link), var(--link));
   background-size: 0% 1px;
-  background-position: left bottom;
+  background-position: center bottom;
   background-repeat: no-repeat;
-  transition: background-size .25s ease, color .15s ease;
+  transition: background-size .25s cubic-bezier(.4, 0, .2, 1), color .15s ease;
 }
 
 article a:hover {
@@ -306,13 +322,15 @@ pre, code {
 
 code {
   background-color: var(--code-bg);
-  padding: .08rem .24rem;
+  padding: .1rem .3rem;
   border-radius: var(--radius);
+  border: 1px solid var(--border);
 }
 
 pre code {
   padding: 0;
   background: none;
+  border: none;
 }
 
 pre {
@@ -330,7 +348,7 @@ pre {
 .highlight pre { margin: 0; }
 
 /* Themed surfaces — smooth theme toggle */
-code, blockquote, .alert, summary { transition: background-color .2s ease; }
+code, blockquote, .alert, summary { transition: background-color .2s ease, border-color .2s ease; }
 
 /* Blockquotes & Alerts — shared box style */
 blockquote, .alert {
@@ -401,6 +419,7 @@ footer {
   font-size: .85rem;
   color: var(--faint);
   border-top: 1px solid var(--border);
+  transition: border-color .2s ease;
 }
 
 .aside-section a,
@@ -470,17 +489,20 @@ footer a:hover { color: var(--link); }
 
 /* Heading anchors */
 .anchor {
-  color: var(--border);
+  color: var(--faint);
   text-decoration: none;
   font-weight: normal;
   margin-left: .3rem;
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s ease;
 }
 
 h2:hover .anchor, h3:hover .anchor, h4:hover .anchor,
 h5:hover .anchor, h6:hover .anchor, .anchor:focus {
-  visibility: visible;
+  opacity: .4;
 }
+
+.anchor:hover { opacity: 1; }
 
 /* Back to top */
 .back-to-top {
@@ -588,7 +610,8 @@ summary {
 
 /* Responsive — tablet */
 @media (max-width: 768px) {
-  .index aside { width: 35%; }
+  .index aside { width: 35%; padding-left: 1rem; }
+  .index { gap: 1.5rem; }
 }
 
 /* Responsive — mobile */
@@ -604,6 +627,8 @@ summary {
     gap: 0 2rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
+    padding-left: 0;
+    border-left: none;
     border-top: 1px solid var(--border);
   }
 
