@@ -51,21 +51,22 @@ func TestHeadingAnchorsVisibleOnHover(t *testing.T) {
 	require.NoError(t, err)
 	require.Greater(t, count, 0)
 
-	// Anchors should be hidden by default (visibility: hidden)
-	vis, err := page.Evaluate(
-		`() => getComputedStyle(document.querySelector("article .anchor")).visibility`,
+	// Anchors should be hidden by default (opacity: 0)
+	opacity, err := page.Evaluate(
+		`() => getComputedStyle(document.querySelector("article .anchor")).opacity`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "hidden", vis)
+	assert.Equal(t, "0", opacity)
 
 	// Hover over the parent heading — anchor should become visible
 	heading := page.Locator("article h2").First()
 	require.NoError(t, heading.Hover())
-	vis2, err := heading.Locator(".anchor").Evaluate(
-		`el => getComputedStyle(el).visibility`, nil,
+	opacity2, err := heading.Locator(".anchor").Evaluate(
+		`el => getComputedStyle(el).opacity`, nil,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "visible", vis2)
+	opStr, _ := opacity2.(string)
+	assert.NotEqual(t, "0", opStr, "anchor should be visible on heading hover")
 }
 
 // TestDeepAnchorLinkNavigation verifies that navigating to a #hash URL

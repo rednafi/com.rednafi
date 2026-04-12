@@ -224,13 +224,14 @@ func TestPostListHoverCSS(t *testing.T) {
 			"post should have background-color transition for hover effect")
 	})
 
-	t.Run("post has border-bottom", func(t *testing.T) {
-		border, err := page.Locator(".post-list .post").First().Evaluate(
-			`el => getComputedStyle(el).borderBottomStyle`, nil,
+	t.Run("post has bottom divider", func(t *testing.T) {
+		bgImage, err := page.Locator(".post-list .post").First().Evaluate(
+			`el => getComputedStyle(el).backgroundImage`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "solid", border,
-			"post should have bottom border separator")
+		bgStr, _ := bgImage.(string)
+		assert.Contains(t, bgStr, "gradient",
+			"post should have gradient bottom divider")
 	})
 }
 
