@@ -441,8 +441,8 @@ if errors.Is(err, fs.ErrNotExist) {
 }
 ```
 
-`os.Open` catches the platform error and wraps it so that `errors.Is` maps
-it to `fs.ErrNotExist`. Same idea as the repository catching
+`os.Open` catches the platform error and wraps it so that `errors.Is`
+[maps it to `fs.ErrNotExist`]. Same idea as the repository catching
 `sql.ErrNoRows` and wrapping `user.ErrNotFound` instead.
 
 etcd's [clientv3 package] does the same translation in the reverse
@@ -464,6 +464,9 @@ in the [error-translation] directory.
 
 [Wrapping a gRPC client in Go]:
     /go/wrap-grpc-client
+
+[maps it to `fs.ErrNotExist`]:
+    https://github.com/golang/go/blob/go1.24.2/src/syscall/syscall_unix.go#L120
 
 [clientv3 package]:
     https://github.com/etcd-io/etcd/tree/main/client/v3
