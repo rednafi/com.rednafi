@@ -21,6 +21,8 @@ Say you have a user service backed by Postgres. The handler fetches a user by
 ID and needs to distinguish "not found" from an actual failure:
 
 ```go
+// handler.go
+
 func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
     u, err := h.svc.GetUser(r.Context(), id)
     if errors.Is(err, sql.ErrNoRows) { // (1)
@@ -46,6 +48,8 @@ Then the service grows. Someone puts Redis in front of Postgres as a
 read-through cache, and now there are two different "not found" errors:
 
 ```go
+// handler.go
+
 if errors.Is(err, sql.ErrNoRows) || errors.Is(err, redis.Nil) {
     http.Error(w, "not found", http.StatusNotFound)
     return
@@ -61,6 +65,8 @@ it. But the service considers the user gone. The handler has no way to return
 Then someone adds a gRPC handler for the same service:
 
 ```go
+// handler.go
+
 func (h *Handler) GetUser(
     ctx context.Context, req *pb.GetUserRequest,
 ) (*pb.GetUserResponse, error) {
@@ -459,6 +465,8 @@ When you call `os.Open` on a missing file, the `os` package wraps the syscall
 error in a `*fs.PathError`:
 
 ```go
+// Example usage
+
 f, err := os.Open("/etc/missing.yaml")
 // err is &fs.PathError{
 //     Op:   "open",
@@ -472,6 +480,8 @@ implements `Unwrap()`, which returns `syscall.ENOENT`. Then `errors.Is` calls
 `ENOENT.Is(fs.ErrNotExist)`, which hits the switch above and returns true:
 
 ```go
+// Example usage
+
 if errors.Is(err, fs.ErrNotExist) {
     // works on Linux, macOS, and Windows
 }
