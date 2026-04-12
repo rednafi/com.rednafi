@@ -235,7 +235,9 @@ func (s *Service) GetUser(
         return User{}, err // (1)
     }
     if u.DeletedAt != nil {
-        return User{}, fmt.Errorf("user %d soft-deleted: %w", id, ErrNotFound) // (2)
+        return User{}, fmt.Errorf(
+            "user %d soft-deleted: %w", id, ErrNotFound, // (2)
+        )
     }
     return u, nil
 }
