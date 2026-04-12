@@ -469,7 +469,7 @@ in the [error-translation] directory.
     https://github.com/golang/go/blob/go1.24.2/src/syscall/syscall_unix.go#L120
 
 [clientv3 package]:
-    https://github.com/etcd-io/etcd/tree/main/client/v3
+    https://github.com/etcd-io/etcd/blob/main/api/v3rpc/rpctypes/error.go#L185
 
 [error-translation]:
     https://github.com/rednafi/examples/tree/main/error-translation
