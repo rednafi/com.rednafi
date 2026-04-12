@@ -428,21 +428,20 @@ can follow the 404 all the way back to the storage call that failed.
 
 ## The standard library does the same thing
 
-`io.EOF` is the most familiar example of this pattern. Reading a file
-returns it when the read syscall gets 0 bytes. Reading a TCP connection
-returns it when the peer hangs up. Reading a byte buffer returns it when
-there's nothing left. Three different mechanisms, one error. Callers write
-`if err == io.EOF` and never think about what's underneath.
+The `os` package translates platform-specific errors into portable ones.
+On Linux, opening a missing file fails with `syscall.ENOENT`. On Windows,
+it fails with `ERROR_FILE_NOT_FOUND`. But callers never see either:
 
-`fs.ErrNotExist` works the same way across platforms. On Linux, a missing
-file produces `syscall.ENOENT`. On Windows, it produces
-`ERROR_FILE_NOT_FOUND`. The `os` package catches both and maps them to
-`fs.ErrNotExist`. Callers write `errors.Is(err, fs.ErrNotExist)` and it
-works everywhere.
+```go
+f, err := os.Open("/etc/missing.yaml")
+if errors.Is(err, fs.ErrNotExist) {
+    // same check works on Linux, macOS, and Windows
+}
+```
 
-Both follow the same structure as the repository in this post: the layer
-that knows the implementation detail catches it and returns a domain error
-instead.
+`os.Open` catches the platform error and wraps it so that `errors.Is` maps
+it to `fs.ErrNotExist`. Same idea as the repository catching
+`sql.ErrNoRows` and wrapping `user.ErrNotFound` instead.
 
 etcd's [clientv3 package] does the same translation in the reverse
 direction. The client receives gRPC status codes from the server and maps
