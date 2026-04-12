@@ -61,6 +61,7 @@ func TestHeadingAnchorsVisibleOnHover(t *testing.T) {
 	// Hover over the parent heading — anchor should become visible
 	heading := page.Locator("article h2").First()
 	require.NoError(t, heading.Hover())
+	time.Sleep(300 * time.Millisecond) // wait for opacity transition (150ms)
 	opacity2, err := heading.Locator(".anchor").Evaluate(
 		`el => getComputedStyle(el).opacity`, nil,
 	)
