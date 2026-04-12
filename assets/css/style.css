@@ -33,12 +33,12 @@
 }
 
 :root {
-  --bg: #fafafa;
+  --bg: #fefcf6;
   --text: #1a1a1a;
   --muted: #3d3d3d;
   --faint: #6e6e6e;
-  --code-bg: #f0f0f0;
-  --border: #e5e5e5;
+  --code-bg: #f2f1eb;
+  --border: #ddd;
   --link: #1a4bbf;
   --visited: #54457f;
   --accent-quote: #7c6f9f;
@@ -47,12 +47,12 @@
 }
 
 [data-theme="dark"] {
-  --bg: #161616;
+  --bg: #212529;
   --text: #e0e0e0;
   --muted: #aaa;
   --faint: #8c8c8c;
-  --code-bg: #222222;
-  --border: #333;
+  --code-bg: #2c3034;
+  --border: #404550;
   --link: #79a8ff;
   --visited: #b4a7d6;
   --accent-quote: #a892d6;
