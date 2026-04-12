@@ -386,6 +386,8 @@ To make this useful, the handler logs the full error before returning the
 response:
 
 ```go
+// main.go
+
 func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
     id, _ := strconv.ParseInt(r.PathValue("id"), 10, 64)
 
