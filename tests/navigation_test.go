@@ -78,7 +78,7 @@ func TestConnectSidebarLinks(t *testing.T) {
 }
 
 // TestTypeLabels verifies the post list correctly labels posts as
-// "article" or "shard" based on their content section.
+// "article", "shard", or a custom type_label from frontmatter.
 func TestTypeLabels(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
@@ -92,6 +92,8 @@ func TestTypeLabels(t *testing.T) {
 	// Collect all type labels
 	articleFound := false
 	shardFound := false
+
+	validLabels := []string{"article", "shard", "paper"}
 
 	for i := range min(count, 30) {
 		label := posts.Nth(i).Locator(".type-label")
@@ -109,8 +111,8 @@ func TestTypeLabels(t *testing.T) {
 		case "shard":
 			shardFound = true
 		}
-		assert.Contains(t, []string{"article", "shard"}, text,
-			"type label should be 'article' or 'shard', got %q", text)
+		assert.Contains(t, validLabels, text,
+			"unexpected type label %q", text)
 	}
 
 	assert.True(t, articleFound, "homepage should have at least one 'article' type label")
