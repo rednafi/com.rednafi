@@ -177,11 +177,11 @@ func (s *UserStore) Get(
 
 The two paths use different format verbs and wrap different things:
 
-- (1) `%w` wraps `user.ErrNotFound` — the domain sentinel, not the original
+- (1) `%w` wraps `user.ErrNotFound` - the domain sentinel, not the original
   `sql.ErrNoRows`. The repository catches `sql.ErrNoRows` in the `if`
   check above, but instead of wrapping it, builds a new error around
   `user.ErrNotFound`. So `errors.Is(err, user.ErrNotFound)` matches, but
-  `errors.Is(err, sql.ErrNoRows)` does not — that error was consumed here,
+  `errors.Is(err, sql.ErrNoRows)` does not because that error was consumed here,
   not wrapped. The message `"user 42 not in db: not found"` still tells
   you what happened during debugging.
 - (2) `%v` wraps the raw `err` from `database/sql`. This is a storage error
@@ -426,63 +426,23 @@ The error string tells you which code path produced the error. If you have
 tracing set up, the request-scoped context carries the trace ID too, so you
 can follow the 404 all the way back to the storage call that failed.
 
-## Precedent in the standard library
+## The standard library does the same thing
 
-The same pattern shows up in the standard library.
+`io.EOF` is the most familiar example of this pattern. An `*os.File`
+returns it when the read syscall gets 0 bytes. A `*net.TCPConn` returns it
+when the peer hangs up. A `*bytes.Reader` returns it when the buffer runs
+out. Three different mechanisms, one error. Callers write
+`if err == io.EOF` and never think about what's underneath.
 
-The [`os`][os] package is the clearest example. On Linux, opening a missing
-file produces `syscall.ENOENT`. On Windows, the same operation produces
-`syscall.ERROR_FILE_NOT_FOUND`. Callers never check for either. They check
-one portable sentinel:
+`fs.ErrNotExist` works the same way across platforms. On Linux, a missing
+file produces `syscall.ENOENT`. On Windows, it produces
+`ERROR_FILE_NOT_FOUND`. The `os` package catches both and maps them to
+`fs.ErrNotExist`. Callers write `errors.Is(err, fs.ErrNotExist)` and it
+works everywhere.
 
-```go
-if errors.Is(err, fs.ErrNotExist) {
-    // works on Linux, macOS, and Windows
-}
-```
-
-This works because `os.Open` wraps the raw syscall error in an
-[`*fs.PathError`][fs.PathError] — a struct that holds the operation name,
-file path, and the underlying error. When `errors.Is` unwraps the
-`PathError`, it reaches `syscall.ENOENT`. Normally that wouldn't match
-`fs.ErrNotExist` (they're different values), but `syscall.Errno` implements
-a custom [`Is` method][Errno.Is] that maps platform-specific error numbers
-to portable sentinels: `ENOENT` maps to `fs.ErrNotExist`, `EACCES` and
-`EPERM` map to `fs.ErrPermission`, and so on. On Windows, a different set
-of error numbers maps to the same sentinels. Callers check one error,
-works everywhere — same idea as mapping both `sql.ErrNoRows` and
-`redis.Nil` to `user.ErrNotFound`.
-
-[`database/sql`][database/sql] does the same thing one layer up. When
-`QueryRow` returns no results, the underlying driver signals end-of-results
-through its own internal protocol. [`Row.Scan`][Row.Scan] catches that
-signal and returns `sql.ErrNoRows` instead:
-
-```go
-// From database/sql/sql.go (simplified)
-
-func (r *Row) Scan(dest ...any) error {
-    if r.err != nil {
-        return r.err
-    }
-    defer r.rows.Close()
-
-    if !r.rows.Next() {
-        if err := r.rows.Err(); err != nil {
-            return err
-        }
-        return ErrNoRows
-    }
-    // ...
-}
-```
-
-The driver says "end of result set." `database/sql` says "no rows." Callers
-check `sql.ErrNoRows` regardless of whether Postgres, MySQL, or SQLite is
-behind the connection. The driver-specific signal never reaches them. This
-is the same thing the repository does when it catches `sql.ErrNoRows` and
-returns `user.ErrNotFound` — translate at the boundary so the layer above
-doesn't need to know what's underneath.
+Both follow the same structure as the repository in this post: the layer
+that knows the implementation detail catches it and returns a domain error
+instead.
 
 etcd's [clientv3 package] does the same translation in the reverse
 direction. The client receives gRPC status codes from the server and maps
@@ -503,21 +463,6 @@ in the [error-translation] directory.
 
 [Wrapping a gRPC client in Go]:
     /go/wrap-grpc-client
-
-[os]:
-    https://pkg.go.dev/os
-
-[fs.PathError]:
-    https://pkg.go.dev/io/fs#PathError
-
-[Errno.Is]:
-    https://pkg.go.dev/syscall#Errno.Is
-
-[database/sql]:
-    https://pkg.go.dev/database/sql
-
-[Row.Scan]:
-    https://pkg.go.dev/database/sql#Row.Scan
 
 [clientv3 package]:
     https://github.com/etcd-io/etcd/tree/main/client/v3
