@@ -1,0 +1,7 @@
+{{- $person := merge . (dict "@id" ("about/#person" | absURL)) -}}
+{{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
+{{- with site.Params.schema.alternateName }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
+{{- with site.Params.schema.image }}{{ $person = merge $person (dict "image" .) }}{{ end }}
+{{- with site.Params.schema.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end }}
+{{- with site.Params.schema.sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
+{{- return $person -}}

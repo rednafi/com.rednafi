@@ -64,6 +64,26 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 	})
 }
 
+// TestIdentityLinks verifies rel=author and rel=me links are present
+// for Google Knowledge Panel and social profile verification.
+func TestIdentityLinks(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/")
+
+	t.Run("has rel=author pointing to about page", func(t *testing.T) {
+		href, err := page.Locator(`link[rel="author"]`).GetAttribute("href")
+		require.NoError(t, err)
+		assert.Contains(t, href, "/about/")
+	})
+
+	t.Run("has rel=me links for social profiles", func(t *testing.T) {
+		count, err := page.Locator(`link[rel="me"]`).Count()
+		require.NoError(t, err)
+		assert.GreaterOrEqual(t, count, 3, "should have GitHub, LinkedIn, Bluesky")
+	})
+}
+
 // TestArticleSchemaCompleteness verifies BlogPosting JSON-LD includes all
 // fields needed for Google's article rich results.
 func TestArticleSchemaCompleteness(t *testing.T) {
@@ -71,7 +91,7 @@ func TestArticleSchemaCompleteness(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/go/anemic-stack-traces/")
 
-	jsonLd, err := page.Locator(`script[type="application/ld+json"]`).TextContent()
+	jsonLd, err := page.Locator(`script[type="application/ld+json"]`).First().TextContent()
 	require.NoError(t, err)
 
 	var schema map[string]any
@@ -115,6 +135,79 @@ func TestArticleSchemaCompleteness(t *testing.T) {
 	t.Run("has datePublished and dateModified", func(t *testing.T) {
 		assert.Regexp(t, `^\d{4}-\d{2}-\d{2}`, schema["datePublished"])
 		assert.Regexp(t, `^\d{4}-\d{2}-\d{2}`, schema["dateModified"])
+	})
+}
+
+// TestAboutPageProfileSchema verifies the /about/ page emits ProfilePage
+// schema (not BlogPosting) with the full Person entity for E-E-A-T signals.
+func TestAboutPageProfileSchema(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/about/")
+
+	jsonLd, err := page.Locator(`script[type="application/ld+json"]`).TextContent()
+	require.NoError(t, err)
+
+	var schema map[string]any
+	require.NoError(t, json.Unmarshal([]byte(jsonLd), &schema))
+
+	t.Run("is ProfilePage type", func(t *testing.T) {
+		assert.Equal(t, "ProfilePage", schema["@type"])
+	})
+
+	t.Run("mainEntity is Person with full details", func(t *testing.T) {
+		person, ok := schema["mainEntity"].(map[string]any)
+		require.True(t, ok, "mainEntity should be a Person object")
+		assert.Equal(t, "Person", person["@type"])
+		assert.Equal(t, "Redowan Delowar", person["name"])
+		assert.Equal(t, "rednafi", person["alternateName"])
+		assert.NotEmpty(t, person["image"])
+		assert.NotEmpty(t, person["jobTitle"])
+		assert.NotEmpty(t, person["sameAs"])
+		assert.NotEmpty(t, person["knowsAbout"])
+	})
+}
+
+// TestBreadcrumbSchema verifies BreadcrumbList JSON-LD on article pages
+// includes Home, section, and article title for Google rich snippets.
+func TestBreadcrumbSchema(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/go/anemic-stack-traces/")
+
+	scripts := page.Locator(`script[type="application/ld+json"]`)
+	count, err := scripts.Count()
+	require.NoError(t, err)
+
+	var schema map[string]any
+	for i := range count {
+		text, err := scripts.Nth(i).TextContent()
+		require.NoError(t, err)
+		var s map[string]any
+		require.NoError(t, json.Unmarshal([]byte(text), &s))
+		if s["@type"] == "BreadcrumbList" {
+			schema = s
+			break
+		}
+	}
+	require.NotNil(t, schema, "BreadcrumbList JSON-LD not found")
+
+	t.Run("has three items", func(t *testing.T) {
+		items, ok := schema["itemListElement"].([]any)
+		require.True(t, ok, "itemListElement should be an array")
+		require.Len(t, items, 3)
+
+		home, _ := items[0].(map[string]any)
+		assert.Equal(t, "Home", home["name"])
+		assert.Equal(t, float64(1), home["position"])
+
+		section, _ := items[1].(map[string]any)
+		assert.Equal(t, "go", section["name"])
+		assert.Equal(t, float64(2), section["position"])
+
+		article, _ := items[2].(map[string]any)
+		assert.NotEmpty(t, article["name"])
+		assert.Equal(t, float64(3), article["position"])
 	})
 }
 
