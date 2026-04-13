@@ -10,3 +10,5 @@ exclude_selectors:
   - ".post-tags"
   - ".post-tags-meta"
   - ".post-footer"
+  - ".toc"
+  - ".related-posts"
