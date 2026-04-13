@@ -7,7 +7,17 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
 
 {{- /* Meta */ -}}
-{{- $desc := .Description | default .Summary | default site.Params.description }}
+{{- $desc := .Description | default .Summary }}
+{{- if not $desc }}
+{{- if eq .Kind "term" }}
+{{- $desc = printf "Articles about %s by %s." .Title site.Params.author }}
+{{- else if eq .Kind "taxonomy" }}
+{{- $desc = printf "Browse all topics on %s by %s." site.Title site.Params.author }}
+{{- else }}
+{{- $desc = site.Params.description }}
+{{- end }}
+{{- end }}
+{{- $desc = $desc | plainify }}
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ .Params.canonicalURL | default .Permalink }}">
@@ -17,6 +27,12 @@
 <meta name="robots" content="index, follow">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+{{- /* Author & identity */ -}}
+<link rel="author" href="{{ "about/" | absURL }}">
+{{- range site.Params.schema.sameAs }}
+<link rel="me" href="{{ . }}">
 {{- end }}
 
 {{- /* Fonts */ -}}
@@ -85,16 +101,31 @@
 {{- end }}
 
 {{- /* Schema.org JSON-LD */ -}}
+{{- $websiteId := printf "%s#website" site.BaseURL }}
+{{- $personId := "about/#person" | absURL }}
 {{- if .IsHome }}
-{{- $person := dict "@type" "Person" "name" site.Params.author "url" ("about/" | absURL) }}
-{{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
-{{- with site.Params.schema.sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
-{{- $schema := dict "@context" "https://schema.org" "@graph" (slice (dict "@type" "WebSite" "name" site.Title "url" site.BaseURL "description" site.Params.description) $person) }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" ("about/" | absURL)) }}
+{{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "url" site.BaseURL "description" site.Params.description }}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person) }}
+{{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+{{- else if eq .Params.schemaType "ProfilePage" }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" .Permalink) }}
+{{- $schema := dict "@context" "https://schema.org" "@type" "ProfilePage" "mainEntity" $person "dateModified" (.Lastmod.Format $iso8601) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if .IsPage }}
-{{- $author := dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" ("about/" | absURL) }}
-{{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601) "author" $author "publisher" (dict "@type" "Person" "name" site.Params.author) "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) }}
+{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" ("about/" | absURL) }}
+{{- with site.Params.schema.sameAs }}{{ $author = merge $author (dict "sameAs" .) }}{{ end }}
+{{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink }}
+{{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}
+{{- $schema = merge $schema (dict "author" $author "publisher" (dict "@type" "Person" "@id" $personId "name" site.Params.author)) }}
+{{- $schema = merge $schema (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "isPartOf" (dict "@type" "WebSite" "@id" $websiteId)) }}
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+{{- end }}
+{{- /* BreadcrumbList JSON-LD */ -}}
+{{- if and .IsPage .Section }}
+{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" site.BaseURL) (dict "@type" "ListItem" "position" 2 "name" .Section "item" (printf "%s/" .Section | absURL)) (dict "@type" "ListItem" "position" 3 "name" .Title) }}
+{{- $bc := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items }}
+{{ printf `<script type="application/ld+json">%s</script>` ($bc | jsonify) | safeHTML }}
 {{- end }}
 {{- end }}

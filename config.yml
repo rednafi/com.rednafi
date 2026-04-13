@@ -72,6 +72,14 @@ params:
 
   schema:
     jobTitle: Software Engineer
+    alternateName: rednafi
+    image: "https://blob.rednafi.com/static/images/about/profile-2025.jpg"
+    knowsAbout:
+      - "Go"
+      - "Python"
+      - "Distributed Systems"
+      - "Platform Engineering"
+      - "Software Design"
     sameAs:
       - "https://github.com/rednafi"
       - "https://www.linkedin.com/in/rednafi/"
