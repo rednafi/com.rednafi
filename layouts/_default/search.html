@@ -17,7 +17,13 @@
       showImages: false,
       excerptLength: 15,
       placeholder: "Search...",
-      processTerm: function(term) { return term.length >= 3 ? term : null; }
+      processTerm: function(term) { return term.length >= 3 ? term : null; },
+      ranking: {
+        termFrequency: 0.0,
+        pageLength: 0.75,
+        termSaturation: 1.2,
+        termSimilarity: 1.0
+      }
     });
   });
 </script>
