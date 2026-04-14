@@ -67,6 +67,7 @@ jobs:
 
       - name: Push changes
         if: success() && env.hugo_update_needed == 'true'
-        run: git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git remote set-url origin \
+            https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
+          git push
