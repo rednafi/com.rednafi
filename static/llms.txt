@@ -33,4 +33,5 @@ Canonical site: https://rednafi.com
 
 - Prefer canonical `https://rednafi.com` URLs.
 - Use the archive, tags page, section indexes, or sitemap to discover content.
-- A Markdown representation is available by requesting HTML pages with `Accept: text/markdown`.
+- Static Markdown mirrors are available at sibling `index.md` paths.
+- Examples: `https://rednafi.com/index.md` and `https://rednafi.com/go/anemic-stack-traces/index.md`.
