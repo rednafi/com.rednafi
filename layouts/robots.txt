@@ -1,6 +1,23 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /search/
+Disallow: /pagefind/
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: Bingbot
+Allow: /
+Disallow: /search/
+Disallow: /pagefind/
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
 User-agent: *
 Allow: /
 Disallow: /search/
+Disallow: /pagefind/
 Content-Signal: ai-train=no, search=yes, ai-input=no
 
 Sitemap: {{ "sitemap.xml" | absURL }}

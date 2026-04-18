@@ -105,3 +105,20 @@ func TestMarkdownAlternateLinks(t *testing.T) {
 		})
 	}
 }
+
+func TestMarkdownMirrorsNormalizeShortcodes(t *testing.T) {
+	t.Parallel()
+
+	t.Run("mermaid blocks stay readable", func(t *testing.T) {
+		body := httpGet(t, baseURL+"/system/tap-compare-testing/index.md")
+		assert.Contains(t, body, "```mermaid")
+		assert.NotContains(t, body, "{{< mermaid >}}")
+		assert.NotContains(t, body, "{{</ mermaid >}}")
+	})
+
+	t.Run("youtube embeds become plain links", func(t *testing.T) {
+		body := httpGet(t, baseURL+"/misc/notes-on-event-driven-systems/index.md")
+		assert.Contains(t, body, "[YouTube video](https://www.youtube.com/watch?v=qcJASFx-F5g)")
+		assert.NotContains(t, body, "{{< youtube")
+	})
+}
