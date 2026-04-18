@@ -32,4 +32,4 @@
 - Prefer canonical URLs under `https://rednafi.com`.
 - For broad discovery, start with the archive or sitemap.
 - For topic discovery, use the section pages or tags index.
-- For content extraction, request article pages with `Accept: text/markdown`.
+- For content extraction, prefer the static Markdown mirrors at sibling `index.md` paths.

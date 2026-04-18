@@ -25,7 +25,10 @@ var (
 
 func TestMain(m *testing.M) {
 	// Find the public directory
-	publicDir := filepath.Join("..", "public")
+	publicDir := os.Getenv("PUBLIC_DIR")
+	if publicDir == "" {
+		publicDir = filepath.Join("..", "public")
+	}
 	if _, err := os.Stat(publicDir); os.IsNotExist(err) {
 		fmt.Fprintln(os.Stderr, "public/ directory not found — run 'make build' first")
 		os.Exit(1)
@@ -524,7 +527,7 @@ func TestLLMSTextFiles(t *testing.T) {
 		body := httpGet(t, baseURL+"/llms.txt")
 		assert.Contains(t, body, "# Redowan's Reflections")
 		assert.Contains(t, body, "https://rednafi.com/sitemap.xml")
-		assert.Contains(t, body, "Accept: text/markdown")
+		assert.Contains(t, body, "https://rednafi.com/index.md")
 	})
 
 	t.Run("llms-full.txt exists", func(t *testing.T) {
@@ -532,6 +535,7 @@ func TestLLMSTextFiles(t *testing.T) {
 		assert.Contains(t, body, "# Redowan's Reflections: Full Guide")
 		assert.Contains(t, body, "https://rednafi.com/archive/")
 		assert.Contains(t, body, "https://rednafi.com/index.xml")
+		assert.Contains(t, body, "sibling `index.md` paths")
 	})
 }
 
