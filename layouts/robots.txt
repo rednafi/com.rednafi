@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /search/
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 Sitemap: {{ "sitemap.xml" | absURL }}

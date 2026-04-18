@@ -504,6 +504,7 @@ func TestRobotsTxt(t *testing.T) {
 	assert.Contains(t, body, "User-agent: *")
 	assert.Contains(t, body, "Allow: /")
 	assert.Contains(t, body, "Disallow: /search/")
+	assert.Contains(t, body, "Content-Signal: ai-train=no, search=yes, ai-input=no")
 	assert.Contains(t, body, "Sitemap:")
 	assert.Contains(t, body, "sitemap.xml")
 }
@@ -514,6 +515,24 @@ func TestSitemap(t *testing.T) {
 	assert.Contains(t, body, "<urlset")
 	assert.Contains(t, body, "<url>")
 	assert.Contains(t, body, "<loc>")
+}
+
+func TestLLMSTextFiles(t *testing.T) {
+	t.Parallel()
+
+	t.Run("llms.txt exists", func(t *testing.T) {
+		body := httpGet(t, baseURL+"/llms.txt")
+		assert.Contains(t, body, "# Redowan's Reflections")
+		assert.Contains(t, body, "https://rednafi.com/sitemap.xml")
+		assert.Contains(t, body, "Accept: text/markdown")
+	})
+
+	t.Run("llms-full.txt exists", func(t *testing.T) {
+		body := httpGet(t, baseURL+"/llms-full.txt")
+		assert.Contains(t, body, "# Redowan's Reflections: Full Guide")
+		assert.Contains(t, body, "https://rednafi.com/archive/")
+		assert.Contains(t, body, "https://rednafi.com/index.xml")
+	})
 }
 
 // ---------- Content & Features ----------
