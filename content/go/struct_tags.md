@@ -111,11 +111,11 @@ func Validate(s any) error {
     v := reflect.ValueOf(s).Elem()                  // (1)
     t := v.Type()
 
-    for i := 0; i < t.NumField(); i++ {
+    for i := range t.NumField() {
         f, name := v.Field(i), t.Field(i).Name      // (2)
         tag := t.Field(i).Tag.Get("check")
 
-        for _, rule := range strings.Split(tag, ",") {
+        for rule := range strings.SplitSeq(tag, ",") {
             head, arg, _ := strings.Cut(rule, "=")  // (3)
 
             switch head {                           // (4)
@@ -200,9 +200,9 @@ func Validate(s any) error {
     v := reflect.ValueOf(s).Elem()
     t := v.Type()
 
-    for i := 0; i < t.NumField(); i++ {              // (1)
+    for i := range t.NumField() {                    // (1)
         tag := t.Field(i).Tag.Get("check")           // (2)
-        for _, rule := range strings.Split(tag, ",") {
+        for rule := range strings.SplitSeq(tag, ",") {
             head, arg, _ := strings.Cut(rule, "=")
             fn, ok := rules[head]                    // (3)
             if !ok {
