@@ -85,7 +85,9 @@
 {{- end }}
 {{- if .IsPage }}
 <meta property="article:author" content="{{ .Params.author | default site.Params.author }}">
-<meta property="article:section" content="{{ .Section }}">
+{{- with .Section }}
+<meta property="article:section" content="{{ . }}">
+{{- end }}
 {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $iso8601 }}">{{ end }}
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format $iso8601 }}">{{ end }}
 {{- with .Params.tags }}{{ range first 6 . }}
