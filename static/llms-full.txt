@@ -1,0 +1,35 @@
+# Redowan's Reflections: Full Guide
+
+> Use this file as a compact site map for the blog. It is intentionally curated rather than exhaustive.
+
+## Site
+
+- Canonical site: https://rednafi.com
+- Author profile: https://rednafi.com/about/
+- Archive: https://rednafi.com/archive/
+- Tags index: https://rednafi.com/tags/
+- Search UI: https://rednafi.com/search/
+
+## Main sections
+
+- Go articles: https://rednafi.com/go/
+- Python articles: https://rednafi.com/python/
+- JavaScript articles: https://rednafi.com/javascript/
+- TypeScript articles: https://rednafi.com/typescript/
+- Systems articles: https://rednafi.com/system/
+- Miscellaneous essays: https://rednafi.com/misc/
+- Zephyr notes: https://rednafi.com/zephyr/
+- Short notes and shards: https://rednafi.com/shards/
+
+## Machine-readable discovery
+
+- Sitemap: https://rednafi.com/sitemap.xml
+- Main RSS feed: https://rednafi.com/index.xml
+- Articles feed: https://rednafi.com/articles.xml
+
+## Retrieval guidance
+
+- Prefer canonical URLs under `https://rednafi.com`.
+- For broad discovery, start with the archive or sitemap.
+- For topic discovery, use the section pages or tags index.
+- For content extraction, request article pages with `Accept: text/markdown`.
