@@ -73,9 +73,9 @@ var cli CLI
 kong.Parse(&cli)
 ```
 
-Across all of these the pattern is the same: a string attached to a field, and some
-code that reads it. They all do that at runtime through reflection, every time you
-call `Marshal`, `Struct`, or `Parse`.
+Across all of these libraries the pattern is identical. A string sits beside each
+field, and some code reads it at runtime through reflection every time you call
+`Marshal`, `Struct`, or `Parse`.
 
 You can also do it earlier, reading the tag once before the program runs and writing
 out plain Go that needs no reflection at call time.
@@ -99,9 +99,9 @@ fmt.Println(f.Tag.Get("check")) // required,min=2
 fmt.Println(f.Tag.Get("json"))  // name
 ```
 
-That's the whole surface area. The compiler doesn't inspect the contents. Typos,
-malformed values, garbage strings, the compiler is happy with all of it. What a
-library does with the string is up to it.
+That's the whole surface area. The compiler doesn't inspect the contents, so typos,
+malformed values, and outright garbage all compile without complaint. What a library
+does with the string is up to it.
 
 A naive validator that reads a `check` tag and understands `required`, `min`, and
 `email` walks the fields and dispatches with a switch:
@@ -160,8 +160,8 @@ fmt.Println(err) // Name: min 2
 
 This is fine for three rules. By the time you've added `oneof`, `url`, `uuid`, `regex`,
 and nested struct validation, the switch becomes unmanageable. A cleaner shape pulls
-each rule into its own function and keeps a map keyed by tag name. The validator falls
-into two halves: a registry of rules, and a dispatcher that runs them.
+each rule into its own function and keeps a map keyed by tag name. The validator then
+has two halves, a registry of rules and a dispatcher that runs them.
 
 The registry maps each tag name to a small function that checks one thing:
 
@@ -325,8 +325,8 @@ typed builder per entity, [sqlc] walks SQL queries and emits typed scanners, and
 trick: read the schema once at build time and write the Go that would otherwise need
 reflection at call time.
 
-Both versions are on [GitHub]: the runtime validator, and a small codegen tool that
-emits per-type `Validate` methods.
+Find the fully runnable code for both the runtime validator and the codegen tool
+that emits per-type `Validate` methods on [GitHub].
 
 <!-- references -->
 <!-- prettier-ignore-start -->
