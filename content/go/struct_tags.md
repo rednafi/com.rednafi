@@ -1,7 +1,9 @@
 ---
-title: Fun with Go struct tags
+title: Peeking into Go struct tags
 date: 2026-04-18
-slug: fun-with-struct-tags
+slug: struct-tags
+aliases:
+    - /go/fun-with-struct-tags/
 tags:
     - Go
     - Reflection
