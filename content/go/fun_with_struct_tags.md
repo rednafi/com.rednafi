@@ -41,7 +41,8 @@ type SignupRequest struct {
 
 v := validator.New()
 err := v.Struct(SignupRequest{Email: "not-an-email"})
-// Key: 'SignupRequest.Email' Error:Field validation for 'Email' failed on the 'email' tag
+// Key: 'SignupRequest.Email'
+// Error:Field validation for 'Email' failed on the 'email' tag
 ```
 
 My preferred envvar library, [caarlos0/env], does the same for environment variables:
@@ -72,9 +73,10 @@ kong.Parse(&cli)
 
 Across all of these the pattern is the same: a string attached to a field, and some
 code that reads it. They all do that at runtime through reflection, every time you
-call `Marshal`, `Struct`, or `Parse`. You can also do it earlier, reading the tag once
-before the program runs and writing out plain Go that needs no reflection at call
-time. The rest of the post walks through both shapes.
+call `Marshal`, `Struct`, or `Parse`.
+
+You can also do it earlier, reading the tag once before the program runs and writing
+out plain Go that needs no reflection at call time.
 
 ## Reading the tag at runtime
 
@@ -89,7 +91,7 @@ type User struct {
 
 t := reflect.TypeOf(User{})     // reflect.Type
 f, _ := t.FieldByName("Name")   // reflect.StructField
-                                // f.Tag is reflect.StructTag (the backticked string)
+                        // f.Tag is reflect.StructTag (the backticked string)
 
 fmt.Println(f.Tag.Get("check")) // required,min=2
 fmt.Println(f.Tag.Get("json"))  // name
@@ -256,9 +258,9 @@ package ejdemo
 import ( /* encoding/json, easyjson/jwriter, easyjson/jlexer */ )
 
 // Decoder: reads JSON off the lexer into *User.
-func easyjson...Decode(in *jlexer.Lexer, out *User) { /* switch on key name */ }
+func easyjson...Decode(in *jlexer.Lexer, out *User) { /* ... */ }
 
-// Encoder: writes User out to the jwriter.
+// Encoder: writes User into the jwriter.
 func easyjson...Encode(out *jwriter.Writer, in User) {
     out.RawByte('{')
     out.RawString(`"name":`)              // (1)
@@ -281,16 +283,16 @@ frozen into the code:
 
 - (1) `json:"name"` becomes a literal `"name":` in the output, no lookup at call time
 - (2) `json:"email,omitempty"` turns into a plain `if in.Email != ""` check
-- (3) `json:"-"` on `Admin` is the reason there's no branch for it at all, the field
-  doesn't appear anywhere in the encoder (and the decoder's `switch` has no `case
-  "admin"` either)
+- (3) `json:"-"` drops `Admin` entirely. The field doesn't appear in the encoder, and
+  the decoder's `switch` has no `case "admin"`
 
 The only place the tag string meets code is [parseFieldTags] in easyjson's
 `gen/encoder.go`, which is the build-time twin of the `bakedInValidators` map from the
 runtime half:
 
 ```go
-// Tag.Get("json") returns everything between the quotes, e.g. "email,omitempty".
+// Tag.Get("json") returns everything between the quotes,
+// e.g. "email,omitempty".
 func parseFieldTags(f reflect.StructField) fieldTags {
     var ret fieldTags
 
@@ -321,8 +323,8 @@ typed builder per entity, [sqlc] walks SQL queries and emits typed scanners, and
 trick: read the schema once at build time and write the Go that would otherwise need
 reflection at call time.
 
-The runtime validator, plus a small codegen version that does the same thing easyjson
-does but for `Validate`, is on [GitHub].
+Both versions are on [GitHub]: the runtime validator, and a small codegen tool that
+emits per-type `Validate` methods.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
