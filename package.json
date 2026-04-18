@@ -1,0 +1,11 @@
+{
+  "name": "com.rednafi",
+  "private": true,
+  "scripts": {
+    "test:agent-ready": "node --test workers/agent-ready/*.test.mjs"
+  },
+  "devDependencies": {
+    "node-html-markdown": "^2.0.0",
+    "wrangler": "4.83.0"
+  }
+}

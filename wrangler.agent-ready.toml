@@ -1,0 +1,10 @@
+name = "rednafi-agent-ready"
+main = "workers/agent-ready/index.mjs"
+account_id = "f2c208344e8adb0cf3ea1e48dccf7218"
+compatibility_date = "2026-04-19"
+workers_dev = false
+
+routes = [
+  { pattern = "rednafi.com/*", zone_name = "rednafi.com" },
+  { pattern = "www.rednafi.com/*", zone_name = "rednafi.com" },
+]
