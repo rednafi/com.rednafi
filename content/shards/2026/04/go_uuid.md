@@ -1,5 +1,5 @@
 ---
-title: "Accepted proposal: uuid in the Go standard library"
+title: "Accepted proposal: UUID in the Go standard library"
 date: 2026-04-19
 slug: go-uuid
 tags:
