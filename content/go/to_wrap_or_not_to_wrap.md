@@ -21,9 +21,9 @@ incident. This raises the following questions:
 - When to just `return err`
 
 There's no consensus, and the answer changes depending on the kind of application you're
-writing. The [Go 1.13 blog] already covers the mechanics and offers some guidance, but I wanted to
-collect more evidence of what people are actually doing in the open and share what's worked
-for me.
+writing. The [Go 1.13 blog] already covers the mechanics and offers some guidance, but I
+wanted to collect more evidence of what people are actually doing in the open and share
+what's worked for me.
 
 ## The problem with bare errors
 
@@ -54,7 +54,8 @@ connection refused
 ```
 
 Which call? No idea. You grep the codebase, add temporary logging, narrow it down. In a
-service with dozens of dependencies, debugging this trail of errors can turn into a huge time sink.
+service with dozens of dependencies, debugging this trail of errors can turn into a huge
+time sink.
 
 One obvious fix is to wrap the error at every return site:
 
@@ -167,8 +168,8 @@ Four layers of context for one `connection refused`. The middle layers (`checkin
 and `querying database`) don't add a warehouse ID or a query. They just restate the call
 chain.
 
-It also makes the error string fragile. It changes whenever someone renames an
-intermediate function or refactors the call chain. If you had an alert matching on
+It also makes the error string fragile. It changes whenever someone renames an intermediate
+function or refactors the call chain. If you had an alert matching on
 `checking warehouse: querying database: connection refused`, it breaks the moment someone
 renames `checkWarehouse` to `checkStock`. The same root cause (`connection refused`) wrapped
 through different code paths produces different error strings, making it hard to aggregate
@@ -261,8 +262,8 @@ don't want to make that guarantee, use `%v`.
 >
 > `%w` makes the wrapped error part of your function's API. Callers can `errors.Is` and
 > `errors.As` through it, which means they can start depending on the inner error type. If
-> you later change that inner error (swap databases, add a cache layer), those callers break.
-> Use `%w` only when you intend to expose the inner error.
+> you later change that inner error (swap databases, add a cache layer), those callers
+> break. Use `%w` only when you intend to expose the inner error.
 
 ## `%v` as the conservative default
 
@@ -320,8 +321,8 @@ func (r *UserRepo) Get(ctx context.Context, id string) (*User, error) {
 ```
 
 Callers check `errors.Is(err, ErrNotFound)` - which is yours - instead of
-`errors.Is(err, pgx.ErrNoRows)`. When you swap from Postgres to MySQL, callers don't
-break. And at system boundaries, consider translating entirely instead of wrapping.
+`errors.Is(err, pgx.ErrNoRows)`. When you swap from Postgres to MySQL, callers don't break.
+And at system boundaries, consider translating entirely instead of wrapping.
 
 ## How the stdlib handles errors
 
@@ -413,10 +414,11 @@ return fmt.Errorf(
 )
 ```
 
-Before Go 1.16, `Rows.Scan` used `%v` here, which severed the chain. Custom `Scanner` implementations returning sentinel errors couldn't be inspected with
-`errors.Is` by callers. [Issue #38099] fixed this by switching to `%w`. But in the same
-package, internal type conversion errors use `%v` because the underlying `strconv` parse
-error is an implementation detail callers don't need to inspect:
+Before Go 1.16, `Rows.Scan` used `%v` here, which severed the chain. Custom `Scanner`
+implementations returning sentinel errors couldn't be inspected with `errors.Is` by callers.
+[Issue #38099] fixed this by switching to `%w`. But in the same package, internal type
+conversion errors use `%v` because the underlying `strconv` parse error is an implementation
+detail callers don't need to inspect:
 
 ```go
 return fmt.Errorf(
@@ -439,9 +441,9 @@ which meant `errors.As` couldn't traverse the chain. [Issue #123234] tracked the
 wide migration from `%v` to `%w`, acknowledging that `%v` may still be preferred in some
 places "to abstract the implementation details" but that such cases should be rare.
 
-For most application code, `fmt.Errorf` with `%w` or `%v` is enough. Custom error types
-like `PathError` make more sense in libraries and shared packages where callers need
-structured metadata. But wrapping isn't the only way to attach context to an error.
+For most application code, `fmt.Errorf` with `%w` or `%v` is enough. Custom error types like
+`PathError` make more sense in libraries and shared packages where callers need structured
+metadata. But wrapping isn't the only way to attach context to an error.
 
 ## Structured logging as an alternative to wrapping
 
@@ -497,8 +499,9 @@ The same information is there, but in structured fields that your logging dashbo
 index, filter, and aggregate on. The error value itself stays as `connection refused`
 without a chain of prefixes.
 
-The tradeoff is that structured logging requires a logging pipeline that can query on fields.
-If all you have is `grep` on a log file, the wrapping version is easier to work with.
+The tradeoff is that structured logging requires a logging pipeline that can query on
+fields. If all you have is `grep` on a log file, the wrapping version is easier to work
+with.
 
 > [!NOTE]
 >
@@ -544,8 +547,8 @@ func (c *Client) Fetch(ctx context.Context, id string) (*Item, error) {
 }
 ```
 
-Callers check `errors.Is(err, ErrNotFound)` - which is yours - without being coupled to
-your HTTP client. Same pattern as the `UserRepo` translation example earlier.
+Callers check `errors.Is(err, ErrNotFound)` - which is yours - without being coupled to your
+HTTP client. Same pattern as the `UserRepo` translation example earlier.
 
 ### CLI tools
 

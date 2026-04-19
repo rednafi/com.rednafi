@@ -9,9 +9,9 @@ description: >-
   Adding transaction support to a repository interface without leaking storage details.
 ---
 
-[Previously], I showed how to put a small interface between your service logic and
-your storage layer so the service doesn't know whether it's talking to sqlc, raw SQL, or
-anything else. The interface looked like this:
+[Previously], I showed how to put a small interface between your service logic and your
+storage layer so the service doesn't know whether it's talking to sqlc, raw SQL, or anything
+else. The interface looked like this:
 
 ```go
 // book/book.go
@@ -27,14 +27,14 @@ swap in an in-memory fake. The service never imports `database/sql`.
 
 In the [same Reddit thread], user xinoiP [asked]:
 
-> How would you handle transactions with this approach? Since they are very specific to SQL. I
-> tend to use context and store an optional transaction in there that can be used on the
-> implementation of that interface. So, sqlc checks the context, if there is a transaction, uses
-> it etc. I just wonder how you would handle it.
+> How would you handle transactions with this approach? Since they are very specific to SQL.
+> I tend to use context and store an optional transaction in there that can be used on the
+> implementation of that interface. So, sqlc checks the context, if there is a transaction,
+> uses it etc. I just wonder how you would handle it.
 
-If each method on the interface runs independently, there's no way to make two writes atomic.
-Say `RegisterBook` needs to insert a book _and_ an audit log entry, and both must commit or
-roll back together.
+If each method on the interface runs independently, there's no way to make two writes
+atomic. Say `RegisterBook` needs to insert a book _and_ an audit log entry, and both must
+commit or roll back together.
 
 ---
 
@@ -51,10 +51,10 @@ type DBTX interface {
 }
 ```
 
-If your store struct accepts `DBTX` instead of `*sql.DB`, you can construct a store backed by
-either a connection pool or a live transaction. Same struct, same methods, different underlying
-executor. That means the interface can offer a `Tx` method that hands the caller a transactional
-version of itself:
+If your store struct accepts `DBTX` instead of `*sql.DB`, you can construct a store backed
+by either a connection pool or a live transaction. Same struct, same methods, different
+underlying executor. That means the interface can offer a `Tx` method that hands the caller
+a transactional version of itself:
 
 ```go
 // book/book.go
@@ -70,8 +70,9 @@ type Store interface {
 }
 ```
 
-The Postgres implementation of `Tx` starts a `sql.Tx`, wraps it in a fresh `BookStore`, and passes
-that into the callback. If the callback returns an error, it rolls back. Otherwise it commits:
+The Postgres implementation of `Tx` starts a `sql.Tx`, wraps it in a fresh `BookStore`, and
+passes that into the callback. If the callback returns an error, it rolls back. Otherwise it
+commits:
 
 ```go
 // postgres/store.go
@@ -104,11 +105,11 @@ func (s *BookStore) Tx(
 ```
 
 `NewBookStore(tx)` works because the struct field is `DBTX`, and `*sql.Tx` satisfies that
-interface. No new type, no wrapper. The `Get`, `Create`, and `CreateAuditLog` methods on this
-transactional store run their queries against the `tx` automatically.
+interface. No new type, no wrapper. The `Get`, `Create`, and `CreateAuditLog` methods on
+this transactional store run their queries against the `tx` automatically.
 
-The service uses `Tx` when it needs atomicity. Everything inside the callback goes through the
-transactional store:
+The service uses `Tx` when it needs atomicity. Everything inside the callback goes through
+the transactional store:
 
 ```go
 // book/service.go
@@ -133,7 +134,8 @@ func (s *Service) RegisterBook(
 ```
 
 Both writes commit or roll back together. `RegisterBook` never sees `sql.Tx`, `*sql.DB`, or
-anything from `database/sql`. If the audit log insert fails, the book insert is rolled back too.
+anything from `database/sql`. If the audit log insert fails, the book insert is rolled back
+too.
 
 For tests, `Tx` just calls the function directly against the in-memory store:
 
@@ -146,19 +148,20 @@ func (m *memStore) Tx(
 }
 ```
 
-No real transaction needed. The test exercises the same service code as production. If you need
-to verify actual commit/rollback behavior, swap the in-memory store for something like SQLite.
+No real transaction needed. The test exercises the same service code as production. If you
+need to verify actual commit/rollback behavior, swap the in-memory store for something like
+SQLite.
 
 ---
 
-Back to xinoiP's approach of storing a `*sql.Tx` in the context: it works, but it leaks storage
-into the service layer through the back door. The service has to set up the transaction in
-context before calling the store, which means it knows a SQL transaction exists. That's the
-coupling the interface was supposed to prevent.
+Back to xinoiP's approach of storing a `*sql.Tx` in the context: it works, but it leaks
+storage into the service layer through the back door. The service has to set up the
+transaction in context before calling the store, which means it knows a SQL transaction
+exists. That's the coupling the interface was supposed to prevent.
 
 With the callback approach, the service says "run these operations atomically" and the store
-decides how. Swap Postgres for DynamoDB tomorrow and the service code doesn't change - you just
-implement `Tx` differently in the new storage package.
+decides how. Swap Postgres for DynamoDB tomorrow and the service code doesn't change - you
+just implement `Tx` differently in the new storage package.
 
 The full working example with an HTTP server and SQLite is [on GitHub].
 

@@ -11,12 +11,12 @@ description: >-
 
 Someone [asked] in r/golang:
 
-> I'm creating a multi-format converter that converts all graphic formats used on a
-> user's system to JPG. I can use a switch based on the file extension to choose how to
-> convert each file. Is there a more idiomatic way to structure the code, or is a switch
-> preferable for this kind of problem? What construct would be more optimal to maintain,
-> extend, and use long term, based on your experience, in place of a switch (number of
-> formats up to 20)?
+> I'm creating a multi-format converter that converts all graphic formats used on a user's
+> system to JPG. I can use a switch based on the file extension to choose how to convert
+> each file. Is there a more idiomatic way to structure the code, or is a switch preferable
+> for this kind of problem? What construct would be more optimal to maintain, extend, and
+> use long term, based on your experience, in place of a switch (number of formats up to
+> 20)?
 
 I took a [stab] at it there. Here's the longer version.
 
@@ -76,9 +76,9 @@ func convertPNG(srcPath, dstPath string) error {
 }
 ```
 
-This is usually where I stop. But you can keep going and replace the map of functions
-with a map of interfaces. Instead of a flat function map, you define a converter interface
-and keep a registry of types that satisfy it. The dispatch logic stays the same:
+This is usually where I stop. But you can keep going and replace the map of functions with a
+map of interfaces. Instead of a flat function map, you define a converter interface and keep
+a registry of types that satisfy it. The dispatch logic stays the same:
 
 ```go
 package jpgconv
@@ -134,9 +134,9 @@ func init() {
 }
 ```
 
-I rarely go for the interface approach unless I know for sure that the map of functions is
-a bottleneck, which almost never happens. It feels a bit heavy, and I'm not a big fan of
-the extra abstraction unless it actually solves a real problem.
+I rarely go for the interface approach unless I know for sure that the map of functions is a
+bottleneck, which almost never happens. It feels a bit heavy, and I'm not a big fan of the
+extra abstraction unless it actually solves a real problem.
 
 ---
 

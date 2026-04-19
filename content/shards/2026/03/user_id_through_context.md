@@ -11,13 +11,14 @@ description: >-
 ---
 
 [Paweł Grzybek] reached out after reading [What belongs in Go's context values?] with a
-question about their auth [middleware] and the [handler] that reads the user ID from context:
+question about their auth [middleware] and the [handler] that reads the user ID from
+context:
 
 > I validate the session in middleware, and the session record in the DB holds the user ID,
 > which I put in the context for handlers to use later. According to your post, this is an
 > antipattern because the handler can't work without that value. But if I don't use context
-> here, I'd have to hit the sessions table again in the handler. Is this actually wrong,
-> and if so, how do I avoid the double DB lookup?
+> here, I'd have to hit the sessions table again in the handler. Is this actually wrong, and
+> if so, how do I avoid the double DB lookup?
 
 ---
 
@@ -31,12 +32,12 @@ this looks like it fails the test.
 But the test is about function signatures you control. When you write a regular Go function,
 you can put `userID uuid.UUID` in its parameter list, and any caller knows the function
 requires it. The middleware-to-handler boundary in `net/http` is different. Your handler is
-always `func(http.ResponseWriter, *http.Request)`. You can't add parameters to it. Context is
-how `net/http` middleware passes data to handlers, and that's by design.
+always `func(http.ResponseWriter, *http.Request)`. You can't add parameters to it. Context
+is how `net/http` middleware passes data to handlers, and that's by design.
 
-The middleware already has to look up the session token to verify the request is authenticated.
-The user ID comes out of that same lookup. Passing it along through context avoids a second
-round trip to the DB for something the middleware already resolved.
+The middleware already has to look up the session token to verify the request is
+authenticated. The user ID comes out of that same lookup. Passing it along through context
+avoids a second round trip to the DB for something the middleware already resolved.
 
 The previous shard listed "authentication tokens for middleware propagation" as
 context-appropriate. A user ID extracted from a validated session token is the resolved form
@@ -61,8 +62,8 @@ And the [handler] consumes it:
 userID, _ := utils.UserIDFromContext(r.Context())
 ```
 
-The middleware looks up the session once, stashes the user ID in context, and the handler reads
-it from there.
+The middleware looks up the session once, stashes the user ID in context, and the handler
+reads it from there.
 
 If context weren't an option, another way to avoid the repeated DB hit would be to cache the
 session behind something like Redis. Multiple cache lookups are cheaper than multiple DB

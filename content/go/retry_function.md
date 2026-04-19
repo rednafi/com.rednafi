@@ -207,8 +207,8 @@ func Retry(
 }
 ```
 
-Now calling `Retry` is easier since the closure signature is static - you don't need to adapt
-the call when the wrapped function's signature changes:
+Now calling `Retry` is easier since the closure signature is static - you don't need to
+adapt the call when the wrapped function's signature changes:
 
 ```go
 func main() {

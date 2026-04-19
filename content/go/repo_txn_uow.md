@@ -13,10 +13,10 @@ description: >-
 ---
 
 This post started as a pair of quick answers to questions on [r/golang]. The first was about
-whether [a repository layer on top of sqlc is worth it]. The second was about how to
-[handle transactions when the interface hides storage details]. Both turned into
-short shards on this site. This post ties them together and covers what to do when
-transactions need to span multiple repositories.
+whether [a repository layer on top of sqlc is worth it]. The second was about how to [handle
+transactions when the interface hides storage details]. Both turned into short shards on
+this site. This post ties them together and covers what to do when transactions need to span
+multiple repositories.
 
 It walks through three stages, each building on the last:
 
@@ -29,23 +29,23 @@ All code examples use SQLite. Working examples for the [single-store version] an
 
 ## What's a repository?
 
-Martin Fowler defined the repository pattern in
-[Patterns of Enterprise Application Architecture]:
+Martin Fowler defined the repository pattern in [Patterns of Enterprise Application
+Architecture]:
 
 > A Repository mediates between the domain and data mapping layers using a collection-like
 > interface for accessing domain objects.
 
 In Go, a repository is just an interface. The service depends on the interface, a concrete
-package implements it, and they live in separate packages. The service defines what it needs,
-the storage satisfies it. The [dependency inversion principle] in action.
+package implements it, and they live in separate packages. The service defines what it
+needs, the storage satisfies it. The [dependency inversion principle] in action.
 
 To see why this matters, consider what happens when you skip it.
 
 ## What happens without one
 
-Say you're building a bookstore service with [sqlc]. The generated code gives you a `Queries`
-struct with methods like `GetBook` and `CreateBook`. The tempting thing is to inject that
-directly into your service:
+Say you're building a bookstore service with [sqlc]. The generated code gives you a
+`Queries` struct with methods like `GetBook` and `CreateBook`. The tempting thing is to
+inject that directly into your service:
 
 ```go
 type Service struct {
@@ -58,19 +58,20 @@ func (s *Service) RegisterBook(
 }
 ```
 
-This compiles and runs, but the service is now welded to sqlc's generated types. Every service
-method imports the `db` package. If you want to test `RegisterBook` without a database, you
-need to mock the entire `Queries` struct or spin up a test database. If you later switch from
-sqlc to raw SQL, or from Postgres to DynamoDB, you're rewriting the service layer too.
+This compiles and runs, but the service is now welded to sqlc's generated types. Every
+service method imports the `db` package. If you want to test `RegisterBook` without a
+database, you need to mock the entire `Queries` struct or spin up a test database. If you
+later switch from sqlc to raw SQL, or from Postgres to DynamoDB, you're rewriting the
+service layer too.
 
 The service should describe _what_ it needs from storage without knowing _how_ storage does
-it. "Get me a book by ID" and "create this book" are the what. SQL queries, connection pools,
-and table schemas are the how. A small interface fixes that.
+it. "Get me a book by ID" and "create this book" are the what. SQL queries, connection
+pools, and table schemas are the how. A small interface fixes that.
 
 ## Adding a repository interface
 
-The interface lives in the `book` package alongside the domain types. This is the
-business logic package. It has no imports from `database/sql` or any storage library:
+The interface lives in the `book` package alongside the domain types. This is the business
+logic package. It has no imports from `database/sql` or any storage library:
 
 ```go
 // book/book.go
@@ -121,15 +122,16 @@ func (s *Service) GetBook(
 }
 ```
 
-`RegisterBook` builds a `Book`, asks the store to persist it, and gets an ID back. It doesn't
-import anything from `database/sql`. The `book` package has zero storage dependencies.
+`RegisterBook` builds a `Book`, asks the store to persist it, and gets an ID back. It
+doesn't import anything from `database/sql`. The `book` package has zero storage
+dependencies.
 
 Now we need something that actually talks to a database.
 
 ## SQLite implementation
 
-A separate `sqlite` package satisfies the `Store` interface. I'm writing the queries by
-hand here to avoid the sqlc ceremony, but the structure would be the same. sqlc would just
+A separate `sqlite` package satisfies the `Store` interface. I'm writing the queries by hand
+here to avoid the sqlc ceremony, but the structure would be the same. sqlc would just
 generate the query methods for you.
 
 Before writing the store methods, there's one thing to set up. sqlc generates a `DBTX`
@@ -247,8 +249,8 @@ func (m *memStore) Create(
 }
 ```
 
-The `var _ Store = (*memStore)(nil)` line is an [interface guard]. If `memStore` ever
-stops satisfying `Store`, the build fails.
+The `var _ Store = (*memStore)(nil)` line is an [interface guard]. If `memStore` ever stops
+satisfying `Store`, the build fails.
 
 The test looks like production code, minus the database:
 
@@ -272,24 +274,24 @@ func TestRegisterBook(t *testing.T) {
 }
 ```
 
-This runs in microseconds and exercises the same `RegisterBook` code that runs in production.
-If the storage layer changes from SQLite to Postgres tomorrow, this test stays the same
-because it only depends on the interface.
+This runs in microseconds and exercises the same `RegisterBook` code that runs in
+production. If the storage layer changes from SQLite to Postgres tomorrow, this test stays
+the same because it only depends on the interface.
 
 You should still write integration tests against a real database (we'll see those shortly),
 but the bulk of your service logic can be tested with fakes.
 
 So far we have a clean separation: the service talks to an interface, the SQLite package
 implements it, and tests use an in-memory fake. But every method on the interface runs
-independently. If `RegisterBook` needs to make two writes that must succeed or fail together,
-we have a problem.
+independently. If `RegisterBook` needs to make two writes that must succeed or fail
+together, we have a problem.
 
 ## Adding transactions to a single repository
 
-Say the business requirements change. When a book is registered, we now also need to write an
-audit log entry recording who created it and when. Both writes must be atomic: if the book
-insert succeeds but the audit log fails, we don't want a book in the database with no audit
-trail. That means we need a transaction.
+Say the business requirements change. When a book is registered, we now also need to write
+an audit log entry recording who created it and when. Both writes must be atomic: if the
+book insert succeeds but the audit log fails, we don't want a book in the database with no
+audit trail. That means we need a transaction.
 
 This is the question that xinoiP [raised on Reddit]:
 
@@ -319,12 +321,11 @@ type Store interface {
 ```
 
 `CreateAuditLog` is a regular data access method like `Get` and `Create`. The interesting
-one is `Tx`. It takes a callback function that receives a `Store`. The `Store`
-passed to the callback is backed by a database transaction, so every method called on it
-executes within that transaction. Same idea as
-[passing locked state into a closure]. The caller doesn't manage the lifecycle. No manual
-begin/commit/rollback, just like no manual lock/unlock. It works with what the callback
-gives it.
+one is `Tx`. It takes a callback function that receives a `Store`. The `Store` passed to the
+callback is backed by a database transaction, so every method called on it executes within
+that transaction. Same idea as [passing locked state into a closure]. The caller doesn't
+manage the lifecycle. No manual begin/commit/rollback, just like no manual lock/unlock. It
+works with what the callback gives it.
 
 Here's how the SQLite implementation of `Tx` works:
 
@@ -355,14 +356,14 @@ func (s *BookStore) Tx(
 }
 ```
 
-The type assertion `s.db.(*sql.DB)` checks that the underlying executor is a connection
-pool and not an existing transaction. You can't nest `sql.Tx` inside `sql.Tx` in
-`database/sql`. After starting the transaction with `BeginTx`, it builds a fresh `BookStore`
-whose `db` field is the `*sql.Tx`. This is the payoff of the `DBTX` setup from earlier.
-`*sql.Tx` satisfies `DBTX`, so the new store works with the exact same `Get`, `Create`,
-and `CreateAuditLog` methods. The callback gets this transactional store, and every query
-inside the callback goes through the transaction. If the callback returns an error, we roll
-back. Otherwise we commit.
+The type assertion `s.db.(*sql.DB)` checks that the underlying executor is a connection pool
+and not an existing transaction. You can't nest `sql.Tx` inside `sql.Tx` in `database/sql`.
+After starting the transaction with `BeginTx`, it builds a fresh `BookStore` whose `db`
+field is the `*sql.Tx`. This is the payoff of the `DBTX` setup from earlier. `*sql.Tx`
+satisfies `DBTX`, so the new store works with the exact same `Get`, `Create`, and
+`CreateAuditLog` methods. The callback gets this transactional store, and every query inside
+the callback goes through the transaction. If the callback returns an error, we roll back.
+Otherwise we commit.
 
 The caller never touches `sql.Tx`.
 
@@ -395,8 +396,9 @@ func (s *Service) RegisterBook(
 ```
 
 Both `tx.Create` and `tx.CreateAuditLog` execute against the same `sql.Tx`. If either fails,
-the callback returns an error, and `Tx` rolls back both writes. If both succeed, `Tx` commits
-them together. `RegisterBook` never sees `sql.Tx`, `*sql.DB`, or anything from `database/sql`.
+the callback returns an error, and `Tx` rolls back both writes. If both succeed, `Tx`
+commits them together. `RegisterBook` never sees `sql.Tx`, `*sql.DB`, or anything from
+`database/sql`.
 
 ## Testing single-store transactions
 
@@ -445,9 +447,9 @@ func TestTx_RollsBackOnError(t *testing.T) {
 }
 ```
 
-`failingStore` embeds the real SQLite `BookStore` but overrides `CreateAuditLog` to always return
-an error. The sequence: `Tx` begins a transaction, `Create` inserts a book (inside the
-transaction), `CreateAuditLog` fails, `Tx` rolls back, and the books table is empty.
+`failingStore` embeds the real SQLite `BookStore` but overrides `CreateAuditLog` to always
+return an error. The sequence: `Tx` begins a transaction, `Create` inserts a book (inside
+the transaction), `CreateAuditLog` fails, `Tx` rolls back, and the books table is empty.
 
 Unit tests with fakes cover service logic quickly. Integration tests with a real database
 cover transactional behavior. The interface makes both possible from the same service code.
@@ -476,10 +478,10 @@ interface was supposed to prevent.
 
 There's another issue as well. Context values are untyped and invisible. If someone forgets
 to set the transaction in context, or sets it on the wrong context, the store silently falls
-back to the connection pool and the operations aren't atomic. With the callback approach, the
-transactional store is passed as a function argument. It won't catch every mistake - you could
-still accidentally call `s.store` instead of `tx` for one of several operations - but it's
-harder to miss than an invisible context value.
+back to the connection pool and the operations aren't atomic. With the callback approach,
+the transactional store is passed as a function argument. It won't catch every mistake - you
+could still accidentally call `s.store` instead of `tx` for one of several operations - but
+it's harder to miss than an invisible context value.
 
 With the callback, the service says "run these operations atomically" and the store decides
 how. Swap Postgres for DynamoDB tomorrow and the service code doesn't change.
@@ -487,8 +489,8 @@ how. Swap Postgres for DynamoDB tomorrow and the service code doesn't change.
 ## Transactions across multiple repositories
 
 The per-store `Tx` from the previous sections works when all writes go through the same
-`Store`. Both `Create` and `CreateAuditLog` live on `Store`, so one store's `Tx`
-method can wrap them in a single transaction.
+`Store`. Both `Create` and `CreateAuditLog` live on `Store`, so one store's `Tx` method can
+wrap them in a single transaction.
 
 But domains grow. Say the bookstore now tracks inventory and handles orders. Books get a
 `Stock` field, there's a new `Order` type, and a new `Store` interface for order-related
@@ -518,8 +520,8 @@ type Store interface {
 
 `DecrementStock` reduces a book's inventory count by one. A checkout flow needs to call
 `DecrementStock` on `book.Store` _and_ `Create` on `order.Store`, and both must commit or
-roll back together. If the stock decrements but the order insert fails, you've lost inventory
-with no corresponding order.
+roll back together. If the stock decrements but the order insert fails, you've lost
+inventory with no corresponding order.
 
 You might try nesting the callbacks:
 
@@ -536,10 +538,10 @@ err := s.books.Tx(ctx, func(txBooks book.Store) error {
 })
 ```
 
-This compiles, but `books.Tx` starts one `sql.Tx` for the book store and
-`orders.Tx` starts a _second_, independent `sql.Tx` for the order store. If the order
-insert fails, the order transaction rolls back, but the stock decrement has already committed
-in the first transaction.
+This compiles, but `books.Tx` starts one `sql.Tx` for the book store and `orders.Tx` starts
+a _second_, independent `sql.Tx` for the order store. If the order insert fails, the order
+transaction rolls back, but the stock decrement has already committed in the first
+transaction.
 
 Each store only knows how to build a transactional copy of itself. You need something that
 can build _all_ stores from a single `sql.Tx`.
@@ -547,8 +549,8 @@ can build _all_ stores from a single `sql.Tx`.
 ## Unit of work
 
 We need a coordinator that starts a single database transaction and constructs every store
-from it. Martin Fowler called this pattern a Unit of Work in
-[Patterns of Enterprise Application Architecture]:
+from it. Martin Fowler called this pattern a Unit of Work in [Patterns of Enterprise
+Application Architecture]:
 
 > A Unit of Work keeps track of everything you do during a business transaction that can
 > affect the database. When you're done, it figures out everything that needs to be done to
@@ -580,8 +582,8 @@ type Store interface {
 }
 ```
 
-A `Stores` struct groups all the repositories together, and a `UnitOfWork` interface provides
-the single `RunInTx` method that replaces per-store `Tx`:
+A `Stores` struct groups all the repositories together, and a `UnitOfWork` interface
+provides the single `RunInTx` method that replaces per-store `Tx`:
 
 ```go
 // checkout/checkout.go
@@ -655,8 +657,8 @@ func NewService(s Stores, uow UnitOfWork) *Service {
 }
 ```
 
-`PlaceOrder` reads the book outside the transaction (no need to hold a lock for a read), then
-uses `RunInTx` for the two writes that must be atomic:
+`PlaceOrder` reads the book outside the transaction (no need to hold a lock for a read),
+then uses `RunInTx` for the two writes that must be atomic:
 
 ```go
 // checkout/checkout.go
@@ -735,8 +737,9 @@ func (m *memUoW) RunInTx(
 }
 ```
 
-For integration tests, verify that a failure in one store actually rolls back writes from the
-other. In this test, the order insert fails, and we check that the stock decrement was undone:
+For integration tests, verify that a failure in one store actually rolls back writes from
+the other. In this test, the order insert fails, and we check that the stock decrement was
+undone:
 
 ```go
 // sqlite/store_test.go

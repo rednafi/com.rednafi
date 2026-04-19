@@ -18,17 +18,20 @@ description: >-
 On Go, agents, and doing the right things from commit one.
 
 [talk-2-video]: #
-[talk-2-slides]: https://docs.google.com/presentation/d/146GjJEe3u6SZyR5LNjq9hGoG0Xdz1eWUbbuJUW3dp-M
+[talk-2-slides]:
+    https://docs.google.com/presentation/d/146GjJEe3u6SZyR5LNjq9hGoG0Xdz1eWUbbuJUW3dp-M
 
 ### Go interface segregation redux — Dec 3, 2025, GDG Berlin
 
 [Video][talk-1-video] | [Slides][talk-1-slides]
 
 Spoke at the Go Developer Group Berlin meetup about applying interface segregation in Go,
-keeping interfaces small and consumer-defined. Related post: [Revisiting interface segregation in Go].
+keeping interfaces small and consumer-defined. Related post: [Revisiting interface
+segregation in Go].
 
 [talk-1-video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
-[talk-1-slides]: https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
+[talk-1-slides]:
+    https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
 
 ## Podcasts
 
@@ -36,9 +39,10 @@ keeping interfaces small and consumer-defined. Related post: [Revisiting interfa
 
 [Episode][pod-1-episode] | Related post: [You probably don't need a DI framework]
 
-Chatted with Jonathan Hall and Shay Nehmad about what makes Go different from other languages
-and why you probably don't need a dependency injection framework.
+Chatted with Jonathan Hall and Shay Nehmad about what makes Go different from other
+languages and why you probably don't need a dependency injection framework.
 
-[pod-1-episode]: https://cupogo.dev/episodes/whats-coming-in-go-1-25-plus-redowan-delowar-on-what-makes-go-different-from-other-languages
+[pod-1-episode]:
+    https://cupogo.dev/episodes/whats-coming-in-go-1-25-plus-redowan-delowar-on-what-makes-go-different-from-other-languages
 [you probably don't need a di framework]: /go/di-frameworks-bleh/
 [revisiting interface segregation in go]: /go/interface-segregation/

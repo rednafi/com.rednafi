@@ -15,14 +15,14 @@ services, storage orchestration control plane, etc. They require me to go a bit 
 protobuf and Go gRPC tooling than you'd typically need to. So I started poking around OSS
 gRPC codebases to pick up conventions.
 
-I was mainly looking for pointers on how to organize protobuf definitions, wire up server-side
-metrics and interceptors, and build ergonomic client wrappers. The default answer here is
-often "_go read the Docker or Kubernetes codebase._" But both of those are pretty huge and
-take forever to get accustomed to.
+I was mainly looking for pointers on how to organize protobuf definitions, wire up
+server-side metrics and interceptors, and build ergonomic client wrappers. The default
+answer here is often "_go read the Docker or Kubernetes codebase._" But both of those are
+pretty huge and take forever to get accustomed to.
 
 Then I found [etcd]. It's used by Kubernetes' control plane for storing configs in a
-consistent manner. It exposes a small set of well-defined gRPC endpoints to interact with the
-storage layer. The core services are defined in a single [rpc.proto] file:
+consistent manner. It exposes a small set of well-defined gRPC endpoints to interact with
+the storage layer. The core services are defined in a single [rpc.proto] file:
 
 ```proto
 service KV {
@@ -37,21 +37,23 @@ service KV {
 ```
 
 The full file also defines `Watch`, `Lease`, `Cluster`, `Maintenance`, and `Auth` services.
-Grokking that file and the surrounding [api directory] is a good way to learn how to organize
-your protobufs and [generated code]. Some other things I picked up:
+Grokking that file and the surrounding [api directory] is a good way to learn how to
+organize your protobufs and [generated code]. Some other things I picked up:
 
 - Proto definitions live under [api/], separated into subpackages like `etcdserverpb`,
   `mvccpb`, `authpb`. Generated Go code lives alongside the proto files.
 
 - The RPC handler implementations live under [server/etcdserver/api/v3rpc]. [key.go]
   implements the KV service (Range, Put, DeleteRange, Txn, Compact), and the other services
-  follow the same pattern in `watch.go`, `lease.go`, `member.go`, `maintenance.go`, `auth.go`.
+  follow the same pattern in `watch.go`, `lease.go`, `member.go`, `maintenance.go`,
+  `auth.go`.
 
 - [grpc.go] shows how to assemble a gRPC server with chained unary and stream interceptors
   using [go-grpc-middleware].
 
 - Server-side Prometheus metrics are wired in [grpc.go] via `grpc_prometheus.ServerMetrics`
-  interceptors. It optionally enables latency histograms when the metric type is `extensive`.
+  interceptors. It optionally enables latency histograms when the metric type is
+  `extensive`.
 
 - [metrics.go] defines custom Prometheus counters and histograms on top of the standard gRPC
   ones, things like `etcd_network_client_grpc_sent_bytes_total` and watch stream durations.
@@ -62,8 +64,8 @@ your protobufs and [generated code]. Some other things I picked up:
 - The client has no built-in metrics. The [clientv3 README] says you can wire up
   [go-grpc-prometheus] yourself, but the library doesn't do it for you.
 
-- [retry_interceptor.go] implements client-side retry with backoff, safe retry classification
-  for read-only vs mutation RPCs, and auth token refresh on failure.
+- [retry_interceptor.go] implements client-side retry with backoff, safe retry
+  classification for read-only vs mutation RPCs, and auth token refresh on failure.
 
 - The [clientv3 package] wraps the generated gRPC client behind a nicer Go API. I wrote
   about [wrapping a gRPC client in Go] using a similar approach.

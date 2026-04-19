@@ -77,8 +77,8 @@ caching, I barely use any of the quota. It's fantastic!
 ## Oxipng
 
 [Oxipng] is used to compress images before uploading them to the Cloudflare R2 bucket with
-the [wrangler] CLI. The Makefile in the repo has a single command called `upload-image`
-that handles compression and upload in one go.
+the [wrangler] CLI. The Makefile in the repo has a single command called `upload-image` that
+handles compression and upload in one go.
 
 ```make
 WRANGLER_VERSION := 4.83.0
@@ -90,8 +90,9 @@ upload-image:
 ```
 
 I just drop the screenshots and images into `/static/images/<blog-name>/*.png`, update the
-references in the Markdown file, and run `make upload-image local_path=<file> remote_path=<bucket-path>`
-before pushing the changes to the repo.
+references in the Markdown file, and run
+`make upload-image local_path=<file> remote_path=<bucket-path>` before pushing the changes
+to the repo.
 
 ## Google Analytics
 
