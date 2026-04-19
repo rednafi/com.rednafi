@@ -11,7 +11,7 @@ description: >-
 
 It's good to see that Go is finally getting `uuid` in the standard library. The [proposal]
 was accepted on April 8. I hadn't been following the conversation in the thread and only
-found out about it from [Cup o' Go episode 144].
+found out about it from [Cup o' Go episode 154].
 
 [google/uuid] is usually one of the first extra imports I add to a Go service that talks to
 a database, so this one has felt overdue for years.
@@ -92,8 +92,8 @@ hoping that it lands on 1.27.
 [Python 3.14+]:
     https://docs.python.org/3/library/uuid.html#command-line-usage
 
-[Cup o' Go episode 144]:
-    https://podcasts.apple.com/podcast/id1665967724?i=1000748670468
+[Cup o' Go episode 154]:
+    https://cupogo.dev/episodes/a-nil-by-any-other-name
 
 [RFC]:
     https://www.rfc-editor.org/rfc/rfc9562.html
