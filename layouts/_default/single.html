@@ -60,20 +60,40 @@
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>
 (function(){
-  document.querySelectorAll('.mermaid').forEach(function(el){
-    el.setAttribute('data-source',el.textContent);
-  });
-  var isDark=document.documentElement.getAttribute('data-theme')==='dark';
-  mermaid.initialize({startOnLoad:true,theme:isDark?'dark':'default'});
-  window.__mermaidRerender=function(){
-    var dark=document.documentElement.getAttribute('data-theme')==='dark';
-    mermaid.initialize({startOnLoad:false,theme:dark?'dark':'default'});
+  function initMermaid(){
+    if(typeof mermaid==='undefined'){
+      console.error('Mermaid failed to load');
+      return;
+    }
+
     document.querySelectorAll('.mermaid').forEach(function(el){
-      var src=el.getAttribute('data-source');
-      if(src){el.removeAttribute('data-processed');el.innerHTML=src;}
+      if(!el.getAttribute('data-source')){
+        el.setAttribute('data-source',el.textContent);
+      }
     });
-    mermaid.run();
-  };
+
+    function renderMermaid(){
+      var dark=document.documentElement.getAttribute('data-theme')==='dark';
+      mermaid.initialize({startOnLoad:false,theme:dark?'dark':'default'});
+      document.querySelectorAll('.mermaid').forEach(function(el){
+        var src=el.getAttribute('data-source');
+        if(src){
+          el.removeAttribute('data-processed');
+          el.innerHTML=src;
+        }
+      });
+      mermaid.run();
+    }
+
+    window.__mermaidRerender=renderMermaid;
+    renderMermaid();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initMermaid,{once:true});
+  } else {
+    initMermaid();
+  }
 })();
 </script>
 {{- end }}

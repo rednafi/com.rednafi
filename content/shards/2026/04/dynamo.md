@@ -15,29 +15,28 @@ kicked off Cassandra, Riak, Voldemort, and a whole generation of eventually cons
 stores. Added it to my [papers] page.
 
 Amazon had services like the shopping cart where consistency wasn't worth the availability
-cost. If a node is unreachable in a consistent system, writes block or fail.
-A stale cart is fine; an unavailable cart loses
-money. So the idea with Dynamo is to never reject a write. If a network partition causes
-two nodes to accept conflicting writes, both versions survive and the application sorts
-it out on the next read. For the shopping cart that means taking the union of conflicting
-versions - a deleted item might reappear, but nothing gets lost.
+cost. If a node is unreachable in a consistent system, writes block or fail. A stale cart is
+fine; an unavailable cart loses money. So the idea with Dynamo is to never reject a write.
+If a network partition causes two nodes to accept conflicting writes, both versions survive
+and the application sorts it out on the next read. For the shopping cart that means taking
+the union of conflicting versions - a deleted item might reappear, but nothing gets lost.
 
-Data is partitioned on a [consistent hash] ring with [virtual nodes]. Each key replicates
-to N nodes (typically 3), any of which can accept writes. There are no leaders or
-followers - every node is identical. [Quorum] parameters R and W are tunable, and (N=3,
-R=2, W=2) is the common setup where you get overlap between reads and writes.
+Data is partitioned on a [consistent hash] ring with [virtual nodes]. Each key replicates to
+N nodes (typically 3), any of which can accept writes. There are no leaders or followers -
+every node is identical. [Quorum] parameters R and W are tunable, and (N=3, R=2, W=2) is the
+common setup where you get overlap between reads and writes.
 
 If one of the N replicas is down, [sloppy quorum] lets the write land on the next healthy
-node on the ring instead. That node holds the data and forwards it via [hinted handoff]
-once the original recovers. [Merkle trees] handle
-background [anti-entropy] to sync divergent replicas, and [gossip] handles failure
-detection with no central membership service anywhere.
+node on the ring instead. That node holds the data and forwards it via [hinted handoff] once
+the original recovers. [Merkle trees] handle background [anti-entropy] to sync divergent
+replicas, and [gossip] handles failure detection with no central membership service
+anywhere.
 
-[Vector clocks] track causal ordering so the system knows when two writes genuinely
-conflict rather than one superseding the other. When that happens, Dynamo keeps both
-versions and hands them back on the next read - the application has to reconcile them.
-They also had to truncate old clock entries to keep the metadata bounded, which can
-lose ordering info and create even more conflicts for the app to sort out.
+[Vector clocks] track causal ordering so the system knows when two writes genuinely conflict
+rather than one superseding the other. When that happens, Dynamo keeps both versions and
+hands them back on the next read - the application has to reconcile them. They also had to
+truncate old clock entries to keep the metadata bounded, which can lose ordering info and
+create even more conflicts for the app to sort out.
 
 Table 1 from the paper summarizes the architecture:
 
@@ -51,8 +50,8 @@ Table 1 from the paper summarizes the architecture:
 
 AWS's own DynamoDB service eventually dropped vector clocks and moved to leader-based
 replication with Multi-Paxos per partition. The [2022 DynamoDB paper] covers the shift.
-Turns out, pushing conflict resolution onto application developers didn't scale as a
-product decision even if it scaled as an architecture.
+Turns out, pushing conflict resolution onto application developers didn't scale as a product
+decision even if it scaled as an architecture.
 
 <!-- references -->
 <!-- prettier-ignore-start -->

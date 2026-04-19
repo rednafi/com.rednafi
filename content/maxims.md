@@ -66,8 +66,8 @@ contract: all observable behaviours of your system will be depended on by somebo
 ### [Jevons' paradox]
 
 In 1865, economist William Stanley Jevons observed that improvements in coal-burning engine
-efficiency led to increased coal consumption, not decreased. More efficient engines made coal
-economically attractive for more applications, driving overall demand higher.
+efficiency led to increased coal consumption, not decreased. More efficient engines made
+coal economically attractive for more applications, driving overall demand higher.
 
 [jevons' paradox]: https://github.com/dwmkerr/hacker-laws#jevons-paradox
 

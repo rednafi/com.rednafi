@@ -1,6 +1,11 @@
 package site_test
 
 import (
+	"io/fs"
+	"os"
+	"path/filepath"
+	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -33,6 +38,26 @@ func TestAlertRendering(t *testing.T) {
 		)
 		require.NoError(t, err)
 		assert.NotEmpty(t, borderColor, "alert-important should have a left border color")
+
+		body, err := alert.First().TextContent()
+		require.NoError(t, err)
+		normalizedBody := strings.Join(strings.Fields(body), " ")
+		assert.Contains(
+			t,
+			normalizedBody,
+			"related but separate problem in GetByID and GetUser",
+			"alert body should retain the opening sentence after markdown rendering",
+		)
+		assert.Contains(
+			t,
+			normalizedBody,
+			"you handled it",
+			"alert body should retain the rest of the quoted sentence after markdown rendering",
+		)
+
+		nestedLists, err := alert.First().Locator("ul, ol").Count()
+		require.NoError(t, err)
+		assert.Equal(t, 0, nestedLists, "alert body should not accidentally render list markup")
 	})
 
 	t.Run("note alert renders", func(t *testing.T) {
@@ -83,6 +108,50 @@ func TestAlertRendering(t *testing.T) {
 		require.NoError(t, err)
 		assert.NotEqual(t, "0px", radius, "alert should have border radius")
 	})
+}
+
+// TestAlertMarkdownSpacing enforces the markdown shape required by Hugo/Goldmark
+// alert parsing: the alert marker line must be followed by a blank quoted line.
+func TestAlertMarkdownSpacing(t *testing.T) {
+	t.Parallel()
+
+	var violations []string
+
+	err := filepath.WalkDir("../content", func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() || filepath.Ext(path) != ".md" {
+			return nil
+		}
+
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+
+		lines := strings.Split(string(data), "\n")
+		for i, line := range lines {
+			if !strings.HasPrefix(line, "> [!") {
+				continue
+			}
+
+			if i+1 >= len(lines) || strings.TrimSpace(lines[i+1]) != ">" {
+				violations = append(
+					violations,
+					path+":"+strconv.Itoa(i+1),
+				)
+			}
+		}
+
+		return nil
+	})
+	require.NoError(t, err)
+	require.Empty(
+		t,
+		violations,
+		"alert markers must be followed by a blank quoted line; fix these locations",
+	)
 }
 
 // TestBlockquoteRendering verifies regular blockquotes (not alerts) render with

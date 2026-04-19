@@ -14,8 +14,8 @@ description: >-
 ---
 
 Struct tags in Go are these little annotations that you stick beside struct fields.
-Libraries read them to decide what to do with each field, and the most familiar place
-you'll see them is JSON marshalling and unmarshalling:
+Libraries read them to decide what to do with each field, and the most familiar place you'll
+see them is JSON marshalling and unmarshalling:
 
 ```go
 type User struct {
@@ -28,8 +28,8 @@ b, _ := json.Marshal(User{Name: "ada", Email: "a@b.com"})
 // {"name":"ada","email":"a@b.com"}
 ```
 
-`encoding/json` reads those tags to pick the wire key, drop a zero value with
-`omitempty`, or skip the field with `-`.
+`encoding/json` reads those tags to pick the wire key, drop a zero value with `omitempty`,
+or skip the field with `-`.
 
 Validation libraries do the same thing with a different tag key. [go-playground/validator]
 reads a `validate:"..."`:
@@ -73,18 +73,18 @@ var cli CLI
 kong.Parse(&cli)
 ```
 
-Across all of these libraries the pattern is identical. A string sits beside each
-field, and some code reads it at runtime through reflection every time you call
-`Marshal`, `Struct`, or `Parse`.
+Across all of these libraries the pattern is identical. A string sits beside each field, and
+some code reads it at runtime through reflection every time you call `Marshal`, `Struct`, or
+`Parse`.
 
-You can also do it earlier, reading the tag once before the program runs and writing
-out plain Go that needs no reflection at call time.
+You can also do it earlier, reading the tag once before the program runs and writing out
+plain Go that needs no reflection at call time.
 
 ## Reading the tag at runtime
 
 The standard library exposes tags through `reflect.StructTag`. A tag is any back-quoted
-string after a field, and the API gives you a key/value lookup on it. You can read
-your own tag keys the same way:
+string after a field, and the API gives you a key/value lookup on it. You can read your own
+tag keys the same way:
 
 ```go
 type User struct {
@@ -100,11 +100,11 @@ fmt.Println(f.Tag.Get("json"))  // name
 ```
 
 That's the whole surface area. The compiler doesn't inspect the contents, so typos,
-malformed values, and outright garbage all compile without complaint. What a library
-does with the string is up to it.
+malformed values, and outright garbage all compile without complaint. What a library does
+with the string is up to it.
 
-A naive validator that reads a `check` tag and understands `required`, `min`, and
-`email` walks the fields and dispatches with a switch:
+A naive validator that reads a `check` tag and understands `required`, `min`, and `email`
+walks the fields and dispatches with a switch:
 
 ```go
 func Validate(s any) error {
@@ -158,10 +158,10 @@ err := Validate(&User{Name: "a", Email: "bad"})
 fmt.Println(err) // Name: min 2
 ```
 
-This is fine for three rules. By the time you've added `oneof`, `url`, `uuid`, `regex`,
-and nested struct validation, the switch becomes unmanageable. A cleaner shape pulls
-each rule into its own function and keeps a map keyed by tag name. The validator then
-has two halves, a registry of rules and a dispatcher that runs them.
+This is fine for three rules. By the time you've added `oneof`, `url`, `uuid`, `regex`, and
+nested struct validation, the switch becomes unmanageable. A cleaner shape pulls each rule
+into its own function and keeps a map keyed by tag name. The validator then has two halves,
+a registry of rules and a dispatcher that runs them.
 
 The registry maps each tag name to a small function that checks one thing:
 
@@ -189,11 +189,11 @@ var rules = map[string]Rule{
 }
 ```
 
-Each rule takes a field value and an optional argument, and returns an error. Adding a
-new rule is one new map entry, no changes to anything else.
+Each rule takes a field value and an optional argument, and returns an error. Adding a new
+rule is one new map entry, no changes to anything else.
 
-The dispatcher is the same reflection loop as before, but without the switch. It looks
-up a handler by tag name and calls it:
+The dispatcher is the same reflection loop as before, but without the switch. It looks up a
+handler by tag name and calls it:
 
 ```go
 func Validate(s any) error {
@@ -225,18 +225,18 @@ func Validate(s any) error {
 The dispatcher doesn't know what any given rule does, only that it exists in the map.
 
 Open [baked_in.go] in `go-playground/validator` and you'll find the same shape: a
-`bakedInValidators` map with entries like `"required"`, `"email"`, `"len"`, `"min"`,
-each pointing to a small function. The public `validate.RegisterValidation("uuid", ...)`
-call inserts another entry into that map at runtime. The reflection sits in around
-twenty lines, and every new rule is one more function in the map.
+`bakedInValidators` map with entries like `"required"`, `"email"`, `"len"`, `"min"`, each
+pointing to a small function. The public `validate.RegisterValidation("uuid", ...)` call
+inserts another entry into that map at runtime. The reflection sits in around twenty lines,
+and every new rule is one more function in the map.
 
 ## Reading the tag at build time
 
-The runtime shape pays a reflection cost on every call. You can skip that by reading
-the tag once, before the program runs. [easyjson] is built around this idea: it's a
-drop-in alternative to `encoding/json` that reads your `json:"..."` tags at
-`go generate` time and writes out a `MarshalJSON` and `UnmarshalJSON` per type, with
-no reflection left in either one.
+The runtime shape pays a reflection cost on every call. You can skip that by reading the tag
+once, before the program runs. [easyjson] is built around this idea: it's a drop-in
+alternative to `encoding/json` that reads your `json:"..."` tags at `go generate` time and
+writes out a `MarshalJSON` and `UnmarshalJSON` per type, with no reflection left in either
+one.
 
 Take the `User` we marshalled at the top of the post, with one line added to it:
 
@@ -250,8 +250,8 @@ type User struct {
 ```
 
 Run `easyjson user.go` and you get a `user_easyjson.go` alongside it. The full file
-([user_easyjson.go] in the examples repo) is ~90 lines of straight-line Go, but it's
-mostly plumbing. The skeleton is:
+([user_easyjson.go] in the examples repo) is ~90 lines of straight-line Go, but it's mostly
+plumbing. The skeleton is:
 
 ```go
 // Code generated by easyjson for marshaling/unmarshaling. DO NOT EDIT.
@@ -280,17 +280,16 @@ func (v User)  MarshalJSON()   ([]byte, error) { /* calls Encode */ }
 func (v *User) UnmarshalJSON(data []byte) error { /* calls Decode */ }
 ```
 
-The encoder is where the tag decisions show up. Every choice the tag made has been
-frozen into the code:
+The encoder is where the tag decisions show up. Every choice the tag made has been frozen
+into the code:
 
 - (1) `json:"name"` becomes a literal `"name":` in the output, no lookup at call time
 - (2) `json:"email,omitempty"` turns into a plain `if in.Email != ""` check
-- (3) `json:"-"` drops `Admin` entirely. The field doesn't appear in the encoder, and
-  the decoder's `switch` has no `case "admin"`
+- (3) `json:"-"` drops `Admin` entirely. The field doesn't appear in the encoder, and the
+  decoder's `switch` has no `case "admin"`
 
-The only place the tag string meets code is [parseFieldTags] in easyjson's
-`gen/encoder.go`, which is the build-time twin of the `bakedInValidators` map from the
-runtime half:
+The only place the tag string meets code is [parseFieldTags] in easyjson's `gen/encoder.go`,
+which is the build-time twin of the `bakedInValidators` map from the runtime half:
 
 ```go
 // Tag.Get("json") returns everything between the quotes,
@@ -315,18 +314,17 @@ func parseFieldTags(f reflect.StructField) fieldTags {
 }
 ```
 
-The returned `fieldTags` is what the surrounding generator consumes: `omit` skips the
-field, `omitEmpty` wraps the emit in an `if`, `name` becomes the literal `"name":`
-string. That one switch decides every branch in the generated output.
+The returned `fieldTags` is what the surrounding generator consumes: `omit` skips the field,
+`omitEmpty` wraps the emit in an `if`, `name` becomes the literal `"name":` string. That one
+switch decides every branch in the generated output.
 
-easyjson isn't the only tool that does this. [ent] walks Go schema files and emits a
-typed builder per entity, [sqlc] walks SQL queries and emits typed scanners, and
-`protoc-gen-go` walks `.proto` files and emits the structs. Different inputs, same
-trick: read the schema once at build time and write the Go that would otherwise need
-reflection at call time.
+easyjson isn't the only tool that does this. [ent] walks Go schema files and emits a typed
+builder per entity, [sqlc] walks SQL queries and emits typed scanners, and `protoc-gen-go`
+walks `.proto` files and emits the structs. Different inputs, same trick: read the schema
+once at build time and write the Go that would otherwise need reflection at call time.
 
-Find the fully runnable code for both the runtime validator and the codegen tool
-that emits per-type `Validate` methods on [GitHub].
+Find the fully runnable code for both the runtime validator and the codegen tool that emits
+per-type `Validate` methods on [GitHub].
 
 <!-- references -->
 <!-- prettier-ignore-start -->

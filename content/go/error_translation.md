@@ -10,15 +10,15 @@ description: >-
     into the handler or, worse, into client responses.
 ---
 
-In a layered Go service, it's easy to accidentally leak storage errors like
-`sql.ErrNoRows` all the way up to the handler, or worse, to the client. This
-post shows how to catch those at the service boundary, translate them into
-domain errors, and keep internal details from reaching places they shouldn't.
+In a layered Go service, it's easy to accidentally leak storage errors like `sql.ErrNoRows`
+all the way up to the handler, or worse, to the client. This post shows how to catch those
+at the service boundary, translate them into domain errors, and keep internal details from
+reaching places they shouldn't.
 
 ## When the handler knows your database
 
-Say you have a user service backed by Postgres. The handler fetches a user by
-ID and needs to distinguish "not found" from an actual failure:
+Say you have a user service backed by Postgres. The handler fetches a user by ID and needs
+to distinguish "not found" from an actual failure:
 
 ```go
 // handler.go
@@ -38,14 +38,13 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 ```
 
 - (1) This is the coupling. The handler imports `database/sql` and checks for
-  `sql.ErrNoRows`, a storage-specific error. The handler now knows the service
-  uses SQL.
+  `sql.ErrNoRows`, a storage-specific error. The handler now knows the service uses SQL.
 
-For a small service with one database and one transport, that's a reasonable
-tradeoff. You know it's SQL, and nothing else is going to change anytime soon.
+For a small service with one database and one transport, that's a reasonable tradeoff. You
+know it's SQL, and nothing else is going to change anytime soon.
 
-Then the service grows. Someone puts Redis in front of Postgres as a
-read-through cache, and now there are two different "not found" errors:
+Then the service grows. Someone puts Redis in front of Postgres as a read-through cache, and
+now there are two different "not found" errors:
 
 ```go
 // handler.go
@@ -56,11 +55,11 @@ if errors.Is(err, sql.ErrNoRows) || errors.Is(err, redis.Nil) {
 }
 ```
 
-The handler now imports two storage packages. It knows the service uses both
-Postgres and Redis. Then you add soft deletes. A soft-deleted user exists in
-both Postgres and Redis, so neither `sql.ErrNoRows` nor `redis.Nil` fires for
-it. But the service considers the user gone. The handler has no way to return
-404 for this case because neither storage error applies.
+The handler now imports two storage packages. It knows the service uses both Postgres and
+Redis. Then you add soft deletes. A soft-deleted user exists in both Postgres and Redis, so
+neither `sql.ErrNoRows` nor `redis.Nil` fires for it. But the service considers the user
+gone. The handler has no way to return 404 for this case because neither storage error
+applies.
 
 Then someone adds a gRPC handler for the same service:
 
@@ -83,27 +82,24 @@ func (h *Handler) GetUser(
 }
 ```
 
-- (1) The same storage error checks from the HTTP handler, duplicated here.
-  The gRPC handler also imports `database/sql` and `redis` and maps the same
-  storage errors to a different output format (`codes.NotFound` instead of
-  `http.StatusNotFound`).
+- (1) The same storage error checks from the HTTP handler, duplicated here. The gRPC handler
+  also imports `database/sql` and `redis` and maps the same storage errors to a different
+  output format (`codes.NotFound` instead of `http.StatusNotFound`).
 
-Now two handlers know about `sql.ErrNoRows` and `redis.Nil`. Adding a third
-storage backend or removing Redis means updating both. Every change to storage
-ripples into transport code that shouldn't care how data is stored.
+Now two handlers know about `sql.ErrNoRows` and `redis.Nil`. Adding a third storage backend
+or removing Redis means updating both. Every change to storage ripples into transport code
+that shouldn't care how data is stored.
 
-The handler shouldn't need to know any of this. It should check for a single
-"not found" error and return 404 regardless of whether the cause was a missing
-SQL row, a Redis miss, or a soft delete. That means the service needs its own
-error types.
+The handler shouldn't need to know any of this. It should check for a single "not found"
+error and return 404 regardless of whether the cause was a missing SQL row, a Redis miss, or
+a soft delete. That means the service needs its own error types.
 
 ## Defining domain errors
 
-When `sql.ErrNoRows` passes through the service and reaches the handler, it
-becomes part of the interface between those layers. Swap Postgres for DynamoDB
-and the handler breaks, defeating the whole purpose of having a repository
-layer in between. The service package can prevent this by defining errors that
-describe what went wrong in business terms:
+When `sql.ErrNoRows` passes through the service and reaches the handler, it becomes part of
+the interface between those layers. Swap Postgres for DynamoDB and the handler breaks,
+defeating the whole purpose of having a repository layer in between. The service package can
+prevent this by defining errors that describe what went wrong in business terms:
 
 ```go
 // user/user.go
@@ -134,22 +130,20 @@ type Store interface {
 }
 ```
 
-`ErrNotFound` means the user doesn't exist. It doesn't say why. A missing SQL
-row, an expired Redis key, and a soft-deleted record all produce the same
-error. The handler doesn't need to distinguish between these cases because in
-all three, the response is a 404.
+`ErrNotFound` means the user doesn't exist. It doesn't say why. A missing SQL row, an
+expired Redis key, and a soft-deleted record all produce the same error. The handler doesn't
+need to distinguish between these cases because in all three, the response is a 404.
 
-`ErrConflict` means a uniqueness constraint would be violated. Whether that's
-a SQL UNIQUE index or a DynamoDB conditional check is for the storage package
-to worry about.
+`ErrConflict` means a uniqueness constraint would be violated. Whether that's a SQL UNIQUE
+index or a DynamoDB conditional check is for the storage package to worry about.
 
-With these defined, the repository is where the mapping happens: catch
-storage-specific errors and return domain errors instead.
+With these defined, the repository is where the mapping happens: catch storage-specific
+errors and return domain errors instead.
 
 ## Catching storage errors in the repository
 
-Here's the SQLite implementation of the repository interface. The two error
-paths handle things differently on purpose:
+Here's the SQLite implementation of the repository interface. The two error paths handle
+things differently on purpose:
 
 ```go
 // sqlite/store.go
@@ -177,23 +171,20 @@ func (s *UserStore) Get(
 
 The two paths use different format verbs and wrap different things:
 
-- (1) `%w` wraps `user.ErrNotFound` - the domain sentinel, not the original
-  `sql.ErrNoRows`. The repository catches `sql.ErrNoRows` in the `if`
-  check above, but instead of wrapping it, builds a new error around
-  `user.ErrNotFound`. So `errors.Is(err, user.ErrNotFound)` matches, but
-  `errors.Is(err, sql.ErrNoRows)` does not because that error was consumed here,
-  not wrapped. The message `"user 42 not in db: not found"` still tells
-  you what happened during debugging.
-- (2) `%v` wraps the raw `err` from `database/sql`. This is a storage error
-  that callers shouldn't be able to inspect programmatically. `%v` preserves
-  the error message for logging but severs the chain, so
-  `errors.Is(err, sql.ErrWhatever)` won't match. If I used `%w` here, callers
-  could `errors.Is` through to `database/sql` types and the coupling would
-  come back. I wrote more about this choice in
-  [Go errors: to wrap or not to wrap?].
+- (1) `%w` wraps `user.ErrNotFound` - the domain sentinel, not the original `sql.ErrNoRows`.
+  The repository catches `sql.ErrNoRows` in the `if` check above, but instead of wrapping
+  it, builds a new error around `user.ErrNotFound`. So `errors.Is(err, user.ErrNotFound)`
+  matches, but `errors.Is(err, sql.ErrNoRows)` does not because that error was consumed
+  here, not wrapped. The message `"user 42 not in db: not found"` still tells you what
+  happened during debugging.
+- (2) `%v` wraps the raw `err` from `database/sql`. This is a storage error that callers
+  shouldn't be able to inspect programmatically. `%v` preserves the error message for
+  logging but severs the chain, so `errors.Is(err, sql.ErrWhatever)` won't match. If I used
+  `%w` here, callers could `errors.Is` through to `database/sql` types and the coupling
+  would come back. I wrote more about this choice in [Go errors: to wrap or not to wrap?].
 
-The rule is: use `%w` for your own domain errors (callers should inspect
-them), `%v` for storage errors (callers shouldn't).
+The rule is: use `%w` for your own domain errors (callers should inspect them), `%v` for
+storage errors (callers shouldn't).
 
 For creates, constraint violations get the same treatment:
 
@@ -221,16 +212,16 @@ func (s *UserStore) Create(
 }
 ```
 
-- (1) Same pattern as `Get`. A database-specific constraint error becomes
-  `user.ErrConflict` wrapped with `%w` and the conflicting email for debugging
-  context. The handler sees "conflict" and returns 409. It doesn't know which
-  database or which constraint was violated.
-- (2) Unknown errors get `%v` wrapping, same as before. The message is
-  preserved for logging but the chain is severed.
+- (1) Same pattern as `Get`. A database-specific constraint error becomes `user.ErrConflict`
+  wrapped with `%w` and the conflicting email for debugging context. The handler sees
+  "conflict" and returns 409. It doesn't know which database or which constraint was
+  violated.
+- (2) Unknown errors get `%v` wrapping, same as before. The message is preserved for logging
+  but the chain is severed.
 
-The service layer doesn't need to do any mapping of its own. It passes domain
-errors from the store straight through. When it has business reasons to
-produce the same error independently, it uses the same sentinel:
+The service layer doesn't need to do any mapping of its own. It passes domain errors from
+the store straight through. When it has business reasons to produce the same error
+independently, it uses the same sentinel:
 
 ```go
 // user/service.go
@@ -251,28 +242,25 @@ func (s *Service) GetUser(
 }
 ```
 
-- (1) If the store returned `ErrNotFound` (missing row), it passes through
-  unchanged. The service doesn't translate anything here because the error is
-  already in domain terms.
-- (2) A soft-deleted user exists in the database but is logically gone. The
-  service wraps `ErrNotFound` with `%w` and the user ID. `%w` is appropriate
-  here because `ErrNotFound` is the service's own error, not a leaked storage
-  detail. The handler can still match it with `errors.Is(err, ErrNotFound)`.
+- (1) If the store returned `ErrNotFound` (missing row), it passes through unchanged. The
+  service doesn't translate anything here because the error is already in domain terms.
+- (2) A soft-deleted user exists in the database but is logically gone. The service wraps
+  `ErrNotFound` with `%w` and the user ID. `%w` is appropriate here because `ErrNotFound` is
+  the service's own error, not a leaked storage detail. The handler can still match it with
+  `errors.Is(err, ErrNotFound)`.
 
 > [!IMPORTANT]
 >
-> You don't need to translate at every layer. The repository maps storage
-> errors to domain errors. The handler maps domain errors to wire format. The
-> service layer in between just passes domain errors through unchanged. Two
-> translation points, not one per layer.
+> You don't need to translate at every layer. The repository maps storage errors to domain
+> errors. The handler maps domain errors to wire format. The service layer in between just
+> passes domain errors through unchanged. Two translation points, not one per layer.
 
-Once the repository handles the storage-to-domain mapping, the handler gets
-much simpler.
+Once the repository handles the storage-to-domain mapping, the handler gets much simpler.
 
 ## Mapping domain errors to status codes
 
-Compare this to the handler from the beginning of the post. No `database/sql`
-import, no `redis` import, no knowledge of which storage backends exist:
+Compare this to the handler from the beginning of the post. No `database/sql` import, no
+`redis` import, no knowledge of which storage backends exist:
 
 ```go
 // main.go
@@ -305,8 +293,8 @@ func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-All error-to-status mapping lives in one function. Domain errors go in, HTTP
-status codes come out:
+All error-to-status mapping lives in one function. Domain errors go in, HTTP status codes
+come out:
 
 ```go
 // main.go
@@ -323,12 +311,11 @@ func writeError(w http.ResponseWriter, err error) {
 }
 ```
 
-- (1) `ErrNotFound` becomes 404. The handler doesn't know if it was a SQL
-  miss, a Redis miss, or a soft delete. It doesn't need to.
-- (2) `ErrConflict` becomes 409. The handler doesn't know which constraint
-  was violated.
-- (3) Anything else becomes 500 with a generic message. No internal details
-  leak to the client.
+- (1) `ErrNotFound` becomes 404. The handler doesn't know if it was a SQL miss, a Redis
+  miss, or a soft delete. It doesn't need to.
+- (2) `ErrConflict` becomes 409. The handler doesn't know which constraint was violated.
+- (3) Anything else becomes 500 with a generic message. No internal details leak to the
+  client.
 
 The gRPC handler uses the same service with a different mapping function:
 
@@ -375,25 +362,23 @@ func (h *handler) CreateUser(
 }
 ```
 
-`writeError` and `toStatus` have the same shape. One outputs HTTP status
-codes, the other outputs gRPC status codes. The service behind both is
-identical. If you add a new error like `ErrForbidden`, you define one sentinel
-in the `user` package and add one case to each mapping function.
+`writeError` and `toStatus` have the same shape. One outputs HTTP status codes, the other
+outputs gRPC status codes. The service behind both is identical. If you add a new error like
+`ErrForbidden`, you define one sentinel in the `user` package and add one case to each
+mapping function.
 
 ## What you lose and how to get it back
 
-When the handler sees `ErrNotFound`, it doesn't know whether that was a SQL
-miss, a Redis miss, or a soft delete. That's the whole point of the
-translation, but during an incident you need that information.
+When the handler sees `ErrNotFound`, it doesn't know whether that was a SQL miss, a Redis
+miss, or a soft delete. That's the whole point of the translation, but during an incident
+you need that information.
 
-This is why the repository and service wrap `ErrNotFound` with descriptive
-context using `%w`, as shown above. The repository produces
-`"user 42 not in db: not found"` and the service produces
-`"user 42 soft-deleted: not found"`. Same domain error, different origin. The
-handler treats both as 404, but the error strings are distinct.
+This is why the repository and service wrap `ErrNotFound` with descriptive context using
+`%w`, as shown above. The repository produces `"user 42 not in db: not found"` and the
+service produces `"user 42 soft-deleted: not found"`. Same domain error, different origin.
+The handler treats both as 404, but the error strings are distinct.
 
-To make this useful, the handler logs the full error before returning the
-response:
+To make this useful, the handler logs the full error before returning the response:
 
 ```go
 // main.go
@@ -414,23 +399,22 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-The client sees a 404 with the body `not found`. The on-call engineer sees
-this:
+The client sees a 404 with the body `not found`. The on-call engineer sees this:
 
 ```
 level=ERROR msg="get user failed" user_id=42
     err="user 42 not in db: not found"
 ```
 
-The error string tells you which code path produced the error. If you have
-tracing set up, the request-scoped context carries the trace ID too, so you
-can follow the 404 all the way back to the storage call that failed.
+The error string tells you which code path produced the error. If you have tracing set up,
+the request-scoped context carries the trace ID too, so you can follow the 404 all the way
+back to the storage call that failed.
 
 ## The standard library does the same thing
 
-The `os` package translates platform-specific errors into portable ones.
-On Linux, opening a missing file fails with `syscall.ENOENT`. On Windows,
-it fails with `ERROR_FILE_NOT_FOUND`. But callers never see either:
+The `os` package translates platform-specific errors into portable ones. On Linux, opening a
+missing file fails with `syscall.ENOENT`. On Windows, it fails with `ERROR_FILE_NOT_FOUND`.
+But callers never see either:
 
 ```go
 // Example usage
@@ -441,20 +425,19 @@ if errors.Is(err, fs.ErrNotExist) {
 }
 ```
 
-`os.Open` catches the platform error and wraps it so that `errors.Is`
-[maps it to `fs.ErrNotExist`]. Same idea as the repository catching
-`sql.ErrNoRows` and wrapping `user.ErrNotFound` instead.
+`os.Open` catches the platform error and wraps it so that `errors.Is` [maps it to
+`fs.ErrNotExist`]. Same idea as the repository catching `sql.ErrNoRows` and wrapping
+`user.ErrNotFound` instead.
 
-etcd's [clientv3 package] does the same translation in the reverse
-direction. The client receives gRPC status codes from the server and maps
-them into plain Go errors so callers never import
-`google.golang.org/grpc/status`. I covered this in
-[Wrapping a gRPC client in Go].
+etcd's [clientv3 package] does the same translation in the reverse direction. The client
+receives gRPC status codes from the server and maps them into plain Go errors so callers
+never import `google.golang.org/grpc/status`. I covered this in [Wrapping a gRPC client in
+Go].
 
 ---
 
-Working examples for the [HTTP version] and the [gRPC version] are on GitHub,
-in the [error-translation] directory.
+Working examples for the [HTTP version] and the [gRPC version] are on GitHub, in the
+[error-translation] directory.
 
 <!-- references -->
 <!-- prettier-ignore-start -->

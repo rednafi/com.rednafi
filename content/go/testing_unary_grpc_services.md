@@ -23,10 +23,10 @@ that lives behind an interface, you can test the logic without gRPC at all. [Inj
 call the method, check the result.
 
 But sometimes you do need to test the gRPC layer. Maybe you want to verify that status codes
-survive the round trip through serialization and HTTP/2 trailers. Maybe you have interceptors
-that add logging or auth, deadlines that need to propagate as `grpc-timeout` headers,
-metadata that carries trace IDs between services, or structured error details attached via
-`status.WithDetails`. In those cases, you need the real gRPC stack running.
+survive the round trip through serialization and HTTP/2 trailers. Maybe you have
+interceptors that add logging or auth, deadlines that need to propagate as `grpc-timeout`
+headers, metadata that carries trace IDs between services, or structured error details
+attached via `status.WithDetails`. In those cases, you need the real gRPC stack running.
 
 That's what [bufconn] does. It's an in-memory [net.Listener] from the gRPC-Go library that
 lets you start a real gRPC server and connect a real client to it, all inside the test
@@ -293,8 +293,8 @@ isolation, not that the generated client and server actually agree on the wire f
 
 For a service where the handler is a thin adapter and the real logic lives behind the
 `Store` interface, none of this matters and direct calls are fine. But if you have
-interceptors, need deadline propagation, pass metadata between services, or return structured
-error details, you need the real stack.
+interceptors, need deadline propagation, pass metadata between services, or return
+structured error details, you need the real stack.
 
 ## Enter bufconn
 
@@ -312,10 +312,10 @@ interceptors), but the underlying connection is an in-memory pipe rather than a 
 
 > [!NOTE]
 >
-> `httptest.NewServer` actually allocates a real TCP port on localhost.
-> bufconn doesn't, which means no port conflicts when running tests in parallel in CI.
-> If Go's httptest had an option to use `net.Pipe()` instead of TCP
-> ([#14200]), bufconn would be the gRPC equivalent of that.
+> `httptest.NewServer` actually allocates a real TCP port on localhost. bufconn doesn't,
+> which means no port conflicts when running tests in parallel in CI. If Go's httptest had
+> an option to use `net.Pipe()` instead of TCP ([#14200]), bufconn would be the gRPC
+> equivalent of that.
 
 Starting a real gRPC server on `net.Listen("tcp", ":0")` works too. The OS assigns a free
 port, so there are no conflicts, but each test pays for TCP setup and teardown. Under heavy
@@ -454,8 +454,8 @@ catch it while the direct tests wouldn't.
 ## Testing interceptors
 
 Interceptors are middleware for gRPC. A unary server interceptor wraps every RPC call -
-common uses include logging, authentication, and request tagging. Here's one that generates a
-request ID and sets it as response header metadata:
+common uses include logging, authentication, and request tagging. Here's one that generates
+a request ID and sets it as response header metadata:
 
 ```go
 // server.go
@@ -531,8 +531,8 @@ provides.
 
 gRPC propagates deadlines automatically. When the client sets a timeout via
 `context.WithTimeout`, gRPC encodes it as a `grpc-timeout` header in the request. The server
-receives a context whose deadline matches the client's, and if that deadline fires before the
-handler returns, the framework returns `codes.DeadlineExceeded` to the client.
+receives a context whose deadline matches the client's, and if that deadline fires before
+the handler returns, the framework returns `codes.DeadlineExceeded` to the client.
 
 To test this, we need a store that's slow enough to trigger the deadline. A `slowStore`
 wraps `memStore` and adds a delay to `Get`:
@@ -596,10 +596,10 @@ func TestGetBook_DeadlineExceeded(t *testing.T) {
 The `DeadlineExceeded` the client sees comes from gRPC's transport layer, not from the
 handler. If the deadline hadn't fired, `slowStore` would eventually return the book, and if
 the store returned an error for some other reason, `GetBook` would wrap it as
-`codes.NotFound`. The fact that the test gets `DeadlineExceeded` instead of `NotFound` proves
-the deadline traveled through the wire: the client encoded it as a `grpc-timeout` header,
-the server's context inherited it, and when it fired, the framework short-circuited the
-response.
+`codes.NotFound`. The fact that the test gets `DeadlineExceeded` instead of `NotFound`
+proves the deadline traveled through the wire: the client encoded it as a `grpc-timeout`
+header, the server's context inherited it, and when it fired, the framework short-circuited
+the response.
 
 Direct handler calls can't test this. `context.WithTimeout` on a direct call would still
 cancel the context and `slowStore` would return `ctx.Err()`, but `GetBook` would wrap that
@@ -740,14 +740,15 @@ func TestCreateBook_ValidationDetails(t *testing.T) {
 
 - (1) `s.Details()` deserializes the protobuf messages that `WithDetails` attached on the
   server side. They traveled through trailing metadata in the HTTP/2 response
-- (2) type-asserts the first detail as `*errdetails.BadRequest` from the [errdetails] package
+- (2) type-asserts the first detail as `*errdetails.BadRequest` from the [errdetails]
+  package
 
 `WithDetails` always marshals each proto message into a `google.protobuf.Any` wrapper, and
-`Details()` always unmarshals them back - that happens even in a direct test. What the direct
-test skips is the transport-level round trip: the entire `Status` proto (including its details)
-gets encoded into the `grpc-status-details-bin` trailing metadata, transmitted over HTTP/2, and
-reconstructed on the client side via `status.FromError`. A direct test would pass even if that
-wire-level serialization was broken.
+`Details()` always unmarshals them back - that happens even in a direct test. What the
+direct test skips is the transport-level round trip: the entire `Status` proto (including
+its details) gets encoded into the `grpc-status-details-bin` trailing metadata, transmitted
+over HTTP/2, and reconstructed on the client side via `status.FromError`. A direct test
+would pass even if that wire-level serialization was broken.
 
 ## Choosing your testing level
 

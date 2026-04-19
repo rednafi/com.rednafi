@@ -5,8 +5,7 @@ description: >-
   testing, and patterns that have held up in production.
 ---
 
-**Featured:**
-[Structured concurrency & Go](/go/structured-concurrency/) ·
+**Featured:** [Structured concurrency & Go](/go/structured-concurrency/) ·
 [Writing a circuit breaker in Go](/go/circuit-breaker/) ·
 [Revisiting interface segregation](/go/interface-segregation/) ·
 [Preventing accidental struct copies](/go/prevent-struct-copies/) ·

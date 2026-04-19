@@ -226,8 +226,8 @@ Content-Length: 28
 {"message": "Hello, world!"}
 ```
 
-Now, you can make another request with the value of the `ETag` in the
-`If-None-Match` header:
+Now, you can make another request with the value of the `ETag` in the `If-None-Match`
+header:
 
 ```sh
 curl -i \

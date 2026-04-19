@@ -10,8 +10,8 @@ description: >-
 
 ## Distributed systems
 
-- [Dynamo: Amazon's Highly Available Key-value Store][dynamo]
-  — Giuseppe DeCandia et al. ([notes](/shards/2026/04/dynamo/))
+- [Dynamo: Amazon's Highly Available Key-value Store][dynamo] — Giuseppe DeCandia et al.
+  ([notes](/shards/2026/04/dynamo/))
 
 <!-- references -->
 

@@ -15,11 +15,11 @@ Consider a typical layered Go service. There's a repository layer that talks to 
 database, a service layer that contains the business logic, and a handler that deals with
 protocols like HTTP or gRPC.
 
-One common thing I often see is emitting log lines from all three layers. When an
-error occurs, each layer logs it as it bubbles up, producing a stack of duplicate
-lines for the same failure. At low throughput this is just noisy. At high throughput
-it taxes the logging pipeline. We've seen stacked logging from a 250k rps
-service put enough pressure on the o11y infrastructure to cause its own incidents.
+One common thing I often see is emitting log lines from all three layers. When an error
+occurs, each layer logs it as it bubbles up, producing a stack of duplicate lines for the
+same failure. At low throughput this is just noisy. At high throughput it taxes the logging
+pipeline. We've seen stacked logging from a 250k rps service put enough pressure on the o11y
+infrastructure to cause its own incidents.
 
 ## One error, three log lines
 
@@ -65,23 +65,24 @@ func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
 ```
 
 One database timeout, three error log lines. You search during an incident, see 3,000
-errors, and think three thousand things broke. In reality it was one thousand requests
-that each logged the same failure three times.
+errors, and think three thousand things broke. In reality it was one thousand requests that
+each logged the same failure three times.
 
 > [!IMPORTANT]
-> There's a related but separate problem in `GetByID` and `GetUser`: they log the
-> error _and_ return it. Dave Cheney in [Let's talk about logging] warns us against
-> it: "if you choose to handle the error by logging it, by definition it's not an
-> error any more - you handled it."
 >
-> The [Uber Go Style Guide] says the same: "the caller should not, for example, log
-> the error and then return it, because its callers may handle the error as well."
-> Either log it or return it, not both.
+> There's a related but separate problem in `GetByID` and `GetUser`: they log the error
+> _and_ return it. Dave Cheney in [Let's talk about logging] warns us against it: "if you
+> choose to handle the error by logging it, by definition it's not an error any more \- you
+> handled it."
+>
+> The [Uber Go Style Guide] says the same: "the caller should not, for example, log the
+> error and then return it, because its callers may handle the error as well." Either log it
+> or return it, not both.
 
 ## Move the log line to the top
 
-Lower layers should return errors with context and leave logging to the handler.
-Wrap each error on the way up:
+Lower layers should return errors with context and leave logging to the handler. Wrap each
+error on the way up:
 
 ```go
 // Repository
@@ -91,9 +92,9 @@ return User{}, fmt.Errorf("userRepo.GetByID: query user %s: %w", id, err)
 return User{}, fmt.Errorf("userService.GetUser: %w", err)
 ```
 
-The handler gets `userService.GetUser: userRepo.GetByID: query user abc123:
-connection refused`. The full call chain is in the error string and no layer had
-to log independently.
+The handler gets
+`userService.GetUser: userRepo.GetByID: query user abc123: connection refused`. The full
+call chain is in the error string and no layer had to log independently.
 
 The handler logs the error once with request context:
 
@@ -114,19 +115,19 @@ func (h *UserHandler) HandleGetUser(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-One error, one log line. The handler has the request context and the full wrapped
-error chain, which is all you need for error logging.
+One error, one log line. The handler has the request context and the full wrapped error
+chain, which is all you need for error logging.
 
 ## Collecting log fields on the way up
 
-Error wrapping solves the failure case. But what about non-error diagnostic data -
-query timing, cache hit/miss, downstream call latency? The handler only has access
-to the request and the error string. It can't know how long the database query took
-unless the repository tells it somehow.
+Error wrapping solves the failure case. But what about non-error diagnostic data - query
+timing, cache hit/miss, downstream call latency? The handler only has access to the request
+and the error string. It can't know how long the database query took unless the repository
+tells it somehow.
 
-You can stash a mutable field collector in `context.Context` at the start of a
-request. Lower layers append to it. A middleware reads it back and emits one
-structured line when the request completes.
+You can stash a mutable field collector in `context.Context` at the start of a request.
+Lower layers append to it. A middleware reads it back and emits one structured line when the
+request completes.
 
 Start with a thread-safe container for log fields:
 
@@ -151,8 +152,8 @@ func AddLogField(ctx context.Context, key string, value any) {
 }
 ```
 
-The middleware creates the collector, passes it down through context, and emits
-the log line after the handler chain completes:
+The middleware creates the collector, passes it down through context, and emits the log line
+after the handler chain completes:
 
 ```go
 func LoggingMiddleware(next http.Handler) http.Handler {
@@ -190,8 +191,8 @@ Here:
 - (4) only two log levels: `Info` for normal requests, `Error` for 5xx
 - (5) emit the log line
 
-Now each layer can inject fields into the context without logging. The repository
-attaches query timing:
+Now each layer can inject fields into the context without logging. The repository attaches
+query timing:
 
 ```go
 func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
@@ -205,15 +206,15 @@ func (r *UserRepo) GetByID(ctx context.Context, id string) (User, error) {
 }
 ```
 
-The service layer could do the same for cache hit/miss, downstream call latency,
-or which code path a feature flag selected. None of them emit a log line. They
-just call `AddLogField` and move on. If a lower layer genuinely needs to record
-a decision - like falling back from a primary to a secondary node - that's fine.
-It's a separate concern from the duplicate error logging this post is about.
+The service layer could do the same for cache hit/miss, downstream call latency, or which
+code path a feature flag selected. None of them emit a log line. They just call
+`AddLogField` and move on. If a lower layer genuinely needs to record a decision - like
+falling back from a primary to a secondary node - that's fine. It's a separate concern from
+the duplicate error logging this post is about.
 
-The middleware at the top collects all of it and emits one line. If the repository
-called `AddLogField(ctx, "db_duration", ...)` and the request returned a 200, the
-output looks something like:
+The middleware at the top collects all of it and emits one line. If the repository called
+`AddLogField(ctx, "db_duration", ...)` and the request returned a 200, the output looks
+something like:
 
 ```json
 {
@@ -229,15 +230,14 @@ output looks something like:
 
 One request, one log line, with context from every layer.
 
-The Kubernetes API server does exactly this with [AddKeyValue] and [respLogger].
-Caddy's deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same
-pattern.
+The Kubernetes API server does exactly this with [AddKeyValue] and [respLogger]. Caddy's
+deferred [logRequest] and HashiCorp Nomad's [wrap] follow the same pattern.
 
 ## Canonical log line
 
-Stripe took this further with what they call the [canonical log line]: one
-structured line per request, but with every dimension you might want to query
-on. Auth type, DB query count, rate limit status, team ownership:
+Stripe took this further with what they call the [canonical log line]: one structured line
+per request, but with every dimension you might want to query on. Auth type, DB query count,
+rate limit status, team ownership:
 
 ```txt
 canonical-log-line alloc_count=9123 auth_type=api_key
@@ -248,46 +248,41 @@ canonical-log-line alloc_count=9123 auth_type=api_key
   team=acquiring user_id=usr_123
 ```
 
-Fields like `database_queries=34` come from lower layers injecting into context,
-exactly the middleware pattern from the previous section. The canonical log line
-carries queryable dimensions. For the full error chain you still have the wrapped
-error that the handler logged. Brandur Leach, who worked on this at Stripe,
-called it "[the single, simplest, best method of getting easy insight into
-production that there is]." [go-chi/httplog] implements the same idea in Go on
-top of `log/slog`.
+Fields like `database_queries=34` come from lower layers injecting into context, exactly the
+middleware pattern from the previous section. The canonical log line carries queryable
+dimensions. For the full error chain you still have the wrapped error that the handler
+logged. Brandur Leach, who worked on this at Stripe, called it "[the single, simplest, best
+method of getting easy insight into production that there is]." [go-chi/httplog] implements
+the same idea in Go on top of `log/slog`.
 
 ---
 
 A few things that came up when I [posted this on Reddit]:
 
-_"What about debug logs in lower layers?"_ - Debug-level logs in the repository
-or service layer are fine as long as they're disabled by default in production.
-The problem is when info or error level logs fire from every layer on every
-request. Debug logs you flip on for a specific investigation are a different
-thing.
+_"What about debug logs in lower layers?"_ - Debug-level logs in the repository or service
+layer are fine as long as they're disabled by default in production. The problem is when
+info or error level logs fire from every layer on every request. Debug logs you flip on for
+a specific investigation are a different thing.
 
-_"Some lower-layer logs aren't duplicates though."_ - True. A service layer
-logging that it fell back from primary to secondary, or that a feature flag
-changed the code path, is recording a decision and adds information. Those
-are worth keeping. The problem this post targets is the same error or the same
-"processing request" message repeated at every layer with no new information.
-Nevertheless, hoisting your log lines to the upper layer is a general rule of thumb.
+_"Some lower-layer logs aren't duplicates though."_ - True. A service layer logging that it
+fell back from primary to secondary, or that a feature flag changed the code path, is
+recording a decision and adds information. Those are worth keeping. The problem this post
+targets is the same error or the same "processing request" message repeated at every layer
+with no new information. Nevertheless, hoisting your log lines to the upper layer is a
+general rule of thumb.
 
-_"Canonical log lines are tracing at home."_ - They're not a replacement for
-distributed tracing. They fill a different niche: request-level telemetry you
-can query ad-hoc without a trace viewer. They work best alongside metrics and
-traces.
+_"Canonical log lines are tracing at home."_ - They're not a replacement for distributed
+tracing. They fill a different niche: request-level telemetry you can query ad-hoc without a
+trace viewer. They work best alongside metrics and traces.
 
-_"You still need normal logs for verbose error details."_ - Yes. The canonical
-log line carries queryable dimensions like `database_queries=34` or
-`rate_allowed=false`. The full error chain still comes from the wrapped error
-that the handler logged separately.
+_"You still need normal logs for verbose error details."_ - Yes. The canonical log line
+carries queryable dimensions like `database_queries=34` or `rate_allowed=false`. The full
+error chain still comes from the wrapped error that the handler logged separately.
 
-_"Won't the canonical log line get too big?"_ - It can. Most log aggregators
-have a max line size. The canonical log line should carry structured fields
-like counts, durations, and identifiers - not full request/response bodies or
-long error messages. Keep the fields narrow and let the error wrapping carry
-the verbose details separately.
+_"Won't the canonical log line get too big?"_ - It can. Most log aggregators have a max line
+size. The canonical log line should carry structured fields like counts, durations, and
+identifiers - not full request/response bodies or long error messages. Keep the fields
+narrow and let the error wrapping carry the verbose details separately.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
