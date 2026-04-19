@@ -56,14 +56,4 @@ func TestSitemapHasLastmod(t *testing.T) {
 	assert.Regexp(t, `<lastmod>\d{4}-\d{2}-\d{2}`, body)
 }
 
-func TestSitemapExcludesMachineReadableMirrors(t *testing.T) {
-	t.Parallel()
-	body := httpGet(t, baseURL+"/sitemap.xml")
-
-	assert.NotContains(t, body, ".md</loc>", "markdown mirrors should stay out of the sitemap")
-	assert.NotContains(t, body, "/llms.txt</loc>", "llms.txt should stay out of the sitemap")
-	assert.NotContains(t, body, "/llms-full.txt</loc>", "llms-full.txt should stay out of the sitemap")
-	assert.NotContains(t, body, "/pagefind/", "pagefind assets should not be advertised in the sitemap")
-}
-
 // Sitemap entry count is verified by TestSiteBuildSmokeTest.

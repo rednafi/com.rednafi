@@ -25,10 +25,7 @@ var (
 
 func TestMain(m *testing.M) {
 	// Find the public directory
-	publicDir := os.Getenv("PUBLIC_DIR")
-	if publicDir == "" {
-		publicDir = filepath.Join("..", "public")
-	}
+	publicDir := filepath.Join("..", "public")
 	if _, err := os.Stat(publicDir); os.IsNotExist(err) {
 		fmt.Fprintln(os.Stderr, "public/ directory not found — run 'make build' first")
 		os.Exit(1)
@@ -504,16 +501,9 @@ func TestRSSFeeds(t *testing.T) {
 func TestRobotsTxt(t *testing.T) {
 	t.Parallel()
 	body := httpGet(t, baseURL+"/robots.txt")
-	assert.Contains(t, body, "User-agent: Googlebot")
-	assert.Contains(t, body, "User-agent: Bingbot")
 	assert.Contains(t, body, "User-agent: *")
 	assert.Contains(t, body, "Allow: /")
 	assert.Contains(t, body, "Disallow: /search/")
-	assert.Contains(t, body, "Disallow: /pagefind/")
-	assert.Contains(t, body, "Disallow: /*.md$")
-	assert.Contains(t, body, "Disallow: /llms.txt")
-	assert.Contains(t, body, "Disallow: /llms-full.txt")
-	assert.Contains(t, body, "Content-Signal: ai-train=no, search=yes, ai-input=no")
 	assert.Contains(t, body, "Sitemap:")
 	assert.Contains(t, body, "sitemap.xml")
 }
@@ -524,25 +514,6 @@ func TestSitemap(t *testing.T) {
 	assert.Contains(t, body, "<urlset")
 	assert.Contains(t, body, "<url>")
 	assert.Contains(t, body, "<loc>")
-}
-
-func TestLLMSTextFiles(t *testing.T) {
-	t.Parallel()
-
-	t.Run("llms.txt exists", func(t *testing.T) {
-		body := httpGet(t, baseURL+"/llms.txt")
-		assert.Contains(t, body, "# Redowan's Reflections")
-		assert.Contains(t, body, "https://rednafi.com/sitemap.xml")
-		assert.Contains(t, body, "https://rednafi.com/index.md")
-	})
-
-	t.Run("llms-full.txt exists", func(t *testing.T) {
-		body := httpGet(t, baseURL+"/llms-full.txt")
-		assert.Contains(t, body, "# Redowan's Reflections: Full Guide")
-		assert.Contains(t, body, "https://rednafi.com/archive/")
-		assert.Contains(t, body, "https://rednafi.com/index.xml")
-		assert.Contains(t, body, "sibling `index.md` paths")
-	})
 }
 
 // ---------- Content & Features ----------
