@@ -5,6 +5,8 @@ SHELL := /bin/bash -ex
 MAKEFLAGS += --silent
 
 BREW_PACKAGES := gh hugo prettier
+WRANGLER_VERSION := 4.83.0
+WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
 
 init:
 	git submodule update --init --recursive
@@ -44,4 +46,4 @@ upload-image:
 		exit 1; \
 	fi
 	oxipng -o 6 $(local_path)
-	wrangler r2 object put $(remote_path) --file $(local_path) --remote
+	$(WRANGLER) r2 object put $(remote_path) --file $(local_path) --remote
