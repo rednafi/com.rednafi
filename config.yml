@@ -134,11 +134,11 @@ markup:
       unsafe: true
 
 outputs:
-  home: ["HTML", "RSS", "ArticlesRSS", "Markdown"]
-  page: ["HTML", "Markdown"]
-  section: ["HTML", "RSS", "Markdown"]
-  taxonomy: ["HTML", "Markdown"]
-  term: ["HTML", "RSS", "Markdown"]
+  home: ["HTML", "RSS", "ArticlesRSS"]
+  page: ["HTML"]
+  section: ["HTML", "RSS"]
+  taxonomy: ["HTML"]
+  term: ["HTML", "RSS"]
 
 services:
   rss:
@@ -148,9 +148,6 @@ mediaTypes:
   application/articles+xml:
     suffixes:
       - xml
-  text/markdown:
-    suffixes:
-      - md
 
 outputFormats:
   ArticlesRSS:
@@ -161,14 +158,6 @@ outputFormats:
     isHTML: false
     noUgly: true
     permalinkable: false
-  Markdown:
-    mediaType: text/markdown
-    baseName: index
-    isPlainText: true
-    rel: alternate
-    isHTML: false
-    noUgly: true
-    permalinkable: true
 
 security:
   funcs:
