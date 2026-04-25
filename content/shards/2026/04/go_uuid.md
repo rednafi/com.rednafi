@@ -2,6 +2,8 @@
 title: "Accepted proposal: UUID in the Go standard library"
 date: 2026-04-19
 slug: go-uuid
+aliases:
+    - /shards/2026/04/go-uuid-stdlib/
 tags:
     - Go
     - API
