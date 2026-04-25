@@ -235,7 +235,7 @@ the same way any other closure captures a free variable. From the hegel-go skill
 > field the method touches is shared state.
 
 If `serverCrashMessage` reads `s.logFile`, the resulting function value carries a live
-pointer to `s` and re-reads `s.logFile` every time it's called. Bendersky's article walks
+pointer to `s` and re-reads `s.logFile` every time it's called. [Bendersky's article] walks
 through the same gotcha with a `Show()` method on a pointer receiver: `go m.Show()` shares
 the receiver across goroutines, and nothing at the call site warns you.
 
@@ -301,6 +301,9 @@ immutable values (strings, ints) rather than pointers to mutable structs.
     https://gaultier.github.io/blog/a_subtle_data_race_in_go.html
 
 [great explainer]:
+    https://eli.thegreenplace.net/2019/go-internals-capturing-loop-variables-in-closures/
+
+[Bendersky's article]:
     https://eli.thegreenplace.net/2019/go-internals-capturing-loop-variables-in-closures/
 
 [patched in go1.22]:
