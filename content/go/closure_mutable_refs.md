@@ -227,9 +227,8 @@ for _, v := range xs {
 ```
 
 Before Go 1.22 this printed the last value `len(xs)` times because every iteration shared
-one `v`. It got [patched in go1.22], which gives each iteration its own copy, and Eli
-Bendersky has a [great explainer] of what was happening under the hood pre-1.22 if you're
-curious.
+one `v`. It got [patched in go1.22], which gives each iteration its own copy. Eli Bendersky
+has a [great explainer] of what was happening under the hood pre-1.22 if you're curious.
 
 Go 1.22 only changed loop-variable lifetime. Pointer captures and method values on
 long-lived receivers still behave the way they always did, because the language can't tell
