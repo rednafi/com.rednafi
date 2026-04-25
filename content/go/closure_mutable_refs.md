@@ -63,6 +63,22 @@ The closure didn't bake in `"localhost:8080"`. It captured `cfg`, which is a poi
 went back to the same struct every time it ran. Mutating the struct between calls changed
 what the closure printed.
 
+To freeze a multi-field snapshot, copy what the closure needs into a local before creating
+it:
+
+```go {hl_lines=6}
+type addr struct {
+    host string
+    port int
+}
+
+snap := addr{host: cfg.Host, port: cfg.Port}
+
+c.addr = func() string {
+    return fmt.Sprintf("%s:%d", snap.host, snap.port)
+}
+```
+
 ## Capture-by-reference is what makes counters work
 
 The [spec] puts it like this:
@@ -124,6 +140,23 @@ are reasonable things to do. The closure keeps reading `s.logFile` whenever some
 the connection for its crash message. If that read happens during cleanup, you have a race
 on `s.logFile`. If it happens after rotation, the message points at the new file, not the
 file the connection was actually using.
+
+The fix is to copy what the closure needs at construction time:
+
+```go {hl_lines=2}
+func (s *Server) newConn() *Conn {
+    name := s.logFile.Name() // copy now, while we know it's valid
+
+    return &Conn{
+        crashMsg: func() string {
+            return "log: " + name
+        },
+    }
+}
+```
+
+`Conn` no longer holds a pointer to `Server`. Rotation, shutdown, and mutation of
+`s.logFile` no longer concern it.
 
 ### Concurrent requests share one captured bool
 
@@ -203,52 +236,17 @@ the same way any other closure captures a free variable. From the hegel-go skill
 
 If `serverCrashMessage` reads `s.logFile`, the resulting function value carries a live
 pointer to `s` and re-reads `s.logFile` every time it's called. Bendersky's article walks
-through the same gotcha with a `Show()` method on a pointer receiver: `go m.Show()` quietly
-shares the receiver across goroutines, and nothing at the call site warns you.
+through the same gotcha with a `Show()` method on a pointer receiver: `go m.Show()` shares
+the receiver across goroutines, and nothing at the call site warns you.
 
-## Capture a value when you want a snapshot
-
-The fix in every case is the same: capture a value, not a reference, when you want a
-snapshot.
-
-Inline:
-
-```go {hl_lines=2}
-func (s *Server) newConn() *Conn {
-    name := s.logFile.Name() // copy now, while we know it's valid
-
-    return &Conn{
-        crashMsg: func() string {
-            return "log: " + name
-        },
-    }
-}
-```
-
-Now `Conn` doesn't hold a pointer to `Server` at all. Rotation, shutdown, and mutation of
-`s.logFile` no longer concern it.
-
-For multi-field snapshots, build a small struct on the way in:
-
-```go {hl_lines=6}
-type addr struct {
-    host string
-    port int
-}
-
-snap := addr{host: cfg.Host, port: cfg.Port}
-
-c.addr = func() string {
-    return fmt.Sprintf("%s:%d", snap.host, snap.port)
-}
-```
+## When you can't just snapshot
 
 If the closure genuinely needs to see live state, leave it as a pointer and guard the reads
 with the same mutex (or atomic, or channel) that the writers use. That's a different choice
 with a different cost (more synchronization, fewer surprises) and you should make it on
 purpose.
 
-A few more habits that have helped me:
+A few things that help spot the bug when snapshots aren't an option:
 
 - When a callback or method value lands on a long-lived struct, ask: which fields does this
   read? Write the answer next to the field declaration.
