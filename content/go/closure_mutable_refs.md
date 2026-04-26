@@ -22,11 +22,11 @@ skill:
 It's the most concise representation I've seen of the behavior that has bitten me in the
 past.
 
-Calling it a footgun would be a bit disingenuous. When a closure outlives the function it
-was declared in, the language has to decide what happens to the variables it captured. Java
-forces those locals to be effectively final, so the captured value is frozen at capture
-time. C++ makes you spell out the mode per variable in the `[]` clause: `[x]` for by-value,
-`[&x]` for by-reference. Go picked [capture-by-reference] for every closure.
+Calling it a footgun would be a bit disingenuous. Every language has to pick how closures
+see captured variables. Java lambdas can only read effectively-final locals, so the value is
+frozen at the moment of capture. C++ makes you say up front whether each variable is
+captured by value or by reference. Go made every closure [capture-by-reference], which can
+lead to some surprising behavior.
 
 ## A closure with a pointer sees future writes
 
