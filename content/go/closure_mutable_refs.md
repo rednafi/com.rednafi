@@ -23,9 +23,10 @@ It's the most concise representation I've seen of the behavior that has bitten m
 past.
 
 Calling it a footgun would be a bit disingenuous. Closures had to capture _something_ when
-they outlive their declaring function, and Go's designers picked [capture-by-reference].
-That's what lets closure-based counters and accumulators work. But a captured pointer reads
-through to its target on every call, so any later write shows up in the closure.
+they outlive their declaring function, and every language picks differently. Java lambdas
+only let you reach effectively-final locals, so the captured value is frozen at capture
+time. C++ makes you spell out the mode per variable in the `[]` clause: `[x]` for by-value,
+`[&x]` for by-reference. Go picked [capture-by-reference] for every closure.
 
 ## A closure with a pointer sees future writes
 
