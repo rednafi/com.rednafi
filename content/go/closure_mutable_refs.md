@@ -22,11 +22,12 @@ skill:
 It's the most concise representation I've seen of the behavior that has bitten me in the
 past.
 
-Calling it a footgun would be a bit disingenuous. Closures had to capture _something_ when
-they outlive their declaring function, and every language picks differently. Java lambdas
-only let you reach effectively-final locals, so the captured value is frozen at capture
+Calling it a footgun would be a bit disingenuous. When a closure outlives the function it
+was declared in, the language has to decide what happens to the variables it captured. Java
+forces those locals to be effectively final, so the captured value is frozen at capture
 time. C++ makes you spell out the mode per variable in the `[]` clause: `[x]` for by-value,
-`[&x]` for by-reference. Go picked [capture-by-reference] for every closure.
+`[&x]` for by-reference. Go picked [capture-by-reference] for every closure, no annotation
+needed.
 
 ## A closure with a pointer sees future writes
 
