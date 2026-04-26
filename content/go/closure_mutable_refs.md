@@ -26,8 +26,7 @@ Calling it a footgun would be a bit disingenuous. When a closure outlives the fu
 was declared in, the language has to decide what happens to the variables it captured. Java
 forces those locals to be effectively final, so the captured value is frozen at capture
 time. C++ makes you spell out the mode per variable in the `[]` clause: `[x]` for by-value,
-`[&x]` for by-reference. Go picked [capture-by-reference] for every closure, no annotation
-needed.
+`[&x]` for by-reference. Go picked [capture-by-reference] for every closure.
 
 ## A closure with a pointer sees future writes
 
