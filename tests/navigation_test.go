@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/playwright-community/playwright-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -16,8 +17,10 @@ func TestConnectSidebarLinks(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	// The connect section is the third .aside-section
-	connect := page.Locator(".aside-section").Last()
+	// Find the Connect section by heading (digest section may follow it).
+	connect := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
+		HasText: "Connect",
+	})
 	heading, err := connect.Locator("h4").TextContent()
 	require.NoError(t, err)
 	require.Equal(t, "connect", strings.ToLower(strings.TrimSpace(heading)))

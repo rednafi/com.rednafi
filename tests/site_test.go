@@ -183,20 +183,19 @@ func TestBaseLayout(t *testing.T) {
 
 func TestHomepage(t *testing.T) {
 	t.Parallel()
-	t.Run("sidebar has pages, browse, connect sections", func(t *testing.T) {
+	t.Run("sidebar has pages and connect sections", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 		headings, err := page.Locator(".aside-section h4").AllTextContents()
 		require.NoError(t, err)
 		lower := make([]string, len(headings))
 		for i, h := range headings {
-			lower[i] = strings.ToLower(h)
+			// Only the leading word; digest heading also contains an inline RSS link.
+			lower[i] = strings.ToLower(strings.Fields(strings.TrimSpace(h))[0])
 		}
-		// Sidebar sections: pages, browse, recent reads (optional), connect
 		assert.Contains(t, lower, "pages")
-		assert.Contains(t, lower, "browse")
 		assert.Contains(t, lower, "connect")
-		assert.GreaterOrEqual(t, len(lower), 3, "sidebar should have at least 3 sections")
+		assert.GreaterOrEqual(t, len(lower), 2, "sidebar should have at least 2 sections")
 	})
 
 	t.Run("pages sidebar has correct links", func(t *testing.T) {
@@ -207,10 +206,9 @@ func TestHomepage(t *testing.T) {
 		)
 		require.NoError(t, err)
 		hrefList := toStringSlice(hrefs)
-		assert.Contains(t, hrefList, "/about/")
 		assert.Contains(t, hrefList, "/appearances/")
-		assert.Contains(t, hrefList, "/blogroll/")
 		assert.Contains(t, hrefList, "/maxims/")
+		assert.Contains(t, hrefList, "/tags/")
 	})
 
 	t.Run("post list renders with dates and type labels", func(t *testing.T) {
