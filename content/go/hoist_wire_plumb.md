@@ -135,7 +135,9 @@ This pattern isn't new.
 wrapper wrapped:
 
 ```go
-type Endpoint func(ctx context.Context, request interface{}) (response interface{}, err error)
+type Endpoint func(
+    ctx context.Context, request interface{},
+) (response interface{}, err error)
 ```
 
 [Connect-Go] uses the same shape as `UnaryFunc` over interface types, generating the
