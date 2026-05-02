@@ -135,6 +135,42 @@ func TestMobileSidebarWrapping(t *testing.T) {
 	})
 }
 
+// TestMobileHighlightedLineFullWidth verifies that highlighted code lines
+// extend to the full scrollable content width when a code block overflows
+// horizontally on mobile, instead of being clamped to the visible viewport.
+func TestMobileHighlightedLineFullWidth(t *testing.T) {
+	t.Parallel()
+	page := newMobilePage(t)
+	goto_(t, page, "/go/closure-mutable-refs/")
+
+	hl := page.Locator(".highlight .line.hl").First()
+	require.NoError(t, hl.WaitFor())
+
+	// Sanity-check the test condition: the surrounding <pre> must actually
+	// overflow horizontally at this viewport, otherwise the bug isn't being
+	// exercised.
+	overflows, err := hl.Evaluate(`el => {
+		const pre = el.closest("pre");
+		return pre.scrollWidth > pre.clientWidth + 1;
+	}`, nil)
+	require.NoError(t, err)
+	require.True(t, overflows.(bool),
+		"expected highlighted code block to overflow on mobile")
+
+	// The highlighted line's right edge should reach the <code>'s right edge
+	// (i.e. the full content width). Without the fix it stops at the visible
+	// viewport edge, well short of the code's bounding box.
+	reachesEnd, err := hl.Evaluate(`el => {
+		const code = el.closest("pre").querySelector("code");
+		const lineRight = el.getBoundingClientRect().right;
+		const codeRight = code.getBoundingClientRect().right;
+		return lineRight >= codeRight - 1;
+	}`, nil)
+	require.NoError(t, err)
+	assert.True(t, reachesEnd.(bool),
+		"highlighted line should extend to the end of the code content")
+}
+
 // TestMobileArticleBreadcrumbs verifies breadcrumbs are visible and properly
 // sized on mobile viewports.
 func TestMobileArticleBreadcrumbs(t *testing.T) {

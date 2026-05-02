@@ -413,6 +413,10 @@ pre {
 .highlight pre {
   margin: 0;
 }
+.highlight pre code {
+  display: inline-block;
+  min-width: 100%;
+}
 .highlight .line.hl {
   background-color: color-mix(in srgb, var(--link) 12%, transparent);
   display: block;
