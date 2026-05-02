@@ -5,31 +5,15 @@ pluralizelisttitles: false
 
 menu:
   pages:
-    - name: About
-      url: /about/
-      weight: 1
     - name: Appearances
       url: /appearances/
       weight: 2
-    - name: Blogroll
-      url: /blogroll/
-      weight: 3
     - name: Maxims
       url: /maxims/
       weight: 4
-    - name: Papers
-      url: /papers/
-      weight: 5
-  browse:
-    - name: Archive
-      url: /archive/
-      weight: 1
-    - name: Search
-      url: /search/
-      weight: 2
     - name: Tags
       url: /tags/
-      weight: 3
+      weight: 5
 
 enableRobotsTXT: true
 googleAnalytics: G-11NK905JK8
