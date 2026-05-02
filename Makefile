@@ -9,7 +9,6 @@ WRANGLER_VERSION := 4.83.0
 WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
 
 init:
-	git submodule update --init --recursive
 	for pkg in $(BREW_PACKAGES); do \
 		brew list $$pkg &>/dev/null || brew install $$pkg; \
 	done
@@ -21,7 +20,6 @@ format:
 	git status --porcelain -u | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
 
 update:
-	git submodule update --remote --merge
 	uvx pre-commit autoupdate -j 4
 
 dev:
