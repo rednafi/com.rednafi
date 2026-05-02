@@ -12,7 +12,7 @@ description: >-
 
 Finally got around to reading the original [Dynamo paper] from 2007. It's the one that
 kicked off Cassandra, Riak, Voldemort, and a whole generation of eventually consistent
-stores. Added it to my [papers] page.
+stores.
 
 Amazon had services like the shopping cart where consistency wasn't worth the availability
 cost. If a node is unreachable in a consistent system, writes block or fail. A stale cart is
@@ -58,9 +58,6 @@ decision even if it scaled as an architecture.
 
 [Dynamo paper]:
     https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
-
-[papers]:
-    /papers/
 
 [consistent hash]:
     https://arpitbhayani.me/blogs/consistent-hashing/
