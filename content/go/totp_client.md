@@ -19,8 +19,9 @@ codes match, the server allows the inbound user to access the target system. The
 usually expires after 30 seconds and then, you'll have to regenerate it to be able to
 authenticate.
 
-As per [RFC-6238], the server shares a base-32 encoded secret key with the client. Using
-this shared secret and the current UNIX timestamp, the client generates a 6-digit code.
+As per [RFC-6238], the server shares a base-32 encoded secret key with the client. A valid
+key only contains characters from the Base32 alphabet, which is A-Z and 2-7. Using this
+shared secret and the current UNIX timestamp, the client generates a 6-digit code.
 Independently, the server also generates a 6-digit code using the same secret string and its
 own current timestamp. If the user-entered client code matches the server-generated code,
 the auth succeeds. Otherwise, it fails. The client's and the server's current timestamp
@@ -78,7 +79,7 @@ Use it as such:
 
 func main() {
     // Collect it from a TOTP server like GitHub 2FA panel
-    secretKey := "6AXIS2D4ST9CXAW2" // This is a fake one!
+    secretKey := "6AXIS2D4ST7CXAW2" // This is a fake one!
 
     now := time.Now().Unix()
     totpCode := generateTOTP(secretKey, now)
