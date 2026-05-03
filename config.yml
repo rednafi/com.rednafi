@@ -68,6 +68,12 @@ params:
       - "https://github.com/rednafi"
       - "https://www.linkedin.com/in/rednafi/"
       - "https://bsky.app/profile/rednafi.com"
+      - "https://x.com/rednafi"
+      - "https://www.wikidata.org/wiki/Q139619919"
+    websiteAlternateName:
+      - "Redowan Delowar"
+      - "Redowan Delowar's Blog"
+      - "rednafi"
   description: >-
     Redowan Delowar — a roving amateur fumbling through software, systems, and sundry.
 

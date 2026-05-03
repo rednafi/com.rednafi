@@ -153,9 +153,8 @@ func TestBaseLayout(t *testing.T) {
 		require.NoError(t, err)
 		hrefList := toStringSlice(hrefs)
 		assert.Contains(t, hrefList, "/about/")
-		assert.Contains(t, hrefList, "/archive/")
-		assert.Contains(t, hrefList, "/search/")
 		assert.Contains(t, hrefList, "/tags/")
+		assert.Contains(t, hrefList, "/blogroll/")
 	})
 
 	t.Run("has back-to-top button with aria-label", func(t *testing.T) {
@@ -201,7 +200,10 @@ func TestHomepage(t *testing.T) {
 	t.Run("pages sidebar has correct links", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		hrefs, err := page.Locator(".aside-section").First().Locator("a").EvaluateAll(
+		pages := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
+			HasText: "Pages",
+		})
+		hrefs, err := pages.Locator("a").EvaluateAll(
 			`els => els.map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -385,7 +387,7 @@ func TestSEOHomepage(t *testing.T) {
 	t.Run("correct title", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Equal(t, "Redowan's Reflections", title)
+		assert.Equal(t, "Redowan's Reflections | Redowan Delowar", title)
 	})
 
 	t.Run("meta description", func(t *testing.T) {
@@ -455,10 +457,10 @@ func TestSEOArticle(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, article)
 
-	t.Run("title includes site name", func(t *testing.T) {
+	t.Run("title includes author name", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Contains(t, title, "Redowan's Reflections")
+		assert.Contains(t, title, "Redowan Delowar")
 		assert.Greater(t, len(title), 20)
 	})
 

@@ -255,6 +255,17 @@ body.home .site-header {
   font-size: 0.96rem;
 }
 
+.aside-bio p {
+  margin: 0 0 1.25rem;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.aside-digest .aside-digest-list {
+  margin-bottom: 0.4rem;
+}
 .aside-digest-list li {
   margin-bottom: 0.4rem;
   line-height: 1.35;
@@ -274,8 +285,8 @@ body.home .site-header {
 }
 .aside-digest-more {
   display: inline-block;
-  margin-top: 0.4rem;
-  font-size: 0.85rem;
+  margin-top: 0;
+  font-size: 0.93rem;
   color: var(--muted);
   text-decoration: none;
 }
@@ -593,10 +604,19 @@ footer {
   margin-top: 2rem;
   padding: 0.75rem 0;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--faint);
   border-top: 1px solid var(--border);
   transition: border-color 0.2s ease;
+}
+footer .footer-byline {
+  margin-top: 0.25rem;
+}
+footer .footer-byline a {
+  color: var(--faint);
+}
+footer .footer-byline a:hover {
+  color: var(--link);
 }
 
 .aside-section a,
