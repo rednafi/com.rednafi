@@ -1,5 +1,5 @@
 ---
-title: 'About'
+title: About
 hideMeta: true
 hideRelated: true
 hideBreadcrumbs: true

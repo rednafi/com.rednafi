@@ -3,8 +3,12 @@
 <link rel="dns-prefetch" href="https://blob.rednafi.com">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
+{{- $aboutURL := "about/" | absURL }}
+
 {{- /* Title */ -}}
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}</title>
+{{- $profileTitle := "" }}
+{{- if eq .Params.schemaType "ProfilePage" }}{{ $profileTitle = printf "%s %s" .Title site.Params.author }}{{ end }}
+<title>{{ if .IsHome }}{{ site.Title }} | {{ site.Params.author }}{{ else if $profileTitle }}{{ $profileTitle }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Params.author }}{{ end }}</title>
 
 {{- /* Meta */ -}}
 {{- $desc := .Description | default .Summary }}
@@ -30,7 +34,7 @@
 {{- end }}
 
 {{- /* Author & identity */ -}}
-<link rel="author" href="{{ "about/" | absURL }}">
+<link rel="author" href="{{ $aboutURL }}">
 {{- range site.Params.schema.sameAs }}
 <link rel="me" href="{{ . }}">
 {{- end }}
@@ -73,7 +77,7 @@
 {{- /* Open Graph */ -}}
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-<meta property="og:title" content="{{ .Title }}">
+<meta property="og:title" content="{{ $profileTitle | default .Title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
@@ -102,10 +106,10 @@
 
 {{- /* Schema.org JSON-LD */ -}}
 {{- $websiteId := printf "%s#website" site.BaseURL }}
-{{- $personId := "about/#person" | absURL }}
+{{- $personId := printf "%s#person" $aboutURL }}
 {{- if .IsHome }}
-{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" ("about/" | absURL)) }}
-{{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "url" site.BaseURL "description" site.Params.description }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $aboutURL) }}
+{{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if eq .Params.schemaType "ProfilePage" }}
@@ -113,7 +117,7 @@
 {{- $schema := dict "@context" "https://schema.org" "@type" "ProfilePage" "mainEntity" $person "dateModified" (.Lastmod.Format $iso8601) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if .IsPage }}
-{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" ("about/" | absURL) }}
+{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" $aboutURL }}
 {{- with site.Params.schema.sameAs }}{{ $author = merge $author (dict "sameAs" .) }}{{ end }}
 {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink }}
 {{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}

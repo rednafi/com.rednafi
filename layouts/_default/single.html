@@ -13,7 +13,7 @@
 <div data-pagefind-body>
 <h1 data-pagefind-meta="title" data-pagefind-weight="100">{{ .Title }}{{ if .Draft }}<sup>[draft]</sup>{{ end }}</h1>
 {{- if not (.Param "hideMeta") }}
-<div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></div>
+<div class="post-meta">By <a href="{{ "about/" | absURL }}" rel="author">{{ .Params.author | default site.Params.author }}</a> &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></div>
 {{- end }}
 
 {{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}

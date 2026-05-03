@@ -23,6 +23,10 @@
   </section>
 
   <aside>
+    <div class="aside-section aside-bio">
+      <h4>About</h4>
+      <p>Hi, I'm {{ site.Params.author }} &mdash; a roving amateur fumbling through software, systems, &amp; sundry.</p>
+    </div>
     <div class="aside-section">
       <h4>Pages</h4>
       <ul>
@@ -50,7 +54,7 @@
         <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{- end }}
       </ul>
-      <a href="/digest/" class="aside-digest-more">See more &rarr;</a>
+      <a href="/digest/" class="aside-digest-more">see more &rarr;</a>
     </div>
     {{- end }}
   </aside>
