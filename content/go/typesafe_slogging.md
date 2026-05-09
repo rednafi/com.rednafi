@@ -127,7 +127,7 @@ you're grepping again, hoping you didn't miss a typo.
 
 I keep every attribute helper in one file inside an `internal/log` package:
 
-```go {hl_lines=["6-9"]}
+```go
 // internal/log/attrs.go
 package log
 
@@ -142,7 +142,7 @@ func Err(e error) slog.Attr         { return slog.String("err", e.Error()) }
 Imported as `applog` to dodge the stdlib `log` collision. Every call site reads the same
 way:
 
-```go {hl_lines=["2-4"]}
+```go
 logger.LogAttrs(ctx, slog.LevelInfo, "placed order",
     applog.OrderID(o.ID),
     applog.UserID(o.UserID),
