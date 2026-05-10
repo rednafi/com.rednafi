@@ -6,9 +6,7 @@
 {{- $aboutURL := "about/" | absURL }}
 
 {{- /* Title */ -}}
-{{- $profileTitle := "" }}
-{{- if eq .Params.schemaType "ProfilePage" }}{{ $profileTitle = printf "%s %s" .Title site.Params.author }}{{ end }}
-<title>{{ if .IsHome }}{{ site.Title }} | {{ site.Params.author }}{{ else if $profileTitle }}{{ $profileTitle }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Params.author }}{{ end }}</title>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 
 {{- /* Meta */ -}}
 {{- $desc := .Description | default .Summary }}
@@ -77,7 +75,7 @@
 {{- /* Open Graph */ -}}
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-<meta property="og:title" content="{{ $profileTitle | default .Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">

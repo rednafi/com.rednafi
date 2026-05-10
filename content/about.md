@@ -5,11 +5,11 @@ hideRelated: true
 hideBreadcrumbs: true
 schemaType: ProfilePage
 description: >-
-  About Redowan Delowar (rednafi) - platform engineer writing about distributed systems,
-  Go, Python, testing strategies, and software design patterns.
+  Platform engineer writing about distributed systems, Go, Python, testing, and
+  software design. Bio, contact, CV, and what I work on.
 ---
 
-<img src="https://blob.rednafi.com/static/images/about/profile-2025.jpg" alt="Redowan Delowar" class="about-avatar" />
+<img src="https://blob.rednafi.com/static/images/about/profile-2026.jpg" alt="Redowan Delowar" class="about-avatar" />
 
 Hey there! I'm Redowan Delowar - also go by the handle "rednafi" on the web.
 

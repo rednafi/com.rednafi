@@ -57,7 +57,8 @@ params:
   schema:
     jobTitle: Software Engineer
     alternateName: rednafi
-    image: "https://blob.rednafi.com/static/images/about/profile-2025.jpg"
+    wikidataId: Q139619919
+    image: "https://blob.rednafi.com/static/images/about/profile-2026.jpg"
     knowsAbout:
       - "Go"
       - "Python"
@@ -71,11 +72,11 @@ params:
       - "https://x.com/rednafi"
       - "https://www.wikidata.org/wiki/Q139619919"
     websiteAlternateName:
-      - "Redowan Delowar"
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-
-    Redowan Delowar — a roving amateur fumbling through software, systems, and sundry.
+    Software engineer oscillating between product and platform work. Interested
+    in resilience, observability, and the fringe behaviors of distributed systems.
 
   DateFormat: "January 2, 2006"
 

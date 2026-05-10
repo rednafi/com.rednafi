@@ -319,6 +319,7 @@ body.home .site-header {
   height: 256px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 0%;
 }
 
 /* Content column */
