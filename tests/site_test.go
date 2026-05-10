@@ -387,7 +387,7 @@ func TestSEOHomepage(t *testing.T) {
 	t.Run("correct title", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Equal(t, "Redowan's Reflections | Redowan Delowar", title)
+		assert.Equal(t, "Redowan's Reflections", title)
 	})
 
 	t.Run("meta description", func(t *testing.T) {
@@ -457,10 +457,10 @@ func TestSEOArticle(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, article)
 
-	t.Run("title includes author name", func(t *testing.T) {
+	t.Run("title includes site name", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Contains(t, title, "Redowan Delowar")
+		assert.Contains(t, title, "Redowan's Reflections")
 		assert.Greater(t, len(title), 20)
 	})
 
