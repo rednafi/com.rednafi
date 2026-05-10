@@ -45,16 +45,16 @@ The [package doc comment] is the spec. The rules:
 - Whitespace inside the marker is trimmed, so `--   foo.go   --` parses as `foo.go`.
 - A missing trailing newline on the final file is treated as if it were there.
 
-Binary data isn't supported. File modes and symlinks aren't represented. There's no escape
-mechanism for the marker syntax either, which is the [explicit] trade-off for keeping the
-format this small. If a file body contains a line beginning with `-- ` and ending with
-` --`, the parser will treat it as a new marker, and you have no way to quote it. Reach for
-`tar` or `zip` when you need any of that.
+The format is text only. The package doc [explicitly] rules out binary content, file modes,
+symlinks, and any escape mechanism for the marker syntax. The escape gap matters when a file
+body happens to contain a line beginning with `-- ` and ending with ` --`. The parser treats
+it as a new marker, and there's no way to quote it. Reach for `tar` or `zip` when any of
+that matters.
 
-The reason it stays this small is that it was [purpose-built] around three goals listed in
-the package doc: stay hand-editable, store trees of text files for go command test cases,
-and diff cleanly in git history and code reviews. It first landed inside the early `vgo`
-modules prototype in 2018.
+It stays this small because it was [purpose-built] around three goals listed in the package
+doc: stay hand-editable, store trees of text files for go command test cases, and diff
+cleanly in git history and code reviews. It first landed inside the early `vgo` modules
+prototype in 2018.
 
 ## Parse it from a string
 
@@ -253,8 +253,8 @@ func TestFormat(t *testing.T) {
 ```
 
 Adding a case is one new file in `testdata/`. The comment documents intent, and the input
-and expected output sit side by side. There's no per-test setup boilerplate, and no separate
-`golden/` directory drifts out of sync.
+and expected output sit side by side. You skip the per-test setup boilerplate and the
+separate `golden/` directory that always drifts out of sync.
 
 The same shape works for a multi-file fixture. Add a `-- go.mod --` and three `-- *.go --`
 files to one archive and you've got a hermetic mini-module to feed your linter, refactorer,
@@ -360,8 +360,8 @@ txtar reader later.
 > [!Gist]
 >
 > - txtar is `-- filename --` markers separating file bodies, with free text on top as a
->   comment. No escaping, no binary, no metadata. The format has no possible syntax errors
->   and no spec beyond the package doc comment.
+>   comment. The format is text only, has no possible syntax errors, and uses the package
+>   doc comment as its spec.
 > - The package is `golang.org/x/tools/txtar`. `Parse` reads bytes, `ParseFile` reads a
 >   path, `Format` writes back. `txtar.FS` mounts an archive as a read-only `fs.FS` so tests
 >   can run without ever touching disk.
