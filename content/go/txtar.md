@@ -58,8 +58,8 @@ prototype in 2018.
 
 ## Parse it from a string
 
-The Go API lives in [`golang.org/x/tools/txtar`]. Two types and two functions cover the
-common case:
+The Go API lives in [golang.org/x/tools/txtar]. Two types and two functions cover the common
+case:
 
 ```go
 type Archive struct {
@@ -187,8 +187,8 @@ module example
 
 The package doesn't ship a write-files-to-disk helper. The canonical pattern is to walk
 `ar.Files`, validate each path stays inside your destination, and write yourself. Go's
-[`cmd/internal/script`] package has an `ExtractFiles` method that does exactly that. The
-[`golang.org/x/exp/cmd/txtar`] CLI is another option, with `txtar -x` for extracting and
+[cmd/internal/script] package has an `ExtractFiles` method that does exactly that. The
+[golang.org/x/exp/cmd/txtar] CLI is another option, with `txtar -x` for extracting and
 `txtar <path>` for archiving a file or directory.
 
 ## A golden test in one file
@@ -265,7 +265,7 @@ hundreds of fixtures each.
 
 The previous example used the archive as static data. `cmd/go`'s script tests use it
 differently: the comment is a sequence of commands to run, and the file entries are the
-workspace those commands operate on. [`rogpeppe/go-internal/testscript`] is the same engine
+workspace those commands operate on. [rogpeppe/go-internal/testscript] is the same engine
 packaged as a library you can call from any test.
 
 Say you want a smoke test for `tree`. You hand it a small project shaped via the file
@@ -320,7 +320,7 @@ Adding another case is one more `.txt` archive under `testdata/`.
 
 ## In the wild
 
-The 900+ `.txt` files in [`src/cmd/go/testdata/script/`] are txtar archives. The comment up
+The 900+ `.txt` files in [src/cmd/go/testdata/script/] are txtar archives. The comment up
 top is the script the test runs, and the files below are the workspace it runs in. The
 [README] in that directory says "Each script is a text archive."
 
@@ -328,16 +328,16 @@ Sharing a multi-file snippet on the Go Playground encodes a txtar archive into t
 URL. The code is in [playground/txtar.go], added by Brad Fitzpatrick in 2019. The pre-marker
 comment is treated as `prog.go`, which keeps single-file shares backwards compatible.
 
-`gopls`'s marker tests under [`gopls/internal/test/marker/testdata/`] are txtar files too.
-One archive packs the Go source, the golden output, a `-- flags --` section, and the gopls
+`gopls`'s marker tests under [gopls/internal/test/marker/testdata/] are txtar files too. One
+archive packs the Go source, the golden output, a `-- flags --` section, and the gopls
 settings into one end-to-end LSP test case.
 
-Russ Cox's refactoring tool [`rsc.io/rf`] keeps each test case as a txtar archive. The
-comment is the refactor command, the files are the input, and `-- stdout --` plus
-`-- stderr --` carry the expected output.
+Russ Cox's refactoring tool [rsc.io/rf] keeps each test case as a txtar archive. The comment
+is the refactor command, the files are the input, and `-- stdout --` plus `-- stderr --`
+carry the expected output.
 
-[`rsc.io/script`] and [`rogpeppe/go-internal/testscript`] both extract the script engine
-from `cmd/go` so you can run script fixtures in your own packages. Russ covers them in [Go
+[rsc.io/script] and [rogpeppe/go-internal/testscript] both extract the script engine from
+`cmd/go` so you can run script fixtures in your own packages. Russ covers them in [Go
 Testing By Example] under "Use txtar for multi-file test cases".
 
 The pattern repeats across most of them. Each archive holds one test case, with the script
@@ -365,7 +365,7 @@ txtar reader later.
 > - The package is `golang.org/x/tools/txtar`. `Parse` reads bytes, `ParseFile` reads a
 >   path, `Format` writes back. `txtar.FS` mounts an archive as a read-only `fs.FS` so tests
 >   can run without ever touching disk.
-> - [`rogpeppe/go-internal/testscript`] runs an archive as a script: the comment becomes
+> - [rogpeppe/go-internal/testscript] runs an archive as a script: the comment becomes
 >   shell-like commands, the file entries become the workspace those commands run against.
 >   Use it to drive a CLI test from one fixture per case.
 > - It's the file shape behind `cmd/go`'s 900+ script tests, the Go Playground's multi-file
@@ -393,19 +393,19 @@ txtar reader later.
 [purpose-built]:
     https://research.swtch.com/testing
 
-[`golang.org/x/tools/txtar`]:
+[golang.org/x/tools/txtar]:
     https://pkg.go.dev/golang.org/x/tools/txtar
 
 [added in July 2024]:
     https://go-review.googlesource.com/c/tools/+/598756
 
-[`cmd/internal/script`]:
+[cmd/internal/script]:
     https://github.com/golang/go/blob/master/src/cmd/internal/script/state.go
 
-[`golang.org/x/exp/cmd/txtar`]:
+[golang.org/x/exp/cmd/txtar]:
     https://pkg.go.dev/golang.org/x/exp/cmd/txtar
 
-[`src/cmd/go/testdata/script/`]:
+[src/cmd/go/testdata/script/]:
     https://github.com/golang/go/tree/master/src/cmd/go/testdata/script
 
 [README]:
@@ -414,16 +414,16 @@ txtar reader later.
 [playground/txtar.go]:
     https://github.com/golang/playground/blob/master/txtar.go
 
-[`gopls/internal/test/marker/testdata/`]:
+[gopls/internal/test/marker/testdata/]:
     https://github.com/golang/tools/tree/master/gopls/internal/test/marker/testdata
 
-[`rsc.io/rf`]:
+[rsc.io/rf]:
     https://github.com/rsc/rf/tree/main/testdata
 
-[`rsc.io/script`]:
+[rsc.io/script]:
     https://pkg.go.dev/rsc.io/script
 
-[`rogpeppe/go-internal/testscript`]:
+[rogpeppe/go-internal/testscript]:
     https://pkg.go.dev/github.com/rogpeppe/go-internal/testscript
 
 [Go Testing By Example]:
