@@ -387,7 +387,7 @@ txtar reader later.
 [package doc comment]:
     https://github.com/golang/tools/blob/master/txtar/archive.go
 
-[explicit]:
+[explicitly]:
     https://github.com/golang/tools/blob/master/txtar/archive.go
 
 [purpose-built]:
