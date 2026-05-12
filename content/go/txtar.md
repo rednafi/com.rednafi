@@ -388,7 +388,7 @@ txtar reader later.
     https://github.com/golang/tools/blob/master/txtar/archive.go
 
 [explicitly]:
-    https://github.com/golang/tools/blob/master/txtar/archive.go
+    https://github.com/golang/tools/blob/a3954b5c7496c91c1095bd368722a4e80d793f28/txtar/archive.go#L13-L15
 
 [purpose-built]:
     https://research.swtch.com/testing
