@@ -359,7 +359,7 @@ func TestMain(m *testing.M) {
 [runEonMain] builds the root command and runs it through the same Fang execution path as the
 production binary:
 
-```go {hl_lines=["3-7"]}
+```go {hl_lines=["11"]}
 // cmd/eon/script_test.go
 func runEonMain() int {
     ctx, cancel := signal.NotifyContext(
