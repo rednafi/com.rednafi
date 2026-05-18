@@ -1,5 +1,5 @@
 baseURL: "https://rednafi.com"
-languageCode: en
+locale: en
 title: Redowan's Reflections
 pluralizelisttitles: false
 
@@ -75,8 +75,8 @@ params:
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-
-    Software engineer oscillating between product and platform work. Interested
-    in resilience, observability, and the fringe behaviors of distributed systems.
+    Software engineer oscillating between product and platform work. Interested in
+    resilience, observability, and the fringe behaviors of distributed systems.
 
   DateFormat: "January 2, 2006"
 
