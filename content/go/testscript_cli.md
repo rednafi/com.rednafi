@@ -17,7 +17,7 @@ test couldn't depend on whatever `eon` binary happened to be installed on the ma
 also wanted to keep it inside `go test`, so unit and integration tests could run through the
 same tooling.
 
-eon is my CLI for scheduling LLM-backed jobs. This command stores an hourly job named
+eon is my CLI for scheduling jobs with LLMs. This command stores an hourly job named
 `backup` and tells eon to run `echo hi` later:
 
 ```sh
@@ -47,8 +47,8 @@ The directory is full of `.txt` fixtures for `go test`, `go build`, modules, wor
 vendoring, and other command-line behavior.
 
 Those files are script fixtures. The Go command runs them with its own internal script
-runner. The driver lives in [script_test.go], and the imports show the two pieces doing most
-of the work:
+runner. The driver lives in [script_test.go], and these imports show the parts doing most of
+the work:
 
 ```go
 import (
@@ -65,13 +65,14 @@ this:
 - scans `testdata/script/*.txt`
 - creates a temporary directory for the case
 - exposes that directory to the script as `$WORK`
+- sets `GOPATH` to `$WORK/gopath` and moves into `$WORK/gopath/src`
 - parses the fixture as a txtar archive
-- extracts the embedded files into `$WORK`
+- extracts the embedded files into `$WORK/gopath/src`
 - runs the archive comment with Go's internal script engine
 
 A shortened version of the driver looks like this. The comments and highlights are mine:
 
-```go {hl_lines=["21","26","31","35"]}
+```go {hl_lines=["21","26","32","34","38"]}
 func TestScript(t *testing.T) {
     engine := &script.Engine{
         Conds: scriptConditions(t),
@@ -91,7 +92,7 @@ func TestScript(t *testing.T) {
             t.Fatal(err)
         }
 
-        // This is the per-script work directory, exposed as $WORK.
+        // This is the per-script work directory.
         s, err := script.NewState(tbContext(ctx, t), workdir, env)
         if err != nil {
             t.Fatal(err)
@@ -101,12 +102,16 @@ func TestScript(t *testing.T) {
         if err != nil {
             t.Fatal(err)
         }
-        // The -- filename -- sections are extracted into $WORK.
+        // initScriptDirs exposes workdir as $WORK, sets GOPATH to
+        // $WORK/gopath, and chdirs to $WORK/gopath/src.
+        telemetryDir := initScriptDirs(t, s)
+        // The -- filename -- sections are extracted into $WORK/gopath/src.
         if err := s.ExtractFiles(a); err != nil {
             t.Fatal(err)
         }
         // The archive comment is the script body.
         scripttest.Run(t, engine, s, file, bytes.NewReader(a.Comment))
+        checkCounters(t, telemetryDir)
     }
 }
 ```
@@ -116,9 +121,9 @@ these script tests, cmd/go uses the format this way:
 
 - the text before the first `-- filename --` marker is the script body
 - the sections after those markers are files
-- those files get written under `$WORK` before the script runs
+- those files get written under `$WORK/gopath/src` before the script runs
 
-The [README] in that directory uses the same format. So meta :)
+The [README] in that directory documents the same format.
 
 A real fixture from the Go tree, trimmed from [test_regexps.txt], looks like this:
 
@@ -153,15 +158,15 @@ func TestZ(t *testing.T) {
 > - the command section runs `go test` and checks its output
 > - `stdout -count=2` requires the regex to match twice
 > - `! stdout` is the negative assertion, so `TestZ` must not appear
-> - `go.mod`, `x_test.go`, and `z_test.go` are written into `$WORK`
+> - `go.mod`, `x_test.go`, and `z_test.go` are written into `$WORK/gopath/src`
 >
 > The `go` command works because the driver registers it with the script engine in
-> [scriptcmds_test.go]. The same file contains both the commands and the throwaway module.
+> [scriptcmds_test.go]. The fixture contains both the commands and the throwaway module.
 
 Go's driver sits under internal packages, so normal projects can't import it. Roger Peppe
-published the public package in [go-internal]. The README traces it back to Go's internal
-script package, and the package you import is [testscript]. That's the package I used for
-eon.
+published the extracted public package in [go-internal]. The README traces testscript back
+to Go's internal script package, and the package you import is [testscript]. That's the
+package I used for eon.
 
 Install it like any other test dependency:
 
@@ -348,7 +353,11 @@ production binary:
 
 ```go {hl_lines=["6"]}
 func runEonMain() int {
-    ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+    ctx, cancel := signal.NotifyContext(
+        context.Background(),
+        syscall.SIGINT,
+        syscall.SIGTERM,
+    )
     defer cancel()
 
     root := newRoot()
@@ -442,7 +451,7 @@ path a user hits in a terminal.
     https://github.com/rednafi/eon/blob/857935f9fe411dce7a5b306d5b898397fdac87e5/cmd/eon/script_test.go#L18-L92
 
 [TestMain]:
-    https://github.com/rednafi/eon/blob/857935f9fe411dce7a5b306d5b898397fdac87e5/cmd/eon/script_test.go#L18-L24
+    https://github.com/rednafi/eon/blob/857935f9fe411dce7a5b306d5b898397fdac87e5/cmd/eon/script_test.go#L18-L25
 
 [runEonMain]:
     https://github.com/rednafi/eon/blob/857935f9fe411dce7a5b306d5b898397fdac87e5/cmd/eon/script_test.go#L27-L38
