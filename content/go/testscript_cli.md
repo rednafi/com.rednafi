@@ -51,6 +51,7 @@ runner. The driver lives in [script_test.go], and these imports show the parts d
 the work:
 
 ```go
+// cmd/go/script_test.go
 import (
     "internal/txtar"
 
@@ -72,7 +73,8 @@ this:
 
 A shortened version of the driver looks like this. The comments and highlights are mine:
 
-```go {hl_lines=["21","26","32","34","38"]}
+```go {hl_lines=["9-10","23","28","34","36","40"]}
+// cmd/go/script_test.go
 func TestScript(t *testing.T) {
     engine := &script.Engine{
         Conds: scriptConditions(t),
@@ -80,6 +82,7 @@ func TestScript(t *testing.T) {
         Quiet: !testing.Verbose(),
     }
 
+    // Each .txt file in testdata/script becomes one subtest.
     files, err := filepath.Glob("testdata/script/*.txt")
     if err != nil {
         t.Fatal(err)
@@ -128,6 +131,7 @@ The [README] in that directory documents the same format.
 A real fixture from the Go tree, trimmed from [test_regexps.txt], looks like this:
 
 ```txt
+# cmd/go/testdata/script/test_regexps.txt
 go test -cpu=1 -run=X/Y -bench=X/Y -count=2 -v testregexp
 
 # TestX/Y is run, twice
@@ -176,7 +180,8 @@ go get github.com/rogpeppe/go-internal/testscript
 
 Then point testscript at a directory of scripts:
 
-```go {hl_lines=["3"]}
+```go {hl_lines=["4"]}
+// main_test.go
 func TestScripts(t *testing.T) {
     testscript.Run(t, testscript.Params{
         Dir: "testdata/script",
@@ -274,7 +279,8 @@ func TestScripts(t *testing.T) {
 
 Now add `testdata/script/greet.txt`:
 
-```txt {hl_lines=["2-3","7-8","11-12"]}
+```txt {hl_lines=["3-4","8-9","12-13"]}
+# testdata/script/greet.txt
 # Default greeting.
 exec hello
 stdout '^hello, world$'
@@ -322,6 +328,7 @@ go test -run 'TestScripts/^greet$' -v
 For longer output, put the expected text in the same script and compare against it:
 
 ```txt
+# testdata/script/shout.txt
 exec hello -shout gopher
 cmp stdout want
 
@@ -339,7 +346,8 @@ The eon setup lives in [eon's script_test.go]. The [TestMain] block registers th
 entrypoint as `eon`. It also registers a small `timeout` helper for the log-following daemon
 script:
 
-```go {hl_lines=["3-4"]}
+```go {hl_lines=["4-5"]}
+// cmd/eon/script_test.go
 func TestMain(m *testing.M) {
     testscript.Main(m, map[string]func(){
         "eon":     func() { os.Exit(runEonMain()) },
@@ -351,7 +359,8 @@ func TestMain(m *testing.M) {
 [runEonMain] builds the root command and runs it through the same Fang execution path as the
 production binary:
 
-```go {hl_lines=["6"]}
+```go {hl_lines=["3-7"]}
+// cmd/eon/script_test.go
 func runEonMain() int {
     ctx, cancel := signal.NotifyContext(
         context.Background(),
@@ -370,7 +379,8 @@ func runEonMain() int {
 
 The [TestScripts setup] points eon's data directories at the script's `$WORK` directory:
 
-```go {hl_lines=["5-9"]}
+```go {hl_lines=["6-10"]}
+// cmd/eon/script_test.go
 func TestScripts(t *testing.T) {
     testscript.Run(t, testscript.Params{
         Dir: "testdata/script",
@@ -401,7 +411,8 @@ func TestScripts(t *testing.T) {
 
 One eon script, [add_basic.txt], covers the add/list/show path:
 
-```txt {hl_lines=["1-2","12-15","18-19","21-23"]}
+```txt {hl_lines=["2-3","13-16","19-20","22-24"]}
+# cmd/eon/testdata/script/add_basic.txt
 exec eon add --cron '@hourly' --name backup -- echo hi
 stdout 'added job [0-9A-Za-z]+ \(cron, @hourly\)'
 
