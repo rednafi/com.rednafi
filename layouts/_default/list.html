@@ -11,8 +11,9 @@
 
 {{- if .IsHome }}
 <div class="index">
-  <section class="article-list">
-    {{- $articles := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  <section class="article-list" aria-labelledby="recent-writings">
+    <h1 id="recent-writings" class="home-section-title">Recent writings</h1>
+    {{- $articles := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
     {{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
     {{- $pages := union $articles $notes }}
     {{- $pages = $pages.ByDate.Reverse }}
@@ -25,15 +26,10 @@
   <aside>
     <div class="aside-section aside-bio">
       <h4>About</h4>
-      <p>Hi, I'm {{ site.Params.author }} &mdash; a roving amateur fumbling through software, systems, &amp; sundry.</p>
-    </div>
-    <div class="aside-section">
-      <h4>Pages</h4>
-      <ul>
-        {{- range .Site.Menus.pages }}
-        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-        {{- end }}
-      </ul>
+      <p>Hi, I'm Redowan. I work with computers. I oscillate between product and platform engineering to keep a foot in both user-facing and infra work.</p>
+      <p>I'm keen on building fault-tolerant distributed systems and understanding their fringe behaviors at scale. At the same time, I take pride in crafting products people love to use.</p>
+      <p>Outside of work, I enjoy reading sci-fi and running.</p>
+      <p>Currently, I'm based in Berlin and working at Wolt/DoorDash. If you're around, feel free to reach out. I'm always up for a chat.</p>
     </div>
     <div class="aside-section">
       <h4>Connect</h4>
@@ -45,18 +41,6 @@
         <li><a href="/index.xml">RSS {{ partial "icon-rss.html" (dict "size" 12) }}</a></li>
       </ul>
     </div>
-    {{- $digests := (where site.RegularPages "Section" "digest").ByDate.Reverse | first 5 }}
-    {{- with $digests }}
-    <div class="aside-section aside-digest">
-      <h4>Digest <a href="/digest/index.xml" class="aside-digest-rss" aria-label="Digest RSS feed" title="RSS feed">{{ partial "icon-rss.html" (dict "size" 11) }}</a></h4>
-      <ul class="aside-digest-list">
-        {{- range . }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-        {{- end }}
-      </ul>
-      <a href="/digest/" class="aside-digest-more">see more &rarr;</a>
-    </div>
-    {{- end }}
   </aside>
 </div>
 

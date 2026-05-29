@@ -25,9 +25,9 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 
 	graph, ok := schema["@graph"].([]any)
 	require.True(t, ok, "@graph should be an array")
-	require.Len(t, graph, 2, "@graph should have WebSite and Person")
+	require.Len(t, graph, 3, "@graph should have WebSite, Person, and recent writings ItemList")
 
-	var website, person map[string]any
+	var website, person, itemList map[string]any
 	for _, item := range graph {
 		m, _ := item.(map[string]any)
 		switch m["@type"] {
@@ -35,6 +35,8 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 			website = m
 		case "Person":
 			person = m
+		case "ItemList":
+			itemList = m
 		}
 	}
 
@@ -43,6 +45,9 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		assert.Equal(t, "Redowan's Reflections", website["name"])
 		assert.NotEmpty(t, website["url"])
 		assert.NotEmpty(t, website["description"])
+		mainEntity, ok := website["mainEntity"].(map[string]any)
+		require.True(t, ok, "WebSite mainEntity should point to recent writings")
+		assert.Contains(t, mainEntity["@id"], "#recent-writings")
 	})
 
 	t.Run("Person has jobTitle", func(t *testing.T) {
@@ -60,7 +65,49 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 	t.Run("Person has name and URL", func(t *testing.T) {
 		require.NotNil(t, person)
 		assert.NotEmpty(t, person["name"])
-		assert.NotEmpty(t, person["url"])
+		assert.Equal(t, "https://rednafi.com/", person["url"])
+		assert.Equal(t, "https://rednafi.com/", person["mainEntityOfPage"])
+	})
+
+	t.Run("ItemList contains recent writings", func(t *testing.T) {
+		require.NotNil(t, itemList, "ItemList object missing")
+		assert.Equal(t, "Recent writings", itemList["name"])
+		items, ok := itemList["itemListElement"].([]any)
+		require.True(t, ok, "itemListElement should be an array")
+		assert.GreaterOrEqual(t, len(items), 5, "should expose recent writings")
+		first, _ := items[0].(map[string]any)
+		assert.Equal(t, float64(1), first["position"])
+		firstItem, ok := first["item"].(map[string]any)
+		require.True(t, ok, "ListItem should include an item object")
+		assert.Equal(t, "BlogPosting", firstItem["@type"])
+		assert.NotEmpty(t, firstItem["headline"])
+		assert.NotEmpty(t, firstItem["url"])
+	})
+
+	t.Run("ItemList matches visible recent writings", func(t *testing.T) {
+		require.NotNil(t, itemList, "ItemList object missing")
+		items, ok := itemList["itemListElement"].([]any)
+		require.True(t, ok, "itemListElement should be an array")
+
+		visibleRaw, err := page.Locator(`.article-list .post-list .post > a`).EvaluateAll(
+			`els => els.slice(0, 10).map(e => e.href)`,
+		)
+		require.NoError(t, err)
+		visibleURLs := toStringSlice(visibleRaw)
+		require.GreaterOrEqual(t, len(visibleURLs), len(items))
+
+		schemaURLs := make([]string, 0, len(items))
+		for _, item := range items {
+			listItem, ok := item.(map[string]any)
+			require.True(t, ok, "ListItem should be an object")
+			post, ok := listItem["item"].(map[string]any)
+			require.True(t, ok, "ListItem item should be an object")
+			url, ok := post["url"].(string)
+			require.True(t, ok, "ListItem item should include url")
+			schemaURLs = append(schemaURLs, url)
+		}
+		assert.Equal(t, visibleURLs[:len(schemaURLs)], schemaURLs,
+			"homepage ItemList JSON-LD should match the visible recent writings")
 	})
 }
 
@@ -71,10 +118,10 @@ func TestIdentityLinks(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	t.Run("has rel=author pointing to about page", func(t *testing.T) {
+	t.Run("has rel=author pointing to homepage", func(t *testing.T) {
 		href, err := page.Locator(`link[rel="author"]`).GetAttribute("href")
 		require.NoError(t, err)
-		assert.Contains(t, href, "/about/")
+		assert.Equal(t, "https://rednafi.com/", href)
 	})
 
 	t.Run("has rel=me links for social profiles", func(t *testing.T) {
@@ -136,35 +183,11 @@ func TestArticleSchemaCompleteness(t *testing.T) {
 		assert.Regexp(t, `^\d{4}-\d{2}-\d{2}`, schema["datePublished"])
 		assert.Regexp(t, `^\d{4}-\d{2}-\d{2}`, schema["dateModified"])
 	})
-}
 
-// TestAboutPageProfileSchema verifies the /about/ page emits ProfilePage
-// schema (not BlogPosting) with the full Person entity for E-E-A-T signals.
-func TestAboutPageProfileSchema(t *testing.T) {
-	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/about/")
-
-	jsonLd, err := page.Locator(`script[type="application/ld+json"]`).TextContent()
-	require.NoError(t, err)
-
-	var schema map[string]any
-	require.NoError(t, json.Unmarshal([]byte(jsonLd), &schema))
-
-	t.Run("is ProfilePage type", func(t *testing.T) {
-		assert.Equal(t, "ProfilePage", schema["@type"])
-	})
-
-	t.Run("mainEntity is Person with full details", func(t *testing.T) {
-		person, ok := schema["mainEntity"].(map[string]any)
-		require.True(t, ok, "mainEntity should be a Person object")
-		assert.Equal(t, "Person", person["@type"])
-		assert.Equal(t, "Redowan Delowar", person["name"])
-		assert.Equal(t, "rednafi", person["alternateName"])
-		assert.NotEmpty(t, person["image"])
-		assert.NotEmpty(t, person["jobTitle"])
-		assert.NotEmpty(t, person["sameAs"])
-		assert.NotEmpty(t, person["knowsAbout"])
+	t.Run("has image", func(t *testing.T) {
+		images, ok := schema["image"].([]any)
+		require.True(t, ok, "image should be an array")
+		assert.Greater(t, len(images), 0)
 	})
 }
 

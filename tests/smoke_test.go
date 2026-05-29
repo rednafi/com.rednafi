@@ -73,7 +73,7 @@ func TestSiteBuildSmokeTest(t *testing.T) {
 // Console errors signal broken scripts (theme toggle, back-to-top, Pagefind).
 func TestNoConsoleErrors(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/go/anemic-stack-traces/", "/about/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/archive/"}
 
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {

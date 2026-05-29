@@ -16,7 +16,6 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 	pages := map[string]string{
 		"homepage": "/",
 		"article":  "/go/anemic-stack-traces/",
-		"about":    "/about/",
 		"archive":  "/archive/",
 		"tags":     "/tags/",
 		"section":  "/python/",
@@ -45,7 +44,7 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 // screens — a major readability regression.
 func TestContentColumnMaxWidth(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/about/", "/go/anemic-stack-traces/", "/archive/"}
+	pages := []string{"/go/anemic-stack-traces/", "/archive/"}
 
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
@@ -97,10 +96,9 @@ func TestNoOrphanedPages(t *testing.T) {
 	require.NoError(t, err)
 	hrefList := toStringSlice(allHrefs)
 
-	// Key pages that must be linked from homepage
+	// Utility pages that must remain discoverable from homepage.
 	mustLink := []string{
-		"/about/", "/archive/", "/search/", "/tags/",
-		"/appearances/", "/blogroll/", "/maxims/",
+		"/archive/", "/search/",
 	}
 
 	for _, target := range mustLink {
@@ -113,7 +111,7 @@ func TestNoOrphanedPages(t *testing.T) {
 // type. Missing lang breaks screen readers and translation tools.
 func TestHTMLLangOnAllPages(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/about/", "/go/anemic-stack-traces/", "/archive/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/archive/"}
 
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {

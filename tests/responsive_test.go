@@ -9,7 +9,7 @@ import (
 )
 
 // TestTabletLayout verifies the intermediate breakpoint (768px) where the
-// sidebar narrows to 35% width but stays side-by-side with content.
+// sidebar moves below the post list and the bio spans the full sidebar width.
 func TestTabletLayout(t *testing.T) {
 	t.Parallel()
 	ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{
@@ -28,12 +28,20 @@ func TestTabletLayout(t *testing.T) {
 		assert.True(t, visible, "sidebar should still be visible at tablet width")
 	})
 
-	t.Run("index still uses flex layout", func(t *testing.T) {
+	t.Run("index stacks at tablet width", func(t *testing.T) {
 		display, err := page.Locator(".index").Evaluate(
 			`el => getComputedStyle(el).display`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "flex", display, "homepage should use flex at 768px")
+		assert.Equal(t, "block", display, "homepage should stack at 768px")
+	})
+
+	t.Run("bio spans full sidebar grid", func(t *testing.T) {
+		gridColumn, err := page.Locator(".aside-bio").Evaluate(
+			`el => getComputedStyle(el).gridColumnEnd`, nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "-1", gridColumn)
 	})
 }
 
@@ -105,8 +113,8 @@ func TestMobileFontReduction(t *testing.T) {
 	})
 }
 
-// TestMobileSidebarWrapping verifies the sidebar sections wrap into a
-// horizontal flex layout on mobile instead of stacking vertically.
+// TestMobileSidebarWrapping verifies the sidebar sections use a grid on
+// mobile, with the long bio spanning the full available width.
 func TestMobileSidebarWrapping(t *testing.T) {
 	t.Parallel()
 	page := newMobilePage(t)
@@ -117,12 +125,24 @@ func TestMobileSidebarWrapping(t *testing.T) {
 	require.NoError(t, err)
 	require.True(t, visible)
 
-	t.Run("aside uses flex-wrap on mobile", func(t *testing.T) {
-		wrap, err := aside.Evaluate(
-			`el => getComputedStyle(el).flexWrap`, nil,
+	t.Run("aside uses grid on mobile", func(t *testing.T) {
+		display, err := aside.Evaluate(
+			`el => getComputedStyle(el).display`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "wrap", wrap, "mobile aside should use flex-wrap")
+		assert.Equal(t, "grid", display, "mobile aside should use grid")
+	})
+
+	t.Run("bio uses the available mobile width", func(t *testing.T) {
+		ratio, err := page.Evaluate(
+			`() => {
+				const bio = document.querySelector(".aside-bio").getBoundingClientRect().width;
+				return bio / window.innerWidth;
+			}`,
+		)
+		require.NoError(t, err)
+		assert.Greater(t, ratio.(float64), 0.85,
+			"bio should use most of the mobile viewport width")
 	})
 
 	t.Run("aside has border-top separator", func(t *testing.T) {

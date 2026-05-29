@@ -3,18 +3,6 @@ locale: en
 title: Redowan's Reflections
 pluralizelisttitles: false
 
-menu:
-  pages:
-    - name: Appearances
-      url: /appearances/
-      weight: 2
-    - name: Maxims
-      url: /maxims/
-      weight: 4
-    - name: Tags
-      url: /tags/
-      weight: 5
-
 enableRobotsTXT: true
 googleAnalytics: G-11NK905JK8
 enableGitInfo: true
@@ -58,7 +46,6 @@ params:
     jobTitle: Software Engineer
     alternateName: rednafi
     wikidataId: Q139619919
-    image: "https://blob.rednafi.com/static/images/about/profile-2026.jpg"
     knowsAbout:
       - "Go"
       - "Python"
@@ -75,8 +62,8 @@ params:
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-
-    Software engineer oscillating between product and platform work. Interested in
-    resilience, observability, and the fringe behaviors of distributed systems.
+    Redowan Delowar writes about software engineering, platform work, distributed
+    systems, resilience, and building reliable products.
 
   DateFormat: "January 2, 2006"
 
@@ -125,7 +112,7 @@ markup:
       unsafe: true
 
 outputs:
-  home: ["HTML", "RSS", "ArticlesRSS"]
+  home: ["HTML", "RSS"]
   page: ["HTML"]
   section: ["HTML", "RSS"]
   taxonomy: ["HTML"]
@@ -134,21 +121,6 @@ outputs:
 services:
   rss:
     limit: 30
-
-mediaTypes:
-  application/articles+xml:
-    suffixes:
-      - xml
-
-outputFormats:
-  ArticlesRSS:
-    mediaType: application/articles+xml
-    baseName: articles
-    isPlainText: false
-    rel: alternate
-    isHTML: false
-    noUgly: true
-    permalinkable: false
 
 security:
   funcs:

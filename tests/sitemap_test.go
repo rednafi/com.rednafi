@@ -15,11 +15,9 @@ func TestSitemapContainsKeyPages(t *testing.T) {
 
 	keyPages := []string{
 		"https://rednafi.com/",
-		"https://rednafi.com/about/",
-		"https://rednafi.com/tags/",
-		"https://rednafi.com/python/",
-		"https://rednafi.com/go/",
-		"https://rednafi.com/misc/",
+		"https://rednafi.com/go/anemic-stack-traces/",
+		"https://rednafi.com/python/dataclasses/",
+		"https://rednafi.com/shards/2026/04/dynamo/",
 	}
 
 	for _, page := range keyPages {
@@ -28,11 +26,39 @@ func TestSitemapContainsKeyPages(t *testing.T) {
 				"sitemap missing key page: %s", page)
 		})
 	}
+
+	assert.NotContains(t, body, "<loc>https://rednafi.com/about/</loc>",
+		"removed about page should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/archive/</loc>",
+		"archive page should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/appearances/</loc>",
+		"appearances page should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/maxims/</loc>",
+		"maxims page should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/blogroll/</loc>",
+		"noindex utility pages should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/articles/</loc>",
+		"duplicate article index should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/page/2/</loc>",
+		"paginated homepage pages are noindex and should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/shards/</loc>",
+		"duplicate shard index should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/python/</loc>",
+		"section pages should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/go/</loc>",
+		"section pages should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/misc/</loc>",
+		"section pages should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/feed/2025/</loc>",
+		"feed detail pages should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/tags/</loc>",
+		"taxonomy index pages are noindex and should not be listed in sitemap")
+	assert.NotContains(t, body, "<loc>https://rednafi.com/tags/go/</loc>",
+		"tag term pages are noindex and should not be listed in sitemap")
 }
 
-// TestSitemapAndRobotsConsistency verifies that pages excluded by robots.txt
-// are consistently handled. The search page is in the sitemap (Hugo default)
-// but disallowed in robots.txt — both files must remain in sync.
+// TestSitemapAndRobotsConsistency verifies robots.txt keeps crawlers able to
+// see page-level noindex directives while still advertising the sitemap.
 func TestSitemapAndRobotsConsistency(t *testing.T) {
 	t.Parallel()
 	robots := httpGet(t, baseURL+"/robots.txt")
@@ -40,6 +66,8 @@ func TestSitemapAndRobotsConsistency(t *testing.T) {
 
 	// robots.txt must reference the sitemap
 	assert.Contains(t, robots, "sitemap.xml", "robots.txt should reference sitemap")
+	assert.NotContains(t, robots, "Disallow: /search/",
+		"search should be crawlable so Google can see its noindex meta")
 
 	// The homepage must be in both
 	assert.Contains(t, robots, "Allow: /")

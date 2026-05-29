@@ -152,9 +152,9 @@ func TestBaseLayout(t *testing.T) {
 		)
 		require.NoError(t, err)
 		hrefList := toStringSlice(hrefs)
-		assert.Contains(t, hrefList, "/about/")
-		assert.Contains(t, hrefList, "/tags/")
-		assert.Contains(t, hrefList, "/blogroll/")
+		assert.Contains(t, hrefList, "/")
+		assert.Contains(t, hrefList, "/archive/")
+		assert.NotContains(t, hrefList, "/articles/")
 	})
 
 	t.Run("has back-to-top button with aria-label", func(t *testing.T) {
@@ -173,7 +173,7 @@ func TestBaseLayout(t *testing.T) {
 		require.NoError(t, err)
 		assert.Contains(t, cls, "home")
 
-		goto_(t, page, "/about/")
+		goto_(t, page, "/archive/")
 		cls2, err := page.Locator("body").GetAttribute("class")
 		require.NoError(t, err)
 		assert.NotContains(t, cls2, "home")
@@ -182,35 +182,50 @@ func TestBaseLayout(t *testing.T) {
 
 func TestHomepage(t *testing.T) {
 	t.Parallel()
-	t.Run("sidebar has pages and connect sections", func(t *testing.T) {
+	t.Run("uses recent writings as the homepage stream", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/")
+		title, err := page.Locator("#recent-writings").TextContent()
+		require.NoError(t, err)
+		assert.Equal(t, "Recent writings", strings.TrimSpace(title))
+	})
+
+	t.Run("sidebar has about and connect sections", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 		headings, err := page.Locator(".aside-section h4").AllTextContents()
 		require.NoError(t, err)
 		lower := make([]string, len(headings))
 		for i, h := range headings {
-			// Only the leading word; digest heading also contains an inline RSS link.
 			lower[i] = strings.ToLower(strings.Fields(strings.TrimSpace(h))[0])
 		}
-		assert.Contains(t, lower, "pages")
+		assert.Contains(t, lower, "about")
 		assert.Contains(t, lower, "connect")
-		assert.GreaterOrEqual(t, len(lower), 2, "sidebar should have at least 2 sections")
+		assert.GreaterOrEqual(t, len(lower), 2, "sidebar should have about and connect sections")
 	})
 
-	t.Run("pages sidebar has correct links", func(t *testing.T) {
+	t.Run("about sidebar has current bio", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		pages := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
-			HasText: "Pages",
-		})
-		hrefs, err := pages.Locator("a").EvaluateAll(
+		about := page.Locator(".aside-bio")
+		text, err := about.TextContent()
+		require.NoError(t, err)
+		assert.Contains(t, text, "Hi, I'm Redowan.")
+		assert.Contains(t, text, "Wolt/DoorDash")
+	})
+
+	t.Run("homepage does not promote noindex utility pages", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/")
+		hrefs, err := page.Locator("main aside a").EvaluateAll(
 			`els => els.map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
 		hrefList := toStringSlice(hrefs)
-		assert.Contains(t, hrefList, "/appearances/")
-		assert.Contains(t, hrefList, "/maxims/")
-		assert.Contains(t, hrefList, "/tags/")
+		assert.NotContains(t, hrefList, "/appearances/")
+		assert.NotContains(t, hrefList, "/maxims/")
+		assert.NotContains(t, hrefList, "/articles/")
+		assert.NotContains(t, hrefList, "/tags/")
 	})
 
 	t.Run("post list renders with dates and type labels", func(t *testing.T) {
@@ -290,7 +305,7 @@ func TestThemeToggle(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "dark", stored)
 
-		goto_(t, page, "/about/")
+		goto_(t, page, "/archive/")
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
 		assert.Equal(t, "dark", theme)
@@ -387,7 +402,7 @@ func TestSEOHomepage(t *testing.T) {
 	t.Run("correct title", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Equal(t, "Redowan's Reflections", title)
+		assert.Equal(t, "Redowan Delowar | Redowan's Reflections", title)
 	})
 
 	t.Run("meta description", func(t *testing.T) {
@@ -428,6 +443,15 @@ func TestSEOHomepage(t *testing.T) {
 		count, err := page.Locator(`link[rel="alternate"][type*="xml"]`).Count()
 		require.NoError(t, err)
 		assert.Greater(t, count, 0)
+
+		hrefs, err := page.Locator(`link[rel="alternate"][type*="xml"]`).EvaluateAll(
+			`els => els.map(e => e.getAttribute("href"))`,
+		)
+		require.NoError(t, err)
+		for _, href := range toStringSlice(hrefs) {
+			assert.NotContains(t, href, "articles.xml",
+				"homepage should not advertise the retired duplicate articles feed")
+		}
 	})
 
 	t.Run("theme-color meta", func(t *testing.T) {
@@ -503,7 +527,7 @@ func TestRobotsTxt(t *testing.T) {
 	body := httpGet(t, baseURL+"/robots.txt")
 	assert.Contains(t, body, "User-agent: *")
 	assert.Contains(t, body, "Allow: /")
-	assert.Contains(t, body, "Disallow: /search/")
+	assert.NotContains(t, body, "Disallow: /search/")
 	assert.Contains(t, body, "Sitemap:")
 	assert.Contains(t, body, "sitemap.xml")
 }
@@ -675,6 +699,27 @@ func TestArchive(t *testing.T) {
 		require.NoError(t, err)
 		assert.True(t, tVisible)
 	})
+
+	t.Run("posts have type labels", func(t *testing.T) {
+		labels, err := page.Locator(".archive-month .post .type-label").AllTextContents()
+		require.NoError(t, err)
+		require.Greater(t, len(labels), 50)
+
+		labelSet := map[string]bool{}
+		for _, label := range labels {
+			labelSet[strings.TrimSpace(label)] = true
+		}
+		assert.True(t, labelSet["article"], "archive should label articles")
+		assert.True(t, labelSet["shard"], "archive should label shards")
+	})
+
+	t.Run("excludes feed pages and epoch dates", func(t *testing.T) {
+		html, err := page.Content()
+		require.NoError(t, err)
+		assert.NotContains(t, html, `href="https://rednafi.com/feed/2025/"`)
+		assert.NotContains(t, html, `href="https://rednafi.com/feed/2024/"`)
+		assert.NotContains(t, html, `id="1970"`)
+	})
 }
 
 // TestSearchPage is covered by TestSearchFunctionality (search_test.go) and
@@ -821,7 +866,7 @@ func TestExternalLinks(t *testing.T) {
 func TestKeyPagesReturn200(t *testing.T) {
 	t.Parallel()
 	pages := []string{
-		"/", "/about/", "/appearances/", "/blogroll/",
+		"/", "/appearances/", "/blogroll/",
 		"/maxims/", "/archive/", "/search/", "/tags/",
 		"/python/", "/go/", "/misc/",
 	}
@@ -935,7 +980,7 @@ func TestDesktopLayout(t *testing.T) {
 
 	t.Run("content column max-width 720px", func(t *testing.T) {
 		page2 := newPage(t)
-		goto_(t, page2, "/about/")
+		goto_(t, page2, "/archive/")
 		mw, err := page2.Locator(".content-column").Evaluate(
 			`el => getComputedStyle(el).maxWidth`, nil,
 		)

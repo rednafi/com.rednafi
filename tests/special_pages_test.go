@@ -7,39 +7,35 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestAboutPageAvatar verifies the about page renders the profile avatar
-// with the correct CSS class for circular styling (256px, border-radius 50%).
-func TestAboutPageAvatar(t *testing.T) {
+// TestRetiredPageRedirects verify retired duplicate pages point to the homepage.
+func TestRetiredPageRedirects(t *testing.T) {
 	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/about/")
+	for _, path := range []string{"/about/", "/articles/"} {
+		t.Run(path, func(t *testing.T) {
+			resp := httpGetResp(t, baseURL+path)
+			defer resp.Body.Close()
+			assert.Equal(t, 200, resp.StatusCode)
 
-	avatar := page.Locator("img.about-avatar")
-	count, err := avatar.Count()
-	require.NoError(t, err)
-	require.Equal(t, 1, count, "about page should have exactly one avatar image")
+			body := httpGet(t, baseURL+path)
+			assert.Contains(t, body, "http-equiv=refresh",
+				"%s alias should contain a meta refresh", path)
+			assert.Contains(t, body, "url=https://rednafi.com/",
+				"%s alias should redirect to the homepage", path)
+			assert.Contains(t, body, `rel=canonical href=https://rednafi.com/`,
+				"%s alias canonical should point to the homepage", path)
+			assert.Contains(t, body, `name=robots content="noindex, follow"`,
+				"%s alias should tell crawlers not to index the redirect page", path)
+		})
+	}
+}
 
-	t.Run("has alt text", func(t *testing.T) {
-		alt, err := avatar.GetAttribute("alt")
-		require.NoError(t, err)
-		assert.NotEmpty(t, alt, "avatar should have alt text for accessibility")
-	})
-
-	t.Run("is circular", func(t *testing.T) {
-		radius, err := avatar.Evaluate(
-			`el => getComputedStyle(el).borderRadius`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "50%", radius, "avatar should be circular (border-radius: 50%%)")
-	})
-
-	t.Run("has fixed dimensions", func(t *testing.T) {
-		width, err := avatar.Evaluate(
-			`el => getComputedStyle(el).width`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "256px", width)
-	})
+// TestHostRedirectRules verifies hosts that support _redirects can serve
+// retired duplicate pages as real permanent redirects.
+func TestHostRedirectRules(t *testing.T) {
+	t.Parallel()
+	body := httpGet(t, baseURL+"/_redirects")
+	assert.Contains(t, body, "/about/ / 301")
+	assert.Contains(t, body, "/articles/ / 301")
 }
 
 // TestSearchPageConfiguration verifies the Pagefind search UI is configured

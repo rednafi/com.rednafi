@@ -12,7 +12,6 @@ func TestOGTagsOnAllPageTypes(t *testing.T) {
 	t.Parallel()
 	pages := map[string]string{
 		"homepage": "/",
-		"about":    "/about/",
 		"article":  "/go/anemic-stack-traces/",
 		"section":  "/python/",
 		"tag":      "/tags/go/",
@@ -41,7 +40,7 @@ func TestOGTagsOnAllPageTypes(t *testing.T) {
 // TestCanonicalURLsAreAbsolute verifies canonical URLs use absolute paths with production domain.
 func TestCanonicalURLsAreAbsolute(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/about/", "/go/anemic-stack-traces/", "/archive/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/archive/"}
 
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
@@ -89,7 +88,7 @@ func TestArticleOGTags(t *testing.T) {
 // TestTwitterCardOnAllPages verifies Twitter card meta is present everywhere.
 func TestTwitterCardOnAllPages(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/about/", "/go/anemic-stack-traces/"}
+	pages := []string{"/", "/go/anemic-stack-traces/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)

@@ -93,9 +93,9 @@ func TestSmoothScrollBehavior(t *testing.T) {
 func TestImageBorderRadius(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
-	goto_(t, page, "/about/")
+	goto_(t, page, "/zephyr/in-favor-of-sentence-case/")
 
-	img := page.Locator("article img, .about-avatar").First()
+	img := page.Locator("article img").First()
 	count, err := img.Count()
 	require.NoError(t, err)
 	if count == 0 {

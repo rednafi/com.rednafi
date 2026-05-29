@@ -83,23 +83,6 @@ func TestRSSAndHomepagePostsOverlap(t *testing.T) {
 		homeList, rssTitles)
 }
 
-// TestMainAndArticlesRSSAreDifferentFormats verifies the main RSS feed
-// (index.xml) and articles feed (articles.xml) are both valid but served
-// under different paths — they use different Hugo output formats.
-func TestMainAndArticlesRSSAreDifferentFormats(t *testing.T) {
-	t.Parallel()
-	mainRSS := httpGet(t, baseURL+"/index.xml")
-	articlesRSS := httpGet(t, baseURL+"/articles.xml")
-
-	// Both should be valid RSS
-	assert.Contains(t, mainRSS, "<rss")
-	assert.Contains(t, articlesRSS, "<rss")
-
-	// Both should have items
-	assert.Contains(t, mainRSS, "<item>")
-	assert.Contains(t, articlesRSS, "<item>")
-}
-
 // TestRSSFeedLinksAreAbsolute verifies all links in RSS items use absolute URLs.
 func TestRSSFeedLinksAreAbsolute(t *testing.T) {
 	t.Parallel()
@@ -177,47 +160,10 @@ func TestAllSectionRSSFeeds(t *testing.T) {
 	}
 }
 
-// TestArticlesRSSFeedStructure validates the custom articles-only RSS feed
-// (/articles.xml). This is a custom Hugo output format — if the outputFormats
-// config or template breaks, this feed silently disappears.
-func TestArticlesRSSFeedStructure(t *testing.T) {
+// TestArticlesRSSRedirected verifies the retired duplicate articles feed is
+// redirected to the canonical main feed.
+func TestArticlesRSSRedirected(t *testing.T) {
 	t.Parallel()
-	body := httpGet(t, baseURL+"/articles.xml")
-
-	t.Run("is valid RSS", func(t *testing.T) {
-		assert.Contains(t, body, "<rss")
-		assert.Contains(t, body, "<channel>")
-		assert.Contains(t, body, "<item>")
-	})
-
-	t.Run("has feed title", func(t *testing.T) {
-		assert.Contains(t, body, "<title>")
-	})
-
-	t.Run("items have required fields", func(t *testing.T) {
-		idx := strings.Index(body, "<item>")
-		require.Greater(t, idx, 0)
-		end := strings.Index(body[idx:], "</item>")
-		item := body[idx : idx+end]
-		assert.Contains(t, item, "<title>")
-		assert.Contains(t, item, "<link>")
-		assert.Contains(t, item, "<pubDate>")
-		assert.Contains(t, item, "<guid>")
-	})
-
-	t.Run("links are absolute", func(t *testing.T) {
-		parts := strings.Split(body, "<item>")
-		for i, part := range parts[1:] {
-			_, after, found := strings.Cut(part, "<link>")
-			if !found {
-				continue
-			}
-			link, _, found := strings.Cut(after, "</link>")
-			if !found {
-				continue
-			}
-			assert.True(t, strings.HasPrefix(link, "https://"),
-				"articles RSS item %d link should be absolute: %s", i, link)
-		}
-	})
+	body := httpGet(t, baseURL+"/_redirects")
+	assert.Contains(t, body, "/articles.xml /index.xml 301")
 }
