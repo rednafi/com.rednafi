@@ -3,7 +3,11 @@
 
 <h1>{{ .Title }}</h1>
 
-{{- range (site.RegularPages).GroupByPublishDate "2006" }}
+{{- $articles := where site.RegularPages "Section" "in" site.Params.mainSections }}
+{{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
+{{- $pages := union $articles $notes }}
+
+{{- range $pages.GroupByPublishDate "2006" }}
 {{- if ne .Key "0001" }}
 <div class="archive-year">
   <h2 id="{{ .Key }}">
@@ -16,14 +20,7 @@
       <a href="#{{ $.Key }}-{{ .Key }}">{{ .Key }}</a>
       <sup>&nbsp;{{ len .Pages }}</sup>
     </h3>
-    <div class="post-list">
-    {{- range .Pages }}
-      <div class="post">
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></span>
-      </div>
-    {{- end }}
-    </div>
+    {{ partial "post-list.html" .Pages }}
   </div>
   {{- end }}
 </div>

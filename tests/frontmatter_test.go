@@ -8,11 +8,11 @@ import (
 )
 
 // TestHideBreadcrumbs verifies pages with hideBreadcrumbs: true in frontmatter
-// do not render breadcrumb navigation. The about, appearances, and blogroll
+// do not render breadcrumb navigation. The appearances and blogroll
 // pages use this to present a cleaner layout.
 func TestHideBreadcrumbs(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/about/", "/appearances/", "/blogroll/"}
+	pages := []string{"/appearances/", "/blogroll/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)
@@ -35,10 +35,10 @@ func TestHideBreadcrumbs(t *testing.T) {
 }
 
 // TestHideMeta verifies pages with hideMeta: true do not show the post-meta
-// section (date). These are evergreen pages like about, blogroll, maxims.
+// section (date). These are evergreen pages like blogroll and maxims.
 func TestHideMeta(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/about/", "/appearances/", "/blogroll/", "/maxims/"}
+	pages := []string{"/appearances/", "/blogroll/", "/maxims/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)
@@ -65,7 +65,7 @@ func TestHideMeta(t *testing.T) {
 // "related" content.
 func TestHideRelated(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/about/", "/appearances/", "/blogroll/", "/maxims/"}
+	pages := []string{"/appearances/", "/blogroll/", "/maxims/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)
@@ -78,24 +78,36 @@ func TestHideRelated(t *testing.T) {
 	}
 }
 
-// TestRobotsNoIndex verifies pages with robotsNoIndex: true get a noindex
-// robots meta tag, preventing search engines from indexing utility pages.
+// TestRobotsNoIndex verifies non-home/non-post pages get a noindex robots
+// meta tag, preventing search engines from indexing utility and list pages.
 func TestRobotsNoIndex(t *testing.T) {
 	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/search/")
+	pages := []string{
+		"/archive/", "/appearances/", "/maxims/",
+		"/search/", "/blogroll/",
+		"/python/", "/go/", "/misc/", "/zephyr/", "/shards/",
+		"/page/2/",
+		"/tags/", "/tags/go/",
+		"/feed/2025/",
+	}
+	for _, url := range pages {
+		t.Run(url, func(t *testing.T) {
+			page := newPage(t)
+			goto_(t, page, url)
 
-	robots, err := page.Locator(`meta[name="robots"]`).GetAttribute("content")
-	require.NoError(t, err)
-	assert.Contains(t, robots, "noindex",
-		"search page should have noindex robots meta")
+			robots, err := page.Locator(`meta[name="robots"]`).GetAttribute("content")
+			require.NoError(t, err)
+			assert.Contains(t, robots, "noindex",
+				"%s should have noindex robots meta", url)
+		})
+	}
 }
 
-// TestRobotsIndexOnRegularPages contrasts with the above — regular pages
-// should have index, follow.
+// TestRobotsIndexOnRegularPages contrasts with the above — the homepage and
+// actual post pages should have index, follow.
 func TestRobotsIndexOnRegularPages(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/about/", "/go/anemic-stack-traces/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)
@@ -106,4 +118,15 @@ func TestRobotsIndexOnRegularPages(t *testing.T) {
 				"%s should be indexable", url)
 		})
 	}
+}
+
+func TestPaginatedHomeDoesNotEmitHomepageSchema(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/page/2/")
+
+	count, err := page.Locator(`script[type="application/ld+json"]`).Count()
+	require.NoError(t, err)
+	assert.Equal(t, 0, count,
+		"paginated homepage pages should not duplicate homepage ItemList schema")
 }

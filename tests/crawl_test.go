@@ -16,7 +16,7 @@ import (
 func TestCrawlAllInternalLinks(t *testing.T) {
 	t.Parallel()
 	seedPages := []string{
-		"/", "/about/", "/archive/", "/tags/", "/python/", "/go/",
+		"/", "/archive/", "/tags/", "/python/", "/go/",
 		"/misc/", "/appearances/", "/blogroll/", "/maxims/",
 	}
 

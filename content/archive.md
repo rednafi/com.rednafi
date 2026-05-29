@@ -4,5 +4,5 @@ layout: archives
 url: "/archive/"
 summary: archive
 description: >-
-  Complete archive of all articles.
+  Complete archive of all articles and shards.
 ---

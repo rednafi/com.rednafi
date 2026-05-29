@@ -55,7 +55,6 @@ func TestNoMixedContent(t *testing.T) {
 func TestExternalLinksNoOpener(t *testing.T) {
 	t.Parallel()
 	pages := []string{
-		"/about/",
 		"/blogroll/",
 		"/appearances/",
 	}

@@ -1,9 +1,9 @@
-{{- $person := merge . (dict "@id" ("about/#person" | absURL)) -}}
+{{- $person := merge . (dict "@id" (printf "%s#person" ("/" | absURL))) -}}
 {{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
 {{- with site.Params.schema.alternateName }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
 {{- with site.Params.schema.image }}{{ $person = merge $person (dict "image" .) }}{{ end }}
 {{- with site.Params.schema.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end }}
 {{- with site.Params.schema.sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
 {{- with site.Params.schema.wikidataId }}{{ $person = merge $person (dict "identifier" (dict "@type" "PropertyValue" "propertyID" "Wikidata" "value" .)) }}{{ end }}
-{{- $person = merge $person (dict "mainEntityOfPage" ("about/" | absURL)) -}}
+{{- $person = merge $person (dict "mainEntityOfPage" ("/" | absURL)) -}}
 {{- return $person -}}

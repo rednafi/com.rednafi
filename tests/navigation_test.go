@@ -17,7 +17,7 @@ func TestConnectSidebarLinks(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	// Find the Connect section by heading (digest section may follow it).
+	// Find the Connect section by heading.
 	connect := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
 		HasText: "Connect",
 	})

@@ -3,10 +3,14 @@
 <link rel="dns-prefetch" href="https://blob.rednafi.com">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
-{{- $aboutURL := "about/" | absURL }}
+{{- $homeURL := "/" | absURL }}
+{{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
+{{- $isPaginatedHome := and .IsHome (gt .Paginator.PageNumber 1) }}
+{{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage }}
+{{- $pageTitle := cond .IsHome (printf "%s | %s" site.Params.author site.Title) (printf "%s | %s" .Title site.Title) }}
 
 {{- /* Title */ -}}
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<title>{{ $pageTitle }}</title>
 
 {{- /* Meta */ -}}
 {{- $desc := .Description | default .Summary }}
@@ -23,16 +27,16 @@
 <meta name="description" content="{{ $desc }}">
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ .Params.canonicalURL | default .Permalink }}">
-{{- if or (eq .Kind "404") .Params.robotsNoIndex }}
-<meta name="robots" content="noindex, follow">
-{{- else if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- if not (hugo.IsProduction | or (eq site.Params.env "production")) }}
+<meta name="robots" content="noindex, nofollow">
+{{- else if and $isIndexablePage (not .Params.robotsNoIndex) (ne .Kind "404") }}
 <meta name="robots" content="index, follow">
 {{- else }}
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, follow">
 {{- end }}
 
 {{- /* Author & identity */ -}}
-<link rel="author" href="{{ $aboutURL }}">
+<link rel="author" href="{{ $homeURL }}">
 {{- range site.Params.schema.sameAs }}
 <link rel="me" href="{{ . }}">
 {{- end }}
@@ -75,9 +79,9 @@
 {{- /* Open Graph */ -}}
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ $pageTitle }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $desc }}">
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:type" content="{{ if $isArticlePage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 {{- with site.Params.images }}
@@ -85,7 +89,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 {{- end }}
-{{- if .IsPage }}
+{{- if $isArticlePage }}
 <meta property="article:author" content="{{ .Params.author | default site.Params.author }}">
 <meta property="article:section" content="{{ .Section }}">
 {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $iso8601 }}">{{ end }}
@@ -103,29 +107,37 @@
 {{- end }}
 
 {{- /* Schema.org JSON-LD */ -}}
-{{- $websiteId := printf "%s#website" site.BaseURL }}
-{{- $personId := printf "%s#person" $aboutURL }}
-{{- if .IsHome }}
-{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $aboutURL) }}
+{{- $websiteId := printf "%s#website" $homeURL }}
+{{- $personId := printf "%s#person" $homeURL }}
+{{- if and .IsHome (not $isPaginatedHome) }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
 {{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
-{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person) }}
+{{- $recentListId := printf "%s#recent-writings" $homeURL }}
+{{- $articles := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
+{{- $notes := where .Site.RegularPages "Section" site.Params.notesSection }}
+{{- $recentWritings := first 10 ((union $articles $notes).ByDate.Reverse) }}
+{{- $items := slice }}
+{{- range $idx, $articlePage := $recentWritings }}
+{{- $item := dict "@type" "BlogPosting" "@id" $articlePage.Permalink "url" $articlePage.Permalink "headline" $articlePage.Title "datePublished" ($articlePage.PublishDate.Format $iso8601) "dateModified" ($articlePage.Lastmod.Format $iso8601) }}
+{{- $items = $items | append (dict "@type" "ListItem" "position" (add $idx 1) "item" $item) }}
+{{- end }}
+{{- $recentList := dict "@type" "ItemList" "@id" $recentListId "name" "Recent writings" "itemListOrder" "https://schema.org/ItemListOrderDescending" "numberOfItems" (len $recentWritings) "itemListElement" $items }}
+{{- $website = merge $website (dict "mainEntity" (dict "@id" $recentListId)) }}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person $recentList) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
-{{- else if eq .Params.schemaType "ProfilePage" }}
-{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" .Permalink) }}
-{{- $schema := dict "@context" "https://schema.org" "@type" "ProfilePage" "mainEntity" $person "dateModified" (.Lastmod.Format $iso8601) }}
-{{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
-{{- else if .IsPage }}
-{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" $aboutURL }}
+{{- else if $isArticlePage }}
+{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" $homeURL }}
 {{- with site.Params.schema.sameAs }}{{ $author = merge $author (dict "sameAs" .) }}{{ end }}
 {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink }}
 {{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}
 {{- $schema = merge $schema (dict "author" $author "publisher" (dict "@type" "Person" "@id" $personId "name" site.Params.author)) }}
 {{- $schema = merge $schema (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "isPartOf" (dict "@type" "WebSite" "@id" $websiteId)) }}
+{{- with (.Params.images | default site.Params.images) }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- end }}
 {{- /* BreadcrumbList JSON-LD */ -}}
-{{- if and .IsPage .Section }}
+{{- if and $isArticlePage .Section }}
 {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" site.BaseURL) (dict "@type" "ListItem" "position" 2 "name" .Section "item" (printf "%s/" .Section | absURL)) (dict "@type" "ListItem" "position" 3 "name" .Title) }}
 {{- $bc := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items }}
 {{ printf `<script type="application/ld+json">%s</script>` ($bc | jsonify) | safeHTML }}

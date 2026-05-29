@@ -3,6 +3,7 @@ title: Blogroll
 hideMeta: true
 hideRelated: true
 hideBreadcrumbs: true
+robotsNoIndex: true
 description: >-
   Collection of recommended technical blogs and writers covering software engineering,
   systems programming, and developer tools.

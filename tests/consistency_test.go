@@ -128,7 +128,6 @@ func TestTagCountsOnTaxonomyPage(t *testing.T) {
 func TestExternalLinksAcrossPages(t *testing.T) {
 	t.Parallel()
 	pages := []string{
-		"/about/",
 		"/blogroll/",
 		"/maxims/",
 	}
@@ -168,11 +167,11 @@ func TestExternalLinksAcrossPages(t *testing.T) {
 }
 
 // TestCSSVariableConsistencyAcrossPages verifies core CSS variables resolve
-// to the same values on different page types (homepage, article, about).
+// to the same values on different page types (homepage, article, archive).
 // A mismatch means a template is overriding or missing the root stylesheet.
 func TestCSSVariableConsistencyAcrossPages(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/about/", "/go/anemic-stack-traces/", "/archive/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/archive/"}
 	var firstBg string
 
 	for _, url := range pages {

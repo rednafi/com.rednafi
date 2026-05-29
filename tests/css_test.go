@@ -130,7 +130,7 @@ func TestCodeBlockStyling(t *testing.T) {
 func TestStickyFooter(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
-	goto_(t, page, "/about/")
+	goto_(t, page, "/archive/")
 
 	t.Run("page container uses flex column", func(t *testing.T) {
 		display, err := page.Evaluate(
