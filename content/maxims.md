@@ -18,6 +18,14 @@ description: >-
 Wisdoms, aphorisms, and pointed observations - fragments I find myself frequently quoting in
 conversations about software, philosophy, and ways of working.
 
+### [Amdahl's law]
+
+The speedup of a system is limited by the portion of the work that cannot be improved. Even
+large improvements in one part of a process can have a modest effect if the rest remains
+unchanged.
+
+[amdahl's law]: https://github.com/dwmkerr/hacker-laws#amdahls-law
+
 ### [Chesterton's fence]
 
 Reforms should not be made until the reasoning behind the existing state of affairs is
@@ -40,6 +48,12 @@ worked. A complex system designed from scratch never works and cannot be patched
 it work. You have to start over with a working simple system.
 
 [gall's law]: https://github.com/dwmkerr/hacker-laws#galls-law
+
+### [Goodhart's law]
+
+When a measure becomes a target, it ceases to be a good measure.
+
+[goodhart's law]: https://github.com/dwmkerr/hacker-laws#goodharts-law
 
 ### [Hanlon's razor]
 
