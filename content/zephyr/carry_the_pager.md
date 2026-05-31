@@ -205,7 +205,7 @@ Oh look, the good ol' [Goodhart's law] is laughing at us again!
     https://www.youtube.com/watch?v=u3GjIXP9N0s
 
 [image_1]:
-    https://media.licdn.com/dms/image/v2/C5612AQEPXYvuzJ9baA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520181432275?e=1781740800&v=beta&t=QWvuu2l7HXpwkuCuWqeYT4h55C6JpZRJTo5mac94Uhk
+    https://blob.rednafi.com/static/images/carry_the_pager/img_1.jpg
 
 [programming as theory building]:
     https://pages.cs.wisc.edu/~remzi/Naur.pdf
