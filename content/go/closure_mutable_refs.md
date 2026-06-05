@@ -2,6 +2,7 @@
 title: "Go quirks: function closures capturing mutable references"
 date: 2026-04-25
 slug: closure-mutable-refs
+atprotoPath: /go/closure-mutable-refs/
 tags:
     - Go
     - Concurrency

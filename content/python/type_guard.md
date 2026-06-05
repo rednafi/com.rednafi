@@ -2,6 +2,7 @@
 title: Narrowing types with TypeGuard in Python
 date: 2022-02-23
 slug: type-guard
+atprotoPath: /python/type-guard/
 aliases:
     - /python/type_guard/
 tags:

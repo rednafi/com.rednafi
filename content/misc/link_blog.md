@@ -1,6 +1,7 @@
 ---
 title: Link blog in a static site
 slug: link-blog
+atprotoPath: /misc/link-blog/
 aliases:
     - /misc/link_blog/
 date: 2025-01-06

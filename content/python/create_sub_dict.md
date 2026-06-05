@@ -1,6 +1,7 @@
 ---
 title: Create a sub dictionary with O(K) complexity in Python
 slug: create-sub-dict
+atprotoPath: /python/create-sub-dict/
 aliases:
     - /python/create_sub_dict/
 date: 2022-01-30

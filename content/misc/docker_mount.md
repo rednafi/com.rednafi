@@ -6,6 +6,7 @@ tags:
     - Docker
     - DevOps
 slug: docker-mount
+atprotoPath: /misc/docker-mount/
 aliases:
     - /misc/docker_mount/
 description: >-

@@ -2,6 +2,7 @@
 title: Use curly braces while pasting shell commands
 date: 2021-11-08
 slug: use-curly-braces-while-pasting-shell-commands
+atprotoPath: /misc/use-curly-braces-while-pasting-shell-commands/
 aliases:
     - /misc/use_curly_braces_while_pasting_shell_commands/
 tags:

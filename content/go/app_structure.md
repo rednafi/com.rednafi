@@ -2,6 +2,7 @@
 title: Let the domain guide your application structure
 date: 2025-09-20
 slug: app-structure
+atprotoPath: /go/app-structure/
 aliases:
     - /go/app_structure/
 tags:

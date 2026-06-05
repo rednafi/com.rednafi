@@ -1,6 +1,7 @@
 ---
 title: Prefer urlsplit over urlparse to destructure URLs
 slug: use-urlsplit-over-urlparse
+atprotoPath: /python/use-urlsplit-over-urlparse/
 aliases:
     - /python/use_urlsplit_over_urlparse/
 date: 2022-09-10

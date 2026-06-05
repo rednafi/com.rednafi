@@ -2,6 +2,7 @@
 title: Using tqdm with concurrent.fututes in Python
 date: 2023-01-06
 slug: tqdm-progressbar-with-concurrent-futures
+atprotoPath: /python/tqdm-progressbar-with-concurrent-futures/
 aliases:
     - /python/tqdm_progressbar_with_concurrent_futures/
 tags:

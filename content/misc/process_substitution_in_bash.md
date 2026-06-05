@@ -2,6 +2,7 @@
 title: Process substitution in Bash
 date: 2023-04-30
 slug: process-substitution-in-bash
+atprotoPath: /misc/process-substitution-in-bash/
 aliases:
     - /misc/process_substitution_in_bash/
 tags:

@@ -2,6 +2,7 @@
 title: Tinkering with Unix domain sockets
 date: 2023-03-11
 slug: tinkering-with-unix-domain-socket
+atprotoPath: /misc/tinkering-with-unix-domain-socket/
 aliases:
     - /misc/tinkering_with_unix_domain_socket/
 tags:

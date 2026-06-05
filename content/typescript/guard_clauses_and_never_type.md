@@ -2,6 +2,7 @@
 title: Guard clause and exhaustiveness checking
 date: 2022-05-22
 slug: guard-clauses-and-never-type
+atprotoPath: /typescript/guard-clauses-and-never-type/
 aliases:
     - /typescript/guard_clauses_and_never_type/
 tags:

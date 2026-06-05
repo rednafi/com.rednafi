@@ -2,6 +2,7 @@
 title: Subtest grouping in Go
 date: 2025-10-01
 slug: subtest-grouping
+atprotoPath: /go/subtest-grouping/
 tags:
     - Go
     - Testing

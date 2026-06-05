@@ -2,6 +2,7 @@
 title: Avoiding collisions in Go context keys
 date: 2025-10-22
 slug: avoid-context-key-collisions
+atprotoPath: /go/avoid-context-key-collisions/
 tags:
     - Go
     - API

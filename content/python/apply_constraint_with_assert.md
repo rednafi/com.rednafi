@@ -2,6 +2,7 @@
 title: Apply constraints with 'assert' in Python
 date: 2022-07-10
 slug: apply-constraint-with-assert
+atprotoPath: /python/apply-constraint-with-assert/
 aliases:
     - /python/apply_constraint_with_assert/
 tags:

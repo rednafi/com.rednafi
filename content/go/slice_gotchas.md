@@ -2,6 +2,7 @@
 title: Go slice gotchas
 date: 2025-02-06
 slug: slice-gotchas
+atprotoPath: /go/slice-gotchas/
 aliases:
     - /go/slice_gotchas/
 tags:

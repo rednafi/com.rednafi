@@ -2,6 +2,7 @@
 title: Splintered failure modes in Go
 date: 2025-11-30
 slug: splintered-failure-modes
+atprotoPath: /go/splintered-failure-modes/
 tags:
     - Go
     - Error Handling

@@ -2,6 +2,7 @@
 title: Skipping the first part of an iterable in Python
 date: 2023-02-12
 slug: skip-first-part-of-an-iterable
+atprotoPath: /python/skip-first-part-of-an-iterable/
 aliases:
     - /python/skip_first_part_of_an_iterable/
 tags:

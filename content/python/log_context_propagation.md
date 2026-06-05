@@ -2,6 +2,7 @@
 title: Log context propagation in Python ASGI apps
 date: 2024-08-06
 slug: log-context-propagation
+atprotoPath: /python/log-context-propagation/
 aliases:
     - /python/log_context_propagation/
 tags:

@@ -2,6 +2,7 @@
 title: Disallow large file download from URLs in Python
 date: 2022-03-23
 slug: disallow-large-file-download
+atprotoPath: /python/disallow-large-file-download/
 aliases:
     - /python/disallow_large_file_download/
 tags:

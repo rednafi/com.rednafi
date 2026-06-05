@@ -2,6 +2,7 @@
 title: Your Go tests probably don't need a mocking library
 date: 2026-01-23
 slug: mocking-libraries-bleh
+atprotoPath: /go/mocking-libraries-bleh/
 tags:
     - Go
     - Testing

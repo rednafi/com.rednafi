@@ -2,6 +2,7 @@
 title: Memory leakage in Python descriptors
 date: 2023-07-16
 slug: memory-leakage-in-descriptors
+atprotoPath: /python/memory-leakage-in-descriptors/
 aliases:
     - /python/memory_leakage_in_descriptors/
 tags:

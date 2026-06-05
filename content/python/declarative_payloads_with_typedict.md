@@ -2,6 +2,7 @@
 title: Declarative payloads with TypedDict in Python
 date: 2022-03-11
 slug: declarative-payloads-with-typedict
+atprotoPath: /python/declarative-payloads-with-typedict/
 aliases:
     - /python/declarative_payloads_with_typedict/
 tags:

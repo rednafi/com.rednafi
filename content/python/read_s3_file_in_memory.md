@@ -2,6 +2,7 @@
 title: Read a CSV file from s3 without saving it to the disk
 date: 2022-06-26
 slug: read-s3-file-in-memory
+atprotoPath: /python/read-s3-file-in-memory/
 aliases:
     - /python/read_s3_file_in_memory/
 tags:

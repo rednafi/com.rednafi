@@ -2,6 +2,7 @@
 title: Verifying webhook origin via payload hash signing
 date: 2022-09-18
 slug: verify-webhook-origin
+atprotoPath: /python/verify-webhook-origin/
 aliases:
     - /python/verify_webhook_origin/
 tags:

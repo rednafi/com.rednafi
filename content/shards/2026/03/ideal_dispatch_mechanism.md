@@ -2,6 +2,7 @@
 title: What's the ideal dispatch mechanism?
 date: 2026-03-31
 slug: ideal-dispatch-mechanism
+atprotoPath: /shards/2026/03/ideal-dispatch-mechanism/
 tags:
     - Go
     - API

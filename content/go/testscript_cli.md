@@ -2,6 +2,7 @@
 title: Testing Go CLIs with testscript
 date: 2026-05-18
 slug: testscript-cli
+atprotoPath: /go/testscript-cli/
 tags:
     - Go
     - Testing

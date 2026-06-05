@@ -2,6 +2,7 @@
 title: Tap compare testing for service migration
 date: 2025-12-13
 slug: tap-compare-testing
+atprotoPath: /system/tap-compare-testing/
 tags:
     - Distributed Systems
     - Go

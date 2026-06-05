@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -43,24 +43,48 @@ jobs:
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
 
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26"
+          cache: false
+
+      - name: Sync Standard.site frontmatter
+        run: go run ./scripts/standardsitesync
+
+      - name: Publish Standard.site records
+        env:
+          ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
+          ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
+        run: npx -y sequoia-cli@0.5.7 publish
+
+      - name: Format generated Markdown metadata
+        run: npx -y prettier --write 'content/**/*.md'
+
       - name: Check Prettier formatting
         run: npx -y prettier --check 'content/**/*.md'
+
+      - name: Commit generated Standard.site metadata
+        run: |
+          if [ -n "$(git status --porcelain -- content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json
+            git commit -m "chore: sync standard.site metadata [skip ci]"
+            git push
+          else
+            echo "Standard.site metadata is already up to date."
+          fi
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
 
       - name: Build with Hugo
-        run: hugo --gc --minify
+        run: hugo --gc --minify --cleanDestinationDir
 
       - name: Build Pagefind search index
         run: npx -y pagefind
-
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version: "1.26"
-          cache: false
 
       - name: Cache Playwright browsers
         uses: actions/cache@v5

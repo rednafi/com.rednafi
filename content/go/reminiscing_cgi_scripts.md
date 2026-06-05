@@ -2,6 +2,7 @@
 title: Reminiscing CGI scripts
 date: 2023-12-25
 slug: reminiscing-cgi-scripts
+atprotoPath: /go/reminiscing-cgi-scripts/
 aliases:
     - /go/reminiscing_cgi_scripts/
 tag:

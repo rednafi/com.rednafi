@@ -2,6 +2,7 @@
 title: Automatic attribute delegation in Python composition
 date: 2021-11-28
 slug: attribute-delegation-in-composition
+atprotoPath: /python/attribute-delegation-in-composition/
 aliases:
     - /python/attribute_delegation_in_composition/
 tags:

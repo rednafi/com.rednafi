@@ -2,6 +2,7 @@
 title: Type-safe slogging
 date: 2026-05-09
 slug: typesafe-slogging
+atprotoPath: /go/typesafe-slogging/
 tags:
     - Go
     - Logging

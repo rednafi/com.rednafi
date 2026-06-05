@@ -2,6 +2,7 @@
 title: Injecting Pytest fixtures without cluttering test signatures
 date: 2024-12-02
 slug: inject-pytest-fixture
+atprotoPath: /python/inject-pytest-fixture/
 aliases:
     - /python/inject_pytest_fixture/
 tags:

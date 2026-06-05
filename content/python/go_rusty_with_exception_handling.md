@@ -2,6 +2,7 @@
 title: Go Rusty with exception handling in Python
 date: 2022-02-02
 slug: go-rusty-with-exception-handling
+atprotoPath: /python/go-rusty-with-exception-handling/
 aliases:
     - /python/go_rusty_with_exception_handling/
 tags:

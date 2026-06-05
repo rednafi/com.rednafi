@@ -2,6 +2,7 @@
 title: Static typing Python decorators
 date: 2022-01-23
 slug: static-typing-decorators
+atprotoPath: /python/static-typing-decorators/
 aliases:
     - /python/static_typing_decorators/
 tags:

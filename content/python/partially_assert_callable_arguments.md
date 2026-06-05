@@ -2,6 +2,7 @@
 title: Partially assert callable arguments with 'unittest.mock.ANY'
 date: 2022-07-17
 slug: partially-assert-callable-arguments
+atprotoPath: /python/partially-assert-callable-arguments/
 aliases:
     - /python/partially_assert_callable_arguments/
 tags:

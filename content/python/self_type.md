@@ -2,6 +2,7 @@
 title: Self type in Python
 date: 2022-02-28
 slug: self-type
+atprotoPath: /python/self-type/
 aliases:
     - /python/self_type/
 tags:

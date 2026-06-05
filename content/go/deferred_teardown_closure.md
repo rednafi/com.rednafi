@@ -2,6 +2,7 @@
 title: Deferred teardown closure in Go testing
 date: 2025-03-28
 slug: deferred-teardown-closure
+atprotoPath: /go/deferred-teardown-closure/
 aliases:
     - /go/deferred_teardown_closure/
 tags:

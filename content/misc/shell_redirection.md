@@ -5,6 +5,7 @@ tags:
     - Shell
     - Unix
 slug: shell-redirection
+atprotoPath: /misc/shell-redirection/
 aliases:
     - /misc/shell_redirection/
 description: >-

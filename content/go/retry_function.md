@@ -2,6 +2,7 @@
 title: Retry function in Go
 date: 2024-02-04
 slug: retry-function
+atprotoPath: /go/retry-function/
 aliases:
     - /go/retry_function/
 tags:

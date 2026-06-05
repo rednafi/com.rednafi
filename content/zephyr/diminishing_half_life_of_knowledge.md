@@ -2,6 +2,7 @@
 title: The diminishing half-life of knowledge
 date: 2023-11-12
 slug: diminishing-half-life-of-knowledge
+atprotoPath: /zephyr/diminishing-half-life-of-knowledge/
 aliases:
     - /zephyr/diminishing_half_life_of_knowledge/
     - /misc/diminishing_half_life_of_knowledge/

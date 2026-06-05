@@ -2,6 +2,7 @@
 title: Explicit method overriding with @typing.override
 date: 2024-11-06
 slug: typing-override
+atprotoPath: /python/typing-override/
 aliases:
     - /python/typing_override/
 tags:

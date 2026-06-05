@@ -2,6 +2,7 @@
 title: Parametrized fixtures in pytest
 date: 2022-03-10
 slug: parametrized-fixtures-in-pytest
+atprotoPath: /python/parametrized-fixtures-in-pytest/
 aliases:
     - /python/parametrized_fixtures_in_pytest/
 tags:

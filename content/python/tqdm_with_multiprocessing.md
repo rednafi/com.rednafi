@@ -2,6 +2,7 @@
 title: Running tqdm with Python multiprocessing
 date: 2021-11-18
 slug: tqdm-with-multiprocessing
+atprotoPath: /python/tqdm-with-multiprocessing/
 aliases:
     - /python/tqdm_with_multiprocessing/
 tags:

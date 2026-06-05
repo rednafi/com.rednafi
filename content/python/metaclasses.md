@@ -4,6 +4,7 @@ date: 2020-06-26
 tags:
     - Python
 slug: metaclasses
+atprotoPath: /python/metaclasses/
 aliases:
     - /python/metaclasses/
 description: >-

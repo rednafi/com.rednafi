@@ -2,6 +2,7 @@
 title: Implementing a simple traceroute clone in Python
 date: 2023-06-01
 slug: implement-traceroute
+atprotoPath: /python/implement-traceroute/
 tags:
     - Python
     - Networking

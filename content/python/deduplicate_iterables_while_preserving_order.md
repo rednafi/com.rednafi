@@ -2,6 +2,7 @@
 title: Deduplicating iterables while preserving order in Python
 date: 2023-05-01
 slug: deduplicate-iterables-while-preserving-order
+atprotoPath: /python/deduplicate-iterables-while-preserving-order/
 aliases:
     - /python/deduplicate_iterables_while_preserving_order/
 tags:

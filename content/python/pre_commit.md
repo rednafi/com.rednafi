@@ -2,6 +2,7 @@
 title: Running Python linters with pre-commit hooks
 date: 2020-04-06
 slug: pre-commit
+atprotoPath: /python/pre-commit/
 aliases:
     - /python/pre_commit/
 tags:

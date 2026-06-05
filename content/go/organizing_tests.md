@@ -2,6 +2,7 @@
 title: Organizing Go tests
 date: 2025-10-08
 slug: organizing-tests
+atprotoPath: /go/organizing-tests/
 tags:
     - Go
     - Testing

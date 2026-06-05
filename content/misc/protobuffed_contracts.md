@@ -2,6 +2,7 @@
 title: Protobuffed contracts
 date: 2024-05-10
 slug: protobuffed-contracts
+atprotoPath: /misc/protobuffed-contracts/
 aliases:
     - /misc/protobuffed_contracts/
 tags:

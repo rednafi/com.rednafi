@@ -2,6 +2,7 @@
 title: Revisiting interface segregation in Go
 date: 2025-11-01
 slug: interface-segregation
+atprotoPath: /go/interface-segregation/
 tags:
     - Go
     - API

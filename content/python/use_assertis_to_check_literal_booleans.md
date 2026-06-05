@@ -2,6 +2,7 @@
 title: Use 'assertIs' to check literal booleans in Python unittest
 date: 2022-01-24
 slug: use-assertis-to-check-literal-booleans
+atprotoPath: /python/use-assertis-to-check-literal-booleans/
 aliases:
     - /python/use_assertis_to_check_literal_booleans/
 tags:

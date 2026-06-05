@@ -2,6 +2,7 @@
 title: Re-exec testing Go subprocesses
 date: 2025-11-16
 slug: test-subprocesses
+atprotoPath: /go/test-subprocesses/
 tags:
     - Go
     - Testing

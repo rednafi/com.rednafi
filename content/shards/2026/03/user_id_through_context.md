@@ -2,6 +2,7 @@
 title: Is passing user ID through context an antipattern?
 date: 2026-03-18
 slug: user-id-through-context
+atprotoPath: /shards/2026/03/user-id-through-context/
 tags:
     - Go
     - API

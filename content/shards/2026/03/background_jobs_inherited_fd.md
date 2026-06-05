@@ -2,6 +2,7 @@
 title: Background jobs and inherited file descriptors
 date: 2026-03-28
 slug: background-jobs-inherited-fd
+atprotoPath: /shards/2026/03/background-jobs-inherited-fd/
 tags:
     - Shell
     - Unix

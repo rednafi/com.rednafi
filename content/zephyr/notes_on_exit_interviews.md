@@ -2,6 +2,7 @@
 title: Notes on exit interviews
 date: 2023-08-07
 slug: notes-on-exit-interviews
+atprotoPath: /zephyr/notes-on-exit-interviews/
 aliases:
     - /zephyr/notes_on_exit_interviews/
 tags:

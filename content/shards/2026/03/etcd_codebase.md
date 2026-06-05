@@ -2,6 +2,7 @@
 title: In praise of the etcd codebase
 date: 2026-03-14
 slug: etcd-codebase
+atprotoPath: /shards/2026/03/etcd-codebase/
 tags:
     - Go
     - gRPC

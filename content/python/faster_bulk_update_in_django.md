@@ -2,6 +2,7 @@
 title: Faster bulk_update in Django
 date: 2022-11-30
 slug: faster-bulk-update-in-django
+atprotoPath: /python/faster-bulk-update-in-django/
 aliases:
     - /python/faster_bulk_update_in_django/
 tags:

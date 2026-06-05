@@ -7,6 +7,7 @@ tags:
     - Unix
     - CLI
 slug: direnv
+atprotoPath: /misc/direnv/
 aliases:
     - /misc/direnv/
 description: >-

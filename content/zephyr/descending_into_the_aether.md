@@ -2,6 +2,7 @@
 title: Descending into the aether
 date: 2023-07-09
 slug: descending-into-the-aether
+atprotoPath: /zephyr/descending-into-the-aether/
 aliases:
     - /zephyr/descending_into_the_aether/
 tags:

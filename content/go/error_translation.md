@@ -2,6 +2,7 @@
 title: Error translation in Go services
 date: 2026-04-12
 slug: error-translation
+atprotoPath: /go/error-translation/
 tags:
     - Go
     - Error Handling
