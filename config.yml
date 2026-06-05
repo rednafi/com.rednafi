@@ -43,7 +43,7 @@ params:
     twitter: rednafi
 
   standardSite:
-    publicationUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/self"
+    publicationUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/3mnl6f7ob462z"
 
   schema:
     jobTitle: Software Engineer
