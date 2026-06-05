@@ -38,6 +38,15 @@ func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
 
 	_, err := os.Stat("../static/.nojekyll")
 	require.NoError(t, err, "GitHub Pages needs .nojekyll to serve .well-known files")
+
+	workflow, err := os.ReadFile("../.github/workflows/ci.yml")
+	require.NoError(t, err)
+	assert.Contains(
+		t,
+		string(workflow),
+		"include-hidden-files: true",
+		"upload-pages-artifact excludes .well-known unless hidden files are included",
+	)
 }
 
 func TestStandardSitePublicationLinkTags(t *testing.T) {
