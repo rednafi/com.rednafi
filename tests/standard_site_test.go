@@ -1,26 +1,29 @@
 package site_test
 
 import (
-	"encoding/json"
 	"io/fs"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"gopkg.in/yaml.v3"
 )
 
 const standardSitePublicationURI = "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/self"
 
-type standardSiteHugoConfig struct {
+type standardSiteConfig struct {
 	Params struct {
-		MainSections []string `json:"mainsections"`
-		NotesSection string   `json:"notessection"`
-	} `json:"params"`
+		MainSections []string `yaml:"mainSections"`
+		NotesSection string   `yaml:"notesSection"`
+	} `yaml:"params"`
+}
+
+type standardSiteSections struct {
+	sections     []string
+	notesSection string
 }
 
 func TestStandardSiteWellKnownEndpoint(t *testing.T) {
@@ -74,7 +77,7 @@ func TestStandardSiteDocumentLinkTagsWhenPublished(t *testing.T) {
 func TestStandardSiteFrontmatterPaths(t *testing.T) {
 	t.Parallel()
 
-	standardSiteSections, notesSection := loadStandardSiteSections(t)
+	standardSiteSections := loadStandardSiteSections(t)
 	var missing []string
 	var wrong []string
 
@@ -92,7 +95,7 @@ func TestStandardSiteFrontmatterPaths(t *testing.T) {
 		}
 		parts := strings.Split(rel, string(filepath.Separator))
 		section := parts[0]
-		if !standardSiteSections[section] {
+		if !standardSiteSections.publishes(section) {
 			return nil
 		}
 
@@ -109,12 +112,12 @@ func TestStandardSiteFrontmatterPaths(t *testing.T) {
 		}
 
 		want := "/" + section + "/" + slug + "/"
-		if section == notesSection {
+		if section == standardSiteSections.notesSection {
 			if len(parts) < 4 {
-				wrong = append(wrong, filePath+": notes posts must live under content/"+notesSection+"/YYYY/MM/")
+				wrong = append(wrong, filePath+": notes posts must live under content/"+standardSiteSections.notesSection+"/YYYY/MM/")
 				return nil
 			}
-			want = "/" + notesSection + "/" + parts[1] + "/" + parts[2] + "/" + slug + "/"
+			want = "/" + standardSiteSections.notesSection + "/" + parts[1] + "/" + parts[2] + "/" + slug + "/"
 		}
 
 		if got != want {
@@ -128,30 +131,36 @@ func TestStandardSiteFrontmatterPaths(t *testing.T) {
 	require.Empty(t, wrong, "Standard.site paths must match Hugo canonical paths")
 }
 
-func loadStandardSiteSections(t *testing.T) (map[string]bool, string) {
+func loadStandardSiteSections(t *testing.T) standardSiteSections {
 	t.Helper()
 
-	cmd := exec.Command("hugo", "config", "--format", "json")
-	cmd.Dir = ".."
-	output, err := cmd.Output()
+	output, err := os.ReadFile("../config.yml")
 	require.NoError(t, err)
 
-	var config standardSiteHugoConfig
-	require.NoError(t, json.Unmarshal(output, &config))
+	var config standardSiteConfig
+	require.NoError(t, yaml.Unmarshal(output, &config))
 
-	sections := make(map[string]bool)
+	standardSiteSections := standardSiteSections{notesSection: config.Params.NotesSection}
 	for _, section := range config.Params.MainSections {
 		if section != "" {
-			sections[section] = true
+			standardSiteSections.sections = append(standardSiteSections.sections, section)
 		}
 	}
-	notesSection := config.Params.NotesSection
-	if notesSection != "" {
-		sections[notesSection] = true
+	if standardSiteSections.notesSection != "" {
+		standardSiteSections.sections = append(standardSiteSections.sections, standardSiteSections.notesSection)
 	}
 
-	require.NotEmpty(t, sections, "Hugo config should define publishable sections")
-	return sections, notesSection
+	require.NotEmpty(t, standardSiteSections.sections, "Hugo config should define publishable sections")
+	return standardSiteSections
+}
+
+func (sections standardSiteSections) publishes(section string) bool {
+	for _, publishedSection := range sections.sections {
+		if publishedSection == section {
+			return true
+		}
+	}
+	return false
 }
 
 func frontmatterScalar(t *testing.T, filePath, key string) string {
@@ -160,10 +169,39 @@ func frontmatterScalar(t *testing.T, filePath, key string) string {
 	data, err := os.ReadFile(filePath)
 	require.NoError(t, err)
 
-	match := regexp.MustCompile(`(?m)^` + regexp.QuoteMeta(key) + `:\s*"?([^"\n]+)"?\s*$`).FindSubmatch(data)
-	if len(match) < 2 {
+	body, err := frontmatterBody(string(data))
+	require.NoError(t, err)
+
+	var values map[string]any
+	require.NoError(t, yaml.Unmarshal([]byte(body), &values))
+
+	value, ok := values[key].(string)
+	if !ok {
 		return ""
 	}
+	return strings.TrimSpace(value)
+}
 
-	return strings.TrimSpace(string(match[1]))
+func frontmatterBody(raw string) (string, error) {
+	opening, lineEnding, ok := frontmatterOpening(raw)
+	if !ok {
+		return "", os.ErrInvalid
+	}
+
+	body, _, ok := strings.Cut(raw[len(opening):], lineEnding+"---"+lineEnding)
+	if !ok {
+		return "", os.ErrInvalid
+	}
+	return body, nil
+}
+
+func frontmatterOpening(raw string) (string, string, bool) {
+	switch {
+	case strings.HasPrefix(raw, "---\r\n"):
+		return "---\r\n", "\r\n", true
+	case strings.HasPrefix(raw, "---\n"):
+		return "---\n", "\n", true
+	default:
+		return "", "", false
+	}
 }
