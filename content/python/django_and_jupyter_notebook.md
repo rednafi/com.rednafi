@@ -12,6 +12,7 @@ tags:
 description: >-
   Connect Jupyter Notebook to Dockerized Django apps using ipykernel and
   django-extensions for interactive debugging and data exploration.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23z6e2p"
 ---
 
 Back in the days when I was working as a data analyst, I used to spend hours inside Jupyter

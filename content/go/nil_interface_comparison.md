@@ -11,6 +11,7 @@ tags:
 description: >-
   Debug tricky nil comparisons in Go interfaces. Understand dynamic types, type
   assertions, and use reflect for generic nil checking.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ige4h52o"
 ---
 
 Comparing interface values in Go has caught me off guard a few times, especially with nils.

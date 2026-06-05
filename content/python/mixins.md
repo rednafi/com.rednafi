@@ -11,6 +11,7 @@ aliases:
 description: >-
   Build custom data structures with Python's collection.abc mixins, abstract base
   classes, and interfaces for dict-like and set-like objects.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo65yu2p"
 ---
 
 Imagine a custom _set-like_ data structure that doesn't perform hashing and trades

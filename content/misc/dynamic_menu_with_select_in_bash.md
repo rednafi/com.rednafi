@@ -13,6 +13,7 @@ tags:
 description: >-
   Build interactive CLI menus with Bash select statement. Create user-friendly
   command-line tools with option selection and function dispatch.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivj25c2e"
 ---
 
 Whenever I need to whip up a quick command line tool, my go-to is usually Python. Python's

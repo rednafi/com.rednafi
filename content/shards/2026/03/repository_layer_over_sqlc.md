@@ -8,6 +8,7 @@ tags:
     - Database
 description: >-
   Decoupling business logic from storage with a small interface in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdzwq2z"
 ---
 
 Today in [r/golang], user Leading-West-4881 asked:

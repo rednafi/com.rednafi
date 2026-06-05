@@ -14,6 +14,7 @@ tags:
 description: >-
   Combine session and function-scoped pytest fixtures to avoid expensive test setup while
   maintaining test isolation and preventing state coupling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jddhb32b"
 ---
 
 While reading the second version of [Brian Okken's pytest book], I came across this neat

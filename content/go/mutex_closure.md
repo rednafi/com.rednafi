@@ -10,6 +10,7 @@ tags:
 description: >-
     Why your mutex wrapper should accept a closure for mutation instead of a plain value,
     with examples from the standard library and Tailscale.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfpks2y"
 ---
 
 When multiple goroutines need to read and write the same value, you need a mutex to make

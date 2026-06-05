@@ -12,6 +12,7 @@ tags:
 description: >-
   Master Python mocking: patch objects at their import location, not where they're
   defined, to avoid common unittest.mock pitfalls.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdgh3t2o"
 ---
 
 I was reading Ned Bachelder's blog [Why your mock doesn't work] and it triggered an epiphany

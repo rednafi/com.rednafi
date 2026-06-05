@@ -10,6 +10,7 @@ aliases:
 description: >-
   Master Python's ExitStack for managing multiple context managers, conditional
   callbacks, request rollbacks, and avoiding nested with statements.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcqhtf2o"
 ---
 
 Over the years, I've used Python's `contextlib.ExitStack` in a few interesting ways. The

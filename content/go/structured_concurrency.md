@@ -14,6 +14,7 @@ description: >-
 discussions:
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1rat6lm/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icgznp2o"
 ---
 
 At my workplace, a lot of folks are coming to Go from Python and Kotlin. Both languages have

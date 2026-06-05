@@ -10,6 +10,7 @@ aliases:
 description: >-
   Deep dive into Python context managers. Learn to write custom managers with
   __enter__/__exit__, use contextlib decorators, and manage resources elegantly.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqezom2a"
 ---
 
 Python's context managers are great for resource management and stopping the propagation of

@@ -12,6 +12,7 @@ tags:
 description: >-
   Why you should define API response structures explicitly. Compare approaches in Python,
   JavaScript, and Go with Pydantic, Zod, and structs.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in4vxd2e"
 ---
 
 I love dynamically typed languages as much as the next person. They let us make ergonomic

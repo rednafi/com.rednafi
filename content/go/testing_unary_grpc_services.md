@@ -11,6 +11,7 @@ tags:
 description: >-
     How to test unary gRPC services in Go - handler logic, interceptors, deadlines,
     metadata propagation, and rich error details - all in-memory with bufconn.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavilu2u"
 ---
 
 > We don't want to test gRPC or an HTTP server itself, we simply want to test our method's

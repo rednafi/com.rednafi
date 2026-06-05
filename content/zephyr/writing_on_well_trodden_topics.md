@@ -10,6 +10,7 @@ tags:
 description: >-
   Why writing about common topics matters for personal growth, even when countless others
   have covered the same ground before you.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5jck2a"
 ---
 
 I enjoy writing about software - the things I learn, the tools I use, and the work I do.

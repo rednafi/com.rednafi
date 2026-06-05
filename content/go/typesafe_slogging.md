@@ -11,6 +11,7 @@ description: >-
     The default slog API is loose enough that a careless line ships broken JSON to
     production. Pin it down with Attr constructors, LogAttrs, a context-borne logger,
     and sloglint.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iar24h2o"
 ---
 
 Typically on a brownfield project I don't care much about logging libraries and just go with

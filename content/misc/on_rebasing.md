@@ -16,6 +16,7 @@ description: >-
 discussions:
     - label: Hacker News
       url: https://news.ycombinator.com/item?id=40742628
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijg2ca26"
 ---
 
 People tend to get pretty passionate about Git workflows on different online forums. Some

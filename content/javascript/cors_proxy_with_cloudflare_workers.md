@@ -12,6 +12,7 @@ tags:
 description: >-
   Build your own CORS proxy using Cloudflare Workers to bypass browser CORS restrictions.
   Includes deployment with GitHub Actions automation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2eg22e"
 ---
 
 Cloudflare absolutely nailed the serverless function DX with [Cloudflare Workers]. However,

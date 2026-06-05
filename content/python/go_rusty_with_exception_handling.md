@@ -12,6 +12,7 @@ tags:
 description: >-
   Implement Rust-style Result types for type-safe exception handling in Python using
   generic Ok and Err types inspired by Black formatter.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmzfbq26"
 ---
 
 While grokking Black formatter's codebase, I came across this [Rust-influenced error

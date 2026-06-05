@@ -12,6 +12,7 @@ tags:
 description: >-
   Control Go test behavior with custom flags instead of build tags or env vars. Enable
   integration and snapshot tests with discoverable CLI options.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifk6gd2u"
 ---
 
 As your test suite grows, you need ways to toggle certain kinds of tests on or off. Maybe

@@ -15,6 +15,7 @@ description: >-
 discussions:
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1k5aqkc/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpbkx2e"
 ---
 
 By default, Go copies values when you pass them around. But sometimes, that can be

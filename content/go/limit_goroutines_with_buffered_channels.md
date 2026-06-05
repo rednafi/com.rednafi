@@ -12,6 +12,7 @@ tags:
 description: >-
   Control goroutine concurrency with buffered channels as semaphores. Prevent resource
   exhaustion with backpressure patterns in Go workers.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir44f22a"
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when

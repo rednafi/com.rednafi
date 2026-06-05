@@ -10,6 +10,7 @@ tags:
 description: >-
   Use operator.itemgetter for faster sorting and element access with graceful KeyError
   handling via methodcaller for safer operations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jejf4m2j"
 ---
 
 Python's `operator.itemgetter` is quite versatile. It works on pretty much any iterables and

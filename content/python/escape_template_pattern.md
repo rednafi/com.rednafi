@@ -11,6 +11,7 @@ tags:
 description: >-
   Replace inheritance-based template pattern with composition and Protocol types to
   create cleaner, testable Python code without namespace pollution.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmfuy2o"
 ---
 
 Over the years, I've used the [template pattern] across multiple OO languages with varying

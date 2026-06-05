@@ -12,6 +12,7 @@ tags:
 description: >-
   Stream real-time server updates to web clients using Server-Sent Events (SSE) as a
   simpler alternative to WebSockets for unidirectional data flow.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iz3had2s"
 ---
 
 In multi-page web applications, a common workflow is where a user:

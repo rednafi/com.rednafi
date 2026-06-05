@@ -10,6 +10,7 @@ aliases:
 description: >-
   Master Python dataclasses to eliminate boilerplate code. Learn ordering, immutability,
   hashing, default values, and post-init processing.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqfibt2s"
 ---
 
 Recently, my work needed me to create lots of custom data types and draw comparison among

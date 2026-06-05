@@ -12,6 +12,7 @@ tags:
 description: >-
   Secure webhooks by verifying payload authenticity using HMAC hash signatures with
   shared secrets, preventing man-in-the-middle attacks.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jarwvd2y"
 ---
 
 While working with GitHub webhooks, I discovered a common [webhook security pattern] a

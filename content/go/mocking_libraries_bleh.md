@@ -13,6 +13,7 @@ description: >-
 discussions:
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1qmfjzh/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icho3l2e"
 ---
 
 > There are frameworks that generate those kind of fakes, and one of them is called

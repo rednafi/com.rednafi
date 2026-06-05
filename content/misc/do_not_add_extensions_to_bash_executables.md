@@ -13,6 +13,7 @@ tags:
 description: >-
   Why executable scripts shouldn't have extensions. Learn GitHub's
   scripts-to-rule-them-all pattern for language-agnostic project automation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnydhe2j"
 ---
 
 I was browsing through the source code of Tom Christie's [typesystem] library and discovered

@@ -12,6 +12,7 @@ tags:
 description: >-
   Prevent memory leaks in Python descriptors by using weakref to avoid hard references
   that prevent garbage collection of validated objects.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir7nny2z"
 ---
 
 Unless I'm hand rolling my own ORM-like feature or validation logic, I rarely need to write

@@ -12,6 +12,7 @@ tags:
 description: >-
   Compare three Go option patterns: exposed structs, option constructors, and functional
   options. Learn when to use each for clean APIs.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir352c2y"
 ---
 
 Suppose, you have a function that takes an option struct and a message as input. Then it

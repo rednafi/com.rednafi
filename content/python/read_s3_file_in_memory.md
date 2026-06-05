@@ -11,6 +11,7 @@ tags:
 description: >-
   Download and process S3 CSV files in memory using boto3 and tempfile.NamedTemporaryFile
   without cluttering disk with temporary files.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdp2hr2z"
 ---
 
 I frequently have to write ad-hoc scripts that download a CSV file from [AWS S3], do some

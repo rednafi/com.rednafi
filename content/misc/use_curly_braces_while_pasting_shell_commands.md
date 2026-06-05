@@ -12,6 +12,7 @@ tags:
 description: >-
   Prevent shell commands from executing immediately when pasting. Use curly braces to
   safely paste multi-line commands with hidden newline characters.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5bqd2s"
 ---
 
 Pasting shell commands can be a pain when they include hidden return `\n` characters. In

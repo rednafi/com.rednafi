@@ -12,6 +12,7 @@ tags:
 description: >-
   Avoid memory leaks when caching instance methods with lru_cache by making cache
   containers local to instances instead of global.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnjivq26"
 ---
 
 Recently, fell into this trap as I wanted to speed up a slow instance method by caching it.

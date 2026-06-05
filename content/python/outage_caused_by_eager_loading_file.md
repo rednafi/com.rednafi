@@ -13,6 +13,7 @@ tags:
 description: >-
   Learn from a production outage caused by loading large CSV files into memory. Stream
   process files to prevent OOM errors and crashes.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqe4f2u"
 ---
 
 Python makes it freakishly easy to load the whole content of any file into memory and

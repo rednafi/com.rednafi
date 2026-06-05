@@ -12,6 +12,7 @@ tags:
 description: >-
   Use compile-time interface guards to verify type conformity in Go without runtime
   overhead. Learn the var _ Interface = (*Type)(nil) pattern.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4yne2e"
 ---
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs

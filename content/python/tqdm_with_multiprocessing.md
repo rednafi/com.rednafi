@@ -12,6 +12,7 @@ tags:
 description: >-
   Integrate tqdm progress bars with multiprocessing.imap_unordered for visual feedback on
   parallel task execution across worker processes.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2uje2e"
 ---
 
 Making tqdm play nice with multiprocessing requires some additional work. It's not always

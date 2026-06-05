@@ -9,6 +9,7 @@ tags:
 description: >-
   A Go closure holds a live reference to whatever it captures, not a snapshot.
   Real examples of where this trips people up, and how to keep it boring.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaryep2a"
 ---
 
 I was browsing the [hegel-go] codebase and ran into this rule in its [go-concurrency] agent

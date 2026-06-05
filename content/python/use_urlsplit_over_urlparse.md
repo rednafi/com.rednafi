@@ -11,6 +11,7 @@ tags:
 description: >-
   Use Python's urlsplit instead of urlparse for faster URL parsing by skipping the
   rarely-needed params component in URL decomposition.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcl34l2o"
 ---
 
 TIL from this [video by Anthony Sottile] that Python's [urlparse] is quite slow at parsing

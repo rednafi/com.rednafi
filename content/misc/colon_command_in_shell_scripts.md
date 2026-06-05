@@ -13,6 +13,7 @@ tags:
 description: >-
   Use the colon : command as a no-op in Bash scripts for cleaner debug output with -x
   flag. Alternative to echo for section markers and comments.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j33l242a"
 ---
 
 The colon `:` command is a shell utility that represents a truthy value. It can be thought

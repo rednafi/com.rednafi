@@ -15,6 +15,7 @@ description: >-
 discussions:
     - label: Hacker News
       url: https://news.ycombinator.com/item?id=44086235
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifouv326"
 ---
 
 When working with Go in an [industrial programming] context, I feel like dependency

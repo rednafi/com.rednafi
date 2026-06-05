@@ -13,6 +13,7 @@ tags:
 description: >-
   Manage dotfiles across devices with GNU Stow. Symlink configuration files from git repo
   to home directory with simple, idempotent commands.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iogd5d2j"
 ---
 
 I'm one of those people who will sit in front of a computer for hours, fiddling with

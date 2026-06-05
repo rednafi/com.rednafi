@@ -10,6 +10,7 @@ tags:
 description: >-
   Learn how to access Python classmethods like property methods using metaclasses or
   Python 3.9+ decorator stacking for Enum classes.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmvau2b"
 ---
 
 I wanted to add a helper method to an Enum class. However, I didn't want to make it a

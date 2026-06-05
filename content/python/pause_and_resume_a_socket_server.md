@@ -12,6 +12,7 @@ tags:
 description: >-
   Build a pausable socket server with Python's socketserver module using threading for
   intermittent request handling and background tasks.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23nhe2p"
 ---
 
 I needed to write a socket server in Python that would allow me to intermittently pause the

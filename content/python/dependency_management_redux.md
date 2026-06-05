@@ -11,6 +11,7 @@ tags:
 description: >-
   Modern Python dependency management using pip-tools, hatch, and PEP-621 for web apps
   and libraries with reproducible builds.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmuhe2e"
 ---
 
 One major drawback of Python's huge ecosystem is the significant variances in workflows

@@ -10,6 +10,7 @@ tags:
     - API
 description: >-
   Notes on Go's newly accepted uuid proposal and the tradeoffs behind the API.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasgzl26"
 ---
 
 It's good to see that Go is finally getting `uuid` in the standard library. The [proposal]

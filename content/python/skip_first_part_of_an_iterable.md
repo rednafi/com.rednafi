@@ -11,6 +11,7 @@ tags:
 description: >-
   Skip elements in iterables until a condition is met using itertools.dropwhile for
   efficient lazy evaluation that works with generators.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j236vq2z"
 ---
 
 Consider this iterable:

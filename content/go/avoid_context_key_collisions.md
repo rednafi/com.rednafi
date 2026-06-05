@@ -10,6 +10,7 @@ tags:
 description: >-
   Master Go context keys with custom types, avoid collisions using empty structs, and
   learn accessor patterns for safe request-scoped values.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieekd726"
 ---
 
 Along with propagating deadlines and cancellation signals, Go's `context` package can also

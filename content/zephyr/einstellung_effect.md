@@ -10,6 +10,7 @@ tags:
 description: >-
   Why accumulated knowledge can prevent learning new paradigms, and how past expertise
   becomes the barrier to future growth.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikirky2b"
 ---
 
 In 9th grade, when I first learned about [Lenz's law] in Physics class, I was fascinated by

@@ -10,6 +10,7 @@ tags:
 description: >-
   Master adding multiple attributes to Python enum members using __new__ method. Avoid
   hardcoded indexes and create more maintainable enums.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmfcnm2b"
 ---
 
 While grokking the source code of the [http.HTTPStatus] module, I came across this technique

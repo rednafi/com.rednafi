@@ -10,6 +10,7 @@ tags:
 description: >-
   Why footnote-style reference links create cleaner Markdown documents and improve the
   writing experience over inline links.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iofazi26"
 ---
 
 There are a few ways you can add URLs to your Markdown documents:

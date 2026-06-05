@@ -11,6 +11,7 @@ tags:
 description: >-
   Avoid brittle AI-generated tests that check implementation details. Write maintainable
   tests that verify behavior, not method calls.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieibh22y"
 ---
 
 With the advent of LLMs, the temptation to churn out a flood of unit tests for a false

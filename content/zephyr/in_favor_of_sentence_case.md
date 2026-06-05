@@ -10,6 +10,7 @@ tags:
 description: >-
   Embracing sentence case over title case in technical writing eliminates capitalization
   ambiguity and improves readability.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhtxct2y"
 ---
 
 Up until now, I've always preferred **Title Case** to demarcate titles and section headers

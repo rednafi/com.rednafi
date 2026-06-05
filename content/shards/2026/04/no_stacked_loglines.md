@@ -10,6 +10,7 @@ tags:
 description: >-
   Why logging at every layer of a service produces noise, and how to log only
   at the handler level while propagating context from below.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaubml26"
 ---
 
 Consider a typical layered Go service. There's a repository layer that talks to the

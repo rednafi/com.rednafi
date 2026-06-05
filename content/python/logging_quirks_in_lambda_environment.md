@@ -12,6 +12,7 @@ tags:
 description: >-
   Configure Python logging for AWS Lambda's pre-configured handlers while maintaining
   compatibility with local development environments.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6japwhm2e"
 ---
 
 At my workplace, while working on a [Lambda] function, I noticed that my Python logs weren't

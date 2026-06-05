@@ -13,6 +13,7 @@ aliases:
 description: >-
   Complete SSH setup guide: key pairs, authorized_keys, sshd_config, ssh_config,
   known_hosts, agent forwarding, and hardening for secure remote access.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3pdh2b"
 ---
 
 Setting up SSH access to a new VM usually follows the same routine: generate a key pair,

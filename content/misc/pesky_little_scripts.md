@@ -12,6 +12,7 @@ tags:
 description: >-
   Organize custom scripts with comma-prefixed naming. Improve tab completion and
   eliminate clutter by prefixing script names with special characters.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iocstl2j"
 ---
 
 I like writing custom scripts to automate stuff or fix repetitive headaches. Most of them

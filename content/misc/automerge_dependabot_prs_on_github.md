@@ -12,6 +12,7 @@ tags:
 description: >-
   Automatically merge Dependabot pull requests using GitHub Actions. Configure branch
   protection and status checks for safe automated dependency updates.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdi5on2u"
 ---
 
 Whether I'm trying out a new tool or just prototyping with a familiar stack, I usually

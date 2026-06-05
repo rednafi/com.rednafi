@@ -12,6 +12,7 @@ tags:
 description: >-
   Master Go test lifecycle with t.Cleanup(), subtests, and TestMain. Learn per-test,
   grouped, and package-wide setup patterns effectively.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ievo5u2u"
 ---
 
 Unlike pytest or JUnit, Go's standard testing framework doesn't give you as many knobs for

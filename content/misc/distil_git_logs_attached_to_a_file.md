@@ -13,6 +13,7 @@ tags:
 description: >-
   View git commit history for a single file with git log --follow. Learn to track
   multiple files with xargs and concatenate their commit logs.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdpj2h2u"
 ---
 
 I run `git log --oneline` to list out the commit logs all the time. It prints out a compact

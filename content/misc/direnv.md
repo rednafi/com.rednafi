@@ -13,6 +13,7 @@ aliases:
 description: >-
   Automate environment variables per directory with direnv. Load .envrc files on entry,
   unload on exit. Integrate with Python venv and uv workflow.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihbc232j"
 ---
 
 I'm not a big fan of shims - code that messes with commands in the shell or prompt. That's

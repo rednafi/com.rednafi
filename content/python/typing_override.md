@@ -12,6 +12,7 @@ tags:
 description: >-
   Catch method override errors at type-check time with Python's @override decorator from
   PEP 698, preventing typos and signature mismatches.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih5nxd26"
 ---
 
 Although I've been using Python 3.12 in production for nearly a year, one neat feature in

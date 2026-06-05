@@ -12,6 +12,7 @@ tags:
 description: >-
   Replace inheritance with the Strategy pattern in Go using interfaces. Achieve
   composable, testable code without class hierarchies.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikj7al2e"
 ---
 
 These days, I don't build hierarchical types through inheritance even when writing languages

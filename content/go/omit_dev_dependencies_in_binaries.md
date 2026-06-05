@@ -12,6 +12,7 @@ tags:
 description: >-
   Track dev dependencies like golangci-lint in go.mod with a tools.go file and build tags
   to exclude them from production binaries.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilyjvb2b"
 ---
 
 As of now, unlike Python or NodeJS, Go doesn't allow you to specify your development

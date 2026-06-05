@@ -13,6 +13,7 @@ tags:
 description: >-
   Build multi-level rate limiting with Redis sorted sets and Lua. Enforce global and
   category-specific limits with ZREMRANGEBYSCORE and ZCARD commands.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggfov2o"
 ---
 
 Recently at work, we ran into this problem:

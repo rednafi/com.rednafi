@@ -11,6 +11,7 @@ tags:
 description: >-
   Crop text to character limits without breaking words using Python's textwrap.shorten
   for clean truncation with customizable placeholders.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnkzst2o"
 ---
 
 ## Problem

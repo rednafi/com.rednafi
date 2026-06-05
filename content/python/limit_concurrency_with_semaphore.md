@@ -12,6 +12,7 @@ tags:
 description: >-
   Control concurrent async requests with Python asyncio.Semaphore to respect rate limits
   and prevent overwhelming APIs or services.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmqqyl2o"
 ---
 
 I was working with a rate-limited API endpoint where I continuously needed to send

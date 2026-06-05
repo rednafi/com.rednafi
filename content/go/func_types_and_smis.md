@@ -12,6 +12,7 @@ tags:
 description: >-
   Implement single-method interfaces with function types instead of structs. Master
   http.HandlerFunc patterns for middlewares, mocks, and adapters.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3bs72o"
 ---
 
 People love single-method interfaces (SMIs) in Go. They're simple to implement and easy to

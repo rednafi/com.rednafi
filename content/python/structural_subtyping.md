@@ -11,6 +11,7 @@ tags:
 description: >-
   Implement Go-style structural subtyping in Python with Protocol for duck typing and
   interface-based APIs without inheritance dependencies.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlyya2u"
 ---
 
 I love using Go's interface feature to declaratively define my public API structure.

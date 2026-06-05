@@ -9,6 +9,7 @@ tags:
 description: >-
     Translating errors at layer boundaries so storage details don't leak
     into the handler or, worse, into client responses.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iate732j"
 ---
 
 In a layered Go service, it's easy to accidentally leak storage errors like `sql.ErrNoRows`

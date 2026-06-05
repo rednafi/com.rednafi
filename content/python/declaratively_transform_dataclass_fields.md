@@ -10,6 +10,7 @@ tags:
 description: >-
   Leverage Python's __post_init__ hook to declaratively transform dataclass fields.
   Automatically serialize data with clean, maintainable code.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jib7452o"
 ---
 
 While writing microservices in Python, I like to declaratively define the shape of the data

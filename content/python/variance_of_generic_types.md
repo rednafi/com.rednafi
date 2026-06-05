@@ -11,6 +11,7 @@ tags:
 description: >-
   Understand covariance, contravariance, and invariance in Python generics with practical
   examples of type relationships and subtyping rules.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn2r6e2e"
 ---
 
 I've always had a hard time explaining **variance** of generic types while working with type

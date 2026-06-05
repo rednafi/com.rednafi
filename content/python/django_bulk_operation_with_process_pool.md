@@ -13,6 +13,7 @@ tags:
 description: >-
   Speed up Django bulk operations with ProcessPoolExecutor while preserving signals and
   hooks that bulk_create/bulk_update bypass.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdonrl26"
 ---
 
 I've rarely been able to take advantage of Django's `bulk_create / bulk_update` APIs in

@@ -12,6 +12,7 @@ tags:
 description: >-
   Prevent goroutine leaks caused by early returns with unbuffered channels. Learn
   buffering, draining, errgroup patterns, and goleak testing.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ietlpt2e"
 ---
 
 At work, a common mistake I notice when reviewing candidates' home assignments is how they

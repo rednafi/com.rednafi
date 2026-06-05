@@ -12,6 +12,7 @@ tags:
 description: >-
   Test functions that write to stdout/stderr in Go by capturing output with os.Pipe.
   Learn patterns to avoid deadlocks in concurrent tests.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifq3uy26"
 ---
 
 Ideally, every function that writes to the stdout probably should ask for a `io.Writer` and

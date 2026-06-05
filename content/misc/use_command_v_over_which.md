@@ -13,6 +13,7 @@ tags:
 description: >-
   Replace which with command -v for POSIX-compliant executable lookup. Learn why command
   -v is the portable alternative for finding program paths.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3c6u2b"
 ---
 
 One thing that came to me as news is that the command `which` - which is the de-facto tool

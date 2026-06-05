@@ -11,6 +11,7 @@ tags:
 description: >-
   Use Python's NoReturn type to annotate functions that never return normally, helping
   type checkers understand exception-raising and infinite loop code.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmdmyi2u"
 ---
 
 Technically, the type of `None` in Python is `NoneType`. However, you'll rarely see

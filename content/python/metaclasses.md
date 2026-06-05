@@ -10,6 +10,7 @@ aliases:
 description: >-
   Explore Python metaclasses for metaprogramming: learn how classes are created,
   customize class behavior, and understand type as the default metaclass.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jooz3f2u"
 ---
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._

@@ -12,6 +12,7 @@ tags:
 description: >-
   Master TypeScript's never type and Python's NoReturn for exhaustiveness checking.
   Flatten nested conditionals with guard clauses for cleaner code.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jgphdt2y"
 ---
 
 Nested conditionals suck. They're hard to write and even harder to read. I've rarely

@@ -9,6 +9,7 @@ tags:
     - Distributed Systems
 description: >-
   Why the etcd codebase is my go-to reference for building gRPC services in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iceuad2u"
 ---
 
 I've been writing a lot of Go gRPC services these days at work - database proxies, metadata

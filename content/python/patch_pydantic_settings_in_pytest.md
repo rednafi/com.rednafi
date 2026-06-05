@@ -13,6 +13,7 @@ tags:
 description: >-
   Mock pydantic_settings in pytest tests by patching the settings class to prevent flaky
   tests from environment variable dependencies.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilxpld2e"
 ---
 
 I've been a happy user of [pydantic] settings to manage all my app configurations since the

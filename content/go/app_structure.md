@@ -10,6 +10,7 @@ tags:
 description: >-
   Organize Go apps by domain, not technology. Learn why models/controllers structure
   hurts and how bounded contexts create better separation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iehuqs2y"
 ---
 
 I like to make the distinction between application structure and architecture. Structure is

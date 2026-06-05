@@ -11,6 +11,7 @@ tags:
 description: >-
     How cmd/go's script tests led me to testscript, and how to use it for CLI
     tests that exercise argv, stdout, stderr, exit codes, and scratch files.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapyv72e"
 ---
 
 While wrapping up [eon], I wanted to test the binary the same way a user would use it. The

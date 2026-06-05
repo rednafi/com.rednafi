@@ -11,6 +11,7 @@ tags:
 description: >-
   Create a client-side CSV comparison tool using ObservableHQ notebooks and ChatGPT.
   Learn to build interactive data apps without deployment hassles.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iyioos2e"
 ---
 
 Whenever I plan to build something, I spend 90% of my time researching and figuring out the

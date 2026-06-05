@@ -12,6 +12,7 @@ tags:
 description: >-
   Prevent excessive file downloads in Python by streaming with HTTPX and limiting file
   size with chunk-based validation and memory-safe processing.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ji7ubl2o"
 ---
 
 I was working on a DRF POST API endpoint where the consumer is expected to add a URL

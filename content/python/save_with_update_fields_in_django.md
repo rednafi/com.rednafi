@@ -13,6 +13,7 @@ tags:
 description: >-
   Optimize Django model saves with update_fields parameter to generate leaner SQL queries
   and improve performance in tight update loops.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j4kc352u"
 ---
 
 TIL that you can specify `update_fields` while saving a Django model to generate a leaner

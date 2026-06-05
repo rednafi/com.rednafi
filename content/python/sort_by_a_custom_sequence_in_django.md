@@ -12,6 +12,7 @@ tags:
 description: >-
   Sort Django querysets by custom attribute sequences using Case and When expressions for
   database-level ordering with SQL CASE statements.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3clk2p"
 ---
 
 I needed a way to sort a Django queryset based on a custom sequence of an attribute.

@@ -12,6 +12,7 @@ tags:
 description: >-
   Define service contracts with Protocol Buffers for non-gRPC systems. Generate
   serializers, maintain self-documented APIs, and ensure cross-language compatibility.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijghwc2p"
 ---
 
 People typically associate Google's [Protocol Buffer] with [gRPC] services, and rightfully

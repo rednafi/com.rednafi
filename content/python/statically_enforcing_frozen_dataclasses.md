@@ -12,6 +12,7 @@ tags:
 description: >-
   Enforce immutable dataclasses at type-check time with @final decorator to catch
   mutations before runtime without frozen=True performance cost.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inaeg22e"
 ---
 
 You can use `@dataclass(frozen=True)` to make instances of a data class immutable during

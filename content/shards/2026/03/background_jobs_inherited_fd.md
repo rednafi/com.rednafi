@@ -8,6 +8,7 @@ tags:
     - Unix
 description: >-
   Why & backgrounds execution but doesn't stop output from flooding your terminal.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iav2we2u"
 ---
 
 I keep a `brew update && brew upgrade && brew cleanup` alias around. Every now and then I

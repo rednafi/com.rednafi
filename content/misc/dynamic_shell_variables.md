@@ -13,6 +13,7 @@ tags:
 description: >-
   Learn variable indirection in Bash with ${!var} syntax. Build context-aware configs,
   function dispatch, and dynamic variable name resolution.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggtga26"
 ---
 
 I came across a weird shell syntax today - dynamic shell variables. It lets you dynamically

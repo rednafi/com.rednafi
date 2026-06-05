@@ -11,6 +11,7 @@ aliases:
 description: >-
   Complete guide to Bash redirection. Master stdout, stderr, pipes, tee, file
   descriptors, and shorthand syntax with practical examples for every case.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihrbup2e"
 ---
 
 I always struggle with the syntax for redirecting multiple streams to another command or a

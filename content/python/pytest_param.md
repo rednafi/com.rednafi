@@ -13,6 +13,7 @@ tags:
 description: >-
   Write readable parametrized tests with pytest.param for better test names, conditional
   skips, custom IDs, and structured test data.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iik3pi2b"
 ---
 
 I love [pytest.mark.parametrize] - so much so that I sometimes shoehorn my tests to fit into

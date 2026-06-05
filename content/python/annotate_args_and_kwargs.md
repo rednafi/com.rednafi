@@ -12,6 +12,7 @@ tags:
 description: >-
   Properly annotate Python *args and **kwargs with heterogeneous types using Unpack,
   TypedDict, and modern type hints from PEP-692.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7hy32j"
 ---
 
 While I tend to avoid `*args` and `**kwargs` in my function signatures, it's not always

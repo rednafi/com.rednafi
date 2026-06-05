@@ -12,6 +12,7 @@ tags:
 description: >-
   Compare middleware stacking with embedded delegation in Go HTTP servers. Learn when to
   override ServeHTTP for simpler request handling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igen442u"
 ---
 
 Middleware is usually the go-to pattern in Go HTTP servers for tweaking request behavior.

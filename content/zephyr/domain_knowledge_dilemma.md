@@ -10,6 +10,7 @@ tags:
 description: >-
   Navigating the balance between building valuable domain expertise and avoiding
   over-specialization that limits career mobility.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfyz22p"
 ---
 
 Seven years isn't an awfully long time to work as an IC in the industry, but it's enough to

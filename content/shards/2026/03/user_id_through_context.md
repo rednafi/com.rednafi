@@ -9,6 +9,7 @@ tags:
     - Distributed Systems
 description: >-
   Why the middleware-to-handler boundary is a special case for context values.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iccmzp2o"
 ---
 
 [Paweł Grzybek] reached out after reading [What belongs in Go's context values?] with a

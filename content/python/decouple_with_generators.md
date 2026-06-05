@@ -10,6 +10,7 @@ tags:
 description: >-
   Learn how Python generators decouple data production from consumption, enabling cleaner
   code for streaming, polling, and pipeline patterns.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhgxb52o"
 ---
 
 Generators can help you decouple the production and consumption of iterables - making your

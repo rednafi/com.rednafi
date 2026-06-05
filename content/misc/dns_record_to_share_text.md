@@ -13,6 +13,7 @@ tags:
 description: >-
   Share data via DNS TXT records using dig and base64 encoding. Learn limitations,
   security concerns, and practical use cases for DNS tunneling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir77x22s"
 ---
 
 This morning, while browsing Hacker News, I came across a neat trick for [sharing data via

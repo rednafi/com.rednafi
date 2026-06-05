@@ -12,6 +12,7 @@ tags:
 description: >-
   Understand TypeIs vs TypeGuard in Python: TypeIs provides more intuitive type narrowing
   by narrowing both positive and negative branches.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikab7s2e"
 ---
 
 The handful of times I've reached for `typing.TypeGuard` in Python, I've always been
