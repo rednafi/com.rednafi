@@ -2,6 +2,7 @@
 title: Check whether an integer is a power of two in Python
 date: 2022-01-21
 slug: check-is-a-power-of-two
+atprotoPath: /python/check-is-a-power-of-two/
 aliases:
     - /python/check_is_a_power_of_two/
 tags:

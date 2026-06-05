@@ -2,6 +2,7 @@
 title: Periodic readme updates with GitHub Actions
 date: 2023-05-04
 slug: periodic-readme-updates-with-gh-actions
+atprotoPath: /javascript/periodic-readme-updates-with-gh-actions/
 aliases:
     - /javascript/periodic_readme_updates_with_gh_actions/
 tags:

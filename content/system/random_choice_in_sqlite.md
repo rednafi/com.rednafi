@@ -2,6 +2,7 @@
 title: Pick random values from an array in SQL(ite)
 date: 2022-09-02
 slug: random-choice-in-sqlite
+atprotoPath: /system/random-choice-in-sqlite/
 aliases:
     - /database/random_choice_in_sqlite/
 tags:

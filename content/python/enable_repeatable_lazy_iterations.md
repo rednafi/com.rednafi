@@ -2,6 +2,7 @@
 title: Enabling repeatable lazy iterations in Python
 date: 2023-07-13
 slug: enable-repeatable-lazy-iterations
+atprotoPath: /python/enable-repeatable-lazy-iterations/
 aliases:
     - /python/enable_repeatable_lazy_iterations/
 tags:

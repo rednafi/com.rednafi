@@ -4,6 +4,7 @@ date: 2020-04-05
 tags:
     - Python
 slug: singledispatch
+atprotoPath: /python/singledispatch/
 aliases:
     - /python/singledispatch/
 description: >-

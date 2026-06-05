@@ -2,6 +2,7 @@
 title: If you won't carry the pager, maybe don't push to mainline
 date: 2026-05-30
 slug: carry-the-pager
+atprotoPath: /zephyr/carry-the-pager/
 tags:
     - Essay
     - AI

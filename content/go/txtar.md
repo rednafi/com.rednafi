@@ -2,6 +2,7 @@
 title: A tour of txtar
 date: 2026-05-10
 slug: txtar
+atprotoPath: /go/txtar/
 tags:
     - Go
     - Testing

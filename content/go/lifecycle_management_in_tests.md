@@ -2,6 +2,7 @@
 title: Lifecycle management in Go tests
 date: 2025-08-30
 slug: lifecycle-management-in-tests
+atprotoPath: /go/lifecycle-management-in-tests/
 aliases:
     - /go/lifecycle_management_in_tests/
 tags:

@@ -2,6 +2,7 @@
 title: Stacked middleware vs embedded delegation in Go
 date: 2025-03-06
 slug: middleware-vs-delegation
+atprotoPath: /go/middleware-vs-delegation/
 aliases:
     - /go/middleware_vs_delegation/
 tags:

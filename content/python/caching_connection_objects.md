@@ -2,6 +2,7 @@
 title: Caching connection objects in Python
 date: 2022-03-16
 slug: caching-connection-objects
+atprotoPath: /python/caching-connection-objects/
 aliases:
     - /python/caching_connection_objects/
 tags:

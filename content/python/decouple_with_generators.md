@@ -2,6 +2,7 @@
 title: Decoupling producers and consumers of iterables with generators in Python
 date: 2022-04-03
 slug: decouple-with-generators
+atprotoPath: /python/decouple-with-generators/
 aliases:
     - /python/decouple_with_generators/
 tags:

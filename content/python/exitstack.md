@@ -4,6 +4,7 @@ date: 2022-08-27
 tags:
     - Python
 slug: exitstack
+atprotoPath: /python/exitstack/
 aliases:
     - /python/exitstack/
 description: >-

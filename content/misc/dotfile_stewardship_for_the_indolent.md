@@ -2,6 +2,7 @@
 title: Dotfile stewardship for the indolent
 date: 2023-09-27
 slug: dotfile-stewardship-for-the-indolent
+atprotoPath: /misc/dotfile-stewardship-for-the-indolent/
 aliases:
     - /misc/dotfile_stewardship_for_the_indolent/
 tags:

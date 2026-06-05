@@ -2,6 +2,7 @@
 title: Quicker startup with module-level __getattr__
 date: 2024-11-03
 slug: module-getattr
+atprotoPath: /python/module-getattr/
 aliases:
     - /python/module_getattr/
 tags:

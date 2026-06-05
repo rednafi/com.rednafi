@@ -2,6 +2,7 @@
 title: Hierarchical rate limiting with Redis sorted sets
 date: 2025-01-12
 slug: hierarchical-rate-limiting
+atprotoPath: /misc/hierarchical-rate-limiting/
 aliases:
     - /misc/hierarchical_rate_limiting/
 tags:

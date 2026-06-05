@@ -2,6 +2,7 @@
 title: Dummy load balancer in a single Go script
 date: 2023-08-30
 slug: dummy-load-balancer
+atprotoPath: /go/dummy-load-balancer/
 aliases:
     - /go/dummy_load_balancer/
 tags:

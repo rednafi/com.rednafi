@@ -2,6 +2,7 @@
 title: Patch where the object is used
 date: 2022-07-18
 slug: patch-where-the-object-is-used
+atprotoPath: /python/patch-where-the-object-is-used/
 aliases:
     - /python/patch_where_the_object_is_used/
 tags:

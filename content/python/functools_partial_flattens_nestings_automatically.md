@@ -2,6 +2,7 @@
 title: Python's 'functools.partial' flattens nestings Automatically
 date: 2021-11-08
 slug: functools-partial-flattens-nestings-automatically
+atprotoPath: /python/functools-partial-flattens-nestings-automatically/
 aliases:
     - /python/functools_partial_flattens_nestings_automatically/
 tags:

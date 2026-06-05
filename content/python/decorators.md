@@ -4,6 +4,7 @@ date: 2020-05-13
 tags:
     - Python
 slug: decorators
+atprotoPath: /python/decorators/
 aliases:
     - /python/decorators/
 description: >-

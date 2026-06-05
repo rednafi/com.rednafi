@@ -2,6 +2,7 @@
 title: Wrapping a gRPC client in Go
 date: 2026-03-15
 slug: wrap-grpc-client
+atprotoPath: /go/wrap-grpc-client/
 tags:
     - Go
     - gRPC

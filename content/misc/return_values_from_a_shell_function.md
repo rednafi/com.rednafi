@@ -2,6 +2,7 @@
 title: Returning values from a shell function
 date: 2022-09-25
 slug: return-values-from-a-shell-function
+atprotoPath: /misc/return-values-from-a-shell-function/
 aliases:
     - /misc/return_values_from_a_shell_function/
 tags:

@@ -2,6 +2,7 @@
 title: Statically enforcing frozen data classes in Python
 date: 2024-01-04
 slug: statically-enforcing-frozen-dataclasses
+atprotoPath: /python/statically-enforcing-frozen-dataclasses/
 aliases:
     - /python/statically_enforcing_frozen_dataclasses/
 tags:

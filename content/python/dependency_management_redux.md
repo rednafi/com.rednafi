@@ -2,6 +2,7 @@
 title: Python dependency management redux
 date: 2023-06-27
 slug: dependency-management-redux
+atprotoPath: /python/dependency-management-redux/
 aliases:
     - /python/dependency_management_redux/
 tags:

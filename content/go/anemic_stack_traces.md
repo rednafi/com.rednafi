@@ -2,6 +2,7 @@
 title: Anemic stack traces in Go
 date: 2024-02-10
 slug: anemic-stack-traces
+atprotoPath: /go/anemic-stack-traces/
 aliases:
     - /go/anemic_stack_traces/
 tags:

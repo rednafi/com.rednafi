@@ -2,6 +2,7 @@
 title: Dynamic shell variables
 date: 2025-01-11
 slug: dynamic-shell-variables
+atprotoPath: /misc/dynamic-shell-variables/
 aliases:
     - /misc/dynamic_shell_variables/
 tags:

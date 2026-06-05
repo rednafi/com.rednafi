@@ -7,6 +7,7 @@ tags:
     - TIL
     - CLI
 slug: install
+atprotoPath: /misc/install/
 aliases:
     - /misc/install/
 description: >-

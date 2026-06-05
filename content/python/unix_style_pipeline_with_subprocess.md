@@ -2,6 +2,7 @@
 title: Unix-style pipelining with Python's subprocess module
 date: 2023-07-14
 slug: unix-style-pipeline-with-subprocess
+atprotoPath: /python/unix-style-pipeline-with-subprocess/
 aliases:
     - /python/unix_style_pipeline_with_subprocess/
 tags:

@@ -2,6 +2,7 @@
 title: Debugging dockerized Python apps in VSCode
 date: 2023-12-22
 slug: debug-dockerized-apps-in-vscode
+atprotoPath: /python/debug-dockerized-apps-in-vscode/
 aliases:
     - /python/debug_dockerized_apps_in_vscode/
 tags:

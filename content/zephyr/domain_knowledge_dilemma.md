@@ -2,6 +2,7 @@
 title: The domain knowledge dilemma
 date: 2025-01-19
 slug: domain-knowledge-dilemma
+atprotoPath: /zephyr/domain-knowledge-dilemma/
 aliases:
     - /zephyr/domain_knowledge_dilemma/
 tags:

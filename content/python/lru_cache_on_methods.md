@@ -2,6 +2,7 @@
 title: Don't wrap instance methods with 'functools.lru_cache' decorator in Python
 date: 2022-01-15
 slug: lru-cache-on-methods
+atprotoPath: /python/lru-cache-on-methods/
 aliases:
     - /python/lru_cache_on_methods/
 tags:

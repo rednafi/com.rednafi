@@ -2,6 +2,7 @@
 title: Write git commit messages properly
 date: 2021-11-11
 slug: write-git-commit-messages-properly
+atprotoPath: /misc/write-git-commit-messages-properly/
 aliases:
     - /misc/write_git_commit_messages_properly/
 tags:

@@ -2,6 +2,7 @@
 title: Pre-allocated lists in Python
 date: 2022-03-27
 slug: preallocated-list
+atprotoPath: /python/preallocated-list/
 aliases:
     - /python/preallocated_list/
 tags:

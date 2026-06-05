@@ -2,6 +2,7 @@
 title: Stacked log lines considered harmful
 date: 2026-04-07
 slug: no-stacked-loglines
+atprotoPath: /shards/2026/04/no-stacked-loglines/
 tags:
     - Go
     - Distributed Systems

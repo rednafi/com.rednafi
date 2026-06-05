@@ -5,6 +5,7 @@ tags:
     - Python
     - Data Structures
 slug: mixins
+atprotoPath: /python/mixins/
 aliases:
     - /python/mixins/
 description: >-

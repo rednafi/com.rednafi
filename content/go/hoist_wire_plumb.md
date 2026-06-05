@@ -2,6 +2,7 @@
 title: Hoisting wire plumbing out of your Go handlers
 date: 2026-05-02
 slug: hoist-wire-plumb
+atprotoPath: /go/hoist-wire-plumb/
 tags:
     - Go
     - API

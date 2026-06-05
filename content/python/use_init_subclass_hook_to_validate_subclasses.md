@@ -2,6 +2,7 @@
 title: Use __init_subclass__ hook to validate subclasses in Python
 date: 2021-11-20
 slug: use-init-subclass-hook-to-validate-subclasses
+atprotoPath: /python/use-init-subclass-hook-to-validate-subclasses/
 aliases:
     - /python/use_init_subclass_hook_to_validate_subclasses/
 tags:

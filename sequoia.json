@@ -1,0 +1,32 @@
+{
+  "siteUrl": "https://rednafi.com",
+  "contentDir": "content",
+  "imagesDir": "static",
+  "publicDir": "static",
+  "outputDir": "public",
+  "pathTemplate": "{atprotoPath}",
+  "publicationUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/self",
+  "frontmatter": {
+    "publishDate": "date",
+    "slugField": "slug"
+  },
+  "ignore": [
+    "_index.md",
+    "**/_index.md",
+    "archive.md",
+    "appearances.md",
+    "blogroll.md",
+    "feed/**",
+    "maxims.md",
+    "search.md"
+  ],
+  "autoSync": true,
+  "publishContent": true,
+  "bluesky": {
+    "enabled": false,
+    "maxAgeDays": 7
+  },
+  "ui": {
+    "components": "layouts/partials"
+  }
+}

@@ -2,6 +2,7 @@
 title: Shades of testing HTTP requests in Python
 date: 2024-09-02
 slug: testing-http-requests
+atprotoPath: /python/testing-http-requests/
 aliases:
     - /python/testing_http_requests/
 tags:

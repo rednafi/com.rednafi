@@ -2,6 +2,7 @@
 title: Testing unary gRPC services in Go
 date: 2026-03-23
 slug: testing-unary-grpc-services
+atprotoPath: /go/testing-unary-grpc-services/
 tags:
     - Go
     - gRPC

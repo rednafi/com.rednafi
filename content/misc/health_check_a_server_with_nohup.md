@@ -2,6 +2,7 @@
 title: Health check a server with 'nohup $(cmd) &'
 date: 2022-04-18
 slug: health-check-a-server-with-nohup
+atprotoPath: /misc/health-check-a-server-with-nohup/
 aliases:
     - /misc/health_check_a_server_with_nohup/
 tags:

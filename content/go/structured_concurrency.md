@@ -2,6 +2,7 @@
 title: Structured concurrency & Go
 date: 2026-02-21
 slug: structured-concurrency
+atprotoPath: /go/structured-concurrency/
 tags:
     - Go
     - Python

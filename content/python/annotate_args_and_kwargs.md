@@ -2,6 +2,7 @@
 title: Annotating args and kwargs in Python
 date: 2024-01-08
 slug: annotate-args-and-kwargs
+atprotoPath: /python/annotate-args-and-kwargs/
 aliases:
     - /python/annotate_args_and_kwargs/
 tags:

@@ -4,6 +4,7 @@ date: 2020-04-13
 tags:
     - Python
 slug: pathlib
+atprotoPath: /python/pathlib/
 aliases:
     - /python/pathlib/
 description: >-

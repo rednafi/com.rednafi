@@ -2,6 +2,7 @@
 title: Escaping the template pattern hellscape in Python
 date: 2023-07-01
 slug: escape-template-pattern
+atprotoPath: /python/escape-template-pattern/
 aliases:
     - /python/escape_template_pattern/
 tags:

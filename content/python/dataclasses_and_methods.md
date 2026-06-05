@@ -2,6 +2,7 @@
 title: Banish state-mutating methods from data classes
 date: 2023-12-16
 slug: dataclasses-and-methods
+atprotoPath: /python/dataclasses-and-methods/
 aliases:
     - /python/dataclasses_and_methods/
 tags:

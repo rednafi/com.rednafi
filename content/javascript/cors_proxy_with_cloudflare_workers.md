@@ -2,6 +2,7 @@
 title: Building a CORS proxy with Cloudflare Workers
 date: 2023-05-21
 slug: cors-proxy-with-cloudflare-workers
+atprotoPath: /javascript/cors-proxy-with-cloudflare-workers/
 aliases:
     - /javascript/cors_proxy_with_cloudflare_workers/
 tags:

@@ -2,6 +2,7 @@
 title: "Dynamo: Amazon's highly available key-value store"
 date: 2026-04-11
 slug: dynamo
+atprotoPath: /shards/2026/04/dynamo/
 type_label: paper
 tags:
     - Distributed Systems

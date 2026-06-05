@@ -4,6 +4,7 @@ date: 2020-03-26
 tags:
     - Python
 slug: contextmanager
+atprotoPath: /python/contextmanager/
 aliases:
     - /python/contextmanager/
 description: >-

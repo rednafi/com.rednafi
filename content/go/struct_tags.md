@@ -2,6 +2,7 @@
 title: Peeking into Go struct tags
 date: 2026-04-18
 slug: struct-tags
+atprotoPath: /go/struct-tags/
 aliases:
     - /go/fun-with-struct-tags/
 tags:

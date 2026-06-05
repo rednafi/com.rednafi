@@ -2,6 +2,7 @@
 title: Inspect docstrings with Pydoc
 date: 2022-01-22
 slug: inspect-docstring-with-pydoc
+atprotoPath: /python/inspect-docstring-with-pydoc/
 aliases:
     - /python/inspect_docstring_with_pydoc/
 tags:

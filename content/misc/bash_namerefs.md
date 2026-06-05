@@ -2,6 +2,7 @@
 title: Bash namerefs for dynamic variable referencing
 date: 2024-09-20
 slug: bash-namerefs
+atprotoPath: /misc/bash-namerefs/
 aliases:
     - /misc/bash_namerefs/
 tags:

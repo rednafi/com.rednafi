@@ -2,6 +2,7 @@
 title: "Go errors: to wrap or not to wrap?"
 date: 2026-03-07
 slug: to-wrap-or-not-to-wrap
+atprotoPath: /go/to-wrap-or-not-to-wrap/
 tags:
     - Go
     - Error Handling

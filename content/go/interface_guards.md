@@ -2,6 +2,7 @@
 title: Interface guards in Go
 date: 2023-08-18
 slug: interface-guards
+atprotoPath: /go/interface-guards/
 aliases:
     - /go/interface_guards/
 tags:

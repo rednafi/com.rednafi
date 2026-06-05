@@ -2,6 +2,7 @@
 title: Repositories, transactions, and unit of work in Go
 date: 2026-03-21
 slug: repo-txn-uow
+atprotoPath: /go/repo-txn-uow/
 tags:
     - Go
     - Database

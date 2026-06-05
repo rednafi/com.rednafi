@@ -2,6 +2,7 @@
 title: Pedantic configuration management with Pydantic
 date: 2020-07-13
 slug: config-management-with-pydantic
+atprotoPath: /python/config-management-with-pydantic/
 aliases:
     - /python/config_management_with_pydantic/
 tags:

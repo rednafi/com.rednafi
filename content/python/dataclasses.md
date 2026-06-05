@@ -4,6 +4,7 @@ date: 2020-03-12
 tags:
     - Python
 slug: dataclasses
+atprotoPath: /python/dataclasses/
 aliases:
     - /python/dataclasses/
 description: >-

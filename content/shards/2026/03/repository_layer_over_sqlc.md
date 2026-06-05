@@ -2,6 +2,7 @@
 title: Do you need a repository layer on top of sqlc?
 date: 2026-03-16
 slug: repository-layer-over-sqlc
+atprotoPath: /shards/2026/03/repository-layer-over-sqlc/
 tags:
     - Go
     - Database

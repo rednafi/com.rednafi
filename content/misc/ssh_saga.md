@@ -7,6 +7,7 @@ tags:
     - Networking
     - Security
 slug: ssh-saga
+atprotoPath: /misc/ssh-saga/
 aliases:
     - /misc/ssh_saga/
 description: >-

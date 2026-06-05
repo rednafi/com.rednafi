@@ -2,6 +2,7 @@
 title: Why 'NoReturn' type exists in Python
 date: 2022-02-21
 slug: why-noreturn-type-exists
+atprotoPath: /python/why-noreturn-type-exists/
 aliases:
     - /python/why_noreturn_type_exists/
 tags:

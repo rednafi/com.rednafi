@@ -2,6 +2,7 @@
 title: Type assertion vs type switches in Go
 date: 2024-01-31
 slug: type-assertion-vs-type-switches
+atprotoPath: /go/type-assertion-vs-type-switches/
 aliases:
     - /go/type_assertion_vs_type_switches/
 tags:
