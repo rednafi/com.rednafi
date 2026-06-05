@@ -10,6 +10,7 @@ tags:
 description: >-
   Why scattered planning documents across RFCs, ADRs, and multiple tools hinder
   productivity compared to centralized documentation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inar2e2u"
 ---
 
 When I started my career in a tightly-knit team of six engineers at a small e-commerce

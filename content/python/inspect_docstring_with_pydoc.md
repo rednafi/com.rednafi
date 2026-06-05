@@ -11,6 +11,7 @@ tags:
 description: >-
   View Python docstrings from the command line with pydoc or serve them as HTML
   documentation for modules, classes, and functions.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn4yi42p"
 ---
 
 How come I didn't know about the `python -m pydoc` command before today!

@@ -13,6 +13,7 @@ tags:
 description: >-
   Prevent multiple script instances with file locking. Use flock in Bash, fcntl in
   Python, and syscall.Flock in Go for single-instance processes.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih2kca2s"
 ---
 
 I've been having a ton of fun fiddling with [Tailscale] over the past few days. While

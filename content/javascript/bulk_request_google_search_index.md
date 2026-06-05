@@ -12,6 +12,7 @@ tags:
 description: >-
   Learn how to programmatically request Google search indexing for multiple URLs using
   the Indexing API and NodeJS for faster reindexing.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iuuppk2s"
 ---
 
 Recently, I purchased a domain for this blog and migrated the content from

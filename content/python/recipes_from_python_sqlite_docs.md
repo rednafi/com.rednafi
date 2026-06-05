@@ -12,6 +12,7 @@ tags:
 description: >-
   Practical SQLite recipes for Python: execute statements, batch operations,
   transactions, row factories, and context managers with sqlite3.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jasenl26"
 ---
 
 While going through the documentation of Python's [sqlite3] module, I noticed that it's

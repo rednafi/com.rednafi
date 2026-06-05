@@ -11,6 +11,7 @@ tags:
 description: >-
   Validate subclass schemas at definition time with Python's __init_subclass__ hook, a
   cleaner alternative to metaclasses for enforcing structure.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnzvf326"
 ---
 
 At my workplace, we have a fairly large Celery config file where you're expected to subclass

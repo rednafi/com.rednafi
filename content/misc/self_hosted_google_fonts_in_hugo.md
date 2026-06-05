@@ -12,6 +12,7 @@ tags:
 description: >-
   Host Google Fonts locally in Hugo without CDN dependency. Download woff2 files,
   configure CSS, and improve performance while maintaining GDPR compliance.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir2ofm2u"
 ---
 
 This [site] is built with [Hugo] and served via [GitHub Pages]. Recently, I decided to

@@ -12,6 +12,7 @@ tags:
 description: >-
   Implement rate limiting at the infrastructure layer with Nginx reverse proxy. Protect
   Go services from DDoS with leaky bucket algorithm.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7wqq2a"
 ---
 
 I needed to integrate rate limiting into a relatively small service that complements a

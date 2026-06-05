@@ -10,6 +10,7 @@ tags:
 description: >-
   Exploring minimalist web design that prioritizes content over frameworks, celebrating
   the raw spirit of the early internet.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iqz3lf2o"
 ---
 
 Every once in a while, I love browsing the [Wayback Machine] to catch a glimpse of the early

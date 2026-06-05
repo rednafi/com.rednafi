@@ -12,6 +12,7 @@ tags:
 description: >-
   Automatically tag Python logs with request context using middleware and contextvars for
   distributed tracing in ASGI web applications.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iink3s2y"
 ---
 
 Let's say you have a web app that emits log messages from different layers. Your log shipper

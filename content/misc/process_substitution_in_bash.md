@@ -12,6 +12,7 @@ tags:
 description: >-
   Use process substitution <() to treat command output as files in Bash. Compare
   directories, process data, and avoid temporary files with this technique.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivijkd26"
 ---
 
 I needed to compare two large directories with thousands of similarly named PDF files and

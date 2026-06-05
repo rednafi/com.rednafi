@@ -11,6 +11,7 @@ tags:
 description: >-
   Avoid common Go slice mistakes: shared backing arrays, nil vs empty slices, append
   behavior, and slice copying pitfalls explained.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfkhh2e"
 ---
 
 Just like any other dynamically growable container structure, Go slices come with a few

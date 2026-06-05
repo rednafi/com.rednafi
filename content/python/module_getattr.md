@@ -12,6 +12,7 @@ tags:
 description: >-
   Speed up Python module imports with __getattr__ from PEP 562 for lazy loading,
   deprecation warnings, and dynamic attribute access.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih6rzi26"
 ---
 
 This morning, someone on Twitter pointed me to [PEP 562], which introduces `__getattr__` and

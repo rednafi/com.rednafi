@@ -10,6 +10,7 @@ aliases:
 description: >-
   Complete guide to Python decorators from first principles. Learn closures, higher-order
   functions, decorator patterns, and advanced techniques.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jpvep22e"
 ---
 
 **_Updated on 2022-02-13_**: _Change functools import style._

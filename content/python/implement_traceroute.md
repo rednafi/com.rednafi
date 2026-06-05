@@ -13,6 +13,7 @@ aliases:
 description: >-
   Build a traceroute clone in Python using UDP and ICMP sockets to trace network packet
   routes and measure hop latency with TTL manipulation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6is3zrs2y"
 ---
 
 I was watching [Storytelling with traceroute] lightning talk by Karla Burnett and wanted to

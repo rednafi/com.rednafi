@@ -12,6 +12,7 @@ tags:
 description: >-
   Fix divergent branch errors with git pull --rebase. Learn when to rebase local commits
   on top of remote changes for cleaner Git history.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhddi26"
 ---
 
 Whenever your local branch diverges from the remote branch, you can't directly pull from the

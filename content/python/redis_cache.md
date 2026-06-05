@@ -12,6 +12,7 @@ tags:
 description: >-
   Cache API responses with Redis in Python to reduce redundant requests, improve response
   times, and handle expiring key-value pairs efficiently.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6joudwv2o"
 ---
 
 **_Updated on 2023-09-11_**: _Fix broken URLs._

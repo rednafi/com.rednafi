@@ -15,6 +15,7 @@ description: >-
 discussions:
     - label: Hacker News
       url: https://news.ycombinator.com/item?id=39996521
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhkn72o"
 ---
 
 One neat use case for the HTTP `ETag` header is client-side HTTP caching for `GET` requests.

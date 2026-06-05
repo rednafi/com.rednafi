@@ -12,6 +12,7 @@ tags:
 description: >-
   Build a TOTP-based 2FA client in Go using the standard library. Generate time-based
   one-time passwords like Google Authenticator.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4jyi26"
 ---
 
 A [TOTP] based 2FA system has two parts. One is a client that generates the TOTP code. The

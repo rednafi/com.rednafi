@@ -12,6 +12,7 @@ tags:
 description: >-
   Master Go type assertions with i.(T) syntax and type switches. Extract concrete types
   from interfaces safely with ok idiom examples.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilw2rv2o"
 ---
 
 Despite moonlighting as a gopher for a while, the syntax for type assertion and type

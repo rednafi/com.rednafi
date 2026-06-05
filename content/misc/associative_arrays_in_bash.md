@@ -13,6 +13,7 @@ tags:
 description: >-
   Learn how to use associative arrays in Bash to create key-value pairs, mimic
   dictionaries, and manage complex data structures in shell scripts.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivgqtu2e"
 ---
 
 One of my favorite pastimes these days is to set BingChat to creative mode, ask it to teach

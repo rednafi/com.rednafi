@@ -13,6 +13,7 @@ tags:
 description: >-
   Test HTTP requests in Python with pytest-httpx for full mocking, respx for pattern
   matching, or VCR.py for recording real responses.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihuhgq2e"
 ---
 
 Here's a Python snippet that makes an HTTP POST request:

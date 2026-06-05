@@ -8,6 +8,7 @@ tags:
     - API
 description: >-
   Switch, map of functions, and interface registry for dispatching in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaupby2z"
 ---
 
 Someone [asked] in r/golang:

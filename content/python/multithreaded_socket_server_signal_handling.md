@@ -12,6 +12,7 @@ tags:
 description: >-
   Gracefully shutdown Python's ThreadingTCPServer with signal handlers for SIGINT,
   SIGTERM handling and client notification on server shutdown.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22dh22b"
 ---
 
 While working on a multithreaded socket server in an embedded environment, I realized that

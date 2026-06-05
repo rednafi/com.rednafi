@@ -11,6 +11,7 @@ tags:
 description: >-
   Use Python's bit_count() method to elegantly check if an integer is a power of two by
   counting on-bits in binary representation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn5i7t2o"
 ---
 
 To check whether an integer is a power of two, I've deployed hacks like this:

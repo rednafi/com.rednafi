@@ -10,6 +10,7 @@ tags:
 description: >-
   Use Python assert statements to apply runtime constraints more succinctly than raising
   ValueError. Learn the trade-offs and best practices.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhpzq26"
 ---
 
 Whenever I need to apply some runtime constraints on a value while building an API, I

@@ -12,6 +12,7 @@ tags:
 description: >-
   Mock chained datetime methods in Python tests using unittest.mock to handle immutable
   datetime objects without external dependencies.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jicl4t2s"
 ---
 
 This is the 4th time in a row that I've wasted time figuring out how to mock out a function

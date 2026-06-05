@@ -10,6 +10,7 @@ tags:
 description: >-
   Four of the five steps in every unary RPC handler are wire plumbing. Pin the
   service function signature and they fit in one generic adapter per transport.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iarjm42o"
 ---
 
 Consider an HTTP handler:

@@ -9,6 +9,7 @@ tags:
 description: >-
   Test Go subprocesses with the re-exec pattern: spawn your test binary as a subprocess
   to emulate real command behavior reliably.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ideoqs2p"
 ---
 
 When testing Go code that spawns subprocesses, you usually have three options.

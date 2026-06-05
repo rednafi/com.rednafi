@@ -12,6 +12,7 @@ tags:
 description: >-
   Learn how to build custom error types in Go to create stack traces without runtime
   overhead, inspired by Rob Pike's Upspin error handling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikzjsy2a"
 ---
 
 While I like Go's approach of treating errors as values as much as the next person, it

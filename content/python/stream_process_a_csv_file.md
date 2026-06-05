@@ -12,6 +12,7 @@ tags:
 description: >-
   Process large CSV files without OOM errors by streaming content line-by-line with HTTPX
   and concurrent.futures for parallel processing.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdncon2o"
 ---
 
 A common bottleneck for processing large data files is - memory. Downloading the file and

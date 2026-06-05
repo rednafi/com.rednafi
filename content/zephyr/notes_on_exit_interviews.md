@@ -10,6 +10,7 @@ tags:
 description: >-
   Practical advice for navigating exit interviews from an employee's perspective,
   minimizing risk while maintaining professionalism.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6eni2z"
 ---
 
 If you're a manager, then there's no shortage of information for you on how to conduct exit

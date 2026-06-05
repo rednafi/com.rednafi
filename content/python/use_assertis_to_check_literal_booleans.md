@@ -12,6 +12,7 @@ tags:
 description: >-
   Test literal booleans correctly in Python unittest using assertIs instead of
   assertTrue/assertFalse to avoid truthy/falsy confusion.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn435u2j"
 ---
 
 I used to use Unittest's `self.assertTrue` / `self.assertFalse` to check both **literal

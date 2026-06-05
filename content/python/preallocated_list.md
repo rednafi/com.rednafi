@@ -12,6 +12,7 @@ tags:
 description: >-
   Understand CPython list memory allocation: how lists store pointer references, grow
   dynamically, and when pre-allocation with [None]*n helps.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhrddy2u"
 ---
 
 In CPython, elements of a list are stored as pointers to the elements rather than the values

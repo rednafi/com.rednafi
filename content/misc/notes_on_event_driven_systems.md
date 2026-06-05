@@ -12,6 +12,7 @@ tags:
 description: >-
   Deep dive into event-driven architecture patterns. Learn publish-subscribe, CQRS,
   outbox pattern, eventual consistency, and handling microservice coupling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihd7mq26"
 ---
 
 I spent the evening watching this incredibly grokkable talk on event-driven services by

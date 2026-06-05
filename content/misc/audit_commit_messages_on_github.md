@@ -13,6 +13,7 @@ tags:
 description: >-
   Automate commit message validation with GitHub Actions. Enforce refs and closes
   patterns to maintain clean Git history and link commits to issues.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqrsm2e"
 ---
 
 After reading Simon Willison's [amazing piece on how he builds a feature], I wanted to adopt

@@ -9,6 +9,7 @@ tags:
     - Distributed Systems
 description: >-
   A simple litmus test for when to use context values in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdmbd26"
 ---
 
 Another common [question] popped up in r/golang:

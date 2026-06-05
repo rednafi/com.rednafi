@@ -10,6 +10,7 @@ description: >-
     Exploring the tradeoffs between wrapping errors at every return site versus
     wrapping only at boundaries, with no definitive answer - just honest tradeoffs
     for the kind of software I write.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfcvq2s"
 ---
 
 A lot of the time, the software I write boils down to three phases: parse some input, run it

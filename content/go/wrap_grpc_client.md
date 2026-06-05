@@ -11,6 +11,7 @@ tags:
 description: >-
     How to wrap a generated gRPC client behind a clean Go API so users never
     have to touch protobuf types or connection management directly.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icegj42o"
 ---
 
 Yesterday I wrote a [shard on exploring the etcd codebase]. One of the things that stood out

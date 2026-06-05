@@ -11,6 +11,7 @@ tags:
 description: >-
   Strategies for achieving deep work and focus time as an engineer drowning in meetings,
   Slack messages, and corporate interruptions.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inohma2o"
 ---
 
 Despite being an IC for the bulk of my career, finding my groove amidst the daily torrent of

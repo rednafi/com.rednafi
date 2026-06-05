@@ -12,6 +12,7 @@ tags:
 description: >-
   How this blog is built: Hugo static site generator, GitHub Actions deployment,
   Cloudflare caching, and R2 storage. Simple, stable, and cost-free.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e"
 ---
 
 When I started writing here about five years ago, I made a promise to myself that I wouldn't

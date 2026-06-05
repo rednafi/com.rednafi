@@ -9,6 +9,7 @@ tags:
 description: >-
   Simplify Go error handling by consolidating validation and system errors. Learn when to
   return boolean vs error for clearer failure modes.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idbtw72b"
 ---
 
 > A man with a watch knows what time it is. A man with two watches is never sure.

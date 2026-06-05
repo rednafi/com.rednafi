@@ -10,6 +10,7 @@ tags:
 description: >-
   Safely modify lists, sets, and dictionaries while iterating using list comprehensions,
   filters, or copying to avoid skipping elements.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiywyj2z"
 ---
 
 If you try to mutate a sequence while traversing through it, Python usually doesn't

@@ -12,6 +12,7 @@ tags:
 description: >-
   Poll multiple data sources in a single thread using Python generators with
   itertools.cycle to alternate between infinite data streams efficiently.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22r4f2o"
 ---
 
 I was working on a project where I needed to poll multiple data sources and consume the

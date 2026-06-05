@@ -12,6 +12,7 @@ tags:
 description: >-
   Pin tool versions in Go 1.24 with the new 'tool' directive. Replace tools.go pattern
   with native go.mod support for project tooling.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpp4x2b"
 ---
 
 Go 1.24 added a new `tool` directive that makes it easier to manage your project's tooling.

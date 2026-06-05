@@ -11,6 +11,7 @@ tags:
 description: >-
   Avoid configuring Python's root logger in libraries; use named loggers with NullHandler
   to let application code control logging behavior.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iinxuh2o"
 ---
 
 With the recent explosion of LLM tools, I often like to kill time fiddling with different

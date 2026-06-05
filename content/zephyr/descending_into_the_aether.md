@@ -10,6 +10,7 @@ tags:
 description: >-
   A reflection on choosing the MacBook Air M2 15-inch for portability without sacrificing
   screen size and development capabilities.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlw6i26"
 ---
 
 <img

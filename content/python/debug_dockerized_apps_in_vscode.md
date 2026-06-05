@@ -12,6 +12,7 @@ tags:
 description: >-
   Set up VSCode debugger for containerized Python applications using debugpy.
   Step-by-step guide with Docker Compose and launch configurations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incgrd2e"
 ---
 
 Despite using VSCode as my primary editor, I never really bothered to set up the native

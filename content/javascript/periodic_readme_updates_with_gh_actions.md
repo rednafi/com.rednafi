@@ -12,6 +12,7 @@ tags:
 description: >-
   Automate your GitHub profile README with periodic updates using Actions. Parse RSS
   feeds and dynamically display latest blog posts with NodeJS.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3tcd26"
 ---
 
 I recently gave my [personal blog] a fresh new look and decided it was time to spruce up my

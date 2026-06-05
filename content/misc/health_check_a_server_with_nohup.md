@@ -13,6 +13,7 @@ tags:
 description: >-
   Run background health checks in CI with nohup and ampersand. Test server readiness with
   retry loops and automatic cleanup on success or failure.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhg4zb2z"
 ---
 
 While working on a project with [EdgeDB] and [FastAPI], I wanted to perform health checks

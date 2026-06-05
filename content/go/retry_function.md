@@ -12,6 +12,7 @@ tags:
 description: >-
   Build retry logic in Go without reflection using generics. Implement exponential
   backoff and configurable retry strategies with type safety.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilseml2j"
 ---
 
 I used to reach for reflection whenever I needed a `Retry` function in Go. It's fun to

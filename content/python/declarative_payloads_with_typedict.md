@@ -12,6 +12,7 @@ tags:
 description: >-
   Use Python TypedDict to declaratively define API payload structures. Get type safety
   for nested dictionaries and improve code maintainability.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jixzl52o"
 ---
 
 While working with microservices in Python, a common pattern that I see is - the usage of

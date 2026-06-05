@@ -11,6 +11,7 @@ tags:
 description: >-
   Replace complex nested conditionals with Python's enum.Flag and bitmasks for cleaner,
   more maintainable logic using bitwise operations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6say26"
 ---
 
 The 100k context window of [Claude 2] has been a huge boon for me since now I can paste a

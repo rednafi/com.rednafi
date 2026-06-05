@@ -10,6 +10,7 @@ tags:
 description: >-
   Discover how Python's functools.partial automatically detects and flattens nested
   partial applications for optimal performance and cleaner code.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo47ie2b"
 ---
 
 The constructor for `functools.partial()` detects nesting and automatically flattens itself

@@ -12,6 +12,7 @@ tags:
 description: >-
   Understand why io.Reader takes a byte slice parameter instead of returning one. Learn
   about heap allocations and buffer reuse in Go streams.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igf4pk2y"
 ---
 
 I've always found the signature of `io.Reader` a bit odd:

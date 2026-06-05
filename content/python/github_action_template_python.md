@@ -12,6 +12,7 @@ tags:
 description: >-
   Production-ready GitHub Actions workflow for Python with multi-OS testing, dependency
   caching, automated updates, and daily scheduled runs.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizcmt2y"
 ---
 
 Five traits that almost all the GitHub Action workflows in my Python projects share are:

@@ -11,6 +11,7 @@ tags:
 description: >-
   Build Python decorators that work seamlessly with both sync and async functions using
   inspect.iscoroutinefunction for maximum flexibility.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmu4bm2j"
 ---
 
 Whether you like it or not, the split world of sync and async functions in the Python

@@ -12,6 +12,7 @@ tags:
 description: >-
   Understand when to use constrained TypeVar vs Union in Python type hints for consistent
   types across function parameters and return values.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbzpm2a"
 ---
 
 If you want to define a variable that can accept values of multiple possible types, using

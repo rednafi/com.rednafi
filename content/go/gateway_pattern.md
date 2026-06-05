@@ -12,6 +12,7 @@ tags:
 description: >-
   Separate business logic from external service calls using the Gateway pattern. Apply
   dependency inversion and interface segregation in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iew3vp2e"
 ---
 
 No matter which language you're writing your service in, it's generally a good idea to

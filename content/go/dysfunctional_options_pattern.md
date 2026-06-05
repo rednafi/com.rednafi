@@ -12,6 +12,7 @@ tags:
 description: >-
   Discover a simpler alternative to functional options: method chaining with
   builder-style configuration that's 76x faster and easier to understand.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p"
 ---
 
 Ever since Rob Pike published the text on the [functional options pattern], there's been no

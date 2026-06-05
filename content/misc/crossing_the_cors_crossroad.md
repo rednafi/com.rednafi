@@ -12,6 +12,7 @@ tags:
 description: >-
   Troubleshoot CORS errors with this practical guide. Learn Access-Control-Allow-Origin
   headers, preflight requests, and domain allowlisting in Go.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhy6f2o"
 ---
 
 Every once in a while, I find myself skimming through the MDN docs to jog my memory on how

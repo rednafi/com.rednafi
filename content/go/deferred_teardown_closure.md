@@ -12,6 +12,7 @@ tags:
 description: >-
   Return teardown closures from test helpers to manage cleanup elegantly. Learn patterns
   for temp files, mock servers, and t.Cleanup() usage.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifqina2z"
 ---
 
 While watching [Mitchell Hashimoto's Advanced Testing with Go talk], I came across this neat

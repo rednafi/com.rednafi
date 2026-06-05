@@ -12,6 +12,7 @@ tags:
 description: >-
   Use Django query expressions like Replace, Upper, Lower, Concat, and Substr for
   efficient database-level text manipulation without fetching data.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j24gt32j"
 ---
 
 I was working with a table that had a similar (simplified) structure like this:

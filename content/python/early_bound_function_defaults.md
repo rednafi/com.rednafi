@@ -10,6 +10,7 @@ tags:
 description: >-
   Avoid Python function default argument pitfalls caused by early binding, where mutable
   defaults and function calls bind at definition time.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn3nim2b"
 ---
 
 I was reading a tweet about it yesterday and that didn't stop me from pushing a code change

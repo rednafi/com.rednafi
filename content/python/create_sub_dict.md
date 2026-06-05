@@ -11,6 +11,7 @@ tags:
 description: >-
   Optimize Python dictionary slicing from O(DK) to O(K) complexity using direct key
   lookups instead of iterating through all items.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn36ut2y"
 ---
 
 How'd you create a sub dictionary from a dictionary where the keys of the sub-dict are

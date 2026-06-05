@@ -11,6 +11,7 @@ tags:
 description: >-
   Master shell quoting rules: single vs double quotes, backticks vs $(). Learn when to
   quote variables to prevent spaces and special characters from breaking commands.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jar6jd2s"
 ---
 
 My [grug brain] can never remember the correct semantics of quoting commands and variables

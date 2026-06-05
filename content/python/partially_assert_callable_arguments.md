@@ -11,6 +11,7 @@ tags:
 description: >-
   Assert specific mock call arguments while ignoring others using unittest.mock.ANY for
   flexible test assertions without brittle checks.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdguqt26"
 ---
 
 I just found out that you can use Python's `unittest.mock.ANY` to make assertions about

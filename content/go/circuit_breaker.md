@@ -16,6 +16,7 @@ description: >-
 discussions:
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1i5n5sc/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iha7yp2o"
 ---
 
 Besides retries, [circuit breakers] are probably one of the most commonly employed

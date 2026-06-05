@@ -13,6 +13,7 @@ tags:
 description: >-
   Clean up pytest test signatures using @pytest.mark.usefixtures to inject implicit
   fixtures without autouse or unused parameter warnings.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih47wn2o"
 ---
 
 Sometimes, when writing tests in Pytest, I find myself using fixtures that the test

@@ -13,6 +13,7 @@ tags:
 description: >-
   Make raw HTTP requests with Bash's /dev/tcp file descriptor. Build health check scripts
   without curl or wget using TCP socket connections.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iimyid2e"
 ---
 
 I learned this neat Bash trick today where you can make a raw HTTP request using the

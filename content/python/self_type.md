@@ -11,6 +11,7 @@ tags:
 description: >-
   Use Python's Self type from PEP 673 to annotate methods returning class instances,
   eliminating complex forward references and TypeVars.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizogm2a"
 ---
 
 [PEP-673] introduces the `Self` type and it's coming to Python 3.11. However, you can

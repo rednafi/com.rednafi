@@ -16,6 +16,7 @@ discussions:
       url: https://news.ycombinator.com/item?id=38551512
     - label: Reddit
       url: https://www.reddit.com/r/programming/comments/19bv4xd/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqb3n2o"
 ---
 
 Ever been in a situation where you landed a software engineering job with a particular tech

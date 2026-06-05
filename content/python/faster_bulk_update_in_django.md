@@ -12,6 +12,7 @@ tags:
 description: >-
   Accelerate Django bulk_update operations by 4x using multiprocessing to parallelize
   database writes across chunked record batches.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j43ao32s"
 ---
 
 Django has a `Model.objects.bulk_update` method that allows you to update multiple objects

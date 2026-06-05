@@ -10,6 +10,7 @@ tags:
 description: >-
   Explore how functools.wraps preserves function identity by copying metadata from
   wrapped functions using update_wrapper and partial application.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmg27e2a"
 ---
 
 The `functools.wraps` decorator allows you to keep your function's identity intact after

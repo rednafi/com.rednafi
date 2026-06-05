@@ -13,6 +13,7 @@ tags:
 description: >-
   Avoid here-doc pitfalls when running remote commands via SSH. Learn variable expansion
   gotchas and simpler alternatives for deployment scripts.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iiot7326"
 ---
 
 I was working on the deployment pipeline for a service that launches an app in a dedicated

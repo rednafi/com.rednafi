@@ -12,6 +12,7 @@ tags:
 description: >-
     A quick tour of Go struct tags: how different libraries use them, how you read them
     at runtime with reflection, and how other tools read them at build time instead.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasvmq2s"
 ---
 
 Struct tags in Go are these little annotations that you stick beside struct fields.

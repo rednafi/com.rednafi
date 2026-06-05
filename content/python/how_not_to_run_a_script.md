@@ -10,6 +10,7 @@ tags:
 description: >-
   Fix Python ModuleNotFoundError by using python -m instead of direct script execution to
   ensure correct sys.path handling for imports.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiw52v2u"
 ---
 
 When I first started working with Python, nothing stumped me more than how bizarre Python's

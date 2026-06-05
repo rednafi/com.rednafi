@@ -11,6 +11,7 @@ tags:
 description: >-
   Use Python's TypeGuard to create custom type narrowing functions that help static type
   checkers understand runtime type checks and validations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jkijfa26"
 ---
 
 Static type checkers like Mypy follow your code flow and statically try to figure out the

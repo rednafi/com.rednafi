@@ -14,6 +14,7 @@ description: >-
 discussions:
     - label: Hacker News
       url: https://news.ycombinator.com/item?id=38159363
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqnt22y"
 ---
 
 Adopting existing tools that work, applying them to the business problems at hand, and

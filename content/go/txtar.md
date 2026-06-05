@@ -11,6 +11,7 @@ description: >-
     txtar is a tiny plain-text archive format Russ Cox introduced in 2018 for
     multi-file test fixtures. The Go Playground, cmd/go's script tests, gopls's
     marker tests, and rsc.io/rf all reach for it.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaqkhp2e"
 ---
 
 I ran into [txtar] today while poking around `cmd/go`'s [testdata] directory and got curious

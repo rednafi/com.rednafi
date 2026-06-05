@@ -13,6 +13,7 @@ tags:
 description: >-
   Enable Bash strict mode with set -euo pipefail to catch errors early. Exit on failures,
   treat unset variables as errors, and handle pipeline failures properly.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo4p5y26"
 ---
 
 Use unofficial bash strict mode while writing scripts. Bash has a few gotchas and this helps

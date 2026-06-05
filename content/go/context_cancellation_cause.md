@@ -16,6 +16,7 @@ discussions:
       url: https://news.ycombinator.com/item?id=47244882
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1rhzdxd/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icg5ae2u"
 ---
 
 I've spent way more hours than I'd like to admit debugging `context canceled` and

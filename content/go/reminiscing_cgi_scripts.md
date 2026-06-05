@@ -18,6 +18,7 @@ discussions:
       url: https://news.ycombinator.com/item?id=38779443
     - label: Reddit
       url: https://www.reddit.com/r/programming/comments/18rz3vf/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inbkfe2e"
 ---
 
 I've always had a thing for old-school web tech. By the time I joined the digital fray, CGI

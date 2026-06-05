@@ -11,6 +11,7 @@ tags:
 description: >-
   Learn how Python's string interning optimizes memory by caching strings and using
   sys.intern() for custom string caching to improve performance.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlmbf2u"
 ---
 
 I was reading the [reference implementation] of [PEP-661: Sentinel Values] and discovered an

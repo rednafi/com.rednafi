@@ -11,6 +11,7 @@ tags:
 description: >-
   Implement automatic attribute delegation in Python composition using __getattr__ magic
   method for inheritance-like attribute access patterns.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmfqc2e"
 ---
 
 While trying to avoid inheritance in an API that I was working on, I came across this neat

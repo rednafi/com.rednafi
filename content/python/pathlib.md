@@ -10,6 +10,7 @@ aliases:
 description: >-
   Replace os.path with Python's pathlib for elegant, object-oriented path manipulation
   with intuitive operators and unified file operations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq3kuf2u"
 ---
 
 When I first encountered Python's `pathlib` module for path manipulation, I brushed it aside

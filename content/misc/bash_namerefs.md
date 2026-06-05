@@ -13,6 +13,7 @@ tags:
 description: >-
   Master Bash namerefs with declare -n to create dynamic variable references. Build
   generic functions for arrays and associative arrays without eval.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihdq7y26"
 ---
 
 While going through a script at work today, I came across Bash's `nameref` feature. It uses

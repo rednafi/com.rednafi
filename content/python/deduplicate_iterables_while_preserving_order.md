@@ -10,6 +10,7 @@ tags:
 description: >-
   Master techniques to remove duplicates from Python iterables while maintaining original
   order using sets, OrderedDict, and nested deduplication.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivi4rx2u"
 ---
 
 Whenever I need to deduplicate the items of an iterable in Python, my usual approach is to

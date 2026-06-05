@@ -13,6 +13,7 @@ tags:
 description: >-
   Schedule one-time commands with UNIX at command. Learn job queuing, remote scheduling
   via HTTP API, and managing atd/atrun daemons.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2sxk2p"
 ---
 
 This weekend, I was working on a fun project that required a fixed-time job scheduler to run

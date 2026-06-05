@@ -8,6 +8,7 @@ tags:
     - Database
 description: >-
   Adding transaction support to a repository interface without leaking storage details.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ic7jg72o"
 ---
 
 [Previously], I showed how to put a small interface between your service logic and your

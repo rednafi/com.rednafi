@@ -11,6 +11,7 @@ mermaid: true
 description: >-
   Master shadow testing for large-scale system migrations. Learn to safely rewrite
   services by comparing outputs between old and new implementations.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ici5pd2u"
 ---
 
 Throughout the years, I've been part of a few medium- to large-scale system migrations. As

@@ -10,6 +10,7 @@ aliases:
 description: >-
   Replace complex if-elif chains with functools.singledispatch for type-based function
   dispatch and cleaner polymorphic behavior in Python.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqeiza26"
 ---
 
 **_Updated on 2022-02-13_**: _Change import style of `functools.singledispatch`._

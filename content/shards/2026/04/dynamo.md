@@ -9,6 +9,7 @@ tags:
     - Databases
 description: >-
   Key takeaways from Amazon's 2007 Dynamo paper.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iattwy2z"
 ---
 
 Finally got around to reading the original [Dynamo paper] from 2007. It's the one that

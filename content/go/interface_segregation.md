@@ -15,6 +15,7 @@ discussions:
       url: https://news.ycombinator.com/item?id=45789218
     - label: Reddit
       url: https://www.reddit.com/r/golang/comments/1olzq5m/
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idf3h22p"
 ---
 
 Object-oriented (OO) patterns get a lot of flak in the Go community, and often for good

@@ -13,6 +13,7 @@ tags:
 description: >-
   Standardize Django REST Framework error responses using custom exception handlers to
   match Microsoft's REST API guidelines format.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbe5f2u"
 ---
 
 Django Rest Framework exposes a neat hook to customize the response payload of your API when

@@ -11,6 +11,7 @@ tags:
 description: >-
   Learn the proxy design pattern in Python to add access control, caching, and validation
   layers without modifying core functionality.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jorswy2u"
 ---
 
 In Python, there's a saying that "design patterns are anti-patterns". Also, in the realm of

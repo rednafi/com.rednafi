@@ -10,6 +10,7 @@ tags:
 description: >-
   Build a scalable Python configuration system with Pydantic and dotenv. Manage dev,
   staging, and production configs with type validation.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5ph22e"
 ---
 
 Managing configurations in your Python applications isn't something you think about much

@@ -11,6 +11,7 @@ description: >-
   Decoupling business logic from storage in Go, adding transaction support without leaking
   SQL details, and coordinating atomic writes across multiple repositories using a unit of
   work.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavwe326"
 ---
 
 This post started as a pair of quick answers to questions on [r/golang]. The first was about

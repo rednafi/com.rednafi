@@ -10,6 +10,7 @@ tags:
 description: >-
   Master Git commit message conventions: imperative mood, 50-character subject, proper
   capitalization. Build coherent project history with consistent formatting.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3qu42p"
 ---
 
 Writing consistent commit messages helps you to weave a coherent story with your git

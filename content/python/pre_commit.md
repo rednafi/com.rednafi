@@ -12,6 +12,7 @@ tags:
 description: >-
   Automate Python code quality with pre-commit hooks running Black, isort, flake8, and
   mypy before each git commit for consistent formatting.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq7un22e"
 ---
 
 [Pre-commit hooks] can be a neat way to run automated ad-hoc _tasks_ before submitting a new

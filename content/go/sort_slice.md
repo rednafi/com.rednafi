@@ -11,6 +11,7 @@ tags:
 description: >-
   Compare three Go slice sorting methods: sort.Interface, sort.Slice with closures, and
   modern generic slices.Sort with type safety.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igauwn2o"
 ---
 
 There are primarily three ways of sorting slices in Go. Early on, we had the verbose but

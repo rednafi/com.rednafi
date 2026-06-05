@@ -12,6 +12,7 @@ tags:
 description: >-
   Test Python infinite loops safely using daemon threads with timeouts, allowing tests to
   complete without hanging or blocking execution.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2ez42a"
 ---
 
 Python's daemon threads are cool. A Python script will stop when the main thread is done and

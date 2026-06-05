@@ -13,6 +13,7 @@ tags:
 description: >-
   Build Unix-style command pipelines in Python using subprocess.run with stdout piping
   for efficient process chaining and output capture.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irj6bv2u"
 ---
 
 Python offers a ton of ways like `os.system` or `os.spawn*` to create new processes and run

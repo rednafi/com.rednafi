@@ -12,6 +12,7 @@ tags:
 description: >-
   Combine pytest fixtures with unittest.mock.patch for clean, reusable test mocking
   patterns that integrate seamlessly with pytest's ecosystem.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jjcink2e"
 ---
 
 In Python, even though I adore writing tests in a functional manner via pytest, I still have

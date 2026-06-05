@@ -11,6 +11,7 @@ tags:
 description: >-
   Drive-by AI changes break the shared model a team builds around its code, and the ICs end
   up cleaning up the mess. Why pushing to mainline should come with the pager.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u"
 ---
 
 ![Gandalf blocking the Balrog, captioned "You shall not pass"][image_1]
