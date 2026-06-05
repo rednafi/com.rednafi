@@ -33,6 +33,13 @@ func TestStandardSiteWellKnownEndpoint(t *testing.T) {
 	assert.Equal(t, standardSitePublicationURI, body)
 }
 
+func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
+	t.Parallel()
+
+	_, err := os.Stat("../static/.nojekyll")
+	require.NoError(t, err, "GitHub Pages needs .nojekyll to serve .well-known files")
+}
+
 func TestStandardSitePublicationLinkTags(t *testing.T) {
 	t.Parallel()
 
