@@ -1,12 +1,15 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
+	"github.com/adrg/frontmatter"
 	"gopkg.in/yaml.v3"
 )
 
@@ -22,8 +25,9 @@ type publishConfig struct {
 	notesSection string
 }
 
-type postFrontmatter struct {
-	Slug string `yaml:"slug"`
+var yamlFrontmatterFormats = []*frontmatter.Format{
+	frontmatter.NewFormat("---", "---", yaml.Unmarshal),
+	frontmatter.NewFormat("---yaml", "---", yaml.Unmarshal),
 }
 
 func main() {
@@ -43,7 +47,7 @@ func main() {
 		if entry.IsDir() || filepath.Ext(filePath) != ".md" || filepath.Base(filePath) == "_index.md" {
 			return nil
 		}
-		if !publishing.publishes(sectionFor(filePath)) {
+		if !slices.Contains(publishing.sections, sectionFor(filePath)) {
 			return nil
 		}
 
@@ -116,87 +120,41 @@ func loadPublishConfig(configPath string) (publishConfig, error) {
 	return publishing, nil
 }
 
-func (config publishConfig) publishes(section string) bool {
-	for _, publishedSection := range config.sections {
-		if publishedSection == section {
-			return true
-		}
-	}
-	return false
-}
-
 func syncAtprotoPath(raw, filePath, notesSection string) (string, error) {
-	opening, body, closing, rest, err := splitFrontmatter(raw, filePath)
+	var fm map[string]any
+	rest, err := frontmatter.MustParse(strings.NewReader(raw), &fm, yamlFrontmatterFormats...)
 	if err != nil {
-		return "", err
-	}
-
-	var fm postFrontmatter
-	if err := yaml.Unmarshal([]byte(body), &fm); err != nil {
+		if errors.Is(err, frontmatter.ErrNotFound) {
+			return "", fmt.Errorf("%s: missing YAML frontmatter", filePath)
+		}
 		return "", fmt.Errorf("%s: parse frontmatter: %w", filePath, err)
 	}
 
-	slug := strings.TrimSpace(fm.Slug)
-	if slug == "" {
+	slug, ok := fm["slug"].(string)
+	if !ok || strings.TrimSpace(slug) == "" {
 		return "", fmt.Errorf("%s: missing slug frontmatter", filePath)
 	}
+	slug = strings.TrimSpace(slug)
 
 	expected, err := atprotoPathFor(filePath, slug, notesSection)
 	if err != nil {
 		return "", err
 	}
 
-	body = setFrontmatterLine(body, "atprotoPath", expected, "slug")
-	return opening + body + closing + rest, nil
-}
-
-func splitFrontmatter(raw, filePath string) (string, string, string, string, error) {
-	lineEnding := "\n"
-	opening := "---\n"
-	if strings.HasPrefix(raw, "---\r\n") {
-		lineEnding = "\r\n"
-		opening = "---\r\n"
-	} else if !strings.HasPrefix(raw, opening) {
-		return "", "", "", "", fmt.Errorf("%s: missing YAML frontmatter", filePath)
+	if fm["atprotoPath"] == expected {
+		return raw, nil
 	}
 
-	closing := lineEnding + "---" + lineEnding
-	body, rest, ok := strings.Cut(raw[len(opening):], closing)
-	if !ok {
-		return "", "", "", "", fmt.Errorf("%s: missing YAML frontmatter closing delimiter", filePath)
-	}
-	return opening, body, closing, rest, nil
-}
+	fm["atprotoPath"] = expected
 
-func setFrontmatterLine(body, key, value, insertAfter string) string {
-	lineEnding := "\n"
-	if strings.Contains(body, "\r\n") {
-		lineEnding = "\r\n"
+	body, err := yaml.Marshal(fm)
+	if err != nil {
+		return "", fmt.Errorf("%s: render frontmatter: %w", filePath, err)
 	}
 
-	line := key + ": " + value
-	lines := strings.Split(body, lineEnding)
-
-	for i, current := range lines {
-		if strings.HasPrefix(current, key+":") {
-			lines[i] = line
-			return strings.Join(lines, lineEnding)
-		}
-	}
-
-	inserted := false
-	out := make([]string, 0, len(lines)+1)
-	for _, current := range lines {
-		out = append(out, current)
-		if !inserted && strings.HasPrefix(current, insertAfter+":") {
-			out = append(out, line)
-			inserted = true
-		}
-	}
-	if !inserted {
-		out = append(out, line)
-	}
-	return strings.Join(out, lineEnding)
+	// frontmatter.MustParse returns the markdown body bytes after the closing
+	// delimiter; append them unchanged so only the metadata block is rewritten.
+	return "---\n" + string(body) + "---\n" + string(rest), nil
 }
 
 func atprotoPathFor(filePath, slug, notesSection string) (string, error) {

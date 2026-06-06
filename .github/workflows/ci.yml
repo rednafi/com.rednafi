@@ -50,7 +50,7 @@ jobs:
           cache: false
 
       - name: Sync Standard.site frontmatter
-        run: go run ./scripts/standardsitesync
+        run: go run ./scripts/stdsitesync
 
       - name: Publish Standard.site records
         env:
