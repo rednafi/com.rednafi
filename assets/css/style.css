@@ -33,6 +33,7 @@
 }
 
 :root {
+  /* Colours — every one of these is re-defined by the dark theme below. */
   --bg: #fefcf6;
   --text: #1a1a1a;
   --muted: #3d3d3d;
@@ -42,10 +43,16 @@
   --link: #1a4bbf;
   --visited: #54457f;
   --accent-quote: #7c6f9f;
+
+  /* Geometry & motion — theme-independent. */
   --radius: 6px;
-  --content-width: 720px;
+  --content-width: 720px; /* narrow column for article/list pages */
+  --page-width: 920px; /* wide outer shell for the two-column home */
+  --motion: 0.2s ease; /* theme toggle + UI transforms */
+  --motion-fast: 0.15s ease; /* hover feedback */
 }
 
+/* Dark theme overrides the colour tokens only; geometry/motion are inherited. */
 [data-theme="dark"] {
   --bg: #212529;
   --text: #e0e0e0;
@@ -66,8 +73,8 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background-color var(--motion),
+    color var(--motion);
 }
 
 @keyframes fade-in {
@@ -92,7 +99,7 @@ html {
 }
 
 body {
-  max-width: 920px;
+  max-width: var(--page-width);
   margin: 0 auto;
   padding: 1.5rem;
   line-height: 1.5;
@@ -109,7 +116,7 @@ body {
 a {
   color: var(--link);
   text-underline-offset: 0.24rem;
-  transition: color 0.15s ease;
+  transition: color var(--motion-fast);
 }
 
 a:visited {
@@ -144,7 +151,6 @@ h3 {
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border);
-  transition: border-color 0.2s ease;
   max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
@@ -219,7 +225,7 @@ body.home .site-header {
   padding: 0;
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease;
+  transition: transform var(--motion);
 }
 
 .theme-toggle:hover {
@@ -299,7 +305,6 @@ body.home .site-header {
   align-self: flex-start;
   padding-left: 1.5rem;
   border-left: 1px solid var(--border);
-  transition: border-color 0.2s ease;
 }
 
 /* Content column */
@@ -308,11 +313,11 @@ body.home .site-header {
   margin: 0 auto;
 }
 
-/* Small text — uniform size for all secondary content */
+/* Small text — uniform size for all secondary content.
+   (.post-list .date is fully styled in the post-list block below.) */
 .post-meta,
 .footnotes,
-.post-tags,
-.post-list .date {
+.post-tags {
   font-size: 0.85rem;
   color: var(--muted);
 }
@@ -343,7 +348,7 @@ body.home .site-header {
 .post-list .post {
   padding: 0.7rem 0;
   border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
-  transition: border-color 0.15s ease;
+  transition: border-color var(--motion-fast);
 }
 
 .post-list .post:last-child {
@@ -433,7 +438,7 @@ article a {
   background-repeat: no-repeat;
   transition:
     background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.15s ease;
+    color var(--motion-fast);
 }
 
 article a:hover {
@@ -490,9 +495,6 @@ pre {
   overflow-x: auto;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
 }
 
 .highlight {
@@ -512,14 +514,22 @@ pre {
   padding: 0 1rem;
 }
 
-/* Themed surfaces — smooth theme toggle */
+/* Theme toggle — the only elements that animate when light/dark flips.
+   The root (html) eases its background + text colour above; these ease their
+   surface and/or border colour. prefers-reduced-motion cancels all of it. */
+pre,
 code,
 blockquote,
 .alert,
 summary {
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+    background-color var(--motion),
+    border-color var(--motion);
+}
+.site-header,
+.index aside,
+footer {
+  transition: border-color var(--motion);
 }
 
 /* Blockquotes & Alerts — shared box style */
@@ -610,7 +620,6 @@ footer {
   font-size: 0.9rem;
   color: var(--faint);
   border-top: 1px solid var(--border);
-  transition: border-color 0.2s ease;
 }
 footer .footer-byline {
   margin-top: 0.25rem;
@@ -641,8 +650,8 @@ footer a:hover {
 .aside-section li a {
   display: inline-block;
   transition:
-    color 0.15s ease,
-    transform 0.15s ease;
+    color var(--motion-fast),
+    transform var(--motion-fast);
 }
 
 .aside-section li a:hover {
@@ -660,7 +669,7 @@ footer a:hover {
 .pagination a {
   text-decoration: none;
   color: var(--muted);
-  transition: color 0.15s ease;
+  transition: color var(--motion-fast);
 }
 
 .pagination a:hover {
@@ -695,9 +704,9 @@ footer a:hover {
   font-size: 0.8rem;
   color: var(--muted);
   transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast);
 }
 
 .post-tags a:visited {
@@ -716,7 +725,7 @@ footer a:hover {
   font-weight: normal;
   margin-left: 0.3rem;
   opacity: 0;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--motion-fast);
 }
 
 h2:hover .anchor,
@@ -736,7 +745,8 @@ h6:hover .anchor,
 .back-to-top {
   position: fixed;
   bottom: 1.5rem;
-  right: max(0.75rem, calc(50% - 480px));
+  /* sit just outside the centered page shell: half its width + a 20px gutter */
+  right: max(0.75rem, calc(50% - var(--page-width) / 2 - 20px));
   width: 2rem;
   height: 2rem;
   display: flex;
@@ -752,9 +762,9 @@ h6:hover .anchor,
   opacity: 0;
   pointer-events: none;
   transition:
-    opacity 0.2s ease,
-    color 0.15s ease,
-    transform 0.15s ease;
+    opacity var(--motion),
+    color var(--motion-fast),
+    transform var(--motion-fast);
 }
 
 .back-to-top.visible {
