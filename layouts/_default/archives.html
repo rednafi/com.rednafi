@@ -20,7 +20,7 @@
       <a href="#{{ $.Key }}-{{ .Key }}">{{ .Key }}</a>
       <sup>&nbsp;{{ len .Pages }}</sup>
     </h3>
-    {{ partial "post-list.html" .Pages }}
+    {{ partial "post-list.html" (dict "pages" .Pages) }}
   </div>
   {{- end }}
 </div>
