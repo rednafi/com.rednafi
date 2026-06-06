@@ -93,19 +93,17 @@ jobs:
           path: |
             ~/.cache/ms-playwright
             ~/.cache/ms-playwright-go
-          key: playwright-v2-${{ hashFiles('tests/go.sum') }}
+          key: playwright-v2-${{ hashFiles('go.sum') }}
 
       - name: Install Playwright browsers
         if: steps.cache-playwright.outputs.cache-hit != 'true'
-        working-directory: tests
         run: go run github.com/playwright-community/playwright-go/cmd/playwright install --with-deps chromium
 
       - name: Install Playwright deps
         if: steps.cache-playwright.outputs.cache-hit == 'true'
         run: npx -y playwright install-deps chromium
 
-      - name: Run Playwright tests
-        working-directory: tests
+      - name: Run Go tests
         run: go test -v -count=1 ./...
 
       - name: Upload artifact
