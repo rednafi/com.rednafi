@@ -5,7 +5,12 @@
 
 {{- $homeURL := "/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
-{{- $isPaginatedHome := and .IsHome (gt .Paginator.PageNumber 1) }}
+{{- $isPaginatedHome := false }}
+{{- if .IsHome }}
+{{- $pages := partial "home-pages.html" . }}
+{{- $homePaginator := .Paginate $pages }}
+{{- $isPaginatedHome = gt $homePaginator.PageNumber 1 }}
+{{- end }}
 {{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage }}
 {{- $pageTitle := cond .IsHome (printf "%s | %s" site.Params.author site.Title) (printf "%s | %s" .Title site.Title) }}
 
@@ -123,9 +128,7 @@
 {{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
 {{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
 {{- $recentListId := printf "%s#recent-writings" $homeURL }}
-{{- $articles := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
-{{- $notes := where .Site.RegularPages "Section" site.Params.notesSection }}
-{{- $recentWritings := first 10 ((union $articles $notes).ByDate.Reverse) }}
+{{- $recentWritings := first 10 (partial "home-pages.html" .) }}
 {{- $items := slice }}
 {{- range $idx, $articlePage := $recentWritings }}
 {{- $item := dict "@type" "BlogPosting" "@id" $articlePage.Permalink "url" $articlePage.Permalink "headline" $articlePage.Title "datePublished" ($articlePage.PublishDate.Format $iso8601) "dateModified" ($articlePage.Lastmod.Format $iso8601) }}

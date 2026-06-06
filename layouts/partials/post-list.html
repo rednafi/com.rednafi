@@ -1,9 +1,21 @@
 {{- $notes := site.Params.notesSection }}
-<div class="post-list">
-  {{- range . }}
+{{- $pages := .pages }}
+{{- $showExcerpt := .showExcerpt | default false }}
+<div class="post-list{{ if $showExcerpt }} post-list-rich{{ end }}">
+  {{- range $pages }}
+  {{- $type := "article" }}
+  {{- if eq .Section $notes }}
+    {{- $type = "shard" }}
+  {{- end }}
+  {{- with .Params.type_label }}{{- $type = . }}{{- end }}
   <div class="post">
     <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time> · {{ if .Params.type_label }}<span class="type-label">{{ .Params.type_label }}</span>{{ else if eq .Section $notes }}<span class="type-label">shard</span>{{ else }}<span class="type-label">article</span>{{ end }}</span>
+    <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time> · <span class="type-label">{{ $type }}</span></span>
+    {{- if $showExcerpt }}
+    {{- with (.Description | default .Summary | plainify | htmlUnescape) }}
+    <p>{{ . }}</p>
+    {{- end }}
+    {{- end }}
   </div>
   {{- end }}
 </div>

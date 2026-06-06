@@ -22,13 +22,13 @@ func TestSiteBuildSmokeTest(t *testing.T) {
 			"sitemap should have 200+ entries (got %d) — content may be missing", count)
 	})
 
-	t.Run("homepage has 30 posts", func(t *testing.T) {
+	t.Run("homepage has 15 posts", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 		count, err := page.Locator(".post-list .post").Count()
 		require.NoError(t, err)
-		assert.Equal(t, 30, count,
-			"homepage should show exactly 30 posts (pagerSize)")
+		assert.Equal(t, 15, count,
+			"homepage should show exactly 15 posts")
 	})
 
 	t.Run("archive has 100+ posts", func(t *testing.T) {

@@ -20,6 +20,11 @@ func TestTagPageFiltersContent(t *testing.T) {
 	count, err := page.Locator(".post-list .post").Count()
 	require.NoError(t, err)
 	assert.Greater(t, count, 5, "/tags/go/ should have many Go-tagged posts")
+	assert.LessOrEqual(t, count, 15, "/tags/go/ should use homepage pagination size")
+
+	paginationCount, err := page.Locator("nav.pagination").Count()
+	require.NoError(t, err)
+	assert.Greater(t, paginationCount, 0, "/tags/go/ should expose pagination")
 
 	// Verify at least the first few links point to Go section articles
 	hrefs, err := page.Locator(".post-list .post a").EvaluateAll(
@@ -50,11 +55,16 @@ func TestTagsPageShowsCounts(t *testing.T) {
 	count, err := posts.Count()
 	require.NoError(t, err)
 	assert.Greater(t, count, 10, "should have many tags listed")
+	assert.LessOrEqual(t, count, 15, "/tags/ should use homepage pagination size")
 
 	// First tag entry should have a link
 	firstText, err := posts.First().TextContent()
 	require.NoError(t, err)
 	assert.NotEmpty(t, firstText)
+
+	paginationCount, err := page.Locator("nav.pagination").Count()
+	require.NoError(t, err)
+	assert.Greater(t, paginationCount, 0, "/tags/ should expose pagination")
 }
 
 // TestSectionPageDescription verifies section pages show their description

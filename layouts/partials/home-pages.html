@@ -1,0 +1,3 @@
+{{- $articles := where site.RegularPages "Section" "in" site.Params.mainSections }}
+{{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
+{{- return ((union $articles $notes).ByDate.Reverse) }}

@@ -153,8 +153,17 @@ func TestBaseLayout(t *testing.T) {
 		require.NoError(t, err)
 		hrefList := toStringSlice(hrefs)
 		assert.Contains(t, hrefList, "/")
-		assert.Contains(t, hrefList, "/archive/")
+		assert.Contains(t, hrefList, "/blogroll/")
+		assert.Contains(t, hrefList, "/maxims/")
+		assert.Contains(t, hrefList, "/tags/")
 		assert.NotContains(t, hrefList, "/articles/")
+
+		footerText, err := page.Locator("footer").Evaluate(
+			`el => el.innerText.replace(/\s+/g, " ").trim()`,
+			nil,
+		)
+		require.NoError(t, err)
+		assert.Contains(t, footerText, "blogroll \u00b7 maxims \u00b7 tags")
 	})
 
 	t.Run("has back-to-top button with aria-label", func(t *testing.T) {
@@ -517,7 +526,7 @@ func TestRSSFeeds(t *testing.T) {
 	t.Run("RSS feed respects item limit", func(t *testing.T) {
 		body := httpGet(t, baseURL+"/index.xml")
 		count := strings.Count(body, "<item>")
-		assert.LessOrEqual(t, count, 30, "should not exceed pagination limit of 30")
+		assert.LessOrEqual(t, count, 30, "should not exceed RSS item limit of 30")
 		assert.Greater(t, count, 0)
 	})
 }

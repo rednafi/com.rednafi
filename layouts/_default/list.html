@@ -1,5 +1,5 @@
 {{- define "head-extra" }}
-{{- if and (ne .Kind "taxonomy") (not .IsHome) }}
+{{- if not .IsHome }}
 {{- with .Paginator }}
 {{- if .HasPrev }}<link rel="prev" href="{{ .Prev.URL }}">{{ end }}
 {{- if .HasNext }}<link rel="next" href="{{ .Next.URL }}">{{ end }}
@@ -13,13 +13,10 @@
 <div class="index">
   <section class="article-list" aria-labelledby="recent-writings">
     <h1 id="recent-writings" class="home-section-title">Recent writings</h1>
-    {{- $articles := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
-    {{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
-    {{- $pages := union $articles $notes }}
-    {{- $pages = $pages.ByDate.Reverse }}
+    {{- $pages := partial "home-pages.html" . }}
     {{- $paginator := .Paginate $pages }}
 
-    {{ partial "post-list.html" $paginator.Pages }}
+    {{ partial "post-list.html" (dict "pages" $paginator.Pages "showExcerpt" true) }}
     {{ partial "pagination.html" $paginator }}
   </section>
 
@@ -52,16 +49,18 @@
   {{- end }}
 
   {{- if eq .Kind "taxonomy" }}
+  {{- $paginator := .Paginator }}
   <div class="post-list">
-    {{- range .Pages }}
+    {{- range $paginator.Pages }}
     <div class="post">
       <a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})
     </div>
     {{- end }}
   </div>
+  {{ partial "pagination.html" $paginator }}
   {{- else }}
-  {{- $paginator := .Paginate .RegularPages }}
-  {{ partial "post-list.html" $paginator.Pages }}
+  {{- $paginator := .Paginator }}
+  {{ partial "post-list.html" (dict "pages" $paginator.Pages) }}
   {{ partial "pagination.html" $paginator }}
   {{- end }}
 </div>
