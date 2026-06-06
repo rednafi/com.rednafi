@@ -15,7 +15,7 @@ init:
 	uvx pre-commit install
 
 format:
-	./scripts/lint-codeblocks.sh
+	go run ./scripts/lintcodeblocks
 	git status --porcelain -u | awk '{print $$2}' | xargs -r uvx pre-commit run --files
 	git status --porcelain -u | awk '{print $$2}' | grep '.md' | xargs -n 1 prettier --write
 
