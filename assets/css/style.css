@@ -368,7 +368,7 @@ body.home .site-header {
 
 .post-list-rich .post > a {
   display: block;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.38;
   text-decoration-thickness: 1px;
