@@ -1,0 +1,5 @@
+{{- /* The site's writing: main-section articles plus notes, unsorted.
+       home-pages.html sorts this by date; archives.html groups it by year. */}}
+{{- $articles := where site.RegularPages "Section" "in" site.Params.mainSections }}
+{{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
+{{- return (union $articles $notes) }}

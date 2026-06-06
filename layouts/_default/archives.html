@@ -3,9 +3,7 @@
 
 <h1>{{ .Title }}</h1>
 
-{{- $articles := where site.RegularPages "Section" "in" site.Params.mainSections }}
-{{- $notes := where site.RegularPages "Section" site.Params.notesSection }}
-{{- $pages := union $articles $notes }}
+{{- $pages := partial "section-pages.html" . }}
 
 {{- range $pages.GroupByPublishDate "2006" }}
 {{- if ne .Key "0001" }}
