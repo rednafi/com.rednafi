@@ -32,7 +32,7 @@ build:
 	npx -y pagefind
 
 test: build
-	cd tests && go test -v -count=1 ./...
+	go test -v -count=1 ./...
 
 upload-image:
 	@if [ -z "$(local_path)" ] || [ -z "$(remote_path)" ]; then \
