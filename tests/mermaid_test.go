@@ -182,6 +182,83 @@ func TestMermaidPagesRenderAndRerender(t *testing.T) {
 	}
 }
 
+// TestMermaidDiagramsAreLegibleOnMobile guards the fix for shrunk-to-illegible
+// diagrams: with useMaxWidth:false the SVG must render at its natural size
+// (scale ~1) rather than being squeezed into the column, and any diagram wider
+// than its card must make the card scroll horizontally instead of clipping or
+// downscaling the whole thing into a thumbnail.
+func TestMermaidDiagramsAreLegibleOnMobile(t *testing.T) {
+	t.Parallel()
+
+	pages := scanMermaidPages(t)
+	require.NotEmpty(t, pages, "expected Mermaid pages to test")
+
+	for _, tc := range pages {
+		name := strings.Trim(tc.URL, "/")
+		if name == "" {
+			name = "home"
+		}
+
+		t.Run(name, func(t *testing.T) {
+			requirePage(t, tc.URL)
+
+			page := newMobilePage(t)
+			goto_(t, page, tc.URL)
+
+			_, err := page.WaitForFunction(
+				`() => {
+					const cards = Array.from(document.querySelectorAll('article .mermaid'));
+					return cards.length > 0 && cards.every(el => el.querySelector('svg'));
+				}`,
+				nil,
+			)
+			require.NoError(t, err)
+
+			raw, err := page.Evaluate(`() => Array.from(document.querySelectorAll('article .mermaid')).map(card => {
+				const svg = card.querySelector('svg');
+				const rect = svg.getBoundingClientRect();
+				return {
+					intrinsic:  parseFloat(svg.getAttribute('width')) || 0,
+					rendered:   rect.width,
+					cardClient: card.clientWidth,
+					cardScroll: card.scrollWidth,
+					overflowX:  getComputedStyle(card).overflowX,
+				};
+			})`)
+			require.NoError(t, err)
+
+			items, ok := raw.([]any)
+			require.True(t, ok, "expected an array of diagram measurements")
+			require.NotEmpty(t, items, "expected at least one rendered diagram")
+
+			for i, it := range items {
+				m := it.(map[string]any)
+				intrinsic := toFloat(m["intrinsic"])
+				rendered := toFloat(m["rendered"])
+				cardClient := toFloat(m["cardClient"])
+				cardScroll := toFloat(m["cardScroll"])
+				overflowX := m["overflowX"].(string)
+
+				// The diagram must not be downscaled to fit the column.
+				if intrinsic > 0 {
+					scale := rendered / intrinsic
+					assert.GreaterOrEqualf(t, scale, 0.98,
+						"diagram %d is downscaled to %.0f%% of its natural size on %s — it should render full-size and scroll, not shrink",
+						i, scale*100, tc.URL)
+				}
+
+				// A diagram wider than its card must scroll, not clip.
+				if rendered > cardClient+1 {
+					assert.Containsf(t, []string{"auto", "scroll"}, overflowX,
+						"wide diagram %d on %s must sit in a horizontally scrollable card", i, tc.URL)
+					assert.Greaterf(t, cardScroll, cardClient,
+						"wide diagram %d on %s should overflow its card horizontally (scrollable)", i, tc.URL)
+				}
+			}
+		})
+	}
+}
+
 func scanMermaidPages(t *testing.T) []mermaidPage {
 	t.Helper()
 

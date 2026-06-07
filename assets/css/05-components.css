@@ -268,18 +268,24 @@ pre {
 }
 
 /* Mermaid uses the default (light) theme in both modes, so render it on a light
-   card — keeps the dark edge labels readable on a dark page. */
+   card — keeps the dark edge labels readable on a dark page.
+   Diagrams render at their natural size (useMaxWidth:false in single.html); the
+   card scrolls horizontally when one is wider than the column instead of
+   shrinking the whole thing into an unreadable thumbnail on mobile. */
 .mermaid {
   margin: 1rem 0;
   padding: 1rem;
   background: #fff;
   border: 1px solid #e6e6e6;
   border-radius: var(--radius);
-  text-align: center;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 .mermaid svg {
-  max-width: 100%;
+  /* centered when it fits the card, left-aligned + scrollable when it doesn't */
+  display: block;
+  margin: 0 auto;
   height: auto;
 }
 
