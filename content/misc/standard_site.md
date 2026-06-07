@@ -1,5 +1,5 @@
 ---
-title: Adding ATProto standard.site support to this blog
+title: Putting this blog on ATProto with standard.site
 date: 2026-06-07
 slug: standard-site
 atprotoPath: /misc/standard-site/
