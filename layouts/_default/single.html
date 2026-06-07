@@ -74,7 +74,7 @@
 
     function renderMermaid(){
       var dark=document.documentElement.getAttribute('data-theme')==='dark';
-      mermaid.initialize({startOnLoad:false,theme:dark?'dark':'default'});
+      mermaid.initialize({startOnLoad:false,theme:dark?'dark':'forest'});
       document.querySelectorAll('.mermaid').forEach(function(el){
         var src=el.getAttribute('data-source');
         if(src){
