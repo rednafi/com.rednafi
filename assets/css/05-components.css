@@ -1,0 +1,596 @@
+@layer components {
+
+/* Small text — uniform size for all secondary content.
+   (.post-list .date is fully styled in the post-list block below.) */
+.post-meta,
+.footnotes,
+.post-tags {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+/* article date matches the list dates (quiet --faint), for consistency */
+.post-meta {
+  color: var(--faint);
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--faint);
+}
+
+/* Post list */
+.post-list .post {
+  position: relative;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+  transition: border-color var(--motion-fast);
+}
+
+.post-list .post:last-child {
+  border-bottom: none;
+}
+
+.post-list .post:hover {
+  border-bottom-color: var(--border);
+}
+
+/* Meta line: monospace date + uppercase section chip */
+.post-meta-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.post-list .date {
+  color: var(--faint);
+  font-size: 0.85rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-cat {
+  font-size: 0.85rem;
+  color: var(--faint);
+  text-decoration: none;
+}
+.post-cat:visited {
+  color: var(--faint);
+}
+.post-cat:hover {
+  color: var(--link);
+}
+
+/* Rich variant (home / sections / terms): flush titles, calm colour, airy rhythm. */
+.post-list-rich .post {
+  padding: 1.2rem 0 1.3rem;
+}
+
+/* Title treatment — identical across every list (home, sections, terms, archive). */
+.post-list .post > a {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.38;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.post-list .post > a:visited {
+  color: var(--text);
+}
+
+.post-list .post:hover > a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.post-list-rich p {
+  display: -webkit-box;
+  margin: 0.5rem 0 0;
+  max-width: 60ch;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Article content */
+.post-list a,
+.toc a,
+.content-column li a {
+  text-decoration: none;
+}
+.post-list a:hover,
+.toc a:hover,
+.content-column li a:hover {
+  text-decoration: underline;
+}
+/* the section chip in the meta line is not a body link — never underline it */
+.post-list a.post-cat:hover {
+  text-decoration: none;
+}
+.content-column li {
+  margin-bottom: 0.5rem;
+}
+
+/* Animated underlines in article body */
+article a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--link), var(--link));
+  background-size: 0% 1px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  transition:
+    background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color var(--motion-fast);
+}
+
+article a:hover {
+  background-size: 100% 1px;
+}
+
+article .anchor,
+article .footnotes a {
+  background-image: none;
+}
+
+article ul,
+article ol {
+  padding-left: 1.5rem;
+}
+
+article img,
+article video,
+article iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+article sup {
+  line-height: 1;
+}
+
+/* Code */
+pre,
+code {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+code {
+  background-color: var(--code-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+pre {
+  background-color: var(--code-bg);
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.highlight {
+  margin: 1rem 0;
+}
+.highlight pre {
+  margin: 0;
+}
+.highlight pre code {
+  display: inline-block;
+  min-width: 100%;
+}
+.highlight .line.hl {
+  background-color: color-mix(in srgb, var(--link) 12%, transparent);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+/* Code block frame — language bar + copy button (wraps the Chroma output) */
+.codeblock {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.codeblock .codeblock-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.codeblock .codeblock-lang {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faint);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+.codeblock .codeblock-copy {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  transition:
+    color var(--motion-fast),
+    border-color var(--motion-fast),
+    background-color var(--motion-fast);
+}
+.codeblock .codeblock-copy:hover {
+  color: var(--text);
+  border-color: var(--faint);
+}
+.codeblock .codeblock-copy.copied {
+  color: var(--link);
+  border-color: var(--link);
+}
+.codeblock .highlight {
+  margin: 0;
+}
+.codeblock pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+/* keep the keyboard focus ring inside the rounded frame (which clips with overflow:hidden) */
+.codeblock pre:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Mermaid uses the default (light) theme in both modes, so render it on a light
+   card — keeps the dark edge labels readable on a dark page. */
+.mermaid {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: var(--radius);
+  text-align: center;
+  overflow-x: auto;
+}
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Theme toggle — the only elements that animate when light/dark flips.
+   The root (html) eases its background + text colour above; these ease their
+   surface and/or border colour. prefers-reduced-motion cancels all of it. */
+pre,
+code,
+blockquote,
+.alert,
+summary {
+  transition:
+    background-color var(--motion),
+    border-color var(--motion);
+}
+.site-header,
+.index aside,
+footer {
+  transition: border-color var(--motion);
+}
+
+/* Blockquotes & Alerts — shared box style */
+blockquote,
+.alert {
+  background-color: var(--code-bg);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  border-radius: var(--radius);
+}
+
+blockquote {
+  border-left: 3px solid var(--accent-quote);
+}
+
+blockquote:not(.alert) {
+  font-style: italic;
+}
+
+blockquote > p:first-child {
+  margin-top: 0;
+}
+blockquote > p:last-child {
+  margin-bottom: 0;
+}
+
+.alert {
+  border-left: 3px solid var(--faint);
+}
+
+.alert-title {
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+.alert-note {
+  border-left-color: #4a86cf;
+}
+.alert-tip {
+  border-left-color: #3a9a5c;
+}
+.alert-important {
+  border-left-color: #b87a2a;
+}
+.alert-warning {
+  border-left-color: #c08a20;
+}
+.alert-caution {
+  border-left-color: #cf3030;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+table thead th {
+  border-bottom: 1px solid var(--muted);
+  text-align: left;
+  font-weight: 600;
+}
+
+table th,
+table td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+
+
+/* Pagination */
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color var(--motion-fast);
+}
+
+.pagination a:hover {
+  color: var(--link);
+}
+
+/* Archive */
+.archive-year h2 {
+  margin-top: 1.5rem;
+}
+.archive-month h3 {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+/* Tags */
+.post-tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+}
+
+.post-tags a {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--muted);
+  transition:
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast);
+}
+
+.post-tags a:visited {
+  color: var(--muted);
+}
+.post-tags a:hover {
+  background-color: var(--border);
+  color: var(--text);
+  border-color: var(--faint);
+}
+
+/* Tag cloud (the /tags/ page) — reuses .post-tags pills, adds a count chip. */
+.tag-cloud {
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.tag-cloud .tag-count {
+  margin-left: 0.4rem;
+  padding-left: 0.4rem;
+  border-left: 1px solid var(--border);
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+.tag-cloud a:hover .tag-count {
+  color: var(--text);
+  border-left-color: var(--faint);
+}
+
+/* Heading anchors */
+.anchor {
+  color: var(--faint);
+  text-decoration: none;
+  font-weight: normal;
+  margin-left: 0.3rem;
+  opacity: 0;
+  transition: opacity var(--motion-fast);
+}
+
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor,
+.anchor:focus {
+  opacity: 0.4;
+}
+
+.anchor:hover {
+  opacity: 1;
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  /* sit just outside the centered page shell: half its width + a 20px gutter */
+  right: max(0.75rem, calc(50% - var(--page-width) / 2 - 20px));
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--motion),
+    color var(--motion-fast),
+    transform var(--motion-fast);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:visited {
+  color: var(--muted);
+}
+.back-to-top:hover {
+  color: var(--link);
+  transform: translateY(-2px);
+}
+
+/* Section ornament */
+.post-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  color: var(--muted);
+  font-size: 1.3rem;
+}
+
+.post-ornament::before,
+.post-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to var(--dir), var(--border), transparent);
+}
+
+.post-ornament::before {
+  --dir: left;
+}
+.post-ornament::after {
+  --dir: right;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  width: 4rem;
+  height: 1px;
+  margin: 2.5rem auto;
+  background: var(--border);
+}
+
+/* Table of contents */
+.toc {
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+.toc nav ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.toc nav li {
+  margin-bottom: 0.25rem;
+}
+
+/* Details / Summary */
+summary {
+  cursor: pointer;
+  background-color: var(--code-bg);
+  padding: 0.25rem 1rem;
+  border-radius: var(--radius);
+}
+
+  /* responsive */
+/* Responsive — tablet */
+@media (max-width: 768px) {
+  .index {
+    display: block;
+  }
+  .index aside {
+    width: 100%;
+    margin-top: 2rem;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .aside-section:first-child h4 {
+    margin-top: 0;
+  }
+}
+
+/* Responsive — mobile (body + h1 live in the base layer; see 03-base.css) */
+@media (max-width: 640px) {
+  pre {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* (profile-panel sidebar stacks naturally on small screens — no grid override needed) */
+
+}

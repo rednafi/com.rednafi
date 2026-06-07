@@ -237,17 +237,17 @@ func TestHomepage(t *testing.T) {
 		assert.NotContains(t, hrefList, "/tags/")
 	})
 
-	t.Run("post list renders with dates and type labels", func(t *testing.T) {
+	t.Run("post list renders with dates and category chips", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 		count, err := page.Locator(".post-list .post").Count()
 		require.NoError(t, err)
 		assert.Greater(t, count, 0)
 
-		// Check type label
-		text, err := page.Locator(".post-list .post").First().Locator(".type-label").TextContent()
+		// Check category chip
+		text, err := page.Locator(".post-list .post").First().Locator(".post-cat").TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, []string{"article", "shard"}, strings.TrimSpace(text))
+		assert.NotEmpty(t, strings.TrimSpace(text))
 
 		// Check time element
 		visible, err := page.Locator(".post-list .post").First().Locator("time").IsVisible()
@@ -701,7 +701,7 @@ func TestArchive(t *testing.T) {
 
 	t.Run("posts have links and dates", func(t *testing.T) {
 		first := page.Locator(".archive-month .post").First()
-		visible, err := first.Locator("a").IsVisible()
+		visible, err := first.Locator("a").First().IsVisible()
 		require.NoError(t, err)
 		assert.True(t, visible)
 		tVisible, err := first.Locator("time").IsVisible()
@@ -709,8 +709,8 @@ func TestArchive(t *testing.T) {
 		assert.True(t, tVisible)
 	})
 
-	t.Run("posts have type labels", func(t *testing.T) {
-		labels, err := page.Locator(".archive-month .post .type-label").AllTextContents()
+	t.Run("posts have category chips", func(t *testing.T) {
+		labels, err := page.Locator(".archive-month .post .post-cat").AllTextContents()
 		require.NoError(t, err)
 		require.Greater(t, len(labels), 50)
 
@@ -718,8 +718,8 @@ func TestArchive(t *testing.T) {
 		for _, label := range labels {
 			labelSet[strings.TrimSpace(label)] = true
 		}
-		assert.True(t, labelSet["article"], "archive should label articles")
-		assert.True(t, labelSet["shard"], "archive should label shards")
+		assert.True(t, labelSet["Python"], "archive should label the Python section")
+		assert.True(t, labelSet["Shards"], "archive should label shards")
 	})
 
 	t.Run("excludes feed pages and epoch dates", func(t *testing.T) {
@@ -741,13 +741,13 @@ func TestTagsPage(t *testing.T) {
 	goto_(t, page, "/tags/")
 
 	t.Run("lists tags", func(t *testing.T) {
-		count, err := page.Locator(".post-list .post a").Count()
+		count, err := page.Locator(".tag-cloud a").Count()
 		require.NoError(t, err)
 		assert.Greater(t, count, 0)
 	})
 
 	t.Run("tag links resolve", func(t *testing.T) {
-		hrefs, err := page.Locator(".post-list .post a").EvaluateAll(
+		hrefs, err := page.Locator(".tag-cloud a").EvaluateAll(
 			`els => els.slice(0, 5).map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -997,12 +997,12 @@ func TestDesktopLayout(t *testing.T) {
 		assert.Equal(t, "720px", mw)
 	})
 
-	t.Run("body max-width 920px", func(t *testing.T) {
+	t.Run("body max-width 1000px", func(t *testing.T) {
 		mw, err := page.Locator("body").Evaluate(
 			`el => getComputedStyle(el).maxWidth`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "920px", mw)
+		assert.Equal(t, "1000px", mw)
 	})
 }
 

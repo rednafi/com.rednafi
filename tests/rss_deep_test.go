@@ -45,7 +45,7 @@ func TestRSSAndHomepagePostsOverlap(t *testing.T) {
 	// Get first 10 post titles from homepage (exclude type-label links)
 	page := newPage(t)
 	goto_(t, page, "/")
-	homeTitles, err := page.Locator(".post-list .post a:not(.type-label)").EvaluateAll(
+	homeTitles, err := page.Locator(".post-list .post a:not(.post-cat)").EvaluateAll(
 		`els => els.slice(0, 10).map(e => e.textContent.trim())`,
 	)
 	require.NoError(t, err)

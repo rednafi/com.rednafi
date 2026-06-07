@@ -4,6 +4,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 
@@ -171,12 +172,7 @@ func loadStandardSiteSections(t *testing.T) standardSiteSections {
 }
 
 func (sections standardSiteSections) publishes(section string) bool {
-	for _, publishedSection := range sections.sections {
-		if publishedSection == section {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(sections.sections, section)
 }
 
 func frontmatterScalar(t *testing.T, filePath, key string) string {

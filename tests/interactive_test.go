@@ -24,18 +24,16 @@ func TestPrintURLExpansion(t *testing.T) {
 		// The minified CSS may combine selectors, so we search through
 		// all @media print rules looking for the attr(href) content.
 		hasURLExpansion, err := page.Evaluate(`() => {
+			// Rules live inside @layer blocks (and @media groups), so recurse.
+			const walk = (rules) => {
+				for (const rule of rules) {
+					if ((rule.cssText || "").includes("attr(href)")) return true;
+					if (rule.cssRules && walk(rule.cssRules)) return true;
+				}
+				return false;
+			};
 			for (const sheet of document.styleSheets) {
-				try {
-					for (const rule of sheet.cssRules) {
-						// Look in @media print groups
-						if (rule.media && rule.media.mediaText === "print") {
-							for (const inner of rule.cssRules) {
-								const text = inner.cssText || "";
-								if (text.includes("attr(href)")) return true;
-							}
-						}
-					}
-				} catch(e) {}
+				try { if (walk(sheet.cssRules)) return true; } catch(e) {}
 			}
 			return false;
 		}`)
@@ -80,14 +78,16 @@ func TestFocusVisibleStyles(t *testing.T) {
 
 	t.Run("focus-visible CSS rule exists", func(t *testing.T) {
 		hasRule, err := page.Evaluate(`() => {
+			// Rules live inside @layer blocks, so recurse into nested cssRules.
+			const walk = (rules) => {
+				for (const rule of rules) {
+					if (rule.selectorText && rule.selectorText.includes(":focus-visible")) return true;
+					if (rule.cssRules && walk(rule.cssRules)) return true;
+				}
+				return false;
+			};
 			for (const sheet of document.styleSheets) {
-				try {
-					for (const rule of sheet.cssRules) {
-						if (rule.selectorText && rule.selectorText.includes(":focus-visible")) {
-							return true;
-						}
-					}
-				} catch(e) {}
+				try { if (walk(sheet.cssRules)) return true; } catch(e) {}
 			}
 			return false;
 		}`)

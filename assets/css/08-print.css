@@ -1,0 +1,34 @@
+@layer print {
+
+/* Print */
+@media print {
+  .site-header,
+  footer,
+  .breadcrumbs,
+  .post-tags,
+  .related-posts,
+  .post-ornament,
+  .pagination,
+  .skip-link,
+  .back-to-top {
+    display: none;
+  }
+  body {
+    max-width: 100%;
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+  a[href^="#"]::after,
+  a[href^="/"]::after {
+    content: "";
+  }
+}
+
+}

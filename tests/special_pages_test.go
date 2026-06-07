@@ -108,8 +108,8 @@ func TestSkipLinkFocusBehavior(t *testing.T) {
 	})
 }
 
-// TestHorizontalRuleRendering verifies the custom horizontal rule styling
-// that renders "* * *" instead of a plain line.
+// TestHorizontalRuleRendering verifies the horizontal rule renders as a clean
+// centered hairline (no border; a thin background bar).
 func TestHorizontalRuleRendering(t *testing.T) {
 	t.Parallel()
 	requirePage(t, "/shards/2026/03/background-jobs-inherited-fd/")
@@ -129,27 +129,18 @@ func TestHorizontalRuleRendering(t *testing.T) {
 		)
 		require.NoError(t, err)
 		assert.Equal(t, "none", border,
-			"hr should have border: none (styled via ::after)")
+			"hr should have border: none (styled as a background bar)")
 	})
 
-	t.Run("hr::after content rule exists", func(t *testing.T) {
-		// Verify the CSS rule for hr::after exists in stylesheets
-		hasRule, err := page.Evaluate(`() => {
-			for (const sheet of document.styleSheets) {
-				try {
-					for (const rule of sheet.cssRules) {
-						const text = rule.cssText || "";
-						if (text.includes("hr") && text.includes("after")) {
-							return true;
-						}
-					}
-				} catch(e) {}
-			}
-			return false;
-		}`)
+	t.Run("hr renders as a thin visible bar", func(t *testing.T) {
+		bg, err := hr.First().Evaluate(
+			`el => getComputedStyle(el).backgroundColor`, nil,
+		)
 		require.NoError(t, err)
-		assert.True(t, hasRule.(bool),
-			"CSS should define hr::after with '* * *' content")
+		assert.NotEqual(t, "rgba(0, 0, 0, 0)", bg,
+			"hr should have a visible background color")
+		assert.NotEqual(t, "transparent", bg,
+			"hr should have a visible background color")
 	})
 }
 

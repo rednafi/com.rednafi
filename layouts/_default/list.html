@@ -49,18 +49,15 @@
   {{- end }}
 
   {{- if eq .Kind "taxonomy" }}
-  {{- $paginator := .Paginator }}
-  <div class="post-list">
-    {{- range $paginator.Pages }}
-    <div class="post">
-      <a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})
-    </div>
+  {{- /* All tags on one page, most-used first — no pagination. */}}
+  <ul class="post-tags tag-cloud">
+    {{- range .Data.Terms.ByCount }}
+    <li><a href="{{ .Page.Permalink }}">{{ .Page.LinkTitle }}<span class="tag-count">{{ .Count }}</span></a></li>
     {{- end }}
-  </div>
-  {{ partial "pagination.html" $paginator }}
+  </ul>
   {{- else }}
   {{- $paginator := .Paginator }}
-  {{ partial "post-list.html" (dict "pages" $paginator.Pages) }}
+  {{ partial "post-list.html" (dict "pages" $paginator.Pages "showExcerpt" true) }}
   {{ partial "pagination.html" $paginator }}
   {{- end }}
 </div>

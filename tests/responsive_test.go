@@ -36,12 +36,15 @@ func TestTabletLayout(t *testing.T) {
 		assert.Equal(t, "block", display, "homepage should stack at 768px")
 	})
 
-	t.Run("bio spans full sidebar grid", func(t *testing.T) {
-		gridColumn, err := page.Locator(".aside-bio").Evaluate(
-			`el => getComputedStyle(el).gridColumnEnd`, nil,
-		)
+	t.Run("bio spans the full sidebar width", func(t *testing.T) {
+		full, err := page.Evaluate(`() => {
+			const bio = document.querySelector(".aside-bio").getBoundingClientRect().width;
+			const aside = document.querySelector(".index aside").getBoundingClientRect().width;
+			return bio / aside > 0.9;
+		}`)
 		require.NoError(t, err)
-		assert.Equal(t, "-1", gridColumn)
+		assert.True(t, full.(bool),
+			"bio should span the full sidebar when stacked on tablet")
 	})
 }
 
@@ -113,8 +116,8 @@ func TestMobileFontReduction(t *testing.T) {
 	})
 }
 
-// TestMobileSidebarWrapping verifies the sidebar sections use a grid on
-// mobile, with the long bio spanning the full available width.
+// TestMobileSidebarWrapping verifies the sidebar stacks full-width below the
+// content on mobile, with a separator and the bio using the full width.
 func TestMobileSidebarWrapping(t *testing.T) {
 	t.Parallel()
 	page := newMobilePage(t)
@@ -125,12 +128,14 @@ func TestMobileSidebarWrapping(t *testing.T) {
 	require.NoError(t, err)
 	require.True(t, visible)
 
-	t.Run("aside uses grid on mobile", func(t *testing.T) {
-		display, err := aside.Evaluate(
-			`el => getComputedStyle(el).display`, nil,
-		)
+	t.Run("aside spans the full mobile width", func(t *testing.T) {
+		full, err := page.Evaluate(`() => {
+			const a = document.querySelector(".index aside").getBoundingClientRect().width;
+			return a / window.innerWidth > 0.85;
+		}`)
 		require.NoError(t, err)
-		assert.Equal(t, "grid", display, "mobile aside should use grid")
+		assert.True(t, full.(bool),
+			"mobile aside should span the full width")
 	})
 
 	t.Run("bio uses the available mobile width", func(t *testing.T) {
