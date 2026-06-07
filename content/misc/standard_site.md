@@ -82,10 +82,9 @@ frontmatter fields it reads, like the publish date and the slug.
 }
 ```
 
-That `publicationUri` is the `at://` address of the publication record `init` just made,
-which is where it comes from. The same URI also lands in
-`static/.well-known/site.standard.publication`, so the domain and the record name each other
-and the ownership check holds.
+That `publicationUri` is the `at://` address of the publication record `init` just made. The
+same URI also lands in `static/.well-known/site.standard.publication`, so the domain and the
+record name each other and the ownership check holds.
 
 Each post's HTML also needs a `<link rel="site.standard.document">` pointing at that post's
 record. `sequoia inject` can patch the tags into your built HTML; I emit them from my Hugo
@@ -107,10 +106,10 @@ slug, so `content/zephyr/carry_the_pager.md` with `slug: carry-the-pager` gets
 `atprotoPath: /zephyr/carry-the-pager/` written in. It also fails the build if a post has no
 slug to derive one from.
 
-Then GitHub Actions handles the rest on every push to `main`: run that sync script,
-`sequoia publish` with my handle and app password from repo secrets, prettier-format the
-metadata Sequoia generated, then commit the new `atUri`s, the `.sequoia-state.json`, and the
-`.well-known` file back with a `[skip ci]` tag before Hugo builds and deploys.
+Then GitHub Actions does the rest on every push to `main`. It runs the sync script, then
+`sequoia publish` with my handle and app password from repo secrets. It prettier-formats the
+metadata Sequoia generated, then commits the new `atUri`s, `.sequoia-state.json`, and the
+`.well-known` file back with a `[skip ci]` tag. Finally Hugo builds and deploys.
 
 ```yaml
 - name: Sync standard.site frontmatter
@@ -129,9 +128,9 @@ moment the deploy ran.
 
 ## Seeing it work
 
-Here's the part I actually wanted. I share a post on Bluesky and it unfurls into a card
-built from the record. And since the record is just data, I can render that same card right
-here, clickable, instead of pasting a screenshot:
+The previews are what I actually wanted. I share a post on Bluesky and it unfurls into a
+card built from the record. And since the record is just data, I can render that same card
+right here, clickable, instead of pasting a screenshot:
 
 <!-- prettier-ignore-start -->
 
@@ -147,14 +146,13 @@ here, clickable, instead of pasting a screenshot:
 
 <!-- prettier-ignore-end -->
 
-And the same post sitting on the network as its `site.standard.document` record, viewed
-through [pdsls]. Same title and description the card used, plus the path, tags, and the full
-body, all as portable data instead of only HTML:
+That same post also exists as a record on [pdsls]. It has the title, description, path,
+tags, and the full body.
 
 ![The same post as a site.standard.document record in pdsls][img_2]
 
-The [config], the [script], and the [ci workflow] are all in the repo if you want to grab
-the setup.
+If you want to copy the setup, it's all in the repo: the [config], the [script], and the [ci
+workflow].
 
 <!-- references -->
 <!-- prettier-ignore-start -->
