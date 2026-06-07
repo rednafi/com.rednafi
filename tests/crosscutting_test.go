@@ -70,7 +70,7 @@ func TestReadingNotInMainSections(t *testing.T) {
 	goto_(t, page, "/")
 
 	// Get all post links from the main post list (not sidebar)
-	hrefs, err := page.Locator(".article-list .post-list .post a:not(.type-label)").EvaluateAll(
+	hrefs, err := page.Locator(".article-list .post-list .post a:not(.post-cat)").EvaluateAll(
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)

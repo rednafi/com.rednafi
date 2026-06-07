@@ -1,0 +1,132 @@
+@layer base {
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Geist", sans-serif;
+  font-size: 17px;
+  color: var(--text);
+  background: var(--bg);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  transition:
+    background-color var(--motion),
+    color var(--motion);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+body {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 1.5rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  animation: fade-in 0.3s ease;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--link) 25%, transparent);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.24rem;
+  transition: color var(--motion-fast);
+}
+
+a:visited {
+  color: var(--link); /* links never darken/recolor once visited */
+}
+
+img {
+  border-radius: var(--radius);
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: 1.3rem;
+  letter-spacing: -0.015em;
+}
+h3 {
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+/* Typographic polish (no font-size changes) */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+article p,
+article li {
+  text-wrap: pretty;
+}
+/* small breathing room for anchored headings */
+:is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 1rem;
+}
+
+/* Mobile base tweaks (kept in the base layer so .home-section-title in the
+   layout layer keeps its small size — otherwise a components-layer h1 rule wins). */
+@media (max-width: 640px) {
+  body {
+    padding: 0.75rem;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+}
+
+  /* skip link + focus (kept with base) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  color: var(--link);
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+}

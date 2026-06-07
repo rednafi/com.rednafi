@@ -60,8 +60,8 @@
 <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
-{{- /* Styles */ -}}
-{{- $style := resources.Get "css/style.css" | minify | fingerprint }}
+{{- /* Styles — concatenate the layered css/*.css sources (sorted: 00-layers first). */ -}}
+{{- $style := resources.Match "css/*.css" | resources.Concat "css/style.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 {{- /* Favicons */ -}}

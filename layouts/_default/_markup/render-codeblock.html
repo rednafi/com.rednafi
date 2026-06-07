@@ -1,0 +1,14 @@
+{{- /* Wrap fenced code in a frame with a language label + copy button.
+       Highlighting still goes through Hugo's Chroma (original theme preserved). */ -}}
+{{- $lang := .Type -}}
+{{- if eq $lang "mermaid" -}}
+<div class="mermaid">{{ .Inner }}</div>
+{{- else -}}
+<div class="codeblock">
+  <div class="codeblock-bar">
+    {{- with $lang }}<span class="codeblock-lang">{{ . }}</span>{{ end }}
+    <button class="codeblock-copy" type="button" aria-label="Copy code">Copy</button>
+  </div>
+  {{ highlight (trim .Inner "\n") $lang .Options }}
+</div>
+{{- end -}}

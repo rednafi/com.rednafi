@@ -3,14 +3,18 @@
 {{- $showExcerpt := .showExcerpt | default false }}
 <div class="post-list{{ if $showExcerpt }} post-list-rich{{ end }}">
   {{- range $pages }}
-  {{- $type := "article" }}
-  {{- if eq .Section $notes }}
-    {{- $type = "shard" }}
-  {{- end }}
-  {{- with .Params.type_label }}{{- $type = . }}{{- end }}
+  {{- $cat := .Section }}
+  {{- if eq .Section $notes }}{{ $cat = "shards" }}{{ end }}
+  {{- with .Params.type_label }}{{ $cat = . }}{{ end }}
+  {{- $label := replace (replace (humanize $cat) "Javascript" "JavaScript") "Typescript" "TypeScript" }}
   <div class="post">
     <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time> · <span class="type-label">{{ $type }}</span></span>
+    <div class="post-meta-line">
+      <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time>
+      {{- with .Section }}
+      <a class="post-cat" href="{{ printf "/%s/" . }}">{{ $label }}</a>
+      {{- end }}
+    </div>
     {{- if $showExcerpt }}
     {{- with (.Description | default .Summary | plainify | htmlUnescape) }}
     <p>{{ . }}</p>

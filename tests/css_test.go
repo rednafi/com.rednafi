@@ -68,14 +68,16 @@ func TestSelectionStyling(t *testing.T) {
 	// ::selection can't be directly queried via getComputedStyle,
 	// but we can verify the CSS rule exists in the stylesheet
 	hasRule, err := page.Evaluate(`() => {
+		// Rules live inside @layer blocks, so recurse into nested cssRules.
+		const walk = (rules) => {
+			for (const rule of rules) {
+				if (rule.selectorText && rule.selectorText.includes("::selection")) return true;
+				if (rule.cssRules && walk(rule.cssRules)) return true;
+			}
+			return false;
+		};
 		for (const sheet of document.styleSheets) {
-			try {
-				for (const rule of sheet.cssRules) {
-					if (rule.selectorText && rule.selectorText.includes("::selection")) {
-						return true;
-					}
-				}
-			} catch(e) {}
+			try { if (walk(sheet.cssRules)) return true; } catch(e) {}
 		}
 		return false;
 	}`)
@@ -102,15 +104,16 @@ func TestCodeBlockStyling(t *testing.T) {
 		assert.Contains(t, strings.ToLower(fontStr), "geist mono")
 	})
 
-	t.Run("pre blocks have border and border-radius", func(t *testing.T) {
+	t.Run("code blocks have border and border-radius", func(t *testing.T) {
+		// Fenced code is wrapped in a .codeblock frame that carries the border/radius.
 		borderStyle, err := page.Evaluate(
-			`() => getComputedStyle(document.querySelector("pre")).borderStyle`,
+			`() => getComputedStyle(document.querySelector(".codeblock")).borderStyle`,
 		)
 		require.NoError(t, err)
 		assert.NotEqual(t, "none", borderStyle)
 
 		radius, err := page.Evaluate(
-			`() => getComputedStyle(document.querySelector("pre")).borderRadius`,
+			`() => getComputedStyle(document.querySelector(".codeblock")).borderRadius`,
 		)
 		require.NoError(t, err)
 		assert.NotEmpty(t, radius)

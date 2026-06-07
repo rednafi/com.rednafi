@@ -82,7 +82,7 @@ func TestConnectSidebarLinks(t *testing.T) {
 
 // TestTypeLabels verifies the post list correctly labels posts as
 // "article", "shard", or a custom type_label from frontmatter.
-func TestTypeLabels(t *testing.T) {
+func TestCategoryChips(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
@@ -92,34 +92,29 @@ func TestTypeLabels(t *testing.T) {
 	require.NoError(t, err)
 	require.Greater(t, count, 0)
 
-	// Collect all type labels
-	articleFound := false
-	shardFound := false
-
-	validLabels := []string{"article", "shard", "paper"}
-
+	// Each post shows a section category chip (.post-cat) that links to its section.
+	chipFound := false
 	for i := range min(count, 30) {
-		label := posts.Nth(i).Locator(".type-label")
-		labelCount, err := label.Count()
+		chip := posts.Nth(i).Locator(".post-cat")
+		chipCount, err := chip.Count()
 		require.NoError(t, err)
-		if labelCount == 0 {
+		if chipCount == 0 {
 			continue
 		}
-		text, err := label.TextContent()
+		chipFound = true
+
+		text, err := chip.First().TextContent()
 		require.NoError(t, err)
-		text = strings.TrimSpace(text)
-		switch text {
-		case "article":
-			articleFound = true
-		case "shard":
-			shardFound = true
-		}
-		assert.Contains(t, validLabels, text,
-			"unexpected type label %q", text)
+		assert.NotEmpty(t, strings.TrimSpace(text),
+			"category chip should have a non-empty label")
+
+		href, err := chip.First().GetAttribute("href")
+		require.NoError(t, err)
+		assert.Regexp(t, `^/[a-z0-9-]+/$`, href,
+			"category chip should link to a section, got %q", href)
 	}
 
-	assert.True(t, articleFound, "homepage should have at least one 'article' type label")
-	_ = shardFound // Shards may or may not appear on the first page
+	assert.True(t, chipFound, "homepage posts should show a category chip")
 }
 
 // TestArchiveMonthAnchorNavigation verifies year and month headings in the

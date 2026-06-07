@@ -112,14 +112,11 @@ func TestTagCountsOnTaxonomyPage(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/tags/")
 
-	// The taxonomy page renders tags as: <a href="...">TagName</a> (count)
-	firstPost := page.Locator(".post-list .post").First()
-	text, err := firstPost.TextContent()
+	// Each tag chip shows its count: <a>TagName<span class="tag-count">N</span></a>
+	firstCount, err := page.Locator(".tag-cloud .tag-count").First().TextContent()
 	require.NoError(t, err)
-
-	// Should contain a parenthesized number like "(42)"
-	assert.Regexp(t, `\(\d+\)`, text,
-		"tag entries should show post count in parentheses")
+	assert.Regexp(t, `\d`, firstCount,
+		"tag entries should show a numeric post count")
 }
 
 // TestExternalLinksAcrossPages verifies the render-link.html hook correctly

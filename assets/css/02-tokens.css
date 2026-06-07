@@ -1,0 +1,53 @@
+@layer tokens {
+  :root {
+    /* Original palette (warm light) — restored. Catppuccin was too washed out. */
+    --bg: #fefcf6;
+    --text: #1a1a1a;
+    --muted: #3d3d3d;
+    --faint: #6e6e6e;
+    --code-bg: #f2f1eb;
+    --border: #ddd;
+    --link: #1a4bbf;                    /* original link blue (restored) */
+    --visited: #54457f;
+    --accent-quote: #7c6f9f;
+
+    /* Derived semantic roles used by the new components (kept on the original palette). */
+    --surface: var(--code-bg);          /* code/cards/chips/header fill */
+    --surface-2: #e9e7df;               /* slightly deeper surface / hover base */
+    --accent: var(--link);
+    --accent-hover: #13399b;
+
+    /* Spacing scale (airy). */
+    --space-1:.25rem; --space-2:.5rem; --space-3:.75rem;
+    --space-4:1rem; --space-6:1.5rem; --space-8:2rem; --space-12:3rem;
+
+    /* Geometry / motion / elevation — theme-independent. */
+    --radius-sm:5px; --radius:6px; --radius-lg:10px; --radius-pill:999px;
+    --content-width:720px;   /* narrow column for article/list pages */
+    --page-width:1000px;     /* wide outer shell for the two-column home */
+    --motion:.2s ease;
+    --motion-fast:.15s ease;
+    --ease-out:cubic-bezier(.4,0,.2,1);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.06);
+  }
+
+  /* Dark theme overrides the colour tokens only; geometry/motion are inherited. */
+  [data-theme="dark"] {
+    --bg: #212529;
+    --text: #e0e0e0;
+    --muted: #aaa;
+    --faint: #8c8c8c;
+    --code-bg: #2c3034;
+    --border: #404550;
+    --link: #79a8ff;
+    --visited: #b4a7d6;
+    --accent-quote: #a892d6;
+
+    --surface: var(--code-bg);
+    --surface-2: #343a40;
+    --accent: var(--link);
+    --accent-hover: #9cc0ff;
+
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.4);
+  }
+}

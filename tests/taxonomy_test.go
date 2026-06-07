@@ -50,21 +50,21 @@ func TestTagsPageShowsCounts(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/tags/")
 
-	// Tags page lists tags with counts in parentheses
-	posts := page.Locator(".post-list .post")
-	count, err := posts.Count()
+	// /tags/ lists ALL tags on one page (no pagination) as a cloud with counts.
+	tags := page.Locator(".tag-cloud li")
+	count, err := tags.Count()
 	require.NoError(t, err)
-	assert.Greater(t, count, 10, "should have many tags listed")
-	assert.LessOrEqual(t, count, 15, "/tags/ should use homepage pagination size")
+	assert.Greater(t, count, 15, "all tags should be listed on a single page")
 
-	// First tag entry should have a link
-	firstText, err := posts.First().TextContent()
+	// Each tag shows a numeric count chip.
+	firstCount, err := page.Locator(".tag-cloud .tag-count").First().TextContent()
 	require.NoError(t, err)
-	assert.NotEmpty(t, firstText)
+	assert.Regexp(t, `\d`, firstCount, "tag should show a numeric count")
 
+	// The single-page cloud has no pagination.
 	paginationCount, err := page.Locator("nav.pagination").Count()
 	require.NoError(t, err)
-	assert.Greater(t, paginationCount, 0, "/tags/ should expose pagination")
+	assert.Equal(t, 0, paginationCount, "/tags/ should not paginate")
 }
 
 // TestSectionPageDescription verifies section pages show their description
