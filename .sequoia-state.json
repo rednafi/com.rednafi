@@ -1355,6 +1355,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqfibt2s",
       "lastPublished": "2026-06-05T22:24:22.661Z",
       "slug": "dataclasses"
+    },
+    "content/misc/standard_site.md": {
+      "contentHash": "9689d912439ab0674b3c53a498038f29c7967b54dbfff3a027007573612ad653",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
+      "lastPublished": "2026-06-07T14:03:54.001Z",
+      "slug": "standard-site"
     }
   },
   "publication": {

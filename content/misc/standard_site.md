@@ -12,6 +12,7 @@ description: >-
   Mirroring a static Hugo blog onto ATProto with standard.site and Sequoia, plus the
   GitHub Actions wiring that republishes the records on every push without any manual
   steps.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r"
 ---
 
 I added [standard.site] support to this blog. Every post now also lives as a record on
