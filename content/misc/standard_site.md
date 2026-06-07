@@ -21,13 +21,13 @@ main].
 
 ## What it is
 
-standard.site is two shared [ATProto lexicons], `site.standard.publication` and
-`site.standard.document`. The publication record describes the blog: name, URL, icon. Each
-post becomes a document record that lives in my own [data repository] on a [PDS] and points
-back at the publication. To prove the records are actually mine, there's a
-[/.well-known/site.standard.publication] file on my domain and a [link-rel tag] in every
-post's HTML pointing at the matching record. Two ends tied together, no central registry in
-the middle.
+standard.site is a set of shared [ATProto lexicons]. The two that matter here are
+`site.standard.publication` and `site.standard.document`. The publication record describes
+the blog: name, URL, icon. Each post becomes a document record that lives in my own [data
+repository] on a [PDS] and points back at the publication. To prove the records are actually
+mine, there's a [/.well-known/site.standard.publication] file on my domain and a [link-rel
+tag] in every post's HTML pointing at the matching record. Two ends tied together, no
+central registry in the middle.
 
 <!-- prettier-ignore-start -->
 
@@ -60,8 +60,9 @@ canonical copy, a copy syndicates out to the [ATmosphere].
 ## Setting it up with Sequoia
 
 I didn't hand-roll any of the ATProto plumbing. [Sequoia] is a CLI by Steve Simkins that
-does the whole thing for static sites, and it already speaks Hugo, Astro, Jekyll, and the
-rest. If you want to put your own blog on standard.site, it goes roughly like this.
+does the whole thing for static sites, and it doesn't much care what built yours, Hugo,
+Astro, Eleventy, as long as it's Markdown. If you want to put your own blog on
+standard.site, it goes roughly like this.
 
 First, get an ATProto identity, since the records live in your own PDS. A Bluesky account is
 one. Ownership is checked against a domain, so it helps to set your site's domain as your
@@ -69,8 +70,8 @@ handle (mine is `rednafi.com`) and mint an app password for the CLI to log in wi
 
 Then run `sequoia init` in the repo. It authenticates against your PDS, creates a
 `site.standard.publication` record describing the blog (name, URL, icon), and scaffolds a
-`sequoia.json`. That config is small: it points at your content directory and maps the two
-frontmatter fields it cares about, the publish date and the slug.
+`sequoia.json`. That config is small: it points at your content directory and maps the
+frontmatter fields it reads, like the publish date and the slug.
 
 ```json
 {
@@ -99,11 +100,12 @@ lives in `.sequoia-state.json`, so reruns only touch what actually changed.
 I didn't want to run `sequoia publish` by hand, so it happens in [CI]. Two pieces make that
 work.
 
-A [small Go script] fills in one frontmatter field before Sequoia runs. standard.site wants
-a stable `atprotoPath` per document, and rather than type that into every post I derive it
-from the file's location and slug, so `content/zephyr/carry_the_pager.md` with
-`slug: carry-the-pager` gets `atprotoPath: /zephyr/carry-the-pager/` written in. It also
-fails the build if a post is missing one.
+A [small Go script] fills in one frontmatter field before Sequoia runs. standard.site gives
+each document a stable path, and Sequoia reads that from an `atprotoPath` field in the
+frontmatter. Rather than type it into every post, I derive it from the file's location and
+slug, so `content/zephyr/carry_the_pager.md` with `slug: carry-the-pager` gets
+`atprotoPath: /zephyr/carry-the-pager/` written in. It also fails the build if a post has no
+slug to derive one from.
 
 Then GitHub Actions handles the rest on every push to `main`: run that sync script,
 `sequoia publish` with my handle and app password from repo secrets, prettier-format the
@@ -163,7 +165,7 @@ the setup.
     https://rednafi.com/.well-known/site.standard.publication
 
 [link-rel tag]:
-    https://github.com/rednafi/rednafi.com/blob/main/layouts/partials/head.html
+    https://github.com/rednafi/com.rednafi/blob/main/layouts/partials/head.html
 
 [shows richer previews]:
     https://atproto.com/blog/standard-site-bluesky-timeline
@@ -178,28 +180,28 @@ the setup.
     https://sequoia.pub
 
 [ci]:
-    https://github.com/rednafi/rednafi.com/blob/main/.github/workflows/ci.yml#L52-L78
+    https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml#L52-L78
 
 [docs.surf]:
     https://docs.surf
 
 [pdsls]:
-    https://pdsls.dev/at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/3mnl6f7ob462z
+    https://pdsls.dev/at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u
 
 [push to main]:
-    https://github.com/rednafi/rednafi.com
+    https://github.com/rednafi/com.rednafi
 
 [config]:
-    https://github.com/rednafi/rednafi.com/blob/main/sequoia.json
+    https://github.com/rednafi/com.rednafi/blob/main/sequoia.json
 
 [script]:
-    https://github.com/rednafi/rednafi.com/blob/main/scripts/stdsitesync/main.go
+    https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
 
 [ci workflow]:
-    https://github.com/rednafi/rednafi.com/blob/main/.github/workflows/ci.yml
+    https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml
 
 [small Go script]:
-    https://github.com/rednafi/rednafi.com/blob/main/scripts/stdsitesync/main.go
+    https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
 
 [img_1]:
     https://blob.rednafi.com/static/images/standard_site/img_1_v2.png
