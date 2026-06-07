@@ -73,7 +73,18 @@
     });
 
     function renderMermaid(){
-      mermaid.initialize({startOnLoad:false,theme:'default'});
+      mermaid.initialize({
+        startOnLoad:false,
+        theme:'default',
+        // Render diagrams at their natural size instead of shrinking them to fit
+        // the column — the CSS card scrolls horizontally so text stays legible
+        // (especially on mobile) rather than collapsing into a tiny thumbnail.
+        flowchart:{useMaxWidth:false},
+        sequence:{useMaxWidth:false},
+        state:{useMaxWidth:false},
+        class:{useMaxWidth:false},
+        er:{useMaxWidth:false}
+      });
       document.querySelectorAll('.mermaid').forEach(function(el){
         var src=el.getAttribute('data-source');
         if(src){

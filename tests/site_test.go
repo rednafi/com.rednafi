@@ -1235,10 +1235,27 @@ func toFloat64Slice(v any) []float64 {
 	}
 	out := make([]float64, len(arr))
 	for i, item := range arr {
-		f, _ := item.(float64)
-		out[i] = f
+		out[i] = toFloat(item)
 	}
 	return out
+}
+
+// toFloat coerces a JS number returned by page.Evaluate into a float64.
+// Playwright-go decodes whole numbers as int and fractional ones as float64,
+// so a plain .(float64) assertion panics on integers like clientWidth.
+func toFloat(v any) float64 {
+	switch n := v.(type) {
+	case float64:
+		return n
+	case float32:
+		return float64(n)
+	case int:
+		return float64(n)
+	case int64:
+		return float64(n)
+	default:
+		return 0
+	}
 }
 
 // findArticle discovers an article URL from a given section by checking the
