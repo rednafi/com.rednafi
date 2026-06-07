@@ -273,7 +273,7 @@ pre {
    card scrolls horizontally when one is wider than the column instead of
    shrinking the whole thing into an unreadable thumbnail on mobile. */
 .mermaid {
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   padding: 1rem;
   background: #fff;
   border: 1px solid #e6e6e6;
@@ -283,9 +283,11 @@ pre {
   overscroll-behavior-x: contain;
 }
 .mermaid svg {
-  /* centered when it fits the card, left-aligned + scrollable when it doesn't */
+  /* Scale the diagram down to fit the reading column (it renders at natural
+     size); stays a crisp vector, just smaller. Centered. */
   display: block;
   margin: 0 auto;
+  max-width: 100%;
   height: auto;
 }
 
@@ -594,6 +596,11 @@ summary {
   pre {
     font-size: 0.8rem;
     padding: 0.4rem 0.6rem;
+  }
+  /* On phones, don't shrink the diagram to a thumbnail — keep it natural size
+     and let the card scroll horizontally so the labels stay legible. */
+  .mermaid svg {
+    max-width: none;
   }
 }
 
