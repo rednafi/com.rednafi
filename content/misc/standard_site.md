@@ -130,9 +130,22 @@ moment the deploy ran.
 ## Seeing it work
 
 Here's the part I actually wanted. I share a post on Bluesky and it unfurls into a card
-built from the record:
+built from the record. And since the record is just data, I can render that same card right
+here, clickable, instead of pasting a screenshot:
 
-![Bluesky rendering a rednafi.com post as a rich preview card][img_1]
+<!-- prettier-ignore-start -->
+
+{{< bskycard
+    url="https://rednafi.com/zephyr/carry-the-pager/"
+    image="https://blob.rednafi.com/static/images/home/cover.png"
+    title="If you won't carry the pager, maybe don't push to mainline"
+    description="Drive-by AI changes break the shared model a team builds around its code, and the ICs end up cleaning up the mess. Why pushing to mainline should come with the pager."
+    date="May 30, 2026"
+    reading="8m"
+    publication="Redowan's Reflections"
+    handle="rednafi.com" >}}
+
+<!-- prettier-ignore-end -->
 
 And the same post sitting on the network as its `site.standard.document` record, viewed
 through [pdsls]. Same title and description the card used, plus the path, tags, and the full
@@ -202,9 +215,6 @@ the setup.
 
 [small Go script]:
     https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
-
-[img_1]:
-    https://blob.rednafi.com/static/images/standard_site/img_1_v2.png
 
 [img_2]:
     https://blob.rednafi.com/static/images/standard_site/img_2.png

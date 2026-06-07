@@ -1,0 +1,61 @@
+{{- /*
+  bskycard — render a standard.site / Bluesky-style rich preview card from a post's
+  record data. Self-contained: scoped styles reuse the site colour tokens so it tracks
+  light/dark automatically. The whole card links to the article; the pill links to the
+  publication on Bluesky.
+
+  Params: url, title, description, date, reading, publication, handle
+          image   (optional, defaults to the site OG image)
+          href    (optional, defaults to the Bluesky publication profile)
+          avatar  (optional, defaults to the publication icon baked in below)
+*/ -}}
+{{- $url := .Get "url" -}}
+{{- $title := .Get "title" -}}
+{{- $desc := .Get "description" -}}
+{{- $date := .Get "date" -}}
+{{- $reading := .Get "reading" -}}
+{{- $pub := .Get "publication" | default site.Title -}}
+{{- $handle := .Get "handle" -}}
+{{- $image := .Get "image" | default (index site.Params.images 0) -}}
+{{- $href := .Get "href" | default (printf "https://bsky.app/profile/%s" $handle) -}}
+{{- $avatar := .Get "avatar" | default "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAKRElEQVR42tVb+VNUVxZ++cHJ/ANjuWFcSNNNN4syqHFBBHoTulkUFVCjElFQwSVBFhWMLdAbyCZD1JhJNO41qSh0o6iDipgay1GiY1V0TKyJYxA1Ws5Ek0o4ud/Drpbl9aNJQ+BWnXqv77v33O87595zz30PuL4q46eah0rCLcE+EUXzpCpztq/G0uSrsb6A4B51eCYJM04arzIP5QZ68daWvS4JN82Qqa0GP11pw4Q5lQ+CE3a1TUveTzNTD1NoGpNVhyC45+vwjLUhtPWLKj0nZ32hY0xo/h8HDDFZmOUNX7Ulx19f1hycuJsROErq947T7Jxaitxk6ySo61KPtujD+h4j6PCPLm+Wqay50tDCMb8bsXERRaPZdLNOiNv5MGTFIVJnnnCCzq1loGvcEvRx9NcwXSErDhN0yzSWYozVb8SCglKGyJSmjIDYyvszU4+QNrum3QsOUp6Ql2ShG2NgLJnSkhEUVD2kT8lJQgukisiSU28t3UeajbzHAKhPBWNgLIwpj9xRL1EVSPuGnMoYExBT8V1Y+t/c8JhnPYqxgUHGsHiUnFRlWhM0r/onBAIRr/W5N4EBWIDJU+SyghP2kDarplfBQ5t9glQbj7OrZ0gCA3QFJ+wmmdK48beRizCt4cll944c+iUV1FP1iRsUm2cnrRt9NVknSMOMAx2uSEojzKt7RY5lGdGYCr0lB4HnrEeu0vfPfqTMD5rwu8fkNu39gvbVf0W6zbUuSQIjsLrnufACCVvMLZjvQuSg3CnCYKNY/4zKC6RmoF+ph3cE++DZwbO36Ktvn1BSYT0IC05XYARWabhV0iNycnn+H+SzrWcc0bIrMYCuobn5Nkp4v13m5NkAQohoF8+B7ALDKUGS0KPfbKOFjJyY15EZASswA7v41FSZ07HndEuOyfytNnqnyE7LC22UaqqjlcY6Sim0k+GjJopnpHsSTJaYztDZq/fgWeYFwfUr4LmOeCIyP2fXWprKMAO764Q51DgqIKb8ATZW7D2dlSVts9MKRi6nqoFqLv6bbn7zkK7faaUL1/5DT//3gqo/u0pz82pFSRYduEKtT57THttNeArtexXAolnfT8/copU7zpGSTVVgBwfhxFllKUZqBO91VjaHAQe5gr820cOnP1Dn8uLHn6nw4yZKYW1iEBiEwcHqCCK4d0FOfPtBZG64do/WVzWS+mVaJ1OZirs/v4UYvAJjKx93NyDALtlup/Tierr73VMSKs23H1CauY4WGewiwEWmn3Dw6WJ4rGdeV27778DYisfwYndrLxengu7WHoJKcoGdSg7+g1yVn39po/c/bKRlrG2kh7MYEJm7tQ5Xl5kOOEiVppwO5HDAVOhLb2gyu197+k21jKCNPqr5ksRK6aHLjKANRvEoubU7G+n6149oXVWjIElgx7HNT7fjOg7gzkQ6omh6cOKeNqE8U8fAgiDAuyq/MA8a9l5s96CHCaaVnaNLN1toFbuKeRFcwMm5satN23GadpVIYw2uLamne63PSKCwqPqIVplP0mLnGvQoyegtNlxFE3JwkanNBge/1xRRO86LZS1z82x8FDXv+4LfEjqXB4//T/m7L/BRNHaLyygqnoMKkBA3mjO7UUSVnAc3zntGwZ8mxFW24r2I2Ka68OU+mLfrPJ2+fJfu3HtCt7/9nuxNdyh7ZwOtMNpZZtN77yFKFnx6hUqOXvtNMwBcwAncOEmYYRLLyh3rT1SQmi1nJJG9YDqmMUFWgzpkOdr26QRxe1/TsWB2/sv79M/brRSXb0ddr8+N4CQJLwzmfJSmeLy+6ylBWBZA5uXbWGZjo0Tm1fh8RE3nvpS95xK9V93kNkm0n284SYkF9bjvyXFKkCA4+SgL4znsGSGph0UI9uw0AYvD8te/eUxXbrUiKLjrBYAWTQLULJVcVHQaCTsM0S1BcMLLZc5XbbkUmgaCtR6LditKGijZehb3PTkzgpRbBpiTX0fNdx5hOmM2dTEiuICTTGO5yOFVOt42ixB0TL8eknR6QUxn4YErOF24RRL9LOwgvfWTy92OAy7gJNdaf+hAUCyxXWY5C4t7zNPLi//OEvfnONwKG0/ciKIEm8SmKKx7uOE23W15RouNp6HcYyQRjOZtOymyVkVFaIo2cliIM0WCDCy14S8XaVfNv1i0dGziHhHRN24grsw87vY2EbISQcaU1eNtAiRhca0bL2ujNtuZ1OHq+GaBK+ogrl4goy17ZqOkojO0bf8V0uedbO+3pa6zTuFtIqwwXmyjd4ByKoOIWA8A1Jmf0Yx39tDEOUaSq3LJJ/RdkoSsJ+msTPKbnUfB80soNPVj0mz83EHW0ZfXo1x3hKYmf0irDMeo+cbXFJJUTIGxRfTnuWaalFBK05ZWs2n4Cak2HEN7J+lcW4eNvkuqBhL8gKyxNus4KdcfpfD0gxS25gBFrD1MGgbc0aaDUV7WhWccokC9gcYEpdBwaSINkyygYT4JEPYbV8gCXkb4LqSxk1L59rNW7+cJB0ZvJ+9p6eQVsJSGy5J4Hd5ByTT0zfnQBUFf6OL7ewUmk/fUdN5oUxZV8OPPzq5xpmocR68hMdVk1sD9vOUmJ5WRrzKHxk1OYwMto5GKt5ksplH+S3jgPjM30MQ4IyzIk9NtOcl7YkJsEdoABMABgKiAAABD/wj5IvTl60a80n+YVFgX2jl0wHijGFbprBzyiyo5xyfbKHJtieGtt/fCCrCco/ErAyU5lTHBMwBBHabd5MRSZvUMAWL9K/DsuCnvkiKy1MA5Cvv+Nl0SuqUNAEHCTYUwCIzRz2SEPeoza2tboL5q2ivf12tf99WYb3gFLncQHJQC7F6BKeSrsXR8ZYGi0JXleM/IYVMscdASBHZwABeuc1FEV3rJ1EWPR/ktGbQEgR0cwKX77xKRpcXe07MGpReBGdjlUWVWTqgERFWN9FWbWkb5Jw+qtQiswOyrNraAA+eqKHTlaySz8geVF4EVmIFd/PNZPD6flZweO3kdOg4KcsAKzMDOiRfsixUSucbcgpALBQOZHDACKzBz7hR/fblepiz8aSSi6gBcj8AEbMAIrFxvil9U2WppuAG5KBQOLHLIOSMM5KcvW831voBkeSYUwVrDBwBJYMB+x5PTlW3kPFFgJUwFgTXZ72sOWMQ85z5JXXmMXGu574iu/TllMZYjWgIDsHB9UEBSqogqPYU9Bxtrf5wgQAxjsTFxBDoFDFxflqCU6iEsamWw08d9pEZYmw6Petpj0M3GwOngv4roinT+zyn7q8h1paP99RUWmdrYigweawPAekm2Q18c26CT6X7op6+wCiTP/UW0erRCV5Ej1xZfwzQaPzWTRk9ciTDuAO1SHCEffdAXOuRaa7O/rjx3QlzFGwPqj9IDYquns3zQoJhtbZCqCh4wsG1vhmyi8dOyaOyUdTQmeA0E93wde8YI5RHaog/6+kfvnAFd3EAv/rFVQwPjPgj20++MZ4EhiwWnRnnkjucQ3KMOzwJiqiaxtn32bwW/AjpdBh8xDr+yAAAAAElFTkSuQmCC" -}}
+{{- if not (.Page.Store.Get "bskycardCSS") -}}
+{{- .Page.Store.Set "bskycardCSS" true -}}
+<style>
+.bskycard{position:relative;max-width:30rem;margin:var(--space-6,1.5rem) 0;border:1px solid var(--border,#ddd);border-radius:var(--radius-lg,10px);overflow:hidden;background:var(--bg,#fefcf6);box-shadow:var(--shadow-sm,0 1px 2px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.06));transition:box-shadow var(--motion,.2s ease),border-color var(--motion,.2s ease)}
+.bskycard:hover{border-color:var(--faint,#6e6e6e);box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.bskycard__media{display:block;background:var(--surface,var(--code-bg,#f2f1eb))}
+.bskycard__media img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover}
+.bskycard__body{padding:var(--space-4,1rem)}
+.bskycard__title{display:block;margin:0;font-weight:600;font-size:1.1rem;line-height:1.3;color:var(--text,#1a1a1a);text-decoration:none}
+.bskycard:hover .bskycard__title{text-decoration:underline}
+.bskycard__title::after{content:"";position:absolute;inset:0;z-index:1}
+.bskycard__desc{margin:var(--space-2,.5rem) 0 0;color:var(--muted,#3d3d3d);font-size:.93rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bskycard__meta{margin:var(--space-3,.75rem) 0 0;color:var(--faint,#6e6e6e);font-size:.83rem}
+.bskycard__meta .dot{margin:0 .45em}
+.bskycard__foot{display:flex;align-items:center;gap:var(--space-3,.75rem);margin-top:var(--space-4,1rem);padding-top:var(--space-3,.75rem);border-top:1px solid var(--border,#ddd)}
+.bskycard__avatar{flex:none;width:2.1rem;height:2.1rem;border-radius:50%;object-fit:cover}
+.bskycard__pub{display:flex;flex-direction:column;min-width:0;line-height:1.3}
+.bskycard__pubname{font-weight:600;font-size:.88rem;color:var(--text,#1a1a1a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bskycard__handle{display:flex;align-items:center;gap:.34em;color:var(--faint,#6e6e6e);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bskycard__handle svg{flex:none;opacity:.75}
+.bskycard__cta{position:relative;z-index:2;margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:.4em;padding:.46rem .82rem;border-radius:var(--radius-pill,999px);background:var(--text,#1a1a1a);color:var(--bg,#fefcf6);font-size:.82rem;font-weight:600;text-decoration:none;transition:opacity var(--motion,.2s ease)}
+.bskycard__cta:hover{opacity:.85}
+</style>
+{{- end -}}
+<div class="bskycard">
+  <div class="bskycard__media"><img src="{{ $image }}" alt="" loading="lazy" decoding="async"></div>
+  <div class="bskycard__body">
+    <a class="bskycard__title" href="{{ $url }}">{{ $title }}</a>
+    {{- with $desc }}<p class="bskycard__desc">{{ . }}</p>{{- end }}
+    <p class="bskycard__meta">{{ $date }}{{- with $reading }}<span class="dot">·</span>{{ . }} read{{- end }}</p>
+    <div class="bskycard__foot">
+      <img class="bskycard__avatar" src="{{ $avatar | safeURL }}" alt="" width="34" height="34" loading="lazy">
+      <span class="bskycard__pub">
+        <span class="bskycard__pubname">{{ $pub }}</span>
+        <span class="bskycard__handle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.9 5.6 4 9-.1 3.4-1.5 6.6-4 9-2.5-2.4-3.9-5.6-4-9 .1-3.4 1.5-6.6 4-9z"/></svg>{{ $handle }} · by @{{ $handle }}</span>
+      </span>
+      <a class="bskycard__cta" href="{{ $href }}"><span>View publication</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></a>
+    </div>
+  </div>
+</div>
