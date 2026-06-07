@@ -151,7 +151,7 @@ tags, and the full body.
 
 ![The same post as a site.standard.document record in pdsls][img_2]
 
-If you want to copy the setup, it's all in the repo: the [config], the [script], and the [ci
+If you want to copy the setup, it's all in the repo: [config], [script], and the [ci
 workflow].
 
 <!-- references -->
@@ -215,6 +215,6 @@ workflow].
     https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
 
 [img_2]:
-    https://blob.rednafi.com/static/images/standard_site/img_2.png
+    https://blob.rednafi.com/static/images/standard_site/img_2_v2.png
 
 <!-- prettier-ignore-end -->
