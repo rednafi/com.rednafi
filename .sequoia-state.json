@@ -1357,9 +1357,9 @@
       "slug": "dataclasses"
     },
     "content/misc/standard_site.md": {
-      "contentHash": "dd9d453fb7218d51442acf17e131c3f3d12891efcf5d6c7803947572380271d0",
+      "contentHash": "b0d0c42b78852a7bb4950fd6da39fe0f6c46aa2823feef282f120cfffe5df1f4",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
-      "lastPublished": "2026-06-08T01:42:32.239Z",
+      "lastPublished": "2026-06-08T02:03:47.702Z",
       "slug": "standard-site"
     }
   },
