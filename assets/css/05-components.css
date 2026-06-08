@@ -267,11 +267,10 @@ pre {
   outline-offset: -2px;
 }
 
-/* Mermaid uses the default (light) theme in both modes, so render it on a light
-   card — keeps the dark edge labels readable on a dark page.
-   Diagrams render at their natural size (useMaxWidth:false in single.html); the
-   card scrolls horizontally when one is wider than the column instead of
-   shrinking the whole thing into an unreadable thumbnail on mobile. */
+/* Mermaid uses the default (light) theme in both modes, so it sits on a light
+   card to keep the dark edge labels readable on a dark page. Diagrams render at
+   natural size (useMaxWidth:false in single.html) and scale down to fit the
+   reading column at every width, so they never overflow the screen on mobile. */
 .mermaid {
   margin: 1.5rem 0;
   padding: 1rem;
@@ -596,11 +595,6 @@ summary {
   pre {
     font-size: 0.8rem;
     padding: 0.4rem 0.6rem;
-  }
-  /* On phones, don't shrink the diagram to a thumbnail — keep it natural size
-     and let the card scroll horizontally so the labels stay legible. */
-  .mermaid svg {
-    max-width: none;
   }
 }
 
