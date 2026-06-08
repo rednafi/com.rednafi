@@ -49,13 +49,12 @@ sequenceDiagram
 
 ## Why bother
 
-Mostly the previews. Share one of my posts on Bluesky and the link comes back as a card with
-the title, description, and image instead of a bare URL, since the post is now a real record
-the network can read. Bluesky [shows richer previews] for standard.site links now.
+Mostly the previews. Share one of my posts on Bluesky and the link turns into a card with
+the title, description, and image instead of a bare URL. That works because the post is a
+real record the network can read. Bluesky [shows richer previews] for standard.site links.
 
-It goes past Bluesky, though. Because the records sit in my own PDS, any reader can pick
-them up on its own. [docs.surf] already lists my posts, and a quick search on [pckt] pulls
-them up too, pager and all:
+It goes past Bluesky, though. The records sit in my own PDS, so any reader can pick them up
+on its own. [docs.surf] already lists my posts, and a search on [pckt] turns them up too:
 
 ![Searching pckt for rednafi lists the posts, the pager among them][img_3]
 
@@ -65,13 +64,13 @@ syndicates out into the [ATmosphere].
 ## Setting it up with Sequoia
 
 I didn't hand-roll any of the ATProto plumbing. [Sequoia] is a CLI by Steve Simkins that
-does the whole thing for static sites, and it doesn't much care what built yours (Hugo,
-Astro, Eleventy) as long as it's Markdown. If you want to put your own blog on
-standard.site, it goes roughly like this.
+does the whole thing for static sites. It doesn't much care what built yours (Hugo, Astro,
+Eleventy) as long as it's Markdown. If you want to put your own blog on standard.site, it
+goes roughly like this.
 
-First, get an ATProto identity, since the records live in your own PDS. A Bluesky account is
-one. Ownership is checked against a domain, so it helps to set your site's domain as your
-handle (mine is `rednafi.com`) and mint an app password for the CLI to log in with.
+First, you need an ATProto identity, and a Bluesky account is the easy way to get one. The
+records live in your own PDS. Ownership is checked against a domain, so set your site's
+domain as your handle (mine is `rednafi.com`) and mint an app password for the CLI.
 
 Then run `sequoia init` in the repo. It authenticates against your PDS, creates a
 `site.standard.publication` record describing the blog (name, URL, icon), and scaffolds a
