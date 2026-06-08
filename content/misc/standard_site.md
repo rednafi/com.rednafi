@@ -54,8 +54,8 @@ the title, description, and image instead of a bare URL, since the post is now a
 the network can read. Bluesky [shows richer previews] for standard.site links now.
 
 It goes past Bluesky, though. Because the records sit in my own PDS, any reader can pick
-them up on its own. [docs.surf] already lists my posts, and [pckt] does the same kind of
-thing for standard.site blogs across the network.
+them up on its own. [docs.surf] already lists my posts, and [pckt] gathers standard.site
+posts from across the network into one reader.
 
 It's cheap [POSSE] on top of that: rednafi.com stays the canonical copy while a copy
 syndicates out into the [ATmosphere].
@@ -131,9 +131,8 @@ moment the deploy ran.
 
 ## Seeing it work
 
-The previews are what I actually wanted. I share a post on Bluesky and it unfurls into a
-card built from the record. And since the record is just data, I can render that same card
-right here, clickable, instead of pasting a screenshot:
+The previews are what I actually wanted. The card is just the record rendered, so I can put
+a live, clickable one right here instead of a screenshot:
 
 <!-- prettier-ignore-start -->
 
