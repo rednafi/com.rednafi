@@ -54,8 +54,10 @@ the title, description, and image instead of a bare URL, since the post is now a
 the network can read. Bluesky [shows richer previews] for standard.site links now.
 
 It goes past Bluesky, though. Because the records sit in my own PDS, any reader can pick
-them up on its own. [docs.surf] already lists my posts, and [pckt] gathers standard.site
-posts from across the network into one reader.
+them up on its own. [docs.surf] already lists my posts, and a quick search on [pckt] pulls
+them up too, pager and all:
+
+![Searching pckt for rednafi lists the posts, the pager among them][img_3]
 
 It's cheap [POSSE] on top of that: rednafi.com stays the canonical copy while a copy
 syndicates out into the [ATmosphere].
@@ -199,7 +201,7 @@ workflow].
     https://docs.surf
 
 [pckt]:
-    https://pckt.blog/read
+    https://pckt.blog/read?search=rednafi
 
 [pdsls]:
     https://pdsls.dev/at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u
@@ -221,5 +223,8 @@ workflow].
 
 [img_2]:
     https://blob.rednafi.com/static/images/standard_site/img_2_v2.png
+
+[img_3]:
+    https://blob.rednafi.com/static/images/standard_site/img_3.png
 
 <!-- prettier-ignore-end -->
