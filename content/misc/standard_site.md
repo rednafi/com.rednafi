@@ -15,9 +15,8 @@ description: >-
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r"
 ---
 
-I added [standard.site] support to this blog. Every post now also lives as a record on
-[ATProto], the protocol behind Bluesky, and new ones publish themselves whenever I [push to
-main].
+I put this blog on [standard.site]. Every post now also lives as a record on [ATProto] (the
+protocol behind Bluesky), and new ones publish themselves whenever I [push to main].
 
 ## What it is
 
@@ -26,8 +25,8 @@ standard.site is a set of shared [ATProto lexicons]. The two that matter here ar
 the blog: name, URL, icon. Each post becomes a document record that lives in my own [data
 repository] on a [PDS] and points back at the publication. To prove the records are actually
 mine, there's a [/.well-known/site.standard.publication] file on my domain and a [link-rel
-tag] in every post's HTML pointing at the matching record. Two ends tied together, no
-central registry in the middle.
+tag] in every post's HTML pointing at the matching record. The two ends point at each other,
+with no central registry in between.
 
 <!-- prettier-ignore-start -->
 
@@ -50,18 +49,22 @@ sequenceDiagram
 
 ## Why bother
 
-Mostly the previews. A link to one of my posts on Bluesky now shows up as a card with the
-title, description, and image instead of a plain URL, because the post is a real record the
-network can read. Bluesky [shows richer previews] for standard.site links now. Beyond that,
-the records live in my own PDS, so any indexer or reader can pick them up, and they turn up
-in readers like [docs.surf] on their own. And it's cheap [POSSE]: rednafi.com stays the
-canonical copy, a copy syndicates out to the [ATmosphere].
+Mostly the previews. Share one of my posts on Bluesky and the link comes back as a card with
+the title, description, and image instead of a bare URL, since the post is now a real record
+the network can read. Bluesky [shows richer previews] for standard.site links now.
+
+It goes past Bluesky, though. Because the records sit in my own PDS, any reader can pick
+them up on its own. [docs.surf] already lists my posts, and [pckt] does the same kind of
+thing for standard.site blogs across the network.
+
+It's cheap [POSSE] on top of that: rednafi.com stays the canonical copy while a copy
+syndicates out into the [ATmosphere].
 
 ## Setting it up with Sequoia
 
 I didn't hand-roll any of the ATProto plumbing. [Sequoia] is a CLI by Steve Simkins that
-does the whole thing for static sites, and it doesn't much care what built yours, Hugo,
-Astro, Eleventy, as long as it's Markdown. If you want to put your own blog on
+does the whole thing for static sites, and it doesn't much care what built yours (Hugo,
+Astro, Eleventy) as long as it's Markdown. If you want to put your own blog on
 standard.site, it goes roughly like this.
 
 First, get an ATProto identity, since the records live in your own PDS. A Bluesky account is
@@ -195,6 +198,9 @@ workflow].
 
 [docs.surf]:
     https://docs.surf
+
+[pckt]:
+    https://pckt.blog/read
 
 [pdsls]:
     https://pdsls.dev/at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u
