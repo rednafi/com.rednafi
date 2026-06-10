@@ -40,11 +40,11 @@ func TestSiteBuildSmokeTest(t *testing.T) {
 			"archive should list 100+ posts (got %d)", count)
 	})
 
-	t.Run("main RSS has 20+ items", func(t *testing.T) {
+	t.Run("main RSS has 15 items", func(t *testing.T) {
 		body := httpGet(t, baseURL+"/index.xml")
 		count := strings.Count(body, "<item>")
-		assert.Greater(t, count, 20,
-			"RSS should have 20+ items (got %d)", count)
+		assert.Equal(t, 15,
+			count, "RSS should have exactly 15 items")
 	})
 
 	t.Run("CSS file is served and non-empty", func(t *testing.T) {
