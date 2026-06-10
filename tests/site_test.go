@@ -526,7 +526,7 @@ func TestRSSFeeds(t *testing.T) {
 	t.Run("RSS feed respects item limit", func(t *testing.T) {
 		body := httpGet(t, baseURL+"/index.xml")
 		count := strings.Count(body, "<item>")
-		assert.LessOrEqual(t, count, 30, "should not exceed RSS item limit of 30")
+		assert.LessOrEqual(t, count, 15, "should not exceed RSS item limit of 15")
 		assert.Greater(t, count, 0)
 	})
 }
