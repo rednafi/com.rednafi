@@ -178,8 +178,8 @@ the timing:
   its contents change.
 
 On a fresh machine that works out to: install the Homebrew packages, lay down the dotfiles,
-then configure macOS itself. The `onchange` part enables a trick I took [straight from the
-chezmoi docs]. Here's the Homebrew script, trimmed:
+then configure macOS itself. The `onchange` part enables a trick that comes [straight from
+the chezmoi docs]. Here's the Homebrew script, trimmed:
 
 ```sh
 #!/usr/bin/env bash
@@ -229,8 +229,8 @@ to run. Now it's part of apply and I can't forget.
 
 The whole routine is about five commands.
 
-I usually edit at the source. `chezmoi edit` opens the source copy behind a home file, and
-`--apply` writes it through when I close the editor:
+Edits usually start at the source. `chezmoi edit` opens the source copy behind a home file,
+and `--apply` writes it through when I close the editor:
 
 ```sh
 chezmoi edit --apply ~/.zshrc
@@ -248,7 +248,7 @@ chezmoi add ~/.zshrc
 When several home files have moved ahead of their sources like this, `chezmoi re-add`
 re-imports them all in one go.
 
-Once the source state looks right, I share it with plain git from inside the source repo:
+Once the source state looks right, sharing it is plain git from inside the source repo:
 
 ```sh
 chezmoi cd
@@ -258,7 +258,7 @@ git push
 exit
 ```
 
-On the other machines, I catch up with one command:
+On the other machines, catching up is one command:
 
 ```sh
 chezmoi update --verbose
@@ -285,8 +285,8 @@ brew bundle cleanup --file "$(chezmoi source-path)/Brewfile"
 
 ## Tracking agent skills
 
-The newest things I've added to the repo are [skills for LLM agents]. A skill is a folder
-with a `SKILL.md` and whatever reference files it needs. The `SKILL.md` carries name and
+The newest additions to the repo are [skills for LLM agents]. A skill is a folder with a
+`SKILL.md` and whatever reference files it needs. The `SKILL.md` carries name and
 description frontmatter followed by instructions. The layout comes straight from the [Agent
 Skills] spec, an open standard that started at Anthropic and has been adopted by a growing
 list of agent products.
