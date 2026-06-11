@@ -1363,9 +1363,9 @@
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
-      "contentHash": "cd6271c9d5e8c7a3c60517575adcdaeeb6858ea16016f405ff56f55bd8317024",
+      "contentHash": "a0890f63323220e8eca37a9818221bb261bc98662dffb6df29d6774704dbe014",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k",
-      "lastPublished": "2026-06-11T23:21:40.092Z",
+      "lastPublished": "2026-06-11T23:25:17.983Z",
       "slug": "chezmoi"
     }
   },
