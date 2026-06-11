@@ -115,7 +115,7 @@ The list is short because I dislike customizing tools and stick to defaults wher
 dotfiles proper are the zsh, git, shellcheck, [ghostty], and GitHub CLI configs. Claude
 Code's `settings.json` and Codex's `config.toml` are tracked too, so the agents behave the
 same on every machine. The `private_` prefix on gh's `hosts.yml` and the Codex config keeps
-those two at `0600`. The skills under `dot_agents` get a section of their own at the end.
+those two at `0600`. I'll talk about the skills under `dot_agents` at the end.
 
 The three gitconfigs split my identities. All my projects live under two directories,
 `~/canvas/werk/` for work and `~/canvas/pers/` for everything personal, and both exist on
