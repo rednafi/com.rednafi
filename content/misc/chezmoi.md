@@ -112,10 +112,10 @@ here's the entire tree:
 ```
 
 The list is short because I dislike customizing tools and stick to defaults where I can. The
-dotfiles proper are the zsh, git, shellcheck, [ghostty], and GitHub CLI configs. Claude
-Code's `settings.json` and Codex's `config.toml` are tracked too, so the agents behave the
-same on every machine. The `private_` prefix on gh's `hosts.yml` and the Codex config keeps
-those two at `0600`. I'll talk about the skills under `dot_agents` at the end.
+dotfiles proper are the zsh, git, shellcheck, [ghostty], and GitHub CLI configs. I track
+Claude Code's `settings.json` and Codex's `config.toml` too, so the agents behave the same
+on every machine. The `private_` prefix on gh's `hosts.yml` and the Codex config keeps those
+two at `0600`. I'll talk about the skills under `dot_agents` at the end.
 
 The three gitconfigs split my identities. All my projects live under two directories,
 `~/canvas/werk/` for work and `~/canvas/pers/` for everything personal, and both exist on
@@ -150,8 +150,8 @@ have to muck around with it, the better.
 
 `.chezmoiignore` lists `README.md`, the `Brewfile`, and `Brewfile.lock.json`, so all three
 stay in the source directory without ever being written to the home directory. A plain
-`.gitignore` keeps the lock file out of version control. The `Brewfile` and the scripts
-under `.chezmoiscripts` get used during bootstrap, which is next.
+`.gitignore` keeps the lock file out of version control. I'll cover the `Brewfile` and the
+scripts under `.chezmoiscripts` in the next section.
 
 ## Bootstrapping a new Mac
 
@@ -178,8 +178,8 @@ the timing:
   its contents change.
 
 On a fresh machine that works out to: install the Homebrew packages, lay down the dotfiles,
-then configure macOS itself. The `onchange` part enables a trick that comes [straight from
-the chezmoi docs]. Here's the Homebrew script, trimmed:
+then configure macOS itself. The `onchange` part enables a trick I took [straight from the
+chezmoi docs]. Here's the Homebrew script, trimmed:
 
 ```sh
 #!/usr/bin/env bash
@@ -229,8 +229,8 @@ to run. Now it's part of apply and I can't forget.
 
 The whole routine is about five commands.
 
-Edits usually start at the source. `chezmoi edit` opens the source copy behind a home file,
-and `--apply` writes it through when I close the editor:
+I usually edit at the source. `chezmoi edit` opens the source copy behind a home file, and
+`--apply` writes it through when I close the editor:
 
 ```sh
 chezmoi edit --apply ~/.zshrc
@@ -248,7 +248,7 @@ chezmoi add ~/.zshrc
 When several home files have moved ahead of their sources like this, `chezmoi re-add`
 re-imports them all in one go.
 
-Once the source state looks right, sharing it is plain git from inside the source repo:
+Once the source state looks right, I share it with plain git from inside the source repo:
 
 ```sh
 chezmoi cd
@@ -258,7 +258,7 @@ git push
 exit
 ```
 
-On the other machines, catching up is one command:
+On the other machines, I catch up with one command:
 
 ```sh
 chezmoi update --verbose
@@ -285,8 +285,8 @@ brew bundle cleanup --file "$(chezmoi source-path)/Brewfile"
 
 ## Tracking agent skills
 
-The newest additions to the repo are [skills for LLM agents]. A skill is a folder with a
-`SKILL.md` and whatever reference files it needs. The `SKILL.md` carries name and
+The newest things I've added to the repo are [skills for LLM agents]. A skill is a folder
+with a `SKILL.md` and whatever reference files it needs. The `SKILL.md` carries name and
 description frontmatter followed by instructions. The layout comes straight from the [Agent
 Skills] spec, an open standard that started at Anthropic and has been adopted by a growing
 list of agent products.
