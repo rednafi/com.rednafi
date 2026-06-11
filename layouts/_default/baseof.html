@@ -49,18 +49,6 @@
         } else b.classList.remove('visible');
       },{passive:true});
     })();
-    document.addEventListener('click',function(e){
-      var btn=e.target.closest&&e.target.closest('.codeblock-copy');
-      if(!btn)return;
-      if(!navigator.clipboard)return;
-      var block=btn.closest('.codeblock');
-      var code=block&&(block.querySelector('.lntd:last-child code')||block.querySelector('pre code')||block.querySelector('pre'));
-      if(!code)return;
-      navigator.clipboard.writeText(code.innerText).then(function(){
-        btn.textContent='Copied';btn.classList.add('copied');
-        setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1500);
-      }).catch(function(){});
-    });
   </script>
   {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
   {{ template "_internal/google_analytics.html" . }}

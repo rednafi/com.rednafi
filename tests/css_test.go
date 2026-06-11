@@ -127,6 +127,24 @@ func TestCodeBlockStyling(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "auto", overflow)
 	})
+
+	t.Run("language label sits inside code block without toolbar", func(t *testing.T) {
+		toolbarCount, err := page.Locator(".codeblock-bar, .codeblock-copy").Count()
+		require.NoError(t, err)
+		assert.Zero(t, toolbarCount)
+
+		label := page.Locator(".codeblock > .codeblock-lang").First()
+		labelCount, err := label.Count()
+		require.NoError(t, err)
+		require.Greater(t, labelCount, 0)
+
+		position, err := label.Evaluate(
+			`el => getComputedStyle(el).position`,
+			nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "absolute", position)
+	})
 }
 
 // TestStickyFooter verifies the page uses flexbox for sticky footer.
