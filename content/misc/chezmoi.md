@@ -1,15 +1,14 @@
 ---
-title: Migrating from GNU stow to chezmoi
+atprotoPath: /misc/chezmoi/
 date: 2026-06-12T00:00:00+02:00
+description: 'Why I swapped GNU stow''s symlink farm for chezmoi: one command to bootstrap a Mac with Homebrew packages and macOS settings, a small daily sync loop, and agent skills shared between Claude Code and Codex.'
 slug: chezmoi
 tags:
     - Shell
     - CLI
     - Unix
-description: >-
-  Why I swapped GNU stow's symlink farm for chezmoi: one command to bootstrap a Mac with
-  Homebrew packages and macOS settings, a small daily sync loop, and agent skills shared
-  between Claude Code and Codex.
+title: Migrating from GNU stow to chezmoi
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k"
 ---
 
 I've been managing my dotfiles with [GNU stow] for a few years. I even wrote [a piece with a
