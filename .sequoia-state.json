@@ -1361,6 +1361,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
       "lastPublished": "2026-06-08T02:03:47.702Z",
       "slug": "standard-site"
+    },
+    "content/misc/chezmoi.md": {
+      "contentHash": "affc5cdedd1e0788beea680d24845ecf22a97466b9b9ddfa7d09ad4af78e9acd",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k",
+      "lastPublished": "2026-06-11T23:02:37.731Z",
+      "slug": "chezmoi"
     }
   },
   "publication": {
