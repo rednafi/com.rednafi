@@ -209,50 +209,26 @@ pre {
   padding: 0 1rem;
 }
 
-/* Code block frame — language bar + copy button (wraps the Chroma output) */
+/* Code block frame (wraps the Chroma output) */
 .codeblock {
   margin: 1rem 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-}
-.codeblock .codeblock-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.3rem 0.75rem;
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
+  position: relative;
 }
 .codeblock .codeblock-lang {
+  position: absolute;
+  top: 0.35rem;
+  left: 1rem;
+  z-index: 1;
+  pointer-events: none;
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 0.8rem;
-  color: var(--faint);
+  font-size: 0.68rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--faint) 75%, transparent);
   text-transform: lowercase;
-  letter-spacing: 0.02em;
-}
-.codeblock .codeblock-copy {
-  margin-left: auto;
-  font-family: inherit;
-  font-size: 0.8rem;
-  color: var(--muted);
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.1rem 0.5rem;
-  cursor: pointer;
-  transition:
-    color var(--motion-fast),
-    border-color var(--motion-fast),
-    background-color var(--motion-fast);
-}
-.codeblock .codeblock-copy:hover {
-  color: var(--text);
-  border-color: var(--faint);
-}
-.codeblock .codeblock-copy.copied {
-  color: var(--link);
-  border-color: var(--link);
+  letter-spacing: 0;
 }
 .codeblock .highlight {
   margin: 0;
@@ -261,6 +237,9 @@ pre {
   margin: 0;
   border: none;
   border-radius: 0;
+}
+.codeblock.has-lang pre {
+  padding-top: 1.45rem;
 }
 /* keep the keyboard focus ring inside the rounded frame (which clips with overflow:hidden) */
 .codeblock pre:focus-visible {
