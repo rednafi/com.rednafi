@@ -137,6 +137,20 @@ func TestTOCSummaryStyling(t *testing.T) {
 		assert.NotEqual(t, "0px", padding,
 			"summary should have padding")
 	})
+
+	t.Run("uses readable font size", func(t *testing.T) {
+		ratio, err := page.Locator("details.toc").Evaluate(
+			`el => {
+				const tocSize = parseFloat(getComputedStyle(el).fontSize);
+				const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+				return tocSize / rootSize;
+			}`,
+			nil,
+		)
+		require.NoError(t, err)
+		assert.InEpsilon(t, 0.9, ratio.(float64), 0.01,
+			"TOC font should stay at 0.9rem")
+	})
 }
 
 // TestPageFadeInAnimation verifies the body has a fade-in animation applied

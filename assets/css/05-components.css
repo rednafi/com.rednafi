@@ -215,20 +215,6 @@ pre {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  position: relative;
-}
-.codeblock .codeblock-lang {
-  position: absolute;
-  top: 0.35rem;
-  left: 1rem;
-  z-index: 1;
-  pointer-events: none;
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 0.68rem;
-  line-height: 1;
-  color: color-mix(in srgb, var(--faint) 75%, transparent);
-  text-transform: lowercase;
-  letter-spacing: 0;
 }
 .codeblock .highlight {
   margin: 0;
@@ -237,9 +223,6 @@ pre {
   margin: 0;
   border: none;
   border-radius: 0;
-}
-.codeblock.has-lang pre {
-  padding-top: 1.45rem;
 }
 /* keep the keyboard focus ring inside the rounded frame (which clips with overflow:hidden) */
 .codeblock pre:focus-visible {
@@ -532,7 +515,8 @@ hr {
 /* Table of contents */
 .toc {
   margin: 1rem 0;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 .toc nav ul {
   padding-left: 1.5rem;
