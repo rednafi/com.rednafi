@@ -128,22 +128,14 @@ func TestCodeBlockStyling(t *testing.T) {
 		assert.Equal(t, "auto", overflow)
 	})
 
-	t.Run("language label sits inside code block without toolbar", func(t *testing.T) {
-		toolbarCount, err := page.Locator(".codeblock-bar, .codeblock-copy").Count()
+	t.Run("code blocks have no toolbar or language indicator", func(t *testing.T) {
+		controlCount, err := page.Locator(".codeblock-bar, .codeblock-copy, .codeblock-lang").Count()
 		require.NoError(t, err)
-		assert.Zero(t, toolbarCount)
+		assert.Zero(t, controlCount)
 
-		label := page.Locator(".codeblock > .codeblock-lang").First()
-		labelCount, err := label.Count()
+		hasLangCount, err := page.Locator(".codeblock.has-lang").Count()
 		require.NoError(t, err)
-		require.Greater(t, labelCount, 0)
-
-		position, err := label.Evaluate(
-			`el => getComputedStyle(el).position`,
-			nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "absolute", position)
+		assert.Zero(t, hasLangCount)
 	})
 }
 

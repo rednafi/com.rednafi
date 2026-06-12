@@ -3,8 +3,7 @@
 {{- if eq $lang "mermaid" -}}
 <div class="mermaid">{{ .Inner }}</div>
 {{- else -}}
-<div class="codeblock{{ with $lang }} has-lang{{ end }}">
-  {{- with $lang }}<span class="codeblock-lang" aria-hidden="true">{{ . }}</span>{{ end }}
+<div class="codeblock">
   {{ highlight (trim .Inner "\n") $lang .Options }}
 </div>
 {{- end -}}
