@@ -1369,9 +1369,9 @@
       "slug": "chezmoi"
     },
     "content/system/wait_for_lsn.md": {
-      "contentHash": "485b7c1d44ce6e015288d874e88923414db0d3267aa013720ca7ec6d622acdc4",
+      "contentHash": "71a8d96e15045bdb3dbb82dae681929b8c2b7a9d798249d49f79ee0b3a92d0eb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o",
-      "lastPublished": "2026-06-13T17:17:08.157Z",
+      "lastPublished": "2026-06-13T19:12:13.793Z",
       "slug": "wait-for-lsn"
     }
   },
