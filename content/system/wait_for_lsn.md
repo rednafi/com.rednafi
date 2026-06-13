@@ -1,6 +1,6 @@
 ---
 title: Reading your own writes with WAIT FOR LSN in Postgres 19
-date: 2026-06-12
+date: 2026-06-13
 slug: wait-for-lsn
 atprotoPath: /system/wait-for-lsn/
 tags:
