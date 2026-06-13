@@ -1367,6 +1367,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k",
       "lastPublished": "2026-06-11T23:25:17.983Z",
       "slug": "chezmoi"
+    },
+    "content/system/wait_for_lsn.md": {
+      "contentHash": "485b7c1d44ce6e015288d874e88923414db0d3267aa013720ca7ec6d622acdc4",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o",
+      "lastPublished": "2026-06-13T17:17:08.157Z",
+      "slug": "wait-for-lsn"
     }
   },
   "publication": {

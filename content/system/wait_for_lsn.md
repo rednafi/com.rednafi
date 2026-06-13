@@ -12,6 +12,7 @@ description: >-
   PostgreSQL 19's new WAIT FOR LSN command lets a replica block until it has replayed
   your write. The read-after-write problem it solves, the workarounds it replaces, and what
   the timeout, status, and mode options are actually for.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o"
 ---
 
 Postgres 19 finally gives us a clean way to do read-after-write across replicas. Without it,
