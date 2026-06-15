@@ -1,6 +1,8 @@
 package site_test
 
 import (
+	"image/png"
+	"os"
 	"slices"
 	"strings"
 	"testing"
@@ -46,6 +48,35 @@ func TestRSSFeedImageElement(t *testing.T) {
 	assert.Contains(t, body, "<url>", "RSS image should have url")
 	assert.Contains(t, body, "blob.rednafi.com",
 		"RSS image URL should reference the cover image CDN")
+}
+
+// TestSharedImageAssetDimensions verifies the generated PNG assets keep the
+// dimensions expected by social previews and browser icon consumers.
+func TestSharedImageAssetDimensions(t *testing.T) {
+	t.Parallel()
+
+	for _, tc := range []struct {
+		name   string
+		path   string
+		width  int
+		height int
+	}{
+		{"cover", "../static/images/home/cover.png", 2400, 1260},
+		{"favicon", "../static/favicon.png", 1024, 1024},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			file, err := os.Open(tc.path)
+			require.NoError(t, err)
+			defer file.Close()
+
+			config, err := png.DecodeConfig(file)
+			require.NoError(t, err)
+			assert.Equal(t, tc.width, config.Width)
+			assert.Equal(t, tc.height, config.Height)
+		})
+	}
 }
 
 // TestRSSFeedGeneratorTag verifies Hugo version appears in the RSS feed,

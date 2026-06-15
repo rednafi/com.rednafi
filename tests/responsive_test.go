@@ -96,8 +96,8 @@ func TestMobileFontReduction(t *testing.T) {
 			`() => parseFloat(getComputedStyle(document.querySelector("h1")).fontSize)`,
 		)
 		require.NoError(t, err)
-		// CSS: @media (max-width: 640px) { h1 { font-size: 1.3rem; } }
-		// At 17px base, 1.3rem = 22.1px. Desktop h1 is 1.5rem = 25.5px
+		// CSS: @media (max-width: 640px) { h1 { font-size: var(--fs-xl); } }
+		// At 17px base, --fs-xl (1.3rem) = 22.1px. Desktop h1 is --fs-2xl (1.75rem) = 29.75px
 		assert.Less(t, mobileH1.(float64), float64(24),
 			"h1 should be smaller on mobile (<=1.3rem)")
 	})
@@ -114,6 +114,29 @@ func TestMobileFontReduction(t *testing.T) {
 		assert.Less(t, mobilePre.(float64), float64(15),
 			"pre should use smaller font on mobile")
 	})
+}
+
+// TestPostListTitleTypographyTokens verifies post-list titles scale responsively:
+// the --fs-title token (1.18rem) on desktop, --fs-lg (1.1rem) compact on mobile.
+func TestPostListTitleTypographyTokens(t *testing.T) {
+	t.Parallel()
+	desktop := newPage(t)
+	goto_(t, desktop, "/")
+	mobile := newMobilePage(t)
+	goto_(t, mobile, "/")
+
+	read := func(page playwright.Page) float64 {
+		size, err := page.Locator(".post-list .post > a").First().Evaluate(
+			`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
+		)
+		require.NoError(t, err)
+		return size.(float64)
+	}
+
+	assert.InDelta(t, 20.0, read(desktop), 0.2,
+		"desktop post-list title should use the --fs-title token (1.18rem at the 17px root)")
+	assert.InDelta(t, 18.7, read(mobile), 0.2,
+		"mobile post-list title should use the --fs-lg token (1.1rem at the 17px root)")
 }
 
 // TestMobileSidebarWrapping verifies the sidebar stacks full-width below the

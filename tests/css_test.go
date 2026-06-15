@@ -17,8 +17,8 @@ func TestCSSVariablesDefinedInLight(t *testing.T) {
 
 	vars := []string{
 		"--bg", "--text", "--muted", "--faint", "--code-bg",
-		"--border", "--link", "--visited", "--accent-quote",
-		"--radius", "--content-width",
+		"--border", "--link", "--visited",
+		"--radius", "--content-width", "--ring",
 	}
 
 	for _, v := range vars {
@@ -37,15 +37,14 @@ func TestCSSVariablesDefinedInDark(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	expectedDark := map[string]string{
-		"--bg":           "#212529",
-		"--text":         "#e0e0e0",
-		"--code-bg":      "#2c3034",
-		"--border":       "#404550",
-		"--link":         "#79a8ff",
-		"--accent-quote": "#a892d6",
+		"--bg":      "#0a0a0a",
+		"--text":    "#ededed",
+		"--code-bg": "#1a1a1a",
+		"--border":  "#2e2e2e",
+		"--link":    "#52a8ff",
 	}
 
 	for v, expected := range expectedDark {

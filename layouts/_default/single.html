@@ -2,40 +2,45 @@
 <div class="content-column">
 
 {{- if not .Params.hideBreadcrumbs }}
-<nav class="breadcrumbs">
+<nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="/">home</a>
   {{- with .Section }}
-  / <a href="{{ printf "/%s/" . }}">{{ . }}</a>
+  <span aria-hidden="true"> / </span><a href="{{ printf "/%s/" . }}">{{ . }}</a>
   {{- end }}
 </nav>
 {{- end }}
 
-<div data-pagefind-body>
-<h1 data-pagefind-meta="title" data-pagefind-weight="100">{{ .Title }}{{ if .Draft }}<sup>[draft]</sup>{{ end }}</h1>
-{{- if not (.Param "hideMeta") }}
-<div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></div>
-{{- end }}
-
-{{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}
-<details class="toc" data-pagefind-ignore>
-  <summary>Table of contents</summary>
-  {{ .TableOfContents }}
-</details>
-{{- end }}
-
 <article>
+<div data-pagefind-body>
+<header class="article-header">
+  <h1 data-pagefind-meta="title" data-pagefind-weight="100">{{ .Title }}{{ if .Draft }}<sup>[draft]</sup>{{ end }}</h1>
+  {{- if not (.Param "hideMeta") }}
+  <div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time></div>
+  {{- end }}
+
+  {{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}
+  <details class="toc" data-pagefind-ignore>
+    <summary>Table of contents</summary>
+    {{ .TableOfContents | replaceRE "<nav id=\"TableOfContents\">" "<nav id=\"TableOfContents\" aria-label=\"Table of contents\">" | safeHTML }}
+  </details>
+  {{- end }}
+</header>
+<div class="article-content">
   {{ .Content }}
-</article>
 </div>
 
 {{- $tags := .GetTerms "tags" }}
 {{- with $tags }}
+<footer class="article-footer" data-pagefind-ignore>
 <ul class="post-tags">
   {{- range . }}
-  <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+  <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
   {{- end }}
 </ul>
+</footer>
 {{- end }}
+</div>
+</article>
 
 {{- if not .Params.hideRelated }}
 {{- $related := site.RegularPages.Related . | first 5 }}
@@ -44,12 +49,12 @@
   {{- $related = $sectionPages | complement (slice .) | first 5 }}
 {{- end }}
 {{- with $related }}
-<div class="post-ornament">&sect;</div>
-<nav class="related-posts">
+<div class="post-ornament" aria-hidden="true">&sect;</div>
+<nav class="related-posts" aria-label="Related posts">
   <h2>Related posts</h2>
   <ul>
     {{- range . }}
-    <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
     {{- end }}
   </ul>
 </nav>
@@ -75,7 +80,7 @@
     function renderMermaid(){
       mermaid.initialize({
         startOnLoad:false,
-        theme:'default',
+        theme:document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
         // Render diagrams at their natural size instead of shrinking them to fit
         // the column — the CSS card scrolls horizontally so text stays legible
         // (especially on mobile) rather than collapsing into a tiny thumbnail.

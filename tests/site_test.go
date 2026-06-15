@@ -139,7 +139,7 @@ func TestBaseLayout(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "Redowan's Reflections", title)
 
-		toggleVisible, err := header.Locator("button.theme-toggle").IsVisible()
+		toggleVisible, err := header.Locator("button[data-theme-set='dark']").IsVisible()
 		require.NoError(t, err)
 		assert.True(t, toggleVisible)
 	})
@@ -202,7 +202,7 @@ func TestHomepage(t *testing.T) {
 	t.Run("sidebar has about and connect sections", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		headings, err := page.Locator(".aside-section h4").AllTextContents()
+		headings, err := page.Locator(".aside-section .aside-section-title").AllTextContents()
 		require.NoError(t, err)
 		lower := make([]string, len(headings))
 		for i, h := range headings {
@@ -289,26 +289,26 @@ func TestThemeToggle(t *testing.T) {
 	t.Run("clicking toggle switches to dark", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button.theme-toggle").Click())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
 		assert.Equal(t, "dark", theme)
 	})
 
-	t.Run("double click returns to light", func(t *testing.T) {
+	t.Run("active dark choice is idempotent", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button.theme-toggle").Click())
-		require.NoError(t, page.Locator("button.theme-toggle").Click())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
-		assert.Equal(t, "light", theme)
+		assert.Equal(t, "dark", theme)
 	})
 
 	t.Run("persists across navigation via localStorage", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button.theme-toggle").Click())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 		stored, err := page.Evaluate(`() => localStorage.getItem("theme")`)
 		require.NoError(t, err)
@@ -359,11 +359,11 @@ func TestThemeToggle(t *testing.T) {
 		goto_(t, page, "/")
 		lightBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
 		require.NoError(t, err)
-		require.NoError(t, page.Locator("button.theme-toggle").Click())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 		darkBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
 		require.NoError(t, err)
 		assert.NotEqual(t, lightBg, darkBg)
-		assert.Equal(t, "#212529", darkBg)
+		assert.Equal(t, "#0a0a0a", darkBg)
 	})
 }
 
@@ -411,7 +411,7 @@ func TestSEOHomepage(t *testing.T) {
 	t.Run("correct title", func(t *testing.T) {
 		title, err := page.Title()
 		require.NoError(t, err)
-		assert.Equal(t, "Redowan Delowar | Redowan's Reflections", title)
+		assert.Equal(t, "Redowan's Reflections", title)
 	})
 
 	t.Run("meta description", func(t *testing.T) {
@@ -466,11 +466,11 @@ func TestSEOHomepage(t *testing.T) {
 	t.Run("theme-color meta", func(t *testing.T) {
 		light, err := page.Locator(`meta[name="theme-color"][media*="light"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "#fefcf6", light)
+		assert.Equal(t, "#fafafa", light)
 
 		dark, err := page.Locator(`meta[name="theme-color"][media*="dark"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "#212529", dark)
+		assert.Equal(t, "#0a0a0a", dark)
 	})
 
 	t.Run("favicon links", func(t *testing.T) {
@@ -693,14 +693,14 @@ func TestArchive(t *testing.T) {
 		assert.Regexp(t, `^#\d{4}$`, href)
 	})
 
-	t.Run("groups by month", func(t *testing.T) {
-		count, err := page.Locator(".archive-month").Count()
+	t.Run("does not render month section headings", func(t *testing.T) {
+		count, err := page.Locator(".archive-month, .archive-year h3").Count()
 		require.NoError(t, err)
-		assert.Greater(t, count, 0)
+		assert.Equal(t, 0, count)
 	})
 
 	t.Run("posts have links and dates", func(t *testing.T) {
-		first := page.Locator(".archive-month .post").First()
+		first := page.Locator(".archive-year .post").First()
 		visible, err := first.Locator("a").First().IsVisible()
 		require.NoError(t, err)
 		assert.True(t, visible)
@@ -710,7 +710,7 @@ func TestArchive(t *testing.T) {
 	})
 
 	t.Run("posts have category chips", func(t *testing.T) {
-		labels, err := page.Locator(".archive-month .post .post-cat").AllTextContents()
+		labels, err := page.Locator(".archive-year .post .post-cat").AllTextContents()
 		require.NoError(t, err)
 		require.Greater(t, len(labels), 50)
 
@@ -799,8 +799,8 @@ func TestPaginationNavigation(t *testing.T) {
 		pag := page.Locator("nav.pagination")
 		text, err := pag.TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, text, "prev", "page 2 should have prev link")
-		assert.Contains(t, text, "next", "page 2 should have next link")
+		assert.Contains(t, strings.ToLower(text), "prev", "page 2 should have prev link")
+		assert.Contains(t, strings.ToLower(text), "next", "page 2 should have next link")
 	})
 
 	t.Run("page 1 has next but no prev", func(t *testing.T) {
@@ -813,8 +813,8 @@ func TestPaginationNavigation(t *testing.T) {
 		if count > 0 {
 			text, err := pag.TextContent()
 			require.NoError(t, err)
-			assert.Contains(t, text, "next")
-			assert.NotContains(t, text, "prev",
+			assert.Contains(t, strings.ToLower(text), "next")
+			assert.NotContains(t, strings.ToLower(text), "prev",
 				"page 1 should not have prev link")
 		}
 	})
@@ -928,9 +928,9 @@ func TestSemanticHTML(t *testing.T) {
 	t.Run("theme toggle has aria-label", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		label, err := page.Locator("button.theme-toggle").GetAttribute("aria-label")
+		label, err := page.Locator("button[data-theme-set='dark']").GetAttribute("aria-label")
 		require.NoError(t, err)
-		assert.Equal(t, "Toggle theme", label)
+		assert.Equal(t, "Use dark theme", label)
 	})
 
 	t.Run("time elements have datetime", func(t *testing.T) {
@@ -950,7 +950,7 @@ func TestSemanticHTML(t *testing.T) {
 	t.Run("keyboard: theme toggle accessible", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button.theme-toggle").Focus())
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Focus())
 		require.NoError(t, page.Keyboard().Press("Enter"))
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
@@ -997,12 +997,12 @@ func TestDesktopLayout(t *testing.T) {
 		assert.Equal(t, "720px", mw)
 	})
 
-	t.Run("body max-width 1000px", func(t *testing.T) {
+	t.Run("body max-width 1150px", func(t *testing.T) {
 		mw, err := page.Locator("body").Evaluate(
 			`el => getComputedStyle(el).maxWidth`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "1000px", mw)
+		assert.Equal(t, "1150px", mw)
 	})
 }
 
@@ -1024,15 +1024,17 @@ func TestMobileLayout(t *testing.T) {
 			`el => parseFloat(getComputedStyle(el).width)`, nil,
 		)
 		require.NoError(t, err)
-		assert.Greater(t, w.(float64), float64(300))
+		assert.Greater(t, toFloat(w), float64(300))
 	})
 
 	t.Run("body has reduced padding", func(t *testing.T) {
+		// Mobile padding (1.05rem ≈ 17.85px) is comfortably reduced from the
+		// desktop 1.5rem (≈25.5px) without crowding content against the edge.
 		p, err := page.Locator("body").Evaluate(
 			`el => parseFloat(getComputedStyle(el).paddingLeft)`, nil,
 		)
 		require.NoError(t, err)
-		assert.LessOrEqual(t, p.(float64), float64(16))
+		assert.LessOrEqual(t, toFloat(p), float64(19))
 	})
 }
 
@@ -1119,17 +1121,25 @@ func TestAssetOptimization(t *testing.T) {
 	})
 }
 
-func TestDNSPrefetch(t *testing.T) {
+func TestPreconnectHints(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	hrefs, err := page.Locator(`link[rel="dns-prefetch"]`).EvaluateAll(
+	hrefs, err := page.Locator(`link[rel="preconnect"]`).EvaluateAll(
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)
 	hrefList := toStringSlice(hrefs)
 	assert.Contains(t, hrefList, "https://blob.rednafi.com")
-	assert.Contains(t, hrefList, "https://cdn.jsdelivr.net")
+	assert.NotContains(t, hrefList, "https://cdn.jsdelivr.net")
+
+	mermaidPage := newPage(t)
+	goto_(t, mermaidPage, "/system/tap-compare-testing/")
+	mermaidHrefs, err := mermaidPage.Locator(`link[rel="preconnect"]`).EvaluateAll(
+		`els => els.map(e => e.getAttribute("href"))`,
+	)
+	require.NoError(t, err)
+	assert.Contains(t, toStringSlice(mermaidHrefs), "https://cdn.jsdelivr.net")
 }
 
 func TestPageLoadPerformance(t *testing.T) {

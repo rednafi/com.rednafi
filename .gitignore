@@ -29,3 +29,12 @@ tests/test-results/
 .cache/
 .claude/
 public-test/
+
+# Dev-only screenshot helper for the Geist redesign
+scripts/shot/
+# Dev-only Geist token extractor (reads --ds-* from the live spec)
+scripts/geistcolors/
+scripts/gridprobe/
+# Dev-only Geist component probes (computed styles of Note / Pagination / etc.)
+scripts/noteprobe/
+scripts/colorcheck/

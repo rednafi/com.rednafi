@@ -12,15 +12,7 @@
     <a href="#{{ .Key }}">{{ .Key }}</a>
     <sup>&nbsp;{{ len .Pages }}</sup>
   </h2>
-  {{- range .Pages.GroupByDate "January" }}
-  <div class="archive-month">
-    <h3 id="{{ $.Key }}-{{ .Key }}">
-      <a href="#{{ $.Key }}-{{ .Key }}">{{ .Key }}</a>
-      <sup>&nbsp;{{ len .Pages }}</sup>
-    </h3>
-    {{ partial "post-list.html" (dict "pages" .Pages) }}
-  </div>
-  {{- end }}
+  {{ partial "post-list.html" (dict "pages" .Pages.ByDate.Reverse) }}
 </div>
 {{- end }}
 {{- end }}

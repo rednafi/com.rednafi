@@ -1,6 +1,16 @@
 {{- $u := urls.Parse .Destination -}}
-{{- $ext := and $u.IsAbs (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
-<a href="{{ .Destination }}"
+{{- $siteURL := urls.Parse site.BaseURL -}}
+{{- $sameSiteHosts := slice $siteURL.Host "rednafi.com" "www.rednafi.com" -}}
+{{- $sameSite := and $u.IsAbs (in $sameSiteHosts $u.Host) -}}
+{{- $href := .Destination -}}
+{{- if $sameSite -}}
+  {{- $href = $u.Path -}}
+  {{- if not $href }}{{ $href = "/" }}{{ end -}}
+  {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
+  {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+{{- end -}}
+{{- $ext := and $u.IsAbs (not $sameSite) -}}
+<a href="{{ $href }}"
   {{- with .Title }} title="{{ . }}"{{ end -}}
-  {{- if $ext }} rel="noopener noreferrer" target="_blank"{{ end -}}
+  {{- if $ext }} rel="noopener noreferrer" target="_blank"{{ with .PlainText }} aria-label="{{ . }} (opens in new tab)"{{ end }}{{ end -}}
 >{{ or .Text .PlainText }}</a>

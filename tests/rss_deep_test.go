@@ -88,7 +88,7 @@ func TestRSSItemsExposeFullContent(t *testing.T) {
 				"RSS item %d should expose full rendered content", i)
 
 			pageBody := httpGet(t, baseURL+rssItemPath(t, item.Link))
-			pageContent := extractArticleHTML(t, pageBody)
+			pageContent := extractArticleHTML(t, normalizer, pageBody)
 
 			actual := htmlSnapshot(t, normalizer, item.Content)
 			expected := htmlSnapshot(t, normalizer, pageContent)
@@ -124,15 +124,20 @@ func rssItemPath(t *testing.T, link string) string {
 	return path
 }
 
-func extractArticleHTML(t *testing.T, body string) string {
+func extractArticleHTML(t *testing.T, page playwright.Page, body string) string {
 	t.Helper()
 
-	_, after, found := strings.Cut(body, "<article>")
-	require.True(t, found, "page should contain an opening <article> tag")
+	raw, err := page.Evaluate(`body => {
+		const doc = new DOMParser().parseFromString(body, "text/html");
+		const content = doc.querySelector("article .article-content") || doc.querySelector("article");
+		if (!content) return "";
+		return content.innerHTML.trim();
+	}`, body)
+	require.NoError(t, err)
 
-	content, _, found := strings.Cut(after, "</article>")
-	require.True(t, found, "page should contain a closing </article> tag")
-
+	content, ok := raw.(string)
+	require.True(t, ok, "article content should be returned as HTML")
+	require.NotEmpty(t, content, "page should contain rendered article content")
 	return strings.TrimSpace(content)
 }
 

@@ -92,7 +92,7 @@ func TestAllArchiveLinksResolve(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/archive/")
 
-	hrefs, err := page.Locator(".archive-month .post a").EvaluateAll(
+	hrefs, err := page.Locator(".archive-year .post a").EvaluateAll(
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)

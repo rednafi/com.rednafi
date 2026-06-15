@@ -1,6 +1,7 @@
 package site_test
 
 import (
+	"strings"
 	"testing"
 	"time"
 
@@ -18,7 +19,7 @@ func TestSearchFunctionality(t *testing.T) {
 	// Wait for pagefind to load — use generous timeout since Pagefind JS
 	// loads deferred and initializes async.
 	err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
-		Timeout: new(10000.0),
+		Timeout: playwright.Float(10000),
 	})
 	require.NoError(t, err)
 
@@ -27,7 +28,7 @@ func TestSearchFunctionality(t *testing.T) {
 		require.NoError(t, input.Fill("python"))
 		// Wait for results — Pagefind fetches index chunks async
 		err := page.Locator(".pagefind-ui__result").First().WaitFor(playwright.LocatorWaitForOptions{
-			Timeout: new(10000.0),
+			Timeout: playwright.Float(10000),
 		})
 		require.NoError(t, err)
 
@@ -46,10 +47,24 @@ func TestSearchFunctionality(t *testing.T) {
 		assert.Equal(t, 0, count, "empty search should show no results")
 	})
 
-	t.Run("search has role=search", func(t *testing.T) {
-		role, err := page.Locator("#search").GetAttribute("role")
+	t.Run("pagefind exposes a single search landmark", func(t *testing.T) {
+		wrapperRole, err := page.Locator("#search").GetAttribute("role")
 		require.NoError(t, err)
-		assert.Equal(t, "search", role)
+		assert.Empty(t, wrapperRole)
+
+		count, err := page.Locator(`[role="search"]`).Count()
+		require.NoError(t, err)
+		assert.Equal(t, 1, count)
+	})
+
+	t.Run("query is reflected in the URL", func(t *testing.T) {
+		input := page.Locator(".pagefind-ui__search-input")
+		require.NoError(t, input.Fill("postgres"))
+		// the input handler writes ?q= via history.replaceState on the next tick,
+		// so poll the URL instead of reading it synchronously (avoids a race)
+		assert.Eventually(t, func() bool {
+			return strings.Contains(page.URL(), "q=postgres")
+		}, 5*time.Second, 50*time.Millisecond, "query should be reflected in the URL")
 	})
 }
 
@@ -72,13 +87,13 @@ func TestSearchIndexCoversAllSections(t *testing.T) {
 			goto_(t, page, "/search/")
 
 			err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
-				Timeout: new(10000.0),
+				Timeout: playwright.Float(10000),
 			})
 			require.NoError(t, err)
 
 			require.NoError(t, page.Locator(".pagefind-ui__search-input").Fill(term))
 			err = page.Locator(".pagefind-ui__result").First().WaitFor(playwright.LocatorWaitForOptions{
-				Timeout: new(10000.0),
+				Timeout: playwright.Float(10000),
 			})
 			require.NoError(t, err)
 
@@ -98,7 +113,7 @@ func TestSearchPageCSS(t *testing.T) {
 	goto_(t, page, "/search/")
 
 	err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
-		Timeout: new(10000.0),
+		Timeout: playwright.Float(10000),
 	})
 	require.NoError(t, err)
 
@@ -108,5 +123,27 @@ func TestSearchPageCSS(t *testing.T) {
 		)
 		require.NoError(t, err)
 		assert.Contains(t, font, "Geist")
+	})
+
+	t.Run("search highlights use Geist amber", func(t *testing.T) {
+		input := page.Locator(".pagefind-ui__search-input")
+		require.NoError(t, input.Fill("foo"))
+		err := page.Locator("#search mark").First().WaitFor(playwright.LocatorWaitForOptions{
+			Timeout: playwright.Float(10000),
+		})
+		require.NoError(t, err)
+
+		light, err := page.Locator("#search mark").First().Evaluate(
+			`el => getComputedStyle(el).backgroundColor`, nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "rgb(255, 221, 143)", light)
+
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		dark, err := page.Locator("#search mark").First().Evaluate(
+			`el => getComputedStyle(el).backgroundColor`, nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "rgb(107, 65, 5)", dark)
 	})
 }

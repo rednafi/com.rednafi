@@ -1,25 +1,28 @@
 {{- $notes := site.Params.notesSection }}
 {{- $pages := .pages }}
 {{- $showExcerpt := .showExcerpt | default false }}
-<div class="post-list{{ if $showExcerpt }} post-list-rich{{ end }}">
+<div class="post-list{{ if $showExcerpt }} post-list-rich{{ end }}"{{ if gt (len $pages) 0 }} role="list"{{ end }}>
+  {{- if eq (len $pages) 0 }}
+  <p class="empty-state">No posts found.</p>
+  {{- end }}
   {{- range $pages }}
   {{- $cat := .Section }}
   {{- if eq .Section $notes }}{{ $cat = "shards" }}{{ end }}
   {{- with .Params.type_label }}{{ $cat = . }}{{ end }}
   {{- $label := replace (replace (humanize $cat) "Javascript" "JavaScript") "Typescript" "TypeScript" }}
-  <div class="post">
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
+  <article class="post" role="listitem">
     <div class="post-meta-line">
       <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time>
       {{- with .Section }}
       <a class="post-cat" href="{{ printf "/%s/" . }}">{{ $label }}</a>
       {{- end }}
     </div>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{- if $showExcerpt }}
     {{- with (.Description | default .Summary | plainify | htmlUnescape) }}
     <p>{{ . }}</p>
     {{- end }}
     {{- end }}
-  </div>
+  </article>
   {{- end }}
 </div>

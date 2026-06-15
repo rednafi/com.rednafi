@@ -19,7 +19,7 @@ func TestRetiredPageRedirects(t *testing.T) {
 			body := httpGet(t, baseURL+path)
 			assert.Contains(t, body, "http-equiv=refresh",
 				"%s alias should contain a meta refresh", path)
-			assert.Contains(t, body, "url=https://rednafi.com/",
+			assert.Contains(t, body, "url=/",
 				"%s alias should redirect to the homepage", path)
 			assert.Contains(t, body, `rel=canonical href=https://rednafi.com/`,
 				"%s alias canonical should point to the homepage", path)
@@ -62,19 +62,20 @@ func TestSearchPageConfiguration(t *testing.T) {
 		assert.NotNil(t, defer_, "pagefind JS should be deferred")
 	})
 
-	t.Run("short search terms rejected", func(t *testing.T) {
-		// The processTerm function rejects terms < 3 characters
+	t.Run("short search terms work", func(t *testing.T) {
 		err := page.Locator(".pagefind-ui__search-input").WaitFor()
 		require.NoError(t, err)
 
 		input := page.Locator(".pagefind-ui__search-input")
 		require.NoError(t, input.Fill("go"))
 
-		// With a 2-char term, processTerm returns null → no results should appear
+		err = page.Locator(".pagefind-ui__result").First().WaitFor()
+		require.NoError(t, err)
+
 		count, err := page.Locator(".pagefind-ui__result").Count()
 		require.NoError(t, err)
-		assert.Equal(t, 0, count,
-			"2-character search term should be rejected by processTerm")
+		assert.Greater(t, count, 0,
+			"2-character search term should return results")
 	})
 }
 
@@ -195,12 +196,15 @@ func TestTagPillStyling(t *testing.T) {
 
 	tag := tags.First()
 
-	t.Run("has pill border-radius", func(t *testing.T) {
+	t.Run("has rounded Geist badge corners", func(t *testing.T) {
+		// Geist badges are small rounded rectangles (var(--radius-sm) = 4px),
+		// not full pills.
 		radius, err := tag.Evaluate(
-			`el => getComputedStyle(el).borderRadius`, nil,
+			`el => getComputedStyle(el).borderTopLeftRadius`, nil,
 		)
 		require.NoError(t, err)
-		assert.Contains(t, radius, "999", "tags should have pill border-radius (999px)")
+		assert.NotEqual(t, "0px", radius, "tags should have rounded corners")
+		assert.NotContains(t, radius, "999", "tags should be a rounded rectangle, not a full pill")
 	})
 
 	t.Run("has background color", func(t *testing.T) {

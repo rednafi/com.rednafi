@@ -2,6 +2,7 @@ package site_test
 
 import (
 	"encoding/json"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -90,13 +91,13 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		require.True(t, ok, "itemListElement should be an array")
 
 		visibleRaw, err := page.Locator(`.article-list .post-list .post > a`).EvaluateAll(
-			`els => els.slice(0, 10).map(e => e.href)`,
+			`els => els.slice(0, 10).map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
-		visibleURLs := toStringSlice(visibleRaw)
-		require.GreaterOrEqual(t, len(visibleURLs), len(items))
+		visiblePaths := toStringSlice(visibleRaw)
+		require.GreaterOrEqual(t, len(visiblePaths), len(items))
 
-		schemaURLs := make([]string, 0, len(items))
+		schemaPaths := make([]string, 0, len(items))
 		for _, item := range items {
 			listItem, ok := item.(map[string]any)
 			require.True(t, ok, "ListItem should be an object")
@@ -104,9 +105,9 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 			require.True(t, ok, "ListItem item should be an object")
 			url, ok := post["url"].(string)
 			require.True(t, ok, "ListItem item should include url")
-			schemaURLs = append(schemaURLs, url)
+			schemaPaths = append(schemaPaths, strings.TrimPrefix(url, "https://rednafi.com"))
 		}
-		assert.Equal(t, visibleURLs[:len(schemaURLs)], schemaURLs,
+		assert.Equal(t, visiblePaths[:len(schemaPaths)], schemaPaths,
 			"homepage ItemList JSON-LD should match the visible recent writings")
 	})
 }
@@ -244,7 +245,7 @@ func TestOGImageDimensions(t *testing.T) {
 	t.Run("has og:image", func(t *testing.T) {
 		src, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.NotEmpty(t, src)
+		assert.Equal(t, "https://blob.rednafi.com/static/images/home/cover-733b7e867a29.png", src)
 	})
 
 	t.Run("has og:image:width", func(t *testing.T) {

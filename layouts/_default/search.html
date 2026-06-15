@@ -8,16 +8,21 @@
 <h1>{{ .Title }}</h1>
 
 <script src="/pagefind/pagefind-ui.js" defer></script>
-<div id="search" role="search"></div>
+<div id="search" aria-label="Search posts"></div>
 <script>
   window.addEventListener('DOMContentLoaded', function() {
+    var search = document.getElementById("search");
+    var initialQuery = new URLSearchParams(window.location.search).get("q") || "";
+    var placeholder = {{ .Params.placeholder | default "Search posts" | jsonify }};
     new PagefindUI({
       element: "#search",
       showSubResults: true,
       showImages: false,
       excerptLength: 15,
-      placeholder: "Search...",
-      processTerm: function(term) { return term.length >= 3 ? term : null; },
+      translations: {
+        placeholder: placeholder,
+        clear_search: "Clear"
+      },
       ranking: {
         termFrequency: 0.0,
         pageLength: 0.75,
@@ -25,6 +30,70 @@
         termSimilarity: 1.0
       }
     });
+    function setHasQuery(value){
+      if(search) search.classList.toggle("has-query", !!value);
+    }
+    function writeSearchURL(value){
+      var url = new URL(window.location.href);
+      if(value){
+        url.searchParams.set("q", value);
+      } else {
+        url.searchParams.delete("q");
+      }
+      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      setHasQuery(value);
+    }
+    function bindSearchInput(input){
+      if(!input || input.dataset.urlStateBound) return;
+      input.dataset.urlStateBound = "true";
+      function syncURL(){
+        writeSearchURL(input.value.trim());
+      }
+      input.addEventListener("input", syncURL);
+      input.addEventListener("change", syncURL);
+      input.addEventListener("keyup", function(e){
+        if(e.key === "Escape") window.setTimeout(syncURL, 0);
+      });
+      if(initialQuery){
+        input.value = initialQuery;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      } else {
+        setHasQuery(input.value.trim());
+      }
+    }
+    function bindClearButton(button){
+      if(!button || button.dataset.urlStateBound) return;
+      button.dataset.urlStateBound = "true";
+      button.addEventListener("click", function(){
+        window.setTimeout(function(){
+          var input = search && search.querySelector(".pagefind-ui__search-input");
+          writeSearchURL(input ? input.value.trim() : "");
+        }, 0);
+      });
+    }
+    function syncFromEvent(e){
+      if(e.target && e.target.matches(".pagefind-ui__search-input")){
+        writeSearchURL(e.target.value.trim());
+      }
+    }
+    document.addEventListener("input", syncFromEvent, true);
+    document.addEventListener("change", syncFromEvent, true);
+    function syncSearchStatus(){
+      var msg = search && search.querySelector(".pagefind-ui__message");
+      if(msg){
+        msg.setAttribute("role", "status");
+        msg.setAttribute("aria-live", "polite");
+        msg.setAttribute("aria-atomic", "true");
+      }
+      var input = search && search.querySelector(".pagefind-ui__search-input");
+      bindSearchInput(input);
+      if(input) setHasQuery(input.value.trim());
+      bindClearButton(search && search.querySelector(".pagefind-ui__search-clear"));
+    }
+    syncSearchStatus();
+    if(search && "MutationObserver" in window){
+      new MutationObserver(syncSearchStatus).observe(search, { childList: true, subtree: true });
+    }
   });
 </script>
 

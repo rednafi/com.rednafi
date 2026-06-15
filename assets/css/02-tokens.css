@@ -1,53 +1,116 @@
 @layer tokens {
+  /* Vercel Geist palette — exact token values (see scripts/geistcolors); don't
+     hand-pick substitutes. A few grays are nudged darker for AA contrast. */
   :root {
-    /* Original palette (warm light) — restored. Catppuccin was too washed out. */
-    --bg: #fefcf6;
-    --text: #1a1a1a;
-    --muted: #3d3d3d;
+    color-scheme: light;
+    --bg: #fafafa;
+    --bg-2: var(--bg);
+    --text: #171717;
+    --muted: #4d4d4d;
     --faint: #6e6e6e;
-    --code-bg: #f2f1eb;
-    --border: #ddd;
-    --link: #1a4bbf;                    /* original link blue (restored) */
-    --visited: #54457f;
-    --accent-quote: #7c6f9f;
+    --code-bg: #f2f2f2;
+    --border: #ebebeb;
+    --border-strong: #c9c9c9;
+    --grid-cross: #a8a8a8;
+    --link: #0062d1;
+    --visited: #0062d1;                 /* = --link; pinned by tests */
 
-    /* Derived semantic roles used by the new components (kept on the original palette). */
-    --surface: var(--code-bg);          /* code/cards/chips/header fill */
-    --surface-2: #e9e7df;               /* slightly deeper surface / hover base */
+    --surface: var(--code-bg);          /* control hover fill */
+    --surface-2: #ebebeb;               /* control active / pressed fill */
     --accent: var(--link);
-    --accent-hover: #13399b;
 
-    /* Spacing scale (airy). */
-    --space-1:.25rem; --space-2:.5rem; --space-3:.75rem;
-    --space-4:1rem; --space-6:1.5rem; --space-8:2rem; --space-12:3rem;
+    /* Geist semantic scale — alerts: 200 fill / 400 border (a visible thin
+       edge) / 900 text; chroma + search mark reuse the 900s / amber */
+    --blue-200: #ebf5ff;   --blue-400: #cce6ff;   --blue-900: #0068d6;
+    --green-200: #ebfaeb;  --green-400: #c6f1c7;  --green-900: #297a3a;
+    --purple-200: #f9f1fe; --purple-400: #eddcf9; --purple-900: #7820bc;
+    --amber-200: #fff4d6;  --amber-400: #ffdd8f;  --amber-900: #a35200;
+    --red-200: #ffebeb;    --red-400: #fdd8d8;    --red-900: #cb2a2f;
+    --mark-bg: #ffdd8f;    /* Geist amber-400 */
 
-    /* Geometry / motion / elevation — theme-independent. */
-    --radius-sm:5px; --radius:6px; --radius-lg:10px; --radius-pill:999px;
-    --content-width:720px;   /* narrow column for article/list pages */
-    --page-width:1000px;     /* wide outer shell for the two-column home */
-    --motion:.2s ease;
-    --motion-fast:.15s ease;
-    --ease-out:cubic-bezier(.4,0,.2,1);
-    --shadow-sm:0 1px 2px rgba(0,0,0,.04),0 1px 3px rgba(0,0,0,.06);
+    /* Spacing — modular .25rem step (the number ≈ px/4) */
+    --space-1: .25rem;  --space-2: .5rem;   --space-3: .75rem;
+    --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
+    --space-7: 1.75rem; --space-8: 2rem;    --space-10: 2.5rem;
+    --space-12: 3rem;
+    /* viewport-driven structural bands + grid gutter */
+    --rail: clamp(0.5rem, 2vw, 2rem);
+    --grid-top-band: clamp(0.8rem, calc(2.4vw - 0.2rem), 1.3rem);
+    --content-top-band: clamp(1.5rem, 3vw, 2rem);
+
+    /* Type scale — rendered px at the 17px root in comments */
+    --fs-2xs: .72rem;  /* 12px — eyebrow labels, date / category */
+    --fs-xs: .8rem;    /* 14px — mobile code */
+    --fs-sm: .85rem;   /* 14px — meta, code, tables, badges, nav, footer */
+    --fs-md: .9rem;    /* 15px — toc, summary, excerpts, h5 / h6 */
+    --fs-base: 1rem;     /* 17px — body, h4, aside */
+    --fs-lg: 1.1rem;     /* 19px — h3, card title, site title, mobile post title */
+    --fs-title: 1.18rem; /* 20px — post-list title (desktop); mobile drops to --fs-lg */
+    --fs-xl: 1.3rem;     /* 22px — h2, mobile h1 */
+    --fs-2xl: 1.75rem; /* 30px — h1 */
+
+    /* Weights */
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+
+    /* Line heights */
+    --lh-none: 1;
+    --lh-tight: 1.2;
+    --lh-snug: 1.3;
+    --lh-ui: 1.4;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.6;
+
+    /* Opacity steps */
+    --op-faint: .4;
+    --op-dim: .72;
+    --op-hover: .85;
+
+    --radius-sm: 4px; --radius: 6px; --radius-lg: 12px; --radius-pill: 9999px;
+    --content-width: 720px;
+    --page-width: 1150px;     /* 720 reading column + ~190px grid gutter each side */
+    --motion: .2s ease;
+    --motion-fast: .15s ease;
+    --ease-out: cubic-bezier(.4, 0, .2, 1);
+    /* shared control hover/press transition */
+    --transition-control:
+      color var(--motion-fast),
+      border-color var(--motion-fast),
+      background-color var(--motion-fast);
+    --ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 3px rgba(0, 0, 0, .06);
+    --shadow-key: 0 1px 0 var(--border-strong);
+
+    --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
   }
 
-  /* Dark theme overrides the colour tokens only; geometry/motion are inherited. */
+  /* Dark theme overrides. */
   [data-theme="dark"] {
-    --bg: #212529;
-    --text: #e0e0e0;
-    --muted: #aaa;
-    --faint: #8c8c8c;
-    --code-bg: #2c3034;
-    --border: #404550;
-    --link: #79a8ff;
-    --visited: #b4a7d6;
-    --accent-quote: #a892d6;
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --bg-2: #1a1a1a;
+    --text: #ededed;
+    --muted: #a1a1a1;
+    --faint: #8f8f8f;
+    --code-bg: #1a1a1a;
+    --border: #2e2e2e;
+    --border-strong: #454545;
+    --grid-cross: #878787;
+    --link: #52a8ff;
+    --visited: #52a8ff;
 
     --surface: var(--code-bg);
-    --surface-2: #343a40;
+    --surface-2: #1f1f1f;
     --accent: var(--link);
-    --accent-hover: #9cc0ff;
 
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.4);
+    --blue-200: #10233d;   --blue-400: #0d3868;   --blue-900: #52a8ff;
+    --green-200: #0f2e18;  --green-400: #0c451b;  --green-900: #62c073;
+    --purple-200: #2e1938; --purple-400: #4f2768; --purple-900: #bf7af0;
+    --amber-200: #331b00;  --amber-400: #573300;  --amber-900: #f2a20d;
+    --red-200: #3c1618;    --red-400: #671e21;    --red-900: #ff6166;
+    --mark-bg: #6b4105;    /* Geist amber-500 */
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .4);
   }
 }

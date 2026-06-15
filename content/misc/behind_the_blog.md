@@ -48,7 +48,7 @@ I use [GitHub Issues] to brainstorm ideas and keep track of my writing. I usuall
 ideas throughout the week, log them in Issues, and then write something over the weekend.
 This workflow is heavily inspired by [Simon Willison's blog] on his workflow.
 
-![image_1]
+![GitHub Issues used as a research notebook]
 
 ## GitHub Actions and GitHub Pages
 
@@ -66,7 +66,7 @@ turning on caching took just a few minutes. Their caching layer absorbs most of 
 and less than 10% of the requests hit the origin server. Plus, having the proxy layer gives
 me access to more accurate analytics.
 
-![image_2]
+![Cloudflare cache analytics dashboard]
 
 Static assets like images, CSS, JS, and other files are stored on [Cloudflare R2]. I used to
 host my images with GitHub Issues and serve CSS and JS from the origin, but I recently
@@ -74,7 +74,7 @@ switched everything to R2. Now I can manage it all from one place without worryi
 costs. Their free plan is super generous - there's no egress bandwidth fee, and because of
 caching, I barely use any of the quota. It's fantastic!
 
-![image_3]
+![Cloudflare R2 dashboard]
 
 ## Oxipng
 

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1260" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Redowan's Reflections cover image</title>
+  <desc id="desc">A clean social preview image for rednafi.com.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ececec" stroke-width="1"/>
+    </pattern>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <clipPath id="grid-clip">
+      <rect x="144" y="157" width="912" height="322"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="630" fill="#fafafa"/>
+
+  <path d="M96 123H1104M96 507H1104M96 123V507M1104 123V507" fill="none" stroke="#dedede" stroke-width="1.5"/>
+  <g clip-path="url(#grid-clip)">
+    <rect x="144" y="157" width="912" height="322" fill="url(#grid)" opacity="0.7"/>
+  </g>
+
+  <path d="M96 123h56M96 123v56M1104 507h-56M1104 507v-56" fill="none" stroke="#171717" stroke-width="2"/>
+  <path d="M144 157h912M144 479h912M144 157v322M1056 157v322" fill="none" stroke="#ededed" stroke-width="1"/>
+
+  <g transform="translate(176 177)">
+    <text x="0" y="0" fill="#666666" font-family="Geist Mono, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="500" letter-spacing="0">rednafi.com</text>
+    <text x="0" y="118" fill="#171717" font-family="Geist, -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif" font-size="82" font-weight="650" letter-spacing="0">Redowan's</text>
+    <text x="0" y="212" fill="#171717" font-family="Geist, -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif" font-size="82" font-weight="650" letter-spacing="0">Reflections</text>
+  </g>
+
+  <g transform="translate(790 171)" filter="url(#soft-shadow)">
+    <rect x="0" y="0" width="288" height="288" rx="18" fill="#ffffff" stroke="#dedede" stroke-width="1.5"/>
+    <path d="M56 86h102c32 0 58 26 58 58v72" fill="none" stroke="#171717" stroke-width="12" stroke-linecap="round"/>
+    <path d="M58 216h84c30 0 54-24 54-54v-26" fill="none" stroke="#9ca3a7" stroke-width="12" stroke-linecap="round"/>
+    <path d="M86 86v130M144 86v130M202 86v130" fill="none" stroke="#d8d8d8" stroke-width="2"/>
+    <circle cx="56" cy="86" r="13" fill="#171717"/>
+    <circle cx="144" cy="216" r="13" fill="#171717"/>
+    <circle cx="216" cy="216" r="13" fill="#6b8f71"/>
+    <circle cx="202" cy="86" r="13" fill="#6b8f71"/>
+    <path d="M68 250h152" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"/>
+    <path d="M68 38h152" fill="none" stroke="#171717" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

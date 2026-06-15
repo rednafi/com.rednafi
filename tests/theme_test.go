@@ -7,43 +7,20 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestDarkThemeVisitedLinkColor verifies that visited links use the dark theme
-// color palette, not the light theme purple.
+// TestDarkThemeVisitedLinkColor verifies that the dark theme defines --visited.
+// Geist links never recolor once visited, so --visited matches the dark --link
+// (Geist Blue 900) rather than a separate visited hue.
 func TestDarkThemeVisitedLinkColor(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	visited, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--visited").trim()`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "#b4a7d6", visited, "dark theme visited link color")
-}
-
-// TestDarkThemeBlockquoteAccent verifies the blockquote accent color changes
-// in dark mode.
-func TestDarkThemeBlockquoteAccent(t *testing.T) {
-	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/")
-
-	lightAccent, err := page.Evaluate(
-		`() => getComputedStyle(document.documentElement).getPropertyValue("--accent-quote").trim()`,
-	)
-	require.NoError(t, err)
-
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
-
-	darkAccent, err := page.Evaluate(
-		`() => getComputedStyle(document.documentElement).getPropertyValue("--accent-quote").trim()`,
-	)
-	require.NoError(t, err)
-
-	assert.NotEqual(t, lightAccent, darkAccent,
-		"blockquote accent should change between themes")
-	assert.Equal(t, "#a892d6", darkAccent)
+	assert.Equal(t, "#52a8ff", visited, "dark theme visited link color")
 }
 
 // TestDarkThemeInlineCodeBg verifies inline code background changes in dark mode.
@@ -58,15 +35,15 @@ func TestDarkThemeInlineCodeBg(t *testing.T) {
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--code-bg").trim()`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "#f2f1eb", lightCodeBg)
+	assert.Equal(t, "#f2f2f2", lightCodeBg)
 
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	darkCodeBg, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--code-bg").trim()`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "#2c3034", darkCodeBg)
+	assert.Equal(t, "#1a1a1a", darkCodeBg)
 }
 
 // TestThemeTransitionsAreSmooth verifies CSS transitions are applied during
@@ -101,7 +78,7 @@ func TestDarkThemeMutedTextColor(t *testing.T) {
 	)
 	require.NoError(t, err)
 
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	darkMuted, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--muted").trim()`,
@@ -111,7 +88,7 @@ func TestDarkThemeMutedTextColor(t *testing.T) {
 	assert.NotEqual(t, lightMuted, darkMuted,
 		"muted color should change between themes")
 	// Dark muted should be lighter than light muted for contrast
-	assert.Equal(t, "#aaa", darkMuted)
+	assert.Equal(t, "#a1a1a1", darkMuted)
 }
 
 // TestDarkThemeBorderColor verifies borders adapt to dark theme.
@@ -119,11 +96,11 @@ func TestDarkThemeBorderColor(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	border, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--border").trim()`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "#404550", border, "dark theme border color")
+	assert.Equal(t, "#2e2e2e", border, "dark theme border color")
 }

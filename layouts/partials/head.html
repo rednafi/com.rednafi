@@ -1,7 +1,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="dns-prefetch" href="https://blob.rednafi.com">
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://blob.rednafi.com">
+{{- if .Params.mermaid }}
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+{{- end }}
 
 {{- $homeURL := "/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
@@ -12,7 +14,7 @@
 {{- $isPaginatedHome = gt $homePaginator.PageNumber 1 }}
 {{- end }}
 {{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage }}
-{{- $pageTitle := cond .IsHome (printf "%s | %s" site.Params.author site.Title) (printf "%s | %s" .Title site.Title) }}
+{{- $pageTitle := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
 
 {{- /* Title */ -}}
 <title>{{ $pageTitle }}</title>
@@ -69,8 +71,9 @@
 <link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}">
 <link rel="icon" type="image/png" href="{{ $png }}">
 <link rel="apple-touch-icon" href="{{ $png }}">
-<meta name="theme-color" content="#fefcf6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#212529" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafafa" data-theme-color>
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 
 {{- /* RSS */ -}}
 {{ range .AlternativeOutputFormats -}}

@@ -95,14 +95,21 @@ func TestFocusVisibleStyles(t *testing.T) {
 		assert.True(t, hasRule.(bool), "CSS should define :focus-visible styles")
 	})
 
-	t.Run("theme toggle shows outline on keyboard focus", func(t *testing.T) {
-		require.NoError(t, page.Locator("button.theme-toggle").Focus())
-		outline, err := page.Locator("button.theme-toggle").Evaluate(
-			`el => getComputedStyle(el).outlineStyle`, nil,
+	t.Run("theme toggle shows a focus indicator on keyboard focus", func(t *testing.T) {
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Focus())
+		// A visible focus indicator is either an outline or a Geist box-shadow
+		// focus ring — accept either.
+		indicator, err := page.Locator("button[data-theme-set='dark']").Evaluate(
+			`el => {
+				const s = getComputedStyle(el);
+				const hasOutline = s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0;
+				const hasRing = s.boxShadow && s.boxShadow !== "none";
+				return hasOutline || hasRing ? "visible" : "none";
+			}`, nil,
 		)
 		require.NoError(t, err)
-		// Chromium may report "auto" or "solid" for focus-visible
-		assert.NotEqual(t, "none", outline, "focused button should have visible outline")
+		assert.Equal(t, "visible", indicator,
+			"focused button should show a visible focus indicator (outline or ring)")
 	})
 }
 
@@ -149,9 +156,9 @@ func TestTOCExpandCollapse(t *testing.T) {
 	})
 }
 
-// TestBackToTopAutoHide verifies the back-to-top button automatically hides
-// after 1.5 seconds of no scrolling (the JS uses setTimeout(1500)).
-func TestBackToTopAutoHide(t *testing.T) {
+// TestBackToTopVisibility verifies the back-to-top button stays keyboard
+// reachable while scrolled down and hides only when returning near the top.
+func TestBackToTopVisibility(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/archive/")
@@ -167,12 +174,20 @@ func TestBackToTopAutoHide(t *testing.T) {
 	require.NoError(t, err)
 	assert.True(t, hasVisible.(bool), "should be visible after scroll")
 
-	// Wait for auto-hide timeout (1.5s + buffer)
+	// It should not disappear while the user is still scrolled down.
 	time.Sleep(2 * time.Second)
 
 	hasVisible, err = btn.Evaluate(`el => el.classList.contains("visible")`, nil)
 	require.NoError(t, err)
-	assert.False(t, hasVisible.(bool), "should auto-hide after 1.5s of no scrolling")
+	assert.True(t, hasVisible.(bool), "should stay visible while scrolled down")
+
+	_, err = page.Evaluate(`() => window.scrollTo(0, 0)`)
+	require.NoError(t, err)
+	time.Sleep(300 * time.Millisecond)
+
+	hasVisible, err = btn.Evaluate(`el => el.classList.contains("visible")`, nil)
+	require.NoError(t, err)
+	assert.False(t, hasVisible.(bool), "should hide near the top")
 }
 
 // TestBreadcrumbsOnDifferentPages verifies breadcrumb navigation renders
@@ -180,8 +195,8 @@ func TestBackToTopAutoHide(t *testing.T) {
 func TestBreadcrumbsOnDifferentPages(t *testing.T) {
 	t.Parallel()
 	pages := map[string][]string{
-		"/go/anemic-stack-traces/": {"home", "go"},
-		"/python/dataclasses/":     {"home", "python"},
+		"/go/anemic-stack-traces/":    {"home", "go"},
+		"/python/dataclasses/":        {"home", "python"},
 		"/misc/pesky-little-scripts/": {"home", "misc"},
 	}
 
@@ -206,36 +221,49 @@ func TestBreadcrumbsOnDifferentPages(t *testing.T) {
 	}
 }
 
-// TestPostListHoverCSS verifies the CSS rule for post list hover state exists.
-// We verify the rule rather than observing computed hover state, because
-// CSS transitions make hover assertions timing-sensitive and flaky.
+// TestPostListHoverCSS verifies the date-forward post list: the hover affordance
+// lives on the title (a colour transition), rows are split by a single hairline,
+// and the date/category meta line sits above the title in DOM and visual order.
+// We verify the rules rather than observing computed hover state, because CSS
+// transitions make hover assertions timing-sensitive and flaky.
 func TestPostListHoverCSS(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	t.Run("post has transition property", func(t *testing.T) {
-		transition, err := page.Locator(".post-list .post").First().Evaluate(
+	t.Run("title has a colour transition for hover", func(t *testing.T) {
+		transition, err := page.Locator(".post-list .post > a").First().Evaluate(
 			`el => getComputedStyle(el).transition`, nil,
 		)
 		require.NoError(t, err)
 		transStr, _ := transition.(string)
-		assert.Contains(t, transStr, "border-color",
-			"post should have border-color transition for hover effect")
+		assert.Contains(t, transStr, "color",
+			"post title should have a colour transition for its hover affordance")
 	})
 
-	t.Run("post has bottom divider", func(t *testing.T) {
-		borderStyle, err := page.Locator(".post-list .post").First().Evaluate(
-			`el => getComputedStyle(el).borderBottomStyle`, nil,
+	t.Run("rows are separated by a hairline", func(t *testing.T) {
+		// A top border sits between siblings (.post + .post): the first row has
+		// none, the second carries a solid hairline.
+		borderStyle, err := page.Locator(".post-list .post").Nth(1).Evaluate(
+			`el => getComputedStyle(el).borderTopStyle`, nil,
 		)
 		require.NoError(t, err)
 		assert.Equal(t, "solid", borderStyle,
-			"post should have a solid bottom divider")
+			"rows after the first should have a solid top hairline")
+	})
+
+	t.Run("meta line is a kicker above the title", func(t *testing.T) {
+		firstClass, err := page.Locator(".post-list .post").First().Evaluate(
+			`el => el.firstElementChild.className`, nil,
+		)
+		require.NoError(t, err)
+		assert.Contains(t, firstClass, "post-meta-line",
+			"meta line should precede the title in DOM order")
 	})
 }
 
-// TestSidebarLinkTransition verifies sidebar links have the CSS transition
-// properties needed for the hover translateX(2px) effect.
+// TestSidebarLinkTransition verifies sidebar links keep a simple color-only
+// hover affordance without motion.
 func TestSidebarLinkTransition(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
@@ -252,14 +280,16 @@ func TestSidebarLinkTransition(t *testing.T) {
 			"sidebar links need inline-block for transform to work")
 	})
 
-	t.Run("has transform transition", func(t *testing.T) {
+	t.Run("has no transform transition", func(t *testing.T) {
 		transition, err := link.Evaluate(
 			`el => getComputedStyle(el).transition`, nil,
 		)
 		require.NoError(t, err)
 		transStr, _ := transition.(string)
-		assert.Contains(t, transStr, "transform",
-			"sidebar link should have transform transition for hover effect")
+		assert.Contains(t, transStr, "color",
+			"sidebar link should have a color transition")
+		assert.NotContains(t, transStr, "transform",
+			"sidebar link hover should not move")
 	})
 }
 
@@ -278,7 +308,7 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 	require.NoError(t, err)
 
 	// Switch to dark
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	// Get the --code-bg variable value in dark theme
 	darkCodeBg, err := page.Evaluate(
@@ -289,5 +319,5 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 	assert.NotEqual(t, lightCodeBg, darkCodeBg,
 		"--code-bg should differ between light (%v) and dark (%v) themes",
 		lightCodeBg, darkCodeBg)
-	assert.Equal(t, "#2c3034", darkCodeBg)
+	assert.Equal(t, "#1a1a1a", darkCodeBg)
 }

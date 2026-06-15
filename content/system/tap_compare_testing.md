@@ -118,12 +118,12 @@ graph TD
         Go --> Log[Log mismatch?]
     end
 
-    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fff
-    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fff
-    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fff
-    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fff
-    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fff
-    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fff
+    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fafafa
+    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fafafa
+    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fafafa
+    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fafafa
+    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fafafa
+    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fafafa
 
     class User userStyle
     class Proxy proxyStyle
@@ -302,12 +302,12 @@ graph TD
         Go --> Log[Log mismatch?]
     end
 
-    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fff
-    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fff
-    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fff
-    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fff
-    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fff
-    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fff
+    classDef userStyle fill:#6b7280,stroke:#4b5563,color:#fafafa
+    classDef proxyStyle fill:#7c3aed,stroke:#5b21b6,color:#fafafa
+    classDef pythonStyle fill:#2563eb,stroke:#1d4ed8,color:#fafafa
+    classDef goStyle fill:#0d9488,stroke:#0f766e,color:#fafafa
+    classDef dbStyle fill:#ca8a04,stroke:#a16207,color:#fafafa
+    classDef logStyle fill:#dc2626,stroke:#b91c1c,color:#fafafa
 
     class User userStyle
     class Proxy proxyStyle

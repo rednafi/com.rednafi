@@ -149,7 +149,7 @@ func TestMermaidPagesRenderAndRerender(t *testing.T) {
 			require.NoError(t, err)
 			assert.Equal(t, tc.BlockCount, svgCount, "each Mermaid block should render to SVG")
 
-			require.NoError(t, page.Locator("button.theme-toggle").Click())
+			require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 			_, err = page.WaitForFunction(
 				`() => document.documentElement.getAttribute('data-theme') === 'dark' &&
@@ -167,7 +167,7 @@ func TestMermaidPagesRenderAndRerender(t *testing.T) {
 			require.NoError(t, err)
 			assert.Equal(t, "dark", darkTheme)
 
-			require.NoError(t, page.Locator("button.theme-toggle").Click())
+			require.NoError(t, page.Locator("button[data-theme-set='light']").Click())
 
 			_, err = page.WaitForFunction(
 				`() => document.documentElement.getAttribute('data-theme') === 'light' &&

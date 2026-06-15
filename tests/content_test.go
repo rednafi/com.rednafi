@@ -216,12 +216,20 @@ func TestTableRendering(t *testing.T) {
 		assert.NotEmpty(t, width, "table should have computed width")
 	})
 
-	t.Run("table has border-collapse", func(t *testing.T) {
+	t.Run("table is a rounded Geist data-table", func(t *testing.T) {
+		// Geist tables use border-collapse:separate + border-spacing:0 so the
+		// table can carry one rounded, hairline-bordered container.
 		collapse, err := table.First().Evaluate(
 			`el => getComputedStyle(el).borderCollapse`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "collapse", collapse)
+		assert.Equal(t, "separate", collapse)
+
+		radius, err := table.First().Evaluate(
+			`el => getComputedStyle(el).borderTopLeftRadius`, nil,
+		)
+		require.NoError(t, err)
+		assert.NotEqual(t, "0px", radius, "table should have rounded corners")
 	})
 
 	t.Run("table header has bottom border", func(t *testing.T) {
@@ -395,7 +403,7 @@ func TestSyntaxHighlightingDarkTheme(t *testing.T) {
 	require.NotNil(t, lightColor)
 
 	// Switch to dark theme
-	require.NoError(t, page.Locator("button.theme-toggle").Click())
+	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
 
 	// Get keyword color in dark theme
 	darkColor, err := page.Evaluate(

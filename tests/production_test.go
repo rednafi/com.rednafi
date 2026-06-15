@@ -153,9 +153,8 @@ func TestTOCSummaryStyling(t *testing.T) {
 	})
 }
 
-// TestPageFadeInAnimation verifies the body has a fade-in animation applied
-// on page load, creating a smooth appearance transition.
-func TestPageFadeInAnimation(t *testing.T) {
+// TestPageHasNoLoadAnimation verifies the body does not animate on page load.
+func TestPageHasNoLoadAnimation(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
@@ -164,6 +163,6 @@ func TestPageFadeInAnimation(t *testing.T) {
 		`() => getComputedStyle(document.body).animationName`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "fade-in", animation,
-		"body should have fade-in animation")
+	assert.Equal(t, "none", animation,
+		"body should not animate on page load")
 }

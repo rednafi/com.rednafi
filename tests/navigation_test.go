@@ -4,6 +4,7 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/playwright-community/playwright-go"
 	"github.com/stretchr/testify/assert"
@@ -21,7 +22,7 @@ func TestConnectSidebarLinks(t *testing.T) {
 	connect := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
 		HasText: "Connect",
 	})
-	heading, err := connect.Locator("h4").TextContent()
+	heading, err := connect.Locator(".aside-section-title").TextContent()
 	require.NoError(t, err)
 	require.Equal(t, "connect", strings.ToLower(strings.TrimSpace(heading)))
 
@@ -73,11 +74,97 @@ func TestConnectSidebarLinks(t *testing.T) {
 			"connect section should have RSS link")
 	})
 
-	t.Run("social links have SVG icons", func(t *testing.T) {
+	t.Run("connect links have SVG icons", func(t *testing.T) {
 		svgs, err := connect.Locator("svg").Count()
 		require.NoError(t, err)
-		assert.GreaterOrEqual(t, svgs, 4, "social links should have SVG icons")
+		assert.Equal(t, count, svgs, "each connect link should have one icon")
 	})
+
+	t.Run("icons inherit link color", func(t *testing.T) {
+		ok, err := connect.Locator("svg").EvaluateAll(
+			`els => els.every(el =>
+				el.getAttribute("fill") === "currentColor"
+			)`,
+		)
+		require.NoError(t, err)
+		assert.True(t, ok.(bool), "connect icons should inherit link color")
+	})
+}
+
+// TestInternalNavigationStaysOnLocalOrigin verifies browser-facing internal
+// links stay relative, so local runs do not jump to the production domain.
+func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
+	t.Parallel()
+
+	t.Run("homepage post links stay local when clicked", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/")
+
+		link := page.Locator(`.article-list .post-list .post > a`).First()
+		href, err := link.GetAttribute("href")
+		require.NoError(t, err)
+		require.True(t, strings.HasPrefix(href, "/"), "post href should be root-relative: %s", href)
+		require.NotContains(t, href, "rednafi.com")
+
+		require.NoError(t, link.Click())
+		assertLocalURL(t, page)
+	})
+
+	t.Run("same-site absolute Markdown links render relative", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/zephyr/footnotes-for-the-win/")
+
+		hrefsRaw, err := page.Locator(`.article-content a[href]`).EvaluateAll(
+			`els => els.map(e => e.getAttribute("href"))`,
+		)
+		require.NoError(t, err)
+		hrefs := toStringSlice(hrefsRaw)
+		require.Contains(t, hrefs, "/")
+		require.NotContains(t, hrefs, "https://rednafi.com")
+	})
+
+	t.Run("search result links stay local when clicked", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/search/")
+
+		err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
+			Timeout: playwright.Float(10000),
+		})
+		require.NoError(t, err)
+		require.NoError(t, page.Locator(".pagefind-ui__search-input").Fill("postgres"))
+
+		result := page.Locator(".pagefind-ui__result-link").First()
+		err = result.WaitFor(playwright.LocatorWaitForOptions{
+			Timeout: playwright.Float(10000),
+		})
+		require.NoError(t, err)
+
+		href, err := result.GetAttribute("href")
+		require.NoError(t, err)
+		require.NotContains(t, href, "rednafi.com")
+
+		require.NoError(t, result.Click())
+		assertLocalURL(t, page)
+	})
+
+	t.Run("alias refresh stays local", func(t *testing.T) {
+		page := newPage(t)
+		_, err := page.Goto(baseURL + "/misc/dns_record_to_share_text/")
+		require.NoError(t, err)
+
+		require.Eventually(t, func() bool {
+			return strings.HasPrefix(page.URL(), baseURL+"/misc/dns-record-to-share-text/")
+		}, 2*time.Second, 50*time.Millisecond)
+		assertLocalURL(t, page)
+	})
+}
+
+func assertLocalURL(t *testing.T, page playwright.Page) {
+	t.Helper()
+	require.Eventually(t, func() bool {
+		return strings.HasPrefix(page.URL(), baseURL+"/")
+	}, 2*time.Second, 50*time.Millisecond)
+	require.NotContains(t, page.URL(), "rednafi.com")
 }
 
 // TestTypeLabels verifies the post list correctly labels posts as
@@ -117,9 +204,9 @@ func TestCategoryChips(t *testing.T) {
 	assert.True(t, chipFound, "homepage posts should show a category chip")
 }
 
-// TestArchiveMonthAnchorNavigation verifies year and month headings in the
-// archive are linkable via anchor fragments.
-func TestArchiveMonthAnchorNavigation(t *testing.T) {
+// TestArchiveYearAnchorNavigation verifies year headings in the archive are
+// linkable via anchor fragments and month section headings are not rendered.
+func TestArchiveYearAnchorNavigation(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/archive/")
@@ -143,24 +230,17 @@ func TestArchiveMonthAnchorNavigation(t *testing.T) {
 		}
 	})
 
-	t.Run("month headings have IDs", func(t *testing.T) {
-		monthHeadings := page.Locator(".archive-month h3")
-		count, err := monthHeadings.Count()
-		require.NoError(t, err)
-		require.Greater(t, count, 0)
-
-		for i := range min(count, 5) {
-			id, err := monthHeadings.Nth(i).GetAttribute("id")
-			require.NoError(t, err)
-			assert.NotEmpty(t, id, "month heading should have an id")
-		}
-	})
-
 	t.Run("archive has year post counts", func(t *testing.T) {
 		sups := page.Locator(".archive-year h2 sup")
 		count, err := sups.Count()
 		require.NoError(t, err)
 		require.Greater(t, count, 0, "year headings should show post counts")
+	})
+
+	t.Run("archive has no month section headings", func(t *testing.T) {
+		count, err := page.Locator(".archive-month, .archive-year h3").Count()
+		require.NoError(t, err)
+		assert.Equal(t, 0, count)
 	})
 }
 
@@ -211,12 +291,12 @@ func TestPaginationStructure(t *testing.T) {
 
 		text, err := pag.TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, text, "prev", "pagination should have prev link")
+		assert.Contains(t, strings.ToLower(text), "prev", "pagination should have prev link")
 	})
 
 	t.Run("has next link", func(t *testing.T) {
 		text, err := pag.TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, text, "next", "pagination on page 2 should have next link")
+		assert.Contains(t, strings.ToLower(text), "next", "pagination on page 2 should have next link")
 	})
 }

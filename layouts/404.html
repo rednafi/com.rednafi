@@ -8,7 +8,7 @@
   <h2>Recent posts</h2>
   <ul>
     {{- range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{- end }}
   </ul>
   <p><a href="/">Back to homepage</a></p>

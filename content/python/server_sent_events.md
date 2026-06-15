@@ -575,7 +575,7 @@ shows a message:
   src="https://user-images.githubusercontent.com/30027932/229604497-0a0b058f-32dd-4219-a68f-9cd35b250334.mov"
   controls="controls"
   style="max-width: 730px"
-  alt="server sent events demo"> </video>
+  aria-label="Server sent events demo"> </video>
 
 Notice, how the server pushes the result of the task automatically once it finishes.
 

@@ -4,4 +4,6 @@
 <img src="{{ .Destination }}"
   {{- with .Text }} alt="{{ . }}"{{ end -}}
   {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- with .Attributes.width }} width="{{ . }}"{{ end -}}
+  {{- with .Attributes.height }} height="{{ . }}"{{ end -}}
   {{- if $isExternal }} referrerpolicy="no-referrer"{{ end }} loading="lazy" decoding="async">

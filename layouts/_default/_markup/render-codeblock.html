@@ -4,6 +4,6 @@
 <div class="mermaid">{{ .Inner }}</div>
 {{- else -}}
 <div class="codeblock">
-  {{ highlight (trim .Inner "\n") $lang .Options }}
+  {{ highlight (trim .Inner "\n") $lang .Options | safeHTML }}
 </div>
 {{- end -}}

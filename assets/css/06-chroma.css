@@ -1,159 +1,48 @@
 @layer chroma {
 
-/* Chroma — modus operandi (light) */
+/* exact vercel.com/geist tokens: keyword=purple-900, name=green-900, string/number=blue-900.
+   Each --*-900 token carries its own dark value, so no [data-theme] overrides are needed. */
+
+pre,
+.chroma {
+  color: var(--text);
+}
+
 .chroma .lnt,
 .chroma .ln {
-  color: #7f7f7f;
+  color: var(--faint);
   user-select: none;
   margin-right: 0.4em;
   padding: 0 0.4em;
 }
-.chroma .k,
-.chroma .kd,
-.chroma .kn,
-.chroma .kp,
-.chroma .kr {
-  color: #5317ac;
+
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr,
+.chroma .na {
+  color: var(--purple-900);
 }
-.chroma .kc {
-  color: #0000c0;
+.chroma .kt, .chroma .nc, .chroma .nn, .chroma .nf, .chroma .fm, .chroma .nb,
+.chroma .bp, .chroma .nd, .chroma .ne, .chroma .nl, .chroma .nt {
+  color: var(--green-900);
 }
-.chroma .kt {
-  color: #005a5f;
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd,
+.chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr,
+.chroma .s1, .chroma .ss,
+.chroma .l, .chroma .ld, .chroma .m, .chroma .mb, .chroma .mf, .chroma .mh,
+.chroma .mi, .chroma .il, .chroma .mo {
+  color: var(--blue-900);
 }
-.chroma .nb,
-.chroma .bp {
-  color: #8f0075;
-}
-.chroma .nv,
-.chroma .vc,
-.chroma .vg,
-.chroma .vi,
-.chroma .vm {
-  color: #00538b;
-}
-.chroma .nf,
-.chroma .fm {
-  color: #721045;
-}
-.chroma .l,
-.chroma .ld,
-.chroma .m,
-.chroma .mb,
-.chroma .mf,
-.chroma .mh,
-.chroma .mi,
-.chroma .il,
-.chroma .mo {
-  color: #0000c0;
-}
-.chroma .s,
-.chroma .sa,
-.chroma .sb,
-.chroma .sc,
-.chroma .dl,
-.chroma .sd,
-.chroma .s2,
-.chroma .se,
-.chroma .sh,
-.chroma .si,
-.chroma .sx,
-.chroma .sr,
-.chroma .s1,
-.chroma .ss {
-  color: #2544bb;
-}
-.chroma .o,
-.chroma .ow {
-  color: #00538b;
-}
-.chroma .c,
-.chroma .ch,
-.chroma .cm,
-.chroma .c1,
-.chroma .cs,
-.chroma .cp,
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp,
 .chroma .cpf {
-  color: #505050;
+  color: var(--faint);
   font-style: italic;
 }
 
-/* Chroma — modus vivendi (dark) */
-[data-theme="dark"] pre,
-[data-theme="dark"] .chroma {
-  color: #fff;
-}
-[data-theme="dark"] .chroma .lnt,
-[data-theme="dark"] .chroma .ln {
-  color: #7f7f7f;
-}
-[data-theme="dark"] .chroma .k,
-[data-theme="dark"] .chroma .kd,
-[data-theme="dark"] .chroma .kn,
-[data-theme="dark"] .chroma .kp,
-[data-theme="dark"] .chroma .kr {
-  color: #b6a0ff;
-}
-[data-theme="dark"] .chroma .kc {
-  color: #00bcff;
-}
-[data-theme="dark"] .chroma .kt {
-  color: #6ae4b9;
-}
-[data-theme="dark"] .chroma .nb,
-[data-theme="dark"] .chroma .bp {
-  color: #f78fe7;
-}
-[data-theme="dark"] .chroma .nv,
-[data-theme="dark"] .chroma .vc,
-[data-theme="dark"] .chroma .vg,
-[data-theme="dark"] .chroma .vi,
-[data-theme="dark"] .chroma .vm {
-  color: #00d3d0;
-}
-[data-theme="dark"] .chroma .nf,
-[data-theme="dark"] .chroma .fm {
-  color: #feacd0;
-}
-[data-theme="dark"] .chroma .l,
-[data-theme="dark"] .chroma .ld,
-[data-theme="dark"] .chroma .m,
-[data-theme="dark"] .chroma .mb,
-[data-theme="dark"] .chroma .mf,
-[data-theme="dark"] .chroma .mh,
-[data-theme="dark"] .chroma .mi,
-[data-theme="dark"] .chroma .il,
-[data-theme="dark"] .chroma .mo {
-  color: #00bcff;
-}
-[data-theme="dark"] .chroma .s,
-[data-theme="dark"] .chroma .sa,
-[data-theme="dark"] .chroma .sb,
-[data-theme="dark"] .chroma .sc,
-[data-theme="dark"] .chroma .dl,
-[data-theme="dark"] .chroma .sd,
-[data-theme="dark"] .chroma .s2,
-[data-theme="dark"] .chroma .se,
-[data-theme="dark"] .chroma .sh,
-[data-theme="dark"] .chroma .si,
-[data-theme="dark"] .chroma .sx,
-[data-theme="dark"] .chroma .sr,
-[data-theme="dark"] .chroma .s1,
-[data-theme="dark"] .chroma .ss {
-  color: #79a8ff;
-}
-[data-theme="dark"] .chroma .o,
-[data-theme="dark"] .chroma .ow {
-  color: #00d3d0;
-}
-[data-theme="dark"] .chroma .c,
-[data-theme="dark"] .chroma .ch,
-[data-theme="dark"] .chroma .cm,
-[data-theme="dark"] .chroma .c1,
-[data-theme="dark"] .chroma .cs,
-[data-theme="dark"] .chroma .cp,
-[data-theme="dark"] .chroma .cpf {
-  color: #a8a8a8;
+/* highlighted line: full-bleed via negative margin equal to pre's --space-4 padding */
+.highlight .line.hl {
+  background-color: color-mix(in srgb, var(--link) 11%, transparent);
+  display: block;
+  margin: 0 calc(-1 * var(--space-4));
+  padding: 0 var(--space-4);
 }
 
 }

@@ -17,10 +17,10 @@ func TestAliasRedirectPages(t *testing.T) {
 	// Sample of known aliases → their canonical targets.
 	// These represent the old underscore-style URLs that were migrated to hyphenated slugs.
 	aliases := map[string]string{
-		"/misc/dns_record_to_share_text/":       "/misc/dns-record-to-share-text/",
-		"/misc/http_requests_via_dev_tcp/":       "/misc/http-requests-via-dev-tcp/",
-		"/misc/dynamic_menu_with_select_in_bash/": "/misc/dynamic-menu-with-select-in-bash/",
-		"/misc/pesky_little_scripts/":            "/misc/pesky-little-scripts/",
+		"/misc/dns_record_to_share_text/":           "/misc/dns-record-to-share-text/",
+		"/misc/http_requests_via_dev_tcp/":          "/misc/http-requests-via-dev-tcp/",
+		"/misc/dynamic_menu_with_select_in_bash/":   "/misc/dynamic-menu-with-select-in-bash/",
+		"/misc/pesky_little_scripts/":               "/misc/pesky-little-scripts/",
 		"/misc/terminal_text_formatting_with_tput/": "/misc/terminal-text-formatting-with-tput/",
 	}
 

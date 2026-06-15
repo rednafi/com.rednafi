@@ -1,7 +1,16 @@
 @layer print {
 
-/* Print */
 @media print {
+  html,
+  body {
+    color-scheme: light !important;
+    color: #171717 !important;
+    background: #fafafa !important;
+  }
+  main::before,
+  main::after {
+    display: none !important;
+  }
   .site-header,
   footer,
   .breadcrumbs,
@@ -16,6 +25,12 @@
   body {
     max-width: 100%;
   }
+  pre,
+  code,
+  table {
+    color: inherit !important;
+    background: transparent !important;
+  }
   a {
     color: inherit;
     text-decoration: underline;
@@ -23,7 +38,7 @@
   a[href]::after {
     content: " (" attr(href) ")";
     font-size: 0.8em;
-    color: #555;
+    color: var(--faint);
   }
   a[href^="#"]::after,
   a[href^="/"]::after {

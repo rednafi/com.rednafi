@@ -34,7 +34,7 @@ func TestSiteBuildSmokeTest(t *testing.T) {
 	t.Run("archive has 100+ posts", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/archive/")
-		count, err := page.Locator(".archive-month .post").Count()
+		count, err := page.Locator(".archive-year .post").Count()
 		require.NoError(t, err)
 		assert.Greater(t, count, 100,
 			"archive should list 100+ posts (got %d)", count)

@@ -5,14 +5,16 @@
   {{- block "head-extra" . }}{{ end }}
   <script>
     (function(){
-      var t = localStorage.getItem("theme");
-      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
+      var preference = "system";
+      try { preference = localStorage.getItem("theme") || "system"; } catch (e) {}
+      var media = window.matchMedia("(prefers-color-scheme: dark)");
+      var resolved = preference === "dark" || (preference === "system" && media.matches) ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", resolved);
+      document.documentElement.setAttribute("data-theme-preference", preference);
     })();
   </script>
 </head>
-<body{{ if .IsHome }} class="home"{{ end }}>
+<body id="top"{{ if .IsHome }} class="home"{{ end }}>
   <a href="#main" class="skip-link">Skip to content</a>
   <div class="page">
     <div class="page-content">
@@ -22,32 +24,110 @@
       </main>
     </div>
     <footer>
-      <a href="/blogroll/">blogroll</a> &middot;
-      <a href="/maxims/">maxims</a> &middot;
-      <a href="/tags/">tags</a>
+      <nav aria-label="Footer">
+        <a href="/blogroll/"{{ if eq .RelPermalink "/blogroll/" }} aria-current="page"{{ end }}>blogroll</a> &middot;
+        <a href="/maxims/"{{ if eq .RelPermalink "/maxims/" }} aria-current="page"{{ end }}>maxims</a> &middot;
+        <a href="/tags/"{{ if eq .RelPermalink "/tags/" }} aria-current="page"{{ end }}>tags</a>
+      </nav>
       <div class="footer-byline">&copy; <a href="/" rel="author">{{ site.Params.author }}</a></div>
     </footer>
-    <a href="#" class="back-to-top" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    <a href="#top" class="back-to-top" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
   </div>
   <script>
-    function toggleTheme(){
-      var d = document.documentElement;
-      var dark = d.getAttribute("data-theme") === "dark";
-      d.setAttribute("data-theme", dark ? "light" : "dark");
-      localStorage.setItem("theme", dark ? "light" : "dark");
-      if(window.__mermaidRerender) window.__mermaidRerender();
-    }
     (function(){
-      var b=document.querySelector('.back-to-top'),t;
-      if(b) window.addEventListener('scroll',function(){
-        clearTimeout(t);
-        if(window.scrollY>300){
-          b.classList.add('visible');
-          t=setTimeout(function(){b.classList.remove('visible');},1500);
-        } else b.classList.remove('visible');
-      },{passive:true});
+      var d = document.documentElement;
+      var media = window.matchMedia("(prefers-color-scheme: dark)");
+      var themeMeta = document.querySelector('meta[name="theme-color"][data-theme-color]');
+
+      function storedPreference(){
+        try { return localStorage.getItem("theme") || "system"; } catch (e) { return "system"; }
+      }
+
+      function writePreference(preference){
+        try { localStorage.setItem("theme", preference); } catch (e) {}
+      }
+
+      function resolvedTheme(preference){
+        return preference === "dark" || (preference === "system" && media.matches) ? "dark" : "light";
+      }
+
+      function updateThemeColor(theme){
+        if(themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#0a0a0a" : "#fafafa");
+      }
+
+      function themeButtons(){
+        return Array.prototype.slice.call(document.querySelectorAll("[data-theme-set]"));
+      }
+
+      function syncThemeButtons(preference){
+        themeButtons().forEach(function(btn){
+          var active = btn.getAttribute("data-theme-set") === preference;
+          btn.setAttribute("aria-checked", String(active));
+          btn.tabIndex = active ? 0 : -1;
+        });
+      }
+
+      function applyTheme(preference, persist){
+        var theme = resolvedTheme(preference);
+        d.setAttribute("data-theme", theme);
+        d.setAttribute("data-theme-preference", preference);
+        if(persist) writePreference(preference);
+        updateThemeColor(theme);
+        syncThemeButtons(preference);
+        if(window.__mermaidRerender) window.__mermaidRerender();
+      }
+
+      themeButtons().forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var preference = btn.getAttribute("data-theme-set");
+          applyTheme(preference, true);
+        });
+        btn.addEventListener("keydown", function(e){
+          var keys = ["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown", "Home", "End"];
+          if(keys.indexOf(e.key) === -1) return;
+          var buttons = themeButtons();
+          var index = buttons.indexOf(btn);
+          if(index === -1) return;
+          e.preventDefault();
+          if(e.key === "Home") index = 0;
+          else if(e.key === "End") index = buttons.length - 1;
+          else if(e.key === "ArrowLeft" || e.key === "ArrowUp") index = (index - 1 + buttons.length) % buttons.length;
+          else index = (index + 1) % buttons.length;
+          buttons[index].focus();
+          applyTheme(buttons[index].getAttribute("data-theme-set"), true);
+        });
+      });
+
+      if(media.addEventListener){
+        media.addEventListener("change", function(){
+          if((d.getAttribute("data-theme-preference") || storedPreference()) === "system") {
+            applyTheme("system", false);
+          }
+        });
+      }
+      applyTheme(storedPreference(), false);
+
+      var b = document.querySelector(".back-to-top");
+      function setBackVisible(show){
+        if(!b) return;
+        b.classList.toggle("visible", show);
+        b.setAttribute("aria-hidden", show ? "false" : "true");
+        b.tabIndex = show ? 0 : -1;
+      }
+      if(b) {
+        window.addEventListener("scroll", function(){
+          setBackVisible(window.scrollY > 300);
+        }, { passive: true });
+        b.addEventListener("click", function(e){
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+          });
+        });
+      }
     })();
   </script>
   {{- if hugo.IsProduction | or (eq site.Params.env "production") }}

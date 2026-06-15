@@ -1,66 +1,145 @@
 @layer components {
 
-/* Small text — uniform size for all secondary content.
-   (.post-list .date is fully styled in the post-list block below.) */
+/* secondary text — uniform size (.post-list .date styled separately below) */
 .post-meta,
 .footnotes,
 .post-tags {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
-/* article date matches the list dates (quiet --faint), for consistency */
+
+/* footnotes — Geist endnote section */
+.footnotes {
+  margin-top: var(--space-10);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  line-height: var(--lh-relaxed);
+}
+/* goldmark emits its own <hr> as the first child of .footnotes — hide it */
+.footnotes > hr {
+  display: none;
+}
+.footnotes ol {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+.footnotes li {
+  margin-bottom: var(--space-2);
+}
+.footnotes li:last-child {
+  margin-bottom: 0;
+}
+.footnotes li::marker {
+  color: var(--faint);
+}
+.footnote-backref {
+  margin-left: var(--space-2);
+  color: var(--faint);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.footnote-backref:hover {
+  color: var(--link);
+}
 .post-meta {
   color: var(--faint);
 }
 
 .section-desc {
-  font-size: 0.95rem;
+  font-size: var(--fs-md);
   color: var(--muted);
   font-style: italic;
 }
 
-/* Breadcrumbs */
 .breadcrumbs {
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-sm);
   color: var(--faint);
 }
+.breadcrumbs a {
+  color: var(--faint);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.breadcrumbs a:visited {
+  color: var(--faint);
+}
+.breadcrumbs a:hover {
+  color: var(--link);
+}
 
-/* Post list */
+/* post list — date-forward, hairline rows (no boxes); identical across all lists */
 .post-list .post {
-  position: relative;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
-  transition: border-color var(--motion-fast);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) 0;
 }
 
-.post-list .post:last-child {
-  border-bottom: none;
+/* local hairline row divider; page-level grid lines live on <main> */
+.post-list .post + .post {
+  border-top: 1px solid var(--border);
 }
 
-.post-list .post:hover {
-  border-bottom-color: var(--border);
+.content-column > article [data-pagefind-body] .article-content {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+.content-column > article [data-pagefind-body] .article-footer {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
 }
 
-/* Meta line: monospace date + uppercase section chip */
+/* rich variant (home / sections / terms): more air for the excerpt */
+.post-list-rich .post {
+  padding: var(--space-6) 0;
+}
+
+/* home: drop first-row top padding so eyebrow→content gap matches the aside headers */
+.index .post-list-rich .post:first-child {
+  padding-top: 0;
+}
+
 .post-meta-line {
   display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  margin-top: 0.3rem;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-2);
 }
 
 .post-list .date {
   color: var(--faint);
-  font-size: 0.85rem;
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  line-height: var(--lh-none);
+  white-space: nowrap;
 }
 
+/* category beside the date, split by a thin vertical rule (::before) */
 .post-cat {
-  font-size: 0.85rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding-left: var(--space-3);
   color: var(--faint);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  line-height: var(--lh-none);
   text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.post-cat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 0.85em;
+  transform: translateY(-50%);
+  background: var(--border-strong);
 }
 .post-cat:visited {
   color: var(--faint);
@@ -69,85 +148,120 @@
   color: var(--link);
 }
 
-/* Rich variant (home / sections / terms): flush titles, calm colour, airy rhythm. */
-.post-list-rich .post {
-  padding: 1.2rem 0 1.3rem;
-}
-
-/* Title treatment — identical across every list (home, sections, terms, archive). */
+/* title — standard reading size, NOT enlarged */
 .post-list .post > a {
   display: block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.38;
   color: var(--text);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
   text-decoration: none;
+  transition: color var(--motion-fast);
 }
-
 .post-list .post > a:visited {
   color: var(--text);
 }
-
-.post-list .post:hover > a {
+.post-list .post > a:hover {
   color: var(--link);
   text-decoration: none;
 }
 
+/* excerpt — two lines max */
 .post-list-rich p {
   display: -webkit-box;
-  margin: 0.5rem 0 0;
-  max-width: 60ch;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  margin: var(--space-2) 0 0;
+  max-width: 64ch;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
 }
 
-/* Article content */
+@media (max-width: 640px) {
+  .post-list .post {
+    padding: var(--space-4) 0;
+  }
+  .post-list-rich .post {
+    padding: var(--space-5) 0;
+  }
+  .post-meta-line {
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+  .post-cat {
+    min-height: 32px;
+    padding-left: var(--space-2);
+  }
+  .post-list .post > a {
+    font-size: var(--fs-lg);
+  }
+  .post-list-rich p {
+    max-width: none;
+    margin-top: var(--space-2);
+  }
+}
+
 .post-list a,
-.toc a,
-.content-column li a {
-  text-decoration: none;
-}
-.post-list a:hover,
-.toc a:hover,
-.content-column li a:hover {
-  text-decoration: underline;
-}
-/* the section chip in the meta line is not a body link — never underline it */
-.post-list a.post-cat:hover {
+article li a {
   text-decoration: none;
 }
 .content-column li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
+}
+.article-content :is(h2, h3, h4, h5, h6) {
+  margin: var(--space-7) 0 var(--space-3);
+}
+.article-content :is(h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+.article-content :is(ul, ol) {
+  margin: 0 0 var(--space-4);
 }
 
-/* Animated underlines in article body */
-article a {
+/* animated underline (gradient, not text-decoration) */
+.article-content a {
   text-decoration: none;
   background-image: linear-gradient(var(--link), var(--link));
   background-size: 0% 1px;
   background-position: center bottom;
   background-repeat: no-repeat;
   transition:
-    background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-size 0.25s var(--ease-out),
     color var(--motion-fast);
 }
 
-article a:hover {
+.article-content a:hover {
   background-size: 100% 1px;
 }
 
-article .anchor,
-article .footnotes a {
+.article-content .anchor,
+.article-content .footnotes a,
+.article-content .footnote-ref {
   background-image: none;
+}
+
+/* in-body footnote ref [n] — excluded from the animated underline above */
+.article-content .footnote-ref {
+  color: var(--link);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
 }
 
 article ul,
 article ol {
-  padding-left: 1.5rem;
+  padding-left: var(--space-6);
+}
+article li::marker {
+  color: var(--faint);
+}
+article dt {
+  font-weight: var(--fw-semibold);
+}
+article dd {
+  margin: 0 0 var(--space-2);
+  padding-left: var(--space-6);
 }
 
 article img,
@@ -159,41 +273,105 @@ article iframe {
 }
 
 article sup {
-  line-height: 1;
+  line-height: var(--lh-none);
 }
 
-/* Code */
+/* snappier taps: drop the 300ms delay + default tap flash */
+.site-title,
+.site-nav a,
+.theme-toggle,
+.pagination a,
+.back-to-top,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 pre,
 code {
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
+/* inline code chip — border mixes toward --border-strong (plain --border vanishes
+   on --code-bg); ligatures off so =>, !=, -> read literally */
 code {
+  font-size: 0.82em;
   background-color: var(--code-bg);
-  padding: 0.1rem 0.3rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+  padding: 0.1rem 0.34rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
+  font-variant-ligatures: none;
+}
+/* code chip inside a link — inherit link hue, keep the frame */
+a > code,
+a code {
+  color: inherit;
 }
 
 pre code {
   padding: 0;
+  font-size: var(--fs-sm);
   background: none;
   border: none;
 }
 
+/* kbd — Geist key cap; raised look = 1px bottom shadow. Hugo wraps combos as
+   nested <kbd>; inner one drops its frame (below) so the combo reads as one. */
+kbd {
+  display: inline-block;
+  min-width: 1.2em;
+  padding: 0.1rem 0.4rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.78em;
+  line-height: var(--lh-ui);
+  text-align: center;
+  white-space: nowrap;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-key);
+}
+kbd kbd {
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
 pre {
   background-color: var(--code-bg);
-  padding: 0.6rem 1rem;
-  margin: 1rem 0;
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
   max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   border-radius: var(--radius);
   border: 1px solid var(--border);
 }
 
+/* slim 8px scrollbar shared by pre / mermaid / table — trims the thumb's 2px inset
+   (built for the 10px page track) so it doesn't shrink to a 4px-thin thumb here */
+pre,
+.mermaid,
+table {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+pre::-webkit-scrollbar,
+.mermaid::-webkit-scrollbar,
+table::-webkit-scrollbar {
+  height: 8px;
+}
+pre::-webkit-scrollbar-thumb,
+.mermaid::-webkit-scrollbar-thumb,
+table::-webkit-scrollbar-thumb {
+  border-width: 1px;
+}
+
 .highlight {
-  margin: 1rem 0;
+  margin: var(--space-4) 0;
 }
 .highlight pre {
   margin: 0;
@@ -202,16 +380,11 @@ pre {
   display: inline-block;
   min-width: 100%;
 }
-.highlight .line.hl {
-  background-color: color-mix(in srgb, var(--link) 12%, transparent);
-  display: block;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-}
+/* .highlight .line.hl lives in the chroma layer (06-chroma.css) */
 
-/* Code block frame (wraps the Chroma output) */
+/* code block frame — wraps the Chroma output */
 .codeblock {
-  margin: 1rem 0;
+  margin: var(--space-4) 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
@@ -224,42 +397,35 @@ pre {
   border: none;
   border-radius: 0;
 }
-/* keep the keyboard focus ring inside the rounded frame (which clips with overflow:hidden) */
+/* inset the focus ring — the rounded frame clips it with overflow:hidden */
 .codeblock pre:focus-visible {
   outline-offset: -2px;
 }
 
-/* Mermaid uses the default (light) theme in both modes, so it sits on a light
-   card to keep the dark edge labels readable on a dark page. Diagrams render at
-   natural size (useMaxWidth:false in single.html) and scale down to fit the
-   reading column at every width, so they never overflow the screen on mobile. */
 .mermaid {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #e6e6e6;
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
 }
 .mermaid svg {
-  /* Scale the diagram down to fit the reading column (it renders at natural
-     size); stays a crisp vector, just smaller. Centered. */
+  /* scale the natural-size diagram down to the reading column (stays vector) */
   display: block;
   margin: 0 auto;
   max-width: 100%;
   height: auto;
 }
 
-/* Theme toggle — the only elements that animate when light/dark flips.
-   The root (html) eases its background + text colour above; these ease their
-   surface and/or border colour. prefers-reduced-motion cancels all of it. */
+/* only these animate on light/dark flip (html eases bg+text above);
+   prefers-reduced-motion cancels all of it */
 pre,
 code,
 blockquote,
-.alert,
-summary {
+.alert {
   transition:
     background-color var(--motion),
     border-color var(--motion);
@@ -270,158 +436,258 @@ footer {
   transition: border-color var(--motion);
 }
 
-/* Blockquotes & Alerts — shared box style */
+/* blockquotes & alerts — Geist Notes. body stays --text for AA; per-variant
+   hue scoped via --note-* props (bg / border / title) */
 blockquote,
 .alert {
-  background-color: var(--code-bg);
-  padding: 0.5rem 1rem;
-  margin: 1rem 0;
+  --note-bg: var(--code-bg);
+  --note-border: var(--border);
+  --note-title: var(--text);
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--note-bg);
+  border: 1px solid var(--note-border);
   border-radius: var(--radius);
+  /* Geist filled Note colors the whole text with the variant hue (--note-title);
+     plain blockquote / gist keep --note-title = --text, so they stay neutral */
+  color: var(--note-title);
 }
 
-blockquote {
-  border-left: 3px solid var(--accent-quote);
-}
-
+/* plain quotes stay italic but keep full --text contrast (AA) */
 blockquote:not(.alert) {
   font-style: italic;
 }
 
-blockquote > p:first-child {
+blockquote > p:first-child,
+.alert > :first-child,
+.alert-title:first-child {
   margin-top: 0;
 }
-blockquote > p:last-child {
+blockquote > p:last-child,
+.alert > :last-child {
   margin-bottom: 0;
 }
-
-.alert {
-  border-left: 3px solid var(--faint);
+.alert > :is(ul, ol) {
+  margin-top: var(--space-1);
 }
 
 .alert-title {
-  font-weight: 700;
-  margin: 0 0 0.25rem;
-}
-.alert-note {
-  border-left-color: #4a86cf;
-}
-.alert-tip {
-  border-left-color: #3a9a5c;
-}
-.alert-important {
-  border-left-color: #b87a2a;
-}
-.alert-warning {
-  border-left-color: #c08a20;
-}
-.alert-caution {
-  border-left-color: #cf3030;
+  font-weight: var(--fw-semibold);
+  margin: 0 0 var(--space-1);
+  color: var(--note-title);
 }
 
-/* Tables */
+.alert :not(pre) > code {
+  background-color: color-mix(in srgb, var(--note-border) 52%, var(--note-bg));
+  border-color: color-mix(in srgb, var(--note-title) 24%, var(--note-border));
+}
+
+/* variant hues — Geist Note: 200 fill, 400 border (visible thin edge), 900 text;
+   each token carries its own dark value, so no separate dark overrides needed */
+.alert-note {
+  --note-bg: var(--blue-200);
+  --note-border: var(--blue-400);
+  --note-title: var(--blue-900);
+}
+.alert-tip {
+  --note-bg: var(--green-200);
+  --note-border: var(--green-400);
+  --note-title: var(--green-900);
+}
+.alert-important {
+  --note-bg: var(--purple-200);
+  --note-border: var(--purple-400);
+  --note-title: var(--purple-900);
+}
+.alert-warning {
+  --note-bg: var(--amber-200);
+  --note-border: var(--amber-400);
+  --note-title: var(--amber-900);
+}
+.alert-caution {
+  --note-bg: var(--red-200);
+  --note-border: var(--red-400);
+  --note-title: var(--red-900);
+}
+.alert-gist {
+  --note-bg: var(--code-bg);
+  --note-border: var(--border-strong);
+  --note-title: var(--text);
+}
+
+/* tables — Geist data-table. border-collapse:separate so the frame can take
+   --radius; no render-hook wrapper, so the rendered body stays identical to RSS */
 table {
-  border-collapse: collapse;
+  display: block;
   width: 100%;
-  font-size: 0.85rem;
+  margin: var(--space-4) 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 table thead th {
-  border-bottom: 1px solid var(--muted);
+  background-color: var(--code-bg);
+  border-bottom: 1px solid var(--border-strong);
   text-align: left;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
 }
 
 table th,
 table td {
-  padding: 0.4rem 0.75rem;
+  padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--border);
 }
 
+/* Geist data-tables use horizontal row dividers ONLY — no column gridlines */
 
+/* last row sits flush on the rounded frame — drop its divider */
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--code-bg) 55%, transparent);
+}
 
-/* Pagination */
+/* shared focus ring for keyboard-tabbable controls (Geist accent box-shadow) */
+table:focus-visible,
+.pagination a:focus-visible,
+.post-tags a:focus-visible,
+summary:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* pagination — Geist secondary buttons; text stays --text in both themes for AA */
 .pagination {
-  margin-top: 2rem;
+  margin-top: var(--space-8);
   display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .pagination a {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-none);
   text-decoration: none;
-  color: var(--muted);
-  transition: color var(--motion-fast);
+  white-space: nowrap;
+  transition: var(--transition-control);
+}
+
+.pagination a:visited {
+  color: var(--text);
 }
 
 .pagination a:hover {
-  color: var(--link);
+  color: var(--text);
+  border-color: var(--border-strong);
+  background-color: var(--surface);
 }
 
-/* Archive */
+.pagination a:active {
+  background-color: var(--surface-2);
+}
+
+/* archive — years read as quiet section dividers */
 .archive-year h2 {
-  margin-top: 1.5rem;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-1);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
 }
-.archive-month h3 {
-  font-size: 1rem;
-  margin-top: 1rem;
+.archive-year h2 a {
+  color: var(--text);
+  text-decoration: none;
+  background: none;
 }
-/* Tags */
+.archive-year h2 a:hover {
+  color: var(--link);
+}
+.archive-year h2 sup {
+  color: var(--faint);
+  font-weight: var(--fw-normal);
+  font-size: 0.7em;
+}
 .post-tags {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1.5rem;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
 }
 
 .post-tags a {
-  display: inline-block;
-  padding: 0.2rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--space-1) var(--space-2);
   background-color: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  /* Geist Badge is a small rounded rectangle, not a full pill. */
+  border-radius: var(--radius-sm);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-ui);
   color: var(--muted);
-  transition:
-    background-color var(--motion-fast),
-    color var(--motion-fast),
-    border-color var(--motion-fast);
+  transition: var(--transition-control);
 }
 
 .post-tags a:visited {
   color: var(--muted);
 }
 .post-tags a:hover {
-  background-color: var(--border);
   color: var(--text);
-  border-color: var(--faint);
+  border-color: var(--border-strong);
+  background-color: var(--surface-2);
 }
 
-/* Tag cloud (the /tags/ page) — reuses .post-tags pills, adds a count chip. */
+/* tag cloud (/tags/) — reuses the .post-tags badge, adds a count chip */
 .tag-cloud {
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
 }
 .tag-cloud .tag-count {
-  margin-left: 0.4rem;
-  padding-left: 0.4rem;
+  margin-left: var(--space-2);
+  padding-left: var(--space-2);
   border-left: 1px solid var(--border);
   color: var(--faint);
   font-variant-numeric: tabular-nums;
 }
 .tag-cloud a:hover .tag-count {
   color: var(--text);
-  border-left-color: var(--faint);
+  border-left-color: var(--border-strong);
+}
+.empty-state {
+  margin: var(--space-4) 0 0;
+  color: var(--muted);
 }
 
-/* Heading anchors */
 .anchor {
   color: var(--faint);
   text-decoration: none;
-  font-weight: normal;
-  margin-left: 0.3rem;
+  font-weight: var(--fw-normal);
+  margin-left: var(--space-1);
   opacity: 0;
   transition: opacity var(--motion-fast);
 }
@@ -432,29 +698,28 @@ h4:hover .anchor,
 h5:hover .anchor,
 h6:hover .anchor,
 .anchor:focus {
-  opacity: 0.4;
+  opacity: var(--op-faint);
 }
 
 .anchor:hover {
   opacity: 1;
 }
 
-/* Back to top */
 .back-to-top {
   position: fixed;
-  bottom: 1.5rem;
-  /* sit just outside the centered page shell: half its width + a 20px gutter */
-  right: max(0.75rem, calc(50% - var(--page-width) / 2 - 20px));
-  width: 2rem;
-  height: 2rem;
+  bottom: var(--space-6);
+  /* sit just outside the centered page shell: half its width + 20px gutter */
+  right: max(var(--space-3), calc(50% - var(--page-width) / 2 - 20px));
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  background: var(--bg);
   border: 1px solid var(--border);
+  box-shadow: none;
   color: var(--muted);
   text-decoration: none;
   opacity: 0;
@@ -462,7 +727,7 @@ h6:hover .anchor,
   transition:
     opacity var(--motion),
     color var(--motion-fast),
-    transform var(--motion-fast);
+    border-color var(--motion-fast);
 }
 
 .back-to-top.visible {
@@ -474,18 +739,24 @@ h6:hover .anchor,
   color: var(--muted);
 }
 .back-to-top:hover {
-  color: var(--link);
-  transform: translateY(-2px);
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface);
 }
 
-/* Section ornament */
+.back-to-top:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--text);
+}
+
 .post-ornament {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  color: var(--muted);
-  font-size: 1.3rem;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+  color: var(--faint);
+  font-size: var(--fs-lg);
 }
 
 .post-ornament::before,
@@ -503,64 +774,193 @@ h6:hover .anchor,
   --dir: right;
 }
 
-/* Horizontal rule */
 hr {
   border: none;
   width: 4rem;
   height: 1px;
-  margin: 2.5rem auto;
+  margin: var(--space-10) auto;
   background: var(--border);
 }
 
-/* Table of contents */
+/* related posts — heading reuses the shared eyebrow (.aside-section-title /
+   .home-section-title); hairline-separated rows */
+.related-posts {
+  margin: var(--space-6) 0 0;
+}
+.related-posts h2 {
+  margin: 0 0 var(--space-2);
+  color: var(--faint);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+}
+.related-posts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.related-posts li + li {
+  border-top: 1px solid var(--border);
+}
+.related-posts li a {
+  display: block;
+  padding: var(--space-2) 0;
+  color: var(--muted);
+  font-size: var(--fs-md);
+  line-height: var(--lh-ui);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.related-posts li a:visited {
+  color: var(--muted);
+}
+.related-posts li a:hover {
+  color: var(--link);
+}
+
+/* TOC — Geist disclosure: bordered summary joins a matching panel when open */
 .toc {
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  margin: var(--space-4) 0;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+}
+.toc[open] > summary {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
+.toc nav {
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+.toc > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 .toc nav ul {
-  padding-left: 1.5rem;
-  margin: 0.5rem 0;
+  margin: 0;
+  padding-left: var(--space-6);
 }
 .toc nav li {
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-1);
+}
+.toc nav li:last-child {
+  margin-bottom: 0;
+}
+.toc a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.toc a:hover {
+  color: var(--link);
+  text-decoration: none;
 }
 
-/* Details / Summary */
+/* details/summary — Geist Collapse. native ▸ marker hidden per-engine (below);
+   chevron is an SVG mask in currentColor so it tracks hover/theme */
 summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
   cursor: pointer;
-  background-color: var(--code-bg);
-  padding: 0.25rem 1rem;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
+  font-size: var(--fs-md);
+  color: var(--muted);
+  list-style: none; /* hide the default ▸ marker (Firefox) */
+  transition: var(--transition-control);
+}
+summary::-webkit-details-marker {
+  display: none; /* hide the default ▸ marker (Chromium/Safari) */
+}
+/* chevron — rotates 90° when open */
+summary::after {
+  content: "";
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--faint);
+  -webkit-mask: var(--chevron-right) center / contain no-repeat;
+  mask: var(--chevron-right) center / contain no-repeat;
+  transition:
+    transform var(--motion),
+    background-color var(--motion-fast);
+}
+details[open] > summary::after {
+  transform: rotate(90deg);
+}
+summary:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+summary:hover::after {
+  background-color: var(--text);
 }
 
-  /* responsive */
-/* Responsive — tablet */
-@media (max-width: 768px) {
+/* open <details> joins its panel as one card; :not(.toc) so the TOC keeps its
+   own tailored padding */
+details:not(.toc)[open] > summary {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
+details:not(.toc)[open] > summary + * {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+/* zero the revealed prose's edge margins so the panel hugs */
+details:not(.toc)[open] > summary + * > :first-child {
+  margin-top: 0;
+}
+details:not(.toc)[open] > summary + * > :last-child {
+  margin-bottom: 0;
+}
+
+/* responsive — tablet */
+@media (max-width: 900px) {
   .index {
     display: block;
   }
   .index aside {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: var(--space-8);
     padding-left: 0;
-    padding-top: 1.5rem;
+    padding-top: var(--space-6);
     border-left: none;
     border-top: 1px solid var(--border);
   }
-  .aside-section:first-child h4 {
-    margin-top: 0;
-  }
 }
 
-/* Responsive — mobile (body + h1 live in the base layer; see 03-base.css) */
+/* responsive — mobile (body + h1 live in 03-base.css) */
 @media (max-width: 640px) {
+  .post-tags a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .pagination a {
+    min-height: 44px;
+  }
   pre {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
+    font-size: var(--fs-xs);
+    /* keep 1rem horizontal so the hl-line full-bleed stays gutter-aligned */
+    padding: var(--space-3) var(--space-4);
   }
 }
 
-/* (profile-panel sidebar stacks naturally on small screens — no grid override needed) */
+/* profile-panel sidebar stacks naturally on small screens — no override needed */
 
 }
