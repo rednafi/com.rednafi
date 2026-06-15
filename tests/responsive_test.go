@@ -85,39 +85,36 @@ func TestMobileCodeBlockOverflow(t *testing.T) {
 	})
 }
 
-// TestMobileFontReduction verifies mobile breakpoint reduces font sizes.
-func TestMobileFontReduction(t *testing.T) {
+// TestMobileTypographyConsistent verifies type sizes do NOT shrink at the mobile
+// breakpoint — desktop sizes carry across unchanged (no screen-based reduction).
+func TestMobileTypographyConsistent(t *testing.T) {
 	t.Parallel()
-	page := newMobilePage(t)
-	goto_(t, page, "/go/anemic-stack-traces/")
+	desktop := newPage(t)
+	goto_(t, desktop, "/go/anemic-stack-traces/")
+	mobile := newMobilePage(t)
+	goto_(t, mobile, "/go/anemic-stack-traces/")
 
-	t.Run("h1 is smaller on mobile", func(t *testing.T) {
-		mobileH1, err := page.Evaluate(
-			`() => parseFloat(getComputedStyle(document.querySelector("h1")).fontSize)`,
+	fontSize := func(page playwright.Page, sel string) float64 {
+		size, err := page.Locator(sel).First().Evaluate(
+			`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
 		)
 		require.NoError(t, err)
-		// CSS: @media (max-width: 640px) { h1 { font-size: var(--fs-xl); } }
-		// At 17px base, --fs-xl (1.3rem) = 22.1px. Desktop h1 is --fs-2xl (1.75rem) = 29.75px
-		assert.Less(t, mobileH1.(float64), float64(24),
-			"h1 should be smaller on mobile (<=1.3rem)")
+		return size.(float64)
+	}
+
+	t.Run("h1 keeps its full size on mobile", func(t *testing.T) {
+		assert.InDelta(t, fontSize(desktop, "h1"), fontSize(mobile, "h1"), 0.2,
+			"h1 should not shrink at the mobile breakpoint")
 	})
 
-	t.Run("pre font is smaller on mobile", func(t *testing.T) {
-		mobilePre, err := page.Evaluate(
-			`() => {
-				const pre = document.querySelector("pre");
-				return pre ? parseFloat(getComputedStyle(pre).fontSize) : 0;
-			}`,
-		)
-		require.NoError(t, err)
-		// CSS: @media (max-width: 640px) { pre { font-size: .8rem; } }
-		assert.Less(t, mobilePre.(float64), float64(15),
-			"pre should use smaller font on mobile")
+	t.Run("pre keeps its full size on mobile", func(t *testing.T) {
+		assert.InDelta(t, fontSize(desktop, "pre"), fontSize(mobile, "pre"), 0.2,
+			"pre should not shrink at the mobile breakpoint")
 	})
 }
 
-// TestPostListTitleTypographyTokens verifies post-list titles scale responsively:
-// the --fs-title token (1.18rem) on desktop, --fs-lg (1.1rem) compact on mobile.
+// TestPostListTitleTypographyTokens verifies post-list titles use the --fs-title
+// token (1.18rem) consistently on desktop and mobile (no responsive reduction).
 func TestPostListTitleTypographyTokens(t *testing.T) {
 	t.Parallel()
 	desktop := newPage(t)
@@ -135,8 +132,8 @@ func TestPostListTitleTypographyTokens(t *testing.T) {
 
 	assert.InDelta(t, 20.0, read(desktop), 0.2,
 		"desktop post-list title should use the --fs-title token (1.18rem at the 17px root)")
-	assert.InDelta(t, 18.7, read(mobile), 0.2,
-		"mobile post-list title should use the --fs-lg token (1.1rem at the 17px root)")
+	assert.InDelta(t, 20.0, read(mobile), 0.2,
+		"mobile post-list title should match desktop (--fs-title, no reduction)")
 }
 
 // TestMobileSidebarWrapping verifies the sidebar stacks full-width below the

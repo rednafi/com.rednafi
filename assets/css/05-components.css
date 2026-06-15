@@ -194,9 +194,6 @@
     min-height: 32px;
     padding-left: var(--space-2);
   }
-  .post-list .post > a {
-    font-size: var(--fs-lg);
-  }
   .post-list-rich p {
     max-width: none;
     margin-top: var(--space-2);
@@ -579,8 +576,7 @@ summary:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
-  padding: 0 var(--space-4);
+  padding: var(--space-2) var(--space-4);
   background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -951,11 +947,7 @@ details:not(.toc)[open] > summary + * > :last-child {
     min-height: 44px;
     min-width: 44px;
   }
-  .pagination a {
-    min-height: 44px;
-  }
   pre {
-    font-size: var(--fs-xs);
     /* keep 1rem horizontal so the hl-line full-bleed stays gutter-aligned */
     padding: var(--space-3) var(--space-4);
   }

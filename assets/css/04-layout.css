@@ -97,8 +97,8 @@
 
 .theme-toggle {
   box-sizing: border-box;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   flex: none;
   padding: 0;
   display: inline-flex;
@@ -146,7 +146,6 @@
   }
   .site-title {
     grid-area: title;
-    font-size: var(--fs-base);
   }
   .site-nav {
     grid-area: nav;
@@ -360,21 +359,6 @@ main::after {
       1px 100%,
       1px 100%,
       1px 100%;
-  }
-}
-
-@media (max-width: 900px), (pointer: coarse) {
-  .site-title {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-  }
-  .site-nav a {
-    min-height: 44px;
-  }
-  .theme-toggle {
-    width: 44px;
-    height: 44px;
   }
 }
 

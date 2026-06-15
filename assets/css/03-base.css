@@ -138,13 +138,9 @@ article p {
   scroll-margin-top: var(--space-4);
 }
 
-/* keep in base layer so layout-layer .home-section-title isn't overridden by an h1 rule */
 @media (max-width: 640px) {
   body {
     padding: var(--space-4);
-  }
-  h1 {
-    font-size: var(--fs-xl);
   }
 }
 
