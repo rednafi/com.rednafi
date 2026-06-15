@@ -157,9 +157,9 @@
       "slug": "mocking-libraries-bleh"
     },
     "content/system/tap_compare_testing.md": {
-      "contentHash": "1383934ee80e504218d2ad01f5cbb6011ae7d98e8199df4e2ce59b70e4d4dacf",
+      "contentHash": "95d45f87250e18e18062f077bcae4bf85d2569c49b411c1b7a88003be227f52a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ici5pd2u",
-      "lastPublished": "2026-06-05T22:23:34.511Z",
+      "lastPublished": "2026-06-15T17:12:26.495Z",
       "slug": "tap-compare-testing"
     },
     "content/go/splintered_failure_modes.md": {
@@ -391,9 +391,9 @@
       "slug": "bash-namerefs"
     },
     "content/misc/behind_the_blog.md": {
-      "contentHash": "41b380f3593026b4b07d1c117f9b624e08c661660326537c43ef1ee0e53f89b3",
+      "contentHash": "0b75cefa5ac916392526b1ca04ef5d31fe543558aa9b8a1ce55b8a3c3badaf5a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e",
-      "lastPublished": "2026-06-05T22:23:39.626Z",
+      "lastPublished": "2026-06-15T17:12:27.337Z",
       "slug": "behind-the-blog"
     },
     "content/misc/shell_redirection.md": {
@@ -793,9 +793,9 @@
       "slug": "exploring-observable-notebooks"
     },
     "content/python/server_sent_events.md": {
-      "contentHash": "20fd92d73e7b5dc01408e27c1729c5b3abbf117c8ab5646e2261fcadaaf46e7f",
+      "contentHash": "860901e0831abddb996c1d9049661ff0805122d47f86ee33fb7e2df09481d540",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iz3had2s",
-      "lastPublished": "2026-06-05T22:23:58.213Z",
+      "lastPublished": "2026-06-15T17:12:27.690Z",
       "slug": "server-sent-events"
     },
     "content/misc/tinkering_with_unix_domain_socket.md": {
@@ -1357,9 +1357,9 @@
       "slug": "dataclasses"
     },
     "content/misc/standard_site.md": {
-      "contentHash": "b0d0c42b78852a7bb4950fd6da39fe0f6c46aa2823feef282f120cfffe5df1f4",
+      "contentHash": "bcb9bfc144feaae27306e3cab77ebe4b25ae0a6c92aec89935c7eaafd0cffc70",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
-      "lastPublished": "2026-06-08T02:03:47.702Z",
+      "lastPublished": "2026-06-15T17:12:26.453Z",
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
