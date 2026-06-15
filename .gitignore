@@ -38,3 +38,5 @@ scripts/gridprobe/
 # Dev-only Geist component probes (computed styles of Note / Pagination / etc.)
 scripts/noteprobe/
 scripts/colorcheck/
+# Dev-only brand image renderer (favicon + social cover SVG -> PNG)
+scripts/ogimage/
