@@ -66,11 +66,14 @@
 {{- $style := resources.Match "css/*.css" | resources.Concat "css/style.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-{{- /* Favicons */ -}}
+{{- /* Favicons — content-hash query busts the browser's sticky favicon cache when the icon changes */ -}}
+{{- $svgV := hash.FNV32a (readFile "static/favicon.svg") }}
+{{- $pngV := hash.FNV32a (readFile "static/favicon.png") }}
+{{- $svg := site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}
 {{- $png := site.Params.assets.favicon_png | default "favicon.png" | absURL }}
-<link rel="icon" type="image/svg+xml" href="{{ site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}">
-<link rel="icon" type="image/png" href="{{ $png }}">
-<link rel="apple-touch-icon" href="{{ $png }}">
+<link rel="icon" type="image/svg+xml" href="{{ printf "%s?v=%d" $svg $svgV | safeURL }}">
+<link rel="icon" type="image/png" href="{{ printf "%s?v=%d" $png $pngV | safeURL }}">
+<link rel="apple-touch-icon" href="{{ printf "%s?v=%d" $png $pngV | safeURL }}">
 <meta name="theme-color" content="#fafafa" data-theme-color>
 <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
