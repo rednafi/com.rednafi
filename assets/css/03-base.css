@@ -140,7 +140,7 @@ article p {
 
 @media (max-width: 640px) {
   body {
-    padding: var(--space-4);
+    padding: var(--space-3);
   }
 }
 
