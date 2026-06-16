@@ -245,7 +245,7 @@
   margin: var(--content-top-band) auto 0;
 }
 
-/* geist grid: rail pair on <main>, crosshair markers only at top-left + bottom-right intersections */
+/* geist grid: framed <main>; list pages keep the later inner rail, entries drop inner rails */
 main {
   --cross: 10px;
   --gx: var(--grid-cross);
@@ -266,26 +266,37 @@ main {
       to bottom,
       var(--border) 0 4px,
       transparent 4px 8px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      var(--border) 0 4px,
-      transparent 4px 8px
     );
   background-repeat: no-repeat;
-  /* top + bottom frame lines, left + right rails, two dashed inner rails */
+  /* top + bottom frame lines, left + right rails, second dashed inner rail */
   background-position:
     0 0,
     0 100%,
     0 0,
     100% 0,
-    33.333% 0,
     66.666% 0;
   background-size:
     100% 1px,
     100% 1px,
     1px 100%,
     1px 100%,
+    1px 100%;
+}
+
+main.main-entry {
+  background-image:
+    linear-gradient(var(--border), var(--border)),
+    linear-gradient(var(--border), var(--border)),
+    linear-gradient(var(--border), var(--border)),
+    linear-gradient(var(--border), var(--border));
+  background-position:
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+  background-size:
+    100% 1px,
+    100% 1px,
     1px 100%,
     1px 100%;
 }
@@ -336,7 +347,7 @@ main::after {
 }
 
 @media (max-width: 900px) {
-  main {
+  main.main-list {
     background-image:
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),

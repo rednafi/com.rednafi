@@ -19,7 +19,8 @@
   <div class="page">
     <div class="page-content">
       {{- partial "site-header.html" . }}
-      <main id="main">
+      {{- $isEntry := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
+      <main id="main" class="{{ if $isEntry }}main-entry{{ else }}main-list{{ end }}">
         {{- block "main" . }}{{ end }}
       </main>
     </div>
