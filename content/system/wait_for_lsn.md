@@ -108,7 +108,7 @@ that lands inside that ten-second window comes back stale.
 The crudest is to sleep before the read. Drop a 100 ms pause between the write and the read
 and hope the lag stays under it. But lag isn't a constant. The pause comes out too long for
 the common case and too short for the bad one, and every request pays it even when the
-replica had already caught up.
+replica had already caught up. This is terrible. Don't do it.
 
 Sticky reads are a step up. After a user writes, route their reads to the primary for a few
 seconds. Plenty of routing layers do exactly this. But now something has to track who wrote
@@ -451,8 +451,9 @@ is pinned: by `REPEATABLE READ` or higher, an open cursor, or a surrounding func
 
 > [!TIP]
 >
-> The simplest habit is to issue `WAIT FOR LSN` on its own, right before the read it's
-> guarding.
+> Put `WAIT FOR LSN` immediately before the read that needs to see the write, as its own
+> top-level statement. Keep it out of transactions, functions, procedures, and `DO` blocks;
+> then you don't have to reason about which snapshot rule applies.
 
 Two more things the docs call out:
 
