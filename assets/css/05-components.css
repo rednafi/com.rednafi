@@ -433,21 +433,20 @@ footer {
   transition: border-color var(--motion);
 }
 
-/* blockquotes & alerts — Geist Notes. body stays --text for AA; per-variant
-   hue scoped via --note-* props (bg / border / title) */
+/* blockquotes & alerts — Geist Notes. variant hue stays structural
+   (fill / border / title); body content stays --text for AA. */
 blockquote,
 .alert {
   --note-bg: var(--code-bg);
   --note-border: var(--border);
   --note-title: var(--text);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
   margin: var(--space-4) 0;
   padding: var(--space-3) var(--space-4);
   background-color: var(--note-bg);
   border: 1px solid var(--note-border);
   border-radius: var(--radius);
-  /* Geist filled Note colors the whole text with the variant hue (--note-title);
-     plain blockquote / gist keep --note-title = --text, so they stay neutral */
-  color: var(--note-title);
+  color: var(--text);
 }
 
 /* plain quotes stay italic but keep full --text contrast (AA) */
@@ -469,14 +468,47 @@ blockquote > p:last-child,
 }
 
 .alert-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-weight: var(--fw-semibold);
-  margin: 0 0 var(--space-1);
+  margin: 0 0 var(--space-3);
+  line-height: var(--lh-ui);
   color: var(--note-title);
 }
 
+.alert-title::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 1em;
+  background-color: currentColor;
+  mask: var(--note-icon) center / 100% 100% no-repeat;
+  -webkit-mask: var(--note-icon) center / 100% 100% no-repeat;
+}
+
+.alert :is(p:not(.alert-title), li, dd) {
+  color: var(--text);
+}
+
+.alert li::marker {
+  color: color-mix(in srgb, var(--note-title) 72%, var(--text));
+}
+
 .alert :not(pre) > code {
-  background-color: color-mix(in srgb, var(--note-border) 52%, var(--note-bg));
-  border-color: color-mix(in srgb, var(--note-title) 24%, var(--note-border));
+  color: var(--text);
+  background-color: color-mix(in srgb, var(--code-bg) 78%, var(--note-bg));
+  border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
+}
+
+.alert :is(pre, .codeblock) {
+  border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
+}
+
+.alert pre {
+  color: var(--text);
+  background-color: color-mix(in srgb, var(--code-bg) 88%, var(--note-bg));
 }
 
 /* variant hues — Geist Note: 200 fill, 400 border (visible thin edge), 900 text;
@@ -485,31 +517,31 @@ blockquote > p:last-child,
   --note-bg: var(--blue-200);
   --note-border: var(--blue-400);
   --note-title: var(--blue-900);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
 }
 .alert-tip {
   --note-bg: var(--green-200);
   --note-border: var(--green-400);
   --note-title: var(--green-900);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.75 14.65 9.35 21.25 12 14.65 14.65 12 21.25 9.35 14.65 2.75 12 9.35 9.35 12 2.75Z'/%3E%3C/svg%3E");
 }
 .alert-important {
   --note-bg: var(--purple-200);
   --note-border: var(--purple-400);
   --note-title: var(--purple-900);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 9 9-9 9-9-9 9-9Z'/%3E%3Cpath d='M12 8v5'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
 }
 .alert-warning {
   --note-bg: var(--amber-200);
   --note-border: var(--amber-400);
   --note-title: var(--amber-900);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
 }
 .alert-caution {
   --note-bg: var(--red-200);
   --note-border: var(--red-400);
   --note-title: var(--red-900);
-}
-.alert-gist {
-  --note-bg: var(--code-bg);
-  --note-border: var(--border-strong);
-  --note-title: var(--text);
+  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2Z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
 }
 
 /* tables — Geist data-table. border-collapse:separate so the frame can take

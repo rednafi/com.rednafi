@@ -108,6 +108,140 @@ func TestAlertRendering(t *testing.T) {
 		require.NoError(t, err)
 		assert.NotEqual(t, "0px", radius, "alert should have border radius")
 	})
+
+	t.Run("supported alert titles have distinctive icons", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/go/testscript-cli/")
+
+		raw, err := page.Evaluate(`() => {
+			const types = ["note", "tip", "important", "warning", "caution"];
+			const probe = document.createElement("div");
+			probe.id = "alert-icon-probe";
+			probe.style.cssText = "position:absolute;left:-9999px;top:0;width:320px";
+			probe.innerHTML = types.map(type =>
+				'<div class="alert alert-' + type + '"><p class="alert-title">' +
+				type + '</p><p>Body</p></div>'
+			).join("");
+			document.body.append(probe);
+
+			const failures = [];
+			const masks = new Set();
+			for (const type of types) {
+				const title = probe.querySelector(".alert-" + type + " .alert-title");
+				const before = getComputedStyle(title, "::before");
+				const titleStyle = getComputedStyle(title);
+				const mask = before.webkitMaskImage || before.maskImage;
+				const width = parseFloat(before.width);
+				const height = parseFloat(before.height);
+				const fontSize = parseFloat(titleStyle.fontSize);
+				const display = before.display;
+				const bg = before.backgroundColor;
+
+				if (display === "none") failures.push(type + ": icon is not displayed");
+				if (!(width > 0 && height > 0)) failures.push(type + ": icon has no size");
+				if (Math.abs(width - fontSize) > 1 || Math.abs(height - fontSize) > 1) {
+					failures.push(type + ": icon should match title text size");
+				}
+				if (!mask || mask === "none") failures.push(type + ": icon mask is missing");
+				if (bg === "rgba(0, 0, 0, 0)") failures.push(type + ": icon has no color");
+				if (mask && mask !== "none") masks.add(mask);
+			}
+			if (masks.size !== types.length) failures.push("alert icons should be distinctive per type");
+			return failures;
+		}`)
+		require.NoError(t, err)
+		require.Empty(t, toStringSlice(raw))
+	})
+
+	t.Run("markdown content keeps readable body color", func(t *testing.T) {
+		requirePage(t, "/go/testscript-cli/")
+		page := newPage(t)
+		goto_(t, page, "/go/testscript-cli/")
+
+		_, err := page.Evaluate(`() => {
+			const article = document.querySelector("article");
+			const probe = document.createElement("div");
+			probe.id = "alert-css-probe";
+			probe.className = "alert alert-warning";
+			probe.innerHTML = [
+				'<p class="alert-title">Warning</p>',
+				'<p>Probe <code>inline</code></p>',
+				'<div class="codeblock"><div class="highlight"><pre><code>plain output</code></pre></div></div>'
+			].join("");
+			article.append(probe);
+		}`)
+		require.NoError(t, err)
+
+		readRootText := func() string {
+			raw, err := page.Evaluate(`() => {
+				const probe = document.createElement("span");
+				probe.style.color = getComputedStyle(document.documentElement)
+					.getPropertyValue("--text").trim();
+				document.body.append(probe);
+				const color = getComputedStyle(probe).color;
+				probe.remove();
+				return color;
+			}`)
+			require.NoError(t, err)
+			color, _ := raw.(string)
+			require.NotEmpty(t, color)
+			return color
+		}
+
+		checkColors := func(theme string) {
+			alert := page.Locator(".alert.alert-note").First()
+			rootText := readRootText()
+
+			for _, tc := range []struct {
+				name     string
+				selector string
+			}{
+				{"body paragraph", "p:not(.alert-title)"},
+				{"list item", "li"},
+				{"inline code", "li code"},
+			} {
+				color, err := alert.Locator(tc.selector).First().Evaluate(
+					`el => getComputedStyle(el).color`, nil,
+				)
+				require.NoError(t, err)
+				assert.Equal(t, rootText, color, "%s: alert %s should use --text", theme, tc.name)
+			}
+
+			titleColor, err := alert.Locator(".alert-title").Evaluate(
+				`el => getComputedStyle(el).color`, nil,
+			)
+			require.NoError(t, err)
+			assert.NotEqual(t, rootText, titleColor, "%s: alert title should keep variant accent", theme)
+
+			codeBg, err := alert.Locator("li code").First().Evaluate(
+				`el => getComputedStyle(el).backgroundColor`, nil,
+			)
+			require.NoError(t, err)
+			assert.NotEqual(t, "rgba(0, 0, 0, 0)", codeBg,
+				"%s: inline code in alerts should keep a visible chip background", theme)
+
+			preColor, err := page.Locator("#alert-css-probe pre").Evaluate(
+				`el => getComputedStyle(el).color`, nil,
+			)
+			require.NoError(t, err)
+			assert.Equal(t, rootText, preColor, "%s: code blocks in alerts should use --text", theme)
+
+			preBg, err := page.Locator("#alert-css-probe pre").Evaluate(
+				`el => getComputedStyle(el).backgroundColor`, nil,
+			)
+			require.NoError(t, err)
+			alertBg, err := page.Locator("#alert-css-probe").Evaluate(
+				`el => getComputedStyle(el).backgroundColor`, nil,
+			)
+			require.NoError(t, err)
+			assert.NotEqual(t, alertBg, preBg,
+				"%s: code blocks in alerts should remain visually separated from the alert fill", theme)
+		}
+
+		checkColors("light")
+		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		checkColors("dark")
+	})
 }
 
 // TestAlertMarkdownSpacing enforces the markdown shape required by Hugo/Goldmark
