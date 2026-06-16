@@ -352,22 +352,15 @@ main::after {
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),
-      linear-gradient(var(--border), var(--border)),
-      repeating-linear-gradient(
-        to bottom,
-        var(--border) 0 4px,
-        transparent 4px 8px
-      );
+      linear-gradient(var(--border), var(--border));
     background-position:
       0 0,
       0 100%,
       0 0,
-      100% 0,
-      50% 0;
+      100% 0;
     background-size:
       100% 1px,
       100% 1px,
-      1px 100%,
       1px 100%,
       1px 100%;
   }

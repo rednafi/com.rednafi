@@ -178,6 +178,15 @@ func TestMobileSidebarWrapping(t *testing.T) {
 		assert.Equal(t, "solid", borderStyle,
 			"mobile aside should have top border separator")
 	})
+
+	t.Run("stacked home frame has no inner rail", func(t *testing.T) {
+		bg, err := page.Locator("main.main-list").Evaluate(
+			`el => getComputedStyle(el).backgroundImage`, nil,
+		)
+		require.NoError(t, err)
+		assert.NotContains(t, bg.(string), "repeating-linear-gradient",
+			"stacked home layout should not draw the inner vertical rail")
+	})
 }
 
 // TestMobileHighlightedLineFullWidth verifies that highlighted code lines
