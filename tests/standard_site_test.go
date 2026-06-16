@@ -91,6 +91,19 @@ func TestStandardSiteDocumentLinkTagsWhenPublished(t *testing.T) {
 	}
 }
 
+func TestStandardSitePreviewCardUsesSiteImage(t *testing.T) {
+	t.Parallel()
+
+	page := newPage(t)
+	goto_(t, page, "/misc/standard-site/")
+
+	cardImage, err := page.Locator(".bskycard__media img").GetAttribute("src")
+	require.NoError(t, err)
+	ogImage, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
+	require.NoError(t, err)
+	assert.Equal(t, ogImage, cardImage)
+}
+
 func TestStandardSiteFrontmatterPaths(t *testing.T) {
 	t.Parallel()
 

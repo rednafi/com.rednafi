@@ -139,7 +139,6 @@ a live, clickable one right here instead of a screenshot:
 
 {{< bskycard
     url="https://rednafi.com/zephyr/carry-the-pager/"
-    image="https://blob.rednafi.com/static/images/home/cover-733b7e867a29.png"
     title="If you won't carry the pager, maybe don't push to mainline"
     description="Drive-by AI changes break the shared model a team builds around its code, and the ICs end up cleaning up the mess. Why pushing to mainline should come with the pager."
     date="May 30, 2026"
