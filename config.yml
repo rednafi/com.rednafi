@@ -47,7 +47,11 @@ params:
 
   schema:
     jobTitle: Software Engineer
-    alternateName: rednafi
+    givenName: Redowan
+    familyName: Delowar
+    alternateName:
+      - rednafi
+      - Redowan
     wikidataId: Q139619919
     knowsAbout:
       - "Go"
@@ -62,6 +66,7 @@ params:
       - "https://x.com/rednafi"
       - "https://www.wikidata.org/wiki/Q139619919"
     websiteAlternateName:
+      - "Redowan Delowar"
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-

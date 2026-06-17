@@ -15,7 +15,7 @@
 {{- $homePaginator := .Paginate $pages }}
 {{- $isPaginatedHome = gt $homePaginator.PageNumber 1 }}
 {{- end }}
-{{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage }}
+{{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage .Params.profilePage }}
 {{- $pageTitle := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
 
 {{- /* Title */ -}}
@@ -158,6 +158,16 @@
 {{- $schema = merge $schema (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "isPartOf" (dict "@type" "WebSite" "@id" $websiteId)) }}
 {{- with (.Params.images | default site.Params.images) }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
+{{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+{{- else if .Params.profilePage }}
+{{- /* ProfilePage → Person: Google's documented markup for an author/creator
+       profile. Pairs the same #person entity (consistent @id across home,
+       articles, and here) so the name "Redowan Delowar", the handle "rednafi",
+       and the site reconcile to one knowledge-graph entity. */ -}}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
+{{- $profile := dict "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink) "url" .Permalink "name" $pageTitle "isPartOf" (dict "@id" $websiteId) "mainEntity" (dict "@id" $personId) }}
+{{- with .Lastmod }}{{ $profile = merge $profile (dict "dateModified" (.Format $iso8601)) }}{{ end }}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $profile $person) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- end }}
 {{- /* BreadcrumbList JSON-LD */ -}}

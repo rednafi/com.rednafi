@@ -132,6 +132,66 @@ func TestIdentityLinks(t *testing.T) {
 	})
 }
 
+// TestAboutProfilePageSchema verifies the /about page is indexable and carries
+// ProfilePage → Person JSON-LD. This is the canonical author-identity page;
+// Google uses it to reconcile "Redowan Delowar", the handle "rednafi", and the
+// site into one knowledge-graph entity, so it must be indexable (not noindex)
+// and expose the full Person with sameAs links.
+func TestAboutProfilePageSchema(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/about/")
+
+	t.Run("is indexable", func(t *testing.T) {
+		content, err := page.Locator(`meta[name="robots"]`).GetAttribute("content")
+		require.NoError(t, err)
+		assert.Equal(t, "index, follow", content,
+			"/about is the author-identity page and must be indexable")
+	})
+
+	jsonLd, err := page.Locator(`script[type="application/ld+json"]`).TextContent()
+	require.NoError(t, err)
+	var schema map[string]any
+	require.NoError(t, json.Unmarshal([]byte(jsonLd), &schema))
+
+	graph, ok := schema["@graph"].([]any)
+	require.True(t, ok, "@graph should be an array")
+
+	var profile, person map[string]any
+	for _, item := range graph {
+		m, _ := item.(map[string]any)
+		switch m["@type"] {
+		case "ProfilePage":
+			profile = m
+		case "Person":
+			person = m
+		}
+	}
+
+	t.Run("has ProfilePage pointing at the Person entity", func(t *testing.T) {
+		require.NotNil(t, profile, "ProfilePage object missing")
+		mainEntity, ok := profile["mainEntity"].(map[string]any)
+		require.True(t, ok, "ProfilePage mainEntity should be an object")
+		assert.Equal(t, "https://rednafi.com/#person", mainEntity["@id"])
+	})
+
+	t.Run("Person has full identity", func(t *testing.T) {
+		require.NotNil(t, person, "Person object missing")
+		assert.Equal(t, "Redowan Delowar", person["name"])
+		assert.Equal(t, "https://rednafi.com/#person", person["@id"])
+		assert.Equal(t, "Redowan", person["givenName"])
+		assert.Equal(t, "Delowar", person["familyName"])
+
+		alt, ok := person["alternateName"].([]any)
+		require.True(t, ok, "alternateName should be an array")
+		assert.Contains(t, alt, "rednafi", "handle should be an alternate name")
+
+		sameAs, ok := person["sameAs"].([]any)
+		require.True(t, ok, "sameAs should be an array")
+		assert.GreaterOrEqual(t, len(sameAs), 3, "should link out to social profiles")
+	})
+}
+
 // TestArticleSchemaCompleteness verifies BlogPosting JSON-LD includes all
 // fields needed for Google's article rich results.
 func TestArticleSchemaCompleteness(t *testing.T) {
@@ -245,7 +305,7 @@ func TestOGImageDimensions(t *testing.T) {
 	t.Run("has og:image", func(t *testing.T) {
 		src, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "https://blob.rednafi.com/static/images/home/cover-eaf0cdc39628.png", src)
+		assert.Equal(t, "https://blob.rednafi.com/static/images/home/cover-f2ff1368085b.png", src)
 	})
 
 	t.Run("has og:image:width", func(t *testing.T) {

@@ -1,5 +1,7 @@
 {{- $person := merge . (dict "@id" (printf "%s#person" ("/" | absURL))) -}}
 {{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
+{{- with site.Params.schema.givenName }}{{ $person = merge $person (dict "givenName" .) }}{{ end }}
+{{- with site.Params.schema.familyName }}{{ $person = merge $person (dict "familyName" .) }}{{ end }}
 {{- with site.Params.schema.alternateName }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
 {{- with site.Params.schema.image }}{{ $person = merge $person (dict "image" .) }}{{ end }}
 {{- with site.Params.schema.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end }}

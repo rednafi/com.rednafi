@@ -163,7 +163,7 @@
   display: block;
   color: var(--text);
   font-size: var(--fs-list-title);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   line-height: 1.2;
   letter-spacing: -0.04em;
   text-wrap: balance;

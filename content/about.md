@@ -1,6 +1,7 @@
 ---
 title: About
 layout: about
+profilePage: true
 hideMeta: true
 hideRelated: true
 hideBreadcrumbs: true

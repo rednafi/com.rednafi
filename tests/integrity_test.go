@@ -90,6 +90,9 @@ func TestRSSFeedGeneratorTag(t *testing.T) {
 
 // TestBodyOverflowHidden verifies the body prevents horizontal scrolling.
 // If this breaks, long code blocks or images cause a horizontal scrollbar.
+// The body uses overflow-x: clip (not hidden) so it doesn't become a scroll
+// container — that would silently kill the sticky header. A `hidden` fallback
+// precedes `clip` for old browsers, but modern engines compute `clip`.
 func TestBodyOverflowHidden(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
@@ -99,8 +102,8 @@ func TestBodyOverflowHidden(t *testing.T) {
 		`() => getComputedStyle(document.body).overflowX`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "hidden", overflow,
-		"body should have overflow-x: hidden to prevent horizontal scroll")
+	assert.Equal(t, "clip", overflow,
+		"body should have overflow-x: clip to prevent horizontal scroll without breaking sticky")
 }
 
 // TestSmoothScrollBehavior verifies the page uses smooth scrolling for
