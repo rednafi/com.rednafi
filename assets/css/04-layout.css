@@ -1,22 +1,33 @@
 @layer layout {
 
 .site-header {
+  /* slim, glassy, sticky bar — vercel.com top-nav metrics */
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-3);
   margin-bottom: var(--space-7);
-  padding-bottom: var(--space-3);
+  /* even vertical padding → consistent bar height */
+  padding-block: var(--space-3);
   border-bottom: 1px solid var(--border);
   /* full-width: border spans rail to rail; gutter padding keeps title/links aligned with reading column */
   max-width: none;
   padding-inline: var(--rail);
+  /* translucent frosted backdrop like vercel's sticky nav (opaque fallback) */
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
 }
 
 .site-title {
   font-weight: var(--fw-semibold);
   font-size: var(--fs-lg);
   line-height: var(--lh-ui);
+  letter-spacing: -0.02em;
   text-decoration: none;
   color: var(--text);
   transition: opacity var(--motion-fast);
@@ -36,69 +47,44 @@
   box-shadow: var(--ring);
 }
 
-.site-nav {
+/* right-side cluster: search · theme switcher · | · menu — one row of
+   equal-height (32px) controls. margin-left:auto pushes it to the rail. */
+.header-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
   margin-left: auto;
 }
 
-/* quiet links lift to --text + geist pill on hover */
-.site-nav a {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.95rem;
-  line-height: var(--lh-ui);
-  color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius);
-  transition: var(--transition-control);
+/* hairline divider setting the menu trigger apart from the utility controls */
+.header-divider {
+  flex: none;
+  width: 1px;
+  height: 18px;
+  background: var(--border);
 }
 
-.site-nav a:visited {
-  color: var(--muted);
-}
-
-.site-nav a:hover {
-  color: var(--text);
-  background-color: var(--surface);
-}
-
-.site-nav a:active {
-  background-color: var(--surface-2);
-}
-
-.site-nav a:focus-visible {
-  outline: none;
-  color: var(--text);
-  box-shadow: var(--ring);
-}
-
-.site-nav a[aria-current="page"] {
-  color: var(--text);
-  background-color: var(--surface);
-}
-
-/* three-state geist theme switcher: segmented control, icon-only buttons */
+/* three-state geist theme switcher: segmented control, icon-only buttons —
+   sized down to vercel's footer switcher (24px segments) */
 .theme-switcher {
+  box-sizing: border-box;
+  /* 32px tall, matching the search + hamburger icon buttons exactly */
+  height: 32px;
   display: inline-flex;
   align-items: center;
   position: relative;
   gap: 2px;
-  margin-left: var(--space-1);
+  padding: 2px;
   background: var(--surface);
   border: 1px solid var(--border);
-  /* nested-control radius: inner --radius + the 2px gap so corners stay concentric */
-  border-radius: calc(var(--radius) + 2px);
+  /* same outer radius as the icon buttons so the cluster reads as one set */
+  border-radius: var(--radius);
 }
 
 .theme-toggle {
   box-sizing: border-box;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   flex: none;
   padding: 0;
   display: inline-flex;
@@ -106,10 +92,15 @@
   justify-content: center;
   background: none;
   border: none;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   color: var(--muted);
   cursor: pointer;
   transition: var(--transition-control);
+}
+
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
 }
 
 .theme-toggle:hover {
@@ -133,31 +124,207 @@
   box-shadow: var(--ring);
 }
 
-@media (max-width: 600px) {
-  .site-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "title title"
-      "nav   toggle";
-    column-gap: var(--space-4);
-    row-gap: var(--space-2);
-    align-items: center;
+/* icon buttons in the bar: the search link + the hamburger share one box */
+.nav-toggle,
+.nav-icon {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* same surface fill as the theme switcher so all three read as one matched
+     set (an outline-only box looks lighter/smaller next to the filled pill) */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-control);
+}
+
+.nav-toggle:hover,
+.nav-icon:hover {
+  color: var(--text);
+  background-color: var(--surface-2);
+}
+
+.nav-icon:visited {
+  color: var(--muted);
+}
+.nav-icon[aria-current="page"] {
+  color: var(--text);
+  background-color: var(--surface-2);
+}
+
+.nav-toggle:focus-visible,
+.nav-icon:focus-visible {
+  outline: none;
+  color: var(--text);
+  box-shadow: var(--ring);
+}
+
+.nav-toggle__bars {
+  position: relative;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--motion-fast);
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: var(--radius-pill);
+  transition:
+    top var(--motion-fast),
+    bottom var(--motion-fast),
+    transform var(--motion-fast);
+}
+
+.nav-toggle__bars::before {
+  top: -5px;
+}
+
+.nav-toggle__bars::after {
+  bottom: -5px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+/* trigger wrapper — static so the panel anchors to the (positioned) header and
+   can span its full width like vercel's nav mega-panel */
+.nav-menu {
+  position: static;
+  display: inline-flex;
+}
+
+/* full-width mega-panel that drops below the bar: no card, just a hairline
+   bottom edge, grouped columns + large near-black items (vercel.com nav) */
+.site-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: var(--space-8) var(--rail) var(--space-10);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transform-origin: top center;
+  transition:
+    opacity var(--motion-fast),
+    transform var(--motion-fast);
+}
+
+.site-menu[hidden] {
+  display: none;
+}
+
+/* closed (during the exit transition): faded + lifted; .is-open settles it.
+   pointer-events:none so the invisible panel never intercepts clicks/focus even
+   if `hidden` lags (e.g. an interrupted transition) */
+.site-menu:not(.is-open) {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.site-menu.is-open {
+  opacity: 1;
+  transform: none;
+}
+
+/* grouped columns with uppercase eyebrows (vercel nav mega-panel) */
+.site-menu__cols {
+  display: flex;
+  gap: clamp(var(--space-8), 6vw, var(--space-12));
+}
+.site-menu__group {
+  min-width: 9rem;
+}
+.site-menu__eyebrow {
+  margin: 0 0 var(--space-4);
+  color: var(--faint);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: var(--lh-ui);
+}
+
+.site-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* large, near-black, regular-weight links — the vercel mega-panel item style */
+.site-menu a {
+  display: block;
+  padding: var(--space-1) 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-normal);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--motion-fast);
+}
+
+.site-menu a:visited {
+  color: var(--text);
+}
+
+.site-menu a:hover {
+  color: var(--muted);
+}
+
+.site-menu a:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+
+.site-menu a[aria-current="page"] {
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-menu {
+    transition: none;
   }
-  .site-title {
-    grid-area: title;
+}
+
+/* phones: stack the groups so the panel never gets cramped */
+@media (max-width: 640px) {
+  .site-menu {
+    padding: var(--space-6) var(--rail) var(--space-8);
   }
-  .site-nav {
-    grid-area: nav;
-    margin-left: calc(-1 * var(--space-3)); /* = nav link padding-left, so chip text sits flush with the title's left edge */
-    gap: var(--space-1);
-    align-self: center;
-  }
-  .theme-switcher {
-    grid-area: toggle;
-    align-self: center;
-    margin-left: 0;
-    margin-right: calc(-1 * var(--space-1)); /* align the control with the header's right edge */
+  .site-menu__cols {
+    flex-direction: column;
+    gap: var(--space-6);
   }
 }
 
@@ -169,6 +336,7 @@
   /* shared with .home-section-title / .related-posts h2 so all eyebrows match */
   margin: 0 0 var(--space-6);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .aside-section + .aside-section {
@@ -189,12 +357,12 @@
   font-size: var(--fs-base);
 }
 
+/* /about bio reads as normal blog body text — roman, body color, article size */
 .aside-bio p {
-  margin: 0 0 var(--space-3);
-  font-style: italic;
-  color: var(--muted);
-  font-size: var(--fs-base);
-  line-height: var(--lh-normal);
+  margin: 0 0 var(--space-4);
+  color: var(--text);
+  font-size: var(--fs-article);
+  line-height: var(--lh-article);
 }
 
 .aside-bio p:last-child {
@@ -211,32 +379,226 @@
   gap: var(--space-2);
 }
 
-.index {
+/* landing intro hero — its own crosshair-framed container, separated from the
+   feed below by the hero's own border + the gap. */
+.home-intro {
+  margin-bottom: var(--space-8);
+}
+
+/* landing intro — a crosshair-framed container (the site's own grid language),
+   centered copy + social icons, with a monochrome particle-fluid band flowing
+   low across it (hero-fluid.js), à la vercel.com/fluid. Identical on every
+   width. Re-themes light/dark. */
+.hero {
+  --cross: 10px;
+  --gx: var(--grid-cross);
+  position: relative;
   display: flex;
-  gap: var(--space-12);
-  margin-top: var(--content-top-band);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: clamp(320px, 38vw, 420px);
+  margin-bottom: var(--space-8);
+  padding: clamp(var(--space-8), 6vw, var(--space-12));
 }
-.index .article-list {
-  flex-grow: 1;
-  min-width: 0;
+/* the framed box: the border + the clipped particle canvas */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
 }
-.index .home-section-title {
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* keep paper over the upper/centre where the copy lives; let the band show low */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--bg) 0%,
+    var(--bg) 46%,
+    color-mix(in srgb, var(--bg) 50%, transparent) 70%,
+    transparent 90%
+  );
+}
+.hero__body {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: 34rem;
+}
+/* hero copy hierarchy: a big name lead over a normal-size, muted descriptor */
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 40rem;
+}
+.hero__lead {
+  margin: 0;
+  color: var(--text);
+  /* same scale as a blog post title (page h1): 40px mobile → 48px desktop */
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-display);
+  /* matches the page h1 tracking (vercel.com/blog) */
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+.hero__tagline {
+  margin: 0;
+  color: var(--muted);
+  /* vercel subtitle scale: 16px mobile → 20px desktop */
+  font-size: clamp(16px, 14.2px + 0.45vw, 20px);
+  line-height: var(--lh-normal);
+  text-wrap: balance;
+}
+
+/* two crosshair corner marks — top-left + bottom-right, matching the main frame */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: calc(2 * var(--cross) + 1px);
+  height: calc(2 * var(--cross) + 1px);
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(var(--gx), var(--gx)),
+    linear-gradient(var(--gx), var(--gx));
+  background-position: var(--cross) 0, 0 var(--cross);
+  background-size: 1px 100%, 100% 1px;
+}
+.hero::before {
+  top: calc(-1 * var(--cross));
+  left: calc(-1 * var(--cross));
+}
+.hero::after {
+  bottom: calc(-1 * var(--cross));
+  right: calc(-1 * var(--cross));
+}
+
+/* social icon row — always a single line (only five small icons) */
+.connect-icons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--space-5);
+}
+.connect-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faint);
+  transition: color var(--motion-fast);
+}
+.connect-icons a:visited {
+  color: var(--faint);
+}
+.connect-icons a:hover {
+  color: var(--text);
+}
+.connect-icons a:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+@media (max-width: 640px) {
+  /* smaller crosshairs to match the main grid; tighter padding so the icon row
+     fits the narrow card; the centred layout + low band stay identical to
+     desktop — the animation is never dropped */
+  .hero {
+    --cross: 6px;
+    padding: clamp(var(--space-5), 5vw, var(--space-8));
+  }
+  /* compact enough that all five icons stay inside the box down to ~280px */
+  .connect-icons {
+    gap: var(--space-3);
+  }
+  .connect-icons a {
+    min-width: 32px;
+    min-height: 44px;
+  }
+}
+
+/* one clean entrance fade-up on load; only when motion is welcome */
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero {
+    animation: home-hero-rise 0.55s var(--ease-out) both;
+  }
+}
+@keyframes home-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* compact social row — evenly gapped links (gap-based, so wrapping on narrow
+   screens never leaves a stray separator at the start of a line) */
+.connect-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-5);
+  margin-top: var(--space-5);
+  font-size: 0.95rem;
+  line-height: var(--lh-ui);
+}
+.connect-inline a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.connect-inline a:visited {
+  color: var(--muted);
+}
+.connect-inline a:hover {
+  color: var(--link);
+}
+.connect-inline a:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+@media (max-width: 640px) {
+  /* comfortable touch targets (matches nav / tags / pagination) */
+  .connect-inline a {
+    min-height: 44px;
+  }
+}
+
+/* home — a single centered column of writings (no sidebar), identical in shape
+   on mobile and desktop; the bio lives on the dedicated /about page */
+.home-section-title {
   color: var(--faint);
   font-size: var(--fs-2xs);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-tight);
-  /* matches .aside-section-title gap; first post's top padding is zeroed in 05-components.css */
+  /* first post's top padding is zeroed in 05-components.css */
   margin: 0 0 var(--space-6);
   text-transform: uppercase;
-}
-
-/* no extra top padding: keeps aside divider flush with section labels (header already adds the gap) */
-
-.index aside {
-  width: 32%;
-  min-width: 0;
-  align-self: flex-start;
-  padding-left: var(--space-6);
+  letter-spacing: 0.04em;
 }
 
 /* reading column, centred in <main> with a wide gutter to the rails */
@@ -261,24 +623,17 @@ main {
     linear-gradient(var(--border), var(--border)),
     linear-gradient(var(--border), var(--border)),
     linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border)),
-    repeating-linear-gradient(
-      to bottom,
-      var(--border) 0 4px,
-      transparent 4px 8px
-    );
+    linear-gradient(var(--border), var(--border));
   background-repeat: no-repeat;
-  /* top + bottom frame lines, left + right rails, second dashed inner rail */
+  /* top + bottom frame lines, left + right rails */
   background-position:
     0 0,
     0 100%,
     0 0,
-    100% 0,
-    66.666% 0;
+    100% 0;
   background-size:
     100% 1px,
     100% 1px,
-    1px 100%,
     1px 100%,
     1px 100%;
 }
@@ -338,6 +693,14 @@ main::after {
     100% 1px;
 }
 
+/* the open nav mega-panel drops over the content's top-left corner; its mark
+   pokes out just left of the panel edge — hide the top-left crosshairs while
+   the panel is open so nothing bleeds beside it */
+body:has(.site-menu.is-open) main::before,
+body:has(.site-menu.is-open) .hero::before {
+  opacity: 0;
+}
+
 @media (max-width: 640px) {
   main {
     --grid-top-band: var(--space-2);
@@ -367,15 +730,21 @@ main::after {
 }
 
 footer {
-  margin-top: var(--space-8);
-  padding: var(--space-3) 0;
+  /* vercel-tone footer: hairline top border, muted, center-aligned column with
+     the theme switcher at the bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: var(--space-3);
+  margin-top: var(--space-10);
+  padding: var(--space-8) var(--rail);
   font-size: var(--fs-sm);
   color: var(--faint);
   border-top: 1px solid var(--border);
 }
 footer .footer-byline {
-  margin-top: var(--space-1);
+  margin: 0;
 }
 footer .footer-byline a {
   color: var(--faint);

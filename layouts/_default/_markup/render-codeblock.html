@@ -3,7 +3,11 @@
 {{- if eq $lang "mermaid" -}}
 <div class="mermaid">{{ .Inner }}</div>
 {{- else -}}
-<div class="codeblock">
+{{- /* translate="no" stops browser auto-translation from garbling code.
+       the copy button is injected client-side (see baseof.html) so the
+       rendered content — and the RSS feed — stays clean. data-lang lets the JS
+       skip the copy button on command-output blocks (txt/text/console). */ -}}
+<div class="codeblock" translate="no" data-lang="{{ $lang }}">
   {{ highlight (trim .Inner "\n") $lang .Options | safeHTML }}
 </div>
 {{- end -}}

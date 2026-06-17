@@ -12,6 +12,9 @@ import (
 var dateFormatRe = regexp.MustCompile(`^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$`)
 var isoDateRe = regexp.MustCompile(`^\d{4}-\d{2}-\d{2}$`)
 
+// Archive rows use a compact "Jan 02" format (month abbrev + zero-padded day)
+var archiveDateRe = regexp.MustCompile(`^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{2}$`)
+
 // TestDateFormatConsistency verifies all visible dates on the homepage use the configured format.
 func TestDateFormatConsistency(t *testing.T) {
 	t.Parallel()
@@ -60,7 +63,7 @@ func TestArchiveDateFormat(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/archive/")
 
-	times := page.Locator(".post time")
+	times := page.Locator(".archive-date")
 	count, err := times.Count()
 	require.NoError(t, err)
 	require.Greater(t, count, 0)
@@ -68,6 +71,6 @@ func TestArchiveDateFormat(t *testing.T) {
 	for i := range min(count, 10) {
 		text, err := times.Nth(i).TextContent()
 		require.NoError(t, err)
-		assert.Regexp(t, dateFormatRe, text, "archive time[%d] format mismatch", i)
+		assert.Regexp(t, archiveDateRe, text, "archive time[%d] format mismatch", i)
 	}
 }

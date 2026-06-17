@@ -199,34 +199,32 @@ func TestHomepage(t *testing.T) {
 		assert.Equal(t, "Recent writings", strings.TrimSpace(title))
 	})
 
-	t.Run("sidebar has about and connect sections", func(t *testing.T) {
+	t.Run("dedicated about page has bio and connect sections", func(t *testing.T) {
 		page := newPage(t)
-		goto_(t, page, "/")
-		headings, err := page.Locator(".aside-section .aside-section-title").AllTextContents()
+		goto_(t, page, "/about/")
+		// page <h1> is "About"; the connect section keeps its eyebrow
+		h1, err := page.Locator("h1").First().TextContent()
 		require.NoError(t, err)
-		lower := make([]string, len(headings))
-		for i, h := range headings {
-			lower[i] = strings.ToLower(strings.Fields(strings.TrimSpace(h))[0])
-		}
-		assert.Contains(t, lower, "about")
-		assert.Contains(t, lower, "connect")
-		assert.GreaterOrEqual(t, len(lower), 2, "sidebar should have about and connect sections")
+		assert.Equal(t, "About", strings.TrimSpace(h1))
+		connect, err := page.Locator(".aside-connect .aside-section-title").TextContent()
+		require.NoError(t, err)
+		assert.Equal(t, "connect", strings.ToLower(strings.TrimSpace(connect)))
 	})
 
-	t.Run("about sidebar has current bio", func(t *testing.T) {
+	t.Run("about page has current bio", func(t *testing.T) {
 		page := newPage(t)
-		goto_(t, page, "/")
+		goto_(t, page, "/about/")
 		about := page.Locator(".aside-bio")
 		text, err := about.TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, text, "Hi, I'm Redowan.")
+		assert.Contains(t, text, "Hi, I’m Redowan.")
 		assert.Contains(t, text, "Wolt/DoorDash")
 	})
 
 	t.Run("homepage does not promote noindex utility pages", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		hrefs, err := page.Locator("main aside a").EvaluateAll(
+		hrefs, err := page.Locator("main a").EvaluateAll(
 			`els => els.map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -700,7 +698,7 @@ func TestArchive(t *testing.T) {
 	})
 
 	t.Run("posts have links and dates", func(t *testing.T) {
-		first := page.Locator(".archive-year .post").First()
+		first := page.Locator(".archive-row").First()
 		visible, err := first.Locator("a").First().IsVisible()
 		require.NoError(t, err)
 		assert.True(t, visible)
@@ -710,7 +708,7 @@ func TestArchive(t *testing.T) {
 	})
 
 	t.Run("posts have category chips", func(t *testing.T) {
-		labels, err := page.Locator(".archive-year .post .post-cat").AllTextContents()
+		labels, err := page.Locator(".archive-row .archive-cat").AllTextContents()
 		require.NoError(t, err)
 		require.Greater(t, len(labels), 50)
 
@@ -976,15 +974,22 @@ func TestDesktopLayout(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	t.Run("homepage sidebar beside article list", func(t *testing.T) {
-		display, err := page.Locator(".index").Evaluate(
-			`el => getComputedStyle(el).display`, nil,
-		)
+	t.Run("homepage is a single centered feed column", func(t *testing.T) {
+		// the redesigned landing is one column of writings (the bio lives on
+		// /about); there is no home sidebar
+		feed := page.Locator(".home-feed")
+		visible, err := feed.IsVisible()
 		require.NoError(t, err)
-		assert.Equal(t, "flex", display)
-		visible, err := page.Locator(".index aside").IsVisible()
+		assert.True(t, visible, "home feed column should render")
+
+		asideCount, err := page.Locator("main aside").Count()
 		require.NoError(t, err)
-		assert.True(t, visible)
+		assert.Equal(t, 0, asideCount, "home should have no sidebar")
+
+		mw, err := page.Locator(".content-column.home").Evaluate(
+			`el => getComputedStyle(el).maxWidth`, nil)
+		require.NoError(t, err)
+		assert.Equal(t, "720px", mw, "home column shares the 720px reading width")
 	})
 
 	t.Run("content column max-width 720px", func(t *testing.T) {
@@ -1011,20 +1016,20 @@ func TestMobileLayout(t *testing.T) {
 	page := newMobilePage(t)
 	goto_(t, page, "/")
 
-	t.Run("sidebar stacks below content", func(t *testing.T) {
-		display, err := page.Locator(".index").Evaluate(
-			`el => getComputedStyle(el).display`, nil,
-		)
+	t.Run("home feed has no sidebar on mobile", func(t *testing.T) {
+		asideCount, err := page.Locator("main aside").Count()
 		require.NoError(t, err)
-		assert.Equal(t, "block", display)
+		assert.Equal(t, 0, asideCount, "home feed is single-column on mobile")
 	})
 
-	t.Run("sidebar is full width", func(t *testing.T) {
-		w, err := page.Locator(".index aside").Evaluate(
-			`el => parseFloat(getComputedStyle(el).width)`, nil,
-		)
+	t.Run("feed column uses the full mobile width", func(t *testing.T) {
+		ratio, err := page.Evaluate(`() => {
+			const f = document.querySelector(".home-feed").getBoundingClientRect().width;
+			return f / window.innerWidth;
+		}`)
 		require.NoError(t, err)
-		assert.Greater(t, toFloat(w), float64(300))
+		assert.Greater(t, ratio.(float64), 0.85,
+			"feed should use most of the mobile viewport width")
 	})
 
 	t.Run("body has reduced padding", func(t *testing.T) {

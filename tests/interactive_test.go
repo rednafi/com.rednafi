@@ -262,12 +262,12 @@ func TestPostListHoverCSS(t *testing.T) {
 	})
 }
 
-// TestSidebarLinkTransition verifies sidebar links keep a simple color-only
-// hover affordance without motion.
+// TestSidebarLinkTransition verifies the /about connect links keep a simple
+// color-only hover affordance without motion.
 func TestSidebarLinkTransition(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
-	goto_(t, page, "/")
+	goto_(t, page, "/about/")
 
 	link := page.Locator(".aside-section li a").First()
 
@@ -320,4 +320,56 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 		"--code-bg should differ between light (%v) and dark (%v) themes",
 		lightCodeBg, darkCodeBg)
 	assert.Equal(t, "#1a1a1a", darkCodeBg)
+}
+
+// TestCopyCodeButton verifies the code-block copy button copies the block's
+// text to the clipboard and shows transient "copied" feedback.
+func TestCopyCodeButton(t *testing.T) {
+	t.Parallel()
+	ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{
+		Permissions: []string{"clipboard-read", "clipboard-write"},
+	})
+	require.NoError(t, err)
+	defer ctx.Close()
+	page, err := ctx.NewPage()
+	require.NoError(t, err)
+	_, err = page.Goto(baseURL + "/go/anemic-stack-traces/")
+	require.NoError(t, err)
+
+	btn := page.Locator(".codeblock .copy-code").First()
+	count, err := page.Locator(".codeblock .copy-code").Count()
+	require.NoError(t, err)
+	require.Greater(t, count, 0, "code blocks should render a copy button")
+
+	t.Run("button has accessible label", func(t *testing.T) {
+		label, err := btn.GetAttribute("aria-label")
+		require.NoError(t, err)
+		// lang token may be multi-word / hyphenated / contain symbols (e.g. c++, objective-c)
+		assert.Regexp(t, `^Copy( [\w.+#-]+)? code to clipboard$`, label)
+	})
+
+	t.Run("clicking copies code and flashes feedback", func(t *testing.T) {
+		expected, err := btn.Locator("xpath=ancestor::div[contains(@class,'codeblock')]//code").
+			First().Evaluate(`el => el.innerText`, nil)
+		require.NoError(t, err)
+		require.NoError(t, btn.Click())
+
+		// clipboard write is async — wait for the transient feedback state
+		err = page.Locator(".codeblock .copy-code.copied").First().WaitFor(
+			playwright.LocatorWaitForOptions{
+				State:   playwright.WaitForSelectorStateAttached,
+				Timeout: playwright.Float(3000),
+			})
+		require.NoError(t, err, "button should gain .copied class after click")
+
+		clip, err := page.Evaluate(`() => navigator.clipboard.readText()`)
+		require.NoError(t, err)
+		assert.Equal(t, expected, clip, "clipboard should hold the code block text")
+
+		// feedback clears after the timeout
+		time.Sleep(2200 * time.Millisecond)
+		stillCopied, err := btn.Evaluate(`el => el.classList.contains("copied")`, nil)
+		require.NoError(t, err)
+		assert.False(t, stillCopied.(bool), "copied state should reset")
+	})
 }

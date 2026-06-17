@@ -7,13 +7,17 @@
 
 <h1>{{ .Title }}</h1>
 
+<noscript>
+  <p class="empty-state">Search needs JavaScript. Browse the <a href="/archive/">archive</a> or the <a href="/tags/">tags</a> instead.</p>
+</noscript>
 <script src="/pagefind/pagefind-ui.js" defer></script>
 <div id="search" aria-label="Search posts"></div>
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     var search = document.getElementById("search");
+    var baseTitle = document.title;
     var initialQuery = new URLSearchParams(window.location.search).get("q") || "";
-    var placeholder = {{ .Params.placeholder | default "Search posts" | jsonify }};
+    var placeholder = {{ .Params.placeholder | default "Search posts" }};
     new PagefindUI({
       element: "#search",
       showSubResults: true,
@@ -21,7 +25,8 @@
       excerptLength: 15,
       translations: {
         placeholder: placeholder,
-        clear_search: "Clear"
+        clear_search: "Clear",
+        searching: "Searching for [SEARCH_TERM]…"
       },
       ranking: {
         termFrequency: 0.0,
@@ -41,11 +46,22 @@
         url.searchParams.delete("q");
       }
       window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      // reflect the query in the tab/history title
+      document.title = value ? value + " · " + baseTitle : baseTitle;
       setHasQuery(value);
     }
     function bindSearchInput(input){
       if(!input || input.dataset.urlStateBound) return;
       input.dataset.urlStateBound = "true";
+      // Pagefind ships a bare text input — add search-appropriate hints.
+      input.setAttribute("type", "search");
+      input.setAttribute("name", "q");
+      input.setAttribute("autocomplete", "off");
+      input.setAttribute("autocapitalize", "none");
+      input.setAttribute("autocorrect", "off");
+      input.setAttribute("enterkeyhint", "search");
+      input.setAttribute("aria-label", "Search posts");
+      input.spellcheck = false;
       function syncURL(){
         writeSearchURL(input.value.trim());
       }
@@ -59,6 +75,11 @@
         input.dispatchEvent(new Event("input", { bubbles: true }));
       } else {
         setHasQuery(input.value.trim());
+        // Autofocus on desktop only (fine pointer) — avoid popping the
+        // keyboard on touch devices. Search is this page's sole purpose.
+        if(window.matchMedia("(hover: hover) and (pointer: fine)").matches){
+          input.focus();
+        }
       }
     }
     function bindClearButton(button){

@@ -3,17 +3,32 @@
 
 <h1>{{ .Title }}</h1>
 
+{{- $notes := site.Params.notesSection }}
 {{- $pages := partial "section-pages.html" . }}
 
 {{- range $pages.GroupByPublishDate "2006" }}
 {{- if ne .Key "0001" }}
-<div class="archive-year">
+<section class="archive-year">
   <h2 id="{{ .Key }}">
     <a href="#{{ .Key }}">{{ .Key }}</a>
-    <sup>&nbsp;{{ len .Pages }}</sup>
+    <sup>&nbsp;{{ len .Pages }}<span class="sr-only"> {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span></sup>
   </h2>
-  {{ partial "post-list.html" (dict "pages" .Pages.ByDate.Reverse) }}
-</div>
+  <ul class="archive-list" role="list">
+    {{- range .Pages.ByDate.Reverse }}
+    {{- $cat := .Section }}
+    {{- if eq .Section $notes }}{{ $cat = "shards" }}{{ end }}
+    {{- with .Params.type_label }}{{ $cat = . }}{{ end }}
+    {{- $label := replace (replace (humanize $cat) "Javascript" "JavaScript") "Typescript" "TypeScript" }}
+    <li class="archive-row">
+      <time class="archive-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" }}</time>
+      <a class="archive-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- with .Section }}
+      <a class="archive-cat" href="{{ printf "/%s/" . }}">{{ $label }}</a>
+      {{- end }}
+    </li>
+    {{- end }}
+  </ul>
+</section>
 {{- end }}
 {{- end }}
 

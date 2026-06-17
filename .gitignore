@@ -40,3 +40,5 @@ scripts/noteprobe/
 scripts/colorcheck/
 # Dev-only brand image renderer (favicon + social cover SVG -> PNG)
 scripts/ogimage/
+# Dev-only Geist typography probe (computed font metrics from the live spec)
+scripts/verceltype/

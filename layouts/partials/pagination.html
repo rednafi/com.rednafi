@@ -1,10 +1,10 @@
 {{- if gt .TotalPages 1 }}
 <nav class="pagination" aria-label="Pagination">
   {{- if .HasPrev }}
-  <a href="{{ .Prev.URL }}" aria-label="Previous page">&#8592; Prev</a>
+  <a href="{{ .Prev.URL }}" rel="prev" aria-label="Previous page">&#8592; Prev</a>
   {{- end }}
   {{- if .HasNext }}
-  <a href="{{ .Next.URL }}" aria-label="Next page">Next &#8594;</a>
+  <a href="{{ .Next.URL }}" rel="next" aria-label="Next page">Next &#8594;</a>
   {{- end }}
 </nav>
 {{- end }}

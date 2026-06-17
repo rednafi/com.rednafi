@@ -90,7 +90,7 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		items, ok := itemList["itemListElement"].([]any)
 		require.True(t, ok, "itemListElement should be an array")
 
-		visibleRaw, err := page.Locator(`.article-list .post-list .post > a`).EvaluateAll(
+		visibleRaw, err := page.Locator(`.home-feed .post-list .post > a`).EvaluateAll(
 			`els => els.slice(0, 10).map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -258,5 +258,11 @@ func TestOGImageDimensions(t *testing.T) {
 		height, err := page.Locator(`meta[property="og:image:height"]`).GetAttribute("content")
 		require.NoError(t, err)
 		assert.Equal(t, "630", height)
+	})
+
+	t.Run("has og:image:alt", func(t *testing.T) {
+		alt, err := page.Locator(`meta[property="og:image:alt"]`).GetAttribute("content")
+		require.NoError(t, err)
+		assert.NotEmpty(t, alt, "og:image should have descriptive alt text")
 	})
 }

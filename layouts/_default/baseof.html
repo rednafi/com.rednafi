@@ -20,21 +20,22 @@
     <div class="page-content">
       {{- partial "site-header.html" . }}
       {{- $isEntry := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
-      <main id="main" class="{{ if $isEntry }}main-entry{{ else }}main-list{{ end }}">
+      <main id="main" tabindex="-1" class="{{ if $isEntry }}main-entry{{ else }}main-list{{ end }}">
         {{- block "main" . }}{{ end }}
       </main>
     </div>
     <footer>
       <nav aria-label="Footer">
-        <a href="/blogroll/"{{ if eq .RelPermalink "/blogroll/" }} aria-current="page"{{ end }}>blogroll</a> &middot;
-        <a href="/maxims/"{{ if eq .RelPermalink "/maxims/" }} aria-current="page"{{ end }}>maxims</a> &middot;
+        <a href="/blogroll/"{{ if eq .RelPermalink "/blogroll/" }} aria-current="page"{{ end }}>blogroll</a><span aria-hidden="true"> &middot; </span>
+        <a href="/maxims/"{{ if eq .RelPermalink "/maxims/" }} aria-current="page"{{ end }}>maxims</a><span aria-hidden="true"> &middot; </span>
         <a href="/tags/"{{ if eq .RelPermalink "/tags/" }} aria-current="page"{{ end }}>tags</a>
       </nav>
-      <div class="footer-byline">&copy; <a href="/" rel="author">{{ site.Params.author }}</a></div>
+      <div class="footer-byline">&copy; 2020&ndash;{{ now.Year }} <a href="/" rel="author">{{ site.Params.author }}</a></div>
     </footer>
     <a href="#top" class="back-to-top" aria-label="Back to top" aria-hidden="true" tabindex="-1">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
+    <div class="sr-only" role="status" aria-live="polite" data-copy-status></div>
   </div>
   <script>
     (function(){
@@ -129,6 +130,65 @@
           });
         });
       }
+    })();
+  </script>
+  <script>
+    (function(){
+      var status = document.querySelector("[data-copy-status]");
+      // inject copy buttons client-side so the rendered content (and RSS) stays clean
+      var COPY = '<svg class="copy-code__icon copy-code__copy" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      var CHECK = '<svg class="copy-code__icon copy-code__check" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+      Array.prototype.forEach.call(document.querySelectorAll(".codeblock"), function(block){
+        if(block.querySelector(".copy-code")) return;
+        var code = block.querySelector("code");
+        if(!code) return;
+        var lang = (block.getAttribute("data-lang") || "").trim().toLowerCase();
+        // command output isn't code to copy — skip the button on output blocks
+        if(lang === "txt" || lang === "text" || lang === "output" || lang === "console") return;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-code";
+        btn.setAttribute("aria-label", "Copy " + (lang ? lang + " " : "") + "code to clipboard");
+        btn.innerHTML = COPY + CHECK;
+        block.insertBefore(btn, block.firstChild);
+      });
+      function flash(btn){
+        if(btn._label == null) btn._label = btn.getAttribute("aria-label");
+        btn.classList.add("copied");
+        btn.setAttribute("aria-label", "Copied to clipboard");
+        if(status) status.textContent = "Copied to clipboard";
+        window.clearTimeout(btn._copyTimer);
+        btn._copyTimer = window.setTimeout(function(){
+          btn.classList.remove("copied");
+          btn.setAttribute("aria-label", btn._label);
+          if(status) status.textContent = "";
+        }, 2000);
+      }
+      function copy(text, btn){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){ flash(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      }
+      function fallback(text, btn){
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "absolute";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); flash(btn); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      document.addEventListener("click", function(e){
+        var btn = e.target.closest && e.target.closest(".copy-code");
+        if(!btn) return;
+        var block = btn.closest(".codeblock");
+        var code = block && block.querySelector("code");
+        if(code) copy(code.innerText, btn);
+      });
     })();
   </script>
   {{- if hugo.IsProduction | or (eq site.Params.env "production") }}

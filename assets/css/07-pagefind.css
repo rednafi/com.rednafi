@@ -44,6 +44,13 @@
   opacity: 1 !important;
 }
 
+/* type=search adds a native ✕ in WebKit — Pagefind ships its own Clear, so drop it */
+.pagefind-ui__search-input::-webkit-search-cancel-button,
+.pagefind-ui__search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .pagefind-ui__search-input:hover {
   border-color: var(--border-strong) !important;
 }

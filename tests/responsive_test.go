@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestTabletLayout verifies the intermediate breakpoint (768px) where the
-// sidebar moves below the post list and the bio spans the full sidebar width.
+// TestTabletLayout verifies the intermediate breakpoint (768px) keeps the home
+// as a single centered feed column (the bio lives on /about, no home sidebar).
 func TestTabletLayout(t *testing.T) {
 	t.Parallel()
 	ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{
@@ -22,29 +22,18 @@ func TestTabletLayout(t *testing.T) {
 	_, err = page.Goto(baseURL + "/")
 	require.NoError(t, err)
 
-	t.Run("sidebar still visible at 768px", func(t *testing.T) {
-		visible, err := page.Locator(".index aside").IsVisible()
+	t.Run("home has no sidebar at 768px", func(t *testing.T) {
+		count, err := page.Locator("main aside").Count()
 		require.NoError(t, err)
-		assert.True(t, visible, "sidebar should still be visible at tablet width")
+		assert.Equal(t, 0, count, "home is single-column at tablet width")
 	})
 
-	t.Run("index stacks at tablet width", func(t *testing.T) {
-		display, err := page.Locator(".index").Evaluate(
-			`el => getComputedStyle(el).display`, nil,
+	t.Run("feed column is centered within the reading width", func(t *testing.T) {
+		mw, err := page.Locator(".content-column.home").Evaluate(
+			`el => getComputedStyle(el).maxWidth`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "block", display, "homepage should stack at 768px")
-	})
-
-	t.Run("bio spans the full sidebar width", func(t *testing.T) {
-		full, err := page.Evaluate(`() => {
-			const bio = document.querySelector(".aside-bio").getBoundingClientRect().width;
-			const aside = document.querySelector(".index aside").getBoundingClientRect().width;
-			return bio / aside > 0.9;
-		}`)
-		require.NoError(t, err)
-		assert.True(t, full.(bool),
-			"bio should span the full sidebar when stacked on tablet")
+		assert.Equal(t, "720px", mw, "home shares the 720px reading column")
 	})
 }
 
@@ -99,12 +88,20 @@ func TestMobileTypographyConsistent(t *testing.T) {
 			`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
 		)
 		require.NoError(t, err)
-		return size.(float64)
+		return toFloat(size)
 	}
 
-	t.Run("h1 keeps its full size on mobile", func(t *testing.T) {
-		assert.InDelta(t, fontSize(desktop, "h1"), fontSize(mobile, "h1"), 0.2,
-			"h1 should not shrink at the mobile breakpoint")
+	// matched to vercel.com/blog: h1 48px desktop → 40px mobile, body 18px → 16px
+	t.Run("h1 matches the vercel scale on desktop and mobile", func(t *testing.T) {
+		assert.InDelta(t, 48.0, fontSize(desktop, "h1"), 0.5, "desktop h1 should be 48px")
+		assert.InDelta(t, 40.0, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 40px")
+	})
+
+	t.Run("reading body matches the vercel scale", func(t *testing.T) {
+		assert.InDelta(t, 18.0, fontSize(desktop, ".article-content p"), 0.5,
+			"desktop article body should be 18px")
+		assert.InDelta(t, 16.0, fontSize(mobile, ".article-content p"), 0.5,
+			"mobile article body should be 16px")
 	})
 
 	t.Run("pre keeps its full size on mobile", func(t *testing.T) {
@@ -113,8 +110,9 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	})
 }
 
-// TestPostListTitleTypographyTokens verifies post-list titles use the --fs-title
-// token (1.18rem) consistently on desktop and mobile (no responsive reduction).
+// TestPostListTitleTypographyTokens verifies post-list titles use the vercel
+// display-type scale: large + weight-400 + tight tracking (--fs-list-title:
+// 26px desktop, 21px mobile), not small + bold.
 func TestPostListTitleTypographyTokens(t *testing.T) {
 	t.Parallel()
 	desktop := newPage(t)
@@ -122,41 +120,42 @@ func TestPostListTitleTypographyTokens(t *testing.T) {
 	mobile := newMobilePage(t)
 	goto_(t, mobile, "/")
 
-	read := func(page playwright.Page) float64 {
-		size, err := page.Locator(".post-list .post > a").First().Evaluate(
+	size := func(page playwright.Page) float64 {
+		v, err := page.Locator(".post-list .post > a").First().Evaluate(
 			`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
 		)
 		require.NoError(t, err)
-		return size.(float64)
+		return toFloat(v)
+	}
+	weight := func(page playwright.Page) string {
+		v, err := page.Locator(".post-list .post > a").First().Evaluate(
+			`el => getComputedStyle(el).fontWeight`, nil,
+		)
+		require.NoError(t, err)
+		s, _ := v.(string)
+		return s
 	}
 
-	assert.InDelta(t, 20.0, read(desktop), 0.2,
-		"desktop post-list title should use the --fs-title token (1.18rem at the 17px root)")
-	assert.InDelta(t, 20.0, read(mobile), 0.2,
-		"mobile post-list title should match desktop (--fs-title, no reduction)")
+	assert.InDelta(t, 26.0, size(desktop), 0.5,
+		"desktop post-list title should use --fs-list-title (26px)")
+	assert.InDelta(t, 21.0, size(mobile), 0.5,
+		"mobile post-list title should drop to --fs-list-title (21px)")
+	assert.Equal(t, "400", weight(desktop),
+		"vercel list titles are weight-400, not bold")
 }
 
-// TestMobileSidebarWrapping verifies the sidebar stacks full-width below the
-// content on mobile, with a separator and the bio using the full width.
+// TestMobileSidebarWrapping verifies the bio (now on the dedicated /about page,
+// not the home sidebar) uses the full mobile width, and the home frame drops its
+// inner rail on small screens.
 func TestMobileSidebarWrapping(t *testing.T) {
 	t.Parallel()
 	page := newMobilePage(t)
-	goto_(t, page, "/")
+	goto_(t, page, "/about/")
 
-	aside := page.Locator(".index aside")
-	visible, err := aside.IsVisible()
+	bio := page.Locator(".aside-bio")
+	visible, err := bio.IsVisible()
 	require.NoError(t, err)
 	require.True(t, visible)
-
-	t.Run("aside spans the full mobile width", func(t *testing.T) {
-		full, err := page.Evaluate(`() => {
-			const a = document.querySelector(".index aside").getBoundingClientRect().width;
-			return a / window.innerWidth > 0.85;
-		}`)
-		require.NoError(t, err)
-		assert.True(t, full.(bool),
-			"mobile aside should span the full width")
-	})
 
 	t.Run("bio uses the available mobile width", func(t *testing.T) {
 		ratio, err := page.Evaluate(
@@ -170,16 +169,8 @@ func TestMobileSidebarWrapping(t *testing.T) {
 			"bio should use most of the mobile viewport width")
 	})
 
-	t.Run("aside has border-top separator", func(t *testing.T) {
-		borderStyle, err := aside.Evaluate(
-			`el => getComputedStyle(el).borderTopStyle`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "solid", borderStyle,
-			"mobile aside should have top border separator")
-	})
-
 	t.Run("stacked home frame has no inner rail", func(t *testing.T) {
+		goto_(t, page, "/")
 		bg, err := page.Locator("main.main-list").Evaluate(
 			`el => getComputedStyle(el).backgroundImage`, nil,
 		)

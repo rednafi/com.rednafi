@@ -19,7 +19,9 @@
   .post-ornament,
   .pagination,
   .skip-link,
-  .back-to-top {
+  .back-to-top,
+  .copy-code,
+  .toc {
     display: none;
   }
   body {
@@ -43,6 +45,22 @@
   a[href^="#"]::after,
   a[href^="/"]::after {
     content: "";
+  }
+  /* keep blocks whole and headings attached to their content across page breaks */
+  pre,
+  .codeblock,
+  table,
+  blockquote,
+  .alert,
+  figure,
+  img {
+    break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
   }
 }
 

@@ -10,7 +10,7 @@ import (
 // TestRetiredPageRedirects verify retired duplicate pages point to the homepage.
 func TestRetiredPageRedirects(t *testing.T) {
 	t.Parallel()
-	for _, path := range []string{"/about/", "/articles/"} {
+	for _, path := range []string{"/articles/"} {
 		t.Run(path, func(t *testing.T) {
 			resp := httpGetResp(t, baseURL+path)
 			defer resp.Body.Close()
@@ -34,7 +34,6 @@ func TestRetiredPageRedirects(t *testing.T) {
 func TestHostRedirectRules(t *testing.T) {
 	t.Parallel()
 	body := httpGet(t, baseURL+"/_redirects")
-	assert.Contains(t, body, "/about/ / 301")
 	assert.Contains(t, body, "/articles/ / 301")
 }
 

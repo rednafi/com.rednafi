@@ -43,6 +43,12 @@
 }
 .post-meta {
   color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+/* date · reading-time separator */
+.post-meta-sep {
+  margin: 0 var(--space-2);
+  color: var(--border-strong);
 }
 
 .section-desc {
@@ -95,8 +101,8 @@
   padding: var(--space-6) 0;
 }
 
-/* home: drop first-row top padding so eyebrow→content gap matches the aside headers */
-.index .post-list-rich .post:first-child {
+/* home: drop first-row top padding so the eyebrow→first-post gap stays tight */
+.home-feed .post-list-rich .post:first-child {
   padding-top: 0;
 }
 
@@ -104,7 +110,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
 }
 
 .post-list .date {
@@ -112,8 +118,10 @@
   font-size: var(--fs-2xs);
   font-weight: var(--fw-medium);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   line-height: var(--lh-none);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 /* category beside the date, split by a thin vertical rule (::before) */
@@ -127,6 +135,7 @@
   font-size: var(--fs-2xs);
   font-weight: var(--fw-medium);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   line-height: var(--lh-none);
   text-decoration: none;
   transition: color var(--motion-fast);
@@ -148,13 +157,16 @@
   color: var(--link);
 }
 
-/* title — standard reading size, NOT enlarged */
+/* title — vercel blog display type: large, weight-400, tight negative tracking
+   (their featured titles are 40px/400/-0.06em). Light + airy, not small + bold. */
 .post-list .post > a {
   display: block;
   color: var(--text);
-  font-size: var(--fs-title);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-snug);
+  font-size: var(--fs-list-title);
+  font-weight: var(--fw-medium);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
   text-decoration: none;
   transition: color var(--motion-fast);
 }
@@ -171,7 +183,8 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  margin: var(--space-2) 0 0;
+  line-clamp: 2;
+  margin: var(--space-3) 0 0;
   max-width: 64ch;
   overflow: hidden;
   color: var(--muted);
@@ -207,14 +220,18 @@ article li a {
 .content-column li {
   margin-bottom: var(--space-2);
 }
-.article-content :is(h2, h3, h4, h5, h6) {
-  margin: var(--space-7) 0 var(--space-3);
+/* vercel heading rhythm: generous lead-in above a section, tight to its body */
+.article-content h2 {
+  margin: var(--article-h-top) 0 var(--article-gap);
+}
+.article-content :is(h3, h4, h5, h6) {
+  margin: var(--article-h-top-sub) 0 var(--space-3);
 }
 .article-content :is(h2, h3, h4, h5, h6):first-child {
   margin-top: 0;
 }
 .article-content :is(ul, ol) {
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--article-gap);
 }
 
 /* animated underline (gradient, not text-decoration) */
@@ -275,10 +292,12 @@ article sup {
 
 /* snappier taps: drop the 300ms delay + default tap flash */
 .site-title,
-.site-nav a,
+.site-menu a,
+.nav-toggle,
 .theme-toggle,
 .pagination a,
 .back-to-top,
+.connect-inline a,
 summary {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -299,6 +318,9 @@ code {
   border-radius: var(--radius-sm);
   border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
   font-variant-ligatures: none;
+  /* keep the chip frame intact when a long token wraps across lines */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 /* code chip inside a link — inherit link hue, keep the frame */
 a > code,
@@ -381,10 +403,61 @@ table::-webkit-scrollbar-thumb {
 
 /* code block frame — wraps the Chroma output */
 .codeblock {
+  position: relative; /* anchor the copy button */
   margin: var(--space-4) 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+/* copy-to-clipboard — Geist icon button pinned to the top-right corner.
+   injected by JS (baseof.html), so it only exists when it can work */
+.copy-code {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  z-index: 1;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: var(--faint);
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: var(--transition-control);
+}
+.copy-code:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background-color: var(--surface-2);
+}
+.copy-code:focus-visible {
+  outline: none;
+  color: var(--text);
+  box-shadow: var(--ring);
+}
+.copy-code__icon {
+  display: block;
+}
+.copy-code__check {
+  display: none;
+}
+.copy-code.copied {
+  color: var(--green-900);
+  border-color: color-mix(in srgb, var(--green-900) 40%, var(--border));
+}
+.copy-code.copied .copy-code__copy {
+  display: none;
+}
+.copy-code.copied .copy-code__check {
+  display: block;
 }
 .codeblock .highlight {
   margin: 0;
@@ -428,30 +501,64 @@ blockquote,
     border-color var(--motion);
 }
 .site-header,
-.index aside,
+.profile-page .aside-section,
 footer {
   transition: border-color var(--motion);
 }
 
-/* blockquotes & alerts — Geist Notes. variant hue stays structural
-   (fill / border / title); body content stays --text for AA. */
-blockquote,
+/* alerts — Geist Notes. variant hue stays structural (fill / border / title);
+   body content stays --text for AA. */
 .alert {
   --note-bg: var(--code-bg);
   --note-border: var(--border);
   --note-title: var(--text);
   --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
-  margin: var(--space-4) 0;
-  padding: var(--space-3) var(--space-4);
+  margin: var(--article-gap) 0;
+  padding: var(--space-4) var(--space-5);
   background-color: var(--note-bg);
   border: 1px solid var(--note-border);
+  /* same corner radius as code blocks (.codeblock) so all article boxes match */
   border-radius: var(--radius);
   color: var(--text);
 }
 
-/* plain quotes stay italic but keep full --text contrast (AA) */
+/* blockquote — the faint box, but with a left accent "spine" so it never reads
+   as a code block or admonition (those have a uniform hairline border). A large
+   soft quotation mark + italic, full-contrast text complete the quote feel. */
 blockquote:not(.alert) {
+  position: relative;
+  margin: var(--article-gap) 0;
+  padding: var(--space-4) var(--space-5) var(--space-4) var(--space-10);
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: var(--fs-article);
+  font-weight: var(--fw-normal);
   font-style: italic;
+  line-height: var(--lh-article);
+  letter-spacing: normal;
+}
+/* big quiet opening quote mark (the normal typographic glyph), hanging top-left */
+blockquote:not(.alert)::before {
+  content: "\201C";
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-3);
+  color: var(--border-strong);
+  font-size: 2.6em;
+  line-height: 1;
+  font-style: normal;
+}
+/* a trailing attribution line (— Author) reads quiet + smaller */
+blockquote:not(.alert) cite,
+blockquote:not(.alert) footer {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--fs-md);
+  font-style: normal;
+  color: var(--muted);
 }
 
 blockquote > p:first-child,
@@ -635,11 +742,17 @@ summary:focus-visible {
   background-color: var(--surface-2);
 }
 
-/* archive — years read as quiet section dividers */
-.archive-year h2 {
+/* archive — a dense, grid-aligned Geist table: date · title · category, one
+   hairline-separated row each. tighter + more glanceable than the landing list,
+   and built to scale to the full post history. */
+.archive-year {
   margin-top: var(--space-8);
-  margin-bottom: var(--space-1);
+}
+/* years read as quiet section dividers (anchor targets) */
+.archive-year h2 {
+  margin-bottom: var(--space-2);
   padding-bottom: var(--space-2);
+  font-size: var(--fs-h3);
   border-bottom: 1px solid var(--border);
 }
 .archive-year h2 a {
@@ -654,6 +767,90 @@ summary:focus-visible {
   color: var(--faint);
   font-weight: var(--fw-normal);
   font-size: 0.7em;
+}
+
+.archive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* one row = [fixed date] [flexible title] [category]; the date column is fixed
+   so titles align into a clean vertical edge (the "grid-bound" structure) */
+.archive-row {
+  display: grid;
+  grid-template-columns: 4.25rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-2);
+  margin: 0 calc(-1 * var(--space-2));
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  /* the archive can hold the full history — skip painting off-screen rows */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 3.25rem;
+  transition: background-color var(--motion-fast);
+}
+.archive-row:hover {
+  background-color: var(--surface);
+}
+
+.archive-date {
+  color: var(--faint);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--lh-ui);
+  white-space: nowrap;
+}
+
+.archive-title {
+  color: var(--text);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.01em;
+  line-height: var(--lh-snug);
+  text-decoration: none;
+  text-wrap: pretty;
+  transition: color var(--motion-fast);
+}
+.archive-title:visited {
+  color: var(--text);
+}
+.archive-title:hover {
+  color: var(--link);
+}
+
+/* quiet uppercase category tag, right-aligned (matches .post-cat language) */
+.archive-cat {
+  justify-self: end;
+  color: var(--faint);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: var(--lh-ui);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--motion-fast);
+}
+.archive-cat:visited {
+  color: var(--faint);
+}
+.archive-cat:hover {
+  color: var(--link);
+}
+
+@media (max-width: 640px) {
+  /* drop the category to its own line under the title; keep date aligned left */
+  .archive-row {
+    grid-template-columns: 4.25rem 1fr;
+    gap: var(--space-1) var(--space-4);
+    padding: var(--space-3) var(--space-2);
+  }
+  .archive-cat {
+    grid-column: 2;
+    justify-self: start;
+  }
 }
 .post-tags {
   list-style: none;
@@ -735,7 +932,8 @@ h6:hover .anchor,
 
 .back-to-top {
   position: fixed;
-  bottom: var(--space-6);
+  /* clear the home-indicator / bottom safe area on notched phones */
+  bottom: max(var(--space-6), env(safe-area-inset-bottom));
   /* sit just outside the centered page shell: half its width + 20px gutter */
   right: max(var(--space-3), calc(50% - var(--page-width) / 2 - 20px));
   box-sizing: border-box;
@@ -822,6 +1020,7 @@ hr {
   font-weight: var(--fw-semibold);
   line-height: var(--lh-tight);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 .related-posts ul {
   list-style: none;
@@ -958,26 +1157,15 @@ details:not(.toc)[open] > summary + * > :last-child {
   margin-bottom: 0;
 }
 
-/* responsive — tablet */
-@media (max-width: 900px) {
-  .index {
-    display: block;
-  }
-  .index aside {
-    width: 100%;
-    margin-top: var(--space-8);
-    padding-left: 0;
-    padding-top: var(--space-6);
-    border-left: none;
-    border-top: 1px solid var(--border);
-  }
-}
-
 /* responsive — mobile (body + h1 live in 03-base.css) */
 @media (max-width: 640px) {
   .post-tags a {
     min-height: 44px;
     min-width: 44px;
+  }
+  /* comfortable touch targets for pagination (matches nav / tags) */
+  .pagination a {
+    min-height: 44px;
   }
   pre {
     /* keep 1rem horizontal so the hl-line full-bleed stays gutter-aligned */

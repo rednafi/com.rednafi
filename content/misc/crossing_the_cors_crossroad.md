@@ -65,7 +65,7 @@ single `POST` endpoint `/hello`. You can make a POST request to it with the
 
 <details>
 
-<summary>Click here ...</summary>
+<summary>Click here…</summary>
 
 ```go
 // main.go

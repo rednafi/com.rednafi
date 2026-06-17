@@ -11,12 +11,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestConnectSidebarLinks verifies the homepage "Connect" section contains
+// TestConnectSidebarLinks verifies the /about page "Connect" section contains
 // all expected social links with correct destinations.
 func TestConnectSidebarLinks(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
-	goto_(t, page, "/")
+	goto_(t, page, "/about/")
 
 	// Find the Connect section by heading.
 	connect := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
@@ -100,7 +100,7 @@ func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 
-		link := page.Locator(`.article-list .post-list .post > a`).First()
+		link := page.Locator(`.home-feed .post-list .post > a`).First()
 		href, err := link.GetAttribute("href")
 		require.NoError(t, err)
 		require.True(t, strings.HasPrefix(href, "/"), "post href should be root-relative: %s", href)

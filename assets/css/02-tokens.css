@@ -46,8 +46,25 @@
     --fs-base: 1rem;     /* 17px — body, h4, aside */
     --fs-lg: 1.1rem;     /* 19px — h3, card title, site title, mobile post title */
     --fs-title: 1.18rem; /* 20px — post-list title (desktop); mobile drops to --fs-lg */
-    --fs-xl: 1.3rem;     /* 22px — h2, mobile h1 */
-    --fs-2xl: 1.75rem; /* 30px — h1 */
+    /* list-title — vercel blog titles are large + weight-400 + tight tracking,
+       not small + bold. Fluid 21px → 26px (exact at 390px / 1280px). */
+    --fs-list-title: clamp(21px, 18.81px + 0.562vw, 26px);
+
+    /* Display headings — matched to vercel.com/blog (Geist). Fluid clamps scale
+       smoothly with the viewport and land EXACTLY on vercel's mobile (390px) and
+       desktop (1280px) sizes at those endpoints — responsive at every width, not
+       a single hard breakpoint jump. */
+    --fs-h1: clamp(40px, 36.49px + 0.899vw, 48px);  /* article title / page h1 */
+    --fs-h2: clamp(24px, 20.49px + 0.899vw, 32px);
+    --fs-h3: clamp(20px, 18.25px + 0.449vw, 24px);
+    /* reading body — vercel uses 18px desktop / 16px mobile */
+    --fs-article: clamp(16px, 15.12px + 0.225vw, 18px);
+    --lh-article: 1.55;  /* ≈ vercel 28/18; tightened a touch on phones below */
+    --lh-display: 1.1;   /* heading leading */
+    /* article vertical rhythm — vercel: 24px between blocks, 64px above an h2 */
+    --article-gap: 24px;
+    --article-h-top: 64px;
+    --article-h-top-sub: 44px;  /* h3+ get a shorter lead-in */
 
     /* Weights */
     --fw-normal: 400;
@@ -80,9 +97,11 @@
       background-color var(--motion-fast);
     --ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 3px rgba(0, 0, 0, .06);
+    /* popover / menu elevation (geist) */
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .08);
     --shadow-key: 0 1px 0 var(--border-strong);
 
-    --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
+    --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
   }
 
   /* Dark theme overrides. */
@@ -112,5 +131,14 @@
     --mark-bg: #6b4105;    /* Geist amber-500 */
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .4);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .5);
+  }
+
+  /* phone reading rhythm — the font sizes scale fluidly via clamp() above, so
+     only the body line-height steps down here to match vercel's 24/16 on phones */
+  @media (max-width: 640px) {
+    :root {
+      --lh-article: 1.5;  /* ≈ vercel 24/16 */
+    }
   }
 }

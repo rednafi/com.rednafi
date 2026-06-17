@@ -152,7 +152,7 @@ function in action within like 5 minutes gave me a huge dopamine boost that AWS 
 could. You can see the interactive bootstrapping section here:
 
 <details>
-<summary><strong>Complete CLI output...</strong></strong></summary>
+<summary><strong>Complete CLI output…</strong></summary>
 
 ```txt
 using create-cloudflare version 2.0.7

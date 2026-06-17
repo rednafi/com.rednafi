@@ -1,18 +1,114 @@
 <header class="site-header">
-  <a href="/" class="site-title">{{ site.Title }}</a>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="/archive/"{{ if eq .RelPermalink "/archive/" }} aria-current="page"{{ end }}>Archive</a>
-    <a href="/search/"{{ if eq .RelPermalink "/search/" }} aria-current="page"{{ end }}>Search</a>
-  </nav>
-  <div class="theme-switcher" role="radiogroup" aria-label="Theme">
-    <button class="theme-toggle" type="button" role="radio" data-theme-set="light" aria-label="Use light theme" aria-checked="false" tabindex="-1" title="Light">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-    </button>
-    <button class="theme-toggle" type="button" role="radio" data-theme-set="system" aria-label="Use system theme" aria-checked="true" tabindex="0" title="System">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/></svg>
-    </button>
-    <button class="theme-toggle" type="button" role="radio" data-theme-set="dark" aria-label="Use dark theme" aria-checked="false" tabindex="-1" title="Dark">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486A9 9 0 1 1 11.514 3.015a7 7 0 0 0 9.471 9.471Z"/></svg>
-    </button>
+  <a href="/" class="site-title" translate="no">{{ site.Title }}</a>
+  {{- $cur := .RelPermalink }}
+  {{- /* one cohesive cluster of equal-height controls: search · theme · menu.
+         a hairline divider sets the menu trigger apart from the utilities. */}}
+  <div class="header-actions">
+    <a class="nav-icon" href="/search/" aria-label="Search"{{ if eq $cur "/search/" }} aria-current="page"{{ end }}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </a>
+    <div class="theme-switcher" role="radiogroup" aria-label="Theme">
+      <button class="theme-toggle" type="button" role="radio" data-theme-set="light" aria-label="Use light theme" aria-checked="false" tabindex="-1" title="Light">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+      <button class="theme-toggle" type="button" role="radio" data-theme-set="system" aria-label="Use system theme" aria-checked="true" tabindex="0" title="System">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/></svg>
+      </button>
+      <button class="theme-toggle" type="button" role="radio" data-theme-set="dark" aria-label="Use dark theme" aria-checked="false" tabindex="-1" title="Dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486A9 9 0 1 1 11.514 3.015a7 7 0 0 0 9.471 9.471Z"/></svg>
+      </button>
+    </div>
+    <span class="header-divider" aria-hidden="true"></span>
+    {{- /* grouped columns + uppercase eyebrows, à la vercel.com's nav mega-panel */}}
+    {{- $groups := slice
+        (dict "title" "Writing" "items" (slice
+            (dict "url" "/archive/" "label" "Archive")
+            (dict "url" "/tags/" "label" "Tags")))
+        (dict "title" "More" "items" (slice
+            (dict "url" "/about/" "label" "About")
+            (dict "url" "/appearances/" "label" "Appearances")
+            (dict "url" "/blogroll/" "label" "Blogroll")
+            (dict "url" "/maxims/" "label" "Maxims")))
+    }}
+    <div class="nav-menu" data-nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-menu" class="site-menu" aria-label="Primary" data-nav-menu hidden>
+        <div class="site-menu__cols">
+          {{- range $groups }}
+          <div class="site-menu__group">
+            <p class="site-menu__eyebrow">{{ .title }}</p>
+            <ul>
+              {{- range .items }}
+              <li><a href="{{ .url }}"{{ if eq $cur .url }} aria-current="page"{{ end }}>{{ .label }}</a></li>
+              {{- end }}
+            </ul>
+          </div>
+          {{- end }}
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
+<script>
+  (function () {
+    var wrap = document.querySelector("[data-nav]");
+    var btn = document.querySelector("[data-nav-toggle]");
+    var menu = document.querySelector("[data-nav-menu]");
+    if (!wrap || !btn || !menu) return;
+    var hoverable = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    var closeTimer, hideTimer;
+
+    function isOpen() { return btn.getAttribute("aria-expanded") === "true"; }
+
+    function open() {
+      window.clearTimeout(closeTimer);
+      window.clearTimeout(hideTimer);
+      if (isOpen()) return;
+      menu.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      btn.setAttribute("aria-label", "Close menu");
+      // next frame so the transition runs from the hidden state — but only add
+      // the open class if we're still meant to be open (guards an open→close
+      // within the same frame)
+      requestAnimationFrame(function () { if (isOpen()) menu.classList.add("is-open"); });
+      document.addEventListener("keydown", onKey);
+      document.addEventListener("click", onOutside, true);
+    }
+    function close() {
+      window.clearTimeout(closeTimer);
+      if (!isOpen()) return;
+      menu.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-label", "Open menu");
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onOutside, true);
+      // hide after the close transition; a timer fallback guarantees it hides
+      // even when there's no transition (prefers-reduced-motion sets
+      // transition:none, so transitionend never fires) or it's interrupted
+      var hide = function () {
+        window.clearTimeout(hideTimer);
+        menu.removeEventListener("transitionend", hide);
+        if (!isOpen()) menu.hidden = true;
+      };
+      menu.addEventListener("transitionend", hide);
+      hideTimer = window.setTimeout(hide, 250);
+    }
+    function toggle() { isOpen() ? close() : open(); }
+    function onKey(e) { if (e.key === "Escape") { close(); btn.focus(); } }
+    function onOutside(e) { if (!wrap.contains(e.target)) close(); }
+
+    btn.addEventListener("click", toggle);
+
+    if (hoverable) {
+      // open on hover, close on leave with a short grace period so the cursor
+      // can cross the gap between the trigger and the panel (vercel behaviour)
+      wrap.addEventListener("mouseenter", open);
+      wrap.addEventListener("mouseleave", function () {
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(close, 160);
+      });
+    }
+  })();
+</script>
