@@ -142,13 +142,14 @@
     --shadow-md: 0 4px 8px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .5);
   }
 
-  /* reading body steps down at <=960px (phones + tablets incl. iPad portrait;
-     iPad landscape 1024+ keeps the 18px/28 default). Bumped a touch above
-     vercel's 16px to 17px so body text reads larger on phones. */
+  /* reading body steps down to 16px/24 at <=960px to match vercel.com/blog:
+     phones + tablets (incl. iPad portrait 768/834 and iPad mini) get 16px/24;
+     iPad landscape 1024 and up keep the 18px/28 default. Hard step, mirroring
+     vercel's max-width:960 (a fluid ramp drifts smaller than vercel mid-range). */
   @media (max-width: 960px) {
     :root {
-      --fs-article: 17px;
-      --lh-article: 1.5;  /* 25.5/17 */
+      --fs-article: 16px;
+      --lh-article: 1.5;  /* 24/16 */
     }
   }
 }
