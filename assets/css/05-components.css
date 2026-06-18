@@ -782,23 +782,26 @@ summary:focus-visible {
   grid-template-columns: 4.25rem 1fr auto;
   align-items: baseline;
   gap: var(--space-3) var(--space-4);
-  padding: var(--space-2) var(--space-2);
+  padding: var(--space-3) var(--space-2);
   margin: 0 calc(-1 * var(--space-2));
   border-bottom: 1px solid var(--border);
   border-radius: var(--radius-sm);
   /* the archive can hold the full history — skip painting off-screen rows */
   content-visibility: auto;
-  contain-intrinsic-size: auto 3.25rem;
+  contain-intrinsic-size: auto 3.5rem;
   transition: background-color var(--motion-fast);
 }
 .archive-row:hover {
   background-color: var(--surface);
 }
 
+/* date: Geist Mono tabular — the site's metadata language (post-list kicker) */
 .archive-date {
-  color: var(--faint);
-  font-size: var(--fs-sm);
+  color: var(--muted);
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: var(--fs-xs);
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
   line-height: var(--lh-ui);
   white-space: nowrap;
 }
@@ -806,8 +809,8 @@ summary:focus-visible {
 .archive-title {
   color: var(--text);
   font-size: var(--fs-base);
-  font-weight: var(--fw-medium);
-  letter-spacing: -0.01em;
+  font-weight: var(--fw-normal);
+  letter-spacing: -0.011em;
   line-height: var(--lh-snug);
   text-decoration: none;
   text-wrap: pretty;
@@ -820,12 +823,12 @@ summary:focus-visible {
   color: var(--link);
 }
 
-/* quiet uppercase category tag, right-aligned (matches .post-cat language) */
+/* quiet uppercase mono category tag, right-aligned (matches the kicker mono) */
 .archive-cat {
   justify-self: end;
-  color: var(--faint);
+  color: var(--muted);
+  font-family: "Geist Mono", ui-monospace, monospace;
   font-size: var(--fs-2xs);
-  font-weight: var(--fw-medium);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: var(--lh-ui);
@@ -834,7 +837,7 @@ summary:focus-visible {
   transition: color var(--motion-fast);
 }
 .archive-cat:visited {
-  color: var(--faint);
+  color: var(--muted);
 }
 .archive-cat:hover {
   color: var(--link);
