@@ -40,7 +40,7 @@ Semantic alert scale: `{blue,green,purple,amber,red}-{200 fill / 400 border / 90
 `--space-1 .25rem … --space-12 3rem`. Structural bands: `--rail` (clamp .5–2rem), `--grid-top-band`, `--content-top-band`.
 
 ### Type scale (rendered px at 17px root)
-`--fs-2xs .72rem` (eyebrows/meta) · `--fs-sm .85rem` (nav/meta/code/tables) · `--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4) · `--fs-lg 1.1rem` (site title) · `--fs-list-title clamp(21→26px)`. Display: `--fs-h1 clamp(40→48)`, `--fs-h2 clamp(24→32)`, `--fs-h3 clamp(20→24)`. Article body `--fs-article clamp(16→18)`, `--lh-article 1.55` (1.5 on phones).
+`--fs-2xs .72rem` (eyebrows/meta) · `--fs-sm .85rem` (nav/meta/code/tables) · `--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4) · `--fs-lg 1.1rem` (site title) · `--fs-list-title clamp(21→26px)`. Display: `--fs-h1 clamp(40→48)`, `--fs-h2 clamp(24→32)`, `--fs-h3 clamp(20→24)`. Article body steps to match vercel.com/blog exactly: **16px/24 at ≤960px** (phones + iPad portrait), **18px/28 above** (`--fs-article`/`--lh-article`, hard `max-width:960` step — not a fluid ramp, which drifts smaller than Vercel mid-range).
 
 ### Radii / weights / motion
 Radii: `--radius-sm 4px` (chips/badges) · `--radius 6px` (controls/boxes) · `--radius-lg 12px` · `--radius-pill 9999px`. Every radius in the codebase is tokenized. Weights: 400/500/600 only. Motion: `--motion .2s`, `--motion-fast .15s`, shared `--transition-control` (color/border/bg). Focus: `--ring` = `0 0 0 2px bg, 0 0 0 4px accent` (the shadcn `ring-2 + ring-offset-2` pattern).
