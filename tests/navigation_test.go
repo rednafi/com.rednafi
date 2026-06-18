@@ -11,83 +11,42 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestConnectSidebarLinks verifies the /about page "Connect" section contains
-// all expected social links with correct destinations.
+// TestConnectSidebarLinks verifies the /about page "Connect" section lists all
+// expected social links. The about page is plain markdown (no template), so the
+// links live in the article content under a "Connect" heading.
 func TestConnectSidebarLinks(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/about/")
 
-	// Find the Connect section by heading.
-	connect := page.Locator(".aside-section").Filter(playwright.LocatorFilterOptions{
-		HasText: "Connect",
-	})
-	heading, err := connect.Locator(".aside-section-title").TextContent()
+	heading, err := page.Locator("h2#connect").TextContent()
 	require.NoError(t, err)
-	require.Equal(t, "connect", strings.ToLower(strings.TrimSpace(heading)))
+	require.Contains(t, strings.ToLower(heading), "connect")
 
-	links := connect.Locator("a")
-	count, err := links.Count()
+	hrefsRaw, err := page.Locator(".article-content a").EvaluateAll(
+		`els => els.map(e => e.getAttribute("href"))`,
+	)
 	require.NoError(t, err)
+	hrefs := toStringSlice(hrefsRaw)
 
-	// Collect all link destinations
-	hrefs := make([]string, count)
-	labels := make([]string, count)
-	for i := range count {
-		href, err := links.Nth(i).GetAttribute("href")
-		require.NoError(t, err)
-		hrefs[i] = href
-
-		text, err := links.Nth(i).TextContent()
-		require.NoError(t, err)
-		labels[i] = strings.TrimSpace(text)
+	has := func(sub string) bool {
+		return slices.ContainsFunc(hrefs, func(s string) bool { return strings.Contains(s, sub) })
 	}
 
 	t.Run("has email link", func(t *testing.T) {
-		found := false
-		for _, h := range hrefs {
-			if strings.HasPrefix(h, "mailto:") {
-				found = true
-				break
-			}
-		}
-		assert.True(t, found, "connect section should have email link")
+		assert.True(t, has("mailto:"), "connect section should have email link")
 	})
-
 	t.Run("has Bluesky link", func(t *testing.T) {
-		assert.True(t, slices.ContainsFunc(hrefs, func(s string) bool { return strings.Contains(s, "bsky.app") }),
-			"connect section should have Bluesky link")
+		assert.True(t, has("bsky.app"), "connect section should have Bluesky link")
 	})
-
 	t.Run("has GitHub link", func(t *testing.T) {
-		assert.True(t, slices.ContainsFunc(hrefs, func(s string) bool { return strings.Contains(s, "github.com") }),
-			"connect section should have GitHub link")
+		assert.True(t, has("github.com"), "connect section should have GitHub link")
 	})
-
 	t.Run("has LinkedIn link", func(t *testing.T) {
-		assert.True(t, slices.ContainsFunc(hrefs, func(s string) bool { return strings.Contains(s, "linkedin.com") }),
-			"connect section should have LinkedIn link")
+		assert.True(t, has("linkedin.com"), "connect section should have LinkedIn link")
 	})
-
 	t.Run("has RSS link", func(t *testing.T) {
-		assert.True(t, slices.ContainsFunc(hrefs, func(s string) bool { return strings.Contains(s, "index.xml") }),
-			"connect section should have RSS link")
-	})
-
-	t.Run("connect links have SVG icons", func(t *testing.T) {
-		svgs, err := connect.Locator("svg").Count()
-		require.NoError(t, err)
-		assert.Equal(t, count, svgs, "each connect link should have one icon")
-	})
-
-	t.Run("icons inherit link color", func(t *testing.T) {
-		ok, err := connect.Locator("svg").EvaluateAll(
-			`els => els.every(el =>
-				el.getAttribute("fill") === "currentColor"
-			)`,
-		)
-		require.NoError(t, err)
-		assert.True(t, ok.(bool), "connect icons should inherit link color")
+		assert.True(t, has("index.xml"), "connect section should have RSS link")
 	})
 }
 

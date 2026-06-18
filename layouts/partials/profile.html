@@ -1,7 +1,0 @@
-{{- /* Author bio + connect links for the dedicated /about page; the page
-       supplies the <h1>, so the bio block has no heading of its own. Composes
-       the shared bio.html + connect.html partials (also used by the landing). */ -}}
-<section class="aside-section aside-bio">
-  {{ partial "bio.html" . }}
-</section>
-{{ partial "connect.html" (dict "inline" false) }}

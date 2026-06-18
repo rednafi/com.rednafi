@@ -91,7 +91,7 @@
     ctx.fillRect(0, 0, W, H);
 
     var scale = 0.0042; // noise frequency in px space
-    var speed = 3.25 * dpr;
+    var speed = 1.625 * dpr;
     var r = Math.max(1, 1.15 * dpr);
     for (var i = 0; i < N; i++) {
       var p = parts[i];
@@ -110,7 +110,7 @@
       ctx.arc(p[0], p[1], r, 0, 6.2832);
       ctx.fill();
     }
-    t += 0.0002;
+    t += 0.0001;
   }
 
   function clear() {

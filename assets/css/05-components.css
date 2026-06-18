@@ -1032,15 +1032,15 @@ hr {
 }
 .related-posts li a {
   display: block;
-  padding: var(--space-2) 0;
-  color: var(--muted);
-  font-size: var(--fs-md);
-  line-height: var(--lh-ui);
+  padding: var(--space-3) 0;
+  color: var(--text);
+  font-size: var(--fs-base);
+  line-height: var(--lh-snug);
   text-decoration: none;
   transition: color var(--motion-fast);
 }
 .related-posts li a:visited {
-  color: var(--muted);
+  color: var(--text);
 }
 .related-posts li a:hover {
   color: var(--link);

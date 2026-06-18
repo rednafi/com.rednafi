@@ -1,7 +1,0 @@
-{{- define "main" }}
-<div class="content-column profile-page">
-  <h1>{{ .Title }}</h1>
-  {{ partial "profile.html" . }}
-  {{- with .Content }}{{ . }}{{ end }}
-</div>
-{{- end }}

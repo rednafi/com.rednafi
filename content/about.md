@@ -1,6 +1,5 @@
 ---
 title: About
-layout: about
 profilePage: true
 hideMeta: true
 hideRelated: true
@@ -10,10 +9,27 @@ description: >-
   Notes on software, distributed systems, testing, and tools.
 ---
 
-Occasionally I [give talks and appear on podcasts]. I also keep a [blogroll] of writers and
-blogs I enjoy.
+Hi, I'm Redowan - also go by "rednafi" on the web. I work with computers. I oscillate
+between product and platform engineering to keep a foot in both user-facing and infra work.
 
-Talking points: Go, Python, persistence, consistency, resilience, HA, and sci-fi.
+I'm keen on building fault-tolerant distributed systems and understanding their fringe
+behaviors at scale. At the same time, I take pride in crafting products people love to use.
+
+Occasionally I [give talks and appear on podcasts]. I also keep a [blogroll] of writers I
+enjoy.
+
+Outside of work, I love reading sci-fi and running.
+
+Currently, I'm based in Berlin and working at Wolt/DoorDash. If you're around, feel free to
+reach out. I'm always up for a chat.
+
+## Connect
+
+- [Email]
+- [Bluesky]
+- [GitHub]
+- [LinkedIn]
+- [RSS]
 
 ## Curriculum vitae
 
@@ -59,6 +75,18 @@ reflect those of my employer.
 
 <!-- References -->
 <!-- prettier-ignore-start -->
+
+<!-- Connect -->
+[email]:
+    mailto:redowan.nafi@gmail.com
+[bluesky]:
+    https://bsky.app/profile/rednafi.com
+[github]:
+    https://github.com/rednafi
+[linkedin]:
+    https://www.linkedin.com/in/rednafi/
+[rss]:
+    /index.xml
 
 <!-- Curriculum vitae -->
 [my cv]:

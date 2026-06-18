@@ -61,7 +61,7 @@ func TestSharedImageAssetDimensions(t *testing.T) {
 		width  int
 		height int
 	}{
-		{"cover", "../static/images/home/cover.png", 2400, 1260},
+		{"cover", "../static/images/home/cover.png", 4080, 2142},
 		{"favicon", "../static/favicon.png", 1024, 1024},
 	} {
 		t.Run(tc.name, func(t *testing.T) {

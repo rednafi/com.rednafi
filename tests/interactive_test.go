@@ -262,37 +262,6 @@ func TestPostListHoverCSS(t *testing.T) {
 	})
 }
 
-// TestSidebarLinkTransition verifies the /about connect links keep a simple
-// color-only hover affordance without motion.
-func TestSidebarLinkTransition(t *testing.T) {
-	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/about/")
-
-	link := page.Locator(".aside-section li a").First()
-
-	t.Run("has display inline-block", func(t *testing.T) {
-		display, err := link.Evaluate(
-			`el => getComputedStyle(el).display`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "inline-block", display,
-			"sidebar links need inline-block for transform to work")
-	})
-
-	t.Run("has no transform transition", func(t *testing.T) {
-		transition, err := link.Evaluate(
-			`el => getComputedStyle(el).transition`, nil,
-		)
-		require.NoError(t, err)
-		transStr, _ := transition.(string)
-		assert.Contains(t, transStr, "color",
-			"sidebar link should have a color transition")
-		assert.NotContains(t, transStr, "transform",
-			"sidebar link hover should not move")
-	})
-}
-
 // TestDarkThemeCodeBackground verifies code blocks get a darker background
 // when dark theme is active. We verify via CSS variable value since the pre
 // background transitions over 200ms.

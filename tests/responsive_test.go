@@ -144,40 +144,19 @@ func TestPostListTitleTypographyTokens(t *testing.T) {
 		"vercel list titles are weight-400, not bold")
 }
 
-// TestMobileSidebarWrapping verifies the bio (now on the dedicated /about page,
-// not the home sidebar) uses the full mobile width, and the home frame drops its
-// inner rail on small screens.
-func TestMobileSidebarWrapping(t *testing.T) {
+// TestStackedHomeFrameNoRail verifies the home frame drops its inner vertical
+// rail on small screens.
+func TestStackedHomeFrameNoRail(t *testing.T) {
 	t.Parallel()
 	page := newMobilePage(t)
-	goto_(t, page, "/about/")
+	goto_(t, page, "/")
 
-	bio := page.Locator(".aside-bio")
-	visible, err := bio.IsVisible()
+	bg, err := page.Locator("main.main-list").Evaluate(
+		`el => getComputedStyle(el).backgroundImage`, nil,
+	)
 	require.NoError(t, err)
-	require.True(t, visible)
-
-	t.Run("bio uses the available mobile width", func(t *testing.T) {
-		ratio, err := page.Evaluate(
-			`() => {
-				const bio = document.querySelector(".aside-bio").getBoundingClientRect().width;
-				return bio / window.innerWidth;
-			}`,
-		)
-		require.NoError(t, err)
-		assert.Greater(t, ratio.(float64), 0.85,
-			"bio should use most of the mobile viewport width")
-	})
-
-	t.Run("stacked home frame has no inner rail", func(t *testing.T) {
-		goto_(t, page, "/")
-		bg, err := page.Locator("main.main-list").Evaluate(
-			`el => getComputedStyle(el).backgroundImage`, nil,
-		)
-		require.NoError(t, err)
-		assert.NotContains(t, bg.(string), "repeating-linear-gradient",
-			"stacked home layout should not draw the inner vertical rail")
-	})
+	assert.NotContains(t, bg.(string), "repeating-linear-gradient",
+		"stacked home layout should not draw the inner vertical rail")
 }
 
 // TestMobileHighlightedLineFullWidth verifies that highlighted code lines

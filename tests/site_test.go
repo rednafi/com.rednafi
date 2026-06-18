@@ -202,22 +202,21 @@ func TestHomepage(t *testing.T) {
 	t.Run("dedicated about page has bio and connect sections", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/about/")
-		// page <h1> is "About"; the connect section keeps its eyebrow
+		// page <h1> is "About"; the body is plain markdown with a "Connect" heading
 		h1, err := page.Locator("h1").First().TextContent()
 		require.NoError(t, err)
 		assert.Equal(t, "About", strings.TrimSpace(h1))
-		connect, err := page.Locator(".aside-connect .aside-section-title").TextContent()
+		connect, err := page.Locator("h2#connect").TextContent()
 		require.NoError(t, err)
-		assert.Equal(t, "connect", strings.ToLower(strings.TrimSpace(connect)))
+		assert.Contains(t, strings.ToLower(connect), "connect")
 	})
 
 	t.Run("about page has current bio", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/about/")
-		about := page.Locator(".aside-bio")
-		text, err := about.TextContent()
+		text, err := page.Locator(".article-content").TextContent()
 		require.NoError(t, err)
-		assert.Contains(t, text, "Hi, I’m Redowan.")
+		assert.Contains(t, text, "Hi, I’m Redowan")
 		assert.Contains(t, text, "Wolt/DoorDash")
 	})
 

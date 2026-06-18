@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="t d">
   <title id="t">rednafi.com favicon</title>
-  <desc id="d">A droplet mark.</desc>
-  <rect width="512" height="512" rx="108" fill="#171717"/>
-  <path d="M256 88 C302 158 404 250 404 326 A148 148 0 1 1 108 326 C108 250 210 158 256 88 Z" fill="#fafafa"/>
+  <desc id="d">Three particles on a dark disc.</desc>
+  <circle cx="256" cy="256" r="240" fill="#171717"/>
+  <circle cx="256" cy="184" r="50" fill="#fafafa"/>
+  <circle cx="194" cy="292" r="50" fill="#fafafa"/>
+  <circle cx="318" cy="292" r="50" fill="#fafafa"/>
 </svg>
