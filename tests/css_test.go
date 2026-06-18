@@ -37,7 +37,7 @@ func TestCSSVariablesDefinedInDark(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	expectedDark := map[string]string{
 		"--bg":      "#0a0a0a",

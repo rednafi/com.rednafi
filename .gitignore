@@ -42,3 +42,7 @@ scripts/colorcheck/
 scripts/ogimage/
 # Dev-only Geist typography probe (computed font metrics from the live spec)
 scripts/verceltype/
+
+# Dev-only pixel measurement + theme probes
+scripts/measure/
+scripts/themecheck/

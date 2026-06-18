@@ -96,10 +96,10 @@ func TestFocusVisibleStyles(t *testing.T) {
 	})
 
 	t.Run("theme toggle shows a focus indicator on keyboard focus", func(t *testing.T) {
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Focus())
+		require.NoError(t, themeButton(t, page, "dark").Focus())
 		// A visible focus indicator is either an outline or a Geist box-shadow
 		// focus ring — accept either.
-		indicator, err := page.Locator("button[data-theme-set='dark']").Evaluate(
+		indicator, err := themeButton(t, page, "dark").Evaluate(
 			`el => {
 				const s = getComputedStyle(el);
 				const hasOutline = s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0;
@@ -277,7 +277,7 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 	require.NoError(t, err)
 
 	// Switch to dark
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	// Get the --code-bg variable value in dark theme
 	darkCodeBg, err := page.Evaluate(

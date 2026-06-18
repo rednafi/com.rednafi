@@ -17,6 +17,9 @@
 
     --surface: var(--code-bg);          /* control hover fill */
     --surface-2: #ebebeb;               /* control active / pressed fill */
+    /* raised segment in the theme switcher — lighter than the pill, so the
+       selected segment reads as elevated (light: paper over the #f2f2f2 track) */
+    --toggle-active: var(--bg);
     --accent: var(--link);
 
     /* Geist semantic scale — alerts: 200 fill / 400 border (a visible thin
@@ -121,6 +124,9 @@
 
     --surface: var(--code-bg);
     --surface-2: #1f1f1f;
+    /* dark: elevated segment is LIGHTER than the #1a1a1a pill (raised, not a dark
+       cutout) — mirrors the light-mode raised look */
+    --toggle-active: #2e2e2e;
     --accent: var(--link);
 
     --blue-200: #10233d;   --blue-400: #0d3868;   --blue-900: #52a8ff;

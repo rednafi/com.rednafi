@@ -21,7 +21,8 @@
 }
 .footnotes ol {
   margin: 0;
-  padding-left: var(--space-5);
+  /* same indent as article ul/ol/dd so list markers align across contexts */
+  padding-left: var(--space-6);
 }
 .footnotes li {
   margin-bottom: var(--space-2);
@@ -101,8 +102,9 @@
   padding: var(--space-6) 0;
 }
 
-/* home: drop first-row top padding so the eyebrow→first-post gap stays tight */
-.home-feed .post-list-rich .post:first-child {
+/* a post list directly under its eyebrow label hugs it — the eyebrow's own
+   margin sets the gap (home feed + 404 recent posts share this rhythm) */
+.home-section-title + .post-list > .post:first-child {
   padding-top: 0;
 }
 
@@ -362,7 +364,7 @@ kbd kbd {
 pre {
   background-color: var(--code-bg);
   padding: var(--space-4);
-  margin: var(--space-4) 0;
+  margin: var(--article-gap) 0;
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-x: contain;
@@ -390,7 +392,7 @@ table::-webkit-scrollbar-thumb {
 }
 
 .highlight {
-  margin: var(--space-4) 0;
+  margin: var(--article-gap) 0;
 }
 .highlight pre {
   margin: 0;
@@ -404,7 +406,7 @@ table::-webkit-scrollbar-thumb {
 /* code block frame — wraps the Chroma output */
 .codeblock {
   position: relative; /* anchor the copy button */
-  margin: var(--space-4) 0;
+  margin: var(--article-gap) 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
@@ -421,13 +423,14 @@ table::-webkit-scrollbar-thumb {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   color: var(--faint);
   background-color: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  /* matches the header icon buttons (search / hamburger): 32px, radius 6 */
+  border-radius: var(--radius);
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -473,7 +476,7 @@ table::-webkit-scrollbar-thumb {
 }
 
 .mermaid {
-  margin: var(--space-6) 0;
+  margin: var(--article-gap) 0;
   padding: var(--space-4);
   background: var(--bg-2);
   border: 1px solid var(--border);
@@ -656,7 +659,7 @@ blockquote > p:last-child,
 table {
   display: block;
   width: 100%;
-  margin: var(--space-4) 0;
+  margin: var(--article-gap) 0;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--border);

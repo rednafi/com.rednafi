@@ -5,7 +5,7 @@
 
 <article>
   <p>The page you’re looking for doesn’t exist or has been moved.</p>
-  <h2>Recent posts</h2>
+  <h2 class="home-section-title">Recent posts</h2>
   {{- $recent := first 5 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
   {{ partial "post-list.html" (dict "pages" $recent) }}
   <p><a href="/">← Back to homepage</a></p>

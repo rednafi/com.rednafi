@@ -14,7 +14,7 @@ func TestDarkThemeVisitedLinkColor(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	visited, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--visited").trim()`,
@@ -37,7 +37,7 @@ func TestDarkThemeInlineCodeBg(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, "#f2f2f2", lightCodeBg)
 
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	darkCodeBg, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--code-bg").trim()`,
@@ -78,7 +78,7 @@ func TestDarkThemeMutedTextColor(t *testing.T) {
 	)
 	require.NoError(t, err)
 
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	darkMuted, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--muted").trim()`,
@@ -96,7 +96,7 @@ func TestDarkThemeBorderColor(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	border, err := page.Evaluate(
 		`() => getComputedStyle(document.documentElement).getPropertyValue("--border").trim()`,

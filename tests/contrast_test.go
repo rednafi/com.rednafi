@@ -74,7 +74,7 @@ func TestColorContrastAA(t *testing.T) {
 	}
 
 	check("light")
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 	check("dark")
 }
 
@@ -87,7 +87,7 @@ func TestFocusRingIsOpaque(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	toggle := page.Locator("button[data-theme-set='dark']")
+	toggle := themeButton(t, page, "dark")
 	require.NoError(t, toggle.Focus())
 
 	bs, err := toggle.Evaluate(`el => getComputedStyle(el).boxShadow`, nil)

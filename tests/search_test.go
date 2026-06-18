@@ -139,7 +139,7 @@ func TestSearchPageCSS(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "rgb(255, 221, 143)", light)
 
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 		dark, err := page.Locator("#search mark").First().Evaluate(
 			`el => getComputedStyle(el).backgroundColor`, nil,
 		)

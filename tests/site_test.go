@@ -76,6 +76,21 @@ func newPage(t *testing.T) playwright.Page {
 	return page
 }
 
+// themeButton reveals the nav menu panel — where the search + theme switcher
+// now live — and returns the theme toggle for the given variant
+// ("light"/"dark"/"system"). Idempotent: safe to call repeatedly.
+func themeButton(t *testing.T, page playwright.Page, variant string) playwright.Locator {
+	t.Helper()
+	_, err := page.Evaluate(`() => {
+		const m = document.querySelector('[data-nav-menu]');
+		const b = document.querySelector('[data-nav-toggle]');
+		if (m) { m.hidden = false; m.classList.add('is-open'); }
+		if (b) b.setAttribute('aria-expanded', 'true');
+	}`)
+	require.NoError(t, err)
+	return page.Locator("button[data-theme-set='" + variant + "']")
+}
+
 // newMobilePage creates a page with a mobile viewport.
 func newMobilePage(t *testing.T) playwright.Page {
 	t.Helper()
@@ -139,7 +154,7 @@ func TestBaseLayout(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "Redowan's Reflections", title)
 
-		toggleVisible, err := header.Locator("button[data-theme-set='dark']").IsVisible()
+		toggleVisible, err := themeButton(t, page, "dark").IsVisible()
 		require.NoError(t, err)
 		assert.True(t, toggleVisible)
 	})
@@ -286,7 +301,7 @@ func TestThemeToggle(t *testing.T) {
 	t.Run("clicking toggle switches to dark", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
 		assert.Equal(t, "dark", theme)
@@ -295,8 +310,8 @@ func TestThemeToggle(t *testing.T) {
 	t.Run("active dark choice is idempotent", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)
 		assert.Equal(t, "dark", theme)
@@ -305,7 +320,7 @@ func TestThemeToggle(t *testing.T) {
 	t.Run("persists across navigation via localStorage", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 
 		stored, err := page.Evaluate(`() => localStorage.getItem("theme")`)
 		require.NoError(t, err)
@@ -356,7 +371,7 @@ func TestThemeToggle(t *testing.T) {
 		goto_(t, page, "/")
 		lightBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
 		require.NoError(t, err)
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 		darkBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
 		require.NoError(t, err)
 		assert.NotEqual(t, lightBg, darkBg)
@@ -925,7 +940,7 @@ func TestSemanticHTML(t *testing.T) {
 	t.Run("theme toggle has aria-label", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		label, err := page.Locator("button[data-theme-set='dark']").GetAttribute("aria-label")
+		label, err := themeButton(t, page, "dark").GetAttribute("aria-label")
 		require.NoError(t, err)
 		assert.Equal(t, "Use dark theme", label)
 	})
@@ -947,7 +962,7 @@ func TestSemanticHTML(t *testing.T) {
 	t.Run("keyboard: theme toggle accessible", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Focus())
+		require.NoError(t, themeButton(t, page, "dark").Focus())
 		require.NoError(t, page.Keyboard().Press("Enter"))
 		theme, err := page.Locator("html").GetAttribute("data-theme")
 		require.NoError(t, err)

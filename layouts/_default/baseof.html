@@ -33,7 +33,7 @@
       <div class="footer-byline">&copy; 2020&ndash;{{ now.Year }} <a href="/" rel="author">{{ site.Params.author }}</a></div>
     </footer>
     <a href="#top" class="back-to-top" aria-label="Back to top" aria-hidden="true" tabindex="-1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
     <div class="sr-only" role="status" aria-live="polite" data-copy-status></div>
   </div>
@@ -136,8 +136,8 @@
     (function(){
       var status = document.querySelector("[data-copy-status]");
       // inject copy buttons client-side so the rendered content (and RSS) stays clean
-      var COPY = '<svg class="copy-code__icon copy-code__copy" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-      var CHECK = '<svg class="copy-code__icon copy-code__check" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+      var COPY = '<svg class="copy-code__icon copy-code__copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      var CHECK = '<svg class="copy-code__icon copy-code__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
       Array.prototype.forEach.call(document.querySelectorAll(".codeblock"), function(block){
         if(block.querySelector(".copy-code")) return;
         var code = block.querySelector("code");

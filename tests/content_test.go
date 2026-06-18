@@ -239,7 +239,7 @@ func TestAlertRendering(t *testing.T) {
 		}
 
 		checkColors("light")
-		require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+		require.NoError(t, themeButton(t, page, "dark").Click())
 		checkColors("dark")
 	})
 }
@@ -537,7 +537,7 @@ func TestSyntaxHighlightingDarkTheme(t *testing.T) {
 	require.NotNil(t, lightColor)
 
 	// Switch to dark theme
-	require.NoError(t, page.Locator("button[data-theme-set='dark']").Click())
+	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	// Get keyword color in dark theme
 	darkColor, err := page.Evaluate(

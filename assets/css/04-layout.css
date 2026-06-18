@@ -13,7 +13,9 @@
   /* even vertical padding → consistent bar height */
   padding-block: var(--space-3);
   border-bottom: 1px solid var(--border);
-  /* full-width: border spans rail to rail; gutter padding keeps title/links aligned with reading column */
+  /* full-width sticky bar: border spans rail to rail; the rail gutter sits the
+     title/actions on the main frame's rail edge (the reading column centers
+     inside that frame, so on wide viewports it's inset further than the title) */
   max-width: none;
   padding-inline: var(--rail);
   /* translucent frosted backdrop like vercel's sticky nav (opaque fallback) */
@@ -56,12 +58,21 @@
   margin-left: auto;
 }
 
-/* hairline divider setting the menu trigger apart from the utility controls */
-.header-divider {
-  flex: none;
-  width: 1px;
-  height: 18px;
-  background: var(--border);
+/* the "Control" column: search + theme switcher stacked under the eyebrow, a
+   peer of the Writing / More groups (it carries .site-menu__group too). On
+   phones the columns stack → Control · Writing · More. */
+.site-menu__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* align the 32px control boxes to the nav links' text rows: padding-top centers
+     the first control on the first nav row (line-height 1.5 × fs-h3 + 2 × space-1),
+     and a fixed gap matches the nav links' ~constant visible row gap at every width
+     (a row-derived gap would collapse on phones, where nav rows shrink but the
+     control boxes stay 32px). */
+  --row: calc(1.5 * var(--fs-h3) + 2 * var(--space-1));
+  gap: var(--space-3);
+  padding-top: calc((var(--row) - 32px) / 2);
 }
 
 /* three-state geist theme switcher: segmented control, icon-only buttons —
@@ -103,6 +114,13 @@
   height: 14px;
 }
 
+/* standalone icon buttons (search + hamburger) carry a 16px glyph — the Geist
+   nav-icon size; the segmented switcher's 14px icons step down inside its pill */
+.nav-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
 .theme-toggle:hover {
   color: var(--text);
   background-color: var(--surface-2);
@@ -114,7 +132,8 @@
 
 .theme-toggle[aria-checked="true"] {
   color: var(--text);
-  background-color: var(--bg);
+  /* raised in both themes (lighter than the pill) — see --toggle-active */
+  background-color: var(--toggle-active);
   box-shadow: var(--shadow-sm);
 }
 
@@ -149,6 +168,8 @@
 .nav-toggle:hover,
 .nav-icon:hover {
   color: var(--text);
+  /* match every other bordered button: border darkens on hover */
+  border-color: var(--border-strong);
   background-color: var(--surface-2);
 }
 
@@ -258,6 +279,7 @@
 /* grouped columns with uppercase eyebrows (vercel nav mega-panel) */
 .site-menu__cols {
   display: flex;
+  align-items: flex-start;
   gap: clamp(var(--space-8), 6vw, var(--space-12));
 }
 .site-menu__group {
@@ -269,8 +291,9 @@
   font-size: var(--fs-2xs);
   font-weight: var(--fw-semibold);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  line-height: var(--lh-ui);
+  /* same tracking + leading as every other uppercase eyebrow/label on the site */
+  letter-spacing: 0.04em;
+  line-height: var(--lh-tight);
 }
 
 .site-menu ul {
@@ -280,7 +303,7 @@
 }
 
 /* large, near-black, regular-weight links — the vercel mega-panel item style */
-.site-menu a {
+.site-menu__group li a {
   display: block;
   padding: var(--space-1) 0;
   font-size: var(--fs-h3);
@@ -293,21 +316,21 @@
   transition: color var(--motion-fast);
 }
 
-.site-menu a:visited {
+.site-menu__group li a:visited {
   color: var(--text);
 }
 
-.site-menu a:hover {
+.site-menu__group li a:hover {
   color: var(--muted);
 }
 
-.site-menu a:focus-visible {
+.site-menu__group li a:focus-visible {
   outline: none;
   border-radius: var(--radius-sm);
   box-shadow: var(--ring);
 }
 
-.site-menu a[aria-current="page"] {
+.site-menu__group li a[aria-current="page"] {
   color: var(--muted);
 }
 
@@ -730,8 +753,8 @@ body:has(.site-menu.is-open) .hero::before {
 }
 
 footer {
-  /* vercel-tone footer: hairline top border, muted, center-aligned column with
-     the theme switcher at the bottom */
+  /* vercel-tone footer: hairline top border, muted, center-aligned column —
+     footer nav (blogroll · maxims · tags) over the byline */
   display: flex;
   flex-direction: column;
   align-items: center;
