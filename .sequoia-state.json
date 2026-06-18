@@ -475,9 +475,9 @@
       "slug": "etag-and-http-caching"
     },
     "content/misc/crossing_the_cors_crossroad.md": {
-      "contentHash": "6051d0b5e2188dfbc85f4b6c54afbcbd190e1ee131ecde1f45aac724860251d0",
+      "contentHash": "ce3ea823ea0e48cbf20ec82fa99db0354ff9401061340f699471019377fb2576",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhy6f2o",
-      "lastPublished": "2026-06-05T22:23:42.894Z",
+      "lastPublished": "2026-06-18T02:44:08.750Z",
       "slug": "crossing-the-cors-crossroad"
     },
     "content/go/dysfunctional_options_pattern.md": {
@@ -733,9 +733,9 @@
       "slug": "bulk-request-google-search-index"
     },
     "content/javascript/cors_proxy_with_cloudflare_workers.md": {
-      "contentHash": "50d64d05c5772ef55d0feea0599c6f8835dddcc9724e1994887853b27e26305c",
+      "contentHash": "163cc6beafe278341a656d6cf5bff1a121648c41c2883f98291adadbdaed4da4",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2eg22e",
-      "lastPublished": "2026-06-05T22:23:53.984Z",
+      "lastPublished": "2026-06-18T02:44:14.126Z",
       "slug": "cors-proxy-with-cloudflare-workers"
     },
     "content/misc/fixed_time_task_scheduling_with_at.md": {
