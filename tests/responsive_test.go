@@ -91,7 +91,8 @@ func TestMobileTypographyConsistent(t *testing.T) {
 		return toFloat(size)
 	}
 
-	// matched to vercel.com/blog: h1 48px desktop → 40px mobile, body 18px → 16px
+	// matched to vercel.com/blog: h1 48px desktop → 40px mobile; body 18px desktop
+	// → 17px on phones/tablets (a touch larger than vercel's 16px)
 	t.Run("h1 matches the vercel scale on desktop and mobile", func(t *testing.T) {
 		assert.InDelta(t, 48.0, fontSize(desktop, "h1"), 0.5, "desktop h1 should be 48px")
 		assert.InDelta(t, 40.0, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 40px")
@@ -100,8 +101,8 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	t.Run("reading body matches the vercel scale", func(t *testing.T) {
 		assert.InDelta(t, 18.0, fontSize(desktop, ".article-content p"), 0.5,
 			"desktop article body should be 18px")
-		assert.InDelta(t, 16.0, fontSize(mobile, ".article-content p"), 0.5,
-			"mobile article body should be 16px")
+		assert.InDelta(t, 17.0, fontSize(mobile, ".article-content p"), 0.5,
+			"mobile article body should be 17px")
 	})
 
 	t.Run("pre keeps its full size on mobile", func(t *testing.T) {

@@ -59,9 +59,9 @@
     --fs-h1: 48px;  /* article title / page h1 — 40px <=960 */
     --fs-h2: 32px;  /* 24px <640 */
     --fs-h3: 24px;  /* 20px <=960 */
-    /* reading body — match vercel.com/blog exactly: 18px/28 by default, stepping
-       DOWN to 16px/24 at <=960px (their hard breakpoint; vercel uses max-width:960,
-       so 960px itself is still 16px). The override lives at the end of this layer. */
+    /* reading body — 18px/28 by default (matches vercel), stepping DOWN to 17px
+       at <=960px (vercel drops to 16px there; we keep it a touch larger). Hard
+       breakpoint at max-width:960, so 960px itself is still 17px. Override below. */
     --fs-article: 18px;
     --lh-article: 1.5556;  /* 28/18 */
     --lh-display: 1.1;     /* heading leading */
@@ -143,14 +143,13 @@
     --shadow-md: 0 4px 8px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .5);
   }
 
-  /* reading body steps down to 16px/24 at <=960px to match vercel.com/blog:
-     phones + tablets (incl. iPad portrait 768/834 and iPad mini) get 16px/24;
-     iPad landscape 1024 and up keep the 18px/28 default. Hard step, mirroring
-     vercel's max-width:960 (a fluid ramp drifts smaller than vercel mid-range). */
+  /* reading body steps down to 17px at <=960px: phones + tablets (incl. iPad
+     portrait 768/834 and iPad mini) get 17px; iPad landscape 1024 and up keep the
+     18px/28 default. Hard step at max-width:960 (vercel uses 16px here; we keep 17). */
   @media (max-width: 960px) {
     :root {
-      --fs-article: 16px;  /* vercel: 16px/24 on phones + tablets */
-      --lh-article: 1.5;   /* 24/16 */
+      --fs-article: 17px;  /* phones + tablets (a touch larger than vercel's 16px) */
+      --lh-article: 1.5;   /* 25.5/17 */
       --fs-h1: 40px;       /* vercel: h1 40px <=960, 48px above */
       --fs-h3: 20px;
     }

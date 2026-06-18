@@ -46,3 +46,8 @@ scripts/verceltype/
 # Dev-only pixel measurement + theme probes
 scripts/measure/
 scripts/themecheck/
+
+# Dev-only Geist ink probes (computed-style + pixel ink measurement vs vercel)
+scripts/inkprobe/
+scripts/inkpixels/
+scripts/fonturls/
