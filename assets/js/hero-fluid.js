@@ -8,7 +8,10 @@
 (function () {
   var canvas = document.getElementById("hero-fluid");
   if (!canvas) return;
-  var ctx = canvas.getContext("2d");
+  /* CPU-backed (willReadFrequently) so the canvas isn't promoted to its own GPU
+     compositing layer — otherwise the bio text stacked above it loses subpixel
+     antialiasing and renders soft/grayscale next to the rest of the page */
+  var ctx = canvas.getContext("2d", { willReadFrequently: true });
   if (!ctx) return;
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");

@@ -222,15 +222,19 @@ article li a {
 .content-column li {
   margin-bottom: var(--space-2);
 }
-/* vercel heading rhythm: generous lead-in above a section, tight to its body */
+/* vercel article rhythm: 24px base gap below every block, with headings adding a
+   padding-top lead-in on top of that gap (h2 → 72px above, h3+ → 64px above) */
 .article-content h2 {
-  margin: var(--article-h-top) 0 var(--article-gap);
+  margin: 0 0 var(--article-gap);
+  padding-top: var(--article-h2-lead);
 }
 .article-content :is(h3, h4, h5, h6) {
-  margin: var(--article-h-top-sub) 0 var(--space-3);
+  margin: 0 0 var(--article-gap);
+  padding-top: var(--article-h3-lead);
 }
 .article-content :is(h2, h3, h4, h5, h6):first-child {
   margin-top: 0;
+  padding-top: 0;
 }
 .article-content :is(ul, ol) {
   margin: 0 0 var(--article-gap);
@@ -1040,7 +1044,9 @@ hr {
   display: block;
   padding: var(--space-3) 0;
   color: var(--text);
-  font-size: var(--fs-base);
+  /* resize with the body copy (18px desktop → 16px at <=960px) instead of a
+     fixed size, so the related list tracks the article column responsively */
+  font-size: var(--fs-article);
   line-height: var(--lh-snug);
   text-decoration: none;
   transition: color var(--motion-fast);

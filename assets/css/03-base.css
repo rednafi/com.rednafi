@@ -111,11 +111,19 @@ h1, h2, h3 {
 }
 h1 {
   font-size: var(--fs-h1);
-  /* vercel agent-stack: h1 56/48 = 1.167 lh, -0.06em tracking (body stays at 0) */
+  /* vercel: 56/48 = 1.167 desktop, steps to 48/40 = 1.2 at <=960 (below); -0.06em */
   line-height: 1.167;
   letter-spacing: -0.06em;
   margin-top: 0;
   margin-bottom: var(--space-4);
+}
+@media (max-width: 960px) {
+  h1 {
+    line-height: 1.2;
+  }
+  h3 {
+    letter-spacing: -0.4px; /* vercel loosens h3 tracking on small screens */
+  }
 }
 h2 {
   font-size: var(--fs-h2);
@@ -123,9 +131,11 @@ h2 {
   letter-spacing: -0.04em;
 }
 h3 {
-  font-size: var(--fs-h3);
+  /* vercel prose h3: 28px constant at every width (lh 1.1); tracking is -1.28px
+     on wide screens, loosening to -0.4px on mobile (override below) */
+  font-size: 28px;
   line-height: var(--lh-display);
-  letter-spacing: -0.04em;
+  letter-spacing: -1.28px;
 }
 h4 {
   font-size: var(--fs-base);
@@ -174,8 +184,9 @@ article p {
 @media (max-width: 640px) {
   body {
     padding-block: var(--space-3);
-    padding-left: max(var(--space-3), env(safe-area-inset-left));
-    padding-right: max(var(--space-3), env(safe-area-inset-right));
+    /* halve the side gutter on phones to maximize reading width */
+    padding-left: max(calc(var(--space-3) / 2), env(safe-area-inset-left));
+    padding-right: max(calc(var(--space-3) / 2), env(safe-area-inset-right));
   }
 }
 

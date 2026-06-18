@@ -484,9 +484,13 @@
 .hero__tagline {
   margin: 0;
   color: var(--muted);
+  font-family: "Geist Mono", ui-monospace, monospace;
   /* vercel subtitle scale: 16px mobile → 20px desktop */
   font-size: clamp(16px, 14.2px + 0.45vw, 20px);
-  line-height: var(--lh-normal);
+  /* tightened: snug two-line leading + negative tracking so the subtitle reads
+     as a crisp display line, not loose body copy */
+  line-height: var(--lh-tight);
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 

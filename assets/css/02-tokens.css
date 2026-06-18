@@ -53,23 +53,24 @@
        not small + bold. Fluid 21px → 26px (exact at 390px / 1280px). */
     --fs-list-title: clamp(21px, 18.81px + 0.562vw, 26px);
 
-    /* Display headings — matched to vercel.com/blog (Geist). Fluid clamps scale
-       smoothly with the viewport and land EXACTLY on vercel's mobile (390px) and
-       desktop (1280px) sizes at those endpoints — responsive at every width, not
-       a single hard breakpoint jump. */
-    --fs-h1: clamp(40px, 36.49px + 0.899vw, 48px);  /* article title / page h1 */
-    --fs-h2: clamp(24px, 20.49px + 0.899vw, 32px);
-    --fs-h3: clamp(20px, 18.25px + 0.449vw, 24px);
+    /* Display headings — match vercel.com/blog EXACTLY: hard steps, not fluid
+       clamps. Desktop defaults here; h1/h3 step down at <=960px and h2 at <640px
+       (overrides at the end of this layer), mirroring vercel's breakpoints. */
+    --fs-h1: 48px;  /* article title / page h1 — 40px <=960 */
+    --fs-h2: 32px;  /* 24px <640 */
+    --fs-h3: 24px;  /* 20px <=960 */
     /* reading body — match vercel.com/blog exactly: 18px/28 by default, stepping
        DOWN to 16px/24 at <=960px (their hard breakpoint; vercel uses max-width:960,
        so 960px itself is still 16px). The override lives at the end of this layer. */
     --fs-article: 18px;
     --lh-article: 1.5556;  /* 28/18 */
     --lh-display: 1.1;     /* heading leading */
-    /* article vertical rhythm — vercel: 24px between blocks, 64px above an h2 */
+    /* article vertical rhythm — vercel exact (introducing-eve): 24px base gap
+       between every block; headings add padding-top ON TOP of that gap, so the
+       rendered lead-in is 24+48=72px above an h2 and 24+40=64px above an h3 */
     --article-gap: 24px;
-    --article-h-top: 64px;
-    --article-h-top-sub: 44px;  /* h3+ get a shorter lead-in */
+    --article-h2-lead: 48px;   /* vercel h2 padding-top */
+    --article-h3-lead: 40px;   /* vercel h3 padding-top */
 
     /* Weights */
     --fw-normal: 400;
@@ -148,8 +149,16 @@
      vercel's max-width:960 (a fluid ramp drifts smaller than vercel mid-range). */
   @media (max-width: 960px) {
     :root {
-      --fs-article: 16px;
-      --lh-article: 1.5;  /* 24/16 */
+      --fs-article: 16px;  /* vercel: 16px/24 on phones + tablets */
+      --lh-article: 1.5;   /* 24/16 */
+      --fs-h1: 40px;       /* vercel: h1 40px <=960, 48px above */
+      --fs-h3: 20px;
+    }
+  }
+  /* vercel steps h2 down below 640px (Tailwind sm): 24px <640, 32px from 640 up */
+  @media (max-width: 639.98px) {
+    :root {
+      --fs-h2: 24px;
     }
   }
 }
