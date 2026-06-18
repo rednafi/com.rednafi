@@ -191,11 +191,11 @@ article p {
 
 @media (max-width: 640px) {
   :root {
-    /* one uniform 12px side gutter on phones (halved — 24px read a bit fat). The
-       grid frame is dropped on mobile (04-layout), so --rail alone carries the
-       gutter — header, reading content, and footer all flush at 12px from the edge.
+    /* one uniform 16px side gutter on phones (down from 24px, which read a bit fat).
+       The grid frame is dropped on mobile (04-layout), so --rail alone carries the
+       gutter — header, reading content, and footer all flush at 16px from the edge.
        Tablets/desktop keep the clamp() default in 02-tokens. */
-    --rail: 12px;
+    --rail: 16px;
   }
   body {
     padding-block: var(--space-3);
