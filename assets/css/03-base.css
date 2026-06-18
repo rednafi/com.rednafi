@@ -22,6 +22,10 @@ html {
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  /* match vercel.com/blog exactly: contextual alternates off + required ligatures,
+     and no faux weights/italics (real variable instances are used instead) */
+  font-feature-settings: "calt" 0, "rlig";
+  font-synthesis: none;
   /* thin Geist scrollbars (Firefox); ::-webkit-* below covers Chromium/Safari */
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;

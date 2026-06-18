@@ -313,6 +313,8 @@ pre,
 code {
   font-family: "Geist Mono", ui-monospace, monospace;
   font-size: var(--fs-sm);
+  /* vercel uses default features on mono (calt stays on for code) */
+  font-feature-settings: normal;
 }
 
 /* inline code chip — border mixes toward --border-strong (plain --border vanishes
