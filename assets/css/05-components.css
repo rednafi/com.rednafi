@@ -326,7 +326,10 @@ code {
   border-radius: var(--radius-sm);
   border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
   font-variant-ligatures: none;
-  /* keep the chip frame intact when a long token wraps across lines */
+  /* keep a multi-word chip (e.g. `sh -s 30s`) on one line so it never splits into
+     two framed pieces at a line end — it moves to the next line whole instead */
+  white-space: nowrap;
+  /* clone keeps the frame intact in the rare case a single chip is too wide to fit */
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -341,6 +344,9 @@ pre code {
   font-size: var(--fs-sm);
   background: none;
   border: none;
+  /* code blocks preserve newlines + scroll horizontally — don't inherit the inline
+     chip's nowrap (which would collapse a block's lines into one) */
+  white-space: pre;
 }
 
 /* kbd — Geist key cap; raised look = 1px bottom shadow. Hugo wraps combos as

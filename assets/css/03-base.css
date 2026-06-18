@@ -55,15 +55,9 @@ html {
   background: transparent;
 }
 
-/* Light mode keeps the macOS DEFAULT smoothing (auto). On modern macOS the default
-   applies stem-darkening → heavier, darker, crisper strokes; `antialiased` turns that
-   off and thins text into a washed-out look. So antialiased is dark-mode only, where
-   light-on-dark reads better thin. (Vercel forces antialiased globally — that's the
-   thinner variant; we deliberately don't, to keep the darker render macOS gives.) */
-[data-theme="dark"] {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* No -webkit-font-smoothing override in either theme: the browser default (auto)
+   applies macOS stem-darkening → heavier, darker strokes. `antialiased` thins text,
+   which read too thin, so it's deliberately off (light AND dark). No-op on Android. */
 
 @media (prefers-reduced-motion: reduce) {
   html {
