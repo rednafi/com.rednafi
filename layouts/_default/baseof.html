@@ -192,7 +192,34 @@
     })();
   </script>
   {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-  {{ template "_internal/google_analytics.html" . }}
+  {{- with site.Config.Services.GoogleAnalytics.ID }}
+  <script>
+    /* Lazy-load GA4: defer gtag.js until the first interaction or browser idle,
+       so the 150KB analytics payload never competes with first paint / TBT. */
+    (function () {
+      /* respect Do Not Track — privacy-conscious users aren't loaded into GA */
+      if (navigator.doNotTrack == "1" || window.doNotTrack == "1" || navigator.msDoNotTrack == "1") return;
+      var id = {{ . }}, started = false;
+      function start() {
+        if (started) return; started = true;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date());
+        gtag("config", id);
+      }
+      var evs = ["pointerdown", "keydown", "scroll", "touchstart"];
+      function go() { evs.forEach(function (e) { removeEventListener(e, go, true); }); start(); }
+      evs.forEach(function (e) { addEventListener(e, go, { capture: true, passive: true }); });
+      /* fallback so non-interacting sessions still register: load 3s after the
+         page has loaded — past the critical render + interactivity window. */
+      addEventListener("load", function () { setTimeout(start, 3000); });
+    })();
+  </script>
+  {{- end }}
   {{- end }}
 </body>
 </html>

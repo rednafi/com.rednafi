@@ -1,9 +1,10 @@
 @layer layout {
 
 .site-header {
-  /* slim, glassy, sticky bar — vercel.com top-nav metrics */
-  position: sticky;
-  top: 0;
+  /* slim top bar — vercel.com top-nav metrics. Not sticky (scrolls away, so no
+     backdrop blur needed), but position:relative so it stays the positioning +
+     stacking context for the absolutely-positioned dropdown menu (top:100%). */
+  position: relative;
   z-index: 20;
   display: flex;
   align-items: center;
@@ -13,16 +14,12 @@
   /* even vertical padding → consistent bar height */
   padding-block: var(--space-3);
   border-bottom: 1px solid var(--border);
-  /* full-width sticky bar: border spans rail to rail; the rail gutter sits the
+  /* full-width bar: border spans rail to rail; the rail gutter sits the
      title/actions on the main frame's rail edge (the reading column centers
      inside that frame, so on wide viewports it's inset further than the title) */
   max-width: none;
   padding-inline: var(--rail);
-  /* translucent frosted backdrop like vercel's sticky nav (opaque fallback) */
   background: var(--bg);
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: saturate(180%) blur(10px);
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
 }
 
 .site-title {

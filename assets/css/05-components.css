@@ -159,13 +159,14 @@
   color: var(--link);
 }
 
-/* title — vercel blog display type: large, weight-400, tight negative tracking
-   (their featured titles are 40px/400/-0.06em). Light + airy, not small + bold. */
+/* title — vercel blog display type: large, tight negative tracking, not small +
+   bold. Weight nudged to 450 (variable axis) for a touch more ink/contrast than
+   a flat 400 without reading as bold. */
 .post-list .post > a {
   display: block;
   color: var(--text);
   font-size: var(--fs-list-title);
-  font-weight: var(--fw-normal);
+  font-weight: 450;
   line-height: 1.2;
   letter-spacing: -0.04em;
   text-wrap: balance;
@@ -882,7 +883,7 @@ summary:focus-visible {
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   line-height: var(--lh-ui);
   color: var(--muted);
   transition: var(--transition-control);

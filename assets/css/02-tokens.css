@@ -49,9 +49,9 @@
     --fs-base: 1rem;     /* 17px — body, h4, aside */
     --fs-lg: 1.1rem;     /* 19px — h3, card title, site title, mobile post title */
     --fs-title: 1.18rem; /* 20px — post-list title (desktop); mobile drops to --fs-lg */
-    /* list-title — vercel blog titles are large + weight-400 + tight tracking,
-       not small + bold. Fluid 21px → 26px (exact at 390px / 1280px). */
-    --fs-list-title: clamp(21px, 18.81px + 0.562vw, 26px);
+    /* list-title — vercel blog titles are large + tight tracking, not small +
+       bold. Fluid 23px → 26px (exact at 390px / 1280px). */
+    --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px);
 
     /* Display headings — match vercel.com/blog EXACTLY: hard steps, not fluid
        clamps. Desktop defaults here; h1/h3 step down at <=960px and h2 at <640px
