@@ -485,8 +485,8 @@
   margin: 0;
   color: var(--muted);
   font-family: "Geist Mono", ui-monospace, monospace;
-  /* vercel subtitle scale: 16px mobile → 20px desktop */
-  font-size: clamp(16px, 14.2px + 0.45vw, 20px);
+  /* vercel subtitle scale, a touch smaller: 15px mobile → 18px desktop */
+  font-size: clamp(15px, 13.7px + 0.34vw, 18px);
   /* tightened: snug two-line leading + negative tracking so the subtitle reads
      as a crisp display line, not loose body copy */
   line-height: var(--lh-tight);
@@ -753,6 +753,25 @@ body:has(.site-menu.is-open) .hero::before {
       100% 1px,
       1px 100%,
       1px 100%;
+  }
+}
+
+/* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
+   narrow screen; content runs clean to the uniform 24px gutter (--rail), like vercel.
+   The hero keeps its splash-card border; only its crosshairs go. Placed after the
+   <=900px main-list frame rule so it wins on source order. */
+@media (max-width: 640px) {
+  main,
+  main.main-entry,
+  main.main-list {
+    background-image: none;
+    margin-top: 0;
+  }
+  main::before,
+  main::after,
+  .hero::before,
+  .hero::after {
+    content: none;
   }
 }
 

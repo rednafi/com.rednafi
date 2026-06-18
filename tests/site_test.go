@@ -1036,24 +1036,28 @@ func TestMobileLayout(t *testing.T) {
 		assert.Equal(t, 0, asideCount, "home feed is single-column on mobile")
 	})
 
-	t.Run("feed column uses the full mobile width", func(t *testing.T) {
+	t.Run("feed column uses most of the mobile width", func(t *testing.T) {
+		// With the mobile grid frame dropped, content runs to a uniform 24px side
+		// gutter (matching vercel). At 390px that's ~84% of the viewport (a bit
+		// less under the headless scrollbar gutter); still the bulk of the width.
 		ratio, err := page.Evaluate(`() => {
 			const f = document.querySelector(".home-feed").getBoundingClientRect().width;
 			return f / window.innerWidth;
 		}`)
 		require.NoError(t, err)
-		assert.Greater(t, ratio.(float64), 0.85,
+		assert.Greater(t, ratio.(float64), 0.83,
 			"feed should use most of the mobile viewport width")
 	})
 
-	t.Run("body has reduced padding", func(t *testing.T) {
-		// Mobile padding (1.05rem ≈ 17.85px) is comfortably reduced from the
-		// desktop 1.5rem (≈25.5px) without crowding content against the edge.
-		p, err := page.Locator("body").Evaluate(
+	t.Run("mobile side gutter is 24px", func(t *testing.T) {
+		// The decorative grid frame is dropped on mobile, so --rail carries the
+		// whole side gutter (24px, matching vercel); body padding is just safe-area.
+		rail, err := page.Locator("main").Evaluate(
 			`el => parseFloat(getComputedStyle(el).paddingLeft)`, nil,
 		)
 		require.NoError(t, err)
-		assert.LessOrEqual(t, toFloat(p), float64(19))
+		assert.InDelta(t, float64(24), toFloat(rail), 0.5,
+			"mobile gutter should be a uniform 24px on --rail")
 	})
 }
 

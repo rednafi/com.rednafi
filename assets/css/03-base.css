@@ -51,7 +51,11 @@ html {
   background: transparent;
 }
 
-/* antialiasing dark-mode only — do NOT make global; thins light-mode text into washed-out */
+/* Light mode keeps the macOS DEFAULT smoothing (auto). On modern macOS the default
+   applies stem-darkening → heavier, darker, crisper strokes; `antialiased` turns that
+   off and thins text into a washed-out look. So antialiased is dark-mode only, where
+   light-on-dark reads better thin. (Vercel forces antialiased globally — that's the
+   thinner variant; we deliberately don't, to keep the darker render macOS gives.) */
 [data-theme="dark"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -182,11 +186,17 @@ article p {
 }
 
 @media (max-width: 640px) {
+  :root {
+    /* one uniform 24px side gutter on mobile (matches vercel). The grid frame is
+       dropped on mobile (04-layout), so --rail alone carries the gutter — keeping
+       the header, reading content, and footer all flush at 24px from the edge. */
+    --rail: 24px;
+  }
   body {
     padding-block: var(--space-3);
-    /* halve the side gutter on phones to maximize reading width */
-    padding-left: max(calc(var(--space-3) / 2), env(safe-area-inset-left));
-    padding-right: max(calc(var(--space-3) / 2), env(safe-area-inset-right));
+    /* gutter now lives on --rail; body padding only clears the notch (safe-area) */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
