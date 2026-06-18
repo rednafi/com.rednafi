@@ -111,7 +111,7 @@ func TestMobileTypographyConsistent(t *testing.T) {
 }
 
 // TestPostListTitleTypographyTokens verifies post-list titles use the vercel
-// display-type scale: large + weight-450 + tight tracking (--fs-list-title:
+// display-type scale: large + weight-400 + tight tracking (--fs-list-title:
 // 26px desktop, 23px mobile), not small + bold.
 func TestPostListTitleTypographyTokens(t *testing.T) {
 	t.Parallel()
@@ -140,8 +140,8 @@ func TestPostListTitleTypographyTokens(t *testing.T) {
 		"desktop post-list title should use --fs-list-title (26px)")
 	assert.InDelta(t, 23.0, size(mobile), 0.5,
 		"mobile post-list title should drop to --fs-list-title (23px)")
-	assert.Equal(t, "450", weight(desktop),
-		"list titles use weight-450 — a touch more ink than 400, not bold")
+	assert.Equal(t, "400", weight(desktop),
+		"vercel list titles are weight-400, not bold")
 }
 
 // TestStackedHomeFrameNoRail verifies the home frame drops its inner vertical
