@@ -1067,9 +1067,9 @@ hr {
   display: block;
   padding: var(--space-3) 0;
   color: var(--text);
-  /* resize with the body copy (18px desktop → 16px at <=960px) instead of a
-     fixed size, so the list tracks the article column responsively */
-  font-size: var(--fs-article);
+  /* a touch under body copy — these footer-nav rows are secondary to the
+     article, not part of the reading flow */
+  font-size: var(--fs-base);
   line-height: var(--lh-snug);
   text-decoration: none;
   transition: color var(--motion-fast);
@@ -1081,11 +1081,6 @@ hr {
 .related-posts li a:hover,
 .discussion-links li a:hover {
   color: var(--link);
-}
-/* discussion rows sit a wee bit under body copy — these are backlinks, not
-   first-class navigation like related posts */
-.discussion-links li a {
-  font-size: var(--fs-base);
 }
 
 /* TOC — Geist disclosure: bordered summary joins a matching panel when open */
