@@ -109,22 +109,34 @@ monorepo].
 It came out of Uber, the same place as goleak, and was designed by Vlad Saioc and Milind
 Chabbi. The [detection rides on the garbage collector]. A goroutine is leaked when it's
 blocked on a channel or lock that no runnable goroutine can reach, directly or through
-another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
-it.
+another goroutine a runnable one could unblock. Nothing can ever wake it. The GC flags it.
 
-It works differently from goleak. goleak doesn't prove a goroutine is stuck. It just reports
-the ones still running that you didn't tell it to expect. That suits a test, where nothing
-should be left running when it ends. A live server is the opposite. Most of its goroutines
-are blocked on purpose, waiting for the next request. Run goleak's `Find` there and those
-healthy ones get reported right next to any real leak.
+> [!NOTE]
+>
+> Read that as a reachability test. If a goroutine is blocked on primitive `P`, and `P` is
+> unreachable from any runnable goroutine or from any goroutine those runnable ones could
+> unblock, then `P` cannot be unblocked. The goroutine can never wake up.
 
-The profile tells the difference. It starts from the goroutines that can still run, follows
+goleak and the profile answer different questions:
+
+|                 | goleak                                 | `goroutineleak` profile              |
+| --------------- | -------------------------------------- | ------------------------------------ |
+| Asks            | what's still running you didn't expect | what can never run again             |
+| How it decides  | a snapshot, no proof                   | a reachability proof, via the GC     |
+| Works in        | tests, at teardown                     | a live process                       |
+| False positives | yes, on a live server                  | none, only provably stuck goroutines |
+
+The split is about where each one runs. At a test's teardown nothing should be left running.
+Handing back whatever's there is exactly what you want from goleak. A live server is the
+opposite. Most of its goroutines are blocked on purpose, waiting for the next request, and
+goleak can't tell those from a real leak.
+
+The profile proves it instead. It starts from the goroutines that can still run, follows
 what they can reach, and rescues any blocked goroutine whose channel or lock is still in
-play. Whatever's left has nothing that could ever touch it, so it's stuck for good. That
-holds on a live process, where most goroutines are blocked on purpose. Uber had already run
-[in-production leak detection] with a sampling tool, but sampling flags by heuristic and
-turns up false alarms. The GC pass reports only goroutines it can prove are stuck, which is
-the [no false positives] guarantee.
+play. Whatever's left has nothing that could ever touch it. It's stuck for good. Uber had
+already tried [in-production leak detection] with a sampling tool, but sampling flags by
+heuristic and turns up false alarms. The GC pass reports only goroutines it can prove are
+stuck. That's the [no false positives] guarantee.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
