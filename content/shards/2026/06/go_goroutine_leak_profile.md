@@ -103,7 +103,7 @@ This list is nowhere near exhaustive. There are a ton of other ways to leak a go
 accident, and not all of them are in your own code - a dependency or one of its transitive
 deps can leak one too. Uber [catalogued the patterns across its Go monorepo].
 
-## The standard library can now find them at runtime
+## The stdlib leak profile can now find them
 
 It came out of Uber, the same place as goleak, and was designed by Vlad Saioc and Milind
 Chabbi. The [detection rides on the garbage collector]. A goroutine is leaked when it's
@@ -165,9 +165,9 @@ The text points straight at the goroutines that leaked:
 ```
 goroutineleak profile: total 2
 1 @ ...
-#	0x...	main.leakSend.func1+0x27	formats.go:15
+#    0x...    main.leakSend.func1+0x27    formats.go:15
 1 @ ...
-#	0x...	main.leakRange.func1+0x33	formats.go:21
+#    0x...    main.leakRange.func1+0x33    formats.go:21
 ```
 
 `debug=2` is a full goroutine dump, with the leaked goroutines tagged `(leaked)`:
@@ -175,15 +175,15 @@ goroutineleak profile: total 2
 ```
 goroutine 7 [chan send (leaked)]:
 main.leakSend.func1()
-	formats.go:15 +0x28
+    formats.go:15 +0x28
 created by main.leakSend in goroutine 1
-	formats.go:15 +0x6c
+    formats.go:15 +0x6c
 
 goroutine 8 [chan receive (leaked)]:
 main.leakRange.func1()
-	formats.go:21 +0x34
+    formats.go:21 +0x34
 created by main.leakRange in goroutine 1
-	formats.go:20 +0x6c
+    formats.go:20 +0x6c
 ```
 
 A normal dump reads `[chan send]` and `[chan receive]`. The `(leaked)` suffix is what the
@@ -258,7 +258,7 @@ Then read the profile off the endpoint:
 $ curl 'localhost:6060/debug/pprof/goroutineleak?debug=1'
 goroutineleak profile: total 1
 1 @ ...
-#	0x...	main.main.func1+0x27	server.go:13
+#    0x...    main.main.func1+0x27    server.go:13
 ```
 
 ### With go tool pprof
