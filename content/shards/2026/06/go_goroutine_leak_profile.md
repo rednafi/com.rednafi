@@ -118,10 +118,13 @@ should be left running when it ends. A live server is the opposite. Most of its 
 are blocked on purpose, waiting for the next request. Run goleak's `Find` there and those
 healthy ones get reported right next to any real leak.
 
-The profile tells the difference. The GC checks whether anything could ever unblock a
-goroutine and flags it only when nothing can. So it works on a live process, the kind of
-[in-production detection Uber built]. Whatever it flags is stuck for good, not just slow or
-idle. That's the [no false positives] guarantee.
+The profile tells the difference. It starts from the goroutines that can still run, follows
+what they can reach, and rescues any blocked goroutine whose channel or lock is still in
+play. Whatever's left has nothing that could ever touch it, so it's stuck for good. That
+holds on a live process, where most goroutines are blocked on purpose. Uber had already run
+[in-production leak detection] with a sampling tool, but sampling flags by heuristic and
+turns up false alarms. The GC pass reports only goroutines it can prove are stuck, which is
+the [no false positives] guarantee.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
@@ -288,10 +291,11 @@ Type: goroutineleak
 It won't catch every leak. The Go 1.27 notes admit it [can't catch every case] and only
 promise a large class of them.
 
-That comes from leaning on reachability. If the channel or lock a stuck goroutine is waiting
-on is still reachable, through a global or the locals of a running goroutine, the GC counts
-it as live and leaves the goroutine alone. The leaks it does report are real. A few real
-ones just slip through.
+The reason is the no-false-positives rule. To avoid ever flagging a goroutine that could
+still wake up, the GC leaves alone any whose channel or lock is still reachable. A global,
+or the locals of a runnable goroutine, can keep that channel or lock reachable long after
+anything will actually touch it, so the goroutine blocked on it goes unflagged. Everything
+the profile reports is a real leak. Some real leaks just don't show up.
 
 Every snippet here is a runnable program in the [example repo]. I ran them on the 1.26
 toolchain and the profile flagged each leak at the exact line.
