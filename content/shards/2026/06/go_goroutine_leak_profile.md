@@ -95,9 +95,9 @@ The fix is to `close(out)` after the last send, which ends the range and lets th
 return.
 
 They're obvious once you spot them, but easy to let slip past, especially under an early
-return or once the surrounding code grows. goleak catches them in tests, but not in a
-running production process. There you're left reading `/debug/pprof/goroutine` and guessing
-which of the blocked goroutines are stuck for good and which are just idle.
+return or once the surrounding code grows. goleak catches them in tests, but it isn't made
+for a live production process. There you're left reading `/debug/pprof/goroutine` and
+guessing which of the blocked goroutines are stuck for good and which are just idle.
 
 This list is nowhere near exhaustive. There are a ton of other ways to leak a goroutine by
 accident, and not all of them are in your own code - a dependency or one of its transitive
@@ -111,10 +111,16 @@ blocked on a channel or lock that no runnable goroutine can reach, directly or t
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It improves on goleak in two ways. It runs against a live process and catches the production
-leaks goleak never sees, the kind of [in-production detection Uber built]. And because the
-GC proves a leak instead of sampling for one, it has [no false positives]. Anything it flags
-is blocked for good, not just slow or idle.
+It works differently from goleak. goleak diffs goroutine dumps and flags whatever shouldn't
+still be running, which you usually do at the end of a test. The profile runs against a live
+process instead, so it can catch production leaks a test never reaches, like the
+[in-production detection Uber built]. And because the GC proves a leak rather than inferring
+one from a dump, it has [no false positives]. Anything it flags is blocked for good, not
+just slow to exit.
+
+The catch is the other direction. The profile is sound but not complete, so it can still
+miss a leak. A goroutine that's stuck but still reachable through a global doesn't look
+leaked to the GC, so that one slips past.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
@@ -165,9 +171,9 @@ The text points straight at the goroutines that leaked:
 ```
 goroutineleak profile: total 2
 1 @ ...
-#    0x...    main.leakSend.func1+0x27    formats.go:15
+#    0x...    main.leakSend.func1+0x27    formats/main.go:15
 1 @ ...
-#    0x...    main.leakRange.func1+0x33    formats.go:21
+#    0x...    main.leakRange.func1+0x33    formats/main.go:21
 ```
 
 `debug=2` is a full goroutine dump, with the leaked goroutines tagged `(leaked)`:
@@ -175,15 +181,15 @@ goroutineleak profile: total 2
 ```
 goroutine 7 [chan send (leaked)]:
 main.leakSend.func1()
-    formats.go:15 +0x28
+    formats/main.go:15 +0x28
 created by main.leakSend in goroutine 1
-    formats.go:15 +0x6c
+    formats/main.go:15 +0x6c
 
 goroutine 8 [chan receive (leaked)]:
 main.leakRange.func1()
-    formats.go:21 +0x34
+    formats/main.go:21 +0x34
 created by main.leakRange in goroutine 1
-    formats.go:20 +0x6c
+    formats/main.go:20 +0x6c
 ```
 
 A normal dump reads `[chan send]` and `[chan receive]`. The `(leaked)` suffix is what the
@@ -258,7 +264,7 @@ Then read the profile off the endpoint:
 $ curl 'localhost:6060/debug/pprof/goroutineleak?debug=1'
 goroutineleak profile: total 1
 1 @ ...
-#    0x...    main.main.func1+0x27    server.go:13
+#    0x...    main.main.func1+0x27    server/main.go:13
 ```
 
 ### With go tool pprof
