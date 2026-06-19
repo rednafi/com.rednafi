@@ -114,9 +114,10 @@ it.
 
 It works differently from goleak. goleak can't tell a leaked goroutine from a healthy one.
 It lists the goroutines that are running and flags any you didn't mark as expected, so you
-have to define what's normal up front. That's easy at the end of a test, when nothing should
-still be running. It's hopeless in a live server, where most goroutines are blocked on
-purpose, waiting for the next request.
+have to define what's normal up front. At the end of a test that's easy, since nothing
+should still be running. goleak's `Find` runs against a live server too, but there most
+goroutines are blocked on purpose, waiting for the next request, so it flags those just like
+a real leak.
 
 The profile can tell the difference. The GC checks whether anything could ever unblock a
 goroutine and flags it only when nothing can. So it works against a live process, the kind
