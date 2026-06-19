@@ -42,14 +42,22 @@
 </div>
 </article>
 
+{{- $related := slice }}
 {{- if not .Params.hideRelated }}
-{{- $related := site.RegularPages.Related . | first 5 }}
-{{- if lt (len $related) 3 }}
-  {{- $sectionPages := where site.RegularPages "Section" .Section }}
-  {{- $related = $sectionPages | complement (slice .) | first 5 }}
+  {{- $related = site.RegularPages.Related . | first 5 }}
+  {{- if lt (len $related) 3 }}
+    {{- $sectionPages := where site.RegularPages "Section" .Section }}
+    {{- $related = $sectionPages | complement (slice .) | first 5 }}
+  {{- end }}
 {{- end }}
-{{- with $related }}
+
+{{- if or .Params.discussions $related }}
 <div class="post-ornament" aria-hidden="true">&sect;</div>
+{{- end }}
+
+{{ partial "discussion_links.html" . }}
+
+{{- with $related }}
 <nav class="related-posts" aria-label="Related posts">
   <h2>Related posts</h2>
   <ul>
@@ -58,7 +66,6 @@
     {{- end }}
   </ul>
 </nav>
-{{- end }}
 {{- end }}
 
 {{- if .Params.mermaid }}

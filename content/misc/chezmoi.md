@@ -8,6 +8,9 @@ tags:
     - CLI
     - Unix
 title: Migrating from GNU stow to chezmoi
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=48588413
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k"
 ---
 

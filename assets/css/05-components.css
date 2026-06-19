@@ -1026,12 +1026,18 @@ hr {
   background: var(--border);
 }
 
-/* related posts — heading reuses the shared eyebrow (.aside-section-title /
-   .home-section-title); hairline-separated rows */
-.related-posts {
+/* related posts + discussion backlinks — shared Geist footer-nav idiom:
+   eyebrow heading (reuses .aside-section-title / .home-section-title) over
+   hairline-separated rows. discussion-links is driven by the post's
+   `discussions` frontmatter and renders nothing when the field is absent;
+   it is label-agnostic, so any platform (Hacker News, Reddit, Lobsters, …)
+   and any count of entries stack identically. */
+.related-posts,
+.discussion-links {
   margin: var(--space-6) 0 0;
 }
-.related-posts h2 {
+.related-posts h2,
+.discussion-links h2 {
   margin: 0 0 var(--space-2);
   color: var(--faint);
   font-size: var(--fs-2xs);
@@ -1040,29 +1046,40 @@ hr {
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.related-posts ul {
+.discussion-links p {
+  margin: 0 0 var(--space-3);
+  color: var(--muted);
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
+.related-posts ul,
+.discussion-links ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.related-posts li + li {
+.related-posts li + li,
+.discussion-links li + li {
   border-top: 1px solid var(--border);
 }
-.related-posts li a {
+.related-posts li a,
+.discussion-links li a {
   display: block;
   padding: var(--space-3) 0;
   color: var(--text);
   /* resize with the body copy (18px desktop → 16px at <=960px) instead of a
-     fixed size, so the related list tracks the article column responsively */
+     fixed size, so the list tracks the article column responsively */
   font-size: var(--fs-article);
   line-height: var(--lh-snug);
   text-decoration: none;
   transition: color var(--motion-fast);
 }
-.related-posts li a:visited {
+.related-posts li a:visited,
+.discussion-links li a:visited {
   color: var(--text);
 }
-.related-posts li a:hover {
+.related-posts li a:hover,
+.discussion-links li a:hover {
   color: var(--link);
 }
 

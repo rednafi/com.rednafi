@@ -15,6 +15,12 @@ description: >-
 discussions:
     - label: Hacker News
       url: https://news.ycombinator.com/item?id=44086235
+    - label: r/golang
+      url: https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
+    - label: r/programming
+      url: https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
+    - label: r/ExperiencedDevs
+      url: https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifouv326"
 ---
 
@@ -321,15 +327,6 @@ However, in my experience, even in organizations that maintain a substantial num
 repos, DI frameworks add more confusion than they're worth. If your experience is otherwise,
 I'd love to be proven wrong.
 
----
-
-The post got a fair bit of discussion going around the web. You might find it interesting.
-
-- [hackernews]
-- [r/golang]
-- [r/experienceddevs]
-- [r/programming]
-
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -350,17 +347,5 @@ The post got a fair bit of discussion going around the web. You might find it in
 
 [fx]:
     https://github.com/uber-go/fx
-
-[hackernews]:
-    https://news.ycombinator.com/item?id=44086235
-
-[r/golang]:
-    https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
-
-[r/programming]:
-    https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
-
-[r/experienceddevs]:
-    https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
 
 <!-- prettier-ignore-end -->
