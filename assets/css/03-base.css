@@ -133,9 +133,8 @@ h2 {
   letter-spacing: -0.04em;
 }
 h3 {
-  /* vercel prose h3: 28px constant at every width (lh 1.1); tracking is -1.28px
-     on wide screens, loosening to -0.4px on mobile (override below) */
-  font-size: 28px;
+  /* keep ### visually below ## at every breakpoint */
+  font-size: var(--fs-h3);
   line-height: var(--lh-display);
   letter-spacing: -1.28px;
 }

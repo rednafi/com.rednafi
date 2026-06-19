@@ -74,14 +74,14 @@ func TestMobileCodeBlockOverflow(t *testing.T) {
 	})
 }
 
-// TestMobileTypographyConsistent verifies type sizes do NOT shrink at the mobile
-// breakpoint — desktop sizes carry across unchanged (no screen-based reduction).
+// TestMobileTypographyConsistent verifies the display type scale keeps the same
+// hierarchy at desktop and mobile breakpoints.
 func TestMobileTypographyConsistent(t *testing.T) {
 	t.Parallel()
 	desktop := newPage(t)
-	goto_(t, desktop, "/go/anemic-stack-traces/")
+	goto_(t, desktop, "/go/closure-mutable-refs/")
 	mobile := newMobilePage(t)
-	goto_(t, mobile, "/go/anemic-stack-traces/")
+	goto_(t, mobile, "/go/closure-mutable-refs/")
 
 	fontSize := func(page playwright.Page, sel string) float64 {
 		size, err := page.Locator(sel).First().Evaluate(
@@ -96,6 +96,21 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	t.Run("h1 matches the vercel scale on desktop and mobile", func(t *testing.T) {
 		assert.InDelta(t, 48.0, fontSize(desktop, "h1"), 0.5, "desktop h1 should be 48px")
 		assert.InDelta(t, 40.0, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 40px")
+	})
+
+	t.Run("article h2 stays larger than h3", func(t *testing.T) {
+		desktopH2 := fontSize(desktop, ".article-content h2")
+		desktopH3 := fontSize(desktop, ".article-content h3")
+		mobileH2 := fontSize(mobile, ".article-content h2")
+		mobileH3 := fontSize(mobile, ".article-content h3")
+
+		assert.InDelta(t, 32.0, desktopH2, 0.5, "desktop h2 should be 32px")
+		assert.InDelta(t, 24.0, desktopH3, 0.5, "desktop h3 should be 24px")
+		assert.Greater(t, desktopH2, desktopH3, "desktop h2 should be larger than h3")
+
+		assert.InDelta(t, 24.0, mobileH2, 0.5, "mobile h2 should be 24px")
+		assert.InDelta(t, 20.0, mobileH3, 0.5, "mobile h3 should be 20px")
+		assert.Greater(t, mobileH2, mobileH3, "mobile h2 should be larger than h3")
 	})
 
 	t.Run("reading body matches the vercel scale", func(t *testing.T) {
