@@ -286,10 +286,6 @@ make sure they pass in the intermediate commits.
 
 Fin!
 
-## Further reading
-
-- [Hackernews discussion on rebasing]
-
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -298,8 +294,5 @@ Fin!
 
 [pros and cons of rebasing]:
     https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/
-
-[hackernews discussion on rebasing]:
-    https://news.ycombinator.com/item?id=40742628
 
 <!-- prettier-ignore-end -->

@@ -13,6 +13,9 @@ tags:
 description: >-
   Optimize Django model saves with update_fields parameter to generate leaner SQL queries
   and improve performance in tight update loops.
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j4kc352u"
 ---
 
@@ -175,15 +178,11 @@ will be lost.
 ## Further reading
 
 - [Specifying which fields to save - Django docs]
-- [Save your Django models using update_fields for better performance - Reddit]
 
 <!-- references -->
 <!-- prettier-ignore-start -->
 
 [specifying which fields to save - django docs]:
     https://docs.djangoproject.com/en/4.1/ref/models/instances/#specifying-which-fields-to-save
-
-[save your django models using update_fields for better performance - reddit]:
-    https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/
 
 <!-- prettier-ignore-end -->

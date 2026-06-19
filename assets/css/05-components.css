@@ -1000,7 +1000,7 @@ h6:hover .anchor,
   gap: var(--space-4);
   margin: var(--space-8) 0;
   color: var(--faint);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-h2);
 }
 
 .post-ornament::before,
