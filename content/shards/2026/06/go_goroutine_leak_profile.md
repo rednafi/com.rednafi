@@ -281,7 +281,7 @@ Then read the profile off the endpoint:
 $ curl 'localhost:6060/debug/pprof/goroutineleak?debug=1'
 goroutineleak profile: total 1
 1 @ ...
-#    0x...    main.main.func1+0x27    server/main.go:13
+#    0x...    main.main.func1+0x27    server/main.go:14
 ```
 
 ### With go tool pprof
@@ -296,6 +296,7 @@ Type: goroutineleak
          1   100%   100%          1   100%  runtime.gopark
          0     0%   100%          1   100%  main.main.func1
          0     0%   100%          1   100%  runtime.chansend
+         0     0%   100%          1   100%  runtime.chansend1
 ```
 
 ## What it can't catch
