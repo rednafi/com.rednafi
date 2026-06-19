@@ -112,13 +112,16 @@ blocked on a channel or lock that no runnable goroutine can reach, directly or t
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It works differently from goleak. goleak looks at which goroutines are running and flags the
-ones you didn't expect, so you have to tell it what's normal first. That suits a test. The
-profile needs no baseline. The GC proves a goroutine can never wake up, so it flags only the
-ones that are truly stuck, even in a live process where most goroutines are busy and fine.
-That makes it useful in production, the kind of [in-production detection Uber built]. And
-because it proves each leak instead of guessing, it has [no false positives]. Anything it
-flags is blocked for good, not just slow to exit.
+It works differently from goleak. goleak can't tell a leaked goroutine from a healthy one.
+It lists the goroutines that are running and flags any you didn't mark as expected, so you
+have to define what's normal up front. That's easy at the end of a test, when nothing should
+still be running. It's hopeless in a live server, where most goroutines are blocked on
+purpose, waiting for the next request.
+
+The profile can tell the difference. The GC checks whether anything could ever unblock a
+goroutine and flags it only when nothing can. So it works against a live process, the kind
+of [in-production detection Uber built], and it never reports a false leak. Whatever it
+flags is stuck for good, not just slow or idle, which is what [no false positives] means.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
