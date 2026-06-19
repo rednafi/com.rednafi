@@ -95,9 +95,9 @@ The fix is to `close(out)` after the last send, which ends the range and lets th
 return.
 
 They're obvious once you spot them, but easy to let slip past, especially under an early
-return or once the surrounding code grows. goleak catches them in tests, but it isn't made
-for a live production process. There you're left reading `/debug/pprof/goroutine` and
-guessing which of the blocked goroutines are stuck for good and which are just idle.
+return or once the surrounding code grows. goleak catches them in tests. In a running
+production process you're on your own, reading `/debug/pprof/goroutine` and guessing which
+of the blocked goroutines are stuck for good and which are just idle.
 
 This list is nowhere near exhaustive. There are a ton of other ways to leak a goroutine by
 accident, and not all of them are in your own code - a dependency or one of its transitive
@@ -111,16 +111,13 @@ blocked on a channel or lock that no runnable goroutine can reach, directly or t
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It works differently from goleak. goleak diffs goroutine dumps and flags whatever shouldn't
-still be running, which you usually do at the end of a test. The profile runs against a live
-process instead, so it can catch production leaks a test never reaches, like the
-[in-production detection Uber built]. And because the GC proves a leak rather than inferring
-one from a dump, it has [no false positives]. Anything it flags is blocked for good, not
-just slow to exit.
-
-The catch is the other direction. The profile is sound but not complete, so it can still
-miss a leak. A goroutine that's stuck but still reachable through a global doesn't look
-leaked to the GC, so that one slips past.
+It works differently from goleak. goleak compares the running goroutines against the ones
+you expect and flags the rest, so it only tells you something when you know what should be
+running. The profile doesn't need that. The GC proves a goroutine can never wake up, so it
+reports only the truly stuck ones, even in a live process full of busy goroutines, the kind
+of [in-production detection Uber built]. And because it proves the leak instead of diffing
+against expectations, it has [no false positives]. Anything it flags is blocked for good,
+not just slow to exit.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
@@ -281,6 +278,16 @@ Type: goroutineleak
          0     0%   100%          1   100%  runtime.chansend
 ```
 
+## What it can't catch
+
+It won't catch every leak. The Go 1.27 notes admit it [can't catch every case] and only
+promise a large class of them.
+
+That comes from leaning on reachability. If the channel or lock a stuck goroutine is waiting
+on is still reachable, through a global or the locals of a running goroutine, the GC counts
+it as live and leaves the goroutine alone. The leaks it does report are real. A few real
+ones just slip through.
+
 Every snippet here is a runnable program in the [example repo]. I ran them on the 1.26
 toolchain and the profile flagged each leak at the exact line.
 
@@ -301,6 +308,9 @@ toolchain and the profile flagged each leak at the exact line.
 
 [generally available]:
     https://go.dev/doc/go1.27#goroutineleak-profiles
+
+[can't catch every case]:
+    https://go.dev/doc/go1.27#:~:text=impossible%20to%20detect%20permanently%20blocked
 
 [no false positives]:
     https://go.googlesource.com/proposal/+/master/design/74609-goroutine-leak-detection-gc.md#:~:text=theoretically%20sound
