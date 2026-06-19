@@ -57,8 +57,8 @@
        clamps. Desktop defaults here; h1/h3 step down at <=960px and h2 at <640px
        (overrides at the end of this layer), mirroring vercel's breakpoints. */
     --fs-h1: 48px;  /* article title / page h1 — 40px <=960 */
-    --fs-h2: 32px;  /* 24px <640 */
-    --fs-h3: 24px;  /* 20px <=960 */
+    --fs-h2: 32px;  /* vercel keeps h2 32px at every width */
+    --fs-h3: 28px;  /* 24px <=960 */
     /* reading body — 18px/28 by default (matches vercel), stepping DOWN to 17px
        at <=960px (vercel drops to 16px there; we keep it a touch larger). Hard
        breakpoint at max-width:960, so 960px itself is still 17px. Override below. */
@@ -151,13 +151,7 @@
       --fs-article: 17px;  /* phones + tablets (a touch larger than vercel's 16px) */
       --lh-article: 1.5;   /* 25.5/17 */
       --fs-h1: 40px;       /* vercel: h1 40px <=960, 48px above */
-      --fs-h3: 20px;
-    }
-  }
-  /* vercel steps h2 down below 640px (Tailwind sm): 24px <640, 32px from 640 up */
-  @media (max-width: 639.98px) {
-    :root {
-      --fs-h2: 24px;
+      --fs-h3: 24px;       /* vercel: h3 24px <=960, 28px above */
     }
   }
 }
