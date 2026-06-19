@@ -17,9 +17,9 @@ in April.
 
 ## A few common goroutine leaks
 
-A goroutine leaks when it blocks forever on a channel or a lock that nothing will ever
-release, so it lingers for the life of the process. I've been using [uber-go/goleak] to
-catch them in tests.
+A goroutine leaks when it blocks on a channel, a mutex, or another concurrency primitive
+that nothing will ever release, so it lingers for the life of the process. I've been using
+[uber-go/goleak] to catch them in tests.
 
 One is an early return that strands a sender, which I covered in [Early return and goroutine
 leak]. It looks like this:
@@ -94,29 +94,29 @@ Here:
 The fix is to `close(out)` after the last send, which ends the range and lets the goroutine
 return.
 
-They're obvious once you spot them, but easy to let slip past, especially under an early
-return or once the surrounding code grows. goleak catches them in tests. In production the
-regular `/debug/pprof/goroutine` profile lists every goroutine and how it's blocked, but not
-whether it will ever unblock, so you're left guessing which of the blocked ones are stuck
-for good and which are just idle.
+They're obvious once you spot them, but easy to let slip past under an early return or once
+the surrounding code grows. goleak catches them in tests. In production you've got the
+regular `/debug/pprof/goroutine` profile. It shows what each goroutine is blocked on, not
+whether it will ever unblock, so you're guessing which are stuck for good and which are just
+idle.
 
-This list is nowhere near exhaustive. There are a ton of other ways to leak a goroutine by
-accident, and not all of them are in your own code - a dependency or one of its transitive
-deps can leak one too. Uber [catalogued the patterns across its Go monorepo].
+This list is nowhere near exhaustive, and not every leak is in your own code. A dependency,
+or one of its transitive deps, can leak one too. Uber [catalogued the patterns across its Go
+monorepo].
 
 ## The stdlib leak profile can now find them
 
 It came out of Uber, the same place as goleak, and was designed by Vlad Saioc and Milind
 Chabbi. The [detection rides on the garbage collector]. A goroutine is leaked when it's
-blocked on a channel or lock that no runnable goroutine can reach, directly or through
+blocked on a concurrency primitive that no runnable goroutine can reach, directly or through
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It works differently from goleak. goleak can't tell a leak from a healthy goroutine. It
-flags every goroutine you didn't mark as expected, so you have to tell it what's normal. In
-a test that's easy. Nothing should still be running when it ends. A live server is the
-opposite. Most of its goroutines are blocked on purpose, waiting for the next request. You
-can still run goleak's `Find` there, but it flags all of them, leak or not.
+It works differently from goleak. goleak doesn't prove a goroutine is stuck. It just reports
+the ones still running that you didn't tell it to expect. That suits a test, where nothing
+should be left running when it ends. A live server is the opposite. Most of its goroutines
+are blocked on purpose, waiting for the next request. Run goleak's `Find` there and those
+healthy ones get reported right next to any real leak.
 
 The profile tells the difference. The GC checks whether anything could ever unblock a
 goroutine and flags it only when nothing can. So it works on a live process, the kind of
@@ -127,7 +127,7 @@ The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [
 section] shows how to roll your own.
 
 The API is tiny. There's no new type or function, just a profile named `goroutineleak`. It
-ships registered and works with everything that already speaks `pprof`.
+ships registered, and the standard `pprof` tooling reads it like any other profile.
 
 ## You can pull the profile in the usual four ways
 
@@ -251,10 +251,11 @@ func TestMain(m *testing.M) {
 
 ### Over HTTP
 
-Importing `net/http/pprof` registers it on a live server with no extra code:
+Importing `net/http/pprof` registers it on the default mux. Serve that mux, the `nil`
+handler below, and the endpoint is live with no extra code:
 
 ```go
-import _ "net/http/pprof" // registers /debug/pprof/goroutineleak
+import _ "net/http/pprof" // registers /debug/pprof/goroutineleak on http.DefaultServeMux
 
 http.ListenAndServe("localhost:6060", nil)
 ```
@@ -287,10 +288,10 @@ Type: goroutineleak
 It won't catch every leak. The Go 1.27 notes admit it [can't catch every case] and only
 promise a large class of them.
 
-That comes from leaning on reachability. If the channel or lock a stuck goroutine is waiting
-on is still reachable, through a global or the locals of a running goroutine, the GC counts
-it as live and leaves the goroutine alone. The leaks it does report are real. A few real
-ones just slip through.
+That comes from leaning on reachability. If the primitive a stuck goroutine is waiting on is
+still reachable, through a global or the locals of a running goroutine, the GC counts it as
+live and leaves the goroutine alone. The leaks it does report are real. A few real ones just
+slip through.
 
 Every snippet here is a runnable program in the [example repo]. I ran them on the 1.26
 toolchain and the profile flagged each leak at the exact line.
