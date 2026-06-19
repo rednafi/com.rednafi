@@ -46,8 +46,8 @@ Here:
 - (1) each task sends its result on the unbuffered channel through `wg.Go`
 - (2) the first error returns early, so the tasks still queued to send block forever
 
-Buffering the channel or draining every result before returning keeps the sends from
-blocking.
+Giving `errs` a buffer big enough for every task, or draining all the results before
+returning, keeps the sends from blocking.
 
 A related leak shows up when you send a request to several replicas and keep only the first
 answer:
@@ -67,7 +67,7 @@ Here:
 - (1) every replica races to send its answer on the unbuffered channel
 - (2) the first answer returns, and the slower replicas block forever on their sends
 
-Same as before, buffering `results` lets the slower replicas send and exit.
+Same as before, a buffer sized for every replica lets the slower ones send and exit.
 
 Another is a forgotten `close`:
 
@@ -95,20 +95,21 @@ The fix is to `close(out)` after the last send, which ends the range and lets th
 return.
 
 They're obvious once you spot them, but easy to let slip past, especially under an early
-return or once the surrounding code grows. goleak catches them, but only when a test
-finishes, so it never sees a running production process. There you're left reading
-`/debug/pprof/goroutine` and guessing which of the blocked goroutines are stuck for good and
-which are just idle.
+return or once the surrounding code grows. goleak catches them in tests, but not in a
+running production process. There you're left reading `/debug/pprof/goroutine` and guessing
+which of the blocked goroutines are stuck for good and which are just idle.
 
 This list is nowhere near exhaustive. There are a ton of other ways to leak a goroutine by
 accident, and not all of them are in your own code - a dependency or one of its transitive
 deps can leak one too. Uber [catalogued the patterns across its Go monorepo].
 
-## The stdlib leak profiler can now catch 'em all
+## The standard library can now find them at runtime
 
-It came out of Uber, the same place as goleak, and Vlad Saioc did most of the design. The
-[detection rides on the garbage collector]. A goroutine blocked on a primitive that no
-runnable goroutine can reach can never be signaled. The GC can prove it's a leak.
+It came out of Uber, the same place as goleak, and was designed by Vlad Saioc and Milind
+Chabbi. The [detection rides on the garbage collector]. A goroutine is leaked when it's
+blocked on a channel or lock that no runnable goroutine can reach, directly or through
+another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
+it.
 
 It improves on goleak in two ways. It runs against a live process and catches the production
 leaks goleak never sees, the kind of [in-production detection Uber built]. And because the
