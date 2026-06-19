@@ -9,6 +9,7 @@ tags:
     - Profiling
 description: >-
   Notes on Go's accepted goroutine leak profile and how it reuses the GC to find them.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e"
 ---
 
 Go 1.27 is getting a goroutine leak detector in `runtime/pprof`. The [proposal] was accepted

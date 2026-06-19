@@ -1373,6 +1373,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o",
       "lastPublished": "2026-06-16T13:36:04.906Z",
       "slug": "wait-for-lsn"
+    },
+    "content/shards/2026/06/go_goroutine_leak_profile.md": {
+      "contentHash": "3fc25a8ea65e84442887bb70968f7a0ebde2bf040804520107447c379e4eb1a8",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e",
+      "lastPublished": "2026-06-19T01:23:19.399Z",
+      "slug": "go-goroutine-leak-profile"
     }
   },
   "publication": {
