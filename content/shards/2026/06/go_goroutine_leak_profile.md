@@ -17,9 +17,9 @@ in April.
 
 ## A few common goroutine leaks
 
-A goroutine leaks when it blocks on a channel, a mutex, or another concurrency primitive
-that nothing will ever release, so it lingers for the life of the process. I've been using
-[uber-go/goleak] to catch them in tests.
+A goroutine leaks when it blocks on a channel or lock that nothing will ever release, so it
+lingers for the life of the process. I've been using [uber-go/goleak] to catch them in
+tests.
 
 One is an early return that strands a sender, which I covered in [Early return and goroutine
 leak]. It looks like this:
@@ -108,7 +108,7 @@ monorepo].
 
 It came out of Uber, the same place as goleak, and was designed by Vlad Saioc and Milind
 Chabbi. The [detection rides on the garbage collector]. A goroutine is leaked when it's
-blocked on a concurrency primitive that no runnable goroutine can reach, directly or through
+blocked on a channel or lock that no runnable goroutine can reach, directly or through
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
@@ -288,10 +288,10 @@ Type: goroutineleak
 It won't catch every leak. The Go 1.27 notes admit it [can't catch every case] and only
 promise a large class of them.
 
-That comes from leaning on reachability. If the primitive a stuck goroutine is waiting on is
-still reachable, through a global or the locals of a running goroutine, the GC counts it as
-live and leaves the goroutine alone. The leaks it does report are real. A few real ones just
-slip through.
+That comes from leaning on reachability. If the channel or lock a stuck goroutine is waiting
+on is still reachable, through a global or the locals of a running goroutine, the GC counts
+it as live and leaves the goroutine alone. The leaks it does report are real. A few real
+ones just slip through.
 
 Every snippet here is a runnable program in the [example repo]. I ran them on the 1.26
 toolchain and the profile flagged each leak at the exact line.
