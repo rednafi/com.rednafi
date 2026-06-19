@@ -451,9 +451,9 @@
       "slug": "sane-pull-request"
     },
     "content/misc/on_rebasing.md": {
-      "contentHash": "e6b1633b7c3724944f9d882561543d0fa9a138d5011f59300a5d0edae8c5fd43",
+      "contentHash": "c91e67bb865438b71ca25f3f84e0fa4088156481cf733a8c3e0101e7feccc986",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijg2ca26",
-      "lastPublished": "2026-06-05T22:23:41.784Z",
+      "lastPublished": "2026-06-19T13:43:27.489Z",
       "slug": "on-rebasing"
     },
     "content/misc/protobuffed_contracts.md": {
@@ -865,9 +865,9 @@
       "slug": "install-python-with-asdf"
     },
     "content/python/save_with_update_fields_in_django.md": {
-      "contentHash": "d3cf56dda7383fb79d1d9dd6800827a650111b0073341595d5c484770b504269",
+      "contentHash": "534a372341c36846e7c38aeb174a48faa7b5f1f5dcaaa063135fcdaec83a50c3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j4kc352u",
-      "lastPublished": "2026-06-05T22:24:06.211Z",
+      "lastPublished": "2026-06-19T13:43:27.636Z",
       "slug": "save-with-update-fields-in-django"
     },
     "content/python/logging_quirks_in_lambda_environment.md": {
