@@ -95,9 +95,10 @@ The fix is to `close(out)` after the last send, which ends the range and lets th
 return.
 
 They're obvious once you spot them, but easy to let slip past, especially under an early
-return or once the surrounding code grows. goleak catches them in tests. In a running
-production process you're on your own, reading `/debug/pprof/goroutine` and guessing which
-of the blocked goroutines are stuck for good and which are just idle.
+return or once the surrounding code grows. goleak catches them in tests. In production the
+regular `/debug/pprof/goroutine` profile lists every goroutine and how it's blocked, but not
+whether it will ever unblock, so you're left guessing which of the blocked ones are stuck
+for good and which are just idle.
 
 This list is nowhere near exhaustive. There are a ton of other ways to leak a goroutine by
 accident, and not all of them are in your own code - a dependency or one of its transitive
@@ -111,13 +112,13 @@ blocked on a channel or lock that no runnable goroutine can reach, directly or t
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It works differently from goleak. goleak compares the running goroutines against the ones
-you expect and flags the rest, so it only tells you something when you know what should be
-running. The profile doesn't need that. The GC proves a goroutine can never wake up, so it
-reports only the truly stuck ones, even in a live process full of busy goroutines, the kind
-of [in-production detection Uber built]. And because it proves the leak instead of diffing
-against expectations, it has [no false positives]. Anything it flags is blocked for good,
-not just slow to exit.
+It works differently from goleak. goleak looks at which goroutines are running and flags the
+ones you didn't expect, so you have to tell it what's normal first. That suits a test. The
+profile needs no baseline. The GC proves a goroutine can never wake up, so it flags only the
+ones that are truly stuck, even in a live process where most goroutines are busy and fine.
+That makes it useful in production, the kind of [in-production detection Uber built]. And
+because it proves each leak instead of guessing, it has [no false positives]. Anything it
+flags is blocked for good, not just slow to exit.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
