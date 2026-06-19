@@ -112,17 +112,16 @@ blocked on a channel or lock that no runnable goroutine can reach, directly or t
 another goroutine a runnable one could unblock. Nothing can ever wake it, so the GC flags
 it.
 
-It works differently from goleak. goleak can't tell a leaked goroutine from a healthy one.
-It lists the goroutines that are running and flags any you didn't mark as expected, so you
-have to define what's normal up front. At the end of a test that's easy, since nothing
-should still be running. goleak's `Find` runs against a live server too, but there most
-goroutines are blocked on purpose, waiting for the next request, so it flags those just like
-a real leak.
+It works differently from goleak. goleak can't tell a leak from a healthy goroutine. It
+flags every goroutine you didn't mark as expected, so you have to tell it what's normal. In
+a test that's easy. Nothing should still be running when it ends. A live server is the
+opposite. Most of its goroutines are blocked on purpose, waiting for the next request. You
+can still run goleak's `Find` there, but it flags all of them, leak or not.
 
-The profile can tell the difference. The GC checks whether anything could ever unblock a
-goroutine and flags it only when nothing can. So it works against a live process, the kind
-of [in-production detection Uber built], and it never reports a false leak. Whatever it
-flags is stuck for good, not just slow or idle, which is what [no false positives] means.
+The profile tells the difference. The GC checks whether anything could ever unblock a
+goroutine and flags it only when nothing can. So it works on a live process, the kind of
+[in-production detection Uber built]. Whatever it flags is stuck for good, not just slow or
+idle. That's the [no false positives] guarantee.
 
 The profile ships without goleak's `VerifyNone(t)` or `VerifyTestMain(m)`. The [test
 section] shows how to roll your own.
