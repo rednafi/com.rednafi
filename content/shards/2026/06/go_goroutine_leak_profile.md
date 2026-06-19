@@ -148,9 +148,9 @@ ships registered, and the standard `pprof` tooling reads it like any other profi
 
 > [!NOTE]
 >
-> Until Go 1.27 the profile is behind a build flag. Run the examples below with
-> `GOEXPERIMENT=goroutineleakprofile`, or `pprof.Lookup("goroutineleak")` returns nil. From
-> 1.27 on, it's [generally available] and the flag is gone.
+> For now the profile is behind a build flag. Run the examples below with
+> `GOEXPERIMENT=goroutineleakprofile`, or `pprof.Lookup("goroutineleak")` returns nil. Go
+> 1.27 will make it [generally available] and drop the flag.
 
 ### From your own code
 
@@ -270,7 +270,8 @@ Importing `net/http/pprof` registers it on the default mux. Serve that mux, the 
 handler below, and the endpoint is live with no extra code:
 
 ```go
-import _ "net/http/pprof" // registers /debug/pprof/goroutineleak on http.DefaultServeMux
+// registers /debug/pprof/goroutineleak on http.DefaultServeMux
+import _ "net/http/pprof"
 
 http.ListenAndServe("localhost:6060", nil)
 ```
