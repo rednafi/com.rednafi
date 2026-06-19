@@ -338,7 +338,7 @@ toolchain and the profile flagged each leak at the exact line.
 [no false positives]:
     https://go.googlesource.com/proposal/+/master/design/74609-goroutine-leak-detection-gc.md#:~:text=theoretically%20sound
 
-[in-production detection Uber built]:
+[in-production leak detection]:
     https://www.uber.com/blog/leakprof-featherlight-in-production-goroutine-leak-detection
 
 [test section]:

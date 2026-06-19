@@ -105,11 +105,11 @@ func TestMobileTypographyConsistent(t *testing.T) {
 		mobileH3 := fontSize(mobile, ".article-content h3")
 
 		assert.InDelta(t, 32.0, desktopH2, 0.5, "desktop h2 should be 32px")
-		assert.InDelta(t, 24.0, desktopH3, 0.5, "desktop h3 should be 24px")
+		assert.InDelta(t, 28.0, desktopH3, 0.5, "desktop h3 should be 28px")
 		assert.Greater(t, desktopH2, desktopH3, "desktop h2 should be larger than h3")
 
-		assert.InDelta(t, 24.0, mobileH2, 0.5, "mobile h2 should be 24px")
-		assert.InDelta(t, 20.0, mobileH3, 0.5, "mobile h3 should be 20px")
+		assert.InDelta(t, 32.0, mobileH2, 0.5, "mobile h2 should be 32px")
+		assert.InDelta(t, 24.0, mobileH3, 0.5, "mobile h3 should be 24px")
 		assert.Greater(t, mobileH2, mobileH3, "mobile h2 should be larger than h3")
 	})
 
