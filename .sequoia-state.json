@@ -235,9 +235,9 @@
       "slug": "test-config-with-flags"
     },
     "content/go/di_frameworks_bleh.md": {
-      "contentHash": "370d7583dcff8c976c3eecd5f1384a314b59270bc69338dbfffc6c91cbbce903",
+      "contentHash": "86999946e95efcf2b50b8743d93953d3b38be4a25586e8511a772bee689b9428",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifouv326",
-      "lastPublished": "2026-06-05T22:23:37.877Z",
+      "lastPublished": "2026-06-19T13:26:21.980Z",
       "slug": "di-frameworks-bleh"
     },
     "content/go/prevent_struct_copies.md": {
@@ -1363,9 +1363,9 @@
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
-      "contentHash": "a0890f63323220e8eca37a9818221bb261bc98662dffb6df29d6774704dbe014",
+      "contentHash": "4f7aa1237079edf337725d6119c628bb45d12acef15d4bc681518e6c18d97081",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k",
-      "lastPublished": "2026-06-11T23:25:17.983Z",
+      "lastPublished": "2026-06-19T13:26:21.827Z",
       "slug": "chezmoi"
     },
     "content/system/wait_for_lsn.md": {
