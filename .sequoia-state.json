@@ -1375,9 +1375,9 @@
       "slug": "wait-for-lsn"
     },
     "content/shards/2026/06/go_goroutine_leak_profile.md": {
-      "contentHash": "2f2d39def10c4ca841bc2baf9b9d70705a0d4becfe81c92efe0dafe651c6d15c",
+      "contentHash": "5408237e4f962f3fefac33ffcd66ae24bcd39024adfbd001031bd106b11d0a9e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e",
-      "lastPublished": "2026-06-19T10:36:12.737Z",
+      "lastPublished": "2026-06-19T10:51:34.774Z",
       "slug": "go-goroutine-leak-profile"
     }
   },
