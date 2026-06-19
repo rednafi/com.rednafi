@@ -1082,6 +1082,11 @@ hr {
 .discussion-links li a:hover {
   color: var(--link);
 }
+/* discussion rows sit a wee bit under body copy — these are backlinks, not
+   first-class navigation like related posts */
+.discussion-links li a {
+  font-size: var(--fs-base);
+}
 
 /* TOC — Geist disclosure: bordered summary joins a matching panel when open */
 .toc {
