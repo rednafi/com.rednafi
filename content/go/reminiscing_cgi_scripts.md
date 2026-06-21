@@ -5,7 +5,7 @@ slug: reminiscing-cgi-scripts
 atprotoPath: /go/reminiscing-cgi-scripts/
 aliases:
     - /go/reminiscing_cgi_scripts/
-tag:
+tags:
     - Go
     - TIL
     - Web

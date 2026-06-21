@@ -14,6 +14,7 @@
     "_index.md",
     "**/_index.md",
     "archive.md",
+    "about.md",
     "appearances.md",
     "blogroll.md",
     "feed/**",
@@ -23,7 +24,7 @@
   "autoSync": true,
   "publishContent": true,
   "bluesky": {
-    "enabled": false,
+    "enabled": true,
     "maxAgeDays": 7
   },
   "ui": {

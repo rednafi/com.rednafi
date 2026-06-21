@@ -315,7 +315,7 @@
     "content/misc/link_blog.md": {
       "contentHash": "431b938b4e351de84ea398350749b1e99aea7819370406bfd4f1fc1739f93497",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igvfay2s",
-      "lastPublished": "2026-06-21T00:33:18.471Z",
+      "lastPublished": "2026-06-21T00:35:07.179Z",
       "slug": "link-blog"
     },
     "content/misc/run_single_instance.md": {
@@ -483,7 +483,7 @@
     "content/go/dysfunctional_options_pattern.md": {
       "contentHash": "2eb6984278bc02dc77dd29baf334ba40405c00cbe690b0efa6c67505e9b78d6b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p",
-      "lastPublished": "2026-06-21T00:33:19.745Z",
+      "lastPublished": "2026-06-21T00:35:08.132Z",
       "slug": "dysfunctional-options-pattern"
     },
     "content/zephyr/einstellung_effect.md": {
@@ -573,7 +573,7 @@
     "content/python/dataclasses_and_methods.md": {
       "contentHash": "0d14cd498ec2ae2ef252c94d24f18d79212106ad30fe3a8d0385c17272a0c319",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incuiq2a",
-      "lastPublished": "2026-06-21T00:33:19.894Z",
+      "lastPublished": "2026-06-21T00:35:11.190Z",
       "slug": "dataclasses-and-methods"
     },
     "content/zephyr/finding_flow_amid_chaos.md": {

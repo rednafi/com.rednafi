@@ -70,8 +70,10 @@ params:
     knowsAbout:
       - "Go"
       - "Python"
+      - "Backend Engineering"
       - "Distributed Systems"
       - "Platform Engineering"
+      - "Databases"
       - "Software Design"
     sameAs:
       - "https://github.com/rednafi"
@@ -85,8 +87,8 @@ params:
       - "rednafi"
   description: >-
     Software engineering blog by Redowan Delowar covering platform
-    engineering, distributed systems, reliability, databases, Go, Python,
-    TypeScript, and pragmatic engineering practice.
+    engineering, backend systems, distributed systems, reliability,
+    databases, Go, Python, TypeScript, and pragmatic engineering practice.
 
   DateFormat: "January 2, 2006"
 
