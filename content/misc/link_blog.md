@@ -12,6 +12,9 @@ tags:
 description: >-
   Build a link blog without a backend using Hugo and markdown. Track reading, articles,
   and activities with yearly detail pages and RSS filtering.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=42642625
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igvfay2s"
 ---
 

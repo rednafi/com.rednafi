@@ -12,6 +12,9 @@ tags:
 description: >-
   Discover a simpler alternative to functional options: method chaining with
   builder-style configuration that's 76x faster and easier to understand.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=41015991
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p"
 ---
 

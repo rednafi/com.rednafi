@@ -10,6 +10,9 @@ tags:
 description: >-
   Why you shouldn't add state-mutating methods to Python dataclasses. Maintain semantic
   clarity and use dataclasses as pure data containers.
+discussions:
+    - label: Hacker News
+      url: https://news.ycombinator.com/item?id=38668254
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incuiq2a"
 ---
 
