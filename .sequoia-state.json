@@ -559,9 +559,9 @@
       "slug": "planning-palooza"
     },
     "content/go/reminiscing_cgi_scripts.md": {
-      "contentHash": "b280ec0d1a1c92ecf7ee7db15e34d40e9f2406e99e706407ee00e75c46b81b30",
+      "contentHash": "15a75bd80483f60112b9e0c1e61fae43b2acfcd8259d76ec423059283fb7bc4d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inbkfe2e",
-      "lastPublished": "2026-06-05T22:23:45.845Z",
+      "lastPublished": "2026-06-21T01:00:05.291Z",
       "slug": "reminiscing-cgi-scripts"
     },
     "content/python/debug_dockerized_apps_in_vscode.md": {
