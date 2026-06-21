@@ -23,10 +23,6 @@
   ],
   "autoSync": true,
   "publishContent": true,
-  "bluesky": {
-    "enabled": true,
-    "maxAgeDays": 7
-  },
   "ui": {
     "components": "layouts/partials"
   }
