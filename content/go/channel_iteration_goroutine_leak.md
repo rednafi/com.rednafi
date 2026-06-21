@@ -94,7 +94,7 @@ nothing closes `results`, so the ranging collector blocks on a receive that neve
 The fix is the one line the buggy version is missing: close `results` once every job has
 reported. The range ends and the collector returns:
 
-```go {hl_lines=["2"]}
+```go {hl_lines=["5"]}
 // cron/scheduler.go
 // ...
 
