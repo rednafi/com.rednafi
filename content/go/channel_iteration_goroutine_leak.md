@@ -6,6 +6,7 @@ atprotoPath: /go/channel-iteration-goroutine-leak/
 tags:
     - Go
     - Concurrency
+    - Profiling
 description: >-
   A for-range over a channel that's never closed leaks the receiver. Why a fixed number of
   receives is safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
