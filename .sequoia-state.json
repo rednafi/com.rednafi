@@ -313,9 +313,9 @@
       "slug": "dynamic-shell-variables"
     },
     "content/misc/link_blog.md": {
-      "contentHash": "be4d65bb069be00c643ede2f7ef66d5df5f9ecfbce2d6341965ebb79d7272d98",
+      "contentHash": "431b938b4e351de84ea398350749b1e99aea7819370406bfd4f1fc1739f93497",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igvfay2s",
-      "lastPublished": "2026-06-05T22:23:39.268Z",
+      "lastPublished": "2026-06-21T00:33:18.471Z",
       "slug": "link-blog"
     },
     "content/misc/run_single_instance.md": {
@@ -481,9 +481,9 @@
       "slug": "crossing-the-cors-crossroad"
     },
     "content/go/dysfunctional_options_pattern.md": {
-      "contentHash": "f59a79c8bbc403f0f81776901fbb08ce867324c8f39fa617c8d9dbbf83fe1c8e",
+      "contentHash": "2eb6984278bc02dc77dd29baf334ba40405c00cbe690b0efa6c67505e9b78d6b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p",
-      "lastPublished": "2026-06-05T22:23:42.907Z",
+      "lastPublished": "2026-06-21T00:33:19.745Z",
       "slug": "dysfunctional-options-pattern"
     },
     "content/zephyr/einstellung_effect.md": {
@@ -571,9 +571,9 @@
       "slug": "debug-dockerized-apps-in-vscode"
     },
     "content/python/dataclasses_and_methods.md": {
-      "contentHash": "e06d29535c02657a5c3c049ad531d43c4a5a5f4268844d74ff95612ac0dd966d",
+      "contentHash": "0d14cd498ec2ae2ef252c94d24f18d79212106ad30fe3a8d0385c17272a0c319",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incuiq2a",
-      "lastPublished": "2026-06-05T22:23:45.873Z",
+      "lastPublished": "2026-06-21T00:33:19.894Z",
       "slug": "dataclasses-and-methods"
     },
     "content/zephyr/finding_flow_amid_chaos.md": {
