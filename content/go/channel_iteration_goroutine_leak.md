@@ -7,8 +7,8 @@ tags:
     - Go
     - Concurrency
 description: >-
-  A for-range over an unclosed channel leaks the receiver. Why three explicit receives
-  are safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
+  A for-range over a channel that's never closed leaks the receiver. Why a fixed number of
+  receives is safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 
@@ -117,9 +117,9 @@ Typically you'd catch a leak like this with [goleak]:
 - exercise the path that leaks in a test
 - the test fails with the stuck goroutine's stack
 
-I wrote about the goleak workflow in the [early return leak]. But goleak only catches the
-leak if a test actually exercises the path that leaks. My scheduler tests never ran that
-path, so goleak never saw it.
+I wrote about the goleak workflow in the [early return leak] post. But goleak only catches a
+leak when a test exercises the buggy path, and my scheduler tests never ran that path. So
+goleak never saw it.
 
 What caught it was [Go 1.27's new leak profile]. I was running it over my own code while
 [writing about it], and it doesn't need a test at all. It leans on the garbage collector to
