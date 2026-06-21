@@ -9,11 +9,13 @@ tags:
 description: >-
   A for-range over an unclosed channel leaks the receiver. Why three explicit receives
   are safe, why a range isn't, and catching it with Go 1.27's leak profile.
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 
-I ran into the classic "_range over a channel_" leak while working on a custom cron scheduler.
-I've debugged it on prod many times before, but writing one myself in a small piece of code
-reminded me how easy it is to write bugs like this even when you know about it.
+I ran into the classic "_range over a channel_" leak while working on a custom cron
+scheduler. I've debugged it on prod many times before, but writing one myself in a small
+piece of code reminded me how easy it is to write bugs like this even when you know about
+it.
 
 Here:
 

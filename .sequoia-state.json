@@ -1379,6 +1379,16 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e",
       "lastPublished": "2026-06-19T10:51:34.774Z",
       "slug": "go-goroutine-leak-profile"
+    },
+    "content/go/channel_iteration_goroutine_leak.md": {
+      "contentHash": "42e72def574c6412fe82e75c2cc6bc816b243ef230e7052f58e4f22a5ced047f",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n",
+      "lastPublished": "2026-06-21T15:31:56.465Z",
+      "slug": "channel-iteration-goroutine-leak",
+      "bskyPostRef": {
+        "uri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/app.bsky.feed.post/3mosowth24s2e",
+        "cid": "bafyreibukisyiefukzhfr3qovnqv3wphe52kqkjjxnq42ldmyuym222t3i"
+      }
     }
   },
   "publication": {
