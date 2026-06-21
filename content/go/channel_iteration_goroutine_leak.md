@@ -77,10 +77,10 @@ ch <- 3
 
 Three receives, then the goroutine returns. Swap those receives for a range and it leaks:
 
-```go
+```go {hl_lines=["3"]}
 ch := make(chan int)
 go func() {
-    for range ch {
+    for range ch { // never ends: ch is never closed
     }
 }()
 ch <- 1
