@@ -8,7 +8,7 @@ tags:
     - Concurrency
 description: >-
   A for-range over an unclosed channel leaks the receiver. Why three explicit receives
-  are safe, why a range isn't, and catching it with Go 1.27's leak profile.
+  are safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 
@@ -24,6 +24,7 @@ Here:
 - one collector ranges over that channel to record the run
 
 ```go {hl_lines=["8","14","21"]}
+// cron/scheduler.go
 func tick(due []Job) []outcome {
     results := make(chan outcome)
 
@@ -58,8 +59,8 @@ goroutine sends once and exits. The collector is the problem. After the last out
 loops back to the range and waits for the next value, but nothing ever closes the channel.
 So it blocks on that receive for the life of the process. Every tick leaks another one.
 
-The same channel never leaks if you drain it by hand, though. Send three values and take
-exactly three:
+Drain that same channel by hand and it never leaks. Send three values and take exactly
+three:
 
 ```go
 ch := make(chan int)
@@ -73,8 +74,7 @@ ch <- 2
 ch <- 3
 ```
 
-Three receives, then the goroutine returns. Swap them for a range over the same channel and
-it leaks:
+Three receives, then the goroutine returns. Swap those receives for a range and it leaks:
 
 ```go
 ch := make(chan int)
@@ -87,15 +87,17 @@ ch <- 2
 ch <- 3
 ```
 
-The two forms stop on different conditions. A fixed count of receives stops on its own after
-the third value. A `range` has no count. It reads until the channel is closed. Turn the loop
-into a range and you've changed the contract to "read until close." Nothing closes
-`results`, so the collector blocks on a receive that will never complete.
+The two forms stop on different conditions. Three explicit receives stop on their own after
+the third value. A `range` keeps reading until the channel closes. Back in the scheduler,
+nothing closes `results`, so the ranging collector blocks on a receive that never completes.
 
-The fix is the one line the buggy version drops. Once every job has reported, close
-`results`. The range ends and the collector returns:
+The fix is the one line the buggy version is missing: close `results` once every job has
+reported. The range ends and the collector returns:
 
 ```go {hl_lines=["2"]}
+// cron/scheduler.go
+// ...
+
     wg.Wait()
     close(results) // ends the range, the collector returns
     return log
@@ -107,9 +109,9 @@ The fix is the one line the buggy version drops. Once every job has reported, cl
 > channel is closed. No matter how big the buffer is, the receiver keeps waiting for a close
 > that never comes.
 
-This is a fairly well documented leak. Uber called it [channel iteration misuse].
+This is a fairly well-documented leak. Uber called it [channel iteration misuse].
 
-I'd normally catch a leak like this with [goleak]:
+Typically you'd catch a leak like this with [goleak]:
 
 - wire up goleak
 - exercise the path that leaks in a test
@@ -120,7 +122,7 @@ leak if a test actually exercises the path that leaks. My scheduler tests never 
 path, so goleak never saw it.
 
 What caught it was [Go 1.27's new leak profile]. I was running it over my own code while
-writing about it, and it doesn't need a test at all. It leans on the garbage collector to
+[writing about it], and it doesn't need a test at all. It leans on the garbage collector to
 find goroutines blocked on something nothing can ever reach, and reports only those. Run it
 at `debug=2` and the stuck collector shows up tagged `(leaked)`:
 
@@ -151,6 +153,9 @@ Find the leak and the fix in the [example repo].
     https://github.com/uber-go/goleak
 
 [Go 1.27's new leak profile]:
+    https://go.dev/doc/go1.27#goroutine-leak-profile
+
+[writing about it]:
     /shards/2026/06/go-goroutine-leak-profile/
 
 [example repo]:
