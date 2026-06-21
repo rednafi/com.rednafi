@@ -98,13 +98,16 @@
 {{- with site.Params.analytics.naver.SiteVerificationTag }}
 <meta name="naver-site-verification" content="{{ . }}">
 {{- end }}
+{{- with site.Params.analytics.bing.SiteVerificationTag }}
+<meta name="msvalidate.01" content="{{ . }}">
+{{- end }}
 
 {{- /* Open Graph */ -}}
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
 <meta property="og:title" content="{{ if .IsHome }}{{ $pageTitle }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:description" content="{{ $desc }}">
-<meta property="og:type" content="{{ if $isArticlePage }}article{{ else }}website{{ end }}">
+<meta property="og:type" content="{{ if $isArticlePage }}article{{ else if .Params.profilePage }}profile{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:locale" content="en_US">
@@ -123,6 +126,11 @@
 <meta property="article:tag" content="{{ . }}">
 {{- end }}{{ end }}
 {{- end }}
+{{- if .Params.profilePage }}
+<meta property="profile:first_name" content="{{ site.Params.schema.givenName }}">
+<meta property="profile:last_name" content="{{ site.Params.schema.familyName }}">
+<meta property="profile:username" content="{{ site.Params.social.twitter }}">
+{{- end }}
 
 {{- /* Twitter Cards — title/desc/image fall back to OG tags */ -}}
 <meta name="twitter:card" content="summary_large_image">
@@ -137,7 +145,7 @@
 {{- $personId := printf "%s#person" $homeURL }}
 {{- if and .IsHome (not $isPaginatedHome) }}
 {{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
-{{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
+{{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "inLanguage" site.Language.Lang "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
 {{- $recentListId := printf "%s#recent-writings" $homeURL }}
 {{- $recentWritings := first 10 (partial "home-pages.html" .) }}
 {{- $items := slice }}
@@ -150,12 +158,15 @@
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person $recentList) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if $isArticlePage }}
-{{- $author := dict "@type" "Person" "@id" $personId "name" (.Params.author | default site.Params.author) "url" $homeURL }}
-{{- with site.Params.schema.sameAs }}{{ $author = merge $author (dict "sameAs" .) }}{{ end }}
-{{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink }}
+{{- /* Full Person entity (same #person @id as home/about) so every article
+       carries the complete identity — all alternate names incl. "Redowan Nafi",
+       sameAs, worksFor, photo — reconciled into one knowledge-graph node. */ -}}
+{{- $author := partial "schema-person.html" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "description" site.Params.description "url" $homeURL) }}
+{{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "inLanguage" site.Language.Lang }}
 {{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}
 {{- $schema = merge $schema (dict "author" $author "publisher" (dict "@type" "Person" "@id" $personId "name" site.Params.author)) }}
 {{- $schema = merge $schema (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "isPartOf" (dict "@type" "WebSite" "@id" $websiteId)) }}
+{{- $schema = merge $schema (dict "articleSection" .Section "wordCount" .WordCount "timeRequired" (printf "PT%dM" .ReadingTime) "isAccessibleForFree" true) }}
 {{- with (.Params.images | default site.Params.images) }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
@@ -165,7 +176,7 @@
        articles, and here) so the name "Redowan Delowar", the handle "rednafi",
        and the site reconcile to one knowledge-graph entity. */ -}}
 {{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
-{{- $profile := dict "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink) "url" .Permalink "name" $pageTitle "isPartOf" (dict "@id" $websiteId) "mainEntity" (dict "@id" $personId) }}
+{{- $profile := dict "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink) "url" .Permalink "name" $pageTitle "inLanguage" site.Language.Lang "isPartOf" (dict "@id" $websiteId) "mainEntity" (dict "@id" $personId) }}
 {{- with .Lastmod }}{{ $profile = merge $profile (dict "dateModified" (.Format $iso8601)) }}{{ end }}
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $profile $person) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}

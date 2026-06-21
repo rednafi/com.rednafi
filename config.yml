@@ -49,10 +49,24 @@ params:
     jobTitle: Software Engineer
     givenName: Redowan
     familyName: Delowar
+    # Every name the same person is known by — the human name "Redowan Nafi"
+    # and the handle "rednafi" reconcile to the one #person entity, alongside
+    # the canonical name (params.author = "Redowan Delowar").
     alternateName:
+      - Redowan Nafi
       - rednafi
       - Redowan
-    wikidataId: Q139619919
+    # Self-hosted headshot on R2 — the Person entity's face, reused as the
+    # visible /about photo (single source of truth for the portrait).
+    image: "https://blob.rednafi.com/static/images/about/profile-2026.jpg"
+    worksFor:
+      name: Wolt
+      url: "https://wolt.com"
+      parentName: DoorDash
+      parentUrl: "https://www.doordash.com"
+    # wikidataId intentionally omitted — Q139619919 returns 404 (no such item).
+    # Asserting a dead knowledge-graph ID helps nothing; create a real Wikidata
+    # item, then add `wikidataId:` + its URL to sameAs to re-enable.
     knowsAbout:
       - "Go"
       - "Python"
@@ -63,15 +77,16 @@ params:
       - "https://github.com/rednafi"
       - "https://www.linkedin.com/in/rednafi/"
       - "https://bsky.app/profile/rednafi.com"
+      - "https://fosstodon.org/@rednafi"
       - "https://x.com/rednafi"
-      - "https://www.wikidata.org/wiki/Q139619919"
     websiteAlternateName:
       - "Redowan Delowar"
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-
-    Redowan Delowar writes about software engineering, platform work, distributed
-    systems, resilience, and building reliable products.
+    Software engineering blog by Redowan Delowar covering platform
+    engineering, distributed systems, reliability, databases, Go, Python,
+    TypeScript, and pragmatic engineering practice.
 
   DateFormat: "January 2, 2006"
 
@@ -94,11 +109,18 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: "google-site-verification=GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
+      # Bare token only — Google's meta is name="google-site-verification"
+      # content="<token>"; the old value wrongly embedded the name= prefix.
+      SiteVerificationTag: "GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
     yandex:
       SiteVerificationTag: "cb037a09f985e313"
     naver:
       SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aaeea1b1a50be20"
+    bing:
+      # Paste the msvalidate.01 token from Bing Webmaster Tools (or import the
+      # property from Search Console). Renders only when set. Bing also feeds
+      # Copilot/DuckDuckGo, and unlocks IndexNow for instant re-indexing.
+      SiteVerificationTag: ""
 
 markup:
   highlight:
