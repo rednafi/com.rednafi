@@ -24,7 +24,7 @@ Here:
 - each job reports its outcome on a channel
 - one collector ranges over that channel to record the run
 
-```go {hl_lines=["8","14","21"]}
+```go {hl_lines=["9","15","22"]}
 // cron/scheduler.go
 func tick(due []Job) []outcome {
     results := make(chan outcome)
