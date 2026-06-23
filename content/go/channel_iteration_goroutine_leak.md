@@ -10,6 +10,9 @@ tags:
 description: >-
   A for-range over a channel that's never closed leaks the receiver. Why a fixed number of
   receives is safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
+discussions:
+    - label: r/golang
+      url: https://www.reddit.com/r/golang/comments/1uddm33/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 
@@ -139,7 +142,52 @@ created by main.tick in goroutine 1
 like this deterministically, with no false positives and without a test ever exercising the
 path.
 
-Find the leak and the fix in the [example repo].
+---
+
+Closing the channel stops the leak, but it leaves one odd bit: the `WaitGroup` is counting
+jobs while the collector calls `Done`.
+
+The collector should only drain results. Job completion belongs to the goroutine that runs
+the job. Once every job returns, a waiter can close `results`, and the range can finish
+normally.
+
+With `wg.Go`, the corrected version becomes:
+
+```go {hl_lines=["7","14","18"]}
+// cron/scheduler.go
+func tick(due []Job) []outcome {
+    results := make(chan outcome)
+
+    var wg sync.WaitGroup
+    for _, j := range due {
+        wg.Go(func() { // (1)
+            results <- outcome{job: j.Name, err: j.Run()}
+        })
+    }
+
+    go func() {
+        wg.Wait()
+        close(results) // (2)
+    }()
+
+    var log []outcome
+    for r := range results { // (3)
+        log = append(log, r)
+    }
+    return log
+}
+```
+
+- (1) `wg.Go` runs each job and calls `Done` when it returns, so each job marks its own
+  completion
+- (2) a separate goroutine waits for every job, then closes `results` so the range can end
+- (3) the drain runs in `tick` itself, so the receive loop and `log` stay on one goroutine
+
+Forget the `close` here and `tick` blocks on the range after the last result. All producers
+have exited, so no one can send another value. It's the same missing close, but now it fails
+as a deadlock instead of leaking a background collector.
+
+The code is available in the [example repo].
 
 <!-- references -->
 <!-- prettier-ignore-start -->
