@@ -133,9 +133,9 @@ at `debug=2` and the stuck collector shows up tagged `(leaked)`:
 ```
 goroutine 25 [chan receive (leaked)]:
 main.tick.func2()
-    scheduler/main.go:43 +0x60
+    leaky-tick/main.go:43 +0x60
 created by main.tick in goroutine 1
-    scheduler/main.go:42 +0x15c
+    leaky-tick/main.go:42 +0x15c
 ```
 
 `main.tick.func2` is the collector, parked on the range at line 43. The profile finds leaks
