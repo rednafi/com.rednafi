@@ -1381,9 +1381,9 @@
       "slug": "go-goroutine-leak-profile"
     },
     "content/go/channel_iteration_goroutine_leak.md": {
-      "contentHash": "f0ceaa0721f798cd53252a93551f0fe5da7935e7d309fa49f47f2d9e0d6d2437",
+      "contentHash": "951b6790b06d5816b367acd73f302de88fc8b4561cc746a378fbdd1d30227716",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n",
-      "lastPublished": "2026-06-22T00:19:16.128Z",
+      "lastPublished": "2026-06-23T14:50:43.620Z",
       "slug": "channel-iteration-goroutine-leak"
     }
   },
