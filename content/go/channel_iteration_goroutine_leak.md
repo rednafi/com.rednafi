@@ -181,7 +181,7 @@ func tick(due []Job) []outcome {
 - (1) `wg.Go` runs each job and calls `Done` when it returns, so each job marks its own
   completion
 - (2) a separate goroutine waits for every job, then closes `results` so the range can end
-- (3) the drain runs in `tick` itself, so the receive loop and `log` stay on one goroutine
+- (3) `tick` drains `results` itself, so there is no separate collector goroutine
 
 Forget the `close` here and `tick` blocks on the range after the last result. All producers
 have exited, so no one can send another value. It's the same missing close, but now it fails
