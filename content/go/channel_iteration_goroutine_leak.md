@@ -28,7 +28,7 @@ Here:
 - one collector ranges over that channel to record the run
 
 ```go {hl_lines=["9","15","22"]}
-// leaky-tick/main.go
+// cron/scheduler.go
 func tick(due []Job) []outcome {
     results := make(chan outcome)
 
@@ -99,7 +99,7 @@ The fix is the one line the buggy version is missing: close `results` once every
 reported. The range ends and the collector returns:
 
 ```go {hl_lines=["5"]}
-// fixed-tick/main.go
+// cron/scheduler.go
 // ...
 
     wg.Wait()
@@ -154,7 +154,7 @@ normally.
 With `wg.Go`, the corrected version becomes:
 
 ```go {hl_lines=["7","14","18"]}
-// fixed-semantics-tick/main.go
+// cron/scheduler.go
 func tick(due []Job) []outcome {
     results := make(chan outcome)
 
