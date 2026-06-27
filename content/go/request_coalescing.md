@@ -1,0 +1,423 @@
+---
+title: Request coalescing with Go singleflight
+date: 2026-06-27
+slug: request-coalescing
+tags:
+    - Go
+    - Concurrency
+    - Distributed Systems
+mermaid: true
+description: >-
+  A hot cache key expires and a hundred requests issue the same query at once,
+  saturating the database. Go's singleflight package coalesces those duplicate calls into
+  one. How to wire it up, how to measure whether it's firing, and why per-pod coalescing is
+  usually enough.
+---
+
+Say you put a cache in front of Postgres to speed up reads. A hot key expires:
+
+- the next request misses the cache, so it queries Postgres to refill the key
+- the key is popular, so while that first query runs, a hundred more pile in for it
+- they all miss too, and each fires its own query
+- Postgres ends up running a hundred identical queries at once, all for the same value
+
+<!-- prettier-ignore-start -->
+
+{{< mermaid >}}
+sequenceDiagram
+    participant U1 as User 1
+    participant UN as User N
+    participant App as Application
+    participant DB as Database
+    U1->>App: Get Product 123
+    UN->>App: Get Product 123
+    App->>DB: SELECT * FROM products WHERE id=123
+    App->>DB: SELECT * FROM products WHERE id=123
+    DB-->>App: Product data
+    DB-->>App: Product data
+    App-->>U1: Product data
+    App-->>UN: Product data
+    Note over App,DB: N identical queries!
+{{</ mermaid >}}
+
+<!-- prettier-ignore-end -->
+
+That's a [thundering herd], or a [cache stampede]. Every request wants the same value, yet
+each one still fires its own query. It's wasted work, and it pounds your database for
+nothing.
+
+Request coalescing aims to fix that. I've seen it called [request collapsing] or [dogpile
+prevention] as well. The first caller runs the query; everyone else waits on it and gets the
+same result.
+
+You'll want it anywhere a crowd of callers needs the same expensive value at once:
+
+- an access token expires, and every in-flight request tries to refresh it at once
+- a config value gets evicted, and every worker reloads it
+- a thousand goroutines resolve the same hostname at the same time
+
+## Suppressing duplicate calls
+
+Coalescing keeps a table of the calls in flight, one entry per key. When a caller asks for a
+key that's already running, it doesn't start a second call. It waits on the one in flight
+and takes the result.
+
+Go's [golang.org/x/sync/singleflight] package does this for you. You call `Do` with a key
+and a function:
+
+```go
+v, err, shared := g.Do(key, func() (any, error) {
+    return fetch(ctx, key) // expensive upstream call to dedup
+})
+```
+
+`Do` runs the function at most once per key at a time. Call it with a key that's already in
+flight and it won't run the function again. It blocks until that first call returns, then
+hands you the same `v` and `err`.
+
+`v` comes back as `any`, so you type-assert it to its real type. The third return value,
+`shared`, tells you whether the result went to more than one caller. You'll use that for
+metrics later.
+
+## On a cache miss
+
+`Do` only deduplicates calls that overlap in time, so it pairs with a cache.
+
+The usual setup is [cache-aside]. You read the cache first, and on a miss you fetch the
+value and store it. Wrap just the fetch in `Do`, and concurrent misses coalesce into one
+call per key.
+
+Here `s.fetch` is the upstream call: a database query, or an RPC to another service. The
+cache itself has to be safe for concurrent use.
+
+```go
+func (s *Store) Get(ctx context.Context, key string) (string, error) {
+    if v, ok := s.cache.Get(key); ok { // (1)
+        return v, nil
+    }
+    v, err, _ := s.group.Do(key, func() (any, error) { // (2)
+        val, err := s.fetch(ctx, key)
+        if err != nil {
+            return "", err
+        }
+        s.cache.Set(key, val) // (3)
+        return val, nil
+    })
+    if err != nil {
+        return "", err
+    }
+    return v.(string), nil // (4)
+}
+```
+
+- (1) a cache hit returns straight away, without touching `Do`
+- (2) a miss is the only place a herd can form, so it's the only thing `Do` wraps; the first
+  caller per key runs `fetch` while other concurrent calls to `fetch` wait
+- (3) the first caller stores the result in cache before it returns, so later reads hit the
+  cache and skip `Do`
+- (4) `Do` returns `any`, so you assert the value back to a `string`
+
+> [!NOTE]
+>
+> Singleflight sits on the cache's miss path. When callers pile onto a miss, it runs one
+> call for all of them, then purges the key the moment that call returns.
+
+By the time the next wave of requests shows up, the cache is warm and they never reach the
+group.
+
+With `Do` wrapping the fetch, the first caller runs the query and the rest wait:
+
+<!-- prettier-ignore-start -->
+
+{{< mermaid >}}
+sequenceDiagram
+    participant U1 as User 1
+    participant UN as User N
+    participant App as Application
+    participant DB as Database
+    U1->>App: Get Product 123
+    activate App
+    Note over App: singleflight Do(key) runs the fetch once
+    App->>DB: SELECT * FROM products WHERE id=123
+    UN->>App: Get Product 123
+    Note over App: User N joins the in-flight Do(key)
+    DB-->>App: Product data
+    Note over App,DB: only 1 query to the database
+    App-->>U1: Product data
+    App-->>UN: Product data
+    deactivate App
+    Note over U1,UN: every caller gets the same result
+{{</ mermaid >}}
+
+<!-- prettier-ignore-end -->
+
+The only thing that changes is the call into the database: a hundred queries become one.
+
+The [example repo] shows this. It fires 100 concurrent `Get` calls at a cold key and sees a
+single `fetch`. After that the cache is warm, so the next 50 reads never reach the upstream.
+
+## The cost of a shared call
+
+Coalescing isn't free. You've routed many callers through one call, so a single failure or
+one slow fetch hits all of them.
+
+When the shared call fails, every caller waiting on it gets the same error, not just the one
+that triggered it. They can all retry, and the next call starts fresh, because singleflight
+drops the result as soon as it's delivered. But for that one window, a single failure hits
+everyone.
+
+They also share the wait. A caller is stuck for as long as the shared call takes, and
+through `Do` there's no way to bail out early. This is [head-of-line blocking].
+
+Cloudflare hit it. Inside a datacenter, their servers share a cache lock so only one of them
+fetches from origin, and they built [concurrent streaming acceleration] so the waiters don't
+block until that fetch finishes.
+
+When your callers have their own deadlines, say a 200ms budget per request, reach for
+`DoChan` instead of `Do`. It returns a channel, so you can select on both the channel and
+the caller's context:
+
+```go
+ch := g.DoChan(key, func() (any, error) {
+    detached := context.WithoutCancel(ctx) // (1)
+    callCtx, cancel := context.WithTimeout(detached, fetchTimeout)
+    defer cancel()
+    return fetch(callCtx, key)
+})
+select {
+case <-ctx.Done(): // (2)
+    return "", ctx.Err()
+case res := <-ch: // (3)
+    if res.Err != nil {
+        return "", res.Err
+    }
+    return res.Val.(string), nil
+}
+```
+
+- (1) detach the shared call from any single caller, then give it its own timeout.
+  `WithoutCancel` drops the caller's deadline along with its cancellation, so without
+  `WithTimeout` the shared fetch would run with no bound
+- (2) each caller can still leave on its own deadline; the shared call keeps running for the
+  others
+- (3) `DoChan` hands back a `singleflight.Result` with `Val`, `Err`, and `Shared`
+
+> [!WARNING]
+>
+> Passing the first caller's context into the shared call is a common mistake. When that
+> caller cancels or times out, it takes down every other caller waiting on the shared call.
+> `context.WithoutCancel` (Go 1.21) detaches the shared work from any single caller's
+> lifetime. But it drops the deadline too, so give the shared call its own timeout or it
+> runs with no bound. Go's resolver detaches its shared lookup from any single caller's
+> cancellation, for the same reason.
+
+The `ctx.Done` case lets each caller leave on its own deadline while the shared call keeps
+running. A `time.After` case caps how long that caller is willing to wait.
+
+`Forget` then drops the key so the next caller starts a fresh call instead of joining one
+that's running long. It doesn't cancel the in-flight fetch, which is still bounded by its
+own `fetchTimeout`:
+
+```go
+ch := g.DoChan(key, func() (any, error) {
+    detached := context.WithoutCancel(ctx)
+    callCtx, cancel := context.WithTimeout(detached, fetchTimeout)
+    defer cancel()
+    return fetch(callCtx, key)
+})
+select {
+case res := <-ch:
+    if res.Err != nil {
+        return "", res.Err
+    }
+    return res.Val.(string), nil
+case <-time.After(maxWait):
+    g.Forget(key)
+    return "", context.DeadlineExceeded
+}
+```
+
+## Measuring what it coalesces
+
+Always instrument it. It's the only way to know whether coalescing is doing anything at all.
+
+`Do` returns `shared`, set to `true` when the result went to more than one caller. It's true
+for the whole coalesced group, the caller that ran the fetch included. Count those returns
+and split them by success:
+
+```go
+v, err, shared := s.group.Do(key, func() (any, error) {
+    val, err := s.fetch(ctx, key)
+    if err != nil {
+        return "", err
+    }
+    s.cache.Set(key, val) // (1)
+    return val, nil
+})
+if shared { // (2)
+    if err != nil {
+        sharedErr.Add(1) // (3)
+    } else {
+        sharedOK.Add(1) // (4)
+    }
+}
+// handle err and return v, as before
+```
+
+- (1) cache the result here, the same way the cache-aside `Get` does above
+- (2) `shared` is true when this result went to more than one caller, the one that ran the
+  fetch included, so the call was part of a coalesced group
+- (3) the shared call returned an error, so every caller in the group got that error
+- (4) the shared call succeeded, so every caller in the group got that value
+
+Counted this way, each increment is one recipient of a shared result, not one suppressed
+duplicate. A coalesced group of `n` callers adds `n`, not `n - 1`. That's fine as a relative
+signal.
+
+Compare the total against your traffic to see whether coalescing is doing real work or
+sitting idle. If it stays near zero, your callers rarely hit the same key at the same time.
+Either traffic is low, or the keyspace is wide enough that they don't collide.
+
+A faster upstream lowers the count too: the in-flight window shrinks, so fewer callers land
+inside it. A drop can mean a quicker upstream, not a regression.
+
+Watch the ratio of errors to successes. A rising share of shared errors means callers keep
+joining a call that fails, then retrying, which serializes the herd instead of absorbing it.
+
+Fastly tracks the same shape with two counters, `request_collapse_usable_count` and
+`request_collapse_unusable_count`, and treats the split as the signal to watch. Their usable
+and unusable are about whether a collapsed request produced a reusable cache object, a
+cache-policy question rather than a Go error, so treat the mapping as an analogy, not a
+copy.
+
+## Should you do distributed request coalescing?
+
+A `singleflight.Group` and its cache live in one process, so it only sees the calls inside a
+single pod. Run twenty pods behind a load balancer, and an expiring key gives you one query
+per pod. About twenty queries hit the database, not the whole herd.
+
+<!-- prettier-ignore-start -->
+
+{{< mermaid >}}
+sequenceDiagram
+    participant P1 as Application (pod 1)
+    participant PN as Application (pod N)
+    participant DB as Database
+    Note over P1,DB: each pod coalesces only its own herd
+    P1->>DB: SELECT * FROM products WHERE id=123
+    PN->>DB: SELECT * FROM products WHERE id=123
+    Note over P1,DB: N queries, one per pod
+{{</ mermaid >}}
+
+<!-- prettier-ignore-end -->
+
+Per-pod coalescing is usually enough. It ties your database load to pod count instead of
+traffic, and you scale pod count on purpose while traffic spikes on its own. As long as one
+miss per pod fits the downstream's budget, stop here.
+
+Go's resolver works this way: it [coalesces DNS lookups] through a `singleflight.Group`, so
+concurrent lookups for the same host collapse into one.
+
+Distributed coalescing takes the whole fleet down to a single query, but you pay for it with
+cross-pod coordination. A shared lock, where each pod grabs a Redis lease before it fetches,
+puts a synchronous dependency on the miss path and adds a failure domain.
+
+When a hot key expires everywhere at once, every pod piles onto that lock, and it can buckle
+under the surge it was meant to absorb.
+
+That's a metastable failure, the kind Marc Brooker lays out in [Caches, Modes, and Unstable
+Systems]: an emptied cache floods its database, and the overload feeds itself until the
+backend can no longer recover enough to refill the cache. A lock on the miss path can get
+stuck in the same loop.
+
+You can skip the lock and let the infrastructure coalesce instead. [groupcache] routes each
+key to an owner pod, so one process makes the call and serves the rest over RPC.
+
+A shared cache tier does the same in front of the origin: [Varnish] coalesces by default,
+holding concurrent requests for one uncached object on a waiting list and sending a single
+fetch upstream; Nginx does it behind [`proxy_cache_lock`]; and a [CloudFront Origin Shield]
+collapses requests across regions so the origin sees as few as one.
+
+A cache tier still carries the shared-call costs from earlier: one slow or failed fetch is
+felt by the whole waiting list. It also coalesces only what it can cache.
+
+Mark a response uncacheable and Varnish serializes the list instead, which is worse than no
+coalescing, so you tag it hit-for-miss to skip it. Running any of this means a
+peer-membership protocol or an extra cache tier, which is why most services stop at per-pod.
+
+## When to use it
+
+Coalescing is worth it when three things are true:
+
+- the key is hot enough that callers overlap in time
+- the work behind it is expensive or slow enough to be worth sharing
+- the key fully determines the result
+
+A hot cache key fits. So do token refreshes, config reloads, and DNS. The same goes for
+anything with a predictable hotspot: a scoreboard everyone polls, a feature-flag bundle read
+on every request.
+
+When they aren't, coalescing has little to do, and leaving it on is cheap. A miss that
+overlaps nothing only pays for `Do`'s lock and map lookup, lost in the noise against a slow
+upstream.
+
+So coalescing every cache miss by default is reasonable: it does nothing until a key turns
+hot, then absorbs the herd. The exception is genuinely cheap work, where that bookkeeping
+can cost more than the call it guards, so measure there before you assume it's free.
+
+Some calls must never be coalesced. Anything with side effects is out. Merging two
+`create payment` calls is a correctness bug: the second caller wanted its own payment, not a
+copy of the first one's.
+
+The key also has to capture everything that affects the result. Coalesce by URL when the
+response depends on the `Authorization` header, and you'll serve one user's data to another.
+
+<!-- references -->
+<!-- prettier-ignore-start -->
+
+[golang.org/x/sync/singleflight]:
+    https://pkg.go.dev/golang.org/x/sync/singleflight
+
+[cache-aside]:
+    https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside
+
+[groupcache]:
+    https://github.com/golang/groupcache
+
+[example repo]:
+    https://github.com/rednafi/examples/tree/main/request-coalescing
+
+[request collapsing]:
+    https://www.fastly.com/blog/request-collapsing-demystified
+
+[coalesces DNS lookups]:
+    https://go.dev/src/net/lookup.go
+
+[CloudFront Origin Shield]:
+    https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html
+
+[concurrent streaming acceleration]:
+    https://blog.cloudflare.com/introducing-concurrent-streaming-acceleration/
+
+[head-of-line blocking]:
+    https://en.wikipedia.org/wiki/Head-of-line_blocking
+
+[Varnish]:
+    https://info.varnish-software.com/blog/two-minutes-tech-tuesdays-request-coalescing
+
+[`proxy_cache_lock`]:
+    https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock
+
+[Caches, Modes, and Unstable Systems]:
+    https://brooker.co.za/blog/2021/08/27/caches.html
+
+[thundering herd]:
+    https://en.wikipedia.org/wiki/Thundering_herd_problem
+
+[cache stampede]:
+    https://en.wikipedia.org/wiki/Cache_stampede
+
+[dogpile prevention]:
+    https://dogpilecache.sqlalchemy.org/en/latest/
+
+<!-- prettier-ignore-end -->
