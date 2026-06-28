@@ -49,8 +49,8 @@ wasted work, and it pounds your database for nothing.
 
 Worse, a stampede can feed itself. The query flood slows the database, slow queries time
 out, clients retry, and the retries heap on even more load, so the overload outlives the
-spike that set it off. Marc Brooker calls that a metastable failure in [Caches, Modes, and
-Unstable Systems].
+spike that set it off. Marc Brooker shows how this can lead to a metastable failure in
+[Caches, Modes, and Unstable Systems].
 
 Request coalescing aims to fix that. Another name for it is [request collapsing]. The first
 caller runs the query; everyone else waits on it and gets the same result.
