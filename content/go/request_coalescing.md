@@ -333,10 +333,9 @@ lookups] per process. As long as one miss per pod fits the downstream's budget, 
 
 Going fleet-wide takes coordination. The usual tool is a per-key distributed lock. A pod
 grabs a short Redis lease before it fetches, so only one fetch runs for that key across the
-fleet. It works, and it's a documented Redis pattern. But every miss now waits on a second
-system, and the lease needs tuning. Too short and the herd slips through; too long and a
-dead holder stalls everyone. To turn a handful of per-pod queries into one, that's often
-more coordination than it earns.
+fleet. But every miss now waits on a second system, and the lease needs tuning. Too short
+and the herd slips through; too long and a dead holder stalls everyone. To turn a handful of
+per-pod queries into one, that's often more coordination than it earns.
 
 For cacheable HTTP, you may not have to do any of this. The cache or CDN layer in front of
 your service can collapse requests, once you configure it to. [Varnish] coalesces concurrent
@@ -385,7 +384,10 @@ type Group struct {
     m  map[string]*call // lazily initialized
 }
 
-func (g *Group) Do(key string, fn func() (any, error)) (v any, err error, shared bool) {
+func (g *Group) Do(
+    key string,
+    fn func() (any, error),
+) (v any, err error, shared bool) {
     g.mu.Lock()
     // ...
 }
