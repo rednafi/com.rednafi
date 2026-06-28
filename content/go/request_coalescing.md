@@ -385,6 +385,13 @@ copy of the first one's.
 The key also has to capture everything that affects the result. Coalesce by URL when the
 response depends on the `Authorization` header, and you'll serve one user's data to another.
 
+## Or just use a library
+
+You can wire this up by hand, and now you know what it's doing. But if you're building
+something resilient, see if [sturdyc] gets you there first. It's a Go cache built for this
+exact problem: in-flight request coalescing, stampede protection, refresh-ahead, eviction,
+and more. Try to get away with it before you bolt together a makeshift version from scratch.
+
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -396,6 +403,9 @@ response depends on the `Authorization` header, and you'll serve one user's data
 
 [groupcache]:
     https://github.com/golang/groupcache
+
+[sturdyc]:
+    https://github.com/viccon/sturdyc
 
 [example repo]:
     https://github.com/rednafi/examples/tree/main/request-coalescing
