@@ -44,8 +44,8 @@ That's known as a [thundering herd] or [cache stampede]. I've also heard people 
 dog-piling. Every request wants the same value, yet each one still fires its own query. It's
 wasted work, and it pounds your database for nothing.
 
-Request coalescing aims to fix that. I've seen it called [request collapsing] as well. The
-first caller runs the query; everyone else waits on it and gets the same result.
+Request coalescing aims to fix that. Another name for it is [request collapsing]. The first
+caller runs the query; everyone else waits on it and gets the same result.
 
 You'll want it anywhere a crowd of callers needs the same expensive value at once:
 
