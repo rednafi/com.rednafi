@@ -110,7 +110,7 @@ func (s *Store) Get(ctx context.Context, key string) (string, error) {
 
 - (1) a cache hit returns straight away, without touching `Do`
 - (2) a miss is the only place a herd can form, so it's the only thing `Do` wraps; the first
-  caller per key runs `fetch` while other concurrent calls to `fetch` wait
+  caller per key runs `fetch` while other concurrent callers wait
 - (3) the first caller stores the result in cache before it returns, so later reads hit the
   cache and skip `Do`
 - (4) `Do` returns `any`, so you assert the value back to a `string`
