@@ -41,8 +41,8 @@ sequenceDiagram
 <!-- prettier-ignore-end -->
 
 That's known as a [thundering herd] or [cache stampede]. I've also heard people call it
-dog-piling. Every request wants the same value, yet each one still fires its own query.
-It's wasted work, and it pounds your database for nothing.
+dog-piling. Every request wants the same value, yet each one still fires its own query. It's
+wasted work, and it pounds your database for nothing.
 
 Request coalescing aims to fix that. I've seen it called [request collapsing] as well. The
 first caller runs the query; everyone else waits on it and gets the same result.
