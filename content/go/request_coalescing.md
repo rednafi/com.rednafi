@@ -47,10 +47,10 @@ That's known as a [thundering herd] or [cache stampede]. I've also heard people 
 dog-piling. Every request wants the same value, yet each one still fires its own query. It's
 wasted work, and it pounds your database for nothing.
 
-Worse, a stampede can feed itself. The query flood slows the database, slow queries time
-out, clients retry, and the retries heap on even more load, so the overload outlives the
-spike that set it off. Marc Brooker shows how this can lead to a metastable failure in
-[Caches, Modes, and Unstable Systems].
+Worse, a stampede can feed itself. The query flood slows the database. Slow queries time
+out, clients retry, and the retries heap on even more load. The overload outlives the spike
+that set it off. Marc Brooker shows how this can lead to a metastable failure in [Caches,
+Modes, and Unstable Systems].
 
 Request coalescing aims to fix that. Another name for it is [request collapsing]. The first
 caller runs the query; everyone else waits on it and gets the same result.
@@ -180,13 +180,13 @@ They also share the wait. A caller is stuck for as long as the shared call takes
 through `Do` there's no way to bail out early. This is [head-of-line blocking].
 
 Cloudflare hit it. Inside a datacenter, their servers share a cache lock so only one of them
-fetches from origin, and they built [concurrent streaming acceleration] so the waiters don't
+fetches from origin. They built [concurrent streaming acceleration] so the waiters don't
 block until that fetch finishes.
 
 You can't make the shared call faster, but you can keep it from trapping everyone. Bound the
-call with its own timeout, and let each caller leave on its own deadline, say a 200ms
-budget, instead of waiting out the shared call. `DoChan` gives you both: it returns a
-channel, so you select on it alongside the caller's context:
+call with its own timeout. Give each caller a deadline of its own, say 200ms. Then it can
+leave instead of waiting the shared call out. `DoChan` gives you both: it returns a channel,
+so you select on it alongside the caller's context:
 
 ```go
 ch := g.DoChan(key, func() (any, error) {
@@ -222,10 +222,10 @@ case res := <-ch: // (3)
 > runs with no bound. Go's resolver detaches its shared lookup from any single caller's
 > cancellation, for the same reason.
 
-`ctx.Done` gets one caller out, but it leaves the slow call in flight, so the next caller
-just joins it and waits all over again. A `time.After` case caps the wait, and `Forget`
-drops the key so that next caller starts fresh. `Forget` doesn't cancel the in-flight fetch,
-which is still bounded by its own `fetchTimeout`:
+`ctx.Done` gets one caller out, but the slow call stays in flight. The next caller just
+joins it and waits all over again. A `time.After` case caps the wait, and `Forget` drops the
+key so that next caller starts fresh. `Forget` doesn't cancel the in-flight fetch, which is
+still bounded by its own `fetchTimeout`:
 
 ```go
 ch := g.DoChan(key, func() (any, error) {
@@ -299,19 +299,18 @@ A faster upstream lowers the count too: the in-flight window shrinks, so fewer c
 inside it. A drop can mean a quicker upstream, not a regression.
 
 Watch the ratio of errors to successes. A rising share of shared errors means callers keep
-joining a call that fails, then retrying, which serializes the herd instead of absorbing it.
+joining a call that fails, then retrying. That serializes the herd instead of absorbing it.
 
-[Fastly] tracks the same shape with two counters, `request_collapse_usable_count` and
-`request_collapse_unusable_count`, and treats the split as the signal to watch. Their usable
-and unusable are about whether a collapsed request produced a reusable cache object, a
-cache-policy question rather than a Go error, so treat the mapping as an analogy, not a
-copy.
+[Fastly] splits coalesced requests into two counters: `request_collapse_usable_count` and
+`request_collapse_unusable_count`. Their usable and unusable track whether a collapsed
+request produced a reusable cache object. That's a cache-policy question, not a Go error. So
+treat the mapping as an analogy, not a copy.
 
 ## Should you do distributed request coalescing?
 
-Singleflight is per-process. A `Group` and its cache see only the calls inside one pod. Run
-twenty pods behind a load balancer, and an expiring key gives you one query per pod. About
-twenty queries hit the database, not the whole herd.
+Singleflight is per-process. A `Group` sees only the calls inside one app instance, so it
+can't coalesce across the fleet. Run twenty pods behind a load balancer. When a hot key
+expires, each pod that takes the miss runs its own query: up to twenty, not the whole herd.
 
 <!-- prettier-ignore-start -->
 
@@ -328,30 +327,26 @@ sequenceDiagram
 
 <!-- prettier-ignore-end -->
 
-Per-pod coalescing is usually enough. It ties your database load to pod count instead of
-traffic, and you scale pod count on purpose while traffic spikes on its own. Go's own
-resolver settles for exactly this: it [coalesces DNS lookups] per process. As long as one
-miss per pod fits the downstream's budget, stop here.
+For most services that's enough. Per-pod coalescing ties your database load to how many pods
+you run, not how much traffic you get. Go's own resolver does the same: it [coalesces DNS
+lookups] per process. As long as one miss per pod fits the downstream's budget, stop here.
 
-Going fleet-wide, down to a single query, means coordinating across pods, and that's where
-it gets expensive. There are two ways to do it, and both cost you.
+Going fleet-wide takes coordination. The usual tool is a per-key distributed lock. A pod
+grabs a short Redis lease before it fetches, so only one fetch runs for that key across the
+fleet. It works, and it's a documented Redis pattern. But every miss now waits on a second
+system, and the lease needs tuning. Too short and the herd slips through; too long and a
+dead holder stalls everyone. To turn a handful of per-pod queries into one, that's often
+more coordination than it earns.
 
-The first is a shared lock: each pod grabs a Redis lease before it fetches, so the database
-sees one query. But now Redis sits on every miss's critical path, one more hop that can
-stall and one more thing that can fall over, and the surge that used to hit the database
-hits the lock instead.
+For cacheable HTTP, you may not have to do any of this. The cache or CDN layer in front of
+your service can collapse requests, once you configure it to. [Varnish] coalesces concurrent
+requests for the same object into one upstream fetch. Nginx has [proxy_cache_lock]. A
+[CloudFront Origin Shield] does the same across regions. That only covers cacheable objects,
+though. Token refreshes, RPCs, auth-scoped or per-tenant data, none of it collapses up
+there. That's exactly the work singleflight handles in-process.
 
-The second is to let infrastructure coalesce for you, no lock to run. [groupcache] routes
-each key to an owner pod, so one process makes the call and serves the rest over RPC. A
-shared cache tier does the same in front of the origin: [Varnish] coalesces by default,
-queuing concurrent requests for one object and sending a single fetch upstream; Nginx does
-it behind [proxy_cache_lock]; a [CloudFront Origin Shield] collapses requests across regions
-so the origin sees as few as one. A tier only coalesces what it can cache, though, and it
-carries the same shared-call costs: one slow fetch stalls the whole waiting list, and an
-uncacheable response makes Varnish serialize the queue unless you tag it hit-for-miss.
-
-Each option adds a moving part the miss path didn't have before: a lock, a membership
-protocol, or a whole cache tier. That's why most services stop at per-pod.
+Most services never need more than per-pod. When you do, the cache layer covers cacheable
+traffic; a lock covers the rest. Measure before you reach for either.
 
 ## When to use it
 
@@ -370,8 +365,8 @@ overlaps nothing only pays for `Do`'s lock and map lookup, lost in the noise aga
 upstream.
 
 So coalescing every cache miss by default is reasonable: it does nothing until a key turns
-hot, then absorbs the herd. The exception is genuinely cheap work, where that bookkeeping
-can cost more than the call it guards, so measure there before you assume it's free.
+hot, then absorbs the herd. The exception is cheap work, where the bookkeeping can cost more
+than the call it guards. Measure there before you assume it's free.
 
 Some calls must never be coalesced. Anything with side effects is out. Merging two
 `create payment` calls is a correctness bug: the second caller wanted its own payment, not a
@@ -394,9 +389,6 @@ get away with it before rolling your own.
 
 [cache-aside]:
     https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside
-
-[groupcache]:
-    https://github.com/golang/groupcache
 
 [sturdyc]:
     https://github.com/viccon/sturdyc
