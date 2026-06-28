@@ -40,13 +40,12 @@ sequenceDiagram
 
 <!-- prettier-ignore-end -->
 
-That's a [thundering herd], or a [cache stampede]. Every request wants the same value, yet
-each one still fires its own query. It's wasted work, and it pounds your database for
-nothing.
+That's known as a [thundering herd] or [cache stampede]. I've also heard people call it
+dog-piling. Every request wants the same value, yet each one still fires its own query.
+It's wasted work, and it pounds your database for nothing.
 
-Request coalescing aims to fix that. I've seen it called [request collapsing] or [dogpile
-prevention] as well. The first caller runs the query; everyone else waits on it and gets the
-same result.
+Request coalescing aims to fix that. I've seen it called [request collapsing] as well. The
+first caller runs the query; everyone else waits on it and gets the same result.
 
 You'll want it anywhere a crowd of callers needs the same expensive value at once:
 
@@ -282,7 +281,7 @@ inside it. A drop can mean a quicker upstream, not a regression.
 Watch the ratio of errors to successes. A rising share of shared errors means callers keep
 joining a call that fails, then retrying, which serializes the herd instead of absorbing it.
 
-Fastly tracks the same shape with two counters, `request_collapse_usable_count` and
+[Fastly] tracks the same shape with two counters, `request_collapse_usable_count` and
 `request_collapse_unusable_count`, and treats the split as the signal to watch. Their usable
 and unusable are about whether a collapsed request produced a reusable cache object, a
 cache-policy question rather than a Go error, so treat the mapping as an analogy, not a
@@ -333,7 +332,7 @@ key to an owner pod, so one process makes the call and serves the rest over RPC.
 
 A shared cache tier does the same in front of the origin: [Varnish] coalesces by default,
 holding concurrent requests for one uncached object on a waiting list and sending a single
-fetch upstream; Nginx does it behind [`proxy_cache_lock`]; and a [CloudFront Origin Shield]
+fetch upstream; Nginx does it behind [proxy_cache_lock]; and a [CloudFront Origin Shield]
 collapses requests across regions so the origin sees as few as one.
 
 A cache tier still carries the shared-call costs from earlier: one slow or failed fetch is
@@ -388,6 +387,9 @@ response depends on the `Authorization` header, and you'll serve one user's data
 [request collapsing]:
     https://www.fastly.com/blog/request-collapsing-demystified
 
+[Fastly]:
+    https://www.fastly.com/documentation/reference/changes/2024/12/request-collapsing-metrics/
+
 [coalesces DNS lookups]:
     https://go.dev/src/net/lookup.go
 
@@ -403,7 +405,7 @@ response depends on the `Authorization` header, and you'll serve one user's data
 [Varnish]:
     https://info.varnish-software.com/blog/two-minutes-tech-tuesdays-request-coalescing
 
-[`proxy_cache_lock`]:
+[proxy_cache_lock]:
     https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock
 
 [Caches, Modes, and Unstable Systems]:
@@ -414,8 +416,5 @@ response depends on the `Authorization` header, and you'll serve one user's data
 
 [cache stampede]:
     https://en.wikipedia.org/wiki/Cache_stampede
-
-[dogpile prevention]:
-    https://dogpilecache.sqlalchemy.org/en/latest/
 
 <!-- prettier-ignore-end -->
