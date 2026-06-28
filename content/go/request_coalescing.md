@@ -47,6 +47,11 @@ That's known as a [thundering herd] or [cache stampede]. I've also heard people 
 dog-piling. Every request wants the same value, yet each one still fires its own query. It's
 wasted work, and it pounds your database for nothing.
 
+Worse, a stampede can feed itself. The query flood slows the database, slow queries time
+out, clients retry, and the retries heap on even more load, so the overload outlives the
+spike that set it off. Marc Brooker calls that a metastable failure in [Caches, Modes, and
+Unstable Systems].
+
 Request coalescing aims to fix that. Another name for it is [request collapsing]. The first
 caller runs the query; everyone else waits on it and gets the same result.
 
@@ -324,39 +329,29 @@ sequenceDiagram
 <!-- prettier-ignore-end -->
 
 Per-pod coalescing is usually enough. It ties your database load to pod count instead of
-traffic, and you scale pod count on purpose while traffic spikes on its own. As long as one
+traffic, and you scale pod count on purpose while traffic spikes on its own. Go's own
+resolver settles for exactly this: it [coalesces DNS lookups] per process. As long as one
 miss per pod fits the downstream's budget, stop here.
 
-Go's resolver works this way: it [coalesces DNS lookups] through a `singleflight.Group`, so
-concurrent lookups for the same host collapse into one.
+Going fleet-wide, down to a single query, means coordinating across pods, and that's where
+it gets expensive. There are two ways to do it, and both cost you.
 
-Distributed coalescing takes the whole fleet down to a single query, but you pay for it with
-cross-pod coordination. A shared lock, where each pod grabs a Redis lease before it fetches,
-drops Redis onto every miss's critical path: one more hop that can stall, one more thing
-that can fall over.
+The first is a shared lock: each pod grabs a Redis lease before it fetches, so the database
+sees one query. But now Redis sits on every miss's critical path, one more hop that can
+stall and one more thing that can fall over, and the surge that used to hit the database
+hits the lock instead.
 
-When a hot key expires everywhere at once, every pod piles onto that lock, and it can buckle
-under the surge it was meant to absorb.
+The second is to let infrastructure coalesce for you, no lock to run. [groupcache] routes
+each key to an owner pod, so one process makes the call and serves the rest over RPC. A
+shared cache tier does the same in front of the origin: [Varnish] coalesces by default,
+queuing concurrent requests for one object and sending a single fetch upstream; Nginx does
+it behind [proxy_cache_lock]; a [CloudFront Origin Shield] collapses requests across regions
+so the origin sees as few as one. A tier only coalesces what it can cache, though, and it
+carries the same shared-call costs: one slow fetch stalls the whole waiting list, and an
+uncacheable response makes Varnish serialize the queue unless you tag it hit-for-miss.
 
-That's a metastable failure, the kind Marc Brooker lays out in [Caches, Modes, and Unstable
-Systems]: an emptied cache floods its database, and the overload feeds itself until the
-backend can no longer recover enough to refill the cache. A lock on the miss path can get
-stuck in the same loop.
-
-You can skip the lock and let the infrastructure coalesce instead. [groupcache] routes each
-key to an owner pod, so one process makes the call and serves the rest over RPC.
-
-A shared cache tier does the same in front of the origin: [Varnish] coalesces by default,
-holding concurrent requests for one uncached object on a waiting list and sending a single
-fetch upstream; Nginx does it behind [proxy_cache_lock]; and a [CloudFront Origin Shield]
-collapses requests across regions so the origin sees as few as one.
-
-A cache tier still carries the shared-call costs from earlier: one slow or failed fetch is
-felt by the whole waiting list. It also coalesces only what it can cache.
-
-Mark a response uncacheable and Varnish serializes the list instead, which is worse than no
-coalescing, so you tag it hit-for-miss to skip it. Running any of this means a
-peer-membership protocol or an extra cache tier, which is why most services stop at per-pod.
+Each option adds a moving part the miss path didn't have before: a lock, a membership
+protocol, or a whole cache tier. That's why most services stop at per-pod.
 
 ## When to use it
 
