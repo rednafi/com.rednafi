@@ -1387,9 +1387,9 @@
       "slug": "channel-iteration-goroutine-leak"
     },
     "content/go/request_coalescing.md": {
-      "contentHash": "bfce1d528e28b7dae33f5ccdc41f5675a959d4629908ce6fde5a928b4904118e",
+      "contentHash": "eba924e435443aa94a79f7fefc6f058df7e93aa041bb3f9a9f64f406b741201c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mpcm52jalc2z",
-      "lastPublished": "2026-06-28T02:43:20.056Z",
+      "lastPublished": "2026-06-28T09:40:06.720Z",
       "slug": "request-coalescing"
     }
   },
