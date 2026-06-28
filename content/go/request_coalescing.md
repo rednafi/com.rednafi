@@ -68,7 +68,8 @@ Go's [golang.org/x/sync/singleflight] package does this for you. Create a `Group
 ```go
 import "golang.org/x/sync/singleflight"
 
-var g singleflight.Group // zero value is ready to use; share one across goroutines
+// zero value is ready to use; share one across goroutines
+var g singleflight.Group
 
 v, err, shared := g.Do(key, func() (any, error) {
     return fetch(ctx, key) // expensive upstream call to dedup
@@ -177,9 +178,10 @@ Cloudflare hit it. Inside a datacenter, their servers share a cache lock so only
 fetches from origin, and they built [concurrent streaming acceleration] so the waiters don't
 block until that fetch finishes.
 
-When your callers have their own deadlines, say a 200ms budget per request, reach for
-`DoChan` instead of `Do`. It returns a channel, so you can select on both the channel and
-the caller's context:
+You can't make the shared call faster, but you can keep it from trapping everyone. Bound the
+call with its own timeout, and let each caller leave on its own deadline, say a 200ms
+budget, instead of waiting out the shared call. `DoChan` gives you both: it returns a
+channel, so you select on it alongside the caller's context:
 
 ```go
 ch := g.DoChan(key, func() (any, error) {
@@ -215,12 +217,10 @@ case res := <-ch: // (3)
 > runs with no bound. Go's resolver detaches its shared lookup from any single caller's
 > cancellation, for the same reason.
 
-The `ctx.Done` case lets each caller leave on its own deadline while the shared call keeps
-running. A `time.After` case caps how long that caller is willing to wait.
-
-`Forget` then drops the key so the next caller starts a fresh call instead of joining one
-that's running long. It doesn't cancel the in-flight fetch, which is still bounded by its
-own `fetchTimeout`:
+`ctx.Done` gets one caller out, but it leaves the slow call in flight, so the next caller
+just joins it and waits all over again. A `time.After` case caps the wait, and `Forget`
+drops the key so that next caller starts fresh. `Forget` doesn't cancel the in-flight fetch,
+which is still bounded by its own `fetchTimeout`:
 
 ```go
 ch := g.DoChan(key, func() (any, error) {
@@ -243,7 +243,7 @@ case <-time.After(maxWait):
 
 > [!WARNING]
 >
-> Every waiter gets the same value the leader returned: one pointer or slice, not a
+> Every waiter gets the same value the shared call returned: one pointer or slice, not a
 > per-caller copy. That's fine for an immutable cache fill, but a bug the moment a caller
 > mutates it or needs a per-caller result. Even the standard library guards against it: its
 > DNS resolver clones the address slice it returns to shared callers, so each caller can
@@ -304,9 +304,9 @@ copy.
 
 ## Should you do distributed request coalescing?
 
-A `singleflight.Group` and its cache live in one process, so it only sees the calls inside a
-single pod. Run twenty pods behind a load balancer, and an expiring key gives you one query
-per pod. About twenty queries hit the database, not the whole herd.
+Singleflight is per-process. A `Group` and its cache see only the calls inside one pod. Run
+twenty pods behind a load balancer, and an expiring key gives you one query per pod. About
+twenty queries hit the database, not the whole herd.
 
 <!-- prettier-ignore-start -->
 
@@ -332,7 +332,8 @@ concurrent lookups for the same host collapse into one.
 
 Distributed coalescing takes the whole fleet down to a single query, but you pay for it with
 cross-pod coordination. A shared lock, where each pod grabs a Redis lease before it fetches,
-puts a synchronous dependency on the miss path and adds a failure domain.
+drops Redis onto every miss's critical path: one more hop that can stall, one more thing
+that can fall over.
 
 When a hot key expires everywhere at once, every pod piles onto that lock, and it can buckle
 under the surge it was meant to absorb.
