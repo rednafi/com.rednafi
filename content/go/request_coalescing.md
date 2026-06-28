@@ -9,6 +9,9 @@ tags:
     - Concurrency
     - Distributed Systems
 title: Request coalescing with Go singleflight
+discussions:
+    - label: Reddit
+      url: https://www.reddit.com/r/golang/comments/1uhqvyx/request_coalescing/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mpcm52jalc2z"
 ---
 
@@ -59,10 +62,14 @@ Coalescing keeps a table of the calls in flight, one entry per key. When a calle
 key that's already running, it doesn't start a second call. It waits on the one in flight
 and takes the result.
 
-Go's [golang.org/x/sync/singleflight] package does this for you. You call `Do` with a key
-and a function:
+Go's [golang.org/x/sync/singleflight] package does this for you. Create a `Group`, then call
+`Do` with a key and a function:
 
 ```go
+import "golang.org/x/sync/singleflight"
+
+var g singleflight.Group // zero value is ready to use; share one across goroutines
+
 v, err, shared := g.Do(key, func() (any, error) {
     return fetch(ctx, key) // expensive upstream call to dedup
 })
@@ -233,6 +240,14 @@ case <-time.After(maxWait):
     return "", context.DeadlineExceeded
 }
 ```
+
+> [!WARNING]
+>
+> Every waiter gets the same value the leader returned: one pointer or slice, not a
+> per-caller copy. That's fine for an immutable cache fill, but a bug the moment a caller
+> mutates it or needs a per-caller result. Even the standard library guards against it: its
+> DNS resolver clones the address slice it returns to shared callers, so each caller can
+> mutate its copy safely.
 
 ## Measuring what it coalesces
 
