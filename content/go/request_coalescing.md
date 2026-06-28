@@ -377,9 +377,27 @@ response depends on the `Authorization` header, and you'll serve one user's data
 
 ## Or reach for a library
 
-[sturdyc] already handles all of this: in-flight request coalescing, stampede protection,
-refresh-ahead, eviction, and more. If you're building something resilient, see if you can
-get away with it before rolling your own.
+Rolling your own with singleflight has a catch. A `Group` is one mutex over one map:
+
+```go
+type Group struct {
+    mu sync.Mutex       // protects m
+    m  map[string]*call // lazily initialized
+}
+
+func (g *Group) Do(key string, fn func() (any, error)) (v any, err error, shared bool) {
+    g.mu.Lock()
+    // ...
+}
+```
+
+Every `Do`, `DoChan`, and `Forget` locks `g.mu`, so a group serializes all its keys through
+one mutex. At high throughput that's a contention point. Sharding spreads it out: run
+several groups and hash each key to one.
+
+If you're wiring singleflight in front of a cache like this, [sturdyc] is worth a look. It's
+a cache that handles the coalescing as part of its stampede protection. You also get
+refresh-ahead, eviction, and sharded storage.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
