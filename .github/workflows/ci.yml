@@ -23,6 +23,7 @@ jobs:
       PLAYWRIGHT_VERSION: 1.61.1
       PRETTIER_VERSION: 3.9.3
       SEQUOIA_CLI_VERSION: 0.5.7
+      OXIPNG_VERSION: 10.1.1
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -48,7 +49,11 @@ jobs:
         run: sudo dpkg -i ~/hugo.deb
 
       - name: Install image tools
-        run: sudo apt-get update && sudo apt-get install -y oxipng
+        run: |
+          wget -q -O /tmp/oxipng.deb "https://github.com/oxipng/oxipng/releases/download/v${OXIPNG_VERSION}/oxipng_${OXIPNG_VERSION}-1_amd64.deb"
+          echo "6a433d9d10a9c4772e618136a491fc0e2b8b373c55db731fa5cc7b5f7a556053  /tmp/oxipng.deb" | sha256sum -c -
+          sudo dpkg -i /tmp/oxipng.deb
+          oxipng --version
 
       - name: Setup Go
         uses: actions/setup-go@v6
