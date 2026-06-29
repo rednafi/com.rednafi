@@ -1,16 +1,21 @@
 ---
-title: Building a web app to display CSV file stats with ChatGPT & Observable
-date: 2023-04-10
+title: "Building a web app to display CSV file stats with ChatGPT & Observable"
 slug: exploring-observable-notebooks
-atprotoPath: /javascript/exploring-observable-notebooks/
-aliases:
-    - /javascript/exploring_observable_notebooks/
+date: 2023-04-10
+description: >-
+    Create a client-side CSV comparison tool using ObservableHQ notebooks and ChatGPT. Learn
+    to build interactive data apps without deployment hassles.
 tags:
     - JavaScript
     - Web
-description: >-
-  Create a client-side CSV comparison tool using ObservableHQ notebooks and ChatGPT.
-  Learn to build interactive data apps without deployment hassles.
+images:
+    - "https://blob.rednafi.com/javascript/exploring-observable-notebooks/cover-4a2db09ea045.png"
+aliases:
+    - /javascript/exploring_observable_notebooks/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /javascript/exploring-observable-notebooks/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iyioos2e"
 ---
 
@@ -194,6 +199,6 @@ Click on the following thumbnail to take the notebook for a spin:
     https://observablehq.com/@rednafi/compare-two-csv-files
 
 [image_1]:
-    https://blob.rednafi.com/static/images/exploring_observable_notebooks/img_1.png
+    https://blob.rednafi.com/javascript/exploring-observable-notebooks/image-01-bb73df77a107.png
 
 <!-- prettier-ignore-end -->

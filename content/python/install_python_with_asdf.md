@@ -1,16 +1,21 @@
 ---
-title: Installing Python on macOS with asdf
-date: 2022-11-13
+title: "Installing Python on macOS with asdf"
 slug: install-python-with-asdf
-atprotoPath: /python/install-python-with-asdf/
-aliases:
-    - /python/install_python_with_asdf/
+date: 2022-11-13
+description: >-
+    Manage multiple Python versions on macOS using asdf, a unified version manager replacing
+    pyenv, nvm, and language-specific tools.
 tags:
     - Python
     - TIL
-description: >-
-  Manage multiple Python versions on macOS using asdf, a unified version manager
-  replacing pyenv, nvm, and language-specific tools.
+images:
+    - "https://blob.rednafi.com/python/install-python-with-asdf/cover-65ecdf7af626.png"
+aliases:
+    - /python/install_python_with_asdf/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/install-python-with-asdf/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j44klm2e"
 ---
 

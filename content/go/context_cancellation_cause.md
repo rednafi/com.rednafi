@@ -1,21 +1,26 @@
 ---
-title: What canceled my Go context?
-date: 2026-02-24
+title: "What canceled my Go context?"
 slug: context-cancellation-cause
-atprotoPath: /go/context-cancellation-cause/
+date: 2026-02-24
+description: >-
+    How Go 1.20's WithCancelCause and Go 1.21's WithTimeoutCause let you attach a reason to
+    context cancellation, plus a gotcha with manual cancel and the stdlib pattern that
+    covers every path.
 tags:
     - Go
-    - Error Handling
+    - "Error Handling"
     - Concurrency
-description: >-
-    How Go 1.20's WithCancelCause and Go 1.21's WithTimeoutCause let you attach a reason
-    to context cancellation, plus a gotcha with manual cancel and the stdlib pattern that
-    covers every path.
+images:
+    - "https://blob.rednafi.com/go/context-cancellation-cause/cover-e3197ffa2b56.png"
+aliases: []
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=47244882
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1rhzdxd/
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=47244882"
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1rhzdxd/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/context-cancellation-cause/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icg5ae2u"
 ---
 

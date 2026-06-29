@@ -1,17 +1,22 @@
 ---
-title: Why does Go's io.Reader have such a weird signature?
-date: 2025-02-08
+title: "Why does Go's io.Reader have such a weird signature?"
 slug: io-reader-signature
-atprotoPath: /go/io-reader-signature/
-aliases:
-    - /go/io_reader_signature/
+date: 2025-02-08
+description: >-
+    Understand why io.Reader takes a byte slice parameter instead of returning one. Learn
+    about heap allocations and buffer reuse in Go streams.
 tags:
     - Go
     - TIL
     - Performance
-description: >-
-  Understand why io.Reader takes a byte slice parameter instead of returning one. Learn
-  about heap allocations and buffer reuse in Go streams.
+images:
+    - "https://blob.rednafi.com/go/io-reader-signature/cover-95703a1d949a.png"
+aliases:
+    - /go/io_reader_signature/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/io-reader-signature/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igf4pk2y"
 ---
 

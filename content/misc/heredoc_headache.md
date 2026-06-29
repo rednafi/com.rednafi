@@ -1,18 +1,23 @@
 ---
-title: Here-doc headache
-date: 2024-07-19
+title: "Here-doc headache"
 slug: heredoc-headache
-atprotoPath: /misc/heredoc-headache/
-aliases:
-    - /misc/heredoc_headache/
+date: 2024-07-19
+description: >-
+    Avoid here-doc pitfalls when running remote commands via SSH. Learn variable expansion
+    gotchas and simpler alternatives for deployment scripts.
 tags:
     - Shell
     - Unix
     - DevOps
     - GitHub
-description: >-
-  Avoid here-doc pitfalls when running remote commands via SSH. Learn variable expansion
-  gotchas and simpler alternatives for deployment scripts.
+images:
+    - "https://blob.rednafi.com/misc/heredoc-headache/cover-1cbe274bda10.png"
+aliases:
+    - /misc/heredoc_headache/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/heredoc-headache/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iiot7326"
 ---
 

@@ -1,17 +1,25 @@
 ---
-atprotoPath: /go/request-coalescing/
-date: 2026-06-27T00:00:00Z
-description: A hot cache key expires and a hundred requests issue the same query at once, saturating the database. Go's singleflight package coalesces those duplicate calls into one. How to wire it up, how to measure whether it's firing, and why per-pod coalescing is usually enough.
-mermaid: true
+title: "Request coalescing with Go singleflight"
 slug: request-coalescing
+date: 2026-06-27T00:00:00Z
+description: >-
+    A hot cache key expires and a hundred requests issue the same query at once, saturating
+    the database. Go's singleflight package coalesces those duplicate calls into one. How to
+    wire it up, how to measure whether it's firing, and why per-pod coalescing is usually
+    enough.
 tags:
     - Go
     - Concurrency
-    - Distributed Systems
-title: Request coalescing with Go singleflight
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/go/request-coalescing/cover-195175395048.png"
+aliases: []
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1uhqvyx/request_coalescing/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1uhqvyx/request_coalescing/"
+mermaid: true
+type_label: ""
+atprotoPath: /go/request-coalescing/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mpcm52jalc2z"
 ---
 

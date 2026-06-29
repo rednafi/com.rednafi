@@ -1,17 +1,22 @@
 ---
-title: Process substitution in Bash
-date: 2023-04-30
+title: "Process substitution in Bash"
 slug: process-substitution-in-bash
-atprotoPath: /misc/process-substitution-in-bash/
-aliases:
-    - /misc/process_substitution_in_bash/
+date: 2023-04-30
+description: >-
+    Use process substitution <() to treat command output as files in Bash. Compare
+    directories, process data, and avoid temporary files with this technique.
 tags:
     - Shell
     - Unix
     - TIL
-description: >-
-  Use process substitution <() to treat command output as files in Bash. Compare
-  directories, process data, and avoid temporary files with this technique.
+images:
+    - "https://blob.rednafi.com/misc/process-substitution-in-bash/cover-d44ca7a7f421.png"
+aliases:
+    - /misc/process_substitution_in_bash/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/process-substitution-in-bash/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivijkd26"
 ---
 

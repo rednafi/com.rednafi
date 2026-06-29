@@ -1,17 +1,22 @@
 ---
-title: When to use 'git pull --rebase'
-date: 2022-07-14
+title: "When to use 'git pull --rebase'"
 slug: when-to-use-git-pull-rebase
-atprotoPath: /misc/when-to-use-git-pull-rebase/
-aliases:
-    - /misc/when_to_use_git_pull_rebase/
+date: 2022-07-14
+description: >-
+    Fix divergent branch errors with git pull --rebase. Learn when to rebase local commits
+    on top of remote changes for cleaner Git history.
 tags:
     - Git
     - TIL
     - GitHub
-description: >-
-  Fix divergent branch errors with git pull --rebase. Learn when to rebase local commits
-  on top of remote changes for cleaner Git history.
+images:
+    - "https://blob.rednafi.com/misc/when-to-use-git-pull-rebase/cover-21188f6534dd.png"
+aliases:
+    - /misc/when_to_use_git_pull_rebase/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/when-to-use-git-pull-rebase/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhddi26"
 ---
 
@@ -95,6 +100,6 @@ commits.
     https://github.com/rednafi/_pull-rebase
 
 [image_1]:
-    https://blob.rednafi.com/static/images/when_to_use_git_pull_rebase/img_1.png
+    https://blob.rednafi.com/misc/when-to-use-git-pull-rebase/image-01-43e05cd30c81.png
 
 <!-- prettier-ignore-end -->

@@ -1,18 +1,23 @@
 ---
-title: Dissecting an outage caused by eager-loading file content
-date: 2022-10-14
+title: "Dissecting an outage caused by eager-loading file content"
 slug: outage-caused-by-eager-loading-file
-atprotoPath: /python/outage-caused-by-eager-loading-file/
-aliases:
-    - /python/outage_caused_by_eager_loading_file/
+date: 2022-10-14
+description: >-
+    Learn from a production outage caused by loading large CSV files into memory. Stream
+    process files to prevent OOM errors and crashes.
 tags:
     - Python
-    - Incident Post-mortem
+    - "Incident Post-mortem"
     - Django
     - Performance
-description: >-
-  Learn from a production outage caused by loading large CSV files into memory. Stream
-  process files to prevent OOM errors and crashes.
+images:
+    - "https://blob.rednafi.com/python/outage-caused-by-eager-loading-file/cover-cc275bb85e7d.png"
+aliases:
+    - /python/outage_caused_by_eager_loading_file/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/outage-caused-by-eager-loading-file/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqe4f2u"
 ---
 

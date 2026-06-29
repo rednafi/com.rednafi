@@ -1,17 +1,22 @@
 ---
-title: Use curly braces while pasting shell commands
-date: 2021-11-08
+title: "Use curly braces while pasting shell commands"
 slug: use-curly-braces-while-pasting-shell-commands
-atprotoPath: /misc/use-curly-braces-while-pasting-shell-commands/
-aliases:
-    - /misc/use_curly_braces_while_pasting_shell_commands/
+date: 2021-11-08
+description: >-
+    Prevent shell commands from executing immediately when pasting. Use curly braces to
+    safely paste multi-line commands with hidden newline characters.
 tags:
     - Shell
     - Unix
     - TIL
-description: >-
-  Prevent shell commands from executing immediately when pasting. Use curly braces to
-  safely paste multi-line commands with hidden newline characters.
+images:
+    - "https://blob.rednafi.com/misc/use-curly-braces-while-pasting-shell-commands/cover-107ac7bd4df0.png"
+aliases:
+    - /misc/use_curly_braces_while_pasting_shell_commands/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/use-curly-braces-while-pasting-shell-commands/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5bqd2s"
 ---
 

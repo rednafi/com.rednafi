@@ -1,17 +1,22 @@
 ---
-title: Switching between multiple data streams in a single thread
-date: 2023-02-19
+title: "Switching between multiple data streams in a single thread"
 slug: switch-between-multiple-datastreams
-atprotoPath: /python/switch-between-multiple-datastreams/
-aliases:
-    - /python/switch_between_multiple_datastreams/
+date: 2023-02-19
+description: >-
+    Poll multiple data sources in a single thread using Python generators with
+    itertools.cycle to alternate between infinite data streams efficiently.
 tags:
     - Python
     - Database
     - TIL
-description: >-
-  Poll multiple data sources in a single thread using Python generators with
-  itertools.cycle to alternate between infinite data streams efficiently.
+images:
+    - "https://blob.rednafi.com/python/switch-between-multiple-datastreams/cover-b7202889ae64.png"
+aliases:
+    - /python/switch_between_multiple_datastreams/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/switch-between-multiple-datastreams/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22r4f2o"
 ---
 

@@ -1,18 +1,23 @@
 ---
-title: Running only a single instance of a process
-date: 2024-12-31
+title: "Running only a single instance of a process"
 slug: run-single-instance
-atprotoPath: /misc/run-single-instance/
-aliases:
-    - /misc/run_single_instance/
+date: 2024-12-31
+description: >-
+    Prevent multiple script instances with file locking. Use flock in Bash, fcntl in Python,
+    and syscall.Flock in Go for single-instance processes.
 tags:
     - Shell
     - Unix
     - Python
     - Go
-description: >-
-  Prevent multiple script instances with file locking. Use flock in Bash, fcntl in
-  Python, and syscall.Flock in Go for single-instance processes.
+images:
+    - "https://blob.rednafi.com/misc/run-single-instance/cover-23f57eeb70c6.png"
+aliases:
+    - /misc/run_single_instance/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/run-single-instance/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih2kca2s"
 ---
 

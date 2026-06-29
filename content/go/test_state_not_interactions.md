@@ -1,16 +1,21 @@
 ---
-title: Test state, not interactions
-date: 2025-09-14
+title: "Test state, not interactions"
 slug: test-state-not-interactions
-atprotoPath: /go/test-state-not-interactions/
-aliases:
-    - /go/test_state_not_interactions/
+date: 2025-09-14
+description: >-
+    Avoid brittle AI-generated tests that check implementation details. Write maintainable
+    tests that verify behavior, not method calls.
 tags:
     - Go
     - Testing
-description: >-
-  Avoid brittle AI-generated tests that check implementation details. Write maintainable
-  tests that verify behavior, not method calls.
+images:
+    - "https://blob.rednafi.com/go/test-state-not-interactions/cover-fd61d1829a5e.png"
+aliases:
+    - /go/test_state_not_interactions/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/test-state-not-interactions/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieibh22y"
 ---
 

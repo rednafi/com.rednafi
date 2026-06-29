@@ -1,15 +1,20 @@
 ---
-title: Notes on exit interviews
-date: 2023-08-07
+title: "Notes on exit interviews"
 slug: notes-on-exit-interviews
-atprotoPath: /zephyr/notes-on-exit-interviews/
-aliases:
-    - /zephyr/notes_on_exit_interviews/
+date: 2023-08-07
+description: >-
+    Practical advice for navigating exit interviews from an employee's perspective,
+    minimizing risk while maintaining professionalism.
 tags:
     - Essay
-description: >-
-  Practical advice for navigating exit interviews from an employee's perspective,
-  minimizing risk while maintaining professionalism.
+images:
+    - "https://blob.rednafi.com/zephyr/notes-on-exit-interviews/cover-b3b9019343dd.png"
+aliases:
+    - /zephyr/notes_on_exit_interviews/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/notes-on-exit-interviews/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6eni2z"
 ---
 

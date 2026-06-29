@@ -1,16 +1,21 @@
 ---
-title: Cropping texts in Python with 'textwrap.shorten'
-date: 2022-01-06
+title: "Cropping texts in Python with 'textwrap.shorten'"
 slug: text-cropping-with-textwrap-shorten
-atprotoPath: /python/text-cropping-with-textwrap-shorten/
-aliases:
-    - /python/text_cropping_with_textwrap_shorten/
+date: 2022-01-06
+description: >-
+    Crop text to character limits without breaking words using Python's textwrap.shorten for
+    clean truncation with customizable placeholders.
 tags:
     - Python
     - TIL
-description: >-
-  Crop text to character limits without breaking words using Python's textwrap.shorten
-  for clean truncation with customizable placeholders.
+images:
+    - "https://blob.rednafi.com/python/text-cropping-with-textwrap-shorten/cover-66979f90c8fd.png"
+aliases:
+    - /python/text_cropping_with_textwrap_shorten/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/text-cropping-with-textwrap-shorten/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnkzst2o"
 ---
 

@@ -1,13 +1,19 @@
 ---
-title: How do you handle transactions with the repository pattern?
-date: 2026-03-20
+title: "How do you handle transactions with the repository pattern?"
 slug: transactions-with-repository-pattern
-atprotoPath: /shards/2026/03/transactions-with-repository-pattern/
+date: 2026-03-20
+description: >-
+    Adding transaction support to a repository interface without leaking storage details.
 tags:
     - Go
     - Database
-description: >-
-  Adding transaction support to a repository interface without leaking storage details.
+images:
+    - "https://blob.rednafi.com/shards/2026/03/transactions-with-repository-pattern/cover-66580785a1e4.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/transactions-with-repository-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ic7jg72o"
 ---
 

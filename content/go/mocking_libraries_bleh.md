@@ -1,18 +1,23 @@
 ---
-title: Your Go tests probably don't need a mocking library
-date: 2026-01-23
+title: "Your Go tests probably don't need a mocking library"
 slug: mocking-libraries-bleh
-atprotoPath: /go/mocking-libraries-bleh/
+date: 2026-01-23
+description: >-
+    Practical patterns for mocking in Go without external libraries. Learn to mock
+    functions, methods, interfaces, HTTP calls, and time using only the standard library
 tags:
     - Go
     - Testing
     - API
-description: >-
-    Practical patterns for mocking in Go without external libraries. Learn to mock
-    functions, methods, interfaces, HTTP calls, and time using only the standard library
+images:
+    - "https://blob.rednafi.com/go/mocking-libraries-bleh/cover-9e88f428ee71.png"
+aliases: []
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1qmfjzh/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1qmfjzh/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/mocking-libraries-bleh/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icho3l2e"
 ---
 

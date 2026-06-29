@@ -1,15 +1,20 @@
 ---
-title: In favor of sentence case
-date: 2022-03-26
+title: "In favor of sentence case"
 slug: in-favor-of-sentence-case
-atprotoPath: /zephyr/in-favor-of-sentence-case/
-aliases:
-    - /zephyr/in_favor_of_sentence_case/
+date: 2022-03-26
+description: >-
+    Embracing sentence case over title case in technical writing eliminates capitalization
+    ambiguity and improves readability.
 tags:
     - Essay
-description: >-
-  Embracing sentence case over title case in technical writing eliminates capitalization
-  ambiguity and improves readability.
+images:
+    - "https://blob.rednafi.com/zephyr/in-favor-of-sentence-case/cover-c76d65e0e869.png"
+aliases:
+    - /zephyr/in_favor_of_sentence_case/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/in-favor-of-sentence-case/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhtxct2y"
 ---
 
@@ -91,6 +96,6 @@ worry about.
     https://about.gitlab.com/blog/
 
 [image_1]:
-    https://blob.rednafi.com/static/images/in_favor_of_sentence_case/img_1.png
+    https://blob.rednafi.com/zephyr/in-favor-of-sentence-case/image-01-15ee8febecd2.png
 
 <!-- prettier-ignore-end -->

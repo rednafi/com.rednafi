@@ -1,20 +1,24 @@
 ---
-title: Dysfunctional options pattern in Go
-date: 2024-03-06
+title: "Dysfunctional options pattern in Go"
 slug: dysfunctional-options-pattern
-atprotoPath: /go/dysfunctional-options-pattern/
-aliases:
-    - /go/dysfunctional_options_pattern/
+date: 2024-03-06
+description: >-
+    Discover a simpler alternative to functional options: method chaining with builder-style
+    configuration that's 76x faster and easier to understand.
 tags:
     - Go
     - API
     - Performance
-description: >-
-  Discover a simpler alternative to functional options: method chaining with
-  builder-style configuration that's 76x faster and easier to understand.
+images:
+    - "https://blob.rednafi.com/go/dysfunctional-options-pattern/cover-c06e9d08db59.png"
+aliases:
+    - /go/dysfunctional_options_pattern/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=41015991
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=41015991"
+mermaid: false
+type_label: ""
+atprotoPath: /go/dysfunctional-options-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p"
 ---
 

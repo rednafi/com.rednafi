@@ -1,17 +1,22 @@
 ---
-title: TypeIs does what I thought TypeGuard would do in Python
-date: 2024-04-27
+title: "TypeIs does what I thought TypeGuard would do in Python"
 slug: typeguard-vs-typeis
-atprotoPath: /python/typeguard-vs-typeis/
-aliases:
-    - /python/typeguard_vs_typeis/
+date: 2024-04-27
+description: >-
+    Understand TypeIs vs TypeGuard in Python: TypeIs provides more intuitive type narrowing
+    by narrowing both positive and negative branches.
 tags:
     - Python
     - Typing
     - TIL
-description: >-
-  Understand TypeIs vs TypeGuard in Python: TypeIs provides more intuitive type narrowing
-  by narrowing both positive and negative branches.
+images:
+    - "https://blob.rednafi.com/python/typeguard-vs-typeis/cover-4b459f4799c7.png"
+aliases:
+    - /python/typeguard_vs_typeis/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/typeguard-vs-typeis/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikab7s2e"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Patch where the object is used
-date: 2022-07-18
+title: "Patch where the object is used"
 slug: patch-where-the-object-is-used
-atprotoPath: /python/patch-where-the-object-is-used/
-aliases:
-    - /python/patch_where_the_object_is_used/
+date: 2022-07-18
+description: >-
+    Master Python mocking: patch objects at their import location, not where they're
+    defined, to avoid common unittest.mock pitfalls.
 tags:
     - Python
     - Testing
     - Pytest
-description: >-
-  Master Python mocking: patch objects at their import location, not where they're
-  defined, to avoid common unittest.mock pitfalls.
+images:
+    - "https://blob.rednafi.com/python/patch-where-the-object-is-used/cover-dfc42ee96ef0.png"
+aliases:
+    - /python/patch_where_the_object_is_used/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/patch-where-the-object-is-used/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdgh3t2o"
 ---
 

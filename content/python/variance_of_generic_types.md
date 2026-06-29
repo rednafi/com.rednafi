@@ -1,16 +1,21 @@
 ---
-title: Variance of generic types in Python
-date: 2022-01-31
+title: "Variance of generic types in Python"
 slug: variance-of-generic-types
-atprotoPath: /python/variance-of-generic-types/
-aliases:
-    - /python/variance_of_generic_types/
+date: 2022-01-31
+description: >-
+    Understand covariance, contravariance, and invariance in Python generics with practical
+    examples of type relationships and subtyping rules.
 tags:
     - Python
     - Typing
-description: >-
-  Understand covariance, contravariance, and invariance in Python generics with practical
-  examples of type relationships and subtyping rules.
+images:
+    - "https://blob.rednafi.com/python/variance-of-generic-types/cover-37648e1e9d94.png"
+aliases:
+    - /python/variance_of_generic_types/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/variance-of-generic-types/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn2r6e2e"
 ---
 

@@ -1,21 +1,24 @@
 ---
-title: Writing a circuit breaker in Go
-date: 2024-10-06
+title: "Writing a circuit breaker in Go"
 slug: circuit-breaker
-atprotoPath: /go/circuit-breaker/
-aliases:
-    - /go/circuit_breaker/
+date: 2024-10-06
+description: >-
+    Build a production-ready circuit breaker in Go from scratch with closed, open, and
+    half-open states to prevent cascading failures.
 tags:
     - Networking
     - Go
-    - Design Patterns
-mermaid: true
-description: >-
-  Build a production-ready circuit breaker in Go from scratch with closed, open, and
-  half-open states to prevent cascading failures.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/circuit-breaker/cover-3fae412ba764.png"
+aliases:
+    - /go/circuit_breaker/
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1i5n5sc/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1i5n5sc/"
+mermaid: true
+type_label: ""
+atprotoPath: /go/circuit-breaker/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iha7yp2o"
 ---
 

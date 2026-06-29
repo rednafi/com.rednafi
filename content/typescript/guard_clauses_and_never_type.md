@@ -1,17 +1,22 @@
 ---
-title: Guard clause and exhaustiveness checking
-date: 2022-05-22
+title: "Guard clause and exhaustiveness checking"
 slug: guard-clauses-and-never-type
-atprotoPath: /typescript/guard-clauses-and-never-type/
-aliases:
-    - /typescript/guard_clauses_and_never_type/
+date: 2022-05-22
+description: >-
+    Master TypeScript's never type and Python's NoReturn for exhaustiveness checking.
+    Flatten nested conditionals with guard clauses for cleaner code.
 tags:
     - TypeScript
     - Python
     - Typing
-description: >-
-  Master TypeScript's never type and Python's NoReturn for exhaustiveness checking.
-  Flatten nested conditionals with guard clauses for cleaner code.
+images:
+    - "https://blob.rednafi.com/typescript/guard-clauses-and-never-type/cover-53a24adaf42c.png"
+aliases:
+    - /typescript/guard_clauses_and_never_type/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /typescript/guard-clauses-and-never-type/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jgphdt2y"
 ---
 

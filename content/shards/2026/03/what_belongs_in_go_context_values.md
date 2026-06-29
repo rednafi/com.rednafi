@@ -1,14 +1,20 @@
 ---
-title: What belongs in Go's context values?
-date: 2026-03-17
+title: "What belongs in Go's context values?"
 slug: what-belongs-in-go-context-values
-atprotoPath: /shards/2026/03/what-belongs-in-go-context-values/
+date: 2026-03-17
+description: >-
+    A simple litmus test for when to use context values in Go.
 tags:
     - Go
     - API
-    - Distributed Systems
-description: >-
-  A simple litmus test for when to use context values in Go.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/shards/2026/03/what-belongs-in-go-context-values/cover-aa1f22ab481d.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/what-belongs-in-go-context-values/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdmbd26"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Skipping the first part of an iterable in Python
-date: 2023-02-12
+title: "Skipping the first part of an iterable in Python"
 slug: skip-first-part-of-an-iterable
-atprotoPath: /python/skip-first-part-of-an-iterable/
-aliases:
-    - /python/skip_first_part_of_an_iterable/
+date: 2023-02-12
+description: >-
+    Skip elements in iterables until a condition is met using itertools.dropwhile for
+    efficient lazy evaluation that works with generators.
 tags:
     - Python
     - TIL
-description: >-
-  Skip elements in iterables until a condition is met using itertools.dropwhile for
-  efficient lazy evaluation that works with generators.
+images:
+    - "https://blob.rednafi.com/python/skip-first-part-of-an-iterable/cover-44f54f827fe9.png"
+aliases:
+    - /python/skip_first_part_of_an_iterable/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/skip-first-part-of-an-iterable/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j236vq2z"
 ---
 

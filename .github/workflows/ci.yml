@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.163.3
+      PAGEFIND_VERSION: 1.5.2
+      PLAYWRIGHT_VERSION: 1.61.1
+      PRETTIER_VERSION: 3.9.3
+      SEQUOIA_CLI_VERSION: 0.5.7
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,7 +34,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache Hugo
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: cache-hugo
         with:
           path: ~/hugo.deb
@@ -43,37 +47,83 @@ jobs:
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
 
+      - name: Install image tools
+        run: sudo apt-get update && sudo apt-get install -y oxipng
+
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
           go-version: "1.26"
           cache: false
 
-      - name: Sync Standard.site frontmatter
-        run: go run ./scripts/stdsitesync
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        id: cache-playwright
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            ~/.cache/ms-playwright-go
+          key: playwright-v3-${{ env.PLAYWRIGHT_VERSION }}-${{ hashFiles('go.sum') }}
+
+      - name: Install Playwright browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: go run github.com/mxschmitt/playwright-go/cmd/playwright install --with-deps chromium
+
+      - name: Install Playwright deps
+        if: steps.cache-playwright.outputs.cache-hit == 'true'
+        run: npx -y playwright@${PLAYWRIGHT_VERSION} install-deps chromium
+
+      - name: Normalize post frontmatter
+        run: go run ./scripts/frontmatter
+
+      - name: Generate missing post header images
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: go run ./scripts/postcards --missing-r2-assets
+
+      - name: Verify post header images
+        run: go run ./scripts/postcards --check
+
+      - name: Compress post header images
+        run: make compress-postcards
+
+      - name: Upload post header images to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          POSTCARDS_SKIP_COMPRESSION: "1"
+        run: make upload-postcards
 
       - name: Publish Standard.site records
         env:
           ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
           ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
-        run: npx -y sequoia-cli@0.5.7 publish
+        run: npx -y sequoia-cli@${SEQUOIA_CLI_VERSION} publish
+
+      - name: Normalize published post frontmatter
+        run: go run ./scripts/frontmatter
 
       - name: Format generated Markdown metadata
-        run: npx -y prettier --write 'content/**/*.md'
+        run: npx -y prettier@${PRETTIER_VERSION} --write 'content/**/*.md'
+
+      - name: Check post frontmatter
+        run: go run ./scripts/frontmatter --check
+
+      - name: Check media URLs
+        run: go run ./scripts/media --check
 
       - name: Check Prettier formatting
-        run: npx -y prettier --check 'content/**/*.md'
+        run: npx -y prettier@${PRETTIER_VERSION} --check 'content/**/*.md'
 
-      - name: Commit generated Standard.site metadata
+      - name: Commit generated post metadata
         run: |
           if [ -n "$(git status --porcelain -- content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json
-            git commit -m "chore: sync standard.site metadata [skip ci]"
+            git commit -m "chore: sync post metadata [skip ci]"
             git push
           else
-            echo "Standard.site metadata is already up to date."
+            echo "Post metadata is already up to date."
           fi
 
       - name: Setup Pages
@@ -84,24 +134,13 @@ jobs:
         run: hugo --gc --minify --cleanDestinationDir
 
       - name: Build Pagefind search index
-        run: npx -y pagefind
+        run: npx -y pagefind@${PAGEFIND_VERSION}
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v5
-        id: cache-playwright
-        with:
-          path: |
-            ~/.cache/ms-playwright
-            ~/.cache/ms-playwright-go
-          key: playwright-v2-${{ hashFiles('go.sum') }}
+      - name: Prune unused Pagefind assets
+        run: make prune-pagefind-extras
 
-      - name: Install Playwright browsers
-        if: steps.cache-playwright.outputs.cache-hit != 'true'
-        run: go run github.com/playwright-community/playwright-go/cmd/playwright install --with-deps chromium
-
-      - name: Install Playwright deps
-        if: steps.cache-playwright.outputs.cache-hit == 'true'
-        run: npx -y playwright install-deps chromium
+      - name: Check GitHub Pages artifact size
+        run: make check-pages-size
 
       - name: Run Go tests
         run: go test -v -count=1 ./...

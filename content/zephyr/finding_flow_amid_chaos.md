@@ -1,16 +1,21 @@
 ---
-title: Finding flow amid chaos
-date: 2023-11-25
+title: "Finding flow amid chaos"
 slug: finding-flow-amid-chaos
-atprotoPath: /zephyr/finding-flow-amid-chaos/
+date: 2023-11-25
+description: >-
+    Strategies for achieving deep work and focus time as an engineer drowning in meetings,
+    Slack messages, and corporate interruptions.
+tags:
+    - Essay
+images:
+    - "https://blob.rednafi.com/zephyr/finding-flow-amid-chaos/cover-b2ca639baee0.png"
 aliases:
     - /zephyr/finding_flow_amid_chaos/
     - /misc/finding_flow_amid_chaos/
-tags:
-    - Essay
-description: >-
-  Strategies for achieving deep work and focus time as an engineer drowning in meetings,
-  Slack messages, and corporate interruptions.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/finding-flow-amid-chaos/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inohma2o"
 ---
 

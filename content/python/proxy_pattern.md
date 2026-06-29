@@ -1,16 +1,21 @@
 ---
-title: Implementing proxy pattern in Python
-date: 2020-06-16
+title: "Implementing proxy pattern in Python"
 slug: proxy-pattern
-atprotoPath: /python/proxy-pattern/
-aliases:
-    - /python/proxy_pattern/
+date: 2020-06-16
+description: >-
+    Learn the proxy design pattern in Python to add access control, caching, and validation
+    layers without modifying core functionality.
 tags:
     - Python
-    - Design Patterns
-description: >-
-  Learn the proxy design pattern in Python to add access control, caching, and validation
-  layers without modifying core functionality.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/python/proxy-pattern/cover-9d82d43f0857.png"
+aliases:
+    - /python/proxy_pattern/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/proxy-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jorswy2u"
 ---
 

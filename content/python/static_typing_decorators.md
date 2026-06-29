@@ -1,16 +1,21 @@
 ---
-title: Static typing Python decorators
-date: 2022-01-23
+title: "Static typing Python decorators"
 slug: static-typing-decorators
-atprotoPath: /python/static-typing-decorators/
-aliases:
-    - /python/static_typing_decorators/
+date: 2022-01-23
+description: >-
+    Type Python decorators accurately using ParamSpec and Concatenate to preserve wrapped
+    function signatures and enable proper static analysis.
 tags:
     - Python
     - Typing
-description: >-
-  Type Python decorators accurately using ParamSpec and Concatenate to preserve wrapped
-  function signatures and enable proper static analysis.
+images:
+    - "https://blob.rednafi.com/python/static-typing-decorators/cover-d3ce40680d03.png"
+aliases:
+    - /python/static_typing_decorators/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/static-typing-decorators/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn4jwm2a"
 ---
 

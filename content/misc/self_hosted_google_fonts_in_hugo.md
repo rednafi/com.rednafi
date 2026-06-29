@@ -1,17 +1,22 @@
 ---
-title: Self-hosted Google Fonts in Hugo
-date: 2023-09-14
+title: "Self-hosted Google Fonts in Hugo"
 slug: self-hosted-google-fonts-in-hugo
-atprotoPath: /misc/self-hosted-google-fonts-in-hugo/
-aliases:
-    - /misc/self_hosted_google_fonts_in_hugo/
+date: 2023-09-14
+description: >-
+    Host Google Fonts locally in Hugo without CDN dependency. Download woff2 files,
+    configure CSS, and improve performance while maintaining GDPR compliance.
 tags:
     - TIL
     - Hugo
     - Web
-description: >-
-  Host Google Fonts locally in Hugo without CDN dependency. Download woff2 files,
-  configure CSS, and improve performance while maintaining GDPR compliance.
+images:
+    - "https://blob.rednafi.com/misc/self-hosted-google-fonts-in-hugo/cover-db1a358b5ff3.png"
+aliases:
+    - /misc/self_hosted_google_fonts_in_hugo/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/self-hosted-google-fonts-in-hugo/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir2ofm2u"
 ---
 
@@ -114,6 +119,6 @@ locally and ensure that the fonts are being loaded and displayed correctly. Depl
     https://github.com/rednafi/rednafi.com/blob/main/assets/css/extended/header-override.css
 
 [image_1]:
-    https://blob.rednafi.com/static/images/self_hosted_google_fonts_in_hugo/img_1.png
+    https://blob.rednafi.com/misc/self-hosted-google-fonts-in-hugo/image-01-dd202f3e117b.png
 
 <!-- prettier-ignore-end -->

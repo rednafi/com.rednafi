@@ -1,15 +1,20 @@
 ---
-title: Safer 'operator.itemgetter' in Python
-date: 2022-06-16
+title: "Safer 'operator.itemgetter' in Python"
 slug: operators-itemgetter
-atprotoPath: /python/operators-itemgetter/
-aliases:
-    - /python/operators_itemgetter/
+date: 2022-06-16
+description: >-
+    Use operator.itemgetter for faster sorting and element access with graceful KeyError
+    handling via methodcaller for safer operations.
 tags:
     - Python
-description: >-
-  Use operator.itemgetter for faster sorting and element access with graceful KeyError
-  handling via methodcaller for safer operations.
+images:
+    - "https://blob.rednafi.com/python/operators-itemgetter/cover-6ed737b0a10b.png"
+aliases:
+    - /python/operators_itemgetter/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/operators-itemgetter/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jejf4m2j"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: The sane pull request
-date: 2024-07-14
+title: "The sane pull request"
 slug: sane-pull-request
-atprotoPath: /misc/sane-pull-request/
-aliases:
-    - /misc/sane_pull_request/
+date: 2024-07-14
+description: >-
+    Make pull requests easier to review. Learn commit organization, diff filtering,
+    annotations, and context that helps reviewers understand changes faster.
 tags:
     - Git
     - GitHub
-description: >-
-  Make pull requests easier to review. Learn commit organization, diff filtering,
-  annotations, and context that helps reviewers understand changes faster.
+images:
+    - "https://blob.rednafi.com/misc/sane-pull-request/cover-e6980bebe071.png"
+aliases:
+    - /misc/sane_pull_request/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/sane-pull-request/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ije4ry2s"
 ---
 
@@ -90,12 +95,12 @@ OSS work, but these steps have been helpful while working on a large shared repo
     https://simonwillison.net/2022/Oct/29/the-perfect-commit/
 
 [image_1]:
-    https://blob.rednafi.com/static/images/sane_pull_request/img_1.png
+    https://blob.rednafi.com/misc/sane-pull-request/image-01-450645ccdd86.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/sane_pull_request/img_2.png
+    https://blob.rednafi.com/misc/sane-pull-request/image-02-908ed6d04bad.png
 
 [image_3]:
-    https://blob.rednafi.com/static/images/sane_pull_request/img_3.png
+    https://blob.rednafi.com/misc/sane-pull-request/image-03-c5b688e5ed57.png
 
 <!-- prettier-ignore-end -->

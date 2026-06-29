@@ -1,16 +1,21 @@
 ---
-title: Interfaces, mixins and building powerful custom data structures in Python
+title: "Interfaces, mixins and building powerful custom data structures in Python"
+slug: mixins
 date: 2020-07-03
+description: >-
+    Build custom data structures with Python's collection.abc mixins, abstract base classes,
+    and interfaces for dict-like and set-like objects.
 tags:
     - Python
-    - Data Structures
-slug: mixins
-atprotoPath: /python/mixins/
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/python/mixins/cover-50ea594b3226.png"
 aliases:
     - /python/mixins/
-description: >-
-  Build custom data structures with Python's collection.abc mixins, abstract base
-  classes, and interfaces for dict-like and set-like objects.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/mixins/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo65yu2p"
 ---
 
@@ -1615,6 +1620,6 @@ key-value pairs there. Everything else is the same as a built-in dictionary obje
 
 
 [image_1]:
-    https://blob.rednafi.com/static/images/mixins/img_1.png
+    https://blob.rednafi.com/python/mixins/image-01-cdbb41929e9c.png
 
 <!-- prettier-ignore-end -->

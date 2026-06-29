@@ -1,17 +1,22 @@
 ---
-title: Debugging a containerized Django application in Jupyter Notebook
-date: 2023-01-14
+title: "Debugging a containerized Django application in Jupyter Notebook"
 slug: django-and-jupyter-notebook
-atprotoPath: /python/django-and-jupyter-notebook/
-aliases:
-    - /python/django_and_jupyter_notebook/
+date: 2023-01-14
+description: >-
+    Connect Jupyter Notebook to Dockerized Django apps using ipykernel and django-extensions
+    for interactive debugging and data exploration.
 tags:
     - Python
     - Django
     - Docker
-description: >-
-  Connect Jupyter Notebook to Dockerized Django apps using ipykernel and
-  django-extensions for interactive debugging and data exploration.
+images:
+    - "https://blob.rednafi.com/python/django-and-jupyter-notebook/cover-c2478db5c6d7.png"
+aliases:
+    - /python/django_and_jupyter_notebook/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/django-and-jupyter-notebook/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23z6e2p"
 ---
 
@@ -272,12 +277,12 @@ created and they appear in the view:
     https://stackoverflow.com/questions/62193187/django-shell-plus-how-to-access-jupyter-notebook-in-docker-container
 
 [image_1]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_1.png
+    https://blob.rednafi.com/python/django-and-jupyter-notebook/image-01-3c641b73780a.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_2.png
+    https://blob.rednafi.com/python/django-and-jupyter-notebook/image-02-de7b05e42719.png
 
 [image_3]:
-    https://blob.rednafi.com/static/images/django_and_jupyter_notebook/img_3.png
+    https://blob.rednafi.com/python/django-and-jupyter-notebook/image-03-18e6b34fc172.png
 
 <!-- prettier-ignore-end -->

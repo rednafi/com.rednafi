@@ -1,16 +1,21 @@
 ---
-title: Self type in Python
-date: 2022-02-28
+title: "Self type in Python"
 slug: self-type
-atprotoPath: /python/self-type/
-aliases:
-    - /python/self_type/
+date: 2022-02-28
+description: >-
+    Use Python's Self type from PEP 673 to annotate methods returning class instances,
+    eliminating complex forward references and TypeVars.
 tags:
     - Python
     - Typing
-description: >-
-  Use Python's Self type from PEP 673 to annotate methods returning class instances,
-  eliminating complex forward references and TypeVars.
+images:
+    - "https://blob.rednafi.com/python/self-type/cover-3bbd991814a6.png"
+aliases:
+    - /python/self_type/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/self-type/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizogm2a"
 ---
 

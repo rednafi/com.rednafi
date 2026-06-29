@@ -1,18 +1,23 @@
 ---
-title: Uniform error response in Django Rest Framework
-date: 2022-01-20
+title: "Uniform error response in Django Rest Framework"
 slug: uniform-error-response-in-drf
-atprotoPath: /python/uniform-error-response-in-drf/
-aliases:
-    - /python/uniform_error_response_in_drf/
+date: 2022-01-20
+description: >-
+    Standardize Django REST Framework error responses using custom exception handlers to
+    match Microsoft's REST API guidelines format.
 tags:
     - Python
     - Django
     - TIL
     - API
-description: >-
-  Standardize Django REST Framework error responses using custom exception handlers to
-  match Microsoft's REST API guidelines format.
+images:
+    - "https://blob.rednafi.com/python/uniform-error-response-in-drf/cover-134889b6083d.png"
+aliases:
+    - /python/uniform_error_response_in_drf/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/uniform-error-response-in-drf/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbe5f2u"
 ---
 

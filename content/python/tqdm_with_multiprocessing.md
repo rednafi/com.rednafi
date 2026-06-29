@@ -1,17 +1,22 @@
 ---
-title: Running tqdm with Python multiprocessing
-date: 2021-11-18
+title: "Running tqdm with Python multiprocessing"
 slug: tqdm-with-multiprocessing
-atprotoPath: /python/tqdm-with-multiprocessing/
-aliases:
-    - /python/tqdm_with_multiprocessing/
+date: 2021-11-18
+description: >-
+    Integrate tqdm progress bars with multiprocessing.imap_unordered for visual feedback on
+    parallel task execution across worker processes.
 tags:
     - Python
     - TIL
     - Concurrency
-description: >-
-  Integrate tqdm progress bars with multiprocessing.imap_unordered for visual feedback on
-  parallel task execution across worker processes.
+images:
+    - "https://blob.rednafi.com/python/tqdm-with-multiprocessing/cover-96c1591d5179.png"
+aliases:
+    - /python/tqdm_with_multiprocessing/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/tqdm-with-multiprocessing/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2uje2e"
 ---
 

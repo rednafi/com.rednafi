@@ -1,17 +1,22 @@
 ---
-title: Flags for discoverable test config in Go
-date: 2025-06-28
+title: "Flags for discoverable test config in Go"
 slug: test-config-with-flags
-atprotoPath: /go/test-config-with-flags/
-aliases:
-    - /go/test_config_with_flags/
+date: 2025-06-28
+description: >-
+    Control Go test behavior with custom flags instead of build tags or env vars. Enable
+    integration and snapshot tests with discoverable CLI options.
 tags:
     - Go
     - Testing
     - CLI
-description: >-
-  Control Go test behavior with custom flags instead of build tags or env vars. Enable
-  integration and snapshot tests with discoverable CLI options.
+images:
+    - "https://blob.rednafi.com/go/test-config-with-flags/cover-e31a1ce141a9.png"
+aliases:
+    - /go/test_config_with_flags/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/test-config-with-flags/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifk6gd2u"
 ---
 

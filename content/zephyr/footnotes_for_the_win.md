@@ -1,15 +1,20 @@
 ---
-title: Footnotes for the win
-date: 2023-10-07
+title: "Footnotes for the win"
 slug: footnotes-for-the-win
-atprotoPath: /zephyr/footnotes-for-the-win/
-aliases:
-    - /zephyr/footnotes_for_the_win/
+date: 2023-10-07
+description: >-
+    Why footnote-style reference links create cleaner Markdown documents and improve the
+    writing experience over inline links.
 tags:
     - Essay
-description: >-
-  Why footnote-style reference links create cleaner Markdown documents and improve the
-  writing experience over inline links.
+images:
+    - "https://blob.rednafi.com/zephyr/footnotes-for-the-win/cover-0c5fd77cfd44.png"
+aliases:
+    - /zephyr/footnotes_for_the_win/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/footnotes-for-the-win/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iofazi26"
 ---
 

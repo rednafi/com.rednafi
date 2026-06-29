@@ -1,17 +1,22 @@
 ---
-title: Running Python linters with pre-commit hooks
-date: 2020-04-06
+title: "Running Python linters with pre-commit hooks"
 slug: pre-commit
-atprotoPath: /python/pre-commit/
-aliases:
-    - /python/pre_commit/
+date: 2020-04-06
+description: >-
+    Automate Python code quality with pre-commit hooks running Black, isort, flake8, and
+    mypy before each git commit for consistent formatting.
 tags:
     - Python
     - Git
     - DevOps
-description: >-
-  Automate Python code quality with pre-commit hooks running Black, isort, flake8, and
-  mypy before each git commit for consistent formatting.
+images:
+    - "https://blob.rednafi.com/python/pre-commit/cover-253ac57260c3.png"
+aliases:
+    - /python/pre_commit/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/pre-commit/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq7un22e"
 ---
 

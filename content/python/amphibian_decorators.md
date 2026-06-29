@@ -1,16 +1,21 @@
 ---
-title: Amphibian decorators in Python
-date: 2022-02-06
+title: "Amphibian decorators in Python"
 slug: amphibian-decorators
-atprotoPath: /python/amphibian-decorators/
-aliases:
-    - /python/amphibian_decorators/
+date: 2022-02-06
+description: >-
+    Build Python decorators that work seamlessly with both sync and async functions using
+    inspect.iscoroutinefunction for maximum flexibility.
 tags:
     - Python
     - Async
-description: >-
-  Build Python decorators that work seamlessly with both sync and async functions using
-  inspect.iscoroutinefunction for maximum flexibility.
+images:
+    - "https://blob.rednafi.com/python/amphibian-decorators/cover-8977aa2830f7.png"
+aliases:
+    - /python/amphibian_decorators/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/amphibian-decorators/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmu4bm2j"
 ---
 

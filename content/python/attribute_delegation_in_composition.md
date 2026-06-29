@@ -1,16 +1,21 @@
 ---
-title: Automatic attribute delegation in Python composition
-date: 2021-11-28
+title: "Automatic attribute delegation in Python composition"
 slug: attribute-delegation-in-composition
-atprotoPath: /python/attribute-delegation-in-composition/
-aliases:
-    - /python/attribute_delegation_in_composition/
+date: 2021-11-28
+description: >-
+    Implement automatic attribute delegation in Python composition using __getattr__ magic
+    method for inheritance-like attribute access patterns.
 tags:
     - Python
     - TIL
-description: >-
-  Implement automatic attribute delegation in Python composition using __getattr__ magic
-  method for inheritance-like attribute access patterns.
+images:
+    - "https://blob.rednafi.com/python/attribute-delegation-in-composition/cover-cb290831ff98.png"
+aliases:
+    - /python/attribute_delegation_in_composition/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/attribute-delegation-in-composition/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmfqc2e"
 ---
 

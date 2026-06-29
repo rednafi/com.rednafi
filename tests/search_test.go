@@ -1,11 +1,12 @@
 package site_test
 
 import (
+	"os"
 	"strings"
 	"testing"
 	"time"
 
-	"github.com/playwright-community/playwright-go"
+	"github.com/mxschmitt/playwright-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -66,6 +67,39 @@ func TestSearchFunctionality(t *testing.T) {
 			return strings.Contains(page.URL(), "q=postgres")
 		}, 5*time.Second, 50*time.Millisecond, "query should be reflected in the URL")
 	})
+}
+
+func TestPagefindGeneratedExtrasArePruned(t *testing.T) {
+	t.Parallel()
+
+	required := []string{
+		"../public/pagefind/pagefind-ui.css",
+		"../public/pagefind/pagefind-ui.js",
+		"../public/pagefind/pagefind.js",
+		"../public/pagefind/pagefind-worker.js",
+		"../public/pagefind/wasm.en.pagefind",
+	}
+	for _, path := range required {
+		t.Run(path, func(t *testing.T) {
+			_, err := os.Stat(path)
+			require.NoError(t, err)
+		})
+	}
+
+	pruned := []string{
+		"../public/pagefind/pagefind-component-ui.css",
+		"../public/pagefind/pagefind-component-ui.js",
+		"../public/pagefind/pagefind-highlight.js",
+		"../public/pagefind/pagefind-modular-ui.css",
+		"../public/pagefind/pagefind-modular-ui.js",
+		"../public/pagefind/wasm.unknown.pagefind",
+	}
+	for _, path := range pruned {
+		t.Run(path, func(t *testing.T) {
+			_, err := os.Stat(path)
+			assert.True(t, os.IsNotExist(err), "%s should be pruned from the generated site", path)
+		})
+	}
 }
 
 // TestSearchIndexCoversAllSections verifies content from every main section

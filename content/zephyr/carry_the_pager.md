@@ -1,16 +1,22 @@
 ---
-title: If you won't carry the pager, maybe don't push to mainline
-date: 2026-05-30
+title: "If you won't carry the pager, maybe don't push to mainline"
 slug: carry-the-pager
-atprotoPath: /zephyr/carry-the-pager/
+date: 2026-05-30
+description: >-
+    Drive-by AI changes break the shared model a team builds around its code, and the ICs
+    end up cleaning up the mess. Why pushing to mainline should come with the pager.
 tags:
     - Essay
     - AI
     - LLMs
     - Culture
-description: >-
-  Drive-by AI changes break the shared model a team builds around its code, and the ICs end
-  up cleaning up the mess. Why pushing to mainline should come with the pager.
+images:
+    - "https://blob.rednafi.com/zephyr/carry-the-pager/cover-dfda16aed4e5.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/carry-the-pager/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u"
 ---
 
@@ -207,7 +213,7 @@ Oh look, the good ol' [Goodhart's law] is laughing at us again!
     https://www.youtube.com/watch?v=u3GjIXP9N0s
 
 [image_1]:
-    https://blob.rednafi.com/static/images/carry_the_pager/img_1.jpg
+    https://blob.rednafi.com/zephyr/carry-the-pager/image-01-287c03215d4c.jpg
 
 [programming as theory building]:
     https://pages.cs.wisc.edu/~remzi/Naur.pdf

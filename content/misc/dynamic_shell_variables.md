@@ -1,18 +1,23 @@
 ---
-title: Dynamic shell variables
-date: 2025-01-11
+title: "Dynamic shell variables"
 slug: dynamic-shell-variables
-atprotoPath: /misc/dynamic-shell-variables/
-aliases:
-    - /misc/dynamic_shell_variables/
+date: 2025-01-11
+description: >-
+    Learn variable indirection in Bash with ${!var} syntax. Build context-aware configs,
+    function dispatch, and dynamic variable name resolution.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Learn variable indirection in Bash with ${!var} syntax. Build context-aware configs,
-  function dispatch, and dynamic variable name resolution.
+images:
+    - "https://blob.rednafi.com/misc/dynamic-shell-variables/cover-a78c04b2cb2e.png"
+aliases:
+    - /misc/dynamic_shell_variables/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/dynamic-shell-variables/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggtga26"
 ---
 

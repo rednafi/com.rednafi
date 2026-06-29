@@ -1,16 +1,21 @@
 ---
-title: Shell redirection syntax soup
+title: "Shell redirection syntax soup"
+slug: shell-redirection
 date: 2024-09-12
+description: >-
+    Complete guide to Bash redirection. Master stdout, stderr, pipes, tee, file descriptors,
+    and shorthand syntax with practical examples for every case.
 tags:
     - Shell
     - Unix
-slug: shell-redirection
-atprotoPath: /misc/shell-redirection/
+images:
+    - "https://blob.rednafi.com/misc/shell-redirection/cover-0470b866ca2d.png"
 aliases:
     - /misc/shell_redirection/
-description: >-
-  Complete guide to Bash redirection. Master stdout, stderr, pipes, tee, file
-  descriptors, and shorthand syntax with practical examples for every case.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/shell-redirection/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihrbup2e"
 ---
 

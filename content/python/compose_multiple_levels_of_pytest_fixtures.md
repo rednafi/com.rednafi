@@ -1,19 +1,24 @@
 ---
-title: Compose multiple levels of fixtures in pytest
-date: 2022-07-21
+title: "Compose multiple levels of fixtures in pytest"
 slug: compose-multiple-levels-of-pytest-fixtures
-atprotoPath: /python/compose-multiple-levels-of-pytest-fixtures/
-aliases:
-    - /python/compose_multiple_levels_of_pytest_fixtures/
-    - /python/compose-multiple-levels-of-pytest_fixtures/
+date: 2022-07-21
+description: >-
+    Combine session and function-scoped pytest fixtures to avoid expensive test setup while
+    maintaining test isolation and preventing state coupling.
 tags:
     - Python
     - Testing
     - TIL
     - Pytest
-description: >-
-  Combine session and function-scoped pytest fixtures to avoid expensive test setup while
-  maintaining test isolation and preventing state coupling.
+images:
+    - "https://blob.rednafi.com/python/compose-multiple-levels-of-pytest-fixtures/cover-6bf149f53996.png"
+aliases:
+    - /python/compose_multiple_levels_of_pytest_fixtures/
+    - /python/compose-multiple-levels-of-pytest_fixtures/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/compose-multiple-levels-of-pytest-fixtures/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jddhb32b"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Declarative payloads with TypedDict in Python
-date: 2022-03-11
+title: "Declarative payloads with TypedDict in Python"
 slug: declarative-payloads-with-typedict
-atprotoPath: /python/declarative-payloads-with-typedict/
-aliases:
-    - /python/declarative_payloads_with_typedict/
+date: 2022-03-11
+description: >-
+    Use Python TypedDict to declaratively define API payload structures. Get type safety for
+    nested dictionaries and improve code maintainability.
 tags:
     - Python
     - Typing
     - API
-description: >-
-  Use Python TypedDict to declaratively define API payload structures. Get type safety
-  for nested dictionaries and improve code maintainability.
+images:
+    - "https://blob.rednafi.com/python/declarative-payloads-with-typedict/cover-2a4be90de2fe.png"
+aliases:
+    - /python/declarative_payloads_with_typedict/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/declarative-payloads-with-typedict/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jixzl52o"
 ---
 

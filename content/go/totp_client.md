@@ -1,17 +1,22 @@
 ---
-title: Writing a TOTP client in Go
-date: 2023-08-20
+title: "Writing a TOTP client in Go"
 slug: totp-client
-atprotoPath: /go/totp-client/
-aliases:
-    - /go/totp_client/
+date: 2023-08-20
+description: >-
+    Build a TOTP-based 2FA client in Go using the standard library. Generate time-based
+    one-time passwords like Google Authenticator.
 tags:
     - Go
     - TIL
     - Security
-description: >-
-  Build a TOTP-based 2FA client in Go using the standard library. Generate time-based
-  one-time passwords like Google Authenticator.
+images:
+    - "https://blob.rednafi.com/go/totp-client/cover-6edff062a29b.png"
+aliases:
+    - /go/totp_client/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/totp-client/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4jyi26"
 ---
 

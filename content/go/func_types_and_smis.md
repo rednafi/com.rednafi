@@ -1,17 +1,22 @@
 ---
-title: Function types and single-method interfaces in Go
-date: 2024-12-22
+title: "Function types and single-method interfaces in Go"
 slug: func-types-and-smis
-atprotoPath: /go/func-types-and-smis/
-aliases:
-    - /go/func_types_and_smis/
+date: 2024-12-22
+description: >-
+    Implement single-method interfaces with function types instead of structs. Master
+    http.HandlerFunc patterns for middlewares, mocks, and adapters.
 tags:
     - Go
     - API
     - Testing
-description: >-
-  Implement single-method interfaces with function types instead of structs. Master
-  http.HandlerFunc patterns for middlewares, mocks, and adapters.
+images:
+    - "https://blob.rednafi.com/go/func-types-and-smis/cover-d548c1321acb.png"
+aliases:
+    - /go/func_types_and_smis/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/func-types-and-smis/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3bs72o"
 ---
 

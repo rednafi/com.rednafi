@@ -1,18 +1,23 @@
 ---
-title: Using DNS record to share text data
-date: 2023-07-17
+title: "Using DNS record to share text data"
 slug: dns-record-to-share-text
-atprotoPath: /misc/dns-record-to-share-text/
-aliases:
-    - /misc/dns_record_to_share_text/
+date: 2023-07-17
+description: >-
+    Share data via DNS TXT records using dig and base64 encoding. Learn limitations,
+    security concerns, and practical use cases for DNS tunneling.
 tags:
     - Shell
     - Unix
     - TIL
     - Networking
-description: >-
-  Share data via DNS TXT records using dig and base64 encoding. Learn limitations,
-  security concerns, and practical use cases for DNS tunneling.
+images:
+    - "https://blob.rednafi.com/misc/dns-record-to-share-text/cover-2607f9c6b031.png"
+aliases:
+    - /misc/dns_record_to_share_text/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/dns-record-to-share-text/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir77x22s"
 ---
 

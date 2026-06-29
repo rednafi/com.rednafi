@@ -1,16 +1,21 @@
 ---
-title: Prefer urlsplit over urlparse to destructure URLs
+title: "Prefer urlsplit over urlparse to destructure URLs"
 slug: use-urlsplit-over-urlparse
-atprotoPath: /python/use-urlsplit-over-urlparse/
-aliases:
-    - /python/use_urlsplit_over_urlparse/
 date: 2022-09-10
+description: >-
+    Use Python's urlsplit instead of urlparse for faster URL parsing by skipping the
+    rarely-needed params component in URL decomposition.
 tags:
     - Python
     - Performance
-description: >-
-  Use Python's urlsplit instead of urlparse for faster URL parsing by skipping the
-  rarely-needed params component in URL decomposition.
+images:
+    - "https://blob.rednafi.com/python/use-urlsplit-over-urlparse/cover-d5280ab80686.png"
+aliases:
+    - /python/use_urlsplit_over_urlparse/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/use-urlsplit-over-urlparse/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcl34l2o"
 ---
 

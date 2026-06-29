@@ -1,17 +1,22 @@
 ---
-title: Memory leakage in Python descriptors
-date: 2023-07-16
+title: "Memory leakage in Python descriptors"
 slug: memory-leakage-in-descriptors
-atprotoPath: /python/memory-leakage-in-descriptors/
-aliases:
-    - /python/memory_leakage_in_descriptors/
+date: 2023-07-16
+description: >-
+    Prevent memory leaks in Python descriptors by using weakref to avoid hard references
+    that prevent garbage collection of validated objects.
 tags:
     - Python
     - TIL
     - Performance
-description: >-
-  Prevent memory leaks in Python descriptors by using weakref to avoid hard references
-  that prevent garbage collection of validated objects.
+images:
+    - "https://blob.rednafi.com/python/memory-leakage-in-descriptors/cover-b2af9a5a9755.png"
+aliases:
+    - /python/memory_leakage_in_descriptors/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/memory-leakage-in-descriptors/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir7nny2z"
 ---
 

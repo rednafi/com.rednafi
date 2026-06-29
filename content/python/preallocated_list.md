@@ -1,17 +1,22 @@
 ---
-title: Pre-allocated lists in Python
-date: 2022-03-27
+title: "Pre-allocated lists in Python"
 slug: preallocated-list
-atprotoPath: /python/preallocated-list/
-aliases:
-    - /python/preallocated_list/
+date: 2022-03-27
+description: >-
+    Understand CPython list memory allocation: how lists store pointer references, grow
+    dynamically, and when pre-allocation with [None]*n helps.
 tags:
     - Python
     - Performance
-    - Data Structures
-description: >-
-  Understand CPython list memory allocation: how lists store pointer references, grow
-  dynamically, and when pre-allocation with [None]*n helps.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/python/preallocated-list/cover-ca6a959d7528.png"
+aliases:
+    - /python/preallocated_list/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/preallocated-list/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhrddy2u"
 ---
 

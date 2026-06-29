@@ -1,14 +1,20 @@
 ---
-title: Is passing user ID through context an antipattern?
-date: 2026-03-18
+title: "Is passing user ID through context an antipattern?"
 slug: user-id-through-context
-atprotoPath: /shards/2026/03/user-id-through-context/
+date: 2026-03-18
+description: >-
+    Why the middleware-to-handler boundary is a special case for context values.
 tags:
     - Go
     - API
-    - Distributed Systems
-description: >-
-  Why the middleware-to-handler boundary is a special case for context values.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/shards/2026/03/user-id-through-context/cover-db27a71d4c83.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/user-id-through-context/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iccmzp2o"
 ---
 

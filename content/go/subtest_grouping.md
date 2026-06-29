@@ -1,14 +1,20 @@
 ---
-title: Subtest grouping in Go
-date: 2025-10-01
+title: "Subtest grouping in Go"
 slug: subtest-grouping
-atprotoPath: /go/subtest-grouping/
+date: 2025-10-01
+description: >-
+    Organize Go subtests with t.Run nesting and parallel execution. Learn patterns for
+    setup, teardown, and readable test hierarchies.
 tags:
     - Go
     - Testing
-description: >-
-  Organize Go subtests with t.Run nesting and parallel execution. Learn patterns for
-  setup, teardown, and readable test hierarchies.
+images:
+    - "https://blob.rednafi.com/go/subtest-grouping/cover-f503fdef7fc2.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/subtest-grouping/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iehi4x2e"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Partially assert callable arguments with 'unittest.mock.ANY'
-date: 2022-07-17
+title: "Partially assert callable arguments with 'unittest.mock.ANY'"
 slug: partially-assert-callable-arguments
-atprotoPath: /python/partially-assert-callable-arguments/
-aliases:
-    - /python/partially_assert_callable_arguments/
+date: 2022-07-17
+description: >-
+    Assert specific mock call arguments while ignoring others using unittest.mock.ANY for
+    flexible test assertions without brittle checks.
 tags:
     - Python
     - Testing
-description: >-
-  Assert specific mock call arguments while ignoring others using unittest.mock.ANY for
-  flexible test assertions without brittle checks.
+images:
+    - "https://blob.rednafi.com/python/partially-assert-callable-arguments/cover-70be24b09d24.png"
+aliases:
+    - /python/partially_assert_callable_arguments/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/partially-assert-callable-arguments/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdguqt26"
 ---
 

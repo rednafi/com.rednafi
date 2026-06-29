@@ -1,16 +1,24 @@
 ---
-atprotoPath: /misc/chezmoi/
-date: 2026-06-12T00:00:00+02:00
-description: 'Why I swapped GNU stow''s symlink farm for chezmoi: one command to bootstrap a Mac with Homebrew packages and macOS settings, a small daily sync loop, and agent skills shared between Claude Code and Codex.'
+title: "Migrating from GNU stow to chezmoi"
 slug: chezmoi
+date: 2026-06-12T00:00:00+02:00
+description: >-
+    Why I swapped GNU stow's symlink farm for chezmoi: one command to bootstrap a Mac with
+    Homebrew packages and macOS settings, a small daily sync loop, and agent skills shared
+    between Claude Code and Codex.
 tags:
     - Shell
     - CLI
     - Unix
-title: Migrating from GNU stow to chezmoi
+images:
+    - "https://blob.rednafi.com/misc/chezmoi/cover-b0820a328d05.png"
+aliases: []
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=48588413
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=48588413"
+mermaid: false
+type_label: ""
+atprotoPath: /misc/chezmoi/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k"
 ---
 

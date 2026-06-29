@@ -1,17 +1,22 @@
 ---
-title: Limit goroutines with buffered channels
-date: 2023-08-23
+title: "Limit goroutines with buffered channels"
 slug: limit-goroutines-with-buffered-channels
-atprotoPath: /go/limit-goroutines-with-buffered-channels/
-aliases:
-    - /go/limit_goroutines_with_buffered_channels/
+date: 2023-08-23
+description: >-
+    Control goroutine concurrency with buffered channels as semaphores. Prevent resource
+    exhaustion with backpressure patterns in Go workers.
 tags:
     - Go
     - TIL
     - Concurrency
-description: >-
-  Control goroutine concurrency with buffered channels as semaphores. Prevent resource
-  exhaustion with backpressure patterns in Go workers.
+images:
+    - "https://blob.rednafi.com/go/limit-goroutines-with-buffered-channels/cover-a3e1a0850768.png"
+aliases:
+    - /go/limit_goroutines_with_buffered_channels/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/limit-goroutines-with-buffered-channels/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir44f22a"
 ---
 

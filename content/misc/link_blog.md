@@ -1,20 +1,24 @@
 ---
-title: Link blog in a static site
+title: "Link blog in a static site"
 slug: link-blog
-atprotoPath: /misc/link-blog/
-aliases:
-    - /misc/link_blog/
 date: 2025-01-06
+description: >-
+    Build a link blog without a backend using Hugo and markdown. Track reading, articles,
+    and activities with yearly detail pages and RSS filtering.
 tags:
     - Essay
     - Hugo
     - Web
-description: >-
-  Build a link blog without a backend using Hugo and markdown. Track reading, articles,
-  and activities with yearly detail pages and RSS filtering.
+images:
+    - "https://blob.rednafi.com/misc/link-blog/cover-7d767e004cad.png"
+aliases:
+    - /misc/link_blog/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=42642625
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=42642625"
+mermaid: false
+type_label: ""
+atprotoPath: /misc/link-blog/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igvfay2s"
 ---
 
@@ -121,9 +125,9 @@ them at the end of the year.
     /feed/2024
 
 [img_1]:
-    https://blob.rednafi.com/static/images/link_blog/img_1.png
+    https://blob.rednafi.com/misc/link-blog/image-01-104ac78cde04.png
 
 [img_2]:
-    https://blob.rednafi.com/static/images/link_blog/img_2.png
+    https://blob.rednafi.com/misc/link-blog/image-02-af1a5c2c448c.png
 
 <!-- prettier-ignore-end -->

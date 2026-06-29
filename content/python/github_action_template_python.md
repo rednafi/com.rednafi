@@ -1,17 +1,22 @@
 ---
-title: Github action template for Python based projects
-date: 2022-03-02
+title: "Github action template for Python based projects"
 slug: github-action-template-python
-atprotoPath: /python/github-action-template-python/
-aliases:
-    - /python/github_action_template_python/
+date: 2022-03-02
+description: >-
+    Production-ready GitHub Actions workflow for Python with multi-OS testing, dependency
+    caching, automated updates, and daily scheduled runs.
 tags:
     - Python
     - GitHub
     - DevOps
-description: >-
-  Production-ready GitHub Actions workflow for Python with multi-OS testing, dependency
-  caching, automated updates, and daily scheduled runs.
+images:
+    - "https://blob.rednafi.com/python/github-action-template-python/cover-03997574d3e5.png"
+aliases:
+    - /python/github_action_template_python/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/github-action-template-python/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizcmt2y"
 ---
 

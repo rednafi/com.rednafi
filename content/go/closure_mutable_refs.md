@@ -1,14 +1,20 @@
 ---
 title: "Go quirks: function closures capturing mutable references"
-date: 2026-04-25
 slug: closure-mutable-refs
-atprotoPath: /go/closure-mutable-refs/
+date: 2026-04-25
+description: >-
+    A Go closure holds a live reference to whatever it captures, not a snapshot. Real
+    examples of where this trips people up, and how to keep it boring.
 tags:
     - Go
     - Concurrency
-description: >-
-  A Go closure holds a live reference to whatever it captures, not a snapshot.
-  Real examples of where this trips people up, and how to keep it boring.
+images:
+    - "https://blob.rednafi.com/go/closure-mutable-refs/cover-7a40f0cda8c6.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/closure-mutable-refs/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaryep2a"
 ---
 

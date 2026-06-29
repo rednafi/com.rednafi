@@ -1,14 +1,20 @@
 ---
-title: Re-exec testing Go subprocesses
-date: 2025-11-16
+title: "Re-exec testing Go subprocesses"
 slug: test-subprocesses
-atprotoPath: /go/test-subprocesses/
+date: 2025-11-16
+description: >-
+    Test Go subprocesses with the re-exec pattern: spawn your test binary as a subprocess to
+    emulate real command behavior reliably.
 tags:
     - Go
     - Testing
-description: >-
-  Test Go subprocesses with the re-exec pattern: spawn your test binary as a subprocess
-  to emulate real command behavior reliably.
+images:
+    - "https://blob.rednafi.com/go/test-subprocesses/cover-9e6346cfbb55.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/test-subprocesses/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ideoqs2p"
 ---
 

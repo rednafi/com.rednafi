@@ -1,19 +1,24 @@
 ---
-title: Structured concurrency & Go
-date: 2026-02-21
+title: "Structured concurrency & Go"
 slug: structured-concurrency
-atprotoPath: /go/structured-concurrency/
+date: 2026-02-21
+description: >-
+    How Python and Kotlin provide structured concurrency out of the box while Go achieves
+    the same patterns explicitly using errgroup, WaitGroup, and context.
 tags:
     - Go
     - Python
     - Kotlin
     - Concurrency
-description: >-
-    How Python and Kotlin provide structured concurrency out of the box while Go achieves
-    the same patterns explicitly using errgroup, WaitGroup, and context.
+images:
+    - "https://blob.rednafi.com/go/structured-concurrency/cover-9ce8b5605d95.png"
+aliases: []
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1rat6lm/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1rat6lm/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/structured-concurrency/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icgznp2o"
 ---
 

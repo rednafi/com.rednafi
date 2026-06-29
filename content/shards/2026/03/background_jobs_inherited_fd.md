@@ -1,13 +1,19 @@
 ---
-title: Background jobs and inherited file descriptors
-date: 2026-03-28
+title: "Background jobs and inherited file descriptors"
 slug: background-jobs-inherited-fd
-atprotoPath: /shards/2026/03/background-jobs-inherited-fd/
+date: 2026-03-28
+description: >-
+    Why & backgrounds execution but doesn't stop output from flooding your terminal.
 tags:
     - Shell
     - Unix
-description: >-
-  Why & backgrounds execution but doesn't stop output from flooding your terminal.
+images:
+    - "https://blob.rednafi.com/shards/2026/03/background-jobs-inherited-fd/cover-5c02a769f2be.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/background-jobs-inherited-fd/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iav2we2u"
 ---
 
@@ -100,7 +106,7 @@ the prompts first or don't background it.
 <!-- prettier-ignore-start -->
 
 [img_1]:
-    https://blob.rednafi.com/static/images/background-jobs-inherited-fd/bg_noisy.gif
+    https://blob.rednafi.com/shards/2026/03/background-jobs-inherited-fd/bg-noisy-c58f21209752.gif
 
 [file descriptors]:
     https://pubs.opengroup.org/onlinepubs/9699919799/functions/fork.html

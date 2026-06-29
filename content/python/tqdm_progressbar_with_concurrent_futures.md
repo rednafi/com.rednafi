@@ -1,16 +1,21 @@
 ---
-title: Using tqdm with concurrent.fututes in Python
-date: 2023-01-06
+title: "Using tqdm with concurrent.fututes in Python"
 slug: tqdm-progressbar-with-concurrent-futures
-atprotoPath: /python/tqdm-progressbar-with-concurrent-futures/
-aliases:
-    - /python/tqdm_progressbar_with_concurrent_futures/
+date: 2023-01-06
+description: >-
+    Display progress bars for concurrent Python tasks using tqdm with ThreadPoolExecutor and
+    as_completed for real-time execution monitoring.
 tags:
     - Python
     - Concurrency
-description: >-
-  Display progress bars for concurrent Python tasks using tqdm with ThreadPoolExecutor
-  and as_completed for real-time execution monitoring.
+images:
+    - "https://blob.rednafi.com/python/tqdm-progressbar-with-concurrent-futures/cover-1e2fc0f36e28.png"
+aliases:
+    - /python/tqdm_progressbar_with_concurrent_futures/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/tqdm-progressbar-with-concurrent-futures/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j24wh32j"
 ---
 

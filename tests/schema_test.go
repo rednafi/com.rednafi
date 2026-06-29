@@ -305,19 +305,19 @@ func TestOGImageDimensions(t *testing.T) {
 	t.Run("has og:image", func(t *testing.T) {
 		src, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "https://blob.rednafi.com/static/images/home/cover-84b7bd64087e.png", src)
+		assert.Equal(t, "https://blob.rednafi.com/home/cover.png", src)
 	})
 
 	t.Run("has og:image:width", func(t *testing.T) {
 		width, err := page.Locator(`meta[property="og:image:width"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "1200", width)
+		assert.Equal(t, "4080", width)
 	})
 
 	t.Run("has og:image:height", func(t *testing.T) {
 		height, err := page.Locator(`meta[property="og:image:height"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "630", height)
+		assert.Equal(t, "2142", height)
 	})
 
 	t.Run("has og:image:alt", func(t *testing.T) {

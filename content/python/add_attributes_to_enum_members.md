@@ -1,15 +1,20 @@
 ---
-title: Add extra attributes to enum members in Python
-date: 2022-02-17
+title: "Add extra attributes to enum members in Python"
 slug: add-attributes-to-enum-members
-atprotoPath: /python/add-attributes-to-enum-members/
-aliases:
-    - /python/add_attributes_to_enum_members/
+date: 2022-02-17
+description: >-
+    Master adding multiple attributes to Python enum members using __new__ method. Avoid
+    hardcoded indexes and create more maintainable enums.
 tags:
     - Python
-description: >-
-  Master adding multiple attributes to Python enum members using __new__ method. Avoid
-  hardcoded indexes and create more maintainable enums.
+images:
+    - "https://blob.rednafi.com/python/add-attributes-to-enum-members/cover-e6eab684af05.png"
+aliases:
+    - /python/add_attributes_to_enum_members/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/add-attributes-to-enum-members/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmfcnm2b"
 ---
 

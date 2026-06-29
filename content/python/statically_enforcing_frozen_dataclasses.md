@@ -1,17 +1,22 @@
 ---
-title: Statically enforcing frozen data classes in Python
-date: 2024-01-04
+title: "Statically enforcing frozen data classes in Python"
 slug: statically-enforcing-frozen-dataclasses
-atprotoPath: /python/statically-enforcing-frozen-dataclasses/
-aliases:
-    - /python/statically_enforcing_frozen_dataclasses/
+date: 2024-01-04
+description: >-
+    Enforce immutable dataclasses at type-check time with @final decorator to catch
+    mutations before runtime without frozen=True performance cost.
 tags:
     - Python
     - TIL
     - Typing
-description: >-
-  Enforce immutable dataclasses at type-check time with @final decorator to catch
-  mutations before runtime without frozen=True performance cost.
+images:
+    - "https://blob.rednafi.com/python/statically-enforcing-frozen-dataclasses/cover-af25d396896f.png"
+aliases:
+    - /python/statically_enforcing_frozen_dataclasses/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/statically-enforcing-frozen-dataclasses/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inaeg22e"
 ---
 

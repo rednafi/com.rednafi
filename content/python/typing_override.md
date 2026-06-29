@@ -1,17 +1,22 @@
 ---
-title: Explicit method overriding with @typing.override
-date: 2024-11-06
+title: "Explicit method overriding with @typing.override"
 slug: typing-override
-atprotoPath: /python/typing-override/
-aliases:
-    - /python/typing_override/
+date: 2024-11-06
+description: >-
+    Catch method override errors at type-check time with Python's @override decorator from
+    PEP 698, preventing typos and signature mismatches.
 tags:
     - Python
     - TIL
     - Typing
-description: >-
-  Catch method override errors at type-check time with Python's @override decorator from
-  PEP 698, preventing typos and signature mismatches.
+images:
+    - "https://blob.rednafi.com/python/typing-override/cover-32468928fd58.png"
+aliases:
+    - /python/typing_override/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/typing-override/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih5nxd26"
 ---
 

@@ -1,15 +1,20 @@
 ---
-title: Python's 'functools.partial' flattens nestings Automatically
-date: 2021-11-08
+title: "Python's 'functools.partial' flattens nestings Automatically"
 slug: functools-partial-flattens-nestings-automatically
-atprotoPath: /python/functools-partial-flattens-nestings-automatically/
-aliases:
-    - /python/functools_partial_flattens_nestings_automatically/
+date: 2021-11-08
+description: >-
+    Discover how Python's functools.partial automatically detects and flattens nested
+    partial applications for optimal performance and cleaner code.
 tags:
     - Python
-description: >-
-  Discover how Python's functools.partial automatically detects and flattens nested
-  partial applications for optimal performance and cleaner code.
+images:
+    - "https://blob.rednafi.com/python/functools-partial-flattens-nestings-automatically/cover-2e7801ace5b7.png"
+aliases:
+    - /python/functools_partial_flattens_nestings_automatically/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/functools-partial-flattens-nestings-automatically/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo47ie2b"
 ---
 

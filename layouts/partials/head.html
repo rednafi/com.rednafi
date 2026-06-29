@@ -9,6 +9,7 @@
 
 {{- $homeURL := "/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
+{{- $pageImages := .Params.images | default site.Params.images }}
 {{- $isPaginatedHome := false }}
 {{- if .IsHome }}
 {{- $pages := partial "home-pages.html" . }}
@@ -52,7 +53,7 @@
 
 {{- /* Standard.site / ATProto */ -}}
 {{- with site.Params.standardSite.publicationUri }}
-{{- if or $.IsHome $isArticlePage }}
+{{- if ne $.Kind "404" }}
 <link rel="site.standard.publication" href="{{ . | safeURL }}">
 {{- end }}
 {{- end }}
@@ -81,8 +82,12 @@
 <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
 
 {{- /* RSS */ -}}
+{{- $siteRSS := "index.xml" | absURL }}
+<link rel="alternate" type="application/rss+xml" href="{{ $siteRSS }}" title="{{ site.Title }}">
 {{ range .AlternativeOutputFormats -}}
+{{- if ne .Permalink $siteRSS }}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{- end }}
 {{ end -}}
 
 {{- /* Sitemap */ -}}
@@ -111,11 +116,19 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:locale" content="en_US">
-{{- with site.Params.images }}
-<meta property="og:image" content="{{ index . 0 }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{{ site.Title }}">
+{{- with $pageImages }}
+{{- $ogImage := index . 0 }}
+{{- $ogImageWidth := 1200 }}
+{{- $ogImageHeight := 630 }}
+{{- if or (eq $ogImage "https://blob.rednafi.com/home/cover.png") (findRE `https://blob\.rednafi\.com/.+/cover-[0-9a-f]{12}\.png$` $ogImage) }}
+{{- $ogImageWidth = 4080 }}
+{{- $ogImageHeight = 2142 }}
+{{- end }}
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:type" content="{{ if hasSuffix $ogImage ".png" }}image/png{{ else }}image/jpeg{{ end }}">
+<meta property="og:image:width" content="{{ $ogImageWidth }}">
+<meta property="og:image:height" content="{{ $ogImageHeight }}">
+<meta property="og:image:alt" content="{{ if $isArticlePage }}{{ $.Title }}{{ else }}{{ site.Title }}{{ end }}">
 {{- end }}
 {{- if $isArticlePage }}
 <meta property="article:author" content="{{ .Params.author | default site.Params.author }}">
@@ -167,7 +180,7 @@
 {{- $schema = merge $schema (dict "author" $author "publisher" (dict "@type" "Person" "@id" $personId "name" site.Params.author)) }}
 {{- $schema = merge $schema (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "isPartOf" (dict "@type" "WebSite" "@id" $websiteId)) }}
 {{- $schema = merge $schema (dict "articleSection" .Section "wordCount" .WordCount "timeRequired" (printf "PT%dM" .ReadingTime) "isAccessibleForFree" true) }}
-{{- with (.Params.images | default site.Params.images) }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
+{{- with $pageImages }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if .Params.profilePage }}

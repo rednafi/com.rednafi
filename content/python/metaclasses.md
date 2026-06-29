@@ -1,15 +1,20 @@
 ---
-title: Deciphering Python's metaclasses
+title: "Deciphering Python's metaclasses"
+slug: metaclasses
 date: 2020-06-26
+description: >-
+    Explore Python metaclasses for metaprogramming: learn how classes are created, customize
+    class behavior, and understand type as the default metaclass.
 tags:
     - Python
-slug: metaclasses
-atprotoPath: /python/metaclasses/
+images:
+    - "https://blob.rednafi.com/python/metaclasses/cover-d07237297b38.png"
 aliases:
     - /python/metaclasses/
-description: >-
-  Explore Python metaclasses for metaprogramming: learn how classes are created,
-  customize class behavior, and understand type as the default metaclass.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/metaclasses/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jooz3f2u"
 ---
 
@@ -1110,6 +1115,6 @@ is rusty, checkout these posts on [decorators] and [dataclasses].
     https://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/
 
 [image_1]:
-    https://blob.rednafi.com/static/images/metaclasses/img_1.jpeg
+    https://blob.rednafi.com/python/metaclasses/image-01-34f4cdf5f079.jpg
 
 <!-- prettier-ignore-end -->

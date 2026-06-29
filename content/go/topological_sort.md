@@ -1,17 +1,21 @@
 ---
-title: Topological sort
-date: 2024-10-13
+title: "Topological sort"
 slug: topological-sort
-atprotoPath: /go/topological-sort/
-aliases:
-    - /go/topological_sort/
+date: 2024-10-13
+description: >-
+    Implement topological sorting in Go to order tasks by dependencies. Process directed
+    acyclic graphs for build systems and scheduling.
 tags:
     - Go
-    - Data Structures
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/go/topological-sort/cover-4cacd25d0834.png"
+aliases:
+    - /go/topological_sort/
+discussions: []
 mermaid: true
-description: >-
-  Implement topological sorting in Go to order tasks by dependencies. Process directed
-  acyclic graphs for build systems and scheduling.
+type_label: ""
+atprotoPath: /go/topological-sort/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih7s732e"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Don't wrap instance methods with 'functools.lru_cache' decorator in Python
-date: 2022-01-15
+title: "Don't wrap instance methods with 'functools.lru_cache' decorator in Python"
 slug: lru-cache-on-methods
-atprotoPath: /python/lru-cache-on-methods/
-aliases:
-    - /python/lru_cache_on_methods/
+date: 2022-01-15
+description: >-
+    Avoid memory leaks when caching instance methods with lru_cache by making cache
+    containers local to instances instead of global.
 tags:
     - Python
     - TIL
     - Performance
-description: >-
-  Avoid memory leaks when caching instance methods with lru_cache by making cache
-  containers local to instances instead of global.
+images:
+    - "https://blob.rednafi.com/python/lru-cache-on-methods/cover-bbe2c4430a26.png"
+aliases:
+    - /python/lru_cache_on_methods/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/lru-cache-on-methods/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnjivq26"
 ---
 

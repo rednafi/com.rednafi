@@ -1,15 +1,20 @@
 ---
 title: "Accepted proposal: UUID in the Go standard library"
-date: 2026-04-19
 slug: go-uuid
-atprotoPath: /shards/2026/04/go-uuid/
-aliases:
-    - /shards/2026/04/go-uuid-stdlib/
+date: 2026-04-19
+description: >-
+    Notes on Go's newly accepted uuid proposal and the tradeoffs behind the API.
 tags:
     - Go
     - API
-description: >-
-  Notes on Go's newly accepted uuid proposal and the tradeoffs behind the API.
+images:
+    - "https://blob.rednafi.com/shards/2026/04/go-uuid/cover-c313987d9415.png"
+aliases:
+    - /shards/2026/04/go-uuid-stdlib/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/04/go-uuid/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasgzl26"
 ---
 

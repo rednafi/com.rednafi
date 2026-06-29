@@ -1,15 +1,20 @@
 ---
-title: Descending into the aether
-date: 2023-07-09
+title: "Descending into the aether"
 slug: descending-into-the-aether
-atprotoPath: /zephyr/descending-into-the-aether/
-aliases:
-    - /zephyr/descending_into_the_aether/
+date: 2023-07-09
+description: >-
+    A reflection on choosing the MacBook Air M2 15-inch for portability without sacrificing
+    screen size and development capabilities.
 tags:
     - Essay
-description: >-
-  A reflection on choosing the MacBook Air M2 15-inch for portability without sacrificing
-  screen size and development capabilities.
+images:
+    - "https://blob.rednafi.com/zephyr/descending-into-the-aether/cover-0cf1b094e1b2.png"
+aliases:
+    - /zephyr/descending_into_the_aether/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/descending-into-the-aether/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlw6i26"
 ---
 

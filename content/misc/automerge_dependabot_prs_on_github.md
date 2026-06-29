@@ -1,17 +1,22 @@
 ---
-title: Automerge Dependabot PRs on GitHub
-date: 2022-07-07
+title: "Automerge Dependabot PRs on GitHub"
 slug: automerge-dependabot-prs-on-github
-atprotoPath: /misc/automerge-dependabot-prs-on-github/
-aliases:
-    - /misc/automerge_dependabot_prs_on_github/
+date: 2022-07-07
+description: >-
+    Automatically merge Dependabot pull requests using GitHub Actions. Configure branch
+    protection and status checks for safe automated dependency updates.
 tags:
     - GitHub
     - DevOps
     - CLI
-description: >-
-  Automatically merge Dependabot pull requests using GitHub Actions. Configure branch
-  protection and status checks for safe automated dependency updates.
+images:
+    - "https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/cover-c0e361907029.png"
+aliases:
+    - /misc/automerge_dependabot_prs_on_github/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/automerge-dependabot-prs-on-github/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdi5on2u"
 ---
 
@@ -134,15 +139,15 @@ branch.
     https://github.com/rednafi/reflections/blob/master/.github/workflows/automerge.yml
 
 [image_1]:
-    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_1.png
+    https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/image-01-c240b8d6b26b.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_2.png
+    https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/image-02-d6cca0b90aad.png
 
 [image_3]:
-    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_3.png
+    https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/image-03-93dae83b4767.png
 
 [image_4]:
-    https://blob.rednafi.com/static/images/automerge_dependabot_prs_on_github/img_4.png
+    https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/image-04-70ea964374e0.png
 
 <!-- prettier-ignore-end -->

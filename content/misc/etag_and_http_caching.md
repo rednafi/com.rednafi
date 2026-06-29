@@ -1,20 +1,24 @@
 ---
-title: ETag and HTTP caching
-date: 2024-04-10
+title: "ETag and HTTP caching"
 slug: etag-and-http-caching
-atprotoPath: /misc/etag-and-http-caching/
-aliases:
-    - /misc/etag_and_http_caching/
+date: 2024-04-10
+description: >-
+    Implement client-side HTTP caching with ETag headers. Learn If-None-Match, 304 Not
+    Modified responses, and weak validation in Go servers.
 tags:
     - API
     - Go
     - Web
-description: >-
-  Implement client-side HTTP caching with ETag headers. Learn If-None-Match, 304 Not
-  Modified responses, and weak validation in Go servers.
+images:
+    - "https://blob.rednafi.com/misc/etag-and-http-caching/cover-3ca22cb7b163.png"
+aliases:
+    - /misc/etag_and_http_caching/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=39996521
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=39996521"
+mermaid: false
+type_label: ""
+atprotoPath: /misc/etag-and-http-caching/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhkn72o"
 ---
 

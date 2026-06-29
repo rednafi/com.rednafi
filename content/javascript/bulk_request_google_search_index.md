@@ -1,17 +1,22 @@
 ---
-title: Bulk request Google search indexing with API
-date: 2023-05-26
+title: "Bulk request Google search indexing with API"
 slug: bulk-request-google-search-index
-atprotoPath: /javascript/bulk-request-google-search-index/
-aliases:
-    - /javascript/bulk_request_google_search_index/
+date: 2023-05-26
+description: >-
+    Learn how to programmatically request Google search indexing for multiple URLs using the
+    Indexing API and NodeJS for faster reindexing.
 tags:
     - JavaScript
     - API
     - Web
-description: >-
-  Learn how to programmatically request Google search indexing for multiple URLs using
-  the Indexing API and NodeJS for faster reindexing.
+images:
+    - "https://blob.rednafi.com/javascript/bulk-request-google-search-index/cover-0850cf57c855.png"
+aliases:
+    - /javascript/bulk_request_google_search_index/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /javascript/bulk-request-google-search-index/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iuuppk2s"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Strategy pattern in Go
-date: 2024-02-17
+title: "Strategy pattern in Go"
 slug: strategy-pattern
-atprotoPath: /go/strategy-pattern/
-aliases:
-    - /go/strategy_pattern/
+date: 2024-02-17
+description: >-
+    Replace inheritance with the Strategy pattern in Go using interfaces. Achieve
+    composable, testable code without class hierarchies.
 tags:
     - Go
     - TIL
-    - Design Patterns
-description: >-
-  Replace inheritance with the Strategy pattern in Go using interfaces. Achieve
-  composable, testable code without class hierarchies.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/strategy-pattern/cover-dfa0dba306b7.png"
+aliases:
+    - /go/strategy_pattern/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/strategy-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikj7al2e"
 ---
 

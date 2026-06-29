@@ -1,17 +1,22 @@
 ---
-title: Go Rusty with exception handling in Python
-date: 2022-02-02
+title: "Go Rusty with exception handling in Python"
 slug: go-rusty-with-exception-handling
-atprotoPath: /python/go-rusty-with-exception-handling/
-aliases:
-    - /python/go_rusty_with_exception_handling/
+date: 2022-02-02
+description: >-
+    Implement Rust-style Result types for type-safe exception handling in Python using
+    generic Ok and Err types inspired by Black formatter.
 tags:
     - Python
-    - Error Handling
+    - "Error Handling"
     - Typing
-description: >-
-  Implement Rust-style Result types for type-safe exception handling in Python using
-  generic Ok and Err types inspired by Black formatter.
+images:
+    - "https://blob.rednafi.com/python/go-rusty-with-exception-handling/cover-d39571991cf0.png"
+aliases:
+    - /python/go_rusty_with_exception_handling/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/go-rusty-with-exception-handling/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmzfbq26"
 ---
 

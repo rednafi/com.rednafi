@@ -1,17 +1,22 @@
 ---
-title: Retry function in Go
-date: 2024-02-04
+title: "Retry function in Go"
 slug: retry-function
-atprotoPath: /go/retry-function/
-aliases:
-    - /go/retry_function/
+date: 2024-02-04
+description: >-
+    Build retry logic in Go without reflection using generics. Implement exponential backoff
+    and configurable retry strategies with type safety.
 tags:
     - Go
     - TIL
-    - Error Handling
-description: >-
-  Build retry logic in Go without reflection using generics. Implement exponential
-  backoff and configurable retry strategies with type safety.
+    - "Error Handling"
+images:
+    - "https://blob.rednafi.com/go/retry-function/cover-0b6896beb332.png"
+aliases:
+    - /go/retry_function/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/retry-function/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilseml2j"
 ---
 

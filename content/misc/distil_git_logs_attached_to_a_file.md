@@ -1,18 +1,23 @@
 ---
-title: Distil git logs attached to a single file
-date: 2022-06-21
+title: "Distil git logs attached to a single file"
 slug: distil-git-logs-attached-to-a-file
-atprotoPath: /misc/distil-git-logs-attached-to-a-file/
-aliases:
-    - /misc/distil_git_logs_attached_to_a_file/
+date: 2022-06-21
+description: >-
+    View git commit history for a single file with git log --follow. Learn to track multiple
+    files with xargs and concatenate their commit logs.
 tags:
     - Shell
     - Unix
     - Git
     - TIL
-description: >-
-  View git commit history for a single file with git log --follow. Learn to track
-  multiple files with xargs and concatenate their commit logs.
+images:
+    - "https://blob.rednafi.com/misc/distil-git-logs-attached-to-a-file/cover-f263490a4025.png"
+aliases:
+    - /misc/distil_git_logs_attached_to_a_file/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/distil-git-logs-attached-to-a-file/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdpj2h2u"
 ---
 

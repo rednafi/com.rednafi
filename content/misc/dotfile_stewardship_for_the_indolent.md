@@ -1,18 +1,23 @@
 ---
-title: Dotfile stewardship for the indolent
-date: 2023-09-27
+title: "Dotfile stewardship for the indolent"
 slug: dotfile-stewardship-for-the-indolent
-atprotoPath: /misc/dotfile-stewardship-for-the-indolent/
-aliases:
-    - /misc/dotfile_stewardship_for_the_indolent/
+date: 2023-09-27
+description: >-
+    Manage dotfiles across devices with GNU Stow. Symlink configuration files from git repo
+    to home directory with simple, idempotent commands.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Manage dotfiles across devices with GNU Stow. Symlink configuration files from git repo
-  to home directory with simple, idempotent commands.
+images:
+    - "https://blob.rednafi.com/misc/dotfile-stewardship-for-the-indolent/cover-4284276c5ef1.png"
+aliases:
+    - /misc/dotfile_stewardship_for_the_indolent/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/dotfile-stewardship-for-the-indolent/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iogd5d2j"
 ---
 

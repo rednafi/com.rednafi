@@ -1,16 +1,21 @@
 ---
-title: To quote or not to quote
-date: 2022-10-05
+title: "To quote or not to quote"
 slug: to-quote-or-not-to-quote
-atprotoPath: /misc/to-quote-or-not-to-quote/
-aliases:
-    - /misc/to_quote_or_not_to_quote/
+date: 2022-10-05
+description: >-
+    Master shell quoting rules: single vs double quotes, backticks vs $(). Learn when to
+    quote variables to prevent spaces and special characters from breaking commands.
 tags:
     - Shell
     - Unix
-description: >-
-  Master shell quoting rules: single vs double quotes, backticks vs $(). Learn when to
-  quote variables to prevent spaces and special characters from breaking commands.
+images:
+    - "https://blob.rednafi.com/misc/to-quote-or-not-to-quote/cover-d2cd00db7c93.png"
+aliases:
+    - /misc/to_quote_or_not_to_quote/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/to-quote-or-not-to-quote/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jar6jd2s"
 ---
 

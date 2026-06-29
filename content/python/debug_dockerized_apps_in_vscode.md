@@ -1,17 +1,22 @@
 ---
-title: Debugging dockerized Python apps in VSCode
-date: 2023-12-22
+title: "Debugging dockerized Python apps in VSCode"
 slug: debug-dockerized-apps-in-vscode
-atprotoPath: /python/debug-dockerized-apps-in-vscode/
-aliases:
-    - /python/debug_dockerized_apps_in_vscode/
+date: 2023-12-22
+description: >-
+    Set up VSCode debugger for containerized Python applications using debugpy. Step-by-step
+    guide with Docker Compose and launch configurations.
 tags:
     - Python
     - TIL
     - Docker
-description: >-
-  Set up VSCode debugger for containerized Python applications using debugpy.
-  Step-by-step guide with Docker Compose and launch configurations.
+images:
+    - "https://blob.rednafi.com/python/debug-dockerized-apps-in-vscode/cover-85f7aff6aec4.png"
+aliases:
+    - /python/debug_dockerized_apps_in_vscode/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/debug-dockerized-apps-in-vscode/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incgrd2e"
 ---
 

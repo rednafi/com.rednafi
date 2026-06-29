@@ -1,18 +1,23 @@
 ---
-title: Patching pydantic settings in pytest
-date: 2024-01-27
+title: "Patching pydantic settings in pytest"
 slug: patch-pydantic-settings-in-pytest
-atprotoPath: /python/patch-pydantic-settings-in-pytest/
-aliases:
-    - /python/patch_pydantic_settings_in_pytest/
+date: 2024-01-27
+description: >-
+    Mock pydantic_settings in pytest tests by patching the settings class to prevent flaky
+    tests from environment variable dependencies.
 tags:
     - Python
     - TIL
     - Testing
     - Pytest
-description: >-
-  Mock pydantic_settings in pytest tests by patching the settings class to prevent flaky
-  tests from environment variable dependencies.
+images:
+    - "https://blob.rednafi.com/python/patch-pydantic-settings-in-pytest/cover-c76f2629a3e2.png"
+aliases:
+    - /python/patch_pydantic_settings_in_pytest/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/patch-pydantic-settings-in-pytest/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilxpld2e"
 ---
 

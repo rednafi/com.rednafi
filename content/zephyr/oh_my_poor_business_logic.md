@@ -1,19 +1,23 @@
 ---
-title: Oh my poor business logic
-date: 2023-11-05
+title: "Oh my poor business logic"
 slug: oh-my-poor-business-logic
-atprotoPath: /zephyr/oh-my-poor-business-logic/
+date: 2023-11-05
+description: >-
+    How resume-driven development and technical maximalism distract engineers from solving
+    real business problems and delivering value.
+tags:
+    - Essay
+images:
+    - "https://blob.rednafi.com/zephyr/oh-my-poor-business-logic/cover-4ce2af1c0e5c.png"
 aliases:
     - /zephyr/oh_my_poor_business_logic/
     - /misc/oh_my_poor_business_logic/
-tags:
-    - Essay
-description: >-
-  How resume-driven development and technical maximalism distract engineers from solving
-  real business problems and delivering value.
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=38159363
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=38159363"
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/oh-my-poor-business-logic/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqnt22y"
 ---
 

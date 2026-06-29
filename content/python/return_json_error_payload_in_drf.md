@@ -1,17 +1,22 @@
 ---
-title: Return JSON error payload instead of HTML text in DRF
-date: 2022-04-13
+title: "Return JSON error payload instead of HTML text in DRF"
 slug: return-json-error-payload-in-drf
-atprotoPath: /python/return-json-error-payload-in-drf/
-aliases:
-    - /python/return_json_error_payload_in_drf/
+date: 2022-04-13
+description: >-
+    Fix Django REST Framework to return JSON error responses for 403, 404, 500 errors using
+    middleware instead of default HTML pages.
 tags:
     - Python
     - API
     - Django
-description: >-
-  Fix Django REST Framework to return JSON error responses for 403, 404, 500 errors using
-  middleware instead of default HTML pages.
+images:
+    - "https://blob.rednafi.com/python/return-json-error-payload-in-drf/cover-6e16ac55c2c7.png"
+aliases:
+    - /python/return_json_error_payload_in_drf/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/return-json-error-payload-in-drf/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhgjpl26"
 ---
 

@@ -1,20 +1,25 @@
 ---
-title: Revisiting interface segregation in Go
-date: 2025-11-01
+title: "Revisiting interface segregation in Go"
 slug: interface-segregation
-atprotoPath: /go/interface-segregation/
+date: 2025-11-01
+description: >-
+    Apply SOLID's Interface Segregation Principle in Go with consumer-defined contracts.
+    Learn why small interfaces and implicit implementation matter.
 tags:
     - Go
     - API
     - Testing
-description: >-
-  Apply SOLID's Interface Segregation Principle in Go with consumer-defined contracts.
-  Learn why small interfaces and implicit implementation matter.
+images:
+    - "https://blob.rednafi.com/go/interface-segregation/cover-74eceef3e7d8.png"
+aliases: []
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=45789218
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1olzq5m/
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=45789218"
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1olzq5m/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/interface-segregation/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idf3h22p"
 ---
 

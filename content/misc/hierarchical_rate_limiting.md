@@ -1,18 +1,23 @@
 ---
-title: Hierarchical rate limiting with Redis sorted sets
-date: 2025-01-12
+title: "Hierarchical rate limiting with Redis sorted sets"
 slug: hierarchical-rate-limiting
-atprotoPath: /misc/hierarchical-rate-limiting/
-aliases:
-    - /misc/hierarchical_rate_limiting/
+date: 2025-01-12
+description: >-
+    Build multi-level rate limiting with Redis sorted sets and Lua. Enforce global and
+    category-specific limits with ZREMRANGEBYSCORE and ZCARD commands.
 tags:
     - Database
     - Python
     - System
     - Redis
-description: >-
-  Build multi-level rate limiting with Redis sorted sets and Lua. Enforce global and
-  category-specific limits with ZREMRANGEBYSCORE and ZCARD commands.
+images:
+    - "https://blob.rednafi.com/misc/hierarchical-rate-limiting/cover-c18f7f80ab48.png"
+aliases:
+    - /misc/hierarchical_rate_limiting/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/hierarchical-rate-limiting/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggfov2o"
 ---
 

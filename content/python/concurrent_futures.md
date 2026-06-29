@@ -1,16 +1,21 @@
 ---
-title: Effortless concurrency with Python's concurrent.futures
-date: 2020-04-21
+title: "Effortless concurrency with Python's concurrent.futures"
 slug: concurrent-futures
-atprotoPath: /python/concurrent-futures/
-aliases:
-    - /python/concurrent_futures/
+date: 2020-04-21
+description: >-
+    Master Python's concurrent.futures module for easy threading and multiprocessing. Learn
+    ThreadPoolExecutor and ProcessPoolExecutor with examples.
 tags:
     - Python
     - Concurrency
-description: >-
-  Master Python's concurrent.futures module for easy threading and multiprocessing. Learn
-  ThreadPoolExecutor and ProcessPoolExecutor with examples.
+images:
+    - "https://blob.rednafi.com/python/concurrent-futures/cover-350b6d3ab9f4.png"
+aliases:
+    - /python/concurrent_futures/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/concurrent-futures/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq2ybe2j"
 ---
 

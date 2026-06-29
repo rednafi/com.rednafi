@@ -1,15 +1,20 @@
 ---
-title: Gotchas of early-bound function argument defaults in Python
-date: 2022-01-27
+title: "Gotchas of early-bound function argument defaults in Python"
 slug: early-bound-function-defaults
-atprotoPath: /python/early-bound-function-defaults/
-aliases:
-    - /python/early_bound_function_defaults/
+date: 2022-01-27
+description: >-
+    Avoid Python function default argument pitfalls caused by early binding, where mutable
+    defaults and function calls bind at definition time.
 tags:
     - Python
-description: >-
-  Avoid Python function default argument pitfalls caused by early binding, where mutable
-  defaults and function calls bind at definition time.
+images:
+    - "https://blob.rednafi.com/python/early-bound-function-defaults/cover-d29e195ad287.png"
+aliases:
+    - /python/early_bound_function_defaults/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/early-bound-function-defaults/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn3nim2b"
 ---
 

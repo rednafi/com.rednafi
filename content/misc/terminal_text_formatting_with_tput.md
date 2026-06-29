@@ -1,18 +1,23 @@
 ---
-title: Simple terminal text formatting with tput
-date: 2023-04-23
+title: "Simple terminal text formatting with tput"
 slug: terminal-text-formatting-with-tput
-atprotoPath: /misc/terminal-text-formatting-with-tput/
-aliases:
-    - /misc/terminal_text_formatting_with_tput/
+date: 2023-04-23
+description: >-
+    Format terminal output with tput instead of ANSI codes. Set colors, bold text,
+    underlines, and backgrounds with simple commands in shell scripts.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Format terminal output with tput instead of ANSI codes. Set colors, bold text,
-  underlines, and backgrounds with simple commands in shell scripts.
+images:
+    - "https://blob.rednafi.com/misc/terminal-text-formatting-with-tput/cover-e6c7946a0149.png"
+aliases:
+    - /misc/terminal_text_formatting_with_tput/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/terminal-text-formatting-with-tput/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivvlhs2s"
 ---
 
@@ -144,9 +149,9 @@ On my terminal, it prints this nice color palette:
     https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
 [image_1]:
-    https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_1.png
+    https://blob.rednafi.com/misc/terminal-text-formatting-with-tput/image-01-a5922ab907eb.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/terminal_text_formatting_with_tput/img_2.png
+    https://blob.rednafi.com/misc/terminal-text-formatting-with-tput/image-02-6aceb668ffee.png
 
 <!-- prettier-ignore-end -->

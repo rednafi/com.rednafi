@@ -1,18 +1,23 @@
 ---
-title: Channel iteration and goroutine leak
-date: 2026-06-21
+title: "Channel iteration and goroutine leak"
 slug: channel-iteration-goroutine-leak
-atprotoPath: /go/channel-iteration-goroutine-leak/
+date: 2026-06-21
+description: >-
+    A for-range over a channel that's never closed leaks the receiver. Why a fixed number of
+    receives is safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
 tags:
     - Go
     - Concurrency
     - Profiling
-description: >-
-  A for-range over a channel that's never closed leaks the receiver. Why a fixed number of
-  receives is safe, why a range isn't, and how to catch it with Go 1.27's leak profile.
+images:
+    - "https://blob.rednafi.com/go/channel-iteration-goroutine-leak/cover-884422df97e8.png"
+aliases: []
 discussions:
-    - label: r/golang
-      url: https://www.reddit.com/r/golang/comments/1uddm33/
+    - label: "r/golang"
+      url: "https://www.reddit.com/r/golang/comments/1uddm33/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/channel-iteration-goroutine-leak/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 

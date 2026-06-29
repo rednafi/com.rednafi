@@ -1,17 +1,22 @@
 ---
-title: Capturing console output in Go tests
-date: 2025-04-12
+title: "Capturing console output in Go tests"
 slug: capture-console-output
-atprotoPath: /go/capture-console-output/
-aliases:
-    - /go/capture_console_output/
+date: 2025-04-12
+description: >-
+    Test functions that write to stdout/stderr in Go by capturing output with os.Pipe. Learn
+    patterns to avoid deadlocks in concurrent tests.
 tags:
     - Go
     - Testing
     - TIL
-description: >-
-  Test functions that write to stdout/stderr in Go by capturing output with os.Pipe.
-  Learn patterns to avoid deadlocks in concurrent tests.
+images:
+    - "https://blob.rednafi.com/go/capture-console-output/cover-0230914321d7.png"
+aliases:
+    - /go/capture_console_output/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/capture-console-output/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifq3uy26"
 ---
 

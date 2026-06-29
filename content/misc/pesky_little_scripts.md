@@ -1,17 +1,22 @@
 ---
-title: Pesky little scripts
-date: 2023-10-29
+title: "Pesky little scripts"
 slug: pesky-little-scripts
-atprotoPath: /misc/pesky-little-scripts/
-aliases:
-    - /misc/pesky_little_scripts/
+date: 2023-10-29
+description: >-
+    Organize custom scripts with comma-prefixed naming. Improve tab completion and eliminate
+    clutter by prefixing script names with special characters.
 tags:
     - Shell
     - Unix
     - CLI
-description: >-
-  Organize custom scripts with comma-prefixed naming. Improve tab completion and
-  eliminate clutter by prefixing script names with special characters.
+images:
+    - "https://blob.rednafi.com/misc/pesky-little-scripts/cover-7a3371fa2fc4.png"
+aliases:
+    - /misc/pesky_little_scripts/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/pesky-little-scripts/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iocstl2j"
 ---
 

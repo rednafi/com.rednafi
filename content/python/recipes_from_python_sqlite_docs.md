@@ -1,17 +1,22 @@
 ---
-title: Recipes from Python SQLite docs
-date: 2022-09-11
+title: "Recipes from Python SQLite docs"
 slug: recipes-from-python-sqlite-docs
-atprotoPath: /python/recipes-from-python-sqlite-docs/
-aliases:
-    - /python/recipes_from_python_sqlite_docs/
+date: 2022-09-11
+description: >-
+    Practical SQLite recipes for Python: execute statements, batch operations, transactions,
+    row factories, and context managers with sqlite3.
 tags:
     - Database
     - Python
     - SQL
-description: >-
-  Practical SQLite recipes for Python: execute statements, batch operations,
-  transactions, row factories, and context managers with sqlite3.
+images:
+    - "https://blob.rednafi.com/python/recipes-from-python-sqlite-docs/cover-44282e48a7fb.png"
+aliases:
+    - /python/recipes_from_python_sqlite_docs/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/recipes-from-python-sqlite-docs/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jasenl26"
 ---
 

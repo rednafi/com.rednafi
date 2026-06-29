@@ -1,17 +1,22 @@
 ---
-title: Rate limiting via Nginx
-date: 2024-01-06
+title: "Rate limiting via Nginx"
 slug: rate-limiting-via-nginx
-atprotoPath: /go/rate-limiting-via-nginx/
-aliases:
-    - /go/rate_limiting_via_nginx/
+date: 2024-01-06
+description: >-
+    Implement rate limiting at the infrastructure layer with Nginx reverse proxy. Protect Go
+    services from DDoS with leaky bucket algorithm.
 tags:
     - Go
     - Networking
     - Docker
-description: >-
-  Implement rate limiting at the infrastructure layer with Nginx reverse proxy. Protect
-  Go services from DDoS with leaky bucket algorithm.
+images:
+    - "https://blob.rednafi.com/go/rate-limiting-via-nginx/cover-43f3a03ed3fe.png"
+aliases:
+    - /go/rate_limiting_via_nginx/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/rate-limiting-via-nginx/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7wqq2a"
 ---
 

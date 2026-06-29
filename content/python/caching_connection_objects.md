@@ -1,17 +1,22 @@
 ---
-title: Caching connection objects in Python
-date: 2022-03-16
+title: "Caching connection objects in Python"
 slug: caching-connection-objects
-atprotoPath: /python/caching-connection-objects/
-aliases:
-    - /python/caching_connection_objects/
+date: 2022-03-16
+description: >-
+    Learn efficient patterns for caching database connection objects in Python without
+    import-time side effects or lru_cache complexity.
 tags:
     - Python
     - TIL
-    - Design Patterns
-description: >-
-  Learn efficient patterns for caching database connection objects in Python without
-  import-time side effects or lru_cache complexity.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/python/caching-connection-objects/cover-27402075276b.png"
+aliases:
+    - /python/caching_connection_objects/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/caching-connection-objects/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jixlzm2a"
 ---
 

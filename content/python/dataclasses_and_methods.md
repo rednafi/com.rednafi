@@ -1,18 +1,22 @@
 ---
-title: Banish state-mutating methods from data classes
-date: 2023-12-16
+title: "Banish state-mutating methods from data classes"
 slug: dataclasses-and-methods
-atprotoPath: /python/dataclasses-and-methods/
-aliases:
-    - /python/dataclasses_and_methods/
+date: 2023-12-16
+description: >-
+    Why you shouldn't add state-mutating methods to Python dataclasses. Maintain semantic
+    clarity and use dataclasses as pure data containers.
 tags:
     - Python
-description: >-
-  Why you shouldn't add state-mutating methods to Python dataclasses. Maintain semantic
-  clarity and use dataclasses as pure data containers.
+images:
+    - "https://blob.rednafi.com/python/dataclasses-and-methods/cover-5851190c4b63.png"
+aliases:
+    - /python/dataclasses_and_methods/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=38668254
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=38668254"
+mermaid: false
+type_label: ""
+atprotoPath: /python/dataclasses-and-methods/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incuiq2a"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Use daemon threads to test infinite while loops in Python
-date: 2021-11-18
+title: "Use daemon threads to test infinite while loops in Python"
 slug: use-daemon-threads-to-test-infinite-loop
-atprotoPath: /python/use-daemon-threads-to-test-infinite-loop/
-aliases:
-    - /python/use_daemon_threads_to_test_infinite_loop/
+date: 2021-11-18
+description: >-
+    Test Python infinite loops safely using daemon threads with timeouts, allowing tests to
+    complete without hanging or blocking execution.
 tags:
     - Python
     - Testing
     - Concurrency
-description: >-
-  Test Python infinite loops safely using daemon threads with timeouts, allowing tests to
-  complete without hanging or blocking execution.
+images:
+    - "https://blob.rednafi.com/python/use-daemon-threads-to-test-infinite-loop/cover-d30e44a1400a.png"
+aliases:
+    - /python/use_daemon_threads_to_test_infinite_loop/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/use-daemon-threads-to-test-infinite-loop/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2ez42a"
 ---
 

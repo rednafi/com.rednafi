@@ -1,16 +1,21 @@
 ---
-title: Nil comparisons and Go interface
-date: 2025-03-12
+title: "Nil comparisons and Go interface"
 slug: nil-interface-comparison
-atprotoPath: /go/nil-interface-comparison/
-aliases:
-    - /go/nil_interface_comparison/
+date: 2025-03-12
+description: >-
+    Debug tricky nil comparisons in Go interfaces. Understand dynamic types, type
+    assertions, and use reflect for generic nil checking.
 tags:
     - Go
-    - Data Structures
-description: >-
-  Debug tricky nil comparisons in Go interfaces. Understand dynamic types, type
-  assertions, and use reflect for generic nil checking.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/go/nil-interface-comparison/cover-f25531eac655.png"
+aliases:
+    - /go/nil_interface_comparison/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/nil-interface-comparison/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ige4h52o"
 ---
 

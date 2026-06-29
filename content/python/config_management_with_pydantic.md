@@ -1,15 +1,20 @@
 ---
-title: Pedantic configuration management with Pydantic
-date: 2020-07-13
+title: "Pedantic configuration management with Pydantic"
 slug: config-management-with-pydantic
-atprotoPath: /python/config-management-with-pydantic/
-aliases:
-    - /python/config_management_with_pydantic/
+date: 2020-07-13
+description: >-
+    Build a scalable Python configuration system with Pydantic and dotenv. Manage dev,
+    staging, and production configs with type validation.
 tags:
     - Python
-description: >-
-  Build a scalable Python configuration system with Pydantic and dotenv. Manage dev,
-  staging, and production configs with type validation.
+images:
+    - "https://blob.rednafi.com/python/config-management-with-pydantic/cover-a2ce2b30ec04.png"
+aliases:
+    - /python/config_management_with_pydantic/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/config-management-with-pydantic/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5ph22e"
 ---
 

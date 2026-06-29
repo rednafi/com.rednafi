@@ -1,17 +1,22 @@
 ---
-title: Go structured logging with slog
-date: 2023-08-10
+title: "Go structured logging with slog"
 slug: structured-logging-with-slog
-atprotoPath: /go/structured-logging-with-slog/
-aliases:
-    - /go/structured_logging_with_slog/
+date: 2023-08-10
+description: >-
+    Master Go 1.21's log/slog package for structured logging with levels, JSON output, and
+    attribute grouping. No third-party libraries needed.
 tags:
     - Go
     - TIL
     - Logging
-description: >-
-  Master Go 1.21's log/slog package for structured logging with levels, JSON output, and
-  attribute grouping. No third-party libraries needed.
+images:
+    - "https://blob.rednafi.com/go/structured-logging-with-slog/cover-102f6397187c.png"
+aliases:
+    - /go/structured_logging_with_slog/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/structured-logging-with-slog/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5xxq2o"
 ---
 

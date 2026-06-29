@@ -1,15 +1,20 @@
 ---
-title: Einstellung effect
-date: 2024-02-24
+title: "Einstellung effect"
 slug: einstellung-effect
-atprotoPath: /zephyr/einstellung-effect/
-aliases:
-    - /zephyr/einstellung_effect/
+date: 2024-02-24
+description: >-
+    Why accumulated knowledge can prevent learning new paradigms, and how past expertise
+    becomes the barrier to future growth.
 tags:
     - Essay
-description: >-
-  Why accumulated knowledge can prevent learning new paradigms, and how past expertise
-  becomes the barrier to future growth.
+images:
+    - "https://blob.rednafi.com/zephyr/einstellung-effect/cover-9434af64afb7.png"
+aliases:
+    - /zephyr/einstellung_effect/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/einstellung-effect/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikirky2b"
 ---
 

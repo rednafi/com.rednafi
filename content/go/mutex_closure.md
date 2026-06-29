@@ -1,15 +1,21 @@
 ---
-title: Mutate your locked state inside a closure
-date: 2026-03-05
+title: "Mutate your locked state inside a closure"
 slug: mutex-closure
-atprotoPath: /go/mutex-closure/
+date: 2026-03-05
+description: >-
+    Why your mutex wrapper should accept a closure for mutation instead of a plain value,
+    with examples from the standard library and Tailscale.
 tags:
     - Go
     - Concurrency
     - API
-description: >-
-    Why your mutex wrapper should accept a closure for mutation instead of a plain value,
-    with examples from the standard library and Tailscale.
+images:
+    - "https://blob.rednafi.com/go/mutex-closure/cover-404c82ffd244.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/mutex-closure/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfpks2y"
 ---
 

@@ -1,16 +1,22 @@
 ---
-title: Repositories, transactions, and unit of work in Go
-date: 2026-03-21
+title: "Repositories, transactions, and unit of work in Go"
 slug: repo-txn-uow
-atprotoPath: /go/repo-txn-uow/
+date: 2026-03-21
+description: >-
+    Decoupling business logic from storage in Go, adding transaction support without leaking
+    SQL details, and coordinating atomic writes across multiple repositories using a unit of
+    work.
 tags:
     - Go
     - Database
-    - Design Patterns
-description: >-
-  Decoupling business logic from storage in Go, adding transaction support without leaking
-  SQL details, and coordinating atomic writes across multiple repositories using a unit of
-  work.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/repo-txn-uow/cover-5fd435c08ad7.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/repo-txn-uow/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavwe326"
 ---
 

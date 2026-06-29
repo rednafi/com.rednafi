@@ -1,18 +1,23 @@
 ---
-title: Unix-style pipelining with Python's subprocess module
-date: 2023-07-14
+title: "Unix-style pipelining with Python's subprocess module"
 slug: unix-style-pipeline-with-subprocess
-atprotoPath: /python/unix-style-pipeline-with-subprocess/
-aliases:
-    - /python/unix_style_pipeline_with_subprocess/
+date: 2023-07-14
+description: >-
+    Build Unix-style command pipelines in Python using subprocess.run with stdout piping for
+    efficient process chaining and output capture.
 tags:
     - Python
     - TIL
     - Shell
     - Unix
-description: >-
-  Build Unix-style command pipelines in Python using subprocess.run with stdout piping
-  for efficient process chaining and output capture.
+images:
+    - "https://blob.rednafi.com/python/unix-style-pipeline-with-subprocess/cover-e5a188bf5aaf.png"
+aliases:
+    - /python/unix_style_pipeline_with_subprocess/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/unix-style-pipeline-with-subprocess/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irj6bv2u"
 ---
 

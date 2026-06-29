@@ -1,15 +1,20 @@
 ---
-title: Write git commit messages properly
-date: 2021-11-11
+title: "Write git commit messages properly"
 slug: write-git-commit-messages-properly
-atprotoPath: /misc/write-git-commit-messages-properly/
-aliases:
-    - /misc/write_git_commit_messages_properly/
+date: 2021-11-11
+description: >-
+    Master Git commit message conventions: imperative mood, 50-character subject, proper
+    capitalization. Build coherent project history with consistent formatting.
 tags:
     - Git
-description: >-
-  Master Git commit message conventions: imperative mood, 50-character subject, proper
-  capitalization. Build coherent project history with consistent formatting.
+images:
+    - "https://blob.rednafi.com/misc/write-git-commit-messages-properly/cover-e4a3c9591928.png"
+aliases:
+    - /misc/write_git_commit_messages_properly/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/write-git-commit-messages-properly/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3qu42p"
 ---
 

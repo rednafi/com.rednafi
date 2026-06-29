@@ -1,15 +1,20 @@
 ---
-title: Apply constraints with 'assert' in Python
-date: 2022-07-10
+title: "Apply constraints with 'assert' in Python"
 slug: apply-constraint-with-assert
-atprotoPath: /python/apply-constraint-with-assert/
-aliases:
-    - /python/apply_constraint_with_assert/
+date: 2022-07-10
+description: >-
+    Use Python assert statements to apply runtime constraints more succinctly than raising
+    ValueError. Learn the trade-offs and best practices.
 tags:
     - Python
-description: >-
-  Use Python assert statements to apply runtime constraints more succinctly than raising
-  ValueError. Learn the trade-offs and best practices.
+images:
+    - "https://blob.rednafi.com/python/apply-constraint-with-assert/cover-e4c255920a2c.png"
+aliases:
+    - /python/apply_constraint_with_assert/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/apply-constraint-with-assert/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhpzq26"
 ---
 

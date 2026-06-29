@@ -1,23 +1,26 @@
 ---
-title: Reminiscing CGI scripts
-date: 2023-12-25
+title: "Reminiscing CGI scripts"
 slug: reminiscing-cgi-scripts
-atprotoPath: /go/reminiscing-cgi-scripts/
-aliases:
-    - /go/reminiscing_cgi_scripts/
+date: 2023-12-25
+description: >-
+    Build a CGI script from scratch using Go's stdlib and Bash. Understand why Common
+    Gateway Interface fell out of favor for modern web apps.
 tags:
     - Go
     - TIL
     - Web
-mermaid: true
-description: >-
-  Build a CGI script from scratch using Go's stdlib and Bash. Understand why Common
-  Gateway Interface fell out of favor for modern web apps.
+images:
+    - "https://blob.rednafi.com/go/reminiscing-cgi-scripts/cover-834a8a6d03d3.png"
+aliases:
+    - /go/reminiscing_cgi_scripts/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=38779443
-    - label: Reddit
-      url: https://www.reddit.com/r/programming/comments/18rz3vf/
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=38779443"
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/programming/comments/18rz3vf/"
+mermaid: true
+type_label: ""
+atprotoPath: /go/reminiscing-cgi-scripts/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inbkfe2e"
 ---
 

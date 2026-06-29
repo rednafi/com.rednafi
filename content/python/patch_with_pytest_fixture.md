@@ -1,17 +1,22 @@
 ---
-title: Patching test dependencies via pytest fixture & unittest mock
-date: 2022-02-27
+title: "Patching test dependencies via pytest fixture & unittest mock"
 slug: patch-with-pytest-fixture
-atprotoPath: /python/patch-with-pytest-fixture/
-aliases:
-    - /python/patch_with_pytest_fixture/
+date: 2022-02-27
+description: >-
+    Combine pytest fixtures with unittest.mock.patch for clean, reusable test mocking
+    patterns that integrate seamlessly with pytest's ecosystem.
 tags:
     - Python
     - Testing
     - Pytest
-description: >-
-  Combine pytest fixtures with unittest.mock.patch for clean, reusable test mocking
-  patterns that integrate seamlessly with pytest's ecosystem.
+images:
+    - "https://blob.rednafi.com/python/patch-with-pytest-fixture/cover-bed33bee211a.png"
+aliases:
+    - /python/patch_with_pytest_fixture/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/patch-with-pytest-fixture/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jjcink2e"
 ---
 

@@ -1,16 +1,22 @@
 ---
-title: Type-safe slogging
-date: 2026-05-09
+title: "Type-safe slogging"
 slug: typesafe-slogging
-atprotoPath: /go/typesafe-slogging/
+date: 2026-05-09
+description: >-
+    The default slog API is loose enough that a careless line ships broken JSON to
+    production. Pin it down with Attr constructors, LogAttrs, a context-borne logger, and
+    sloglint.
 tags:
     - Go
     - Logging
     - API
-description: >-
-    The default slog API is loose enough that a careless line ships broken JSON to
-    production. Pin it down with Attr constructors, LogAttrs, a context-borne logger,
-    and sloglint.
+images:
+    - "https://blob.rednafi.com/go/typesafe-slogging/cover-9b4d36fd0d2e.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/typesafe-slogging/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iar24h2o"
 ---
 

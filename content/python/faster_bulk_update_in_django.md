@@ -1,17 +1,22 @@
 ---
-title: Faster bulk_update in Django
-date: 2022-11-30
+title: "Faster bulk_update in Django"
 slug: faster-bulk-update-in-django
-atprotoPath: /python/faster-bulk-update-in-django/
-aliases:
-    - /python/faster_bulk_update_in_django/
+date: 2022-11-30
+description: >-
+    Accelerate Django bulk_update operations by 4x using multiprocessing to parallelize
+    database writes across chunked record batches.
 tags:
     - Python
     - Django
     - Database
-description: >-
-  Accelerate Django bulk_update operations by 4x using multiprocessing to parallelize
-  database writes across chunked record batches.
+images:
+    - "https://blob.rednafi.com/python/faster-bulk-update-in-django/cover-d66643eedab9.png"
+aliases:
+    - /python/faster_bulk_update_in_django/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/faster-bulk-update-in-django/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j43ao32s"
 ---
 

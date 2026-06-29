@@ -1,17 +1,22 @@
 ---
-title: Omitting dev dependencies in Go binaries
-date: 2024-01-21
+title: "Omitting dev dependencies in Go binaries"
 slug: omit-dev-dependencies-in-binaries
-atprotoPath: /go/omit-dev-dependencies-in-binaries/
-aliases:
-    - /go/omit_dev_dependencies_in_binaries/
+date: 2024-01-21
+description: >-
+    Track dev dependencies like golangci-lint in go.mod with a tools.go file and build tags
+    to exclude them from production binaries.
 tags:
     - Go
     - TIL
     - DevOps
-description: >-
-  Track dev dependencies like golangci-lint in go.mod with a tools.go file and build tags
-  to exclude them from production binaries.
+images:
+    - "https://blob.rednafi.com/go/omit-dev-dependencies-in-binaries/cover-f376f3b553c7.png"
+aliases:
+    - /go/omit_dev_dependencies_in_binaries/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/omit-dev-dependencies-in-binaries/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilyjvb2b"
 ---
 

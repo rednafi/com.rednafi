@@ -1,18 +1,23 @@
 ---
-title: Use strict mode while running bash scripts
-date: 2021-11-08
+title: "Use strict mode while running bash scripts"
 slug: use-strict-mode-while-running-bash-scripts
-atprotoPath: /misc/use-strict-mode-while-running-bash-scripts/
-aliases:
-    - /misc/use_strict_mode_while_running_bash_scripts/
+date: 2021-11-08
+description: >-
+    Enable Bash strict mode with set -euo pipefail to catch errors early. Exit on failures,
+    treat unset variables as errors, and handle pipeline failures properly.
 tags:
     - Shell
     - Unix
     - TIL
-    - Error Handling
-description: >-
-  Enable Bash strict mode with set -euo pipefail to catch errors early. Exit on failures,
-  treat unset variables as errors, and handle pipeline failures properly.
+    - "Error Handling"
+images:
+    - "https://blob.rednafi.com/misc/use-strict-mode-while-running-bash-scripts/cover-1a84df4e0466.png"
+aliases:
+    - /misc/use_strict_mode_while_running_bash_scripts/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/use-strict-mode-while-running-bash-scripts/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo4p5y26"
 ---
 

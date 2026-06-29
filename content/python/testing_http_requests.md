@@ -1,18 +1,23 @@
 ---
-title: Shades of testing HTTP requests in Python
-date: 2024-09-02
+title: "Shades of testing HTTP requests in Python"
 slug: testing-http-requests
-atprotoPath: /python/testing-http-requests/
-aliases:
-    - /python/testing_http_requests/
+date: 2024-09-02
+description: >-
+    Test HTTP requests in Python with pytest-httpx for full mocking, respx for pattern
+    matching, or VCR.py for recording real responses.
 tags:
     - Python
     - API
     - Testing
     - TIL
-description: >-
-  Test HTTP requests in Python with pytest-httpx for full mocking, respx for pattern
-  matching, or VCR.py for recording real responses.
+images:
+    - "https://blob.rednafi.com/python/testing-http-requests/cover-36631abf7dee.png"
+aliases:
+    - /python/testing_http_requests/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/testing-http-requests/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihuhgq2e"
 ---
 

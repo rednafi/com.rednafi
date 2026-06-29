@@ -1,17 +1,22 @@
 ---
-title: Stacked middleware vs embedded delegation in Go
-date: 2025-03-06
+title: "Stacked middleware vs embedded delegation in Go"
 slug: middleware-vs-delegation
-atprotoPath: /go/middleware-vs-delegation/
-aliases:
-    - /go/middleware_vs_delegation/
+date: 2025-03-06
+description: >-
+    Compare middleware stacking with embedded delegation in Go HTTP servers. Learn when to
+    override ServeHTTP for simpler request handling.
 tags:
     - Go
     - API
     - Web
-description: >-
-  Compare middleware stacking with embedded delegation in Go HTTP servers. Learn when to
-  override ServeHTTP for simpler request handling.
+images:
+    - "https://blob.rednafi.com/go/middleware-vs-delegation/cover-e30777e9ee21.png"
+aliases:
+    - /go/middleware_vs_delegation/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/middleware-vs-delegation/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igen442u"
 ---
 

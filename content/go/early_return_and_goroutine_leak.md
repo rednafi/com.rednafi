@@ -1,17 +1,22 @@
 ---
-title: Early return and goroutine leak
-date: 2025-09-07
+title: "Early return and goroutine leak"
 slug: early-return-and-goroutine-leak
-atprotoPath: /go/early-return-and-goroutine-leak/
-aliases:
-    - /go/early_return_and_goroutine_leak/
+date: 2025-09-07
+description: >-
+    Prevent goroutine leaks caused by early returns with unbuffered channels. Learn
+    buffering, draining, errgroup patterns, and goleak testing.
 tags:
     - Go
     - Concurrency
     - Testing
-description: >-
-  Prevent goroutine leaks caused by early returns with unbuffered channels. Learn
-  buffering, draining, errgroup patterns, and goleak testing.
+images:
+    - "https://blob.rednafi.com/go/early-return-and-goroutine-leak/cover-4b010f8c7d1e.png"
+aliases:
+    - /go/early_return_and_goroutine_leak/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/early-return-and-goroutine-leak/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ietlpt2e"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Python dependency management redux
-date: 2023-06-27
+title: "Python dependency management redux"
 slug: dependency-management-redux
-atprotoPath: /python/dependency-management-redux/
-aliases:
-    - /python/dependency_management_redux/
+date: 2023-06-27
+description: >-
+    Modern Python dependency management using pip-tools, hatch, and PEP-621 for web apps and
+    libraries with reproducible builds.
 tags:
     - Python
     - DevOps
-description: >-
-  Modern Python dependency management using pip-tools, hatch, and PEP-621 for web apps
-  and libraries with reproducible builds.
+images:
+    - "https://blob.rednafi.com/python/dependency-management-redux/cover-28ce1b6b1a54.png"
+aliases:
+    - /python/dependency_management_redux/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/dependency-management-redux/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmuhe2e"
 ---
 

@@ -1,21 +1,25 @@
 ---
-title: The diminishing half-life of knowledge
-date: 2023-11-12
+title: "The diminishing half-life of knowledge"
 slug: diminishing-half-life-of-knowledge
-atprotoPath: /zephyr/diminishing-half-life-of-knowledge/
+date: 2023-11-12
+description: >-
+    How technical skills decay faster than ever in software engineering, and strategies for
+    continuous learning in a rapidly changing field.
+tags:
+    - Essay
+images:
+    - "https://blob.rednafi.com/zephyr/diminishing-half-life-of-knowledge/cover-4afa7baa8b67.png"
 aliases:
     - /zephyr/diminishing_half_life_of_knowledge/
     - /misc/diminishing_half_life_of_knowledge/
-tags:
-    - Essay
-description: >-
-  How technical skills decay faster than ever in software engineering, and strategies for
-  continuous learning in a rapidly changing field.
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=38551512
-    - label: Reddit
-      url: https://www.reddit.com/r/programming/comments/19bv4xd/
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=38551512"
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/programming/comments/19bv4xd/"
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/diminishing-half-life-of-knowledge/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqb3n2o"
 ---
 

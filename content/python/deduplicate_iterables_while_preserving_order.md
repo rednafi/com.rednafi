@@ -1,15 +1,20 @@
 ---
-title: Deduplicating iterables while preserving order in Python
-date: 2023-05-01
+title: "Deduplicating iterables while preserving order in Python"
 slug: deduplicate-iterables-while-preserving-order
-atprotoPath: /python/deduplicate-iterables-while-preserving-order/
-aliases:
-    - /python/deduplicate_iterables_while_preserving_order/
+date: 2023-05-01
+description: >-
+    Master techniques to remove duplicates from Python iterables while maintaining original
+    order using sets, OrderedDict, and nested deduplication.
 tags:
     - Python
-description: >-
-  Master techniques to remove duplicates from Python iterables while maintaining original
-  order using sets, OrderedDict, and nested deduplication.
+images:
+    - "https://blob.rednafi.com/python/deduplicate-iterables-while-preserving-order/cover-656ab70eb90d.png"
+aliases:
+    - /python/deduplicate_iterables_while_preserving_order/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/deduplicate-iterables-while-preserving-order/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivi4rx2u"
 ---
 

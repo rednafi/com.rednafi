@@ -1,17 +1,22 @@
 ---
-title: Configuring options in Go
-date: 2023-09-05
+title: "Configuring options in Go"
 slug: configure-options
-atprotoPath: /go/configure-options/
-aliases:
-    - /go/configure_options/
+date: 2023-09-05
+description: >-
+    Compare three Go option patterns: exposed structs, option constructors, and functional
+    options. Learn when to use each for clean APIs.
 tags:
     - Go
     - API
-    - Design Patterns
-description: >-
-  Compare three Go option patterns: exposed structs, option constructors, and functional
-  options. Learn when to use each for clean APIs.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/configure-options/cover-59fa12dfdb3e.png"
+aliases:
+    - /go/configure_options/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/configure-options/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir352c2y"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Check whether an integer is a power of two in Python
-date: 2022-01-21
+title: "Check whether an integer is a power of two in Python"
 slug: check-is-a-power-of-two
-atprotoPath: /python/check-is-a-power-of-two/
-aliases:
-    - /python/check_is_a_power_of_two/
+date: 2022-01-21
+description: >-
+    Use Python's bit_count() method to elegantly check if an integer is a power of two by
+    counting on-bits in binary representation.
 tags:
     - Python
     - TIL
-description: >-
-  Use Python's bit_count() method to elegantly check if an integer is a power of two by
-  counting on-bits in binary representation.
+images:
+    - "https://blob.rednafi.com/python/check-is-a-power-of-two/cover-04916a926733.png"
+aliases:
+    - /python/check_is_a_power_of_two/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/check-is-a-power-of-two/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn5i7t2o"
 ---
 

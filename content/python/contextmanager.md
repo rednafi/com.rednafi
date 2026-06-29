@@ -1,15 +1,20 @@
 ---
-title: The curious case of Python's context manager
+title: "The curious case of Python's context manager"
+slug: contextmanager
 date: 2020-03-26
+description: >-
+    Deep dive into Python context managers. Learn to write custom managers with
+    __enter__/__exit__, use contextlib decorators, and manage resources elegantly.
 tags:
     - Python
-slug: contextmanager
-atprotoPath: /python/contextmanager/
+images:
+    - "https://blob.rednafi.com/python/contextmanager/cover-aa4af6d88875.png"
 aliases:
     - /python/contextmanager/
-description: >-
-  Deep dive into Python context managers. Learn to write custom managers with
-  __enter__/__exit__, use contextlib decorators, and manage resources elegantly.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/contextmanager/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqezom2a"
 ---
 

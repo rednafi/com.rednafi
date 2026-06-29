@@ -1,15 +1,21 @@
 ---
-title: Avoiding collisions in Go context keys
-date: 2025-10-22
+title: "Avoiding collisions in Go context keys"
 slug: avoid-context-key-collisions
-atprotoPath: /go/avoid-context-key-collisions/
+date: 2025-10-22
+description: >-
+    Master Go context keys with custom types, avoid collisions using empty structs, and
+    learn accessor patterns for safe request-scoped values.
 tags:
     - Go
     - API
     - Performance
-description: >-
-  Master Go context keys with custom types, avoid collisions using empty structs, and
-  learn accessor patterns for safe request-scoped values.
+images:
+    - "https://blob.rednafi.com/go/avoid-context-key-collisions/cover-7ce9b218a891.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/avoid-context-key-collisions/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieekd726"
 ---
 

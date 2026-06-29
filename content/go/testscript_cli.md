@@ -1,16 +1,22 @@
 ---
-title: Testing Go CLIs with testscript
-date: 2026-05-18
+title: "Testing Go CLIs with testscript"
 slug: testscript-cli
-atprotoPath: /go/testscript-cli/
+date: 2026-05-18
+description: >-
+    How cmd/go's script tests led me to testscript, and how to use it for CLI tests that
+    exercise argv, stdout, stderr, exit codes, and scratch files.
 tags:
     - Go
     - Testing
     - CLI
     - Tooling
-description: >-
-    How cmd/go's script tests led me to testscript, and how to use it for CLI
-    tests that exercise argv, stdout, stderr, exit codes, and scratch files.
+images:
+    - "https://blob.rednafi.com/go/testscript-cli/cover-e81843ff6399.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/testscript-cli/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapyv72e"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Anemic stack traces in Go
-date: 2024-02-10
+title: "Anemic stack traces in Go"
 slug: anemic-stack-traces
-atprotoPath: /go/anemic-stack-traces/
-aliases:
-    - /go/anemic_stack_traces/
+date: 2024-02-10
+description: >-
+    Learn how to build custom error types in Go to create stack traces without runtime
+    overhead, inspired by Rob Pike's Upspin error handling.
 tags:
     - Go
-    - Error Handling
+    - "Error Handling"
     - Logging
-description: >-
-  Learn how to build custom error types in Go to create stack traces without runtime
-  overhead, inspired by Rob Pike's Upspin error handling.
+images:
+    - "https://blob.rednafi.com/go/anemic-stack-traces/cover-463ec4c8e74d.png"
+aliases:
+    - /go/anemic_stack_traces/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/anemic-stack-traces/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikzjsy2a"
 ---
 

@@ -1,14 +1,20 @@
 ---
 title: "Accepted proposal: a goroutine leak profile in the Go standard library"
-date: 2026-06-18
 slug: go-goroutine-leak-profile
-atprotoPath: /shards/2026/06/go-goroutine-leak-profile/
+date: 2026-06-18
+description: >-
+    Notes on Go's accepted goroutine leak profile and how it reuses the GC to find them.
 tags:
     - Go
     - Concurrency
     - Profiling
-description: >-
-  Notes on Go's accepted goroutine leak profile and how it reuses the GC to find them.
+images:
+    - "https://blob.rednafi.com/shards/2026/06/go-goroutine-leak-profile/cover-a9bb2d7f6e5f.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/06/go-goroutine-leak-profile/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e"
 ---
 

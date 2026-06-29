@@ -1,18 +1,23 @@
 ---
-title: HTTP requests via /dev/tcp
-date: 2024-08-08
+title: "HTTP requests via /dev/tcp"
 slug: http-requests-via-dev-tcp
-atprotoPath: /misc/http-requests-via-dev-tcp/
-aliases:
-    - /misc/http_requests_via_dev_tcp/
+date: 2024-08-08
+description: >-
+    Make raw HTTP requests with Bash's /dev/tcp file descriptor. Build health check scripts
+    without curl or wget using TCP socket connections.
 tags:
     - TIL
     - Shell
     - Unix
     - Networking
-description: >-
-  Make raw HTTP requests with Bash's /dev/tcp file descriptor. Build health check scripts
-  without curl or wget using TCP socket connections.
+images:
+    - "https://blob.rednafi.com/misc/http-requests-via-dev-tcp/cover-f67ed5610ff2.png"
+aliases:
+    - /misc/http_requests_via_dev_tcp/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/http-requests-via-dev-tcp/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iimyid2e"
 ---
 

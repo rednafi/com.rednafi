@@ -1,6 +1,6 @@
 @layer tokens {
-  /* Vercel Geist palette — exact token values (see scripts/geistcolors); don't
-     hand-pick substitutes. A few grays are nudged darker for AA contrast. */
+  /* Vercel Geist palette — don't hand-pick substitutes. A few grays are nudged
+     darker for AA contrast. */
   :root {
     color-scheme: light;
     --bg: #fafafa;

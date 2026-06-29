@@ -1,17 +1,23 @@
 ---
-title: Reading your own writes with WAIT FOR LSN in Postgres 19
-date: 2026-06-13
+title: "Reading your own writes with WAIT FOR LSN in Postgres 19"
 slug: wait-for-lsn
-atprotoPath: /system/wait-for-lsn/
+date: 2026-06-13
+description: >-
+    PostgreSQL 19's new WAIT FOR LSN command lets a replica block until it has replayed your
+    write. The read-after-write problem it solves, the workarounds it replaces, and what the
+    timeout, status, and mode options are actually for.
 tags:
     - Database
     - SQL
-    - Distributed Systems
+    - "Distributed Systems"
     - Postgres
-description: >-
-  PostgreSQL 19's new WAIT FOR LSN command lets a replica block until it has replayed
-  your write. The read-after-write problem it solves, the workarounds it replaces, and what
-  the timeout, status, and mode options are actually for.
+images:
+    - "https://blob.rednafi.com/system/wait-for-lsn/cover-5739623353f3.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /system/wait-for-lsn/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o"
 ---
 

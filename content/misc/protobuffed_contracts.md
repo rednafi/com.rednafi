@@ -1,17 +1,22 @@
 ---
-title: Protobuffed contracts
-date: 2024-05-10
+title: "Protobuffed contracts"
 slug: protobuffed-contracts
-atprotoPath: /misc/protobuffed-contracts/
-aliases:
-    - /misc/protobuffed_contracts/
+date: 2024-05-10
+description: >-
+    Define service contracts with Protocol Buffers for non-gRPC systems. Generate
+    serializers, maintain self-documented APIs, and ensure cross-language compatibility.
 tags:
     - API
     - Networking
-    - Distributed Systems
-description: >-
-  Define service contracts with Protocol Buffers for non-gRPC systems. Generate
-  serializers, maintain self-documented APIs, and ensure cross-language compatibility.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/misc/protobuffed-contracts/cover-fd17153669f5.png"
+aliases:
+    - /misc/protobuffed_contracts/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/protobuffed-contracts/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijghwc2p"
 ---
 

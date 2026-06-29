@@ -1,16 +1,21 @@
 ---
-title: Taming conditionals with bitmasks
-date: 2023-07-29
+title: "Taming conditionals with bitmasks"
 slug: tame-conditionals-with-bitmasks
-atprotoPath: /python/tame-conditionals-with-bitmasks/
-aliases:
-    - /python/tame_conditionals_with_bitmasks/
+date: 2023-07-29
+description: >-
+    Replace complex nested conditionals with Python's enum.Flag and bitmasks for cleaner,
+    more maintainable logic using bitwise operations.
 tags:
     - Python
     - TIL
-description: >-
-  Replace complex nested conditionals with Python's enum.Flag and bitmasks for cleaner,
-  more maintainable logic using bitwise operations.
+images:
+    - "https://blob.rednafi.com/python/tame-conditionals-with-bitmasks/cover-aac394197408.png"
+aliases:
+    - /python/tame_conditionals_with_bitmasks/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/tame-conditionals-with-bitmasks/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6say26"
 ---
 

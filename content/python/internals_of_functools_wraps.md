@@ -1,15 +1,20 @@
 ---
-title: Peeking into the internals of Python's 'functools.wraps' decorator
-date: 2022-02-14
+title: "Peeking into the internals of Python's 'functools.wraps' decorator"
 slug: internals-of-functools-wraps
-atprotoPath: /python/internals-of-functools-wraps/
-aliases:
-    - /python/internals_of_functools_wraps/
+date: 2022-02-14
+description: >-
+    Explore how functools.wraps preserves function identity by copying metadata from wrapped
+    functions using update_wrapper and partial application.
 tags:
     - Python
-description: >-
-  Explore how functools.wraps preserves function identity by copying metadata from
-  wrapped functions using update_wrapper and partial application.
+images:
+    - "https://blob.rednafi.com/python/internals-of-functools-wraps/cover-722dccbf915b.png"
+aliases:
+    - /python/internals_of_functools_wraps/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/internals-of-functools-wraps/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmg27e2a"
 ---
 

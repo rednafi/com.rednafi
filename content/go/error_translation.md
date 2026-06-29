@@ -1,14 +1,20 @@
 ---
-title: Error translation in Go services
-date: 2026-04-12
+title: "Error translation in Go services"
 slug: error-translation
-atprotoPath: /go/error-translation/
+date: 2026-04-12
+description: >-
+    Translating errors at layer boundaries so storage details don't leak into the handler
+    or, worse, into client responses.
 tags:
     - Go
-    - Error Handling
-description: >-
-    Translating errors at layer boundaries so storage details don't leak
-    into the handler or, worse, into client responses.
+    - "Error Handling"
+images:
+    - "https://blob.rednafi.com/go/error-translation/cover-e1704d70c420.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/error-translation/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iate732j"
 ---
 

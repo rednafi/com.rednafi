@@ -1,16 +1,21 @@
 ---
-title: Tap compare testing for service migration
-date: 2025-12-13
+title: "Tap compare testing for service migration"
 slug: tap-compare-testing
-atprotoPath: /system/tap-compare-testing/
+date: 2025-12-13
+description: >-
+    Master shadow testing for large-scale system migrations. Learn to safely rewrite
+    services by comparing outputs between old and new implementations.
 tags:
-    - Distributed Systems
+    - "Distributed Systems"
     - Go
     - Testing
+images:
+    - "https://blob.rednafi.com/system/tap-compare-testing/cover-7adc4c0553d1.png"
+aliases: []
+discussions: []
 mermaid: true
-description: >-
-  Master shadow testing for large-scale system migrations. Learn to safely rewrite
-  services by comparing outputs between old and new implementations.
+type_label: ""
+atprotoPath: /system/tap-compare-testing/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ici5pd2u"
 ---
 

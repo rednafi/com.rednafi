@@ -1,21 +1,25 @@
 ---
-title: I kind of like rebasing
-date: 2024-06-18
+title: "I kind of like rebasing"
 slug: on-rebasing
-atprotoPath: /misc/on-rebasing/
-aliases:
-    - /misc/on_rebasing/
+date: 2024-06-18
+description: >-
+    Master git rebase for cleaner commit history. Learn interactive rebasing, squashing
+    commits, and rebasing feature branches onto main with practical examples.
 tags:
     - git
     - Shell
     - Unix
     - GitHub
-description: >-
-  Master git rebase for cleaner commit history. Learn interactive rebasing, squashing
-  commits, and rebasing feature branches onto main with practical examples.
+images:
+    - "https://blob.rednafi.com/misc/on-rebasing/cover-d499abc3a497.png"
+aliases:
+    - /misc/on_rebasing/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=40742628
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=40742628"
+mermaid: false
+type_label: ""
+atprotoPath: /misc/on-rebasing/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijg2ca26"
 ---
 

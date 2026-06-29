@@ -1,17 +1,22 @@
 ---
-title: Annotating args and kwargs in Python
-date: 2024-01-08
+title: "Annotating args and kwargs in Python"
 slug: annotate-args-and-kwargs
-atprotoPath: /python/annotate-args-and-kwargs/
-aliases:
-    - /python/annotate_args_and_kwargs/
+date: 2024-01-08
+description: >-
+    Properly annotate Python *args and **kwargs with heterogeneous types using Unpack,
+    TypedDict, and modern type hints from PEP-692.
 tags:
     - Python
     - Typing
     - TIL
-description: >-
-  Properly annotate Python *args and **kwargs with heterogeneous types using Unpack,
-  TypedDict, and modern type hints from PEP-692.
+images:
+    - "https://blob.rednafi.com/python/annotate-args-and-kwargs/cover-aa8ea1a9db18.png"
+aliases:
+    - /python/annotate_args_and_kwargs/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/annotate-args-and-kwargs/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7hy32j"
 ---
 

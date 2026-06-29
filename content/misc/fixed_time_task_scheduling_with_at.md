@@ -1,18 +1,23 @@
 ---
-title: Fixed-time job scheduling with UNIX 'at' command
-date: 2023-05-14
+title: "Fixed-time job scheduling with UNIX 'at' command"
 slug: fixed-time-task-scheduling-with-at
-atprotoPath: /misc/fixed-time-task-scheduling-with-at/
-aliases:
-    - /misc/fixed_time_task_scheduling_with_at/
+date: 2023-05-14
+description: >-
+    Schedule one-time commands with UNIX at command. Learn job queuing, remote scheduling
+    via HTTP API, and managing atd/atrun daemons.
 tags:
     - Shell
     - Unix
     - JavaScript
     - Networking
-description: >-
-  Schedule one-time commands with UNIX at command. Learn job queuing, remote scheduling
-  via HTTP API, and managing atd/atrun daemons.
+images:
+    - "https://blob.rednafi.com/misc/fixed-time-task-scheduling-with-at/cover-711096928a8c.png"
+aliases:
+    - /misc/fixed_time_task_scheduling_with_at/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/fixed-time-task-scheduling-with-at/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2sxk2p"
 ---
 
@@ -391,9 +396,9 @@ curl -X POST -H "Authorization: Bearer some-token" \
     https://linuxize.com/post/at-command-in-linux/
 
 [image_1]:
-    https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_1.png
+    https://blob.rednafi.com/misc/fixed-time-task-scheduling-with-at/image-01-708a67208e16.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/fixed_time_task_scheduling_with_at/img_2.png
+    https://blob.rednafi.com/misc/fixed-time-task-scheduling-with-at/image-02-683eb1bb6900.png
 
 <!-- prettier-ignore-end -->

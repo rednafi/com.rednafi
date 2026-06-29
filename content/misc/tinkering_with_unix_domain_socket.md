@@ -1,18 +1,23 @@
 ---
-title: Tinkering with Unix domain sockets
-date: 2023-03-11
+title: "Tinkering with Unix domain sockets"
 slug: tinkering-with-unix-domain-socket
-atprotoPath: /misc/tinkering-with-unix-domain-socket/
-aliases:
-    - /misc/tinkering_with_unix_domain_socket/
+date: 2023-03-11
+description: >-
+    Build Unix domain socket servers and clients with Python and socat. Access Docker API
+    via UDS, create HTTP servers, and optimize inter-process communication.
 tags:
     - Python
     - Shell
     - Unix
     - Networking
-description: >-
-  Build Unix domain socket servers and clients with Python and socat. Access Docker API
-  via UDS, create HTTP servers, and optimize inter-process communication.
+images:
+    - "https://blob.rednafi.com/misc/tinkering-with-unix-domain-socket/cover-e25937eea0f1.png"
+aliases:
+    - /misc/tinkering_with_unix_domain_socket/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/tinkering-with-unix-domain-socket/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6izsbqk2e"
 ---
 
@@ -397,9 +402,9 @@ the HTML page:
     https://simonwillison.net/2021/Jul/13/unix-domain-sockets/
 
 [image_1]:
-    https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_1.png
+    https://blob.rednafi.com/misc/tinkering-with-unix-domain-socket/image-01-898930bd730e.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/tinkering_with_unix_domain_socket/img_2.png
+    https://blob.rednafi.com/misc/tinkering-with-unix-domain-socket/image-02-38106d8f21e7.png
 
 <!-- prettier-ignore-end -->

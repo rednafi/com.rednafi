@@ -1,15 +1,20 @@
 ---
-title: Reduce boilerplate code with Python's dataclasses
+title: "Reduce boilerplate code with Python's dataclasses"
+slug: dataclasses
 date: 2020-03-12
+description: >-
+    Master Python dataclasses to eliminate boilerplate code. Learn ordering, immutability,
+    hashing, default values, and post-init processing.
 tags:
     - Python
-slug: dataclasses
-atprotoPath: /python/dataclasses/
+images:
+    - "https://blob.rednafi.com/python/dataclasses/cover-aa39a1ac1a77.png"
 aliases:
     - /python/dataclasses/
-description: >-
-  Master Python dataclasses to eliminate boilerplate code. Learn ordering, immutability,
-  hashing, default values, and post-init processing.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/dataclasses/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqfibt2s"
 ---
 

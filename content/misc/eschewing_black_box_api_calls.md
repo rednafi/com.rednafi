@@ -1,17 +1,22 @@
 ---
-title: Eschewing black box API calls
-date: 2024-01-15
+title: "Eschewing black box API calls"
 slug: eschewing-black-box-api-calls
-atprotoPath: /misc/eschewing-black-box-api-calls/
-aliases:
-    - /misc/eschewing_black_box_api_calls/
+date: 2024-01-15
+description: >-
+    Why you should define API response structures explicitly. Compare approaches in Python,
+    JavaScript, and Go with Pydantic, Zod, and structs.
 tags:
     - Python
     - JavaScript
     - Go
-description: >-
-  Why you should define API response structures explicitly. Compare approaches in Python,
-  JavaScript, and Go with Pydantic, Zod, and structs.
+images:
+    - "https://blob.rednafi.com/misc/eschewing-black-box-api-calls/cover-ecb63b248452.png"
+aliases:
+    - /misc/eschewing_black_box_api_calls/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/eschewing-black-box-api-calls/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in4vxd2e"
 ---
 

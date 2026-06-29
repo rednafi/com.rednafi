@@ -1,14 +1,20 @@
 ---
-title: In praise of the etcd codebase
-date: 2026-03-14
+title: "In praise of the etcd codebase"
 slug: etcd-codebase
-atprotoPath: /shards/2026/03/etcd-codebase/
+date: 2026-03-14
+description: >-
+    Why the etcd codebase is my go-to reference for building gRPC services in Go.
 tags:
     - Go
     - gRPC
-    - Distributed Systems
-description: >-
-  Why the etcd codebase is my go-to reference for building gRPC services in Go.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/shards/2026/03/etcd-codebase/cover-c013a00940ec.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/etcd-codebase/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iceuad2u"
 ---
 

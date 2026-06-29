@@ -1,15 +1,20 @@
 ---
-title: Generic functions with Python's singledispatch
+title: "Generic functions with Python's singledispatch"
+slug: singledispatch
 date: 2020-04-05
+description: >-
+    Replace complex if-elif chains with functools.singledispatch for type-based function
+    dispatch and cleaner polymorphic behavior in Python.
 tags:
     - Python
-slug: singledispatch
-atprotoPath: /python/singledispatch/
+images:
+    - "https://blob.rednafi.com/python/singledispatch/cover-4e2366f98341.png"
 aliases:
     - /python/singledispatch/
-description: >-
-  Replace complex if-elif chains with functools.singledispatch for type-based function
-  dispatch and cleaner polymorphic behavior in Python.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/singledispatch/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqeiza26"
 ---
 

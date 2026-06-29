@@ -1,17 +1,22 @@
 ---
-title: Limit concurrency with semaphore in Python asyncio
-date: 2022-02-10
+title: "Limit concurrency with semaphore in Python asyncio"
 slug: limit-concurrency-with-semaphore
-atprotoPath: /python/limit-concurrency-with-semaphore/
-aliases:
-    - /python/limit_concurrency_with_semaphore/
+date: 2022-02-10
+description: >-
+    Control concurrent async requests with Python asyncio.Semaphore to respect rate limits
+    and prevent overwhelming APIs or services.
 tags:
     - Python
     - Async
     - Concurrency
-description: >-
-  Control concurrent async requests with Python asyncio.Semaphore to respect rate limits
-  and prevent overwhelming APIs or services.
+images:
+    - "https://blob.rednafi.com/python/limit-concurrency-with-semaphore/cover-92a699f860e2.png"
+aliases:
+    - /python/limit_concurrency_with_semaphore/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/limit-concurrency-with-semaphore/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmqqyl2o"
 ---
 

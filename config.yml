@@ -58,7 +58,7 @@ params:
       - Redowan
     # Self-hosted headshot on R2 — the Person entity's face, reused as the
     # visible /about photo (single source of truth for the portrait).
-    image: "https://blob.rednafi.com/static/images/about/profile-2026.jpg"
+    image: "https://blob.rednafi.com/about/profile-2026-262bdaae0852.jpg"
     worksFor:
       name: Wolt
       url: "https://wolt.com"
@@ -86,9 +86,9 @@ params:
       - "Redowan Delowar's Blog"
       - "rednafi"
   description: >-
-    Software engineering blog by Redowan Delowar covering platform
-    engineering, backend systems, distributed systems, reliability,
-    databases, Go, Python, TypeScript, and pragmatic engineering practice.
+    Software engineering blog by Redowan Delowar covering platform engineering, backend
+    systems, distributed systems, reliability, databases, Go, Python, TypeScript, and
+    pragmatic engineering practice.
 
   DateFormat: "January 2, 2006"
 
@@ -103,7 +103,7 @@ params:
 
   notesSection: "shards"
 
-  images: ["https://blob.rednafi.com/static/images/home/cover-84b7bd64087e.png"]
+  images: ["https://blob.rednafi.com/home/cover.png"]
 
   assets:
     favicon_svg: "/favicon.svg"

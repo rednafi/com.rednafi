@@ -1,17 +1,22 @@
 ---
-title: Parametrized fixtures in pytest
-date: 2022-03-10
+title: "Parametrized fixtures in pytest"
 slug: parametrized-fixtures-in-pytest
-atprotoPath: /python/parametrized-fixtures-in-pytest/
-aliases:
-    - /python/parametrized_fixtures_in_pytest/
+date: 2022-03-10
+description: >-
+    Create dynamic pytest fixtures with @pytest.fixture(params) to run tests with multiple
+    configurations and parameter combinations.
 tags:
     - Python
     - Testing
     - Pytest
-description: >-
-  Create dynamic pytest fixtures with @pytest.fixture(params) to run tests with multiple
-  configurations and parameter combinations.
+images:
+    - "https://blob.rednafi.com/python/parametrized-fixtures-in-pytest/cover-63b7fa998731.png"
+aliases:
+    - /python/parametrized_fixtures_in_pytest/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/parametrized-fixtures-in-pytest/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiyjbl2s"
 ---
 

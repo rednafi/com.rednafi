@@ -1,18 +1,23 @@
 ---
-title: Implementing a simple traceroute clone in Python
-date: 2023-06-01
+title: "Implementing a simple traceroute clone in Python"
 slug: implement-traceroute
-atprotoPath: /python/implement-traceroute/
+date: 2023-06-01
+description: >-
+    Build a traceroute clone in Python using UDP and ICMP sockets to trace network packet
+    routes and measure hop latency with TTL manipulation.
 tags:
     - Python
     - Networking
     - Shell
     - Unix
+images:
+    - "https://blob.rednafi.com/python/implement-traceroute/cover-cca801e0a825.png"
 aliases:
     - /python/implement_traceroute/
-description: >-
-  Build a traceroute clone in Python using UDP and ICMP sockets to trace network packet
-  routes and measure hop latency with TTL manipulation.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/implement-traceroute/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6is3zrs2y"
 ---
 
@@ -280,6 +285,6 @@ Hop  IP Address          Hostname                                          Time
     http://www.sfu.ca/~ljilja/cnl/presentations/arman/nafips2001/sld006.htm
 
 [image_1]:
-    https://blob.rednafi.com/static/images/implement_traceroute/img_1.png
+    https://blob.rednafi.com/python/implement-traceroute/image-01-2c61ddc43590.gif
 
 <!-- prettier-ignore-end -->

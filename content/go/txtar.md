@@ -1,16 +1,22 @@
 ---
-title: A tour of txtar
-date: 2026-05-10
+title: "A tour of txtar"
 slug: txtar
-atprotoPath: /go/txtar/
+date: 2026-05-10
+description: >-
+    txtar is a tiny plain-text archive format Russ Cox introduced in 2018 for multi-file
+    test fixtures. The Go Playground, cmd/go's script tests, gopls's marker tests, and
+    rsc.io/rf all reach for it.
 tags:
     - Go
     - Testing
     - Tooling
-description: >-
-    txtar is a tiny plain-text archive format Russ Cox introduced in 2018 for
-    multi-file test fixtures. The Go Playground, cmd/go's script tests, gopls's
-    marker tests, and rsc.io/rf all reach for it.
+images:
+    - "https://blob.rednafi.com/go/txtar/cover-acf07e50a5e4.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/txtar/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaqkhp2e"
 ---
 

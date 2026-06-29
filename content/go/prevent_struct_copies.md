@@ -1,20 +1,24 @@
 ---
-title: Preventing accidental struct copies in Go
-date: 2025-04-21
+title: "Preventing accidental struct copies in Go"
 slug: prevent-struct-copies
-atprotoPath: /go/prevent-struct-copies/
-aliases:
-    - /go/prevent_struct_copies/
+date: 2025-04-21
+description: >-
+    Prevent dangerous struct copies with noCopy sentinel and go vet's copylock checker.
+    Protect mutexes and sync primitives from value copies.
 tags:
     - Go
     - TIL
     - Concurrency
-description: >-
-  Prevent dangerous struct copies with noCopy sentinel and go vet's copylock checker.
-  Protect mutexes and sync primitives from value copies.
+images:
+    - "https://blob.rednafi.com/go/prevent-struct-copies/cover-bae33e7cd134.png"
+aliases:
+    - /go/prevent_struct_copies/
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/golang/comments/1k5aqkc/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/golang/comments/1k5aqkc/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/prevent-struct-copies/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpbkx2e"
 ---
 

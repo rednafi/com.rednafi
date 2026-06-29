@@ -1,17 +1,22 @@
 ---
-title: Dummy load balancer in a single Go script
-date: 2023-08-30
+title: "Dummy load balancer in a single Go script"
 slug: dummy-load-balancer
-atprotoPath: /go/dummy-load-balancer/
-aliases:
-    - /go/dummy_load_balancer/
+date: 2023-08-30
+description: >-
+    Build a working round-robin load balancer in Go with goroutines and the standard
+    library. No dependencies needed for this educational prototype.
 tags:
     - Go
     - TIL
     - Networking
-description: >-
-  Build a working round-robin load balancer in Go with goroutines and the standard
-  library. No dependencies needed for this educational prototype.
+images:
+    - "https://blob.rednafi.com/go/dummy-load-balancer/cover-bdaff49133eb.png"
+aliases:
+    - /go/dummy_load_balancer/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/dummy-load-balancer/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir3omu2u"
 ---
 

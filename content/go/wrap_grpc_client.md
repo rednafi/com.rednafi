@@ -1,16 +1,22 @@
 ---
-title: Wrapping a gRPC client in Go
-date: 2026-03-15
+title: "Wrapping a gRPC client in Go"
 slug: wrap-grpc-client
-atprotoPath: /go/wrap-grpc-client/
+date: 2026-03-15
+description: >-
+    How to wrap a generated gRPC client behind a clean Go API so users never have to touch
+    protobuf types or connection management directly.
 tags:
     - Go
     - gRPC
     - API
-    - Distributed Systems
-description: >-
-    How to wrap a generated gRPC client behind a clean Go API so users never
-    have to touch protobuf types or connection management directly.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/go/wrap-grpc-client/cover-4b87ad268e1a.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/wrap-grpc-client/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icegj42o"
 ---
 

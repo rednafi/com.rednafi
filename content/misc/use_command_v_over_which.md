@@ -1,18 +1,23 @@
 ---
-title: Use 'command -v' over 'which' to find a program's executable
-date: 2021-11-16
+title: "Use 'command -v' over 'which' to find a program's executable"
 slug: use-command-v-over-which
-atprotoPath: /misc/use-command-v-over-which/
-aliases:
-    - /misc/use_command_v_over_which/
+date: 2021-11-16
+description: >-
+    Replace which with command -v for POSIX-compliant executable lookup. Learn why command
+    -v is the portable alternative for finding program paths.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Replace which with command -v for POSIX-compliant executable lookup. Learn why command
-  -v is the portable alternative for finding program paths.
+images:
+    - "https://blob.rednafi.com/misc/use-command-v-over-which/cover-4e06efeb2402.png"
+aliases:
+    - /misc/use_command_v_over_which/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/use-command-v-over-which/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3c6u2b"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Go 1.24's "tool" directive
-date: 2025-04-13
+title: "Go 1.24's \"tool\" directive"
 slug: tool-directive
-atprotoPath: /go/tool-directive/
-aliases:
-    - /go/tool_directive/
+date: 2025-04-13
+description: >-
+    Pin tool versions in Go 1.24 with the new 'tool' directive. Replace tools.go pattern
+    with native go.mod support for project tooling.
 tags:
     - Go
     - TIL
     - DevOps
-description: >-
-  Pin tool versions in Go 1.24 with the new 'tool' directive. Replace tools.go pattern
-  with native go.mod support for project tooling.
+images:
+    - "https://blob.rednafi.com/go/tool-directive/cover-187c4a9f0041.png"
+aliases:
+    - /go/tool_directive/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/tool-directive/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpp4x2b"
 ---
 

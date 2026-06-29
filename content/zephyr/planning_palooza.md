@@ -1,15 +1,20 @@
 ---
-title: Planning palooza
-date: 2024-01-01
+title: "Planning palooza"
 slug: planning-palooza
-atprotoPath: /zephyr/planning-palooza/
-aliases:
-    - /zephyr/planning_palooza/
+date: 2024-01-01
+description: >-
+    Why scattered planning documents across RFCs, ADRs, and multiple tools hinder
+    productivity compared to centralized documentation.
 tags:
     - Essay
-description: >-
-  Why scattered planning documents across RFCs, ADRs, and multiple tools hinder
-  productivity compared to centralized documentation.
+images:
+    - "https://blob.rednafi.com/zephyr/planning-palooza/cover-c497cc99e4e4.png"
+aliases:
+    - /zephyr/planning_palooza/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/planning-palooza/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inar2e2u"
 ---
 

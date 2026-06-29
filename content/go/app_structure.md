@@ -1,15 +1,20 @@
 ---
-title: Let the domain guide your application structure
-date: 2025-09-20
+title: "Let the domain guide your application structure"
 slug: app-structure
-atprotoPath: /go/app-structure/
-aliases:
-    - /go/app_structure/
+date: 2025-09-20
+description: >-
+    Organize Go apps by domain, not technology. Learn why models/controllers structure hurts
+    and how bounded contexts create better separation.
 tags:
     - Go
-description: >-
-  Organize Go apps by domain, not technology. Learn why models/controllers structure
-  hurts and how bounded contexts create better separation.
+images:
+    - "https://blob.rednafi.com/go/app-structure/cover-8b8f0cc339e5.png"
+aliases:
+    - /go/app_structure/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/app-structure/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iehuqs2y"
 ---
 

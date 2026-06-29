@@ -1,17 +1,22 @@
 ---
-title: Returning values from a shell function
-date: 2022-09-25
+title: "Returning values from a shell function"
 slug: return-values-from-a-shell-function
-atprotoPath: /misc/return-values-from-a-shell-function/
-aliases:
-    - /misc/return_values_from_a_shell_function/
+date: 2022-09-25
+description: >-
+    Understand how return values work in Bash functions. Learn exit codes, status evaluation
+    patterns, and proper boolean returns with true/false commands.
 tags:
     - Shell
     - Unix
     - TIL
-description: >-
-  Understand how return values work in Bash functions. Learn exit codes, status
-  evaluation patterns, and proper boolean returns with true/false commands.
+images:
+    - "https://blob.rednafi.com/misc/return-values-from-a-shell-function/cover-ca895f671013.png"
+aliases:
+    - /misc/return_values_from_a_shell_function/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/return-values-from-a-shell-function/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jarl6x2u"
 ---
 

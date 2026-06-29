@@ -1,18 +1,23 @@
 ---
-title: Taming parametrize with pytest.param
-date: 2024-08-28
+title: "Taming parametrize with pytest.param"
 slug: pytest-param
-atprotoPath: /python/pytest-param/
-aliases:
-    - /python/pytest_param/
+date: 2024-08-28
+description: >-
+    Write readable parametrized tests with pytest.param for better test names, conditional
+    skips, custom IDs, and structured test data.
 tags:
     - Python
     - Testing
     - TIL
     - Pytest
-description: >-
-  Write readable parametrized tests with pytest.param for better test names, conditional
-  skips, custom IDs, and structured test data.
+images:
+    - "https://blob.rednafi.com/python/pytest-param/cover-f087e3775200.png"
+aliases:
+    - /python/pytest_param/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/pytest-param/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iik3pi2b"
 ---
 

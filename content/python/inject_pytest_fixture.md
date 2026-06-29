@@ -1,18 +1,23 @@
 ---
-title: Injecting Pytest fixtures without cluttering test signatures
-date: 2024-12-02
+title: "Injecting Pytest fixtures without cluttering test signatures"
 slug: inject-pytest-fixture
-atprotoPath: /python/inject-pytest-fixture/
-aliases:
-    - /python/inject_pytest_fixture/
+date: 2024-12-02
+description: >-
+    Clean up pytest test signatures using @pytest.mark.usefixtures to inject implicit
+    fixtures without autouse or unused parameter warnings.
 tags:
     - Python
     - TIL
     - Pytest
     - Testing
-description: >-
-  Clean up pytest test signatures using @pytest.mark.usefixtures to inject implicit
-  fixtures without autouse or unused parameter warnings.
+images:
+    - "https://blob.rednafi.com/python/inject-pytest-fixture/cover-d5f9f6e8bec1.png"
+aliases:
+    - /python/inject_pytest_fixture/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/inject-pytest-fixture/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih47wn2o"
 ---
 

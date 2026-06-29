@@ -1,17 +1,22 @@
 ---
-title: Disallow large file download from URLs in Python
-date: 2022-03-23
+title: "Disallow large file download from URLs in Python"
 slug: disallow-large-file-download
-atprotoPath: /python/disallow-large-file-download/
-aliases:
-    - /python/disallow_large_file_download/
+date: 2022-03-23
+description: >-
+    Prevent excessive file downloads in Python by streaming with HTTPX and limiting file
+    size with chunk-based validation and memory-safe processing.
 tags:
     - Python
     - API
     - Security
-description: >-
-  Prevent excessive file downloads in Python by streaming with HTTPX and limiting file
-  size with chunk-based validation and memory-safe processing.
+images:
+    - "https://blob.rednafi.com/python/disallow-large-file-download/cover-f37f024bc51a.png"
+aliases:
+    - /python/disallow_large_file_download/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/disallow-large-file-download/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ji7ubl2o"
 ---
 

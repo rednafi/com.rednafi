@@ -1,18 +1,23 @@
 ---
-title: Auditing commit messages on GitHub
-date: 2022-10-06
+title: "Auditing commit messages on GitHub"
 slug: audit-commit-messages-on-github
-atprotoPath: /misc/audit-commit-messages-on-github/
-aliases:
-    - /misc/audit_commit_messages_on_github/
+date: 2022-10-06
+description: >-
+    Automate commit message validation with GitHub Actions. Enforce refs and closes patterns
+    to maintain clean Git history and link commits to issues.
 tags:
     - GitHub
     - DevOps
     - Shell
     - Unix
-description: >-
-  Automate commit message validation with GitHub Actions. Enforce refs and closes
-  patterns to maintain clean Git history and link commits to issues.
+images:
+    - "https://blob.rednafi.com/misc/audit-commit-messages-on-github/cover-603bb8c4a692.png"
+aliases:
+    - /misc/audit_commit_messages_on_github/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/audit-commit-messages-on-github/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqrsm2e"
 ---
 
@@ -238,6 +243,6 @@ The docs have more information on [understanding GitHub Actions].
     https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
 
 [image_1]:
-    https://blob.rednafi.com/static/images/audit_commit_messages_on_github/img_1.png
+    https://blob.rednafi.com/misc/audit-commit-messages-on-github/image-01-65219aa72f66.png
 
 <!-- prettier-ignore-end -->

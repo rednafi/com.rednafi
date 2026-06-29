@@ -1,17 +1,22 @@
 ---
-title: Sorting a Django queryset by a custom sequence of an attribute
-date: 2023-05-09
+title: "Sorting a Django queryset by a custom sequence of an attribute"
 slug: sort-by-a-custom-sequence-in-django
-atprotoPath: /python/sort-by-a-custom-sequence-in-django/
-aliases:
-    - /python/sort_by_a_custom_sequence_in_django/
+date: 2023-05-09
+description: >-
+    Sort Django querysets by custom attribute sequences using Case and When expressions for
+    database-level ordering with SQL CASE statements.
 tags:
     - Python
     - Django
     - Database
-description: >-
-  Sort Django querysets by custom attribute sequences using Case and When expressions for
-  database-level ordering with SQL CASE statements.
+images:
+    - "https://blob.rednafi.com/python/sort-by-a-custom-sequence-in-django/cover-7fcb566a90db.png"
+aliases:
+    - /python/sort_by_a_custom_sequence_in_django/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/sort-by-a-custom-sequence-in-django/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3clk2p"
 ---
 

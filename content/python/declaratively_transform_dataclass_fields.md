@@ -1,15 +1,20 @@
 ---
-title: Declaratively transform data class fields in Python
-date: 2022-03-20
+title: "Declaratively transform data class fields in Python"
 slug: declaratively-transform-dataclass-fields
-atprotoPath: /python/declaratively-transform-dataclass-fields/
-aliases:
-    - /python/declaratively_transform_dataclass_fields/
+date: 2022-03-20
+description: >-
+    Leverage Python's __post_init__ hook to declaratively transform dataclass fields.
+    Automatically serialize data with clean, maintainable code.
 tags:
     - Python
-description: >-
-  Leverage Python's __post_init__ hook to declaratively transform dataclass fields.
-  Automatically serialize data with clean, maintainable code.
+images:
+    - "https://blob.rednafi.com/python/declaratively-transform-dataclass-fields/cover-e78adcfb24a2.png"
+aliases:
+    - /python/declaratively_transform_dataclass_fields/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/declaratively-transform-dataclass-fields/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jib7452o"
 ---
 

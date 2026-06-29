@@ -1,17 +1,22 @@
 ---
-title: Gateway pattern for external service calls
-date: 2025-08-03
+title: "Gateway pattern for external service calls"
 slug: gateway-pattern
-atprotoPath: /go/gateway-pattern/
-aliases:
-    - /go/gateway_pattern/
+date: 2025-08-03
+description: >-
+    Separate business logic from external service calls using the Gateway pattern. Apply
+    dependency inversion and interface segregation in Go.
 tags:
     - Go
-    - Distributed Systems
-    - Design Patterns
-description: >-
-  Separate business logic from external service calls using the Gateway pattern. Apply
-  dependency inversion and interface segregation in Go.
+    - "Distributed Systems"
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/gateway-pattern/cover-a93fa47047c9.png"
+aliases:
+    - /go/gateway_pattern/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/gateway-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iew3vp2e"
 ---
 

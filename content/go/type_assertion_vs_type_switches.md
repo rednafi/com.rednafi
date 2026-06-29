@@ -1,17 +1,22 @@
 ---
-title: Type assertion vs type switches in Go
-date: 2024-01-31
+title: "Type assertion vs type switches in Go"
 slug: type-assertion-vs-type-switches
-atprotoPath: /go/type-assertion-vs-type-switches/
-aliases:
-    - /go/type_assertion_vs_type_switches/
+date: 2024-01-31
+description: >-
+    Master Go type assertions with i.(T) syntax and type switches. Extract concrete types
+    from interfaces safely with ok idiom examples.
 tags:
     - Go
     - TIL
-    - Data Structures
-description: >-
-  Master Go type assertions with i.(T) syntax and type switches. Extract concrete types
-  from interfaces safely with ok idiom examples.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/go/type-assertion-vs-type-switches/cover-bc8088747c7e.png"
+aliases:
+    - /go/type_assertion_vs_type_switches/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/type-assertion-vs-type-switches/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilw2rv2o"
 ---
 

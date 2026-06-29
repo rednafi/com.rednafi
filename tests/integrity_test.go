@@ -1,6 +1,7 @@
 package site_test
 
 import (
+	"encoding/xml"
 	"image/png"
 	"os"
 	"slices"
@@ -44,15 +45,26 @@ func TestRSSFeedImageElement(t *testing.T) {
 	t.Parallel()
 	body := httpGet(t, baseURL+"/index.xml")
 
-	assert.Contains(t, body, "<image>", "RSS should have channel image element")
-	assert.Contains(t, body, "<url>", "RSS image should have url")
-	assert.Contains(t, body, "blob.rednafi.com",
-		"RSS image URL should reference the cover image CDN")
+	var feed struct {
+		Channel struct {
+			Image struct {
+				Title string `xml:"title"`
+				URL   string `xml:"url"`
+				Link  string `xml:"link"`
+			} `xml:"image"`
+		} `xml:"channel"`
+	}
+	require.NoError(t, xml.Unmarshal([]byte(body), &feed))
+	assert.Equal(t, "Redowan's Reflections", feed.Channel.Image.Title)
+	assert.Equal(t,
+		"https://blob.rednafi.com/home/cover.png",
+		feed.Channel.Image.URL)
+	assert.Equal(t, "https://rednafi.com/", feed.Channel.Image.Link)
 }
 
-// TestSharedImageAssetDimensions verifies the generated PNG assets keep the
-// dimensions expected by social previews and browser icon consumers.
-func TestSharedImageAssetDimensions(t *testing.T) {
+// TestStaticImageAssetDimensions verifies browser icon assets keep their
+// expected dimensions. Social preview images live in R2.
+func TestStaticImageAssetDimensions(t *testing.T) {
 	t.Parallel()
 
 	for _, tc := range []struct {
@@ -61,7 +73,6 @@ func TestSharedImageAssetDimensions(t *testing.T) {
 		width  int
 		height int
 	}{
-		{"cover", "../static/images/home/cover.png", 4080, 2142},
 		{"favicon", "../static/favicon.png", 1024, 1024},
 	} {
 		t.Run(tc.name, func(t *testing.T) {

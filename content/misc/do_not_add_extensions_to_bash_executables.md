@@ -1,18 +1,23 @@
 ---
-title: Don't add extensions to shell executables
-date: 2021-11-23
+title: "Don't add extensions to shell executables"
 slug: do-not-add-extensions-to-bash-executables
-atprotoPath: /misc/do-not-add-extensions-to-bash-executables/
-aliases:
-    - /misc/do_not_add_extensions_to_bash_executables/
+date: 2021-11-23
+description: >-
+    Why executable scripts shouldn't have extensions. Learn GitHub's
+    scripts-to-rule-them-all pattern for language-agnostic project automation.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Why executable scripts shouldn't have extensions. Learn GitHub's
-  scripts-to-rule-them-all pattern for language-agnostic project automation.
+images:
+    - "https://blob.rednafi.com/misc/do-not-add-extensions-to-bash-executables/cover-1b78c5e3ffef.png"
+aliases:
+    - /misc/do_not_add_extensions_to_bash_executables/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/do-not-add-extensions-to-bash-executables/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnydhe2j"
 ---
 

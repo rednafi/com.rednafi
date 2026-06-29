@@ -1,15 +1,20 @@
 ---
-title: Decoupling producers and consumers of iterables with generators in Python
-date: 2022-04-03
+title: "Decoupling producers and consumers of iterables with generators in Python"
 slug: decouple-with-generators
-atprotoPath: /python/decouple-with-generators/
-aliases:
-    - /python/decouple_with_generators/
+date: 2022-04-03
+description: >-
+    Learn how Python generators decouple data production from consumption, enabling cleaner
+    code for streaming, polling, and pipeline patterns.
 tags:
     - Python
-description: >-
-  Learn how Python generators decouple data production from consumption, enabling cleaner
-  code for streaming, polling, and pipeline patterns.
+images:
+    - "https://blob.rednafi.com/python/decouple-with-generators/cover-fcc72c5e748d.png"
+aliases:
+    - /python/decouple_with_generators/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/decouple-with-generators/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhgxb52o"
 ---
 

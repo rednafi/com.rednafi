@@ -1,17 +1,22 @@
 ---
-title: Log context propagation in Python ASGI apps
-date: 2024-08-06
+title: "Log context propagation in Python ASGI apps"
 slug: log-context-propagation
-atprotoPath: /python/log-context-propagation/
-aliases:
-    - /python/log_context_propagation/
+date: 2024-08-06
+description: >-
+    Automatically tag Python logs with request context using middleware and contextvars for
+    distributed tracing in ASGI web applications.
 tags:
     - Python
     - API
     - Logging
-description: >-
-  Automatically tag Python logs with request context using middleware and contextvars for
-  distributed tracing in ASGI web applications.
+images:
+    - "https://blob.rednafi.com/python/log-context-propagation/cover-a64fc907799a.png"
+aliases:
+    - /python/log_context_propagation/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/log-context-propagation/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iink3s2y"
 ---
 

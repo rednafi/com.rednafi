@@ -1,15 +1,20 @@
 ---
-title: Modify iterables while iterating in Python
-date: 2022-03-04
+title: "Modify iterables while iterating in Python"
 slug: modify-iterables-while-iterating
-atprotoPath: /python/modify-iterables-while-iterating/
-aliases:
-    - /python/modify_iterables_while_iterating/
+date: 2022-03-04
+description: >-
+    Safely modify lists, sets, and dictionaries while iterating using list comprehensions,
+    filters, or copying to avoid skipping elements.
 tags:
     - Python
-description: >-
-  Safely modify lists, sets, and dictionaries while iterating using list comprehensions,
-  filters, or copying to avoid skipping elements.
+images:
+    - "https://blob.rednafi.com/python/modify-iterables-while-iterating/cover-24ede652800b.png"
+aliases:
+    - /python/modify_iterables_while_iterating/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/modify-iterables-while-iterating/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiywyj2z"
 ---
 

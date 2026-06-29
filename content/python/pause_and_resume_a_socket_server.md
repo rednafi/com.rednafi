@@ -1,17 +1,22 @@
 ---
-title: Pausing and resuming a socket server in Python
-date: 2023-02-05
+title: "Pausing and resuming a socket server in Python"
 slug: pause-and-resume-a-socket-server
-atprotoPath: /python/pause-and-resume-a-socket-server/
-aliases:
-    - /python/pause_and_resume_a_socket_server/
+date: 2023-02-05
+description: >-
+    Build a pausable socket server with Python's socketserver module using threading for
+    intermittent request handling and background tasks.
 tags:
     - Python
     - Networking
     - Concurrency
-description: >-
-  Build a pausable socket server with Python's socketserver module using threading for
-  intermittent request handling and background tasks.
+images:
+    - "https://blob.rednafi.com/python/pause-and-resume-a-socket-server/cover-8e8f6b551bf9.png"
+aliases:
+    - /python/pause_and_resume_a_socket_server/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/pause-and-resume-a-socket-server/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23nhe2p"
 ---
 
@@ -171,6 +176,6 @@ simply running the function in a blocking manner was enough.
     https://docs.python.org/3/library/socketserver.html
 
 [image_1]:
-    https://blob.rednafi.com/static/images/pause_and_resume_a_socket_server/img_1.png
+    https://blob.rednafi.com/python/pause-and-resume-a-socket-server/image-01-8cf23b7b84e3.png
 
 <!-- prettier-ignore-end -->

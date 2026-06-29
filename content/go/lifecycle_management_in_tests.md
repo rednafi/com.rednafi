@@ -1,17 +1,22 @@
 ---
-title: Lifecycle management in Go tests
-date: 2025-08-30
+title: "Lifecycle management in Go tests"
 slug: lifecycle-management-in-tests
-atprotoPath: /go/lifecycle-management-in-tests/
-aliases:
-    - /go/lifecycle_management_in_tests/
+date: 2025-08-30
+description: >-
+    Master Go test lifecycle with t.Cleanup(), subtests, and TestMain. Learn per-test,
+    grouped, and package-wide setup patterns effectively.
 tags:
     - Go
     - Testing
     - API
-description: >-
-  Master Go test lifecycle with t.Cleanup(), subtests, and TestMain. Learn per-test,
-  grouped, and package-wide setup patterns effectively.
+images:
+    - "https://blob.rednafi.com/go/lifecycle-management-in-tests/cover-5d811d8ff186.png"
+aliases:
+    - /go/lifecycle_management_in_tests/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/lifecycle-management-in-tests/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ievo5u2u"
 ---
 

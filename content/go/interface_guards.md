@@ -1,17 +1,22 @@
 ---
-title: Interface guards in Go
-date: 2023-08-18
+title: "Interface guards in Go"
 slug: interface-guards
-atprotoPath: /go/interface-guards/
-aliases:
-    - /go/interface_guards/
+date: 2023-08-18
+description: >-
+    Use compile-time interface guards to verify type conformity in Go without runtime
+    overhead. Learn the var _ Interface = (*Type)(nil) pattern.
 tags:
     - Go
     - TIL
     - API
-description: >-
-  Use compile-time interface guards to verify type conformity in Go without runtime
-  overhead. Learn the var _ Interface = (*Type)(nil) pattern.
+images:
+    - "https://blob.rednafi.com/go/interface-guards/cover-ab6fae728688.png"
+aliases:
+    - /go/interface_guards/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/interface-guards/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4yne2e"
 ---
 

@@ -1,18 +1,23 @@
 ---
-title: Bash namerefs for dynamic variable referencing
-date: 2024-09-20
+title: "Bash namerefs for dynamic variable referencing"
 slug: bash-namerefs
-atprotoPath: /misc/bash-namerefs/
-aliases:
-    - /misc/bash_namerefs/
+date: 2024-09-20
+description: >-
+    Master Bash namerefs with declare -n to create dynamic variable references. Build
+    generic functions for arrays and associative arrays without eval.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Master Bash namerefs with declare -n to create dynamic variable references. Build
-  generic functions for arrays and associative arrays without eval.
+images:
+    - "https://blob.rednafi.com/misc/bash-namerefs/cover-4fa71ba4edd9.png"
+aliases:
+    - /misc/bash_namerefs/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/bash-namerefs/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihdq7y26"
 ---
 

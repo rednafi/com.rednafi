@@ -1,18 +1,23 @@
 ---
-title: The *nix install command
+title: "The *nix install command"
+slug: install
 date: 2024-07-28
+description: >-
+    Replace mkdir, cp, and chmod with a single install command. Copy files, create
+    directories, and set permissions in one step with GNU coreutils.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-slug: install
-atprotoPath: /misc/install/
+images:
+    - "https://blob.rednafi.com/misc/install/cover-3d89ed46cd6b.png"
 aliases:
     - /misc/install/
-description: >-
-  Replace mkdir, cp, and chmod with a single install command. Copy files, create
-  directories, and set permissions in one step with GNU coreutils.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/install/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iioggq26"
 ---
 

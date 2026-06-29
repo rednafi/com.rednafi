@@ -1,17 +1,22 @@
 ---
-title: Crossing the CORS crossroad
-date: 2024-03-12
+title: "Crossing the CORS crossroad"
 slug: crossing-the-cors-crossroad
-atprotoPath: /misc/crossing-the-cors-crossroad/
-aliases:
-    - /misc/crossing_the_cors_crossroad/
+date: 2024-03-12
+description: >-
+    Troubleshoot CORS errors with this practical guide. Learn Access-Control-Allow-Origin
+    headers, preflight requests, and domain allowlisting in Go.
 tags:
     - Networking
     - Go
     - Web
-description: >-
-  Troubleshoot CORS errors with this practical guide. Learn Access-Control-Allow-Origin
-  headers, preflight requests, and domain allowlisting in Go.
+images:
+    - "https://blob.rednafi.com/misc/crossing-the-cors-crossroad/cover-09ded629e23a.png"
+aliases:
+    - /misc/crossing_the_cors_crossroad/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/crossing-the-cors-crossroad/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhy6f2o"
 ---
 

@@ -1,13 +1,19 @@
 ---
-title: Do you need a repository layer on top of sqlc?
-date: 2026-03-16
+title: "Do you need a repository layer on top of sqlc?"
 slug: repository-layer-over-sqlc
-atprotoPath: /shards/2026/03/repository-layer-over-sqlc/
+date: 2026-03-16
+description: >-
+    Decoupling business logic from storage with a small interface in Go.
 tags:
     - Go
     - Database
-description: >-
-  Decoupling business logic from storage with a small interface in Go.
+images:
+    - "https://blob.rednafi.com/shards/2026/03/repository-layer-over-sqlc/cover-dc6074de034f.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/repository-layer-over-sqlc/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdzwq2z"
 ---
 

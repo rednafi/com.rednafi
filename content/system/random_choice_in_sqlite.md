@@ -1,17 +1,22 @@
 ---
-title: Pick random values from an array in SQL(ite)
-date: 2022-09-02
+title: "Pick random values from an array in SQL(ite)"
 slug: random-choice-in-sqlite
-atprotoPath: /system/random-choice-in-sqlite/
-aliases:
-    - /database/random_choice_in_sqlite/
+date: 2022-09-02
+description: >-
+    Emulate Python's random.choice in SQLite using JSON arrays and the random() function.
+    Populate tables with realistic test data efficiently.
 tags:
     - Database
     - SQL
-    - Data Structures
-description: >-
-  Emulate Python's random.choice in SQLite using JSON arrays and the random() function.
-  Populate tables with realistic test data efficiently.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/system/random-choice-in-sqlite/cover-74257e9c5591.png"
+aliases:
+    - /database/random_choice_in_sqlite/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /system/random-choice-in-sqlite/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcpy7f2o"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Why 'NoReturn' type exists in Python
-date: 2022-02-21
+title: "Why 'NoReturn' type exists in Python"
 slug: why-noreturn-type-exists
-atprotoPath: /python/why-noreturn-type-exists/
-aliases:
-    - /python/why_noreturn_type_exists/
+date: 2022-02-21
+description: >-
+    Use Python's NoReturn type to annotate functions that never return normally, helping
+    type checkers understand exception-raising and infinite loop code.
 tags:
     - Python
     - Typing
-description: >-
-  Use Python's NoReturn type to annotate functions that never return normally, helping
-  type checkers understand exception-raising and infinite loop code.
+images:
+    - "https://blob.rednafi.com/python/why-noreturn-type-exists/cover-fef52228dbc3.png"
+aliases:
+    - /python/why_noreturn_type_exists/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/why-noreturn-type-exists/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmdmyi2u"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Notes on building event-driven systems
-date: 2024-09-21
+title: "Notes on building event-driven systems"
 slug: notes-on-event-driven-systems
-atprotoPath: /misc/notes-on-event-driven-systems/
-aliases:
-    - /misc/notes_on_event_driven_systems/
+date: 2024-09-21
+description: >-
+    Deep dive into event-driven architecture patterns. Learn publish-subscribe, CQRS, outbox
+    pattern, eventual consistency, and handling microservice coupling.
 tags:
     - Networking
-    - Distributed Systems
-    - Design Patterns
-description: >-
-  Deep dive into event-driven architecture patterns. Learn publish-subscribe, CQRS,
-  outbox pattern, eventual consistency, and handling microservice coupling.
+    - "Distributed Systems"
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/misc/notes-on-event-driven-systems/cover-90da65e77e42.png"
+aliases:
+    - /misc/notes_on_event_driven_systems/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/notes-on-event-driven-systems/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihd7mq26"
 ---
 

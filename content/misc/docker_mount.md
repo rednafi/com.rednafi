@@ -1,17 +1,22 @@
 ---
-title: Docker mount revisited
+title: "Docker mount revisited"
+slug: docker-mount
 date: 2024-10-22
+description: >-
+    Master Docker mount types: volumes, bind mounts, tmpfs, and build cache. Clear syntax
+    comparison between -v and --mount options with docker-compose.
 tags:
     - TIL
     - Docker
     - DevOps
-slug: docker-mount
-atprotoPath: /misc/docker-mount/
+images:
+    - "https://blob.rednafi.com/misc/docker-mount/cover-197c17b01862.png"
 aliases:
     - /misc/docker_mount/
-description: >-
-  Master Docker mount types: volumes, bind mounts, tmpfs, and build cache. Clear syntax
-  comparison between -v and --mount options with docker-compose.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/docker-mount/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih76pt2e"
 ---
 

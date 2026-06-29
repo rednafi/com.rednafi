@@ -151,7 +151,7 @@ func TestArticleLinkUnderlineAnimation(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/go/anemic-stack-traces/")
 
-	link := page.Locator("article a:not(.anchor):not(.footnotes a)").First()
+	link := page.Locator(".article-content a:not(.anchor):not(.footnotes a)").First()
 	count, err := link.Count()
 	require.NoError(t, err)
 	if count == 0 {

@@ -1,18 +1,23 @@
 ---
-title: Discovering direnv
+title: "Discovering direnv"
+slug: direnv
 date: 2024-10-02
+description: >-
+    Automate environment variables per directory with direnv. Load .envrc files on entry,
+    unload on exit. Integrate with Python venv and uv workflow.
 tags:
     - TIL
     - Shell
     - Unix
     - CLI
-slug: direnv
-atprotoPath: /misc/direnv/
+images:
+    - "https://blob.rednafi.com/misc/direnv/cover-0342c27b03bc.png"
 aliases:
     - /misc/direnv/
-description: >-
-  Automate environment variables per directory with direnv. Load .envrc files on entry,
-  unload on exit. Integrate with Python venv and uv workflow.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/direnv/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihbc232j"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Deferred teardown closure in Go testing
-date: 2025-03-28
+title: "Deferred teardown closure in Go testing"
 slug: deferred-teardown-closure
-atprotoPath: /go/deferred-teardown-closure/
-aliases:
-    - /go/deferred_teardown_closure/
+date: 2025-03-28
+description: >-
+    Return teardown closures from test helpers to manage cleanup elegantly. Learn patterns
+    for temp files, mock servers, and t.Cleanup() usage.
 tags:
     - Go
     - Testing
     - API
-description: >-
-  Return teardown closures from test helpers to manage cleanup elegantly. Learn patterns
-  for temp files, mock servers, and t.Cleanup() usage.
+images:
+    - "https://blob.rednafi.com/go/deferred-teardown-closure/cover-4577f0d0be03.png"
+aliases:
+    - /go/deferred_teardown_closure/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/deferred-teardown-closure/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifqina2z"
 ---
 

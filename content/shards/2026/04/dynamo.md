@@ -1,14 +1,19 @@
 ---
 title: "Dynamo: Amazon's highly available key-value store"
-date: 2026-04-11
 slug: dynamo
-atprotoPath: /shards/2026/04/dynamo/
-type_label: paper
-tags:
-    - Distributed Systems
-    - Databases
+date: 2026-04-11
 description: >-
-  Key takeaways from Amazon's 2007 Dynamo paper.
+    Key takeaways from Amazon's 2007 Dynamo paper.
+tags:
+    - "Distributed Systems"
+    - Databases
+images:
+    - "https://blob.rednafi.com/shards/2026/04/dynamo/cover-dcc86a3ec211.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: "paper"
+atprotoPath: /shards/2026/04/dynamo/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iattwy2z"
 ---
 

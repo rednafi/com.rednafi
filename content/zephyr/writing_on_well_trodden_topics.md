@@ -1,15 +1,20 @@
 ---
-title: Writing on well-trodden topics
-date: 2023-08-14
+title: "Writing on well-trodden topics"
 slug: writing-on-well-trodden-topics
-atprotoPath: /zephyr/writing-on-well-trodden-topics/
-aliases:
-    - /zephyr/writing_on_well_trodden_topics/
+date: 2023-08-14
+description: >-
+    Why writing about common topics matters for personal growth, even when countless others
+    have covered the same ground before you.
 tags:
     - Essay
-description: >-
-  Why writing about common topics matters for personal growth, even when countless others
-  have covered the same ground before you.
+images:
+    - "https://blob.rednafi.com/zephyr/writing-on-well-trodden-topics/cover-617bb233ca20.png"
+aliases:
+    - /zephyr/writing_on_well_trodden_topics/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/writing-on-well-trodden-topics/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5jck2a"
 ---
 

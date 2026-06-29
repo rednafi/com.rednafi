@@ -1,16 +1,21 @@
 ---
-title: Please don't hijack my Python root logger
-date: 2024-08-03
+title: "Please don't hijack my Python root logger"
 slug: no-hijack-root-logger
-atprotoPath: /python/no-hijack-root-logger/
-aliases:
-    - /python/no_hijack_root_logger/
+date: 2024-08-03
+description: >-
+    Avoid configuring Python's root logger in libraries; use named loggers with NullHandler
+    to let application code control logging behavior.
 tags:
     - Python
     - Logging
-description: >-
-  Avoid configuring Python's root logger in libraries; use named loggers with NullHandler
-  to let application code control logging behavior.
+images:
+    - "https://blob.rednafi.com/python/no-hijack-root-logger/cover-09565ee9d35a.png"
+aliases:
+    - /python/no_hijack_root_logger/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/no-hijack-root-logger/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iinxuh2o"
 ---
 

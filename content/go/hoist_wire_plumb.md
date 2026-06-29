@@ -1,15 +1,21 @@
 ---
-title: Hoisting wire plumbing out of your Go handlers
-date: 2026-05-02
+title: "Hoisting wire plumbing out of your Go handlers"
 slug: hoist-wire-plumb
-atprotoPath: /go/hoist-wire-plumb/
+date: 2026-05-02
+description: >-
+    Four of the five steps in every unary RPC handler are wire plumbing. Pin the service
+    function signature and they fit in one generic adapter per transport.
 tags:
     - Go
     - API
-    - Design Patterns
-description: >-
-  Four of the five steps in every unary RPC handler are wire plumbing. Pin the
-  service function signature and they fit in one generic adapter per transport.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/go/hoist-wire-plumb/cover-719f19418c10.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/hoist-wire-plumb/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iarjm42o"
 ---
 

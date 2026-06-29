@@ -1,17 +1,22 @@
 ---
-title: Effortless API response caching with Python & Redis
-date: 2020-05-25
+title: "Effortless API response caching with Python & Redis"
 slug: redis-cache
-atprotoPath: /python/redis-cache/
-aliases:
-    - /python/redis_cache/
+date: 2020-05-25
+description: >-
+    Cache API responses with Redis in Python to reduce redundant requests, improve response
+    times, and handle expiring key-value pairs efficiently.
 tags:
     - Python
     - API
     - Redis
-description: >-
-  Cache API responses with Redis in Python to reduce redundant requests, improve response
-  times, and handle expiring key-value pairs efficiently.
+images:
+    - "https://blob.rednafi.com/python/redis-cache/cover-539d381ddbcc.png"
+aliases:
+    - /python/redis_cache/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/redis-cache/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6joudwv2o"
 ---
 
@@ -546,15 +551,15 @@ practices of production ready applications.
     https://github.com/rednafi/redis-request-caching
 
 [image_1]:
-    https://blob.rednafi.com/static/images/redis_cache/img_1.png
+    https://blob.rednafi.com/python/redis-cache/image-01-faf809ee4733.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/redis_cache/img_2.png
+    https://blob.rednafi.com/python/redis-cache/image-02-cb0b3a437a12.png
 
 [image_3]:
-    https://blob.rednafi.com/static/images/redis_cache/img_3.png
+    https://blob.rednafi.com/python/redis-cache/image-03-ea9be35ec0b8.png
 
 [image_4]:
-    https://blob.rednafi.com/static/images/redis_cache/img_4.png
+    https://blob.rednafi.com/python/redis-cache/image-04-5e0d8e8e48c6.png
 
 <!-- prettier-ignore-end -->

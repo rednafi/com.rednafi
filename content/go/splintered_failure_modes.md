@@ -1,14 +1,20 @@
 ---
-title: Splintered failure modes in Go
-date: 2025-11-30
+title: "Splintered failure modes in Go"
 slug: splintered-failure-modes
-atprotoPath: /go/splintered-failure-modes/
+date: 2025-11-30
+description: >-
+    Simplify Go error handling by consolidating validation and system errors. Learn when to
+    return boolean vs error for clearer failure modes.
 tags:
     - Go
-    - Error Handling
-description: >-
-  Simplify Go error handling by consolidating validation and system errors. Learn when to
-  return boolean vs error for clearer failure modes.
+    - "Error Handling"
+images:
+    - "https://blob.rednafi.com/go/splintered-failure-modes/cover-7a7322525174.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/splintered-failure-modes/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idbtw72b"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Behind the blog
-date: 2024-09-14
+title: "Behind the blog"
 slug: behind-the-blog
-atprotoPath: /misc/behind-the-blog/
-aliases:
-    - /misc/behind_the_blog/
+date: 2024-09-14
+description: >-
+    How this blog is built: Hugo static site generator, GitHub Actions deployment,
+    Cloudflare caching, and R2 storage. Simple, stable, and cost-free.
 tags:
     - Essay
     - Hugo
     - DevOps
-description: >-
-  How this blog is built: Hugo static site generator, GitHub Actions deployment,
-  Cloudflare caching, and R2 storage. Simple, stable, and cost-free.
+images:
+    - "https://blob.rednafi.com/misc/behind-the-blog/cover-5a9f8dea702c.png"
+aliases:
+    - /misc/behind_the_blog/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/behind-the-blog/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e"
 ---
 
@@ -78,23 +83,27 @@ caching, I barely use any of the quota. It's fantastic!
 
 ## Oxipng
 
-[Oxipng] is used to compress images before uploading them to the Cloudflare R2 bucket with
-the [wrangler] CLI. The Makefile in the repo has a single command called `upload-image` that
-handles compression and upload in one go.
+[Oxipng] is used to losslessly compress PNG screenshots before uploading them to the
+Cloudflare R2 bucket with the [wrangler] CLI. Images are immutable: each uploaded object
+gets a content hash in the filename and long-lived cache headers, so Cloudflare can serve
+repeat reads from cache without revalidating R2.
 
-```make
-WRANGLER_VERSION := 4.83.0
-WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
-
-upload-image:
-    oxipng -o 6 $(local_path)
-    $(WRANGLER) r2 object put $(remote_path) --file $(local_path) --remote
+```sh
+make upload-post-image \
+    post=content/go/request_coalescing.md \
+    file=/tmp/singleflight-flow.png \
+    name=singleflight-flow
 ```
 
-I just drop the screenshots and images into `/static/images/<blog-name>/*.png`, update the
-references in the Markdown file, and run
-`make upload-image local_path=<file> remote_path=<bucket-path>` before pushing the changes
-to the repo.
+This command derives the R2 directory from the post, normalizes names to kebab-case, runs
+`oxipng -o max --strip safe` for PNGs, uploads with
+`Cache-Control: public, max-age=31536000, immutable`, and prints the canonical URL. Most
+article images are PNG screenshots, so the default path is screenshot to PNG, lossless max
+compression, upload, paste the printed URL into Markdown.
+
+Generated social cards follow the same storage policy. CI renders missing post covers,
+uploads them to R2 under `<section>/<post-slug>/cover-<hash>.png`, writes the URL back to
+Hugo frontmatter, and commits that metadata change without looping the workflow.
 
 ## Google Analytics
 
@@ -152,14 +161,14 @@ The [source code] and content for this site are all publicly available on GitHub
 
 <!-- github issues as a research notebook -->
 [image_1]:
-    https://blob.rednafi.com/static/images/behind_the_blog/img_1.png
+    https://blob.rednafi.com/misc/behind-the-blog/image-01-49b2d84a79f0.png
 
 <!-- cloudflare cache analytics -->
 [image_2]:
-    https://blob.rednafi.com/static/images/behind_the_blog/img_2.png
+    https://blob.rednafi.com/misc/behind-the-blog/image-02-82e60a201213.png
 
 <!-- cloudflare r2 dashboard -->
 [image_3]:
-    https://blob.rednafi.com/static/images/behind_the_blog/img_3.png
+    https://blob.rednafi.com/misc/behind-the-blog/image-03-0c1e60d3ade7.png
 
 <!-- prettier-ignore-end -->

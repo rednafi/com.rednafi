@@ -1,16 +1,21 @@
 ---
-title: Enabling repeatable lazy iterations in Python
-date: 2023-07-13
+title: "Enabling repeatable lazy iterations in Python"
 slug: enable-repeatable-lazy-iterations
-atprotoPath: /python/enable-repeatable-lazy-iterations/
-aliases:
-    - /python/enable_repeatable_lazy_iterations/
+date: 2023-07-13
+description: >-
+    Create reusable generators by implementing __iter__ in a class, allowing multiple lazy
+    iterations without memory overhead or repeated function calls.
 tags:
     - TIL
     - Python
-description: >-
-  Create reusable generators by implementing __iter__ in a class, allowing multiple lazy
-  iterations without memory overhead or repeated function calls.
+images:
+    - "https://blob.rednafi.com/python/enable-repeatable-lazy-iterations/cover-466dddeea88d.png"
+aliases:
+    - /python/enable_repeatable_lazy_iterations/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/enable-repeatable-lazy-iterations/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlhi42e"
 ---
 

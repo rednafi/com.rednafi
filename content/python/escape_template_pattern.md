@@ -1,16 +1,21 @@
 ---
-title: Escaping the template pattern hellscape in Python
-date: 2023-07-01
+title: "Escaping the template pattern hellscape in Python"
 slug: escape-template-pattern
-atprotoPath: /python/escape-template-pattern/
-aliases:
-    - /python/escape_template_pattern/
+date: 2023-07-01
+description: >-
+    Replace inheritance-based template pattern with composition and Protocol types to create
+    cleaner, testable Python code without namespace pollution.
 tags:
     - Python
-    - Design Patterns
-description: >-
-  Replace inheritance-based template pattern with composition and Protocol types to
-  create cleaner, testable Python code without namespace pollution.
+    - "Design Patterns"
+images:
+    - "https://blob.rednafi.com/python/escape-template-pattern/cover-d4806928d528.png"
+aliases:
+    - /python/escape_template_pattern/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/escape-template-pattern/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmfuy2o"
 ---
 

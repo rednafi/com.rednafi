@@ -1,17 +1,22 @@
 ---
-title: Pushing real-time updates to clients with Server-Sent Events (SSEs)
-date: 2023-04-08
+title: "Pushing real-time updates to clients with Server-Sent Events (SSEs)"
 slug: server-sent-events
-atprotoPath: /python/server-sent-events/
-aliases:
-    - /python/server_sent_events/
+date: 2023-04-08
+description: >-
+    Stream real-time server updates to web clients using Server-Sent Events (SSE) as a
+    simpler alternative to WebSockets for unidirectional data flow.
 tags:
     - Python
     - Networking
     - Web
-description: >-
-  Stream real-time server updates to web clients using Server-Sent Events (SSE) as a
-  simpler alternative to WebSockets for unidirectional data flow.
+images:
+    - "https://blob.rednafi.com/python/server-sent-events/cover-0af6f64d4d1f.png"
+aliases:
+    - /python/server_sent_events/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/server-sent-events/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iz3had2s"
 ---
 

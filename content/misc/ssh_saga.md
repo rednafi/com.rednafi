@@ -1,18 +1,23 @@
 ---
-title: SSH saga
+title: "SSH saga"
+slug: ssh-saga
 date: 2024-12-17
+description: >-
+    Complete SSH setup guide: key pairs, authorized_keys, sshd_config, ssh_config,
+    known_hosts, agent forwarding, and hardening for secure remote access.
 tags:
     - Shell
     - Unix
     - Networking
     - Security
-slug: ssh-saga
-atprotoPath: /misc/ssh-saga/
+images:
+    - "https://blob.rednafi.com/misc/ssh-saga/cover-bc21ad7bc23a.png"
 aliases:
     - /misc/ssh_saga/
-description: >-
-  Complete SSH setup guide: key pairs, authorized_keys, sshd_config, ssh_config,
-  known_hosts, agent forwarding, and hardening for secure remote access.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/ssh-saga/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3pdh2b"
 ---
 

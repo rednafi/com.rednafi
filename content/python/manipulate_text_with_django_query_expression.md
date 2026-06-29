@@ -1,17 +1,22 @@
 ---
-title: Manipulating text with query expressions in Django
-date: 2023-01-07
+title: "Manipulating text with query expressions in Django"
 slug: manipulate-text-with-django-query-expression
-atprotoPath: /python/manipulate-text-with-django-query-expression/
-aliases:
-    - /python/manipulate_text_with_django_query_expression/
+date: 2023-01-07
+description: >-
+    Use Django query expressions like Replace, Upper, Lower, Concat, and Substr for
+    efficient database-level text manipulation without fetching data.
 tags:
     - Python
     - Django
     - Database
-description: >-
-  Use Django query expressions like Replace, Upper, Lower, Concat, and Substr for
-  efficient database-level text manipulation without fetching data.
+images:
+    - "https://blob.rednafi.com/python/manipulate-text-with-django-query-expression/cover-5f9e4882bc5e.png"
+aliases:
+    - /python/manipulate_text_with_django_query_expression/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/manipulate-text-with-django-query-expression/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j24gt32j"
 ---
 

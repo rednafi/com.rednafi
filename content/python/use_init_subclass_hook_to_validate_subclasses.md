@@ -1,16 +1,21 @@
 ---
-title: Use __init_subclass__ hook to validate subclasses in Python
-date: 2021-11-20
+title: "Use __init_subclass__ hook to validate subclasses in Python"
 slug: use-init-subclass-hook-to-validate-subclasses
-atprotoPath: /python/use-init-subclass-hook-to-validate-subclasses/
-aliases:
-    - /python/use_init_subclass_hook_to_validate_subclasses/
+date: 2021-11-20
+description: >-
+    Validate subclass schemas at definition time with Python's __init_subclass__ hook, a
+    cleaner alternative to metaclasses for enforcing structure.
 tags:
     - Python
     - TIL
-description: >-
-  Validate subclass schemas at definition time with Python's __init_subclass__ hook, a
-  cleaner alternative to metaclasses for enforcing structure.
+images:
+    - "https://blob.rednafi.com/python/use-init-subclass-hook-to-validate-subclasses/cover-d2a1585d6b55.png"
+aliases:
+    - /python/use_init_subclass_hook_to_validate_subclasses/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/use-init-subclass-hook-to-validate-subclasses/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnzvf326"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Signal handling in a multithreaded socket server
-date: 2023-02-26
+title: "Signal handling in a multithreaded socket server"
 slug: multithreaded-socket-server-signal-handling
-atprotoPath: /python/multithreaded-socket-server-signal-handling/
-aliases:
-    - /python/multithreaded_socket_server_signal_handling/
+date: 2023-02-26
+description: >-
+    Gracefully shutdown Python's ThreadingTCPServer with signal handlers for SIGINT, SIGTERM
+    handling and client notification on server shutdown.
 tags:
     - Python
     - Networking
     - Concurrency
-description: >-
-  Gracefully shutdown Python's ThreadingTCPServer with signal handlers for SIGINT,
-  SIGTERM handling and client notification on server shutdown.
+images:
+    - "https://blob.rednafi.com/python/multithreaded-socket-server-signal-handling/cover-d85aa29d2a04.png"
+aliases:
+    - /python/multithreaded_socket_server_signal_handling/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/multithreaded-socket-server-signal-handling/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22dh22b"
 ---
 
@@ -396,9 +401,9 @@ gives the clients enough time to disconnect, then shut itself down in a graceful
 
 
 [image_1]:
-    https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_1.png
+    https://blob.rednafi.com/python/multithreaded-socket-server-signal-handling/image-01-4fbf19e2ff25.png
 
 [image_2]:
-    https://blob.rednafi.com/static/images/multithreaded_socket_server_signal_handling/img_2.png
+    https://blob.rednafi.com/python/multithreaded-socket-server-signal-handling/image-02-ef534f7d4be2.png
 
 <!-- prettier-ignore-end -->

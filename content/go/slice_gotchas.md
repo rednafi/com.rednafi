@@ -1,16 +1,21 @@
 ---
-title: Go slice gotchas
-date: 2025-02-06
+title: "Go slice gotchas"
 slug: slice-gotchas
-atprotoPath: /go/slice-gotchas/
-aliases:
-    - /go/slice_gotchas/
+date: 2025-02-06
+description: >-
+    Avoid common Go slice mistakes: shared backing arrays, nil vs empty slices, append
+    behavior, and slice copying pitfalls explained.
 tags:
     - Go
-    - Data Structures
-description: >-
-  Avoid common Go slice mistakes: shared backing arrays, nil vs empty slices, append
-  behavior, and slice copying pitfalls explained.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/go/slice-gotchas/cover-25e86df9b611.png"
+aliases:
+    - /go/slice_gotchas/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/slice-gotchas/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfkhh2e"
 ---
 

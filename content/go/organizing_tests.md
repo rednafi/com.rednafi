@@ -1,14 +1,20 @@
 ---
-title: Organizing Go tests
-date: 2025-10-08
+title: "Organizing Go tests"
 slug: organizing-tests
-atprotoPath: /go/organizing-tests/
+date: 2025-10-08
+description: >-
+    Organize Go tests with in-package, external _test packages, and integration tests. Learn
+    white-box vs black-box testing conventions.
 tags:
     - Go
     - Testing
-description: >-
-  Organize Go tests with in-package, external _test packages, and integration tests.
-  Learn white-box vs black-box testing conventions.
+images:
+    - "https://blob.rednafi.com/go/organizing-tests/cover-1cab9ae11ca7.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/organizing-tests/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieh3gy2z"
 ---
 

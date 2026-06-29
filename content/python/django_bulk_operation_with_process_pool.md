@@ -1,18 +1,23 @@
 ---
-title: Bulk operations in Django with process pool
-date: 2022-06-27
+title: "Bulk operations in Django with process pool"
 slug: django-bulk-operation-with-process-pool
-atprotoPath: /python/django-bulk-operation-with-process-pool/
-aliases:
-    - /python/django_bulk_operation_with_process_pool/
+date: 2022-06-27
+description: >-
+    Speed up Django bulk operations with ProcessPoolExecutor while preserving signals and
+    hooks that bulk_create/bulk_update bypass.
 tags:
     - Python
     - Django
     - Concurrency
     - Database
-description: >-
-  Speed up Django bulk operations with ProcessPoolExecutor while preserving signals and
-  hooks that bulk_create/bulk_update bypass.
+images:
+    - "https://blob.rednafi.com/python/django-bulk-operation-with-process-pool/cover-5f0723bceb1e.png"
+aliases:
+    - /python/django_bulk_operation_with_process_pool/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/django-bulk-operation-with-process-pool/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdonrl26"
 ---
 

@@ -1,16 +1,21 @@
 ---
-title: Narrowing types with TypeGuard in Python
-date: 2022-02-23
+title: "Narrowing types with TypeGuard in Python"
 slug: type-guard
-atprotoPath: /python/type-guard/
-aliases:
-    - /python/type_guard/
+date: 2022-02-23
+description: >-
+    Use Python's TypeGuard to create custom type narrowing functions that help static type
+    checkers understand runtime type checks and validations.
 tags:
     - Python
     - Typing
-description: >-
-  Use Python's TypeGuard to create custom type narrowing functions that help static type
-  checkers understand runtime type checks and validations.
+images:
+    - "https://blob.rednafi.com/python/type-guard/cover-0cff5aebdc42.png"
+aliases:
+    - /python/type_guard/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/type-guard/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jkijfa26"
 ---
 

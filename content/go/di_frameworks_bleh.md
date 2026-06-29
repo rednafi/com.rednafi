@@ -1,26 +1,30 @@
 ---
-title: You probably don't need a DI framework
-date: 2025-05-24
+title: "You probably don't need a DI framework"
 slug: di-frameworks-bleh
-atprotoPath: /go/di-frameworks-bleh/
-aliases:
-    - /go/di_frameworks_bleh/
+date: 2025-05-24
+description: >-
+    Dependency injection in Go doesn't need Dig or Wire. Learn why manual wiring beats
+    reflection magic and how Go's design makes DI frameworks overkill.
 tags:
     - Go
     - Testing
     - API
-description: >-
-  Dependency injection in Go doesn't need Dig or Wire. Learn why manual wiring beats
-  reflection magic and how Go's design makes DI frameworks overkill.
+images:
+    - "https://blob.rednafi.com/go/di-frameworks-bleh/cover-e28afa01a698.png"
+aliases:
+    - /go/di_frameworks_bleh/
 discussions:
-    - label: Hacker News
-      url: https://news.ycombinator.com/item?id=44086235
-    - label: r/golang
-      url: https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/
-    - label: r/programming
-      url: https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/
-    - label: r/ExperiencedDevs
-      url: https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=44086235"
+    - label: "r/golang"
+      url: "https://www.reddit.com/r/golang/comments/1kv0y1u/you_probably_dont_need_a_di_framework/"
+    - label: "r/programming"
+      url: "https://www.reddit.com/r/programming/comments/1kv0y2l/you_probably_dont_need_a_di_framework/"
+    - label: "r/ExperiencedDevs"
+      url: "https://www.reddit.com/r/ExperiencedDevs/comments/1kv0y3n/you_probably_dont_need_a_di_framework/"
+mermaid: false
+type_label: ""
+atprotoPath: /go/di-frameworks-bleh/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifouv326"
 ---
 

@@ -1,15 +1,20 @@
 ---
-title: Untangling Python decorators
+title: "Untangling Python decorators"
+slug: decorators
 date: 2020-05-13
+description: >-
+    Complete guide to Python decorators from first principles. Learn closures, higher-order
+    functions, decorator patterns, and advanced techniques.
 tags:
     - Python
-slug: decorators
-atprotoPath: /python/decorators/
+images:
+    - "https://blob.rednafi.com/python/decorators/cover-afd6450ff4cc.png"
 aliases:
     - /python/decorators/
-description: >-
-  Complete guide to Python decorators from first principles. Learn closures, higher-order
-  functions, decorator patterns, and advanced techniques.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/decorators/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jpvep22e"
 ---
 

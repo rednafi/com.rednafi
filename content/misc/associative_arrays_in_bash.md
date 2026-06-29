@@ -1,18 +1,23 @@
 ---
-title: Associative arrays in Bash
-date: 2023-05-03
+title: "Associative arrays in Bash"
 slug: associative-arrays-in-bash
-atprotoPath: /misc/associative-arrays-in-bash/
-aliases:
-    - /misc/associative_arrays_in_bash/
+date: 2023-05-03
+description: >-
+    Learn how to use associative arrays in Bash to create key-value pairs, mimic
+    dictionaries, and manage complex data structures in shell scripts.
 tags:
     - Shell
     - Unix
     - TIL
-    - Data Structures
-description: >-
-  Learn how to use associative arrays in Bash to create key-value pairs, mimic
-  dictionaries, and manage complex data structures in shell scripts.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/misc/associative-arrays-in-bash/cover-97459a851b6d.png"
+aliases:
+    - /misc/associative_arrays_in_bash/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/associative-arrays-in-bash/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivgqtu2e"
 ---
 

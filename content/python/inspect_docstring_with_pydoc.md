@@ -1,16 +1,21 @@
 ---
-title: Inspect docstrings with Pydoc
-date: 2022-01-22
+title: "Inspect docstrings with Pydoc"
 slug: inspect-docstring-with-pydoc
-atprotoPath: /python/inspect-docstring-with-pydoc/
-aliases:
-    - /python/inspect_docstring_with_pydoc/
+date: 2022-01-22
+description: >-
+    View Python docstrings from the command line with pydoc or serve them as HTML
+    documentation for modules, classes, and functions.
 tags:
     - Python
     - CLI
-description: >-
-  View Python docstrings from the command line with pydoc or serve them as HTML
-  documentation for modules, classes, and functions.
+images:
+    - "https://blob.rednafi.com/python/inspect-docstring-with-pydoc/cover-527313b59677.png"
+aliases:
+    - /python/inspect_docstring_with_pydoc/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/inspect-docstring-with-pydoc/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn4yi42p"
 ---
 

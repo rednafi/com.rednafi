@@ -1,15 +1,20 @@
 ---
-title: How not to run a script in Python
-date: 2022-03-16
+title: "How not to run a script in Python"
 slug: how-not-to-run-a-script
-atprotoPath: /python/how-not-to-run-a-script/
-aliases:
-    - /python/how_not_to_run_a_script/
+date: 2022-03-16
+description: >-
+    Fix Python ModuleNotFoundError by using python -m instead of direct script execution to
+    ensure correct sys.path handling for imports.
 tags:
     - Python
-description: >-
-  Fix Python ModuleNotFoundError by using python -m instead of direct script execution to
-  ensure correct sys.path handling for imports.
+images:
+    - "https://blob.rednafi.com/python/how-not-to-run-a-script/cover-6c40de7a13db.png"
+aliases:
+    - /python/how_not_to_run_a_script/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/how-not-to-run-a-script/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiw52v2u"
 ---
 

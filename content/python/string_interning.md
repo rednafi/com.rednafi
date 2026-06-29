@@ -1,16 +1,21 @@
 ---
-title: String interning in Python
-date: 2022-01-05
+title: "String interning in Python"
 slug: string-interning
-atprotoPath: /python/string-interning/
-aliases:
-    - /python/string_interning/
+date: 2022-01-05
+description: >-
+    Learn how Python's string interning optimizes memory by caching strings and using
+    sys.intern() for custom string caching to improve performance.
 tags:
     - Python
     - Performance
-description: >-
-  Learn how Python's string interning optimizes memory by caching strings and using
-  sys.intern() for custom string caching to improve performance.
+images:
+    - "https://blob.rednafi.com/python/string-interning/cover-8709b181ec8e.png"
+aliases:
+    - /python/string_interning/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/string-interning/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlmbf2u"
 ---
 

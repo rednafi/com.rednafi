@@ -1,17 +1,22 @@
 ---
-title: Verifying webhook origin via payload hash signing
-date: 2022-09-18
+title: "Verifying webhook origin via payload hash signing"
 slug: verify-webhook-origin
-atprotoPath: /python/verify-webhook-origin/
-aliases:
-    - /python/verify_webhook_origin/
+date: 2022-09-18
+description: >-
+    Secure webhooks by verifying payload authenticity using HMAC hash signatures with shared
+    secrets, preventing man-in-the-middle attacks.
 tags:
     - Python
     - API
     - Security
-description: >-
-  Secure webhooks by verifying payload authenticity using HMAC hash signatures with
-  shared secrets, preventing man-in-the-middle attacks.
+images:
+    - "https://blob.rednafi.com/python/verify-webhook-origin/cover-386fdfc72abb.png"
+aliases:
+    - /python/verify_webhook_origin/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/verify-webhook-origin/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jarwvd2y"
 ---
 

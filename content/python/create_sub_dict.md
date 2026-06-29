@@ -1,16 +1,21 @@
 ---
-title: Create a sub dictionary with O(K) complexity in Python
+title: "Create a sub dictionary with O(K) complexity in Python"
 slug: create-sub-dict
-atprotoPath: /python/create-sub-dict/
-aliases:
-    - /python/create_sub_dict/
 date: 2022-01-30
+description: >-
+    Optimize Python dictionary slicing from O(DK) to O(K) complexity using direct key
+    lookups instead of iterating through all items.
 tags:
     - Python
     - TIL
-description: >-
-  Optimize Python dictionary slicing from O(DK) to O(K) complexity using direct key
-  lookups instead of iterating through all items.
+images:
+    - "https://blob.rednafi.com/python/create-sub-dict/cover-72790736cd80.png"
+aliases:
+    - /python/create_sub_dict/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/create-sub-dict/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn36ut2y"
 ---
 

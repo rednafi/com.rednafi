@@ -1,17 +1,22 @@
 ---
-title: Putting this blog on ATProto with standard.site
-date: 2026-06-07
+title: "Putting this blog on ATProto with standard.site"
 slug: standard-site
-atprotoPath: /misc/standard-site/
-mermaid: true
+date: 2026-06-07
+description: >-
+    Mirroring a static Hugo blog onto ATProto with standard.site and Sequoia, plus the
+    GitHub Actions wiring that republishes the records on every push without any manual
+    steps.
 tags:
     - Essay
     - DevOps
     - Web
-description: >-
-  Mirroring a static Hugo blog onto ATProto with standard.site and Sequoia, plus the
-  GitHub Actions wiring that republishes the records on every push without any manual
-  steps.
+images:
+    - "https://blob.rednafi.com/misc/standard-site/cover-90ecea060c44.png"
+aliases: []
+discussions: []
+mermaid: true
+type_label: ""
+atprotoPath: /misc/standard-site/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r"
 ---
 
@@ -103,21 +108,30 @@ lives in `.sequoia-state.json`, so reruns only touch what actually changed.
 I didn't want to run `sequoia publish` by hand, so it happens in [CI]. Two pieces make that
 work.
 
-A [small Go script] fills in one frontmatter field before Sequoia runs. standard.site gives
-each document a stable path, and Sequoia reads that from an `atprotoPath` field in the
+A [small Go script] normalizes the post frontmatter before Sequoia runs. standard.site gives
+each document a stable path, and Sequoia reads that from an `atprotoPath` field in
 frontmatter. Rather than type it into every post, I derive it from the file's location and
 slug, so `content/zephyr/carry_the_pager.md` with `slug: carry-the-pager` gets
-`atprotoPath: /zephyr/carry-the-pager/` written in. It also fails the build if a post has no
-slug to derive one from.
+`atprotoPath: /zephyr/carry-the-pager/` written in. The same script keeps the frontmatter
+keys in one order, adds the social preview `images` URL, and fails the build if a post has
+unknown or incomplete metadata.
 
-Then GitHub Actions does the rest on every push to `main`. It runs the sync script, then
-`sequoia publish` with my handle and app password from repo secrets. It prettier-formats the
-metadata Sequoia generated, then commits the new `atUri`s, `.sequoia-state.json`, and the
-`.well-known` file back with a `[skip ci]` tag. Finally Hugo builds and deploys.
+Then GitHub Actions does the rest on every push to `main`. It normalizes frontmatter,
+generates any missing preview images, uploads those images to R2 with immutable cache
+headers, then runs `sequoia publish` with my handle and app password from repo secrets. It
+prettier-formats the metadata Sequoia generated, checks the frontmatter again, then commits
+the new `atUri`s, image URLs, `.sequoia-state.json`, and the `.well-known` file back with a
+`[skip ci]` tag. Finally Hugo builds and deploys.
 
 ```yaml
-- name: Sync standard.site frontmatter
-  run: go run ./scripts/stdsitesync
+- name: Normalize post frontmatter
+  run: go run ./scripts/frontmatter
+
+- name: Generate missing post header images
+  run: go run ./scripts/postcards --missing-r2-assets
+
+- name: Upload post header images to R2
+  run: make upload-postcards
 
 - name: Publish standard.site records
   env:
@@ -211,18 +225,18 @@ workflow].
     https://github.com/rednafi/com.rednafi/blob/main/sequoia.json
 
 [script]:
-    https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
+    https://github.com/rednafi/com.rednafi/blob/main/scripts/frontmatter/main.go
 
 [ci workflow]:
     https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml
 
 [small Go script]:
-    https://github.com/rednafi/com.rednafi/blob/main/scripts/stdsitesync/main.go
+    https://github.com/rednafi/com.rednafi/blob/main/scripts/frontmatter/main.go
 
 [img_2]:
-    https://blob.rednafi.com/static/images/standard_site/img_2_v2.png
+    https://blob.rednafi.com/misc/standard-site/image-02-v2-b87aea40ea0e.png
 
 [img_3]:
-    https://blob.rednafi.com/static/images/standard_site/img_3.png
+    https://blob.rednafi.com/misc/standard-site/image-03-d67bfdc6d73e.png
 
 <!-- prettier-ignore-end -->

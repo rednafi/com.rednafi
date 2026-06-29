@@ -17,7 +17,6 @@
   {{- if not (.Param "hideMeta") }}
   <div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format site.Params.DateFormat }}</time><span class="post-meta-sep" aria-hidden="true">&middot;</span>{{ .ReadingTime }} min read</div>
   {{- end }}
-
   {{- if and .Section (not .Params.hideToc) (findRE "<li>" .TableOfContents) }}
   <details class="toc" data-pagefind-ignore>
     <summary>Table of contents</summary>

@@ -1,17 +1,22 @@
 ---
-title: Peeking into Go struct tags
-date: 2026-04-18
+title: "Peeking into Go struct tags"
 slug: struct-tags
-atprotoPath: /go/struct-tags/
-aliases:
-    - /go/fun-with-struct-tags/
+date: 2026-04-18
+description: >-
+    A quick tour of Go struct tags: how different libraries use them, how you read them at
+    runtime with reflection, and how other tools read them at build time instead.
 tags:
     - Go
     - Reflection
     - Codegen
-description: >-
-    A quick tour of Go struct tags: how different libraries use them, how you read them
-    at runtime with reflection, and how other tools read them at build time instead.
+images:
+    - "https://blob.rednafi.com/go/struct-tags/cover-053cb021cd36.png"
+aliases:
+    - /go/fun-with-struct-tags/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/struct-tags/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasvmq2s"
 ---
 

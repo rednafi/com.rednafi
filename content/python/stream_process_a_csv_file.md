@@ -1,17 +1,22 @@
 ---
-title: Stream process a CSV file in Python
-date: 2022-07-01
+title: "Stream process a CSV file in Python"
 slug: stream-process-a-csv-file
-atprotoPath: /python/stream-process-a-csv-file/
-aliases:
-    - /python/stream_process_a_csv_file/
+date: 2022-07-01
+description: >-
+    Process large CSV files without OOM errors by streaming content line-by-line with HTTPX
+    and concurrent.futures for parallel processing.
 tags:
     - Python
     - Networking
     - Concurrency
-description: >-
-  Process large CSV files without OOM errors by streaming content line-by-line with HTTPX
-  and concurrent.futures for parallel processing.
+images:
+    - "https://blob.rednafi.com/python/stream-process-a-csv-file/cover-2233c7c8786e.png"
+aliases:
+    - /python/stream_process_a_csv_file/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/stream-process-a-csv-file/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdncon2o"
 ---
 

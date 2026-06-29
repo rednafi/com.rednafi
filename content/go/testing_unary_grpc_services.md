@@ -1,16 +1,22 @@
 ---
-title: Testing unary gRPC services in Go
-date: 2026-03-23
+title: "Testing unary gRPC services in Go"
 slug: testing-unary-grpc-services
-atprotoPath: /go/testing-unary-grpc-services/
+date: 2026-03-23
+description: >-
+    How to test unary gRPC services in Go - handler logic, interceptors, deadlines, metadata
+    propagation, and rich error details - all in-memory with bufconn.
 tags:
     - Go
     - gRPC
     - Testing
-    - Distributed Systems
-description: >-
-    How to test unary gRPC services in Go - handler logic, interceptors, deadlines,
-    metadata propagation, and rich error details - all in-memory with bufconn.
+    - "Distributed Systems"
+images:
+    - "https://blob.rednafi.com/go/testing-unary-grpc-services/cover-77ac2d5d44ff.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/testing-unary-grpc-services/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavilu2u"
 ---
 

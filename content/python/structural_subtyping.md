@@ -1,16 +1,21 @@
 ---
-title: Structural subtyping in Python
-date: 2021-12-04
+title: "Structural subtyping in Python"
 slug: structural-subtyping
-atprotoPath: /python/structural-subtyping/
-aliases:
-    - /python/structural_subtyping/
+date: 2021-12-04
+description: >-
+    Implement Go-style structural subtyping in Python with Protocol for duck typing and
+    interface-based APIs without inheritance dependencies.
 tags:
     - Python
     - Typing
-description: >-
-  Implement Go-style structural subtyping in Python with Protocol for duck typing and
-  interface-based APIs without inheritance dependencies.
+images:
+    - "https://blob.rednafi.com/python/structural-subtyping/cover-039be5e94aaa.png"
+aliases:
+    - /python/structural_subtyping/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/structural-subtyping/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlyya2u"
 ---
 

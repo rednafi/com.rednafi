@@ -1,17 +1,22 @@
 ---
-title: Building a CORS proxy with Cloudflare Workers
-date: 2023-05-21
+title: "Building a CORS proxy with Cloudflare Workers"
 slug: cors-proxy-with-cloudflare-workers
-atprotoPath: /javascript/cors-proxy-with-cloudflare-workers/
-aliases:
-    - /javascript/cors_proxy_with_cloudflare_workers/
+date: 2023-05-21
+description: >-
+    Build your own CORS proxy using Cloudflare Workers to bypass browser CORS restrictions.
+    Includes deployment with GitHub Actions automation.
 tags:
     - JavaScript
     - Networking
     - GitHub
-description: >-
-  Build your own CORS proxy using Cloudflare Workers to bypass browser CORS restrictions.
-  Includes deployment with GitHub Actions automation.
+images:
+    - "https://blob.rednafi.com/javascript/cors-proxy-with-cloudflare-workers/cover-5b6d2c2eab4d.png"
+aliases:
+    - /javascript/cors_proxy_with_cloudflare_workers/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /javascript/cors-proxy-with-cloudflare-workers/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2eg22e"
 ---
 
@@ -455,6 +460,6 @@ Secrets] of your proxy server's repository. Here's the [complete CI workflow fil
     https://github.com/rednafi/cors-proxy/blob/main/.github/workflows/ci.yml
 
 [image_1]:
-    https://blob.rednafi.com/static/images/cors_proxy_with_cloudflare_workers/img_1.png
+    https://blob.rednafi.com/javascript/cors-proxy-with-cloudflare-workers/image-01-da0b6d51250a.png
 
 <!-- prettier-ignore-end -->

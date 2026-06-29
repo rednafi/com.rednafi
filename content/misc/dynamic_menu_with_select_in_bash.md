@@ -1,18 +1,23 @@
 ---
-title: Dynamic menu with select statement in Bash
-date: 2023-04-29
+title: "Dynamic menu with select statement in Bash"
 slug: dynamic-menu-with-select-in-bash
-atprotoPath: /misc/dynamic-menu-with-select-in-bash/
-aliases:
-    - /misc/dynamic_menu_with_select_in_bash/
+date: 2023-04-29
+description: >-
+    Build interactive CLI menus with Bash select statement. Create user-friendly
+    command-line tools with option selection and function dispatch.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Build interactive CLI menus with Bash select statement. Create user-friendly
-  command-line tools with option selection and function dispatch.
+images:
+    - "https://blob.rednafi.com/misc/dynamic-menu-with-select-in-bash/cover-eb8e8ca09085.png"
+aliases:
+    - /misc/dynamic_menu_with_select_in_bash/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/dynamic-menu-with-select-in-bash/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivj25c2e"
 ---
 

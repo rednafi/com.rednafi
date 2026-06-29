@@ -1,16 +1,21 @@
 ---
-title: Three flavors of sorting Go slices
-date: 2025-03-22
+title: "Three flavors of sorting Go slices"
 slug: sort-slice
-atprotoPath: /go/sort-slice/
-aliases:
-    - /go/sort_slice/
+date: 2025-03-22
+description: >-
+    Compare three Go slice sorting methods: sort.Interface, sort.Slice with closures, and
+    modern generic slices.Sort with type safety.
 tags:
     - Go
-    - Data Structures
-description: >-
-  Compare three Go slice sorting methods: sort.Interface, sort.Slice with closures, and
-  modern generic slices.Sort with type safety.
+    - "Data Structures"
+images:
+    - "https://blob.rednafi.com/go/sort-slice/cover-1c7d7db34446.png"
+aliases:
+    - /go/sort_slice/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/sort-slice/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igauwn2o"
 ---
 

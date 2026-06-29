@@ -1,17 +1,22 @@
 ---
-title: Periodic readme updates with GitHub Actions
-date: 2023-05-04
+title: "Periodic readme updates with GitHub Actions"
 slug: periodic-readme-updates-with-gh-actions
-atprotoPath: /javascript/periodic-readme-updates-with-gh-actions/
-aliases:
-    - /javascript/periodic_readme_updates_with_gh_actions/
+date: 2023-05-04
+description: >-
+    Automate your GitHub profile README with periodic updates using Actions. Parse RSS feeds
+    and dynamically display latest blog posts with NodeJS.
 tags:
     - JavaScript
     - GitHub
     - DevOps
-description: >-
-  Automate your GitHub profile README with periodic updates using Actions. Parse RSS
-  feeds and dynamically display latest blog posts with NodeJS.
+images:
+    - "https://blob.rednafi.com/javascript/periodic-readme-updates-with-gh-actions/cover-902b8b2b3ee4.png"
+aliases:
+    - /javascript/periodic_readme_updates_with_gh_actions/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /javascript/periodic-readme-updates-with-gh-actions/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3tcd26"
 ---
 
@@ -232,6 +237,6 @@ I'm quite satisfied with the final output:
     https://github.com/rednafi/rednafi/tree/master/.github/workflows
 
 [image_1]:
-    https://blob.rednafi.com/static/images/periodic_readme_updates_with_gh_actions/img_1.png
+    https://blob.rednafi.com/javascript/periodic-readme-updates-with-gh-actions/image-01-193078824a25.png
 
 <!-- prettier-ignore-end -->

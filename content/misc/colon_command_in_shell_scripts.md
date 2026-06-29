@@ -1,18 +1,23 @@
 ---
-title: Colon command in shell scripts
-date: 2022-12-23
+title: "Colon command in shell scripts"
 slug: colon-command-in-shell-scripts
-atprotoPath: /misc/colon-command-in-shell-scripts/
-aliases:
-    - /misc/colon_command_in_shell_scripts/
+date: 2022-12-23
+description: >-
+    Use the colon : command as a no-op in Bash scripts for cleaner debug output with -x
+    flag. Alternative to echo for section markers and comments.
 tags:
     - Shell
     - Unix
     - TIL
     - CLI
-description: >-
-  Use the colon : command as a no-op in Bash scripts for cleaner debug output with -x
-  flag. Alternative to echo for section markers and comments.
+images:
+    - "https://blob.rednafi.com/misc/colon-command-in-shell-scripts/cover-f9dc7b500871.png"
+aliases:
+    - /misc/colon_command_in_shell_scripts/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /misc/colon-command-in-shell-scripts/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j33l242a"
 ---
 

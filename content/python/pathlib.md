@@ -1,15 +1,20 @@
 ---
-title: No really, Python's pathlib is great
+title: "No really, Python's pathlib is great"
+slug: pathlib
 date: 2020-04-13
+description: >-
+    Replace os.path with Python's pathlib for elegant, object-oriented path manipulation
+    with intuitive operators and unified file operations.
 tags:
     - Python
-slug: pathlib
-atprotoPath: /python/pathlib/
+images:
+    - "https://blob.rednafi.com/python/pathlib/cover-c950d9e7685e.png"
 aliases:
     - /python/pathlib/
-description: >-
-  Replace os.path with Python's pathlib for elegant, object-oriented path manipulation
-  with intuitive operators and unified file operations.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/pathlib/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq3kuf2u"
 ---
 
@@ -775,6 +780,6 @@ The ability to manipulate paths in an OO way and not having to rummage through t
 
 
 [image_1]:
-    https://blob.rednafi.com/static/images/pathlib/img_1.png
+    https://blob.rednafi.com/python/pathlib/image-01-9366fcec6b67.png
 
 <!-- prettier-ignore-end -->

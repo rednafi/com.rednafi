@@ -1,17 +1,22 @@
 ---
-title: Use 'assertIs' to check literal booleans in Python unittest
-date: 2022-01-24
+title: "Use 'assertIs' to check literal booleans in Python unittest"
 slug: use-assertis-to-check-literal-booleans
-atprotoPath: /python/use-assertis-to-check-literal-booleans/
-aliases:
-    - /python/use_assertis_to_check_literal_booleans/
+date: 2022-01-24
+description: >-
+    Test literal booleans correctly in Python unittest using assertIs instead of
+    assertTrue/assertFalse to avoid truthy/falsy confusion.
 tags:
     - Python
     - TIL
     - Testing
-description: >-
-  Test literal booleans correctly in Python unittest using assertIs instead of
-  assertTrue/assertFalse to avoid truthy/falsy confusion.
+images:
+    - "https://blob.rednafi.com/python/use-assertis-to-check-literal-booleans/cover-8fc97e759c73.png"
+aliases:
+    - /python/use_assertis_to_check_literal_booleans/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/use-assertis-to-check-literal-booleans/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn435u2j"
 ---
 

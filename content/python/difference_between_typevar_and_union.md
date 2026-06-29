@@ -1,17 +1,22 @@
 ---
-title: Difference between constrained 'TypeVar' and 'Union' in Python
-date: 2022-01-19
+title: "Difference between constrained 'TypeVar' and 'Union' in Python"
 slug: difference-between-typevar-and-union
-atprotoPath: /python/difference-between-typevar-and-union/
-aliases:
-    - /python/difference_between_typevar_and_union/
+date: 2022-01-19
+description: >-
+    Understand when to use constrained TypeVar vs Union in Python type hints for consistent
+    types across function parameters and return values.
 tags:
     - Python
     - Typing
     - TIL
-description: >-
-  Understand when to use constrained TypeVar vs Union in Python type hints for consistent
-  types across function parameters and return values.
+images:
+    - "https://blob.rednafi.com/python/difference-between-typevar-and-union/cover-f6afc5b85093.png"
+aliases:
+    - /python/difference_between_typevar_and_union/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/difference-between-typevar-and-union/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbzpm2a"
 ---
 

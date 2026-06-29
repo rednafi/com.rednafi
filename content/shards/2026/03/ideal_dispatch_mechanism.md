@@ -1,13 +1,19 @@
 ---
-title: What's the ideal dispatch mechanism?
-date: 2026-03-31
+title: "What's the ideal dispatch mechanism?"
 slug: ideal-dispatch-mechanism
-atprotoPath: /shards/2026/03/ideal-dispatch-mechanism/
+date: 2026-03-31
+description: >-
+    Switch, map of functions, and interface registry for dispatching in Go.
 tags:
     - Go
     - API
-description: >-
-  Switch, map of functions, and interface registry for dispatching in Go.
+images:
+    - "https://blob.rednafi.com/shards/2026/03/ideal-dispatch-mechanism/cover-61ce590cdf13.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /shards/2026/03/ideal-dispatch-mechanism/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaupby2z"
 ---
 

@@ -1,15 +1,20 @@
 ---
-title: The domain knowledge dilemma
-date: 2025-01-19
+title: "The domain knowledge dilemma"
 slug: domain-knowledge-dilemma
-atprotoPath: /zephyr/domain-knowledge-dilemma/
-aliases:
-    - /zephyr/domain_knowledge_dilemma/
+date: 2025-01-19
+description: >-
+    Navigating the balance between building valuable domain expertise and avoiding
+    over-specialization that limits career mobility.
 tags:
     - Essay
-description: >-
-  Navigating the balance between building valuable domain expertise and avoiding
-  over-specialization that limits career mobility.
+images:
+    - "https://blob.rednafi.com/zephyr/domain-knowledge-dilemma/cover-ac89249d098f.png"
+aliases:
+    - /zephyr/domain_knowledge_dilemma/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /zephyr/domain-knowledge-dilemma/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfyz22p"
 ---
 

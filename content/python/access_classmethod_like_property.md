@@ -1,15 +1,20 @@
 ---
-title: Access 'classmethod's like 'property' methods in Python
-date: 2021-11-26
+title: "Access 'classmethod's like 'property' methods in Python"
 slug: access-classmethod-like-property
-atprotoPath: /python/access-classmethod-like-property/
-aliases:
-    - /python/access_classmethod_like_property/
+date: 2021-11-26
+description: >-
+    Learn how to access Python classmethods like property methods using metaclasses or
+    Python 3.9+ decorator stacking for Enum classes.
 tags:
     - Python
-description: >-
-  Learn how to access Python classmethods like property methods using metaclasses or
-  Python 3.9+ decorator stacking for Enum classes.
+images:
+    - "https://blob.rednafi.com/python/access-classmethod-like-property/cover-56aacfe1cd86.png"
+aliases:
+    - /python/access_classmethod_like_property/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/access-classmethod-like-property/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmvau2b"
 ---
 

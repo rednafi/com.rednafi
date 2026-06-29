@@ -1,6 +1,8 @@
 package site_test
 
 import (
+	"encoding/json"
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -14,6 +16,8 @@ import (
 )
 
 const standardSitePublicationURI = "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/3mnl6f7ob462z"
+const atprotoDID = "did:plc:fgtm2c26vfcj74rfmeggbyqj"
+const postCardsAssetBaseURL = "https://blob.rednafi.com"
 
 type standardSiteConfig struct {
 	Params struct {
@@ -30,8 +34,15 @@ type standardSiteSections struct {
 func TestStandardSiteWellKnownEndpoint(t *testing.T) {
 	t.Parallel()
 
-	body := strings.TrimSpace(httpGet(t, baseURL+"/.well-known/site.standard.publication"))
+	body := httpGet(t, baseURL+"/.well-known/site.standard.publication")
 	assert.Equal(t, standardSitePublicationURI, body)
+}
+
+func TestATProtoDidWellKnownEndpoint(t *testing.T) {
+	t.Parallel()
+
+	body := httpGet(t, baseURL+"/.well-known/atproto-did")
+	assert.Equal(t, atprotoDID, body)
 }
 
 func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
@@ -53,7 +64,7 @@ func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
 func TestStandardSitePublicationLinkTags(t *testing.T) {
 	t.Parallel()
 
-	pages := []string{"/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/"}
+	pages := []string{"/", "/go/", "/tags/", "/tags/go/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)
@@ -64,6 +75,90 @@ func TestStandardSitePublicationLinkTags(t *testing.T) {
 			assert.Equal(t, standardSitePublicationURI, href)
 		})
 	}
+}
+
+func TestStandardSiteUsesMetadataOnly(t *testing.T) {
+	t.Parallel()
+
+	t.Run("homepage exposes publication metadata without visible controls", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/")
+
+		publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
+		require.NoError(t, err)
+		assert.Equal(t, standardSitePublicationURI, publication)
+		assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-subscribe")))
+		assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-recommend")))
+		assert.Equal(t, 0, mustCount(t, page.Locator(`script[type="module"][src*="sequoia-subscribe"]`)))
+	})
+
+	t.Run("article exposes document metadata without visible controls", func(t *testing.T) {
+		contentPath := "../content/go/anemic_stack_traces.md"
+		atURI := frontmatterScalar(t, contentPath, "atUri")
+		require.NotEmpty(t, atURI)
+
+		page := newPage(t)
+		goto_(t, page, "/go/anemic-stack-traces/")
+
+		publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
+		require.NoError(t, err)
+		assert.Equal(t, standardSitePublicationURI, publication)
+		document, err := page.Locator(`link[rel="site.standard.document"]`).GetAttribute("href")
+		require.NoError(t, err)
+		assert.Equal(t, atURI, document)
+		assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-subscribe")))
+		assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-recommend")))
+		assert.Equal(t, 0, mustCount(t, page.Locator(`script[type="module"][src*="sequoia-subscribe"]`)))
+	})
+
+	t.Run("list pages expose publication metadata without visible controls", func(t *testing.T) {
+		for _, url := range []string{"/go/", "/tags/go/"} {
+			t.Run(url, func(t *testing.T) {
+				page := newPage(t)
+				goto_(t, page, url)
+
+				publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
+				require.NoError(t, err)
+				assert.Equal(t, standardSitePublicationURI, publication)
+				assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-subscribe")))
+				assert.Equal(t, 0, mustCount(t, page.Locator("sequoia-recommend")))
+				assert.Equal(t, 0, mustCount(t, page.Locator(`script[type="module"][src*="sequoia-subscribe"]`)))
+			})
+		}
+	})
+}
+
+func TestRSSAutodiscoveryOnArticlePages(t *testing.T) {
+	t.Parallel()
+
+	page := newPage(t)
+	goto_(t, page, "/go/anemic-stack-traces/")
+
+	rss := page.Locator(`link[rel="alternate"][type="application/rss+xml"][href="https://rednafi.com/index.xml"]`)
+	assert.Equal(t, 1, mustCount(t, rss))
+}
+
+func TestSequoiaConfigMaximizesDiscovery(t *testing.T) {
+	t.Parallel()
+
+	raw, err := os.ReadFile("../sequoia.json")
+	require.NoError(t, err)
+
+	var config map[string]any
+	require.NoError(t, json.Unmarshal(raw, &config))
+
+	assert.Equal(t, "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json", config["$schema"])
+	assert.Equal(t, "rednafi.com", config["identity"])
+	assert.Equal(t, true, config["autoSync"])
+	assert.Equal(t, true, config["publishContent"])
+
+	bluesky, ok := config["bluesky"].(map[string]any)
+	require.True(t, ok, "sequoia.json should configure Bluesky posting")
+	assert.Equal(t, false, bluesky["enabled"])
+	assert.Equal(t, float64(30), bluesky["maxAgeDays"])
+
+	_, ok = config["ui"]
+	assert.False(t, ok, "Sequoia should publish metadata only; no visible in-site UI components")
 }
 
 func TestStandardSiteDocumentLinkTagsWhenPublished(t *testing.T) {
@@ -102,6 +197,32 @@ func TestStandardSitePreviewCardUsesSiteImage(t *testing.T) {
 	ogImage, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 	require.NoError(t, err)
 	assert.Equal(t, ogImage, cardImage)
+}
+
+func TestStandardSitePostImagesFeedHugoAndSequoia(t *testing.T) {
+	t.Parallel()
+
+	contentPath := "../content/go/request_coalescing.md"
+	images := frontmatterStringSlice(t, contentPath, "images")
+	require.Len(t, images, 1)
+	expectedURL := images[0]
+	assert.True(t, strings.HasPrefix(expectedURL, postCardsAssetBaseURL+"/go/request-coalescing/cover-"))
+	assert.True(t, strings.HasSuffix(expectedURL, ".png"))
+
+	_, err := os.Stat(filepath.Join("..", "public/images/go/request-coalescing"))
+	assert.True(t, os.IsNotExist(err), "generated card binaries should not be deployed through GitHub Pages")
+
+	page := newPage(t)
+	goto_(t, page, "/go/request-coalescing/")
+	metaImage, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
+	require.NoError(t, err)
+	assert.Equal(t, expectedURL, metaImage)
+	metaWidth, err := page.Locator(`meta[property="og:image:width"]`).GetAttribute("content")
+	require.NoError(t, err)
+	assert.Equal(t, "4080", metaWidth)
+	metaHeight, err := page.Locator(`meta[property="og:image:height"]`).GetAttribute("content")
+	require.NoError(t, err)
+	assert.Equal(t, "2142", metaHeight)
 }
 
 func TestStandardSiteFrontmatterPaths(t *testing.T) {
@@ -191,6 +312,32 @@ func (sections standardSiteSections) publishes(section string) bool {
 func frontmatterScalar(t *testing.T, filePath, key string) string {
 	t.Helper()
 
+	values := frontmatterValues(t, filePath)
+	value, ok := values[key].(string)
+	if !ok {
+		return ""
+	}
+	return strings.TrimSpace(value)
+}
+
+func frontmatterStringSlice(t *testing.T, filePath, key string) []string {
+	t.Helper()
+
+	values := frontmatterValues(t, filePath)
+	raw, ok := values[key].([]any)
+	if !ok {
+		return nil
+	}
+	out := make([]string, 0, len(raw))
+	for _, value := range raw {
+		out = append(out, strings.TrimSpace(fmt.Sprint(value)))
+	}
+	return out
+}
+
+func frontmatterValues(t *testing.T, filePath string) map[string]any {
+	t.Helper()
+
 	data, err := os.ReadFile(filePath)
 	require.NoError(t, err)
 
@@ -199,12 +346,15 @@ func frontmatterScalar(t *testing.T, filePath, key string) string {
 
 	var values map[string]any
 	require.NoError(t, yaml.Unmarshal([]byte(body), &values))
+	return values
+}
 
-	value, ok := values[key].(string)
-	if !ok {
-		return ""
-	}
-	return strings.TrimSpace(value)
+func mustCount(t *testing.T, locator interface{ Count() (int, error) }) int {
+	t.Helper()
+
+	count, err := locator.Count()
+	require.NoError(t, err)
+	return count
 }
 
 func frontmatterBody(raw string) (string, error) {

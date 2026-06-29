@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bucket="${POSTCARDS_R2_BUCKET:-blog}"
+cards_dir="${POSTCARDS_OUTPUT_DIR:-.cache/postcards/images}"
+cover_png="${POSTCARDS_COVER_PNG:-.cache/postcards/cover.png}"
+cover_svg="${POSTCARDS_COVER_SVG:-.cache/postcards/cover.svg}"
+public_base="${POSTCARDS_PUBLIC_BASE:-https://blob.rednafi.com}"
+wrangler="${WRANGLER:-npx -y wrangler@4.83.0}"
+cache_control="public, max-age=31536000, immutable"
+mode="upload"
+
+if [ "${1:-}" = "--compress-only" ]; then
+	mode="compress"
+	shift
+fi
+
+if [ "$#" -ne 0 ]; then
+	echo "usage: upload-postcards [--compress-only]" >&2
+	exit 1
+fi
+
+for cmd in curl go; do
+	if ! command -v "$cmd" >/dev/null 2>&1; then
+		echo "upload-postcards: $cmd is required" >&2
+		exit 1
+	fi
+done
+
+if ! command -v oxipng >/dev/null 2>&1; then
+	echo "upload-postcards: oxipng is required for lossless PNG optimization" >&2
+	exit 1
+fi
+
+if [ ! -d "$cards_dir" ]; then
+	go run ./scripts/postcards --missing-r2-assets
+fi
+
+if [ ! -f "$cover_png" ] || [ ! -f "$cover_svg" ]; then
+	go run ./scripts/postcards --cover-only
+fi
+
+shopt -s globstar nullglob
+uploads=()
+
+for file in "$cards_dir"/**/*.png "$cover_png" "$cover_svg"; do
+	if [ ! -f "$file" ]; then
+		continue
+	fi
+	uploads+=("$file")
+done
+
+if [ "${#uploads[@]}" -eq 0 ]; then
+	echo "No post card assets to upload."
+	exit 0
+fi
+
+content_type() {
+	case "$1" in
+		*.png) echo "image/png" ;;
+		*.svg) echo "image/svg+xml; charset=utf-8" ;;
+		*) echo "application/octet-stream" ;;
+	esac
+}
+
+object_key() {
+	local file="$1"
+	if [[ "$file" == "$cards_dir"/** ]]; then
+		printf '%s\n' "${file#"$cards_dir"/}"
+		return
+	fi
+	case "$(basename "$file")" in
+		cover.png) echo "home/cover.png" ;;
+		cover.svg) echo "home/cover.svg" ;;
+		*) echo "$(basename "$file")" ;;
+	esac
+}
+
+remote_exists() {
+	local key="$1"
+	curl -fsSI "${public_base%/}/$key" >/dev/null 2>&1
+}
+
+upload_object() {
+	local file="$1"
+	local key="$2"
+	local type="$3"
+	local attempt
+	for attempt in 1 2 3; do
+		if $wrangler r2 object put "$bucket/$key" \
+			--file "$file" \
+			--content-type "$type" \
+			--cache-control "$cache_control" \
+			--remote; then
+			return 0
+		fi
+		if [ "$attempt" -lt 3 ]; then
+			sleep $((attempt * 2))
+		fi
+	done
+	return 1
+}
+
+compress_pngs() {
+	local compressed=0
+	local file
+	for file in "${uploads[@]}"; do
+		if [[ "$file" == *.png ]]; then
+			oxipng -o max --strip safe "$file"
+			compressed=$((compressed + 1))
+		fi
+	done
+	echo "Compressed $compressed PNG post card asset(s)."
+}
+
+if [ "$mode" = "compress" ]; then
+	compress_pngs
+	exit 0
+fi
+
+uploaded=0
+skipped=0
+
+for file in "${uploads[@]}"; do
+	key="$(object_key "$file")"
+	if remote_exists "$key"; then
+		skipped=$((skipped + 1))
+		continue
+	fi
+	if [ "${POSTCARDS_SKIP_COMPRESSION:-}" != "1" ] && [[ "$file" == *.png ]]; then
+		oxipng -o max --strip safe "$file"
+	fi
+	upload_object "$file" "$key" "$(content_type "$file")"
+	uploaded=$((uploaded + 1))
+done
+
+echo "Uploaded $uploaded post card asset(s); skipped $skipped existing asset(s)."

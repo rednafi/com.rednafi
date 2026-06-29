@@ -1,17 +1,22 @@
 ---
-title: Mocking chained methods of datetime objects in Python
-date: 2022-03-16
+title: "Mocking chained methods of datetime objects in Python"
 slug: mocking-datetime-objects
-atprotoPath: /python/mocking-datetime-objects/
-aliases:
-    - /python/mocking_datetime_objects/
+date: 2022-03-16
+description: >-
+    Mock chained datetime methods in Python tests using unittest.mock to handle immutable
+    datetime objects without external dependencies.
 tags:
     - Python
     - Testing
     - Pytest
-description: >-
-  Mock chained datetime methods in Python tests using unittest.mock to handle immutable
-  datetime objects without external dependencies.
+images:
+    - "https://blob.rednafi.com/python/mocking-datetime-objects/cover-a8b0c0852eee.png"
+aliases:
+    - /python/mocking_datetime_objects/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/mocking-datetime-objects/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jicl4t2s"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Quicker startup with module-level __getattr__
-date: 2024-11-03
+title: "Quicker startup with module-level __getattr__"
 slug: module-getattr
-atprotoPath: /python/module-getattr/
-aliases:
-    - /python/module_getattr/
+date: 2024-11-03
+description: >-
+    Speed up Python module imports with __getattr__ from PEP 562 for lazy loading,
+    deprecation warnings, and dynamic attribute access.
 tags:
     - Python
     - TIL
     - Performance
-description: >-
-  Speed up Python module imports with __getattr__ from PEP 562 for lazy loading,
-  deprecation warnings, and dynamic attribute access.
+images:
+    - "https://blob.rednafi.com/python/module-getattr/cover-05dbf3e0e3af.png"
+aliases:
+    - /python/module_getattr/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/module-getattr/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih6rzi26"
 ---
 

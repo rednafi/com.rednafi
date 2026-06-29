@@ -1,15 +1,21 @@
 ---
 title: "Go errors: to wrap or not to wrap?"
-date: 2026-03-07
 slug: to-wrap-or-not-to-wrap
-atprotoPath: /go/to-wrap-or-not-to-wrap/
+date: 2026-03-07
+description: >-
+    Exploring the tradeoffs between wrapping errors at every return site versus wrapping
+    only at boundaries, with no definitive answer - just honest tradeoffs for the kind of
+    software I write.
 tags:
     - Go
-    - Error Handling
-description: >-
-    Exploring the tradeoffs between wrapping errors at every return site versus
-    wrapping only at boundaries, with no definitive answer - just honest tradeoffs
-    for the kind of software I write.
+    - "Error Handling"
+images:
+    - "https://blob.rednafi.com/go/to-wrap-or-not-to-wrap/cover-35c2c5cb2c4d.png"
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/to-wrap-or-not-to-wrap/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfcvq2s"
 ---
 

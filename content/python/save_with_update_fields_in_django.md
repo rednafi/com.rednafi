@@ -1,21 +1,25 @@
 ---
-title: Save models with update_fields for better performance in Django
-date: 2022-11-09
+title: "Save models with update_fields for better performance in Django"
 slug: save-with-update-fields-in-django
-atprotoPath: /python/save-with-update-fields-in-django/
-aliases:
-    - /python/save_with_update_fields_in_django/
+date: 2022-11-09
+description: >-
+    Optimize Django model saves with update_fields parameter to generate leaner SQL queries
+    and improve performance in tight update loops.
 tags:
     - Python
     - Django
     - TIL
     - Performance
-description: >-
-  Optimize Django model saves with update_fields parameter to generate leaner SQL queries
-  and improve performance in tight update loops.
+images:
+    - "https://blob.rednafi.com/python/save-with-update-fields-in-django/cover-e20a5d7f3998.png"
+aliases:
+    - /python/save_with_update_fields_in_django/
 discussions:
-    - label: Reddit
-      url: https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/
+    - label: "Reddit"
+      url: "https://www.reddit.com/r/django/comments/nynfab/save_your_django_models_using_update_fields_for/"
+mermaid: false
+type_label: ""
+atprotoPath: /python/save-with-update-fields-in-django/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j4kc352u"
 ---
 

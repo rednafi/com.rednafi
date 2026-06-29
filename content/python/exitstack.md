@@ -1,15 +1,20 @@
 ---
-title: ExitStack in Python
+title: "ExitStack in Python"
+slug: exitstack
 date: 2022-08-27
+description: >-
+    Master Python's ExitStack for managing multiple context managers, conditional callbacks,
+    request rollbacks, and avoiding nested with statements.
 tags:
     - Python
-slug: exitstack
-atprotoPath: /python/exitstack/
+images:
+    - "https://blob.rednafi.com/python/exitstack/cover-6510adf4f664.png"
 aliases:
     - /python/exitstack/
-description: >-
-  Master Python's ExitStack for managing multiple context managers, conditional
-  callbacks, request rollbacks, and avoiding nested with statements.
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/exitstack/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcqhtf2o"
 ---
 

@@ -1,17 +1,22 @@
 ---
-title: Python logging quirks in AWS Lambda environment
-date: 2022-10-20
+title: "Python logging quirks in AWS Lambda environment"
 slug: logging-quirks-in-lambda-environment
-atprotoPath: /python/logging-quirks-in-lambda-environment/
-aliases:
-    - /python/logging_quirks_in_lambda_environment/
+date: 2022-10-20
+description: >-
+    Configure Python logging for AWS Lambda's pre-configured handlers while maintaining
+    compatibility with local development environments.
 tags:
     - Python
     - AWS
     - Logging
-description: >-
-  Configure Python logging for AWS Lambda's pre-configured handlers while maintaining
-  compatibility with local development environments.
+images:
+    - "https://blob.rednafi.com/python/logging-quirks-in-lambda-environment/cover-51828a43bf64.png"
+aliases:
+    - /python/logging_quirks_in_lambda_environment/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/logging-quirks-in-lambda-environment/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6japwhm2e"
 ---
 

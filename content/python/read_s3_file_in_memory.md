@@ -1,16 +1,21 @@
 ---
-title: Read a CSV file from s3 without saving it to the disk
-date: 2022-06-26
+title: "Read a CSV file from s3 without saving it to the disk"
 slug: read-s3-file-in-memory
-atprotoPath: /python/read-s3-file-in-memory/
-aliases:
-    - /python/read_s3_file_in_memory/
+date: 2022-06-26
+description: >-
+    Download and process S3 CSV files in memory using boto3 and tempfile.NamedTemporaryFile
+    without cluttering disk with temporary files.
 tags:
     - Python
     - AWS
-description: >-
-  Download and process S3 CSV files in memory using boto3 and tempfile.NamedTemporaryFile
-  without cluttering disk with temporary files.
+images:
+    - "https://blob.rednafi.com/python/read-s3-file-in-memory/cover-fac41837ff54.png"
+aliases:
+    - /python/read_s3_file_in_memory/
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /python/read-s3-file-in-memory/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdp2hr2z"
 ---
 
