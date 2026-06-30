@@ -158,7 +158,7 @@ article p,
 article li {
   text-wrap: pretty;
 }
-/* reading body matched to vercel.com/blog: 18px desktop / 16px mobile, ~1.55 leading */
+/* reading body: 18px desktop, 17px on phones/tablets, ~1.55 leading */
 .article-content {
   font-size: var(--fs-article);
   line-height: var(--lh-article);

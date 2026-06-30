@@ -1,15 +1,16 @@
 public/
+resources/
+node_modules/
+.cache/
+.wrangler/
+.claude/
 static/
 layouts/
 themes/
 
-# Ignore
 **/*.html
-**/Makefile
+Makefile
 .editorconfig
 .prettierignore
 .git*
 .hugo*
-Brew*
-pyproject*
-requirements*

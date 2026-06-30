@@ -14,14 +14,14 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-const standardSitePublicationURI = "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.publication/3mnl6f7ob462z"
-const atprotoDID = "did:plc:fgtm2c26vfcj74rfmeggbyqj"
-const siteCoverImageURL = "https://blob.rednafi.com/home/cover-b8f8f0fc773d.png"
-
 type standardSiteConfig struct {
 	Params struct {
 		MainSections []string `yaml:"mainSections"`
 		NotesSection string   `yaml:"notesSection"`
+		Images       []string `yaml:"images"`
+		StandardSite struct {
+			PublicationURI string `yaml:"publicationUri"`
+		} `yaml:"standardSite"`
 	} `yaml:"params"`
 }
 
@@ -34,14 +34,14 @@ func TestStandardSiteWellKnownEndpoint(t *testing.T) {
 	t.Parallel()
 
 	body := httpGet(t, baseURL+"/.well-known/site.standard.publication")
-	assert.Equal(t, standardSitePublicationURI, body)
+	assert.Equal(t, standardSitePublicationURI(t), body)
 }
 
 func TestATProtoDidWellKnownEndpoint(t *testing.T) {
 	t.Parallel()
 
 	body := httpGet(t, baseURL+"/.well-known/atproto-did")
-	assert.Equal(t, atprotoDID, body)
+	assert.Equal(t, standardSiteDID(t), body)
 }
 
 func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
@@ -63,6 +63,7 @@ func TestGitHubPagesServesWellKnownEndpoint(t *testing.T) {
 func TestStandardSitePublicationLinkTags(t *testing.T) {
 	t.Parallel()
 
+	expected := standardSitePublicationURI(t)
 	pages := []string{"/", "/go/", "/tags/", "/tags/go/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
@@ -71,7 +72,7 @@ func TestStandardSitePublicationLinkTags(t *testing.T) {
 
 			href, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
 			require.NoError(t, err)
-			assert.Equal(t, standardSitePublicationURI, href)
+			assert.Equal(t, expected, href)
 		})
 	}
 }
@@ -85,7 +86,7 @@ func TestStandardSiteMetadataLinks(t *testing.T) {
 
 		publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
 		require.NoError(t, err)
-		assert.Equal(t, standardSitePublicationURI, publication)
+		assert.Equal(t, standardSitePublicationURI(t), publication)
 	})
 
 	t.Run("article exposes document metadata", func(t *testing.T) {
@@ -98,7 +99,7 @@ func TestStandardSiteMetadataLinks(t *testing.T) {
 
 		publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
 		require.NoError(t, err)
-		assert.Equal(t, standardSitePublicationURI, publication)
+		assert.Equal(t, standardSitePublicationURI(t), publication)
 		document, err := page.Locator(`link[rel="site.standard.document"]`).GetAttribute("href")
 		require.NoError(t, err)
 		assert.Equal(t, atURI, document)
@@ -112,7 +113,7 @@ func TestStandardSiteMetadataLinks(t *testing.T) {
 
 				publication, err := page.Locator(`link[rel="site.standard.publication"]`).GetAttribute("href")
 				require.NoError(t, err)
-				assert.Equal(t, standardSitePublicationURI, publication)
+				assert.Equal(t, standardSitePublicationURI(t), publication)
 			})
 		}
 	})
@@ -139,6 +140,7 @@ func TestSequoiaConfigMaximizesDiscovery(t *testing.T) {
 
 	assert.Equal(t, "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json", config["$schema"])
 	assert.Equal(t, "rednafi.com", config["identity"])
+	assert.Equal(t, standardSitePublicationURI(t), config["publicationUri"])
 	assert.Equal(t, true, config["autoSync"])
 	assert.Equal(t, true, config["publishContent"])
 
@@ -200,7 +202,7 @@ func TestArticlesUseSiteCoverImage(t *testing.T) {
 	goto_(t, page, "/go/request-coalescing/")
 	metaImage, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 	require.NoError(t, err)
-	assert.Equal(t, siteCoverImageURL, metaImage)
+	assert.Equal(t, siteCoverImageURL(t), metaImage)
 	metaWidth, err := page.Locator(`meta[property="og:image:width"]`).GetAttribute("content")
 	require.NoError(t, err)
 	assert.Equal(t, "4080", metaWidth)
@@ -225,6 +227,7 @@ func TestMediaWorkflowUsesImmutableManualR2Uploads(t *testing.T) {
 	assert.Contains(t, string(workflow), "standard-site-cover-b8f8f0fc773d")
 	assert.Contains(t, string(workflow), "ci-seed-b8f8f0fc773d")
 	assert.Contains(t, string(workflow), "sha256sum -c -")
+	assert.Contains(t, string(workflow), "go run ./scripts/sequoia")
 	assert.NotContains(t, string(workflow), "CLOUDFLARE_API_TOKEN")
 	assert.NotContains(t, string(workflow), "r2 object get")
 	assert.NotContains(t, string(workflow), "r2 object put")
@@ -291,11 +294,7 @@ func TestStandardSiteFrontmatterPaths(t *testing.T) {
 func loadStandardSiteSections(t *testing.T) standardSiteSections {
 	t.Helper()
 
-	output, err := os.ReadFile("../config.yml")
-	require.NoError(t, err)
-
-	var config standardSiteConfig
-	require.NoError(t, yaml.Unmarshal(output, &config))
+	config := loadStandardSiteConfig(t)
 
 	standardSiteSections := standardSiteSections{notesSection: config.Params.NotesSection}
 	for _, section := range config.Params.MainSections {
@@ -309,6 +308,41 @@ func loadStandardSiteSections(t *testing.T) standardSiteSections {
 
 	require.NotEmpty(t, standardSiteSections.sections, "Hugo config should define publishable sections")
 	return standardSiteSections
+}
+
+func loadStandardSiteConfig(t *testing.T) standardSiteConfig {
+	t.Helper()
+
+	output, err := os.ReadFile("../config.yml")
+	require.NoError(t, err)
+
+	var config standardSiteConfig
+	require.NoError(t, yaml.Unmarshal(output, &config))
+	return config
+}
+
+func standardSitePublicationURI(t *testing.T) string {
+	t.Helper()
+
+	uri := strings.TrimSpace(loadStandardSiteConfig(t).Params.StandardSite.PublicationURI)
+	require.NotEmpty(t, uri, "config.yml should define params.standardSite.publicationUri")
+	return uri
+}
+
+func standardSiteDID(t *testing.T) string {
+	t.Helper()
+
+	parts := strings.Split(standardSitePublicationURI(t), "/")
+	require.GreaterOrEqual(t, len(parts), 3, "publication URI should include a DID")
+	return parts[2]
+}
+
+func siteCoverImageURL(t *testing.T) string {
+	t.Helper()
+
+	images := loadStandardSiteConfig(t).Params.Images
+	require.NotEmpty(t, images, "config.yml should define params.images")
+	return images[0]
 }
 
 func (sections standardSiteSections) publishes(section string) bool {

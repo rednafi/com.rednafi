@@ -1,7 +1,5 @@
 # Redowan's Reflections
 
-[![pre-commit.ci status][precommit-svg]][precommit-status]
-
 Musings & rants on software. Find them at [rednafi.com].
 
 ## Local development
@@ -18,12 +16,6 @@ Musings & rants on software. Find them at [rednafi.com].
     make init
     ```
 
-- Update the stack:
-
-    ```sh
-    make update
-    ```
-
 - Run the local server:
 
     ```sh
@@ -35,5 +27,3 @@ Musings & rants on software. Find them at [rednafi.com].
 [rednafi.com]: https://rednafi.com
 [hugo]: https://gohugo.io/
 [http://localhost:1313]: http://localhost:1313
-[precommit-svg]: https://results.pre-commit.ci/badge/github/rednafi/rednafi.com/main.svg
-[precommit-status]: https://results.pre-commit.ci/latest/github/rednafi/rednafi.com/main

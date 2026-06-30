@@ -14,14 +14,21 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  HUGO_VERSION: 0.163.3
+  NODE_VERSION: 26
+  PAGEFIND_VERSION: 1.5.2
+  PLAYWRIGHT_VERSION: 1.61.1
+  PRETTIER_VERSION: 3.9.3
+  SEQUOIA_CLI_VERSION: 0.5.7
+  SITE_COVER_PATH: .cache/site-cover/cover-b8f8f0fc773d.png
+  SITE_COVER_URL: https://blob.rednafi.com/home/cover-b8f8f0fc773d.png?ci-seed-b8f8f0fc773d
+  SITE_COVER_SHA256: 94f9ab12fd2a73c9e23346015bc0c444310260d28c3f489a540dc02df336e6d2
+  PAGES_SIZE_BUDGET_BYTES: 900000000
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.163.3
-      PAGEFIND_VERSION: 1.5.2
-      PLAYWRIGHT_VERSION: 1.61.1
-      PRETTIER_VERSION: 3.9.3
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -37,11 +44,11 @@ jobs:
         id: cache-hugo
         with:
           path: ~/hugo.deb
-          key: hugo-${{ env.HUGO_VERSION }}
+          key: hugo-${{ runner.os }}-${{ env.HUGO_VERSION }}
 
       - name: Download Hugo
         if: steps.cache-hugo.outputs.cache-hit != 'true'
-        run: wget -q -O ~/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+        run: wget -q -O ~/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
 
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
@@ -49,8 +56,20 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.26"
-          cache: false
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache npm
+        uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-pagefind-${{ env.PAGEFIND_VERSION }}-prettier-${{ env.PRETTIER_VERSION }}-sequoia-${{ env.SEQUOIA_CLI_VERSION }}
 
       - name: Cache Playwright browsers
         uses: actions/cache@v6
@@ -59,7 +78,7 @@ jobs:
           path: |
             ~/.cache/ms-playwright
             ~/.cache/ms-playwright-go
-          key: playwright-v3-${{ env.PLAYWRIGHT_VERSION }}-${{ hashFiles('go.sum') }}
+          key: playwright-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}-${{ hashFiles('go.sum') }}
 
       - name: Install Playwright browsers
         if: steps.cache-playwright.outputs.cache-hit != 'true'
@@ -74,29 +93,33 @@ jobs:
 
       - name: Cache Standard.site cover
         uses: actions/cache@v6
-        id: cache-standard-site-cover
         with:
-          path: .cache/site-cover/cover-b8f8f0fc773d.png
+          path: ${{ env.SITE_COVER_PATH }}
           key: standard-site-cover-b8f8f0fc773d
 
       - name: Download Standard.site cover
-        if: steps.cache-standard-site-cover.outputs.cache-hit != 'true'
         run: |
-          mkdir -p .cache/site-cover
-          curl -fsSL --retry 3 --retry-delay 2 -o .cache/site-cover/cover-b8f8f0fc773d.png "https://blob.rednafi.com/home/cover-b8f8f0fc773d.png?ci-seed-b8f8f0fc773d"
-          echo "94f9ab12fd2a73c9e23346015bc0c444310260d28c3f489a540dc02df336e6d2  .cache/site-cover/cover-b8f8f0fc773d.png" | sha256sum -c -
+          mkdir -p "$(dirname "${SITE_COVER_PATH}")"
+          if [ ! -f "${SITE_COVER_PATH}" ]; then
+            curl -fsSL --retry 3 --retry-delay 2 -o "${SITE_COVER_PATH}" "${SITE_COVER_URL}"
+          fi
+          echo "${SITE_COVER_SHA256}  ${SITE_COVER_PATH}" | sha256sum -c -
 
       - name: Publish Standard.site records
         env:
           ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
           ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
-        run: make publish-standard-site
+          SEQUOIA_CMD: npx -y sequoia-cli@${{ env.SEQUOIA_CLI_VERSION }} publish
+        run: go run ./scripts/sequoia
 
       - name: Normalize published post frontmatter
         run: go run ./scripts/frontmatter
 
       - name: Format generated Markdown metadata
-        run: npx -y prettier@${PRETTIER_VERSION} --write 'content/**/*.md'
+        run: npx -y prettier@${PRETTIER_VERSION} --write "content/**/*.md"
+
+      - name: Check Markdown tabs
+        run: go run ./scripts/lintcodeblocks --check
 
       - name: Check post frontmatter
         run: go run ./scripts/frontmatter --check
@@ -105,7 +128,7 @@ jobs:
         run: go run ./scripts/media --check
 
       - name: Check Prettier formatting
-        run: npx -y prettier@${PRETTIER_VERSION} --check 'content/**/*.md'
+        run: npx -y prettier@${PRETTIER_VERSION} --check "content/**/*.md"
 
       - name: Commit generated post metadata
         run: |
@@ -124,16 +147,29 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Build with Hugo
-        run: hugo --gc --minify --cleanDestinationDir
+        run: hugo --environment production --minify --gc --cleanDestinationDir
 
       - name: Build Pagefind search index
         run: npx -y pagefind@${PAGEFIND_VERSION}
 
       - name: Prune unused Pagefind assets
-        run: make prune-pagefind-extras
+        run: |
+          rm -f \
+            public/pagefind/pagefind-component-ui.css \
+            public/pagefind/pagefind-component-ui.js \
+            public/pagefind/pagefind-highlight.js \
+            public/pagefind/pagefind-modular-ui.css \
+            public/pagefind/pagefind-modular-ui.js \
+            public/pagefind/wasm.unknown.pagefind
 
       - name: Check GitHub Pages artifact size
-        run: make check-pages-size
+        run: |
+          bytes=$(du -sk public | awk '{print $1 * 1024}')
+          echo "public/ is ${bytes} bytes; budget is ${PAGES_SIZE_BUDGET_BYTES} bytes"
+          if [ "${bytes}" -gt "${PAGES_SIZE_BUDGET_BYTES}" ]; then
+            echo "public/ exceeds the GitHub Pages artifact budget"
+            exit 1
+          fi
 
       - name: Run Go tests
         run: go test -v -count=1 ./...

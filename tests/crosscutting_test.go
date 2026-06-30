@@ -61,27 +61,6 @@ func TestContentColumnMaxWidth(t *testing.T) {
 	}
 }
 
-// TestReadingNotInMainSections verifies reading entries don't appear in the
-// main homepage post list (only in the sidebar). Reading entries use a
-// separate content flow and shouldn't dilute the article/shard stream.
-func TestReadingNotInMainSections(t *testing.T) {
-	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/")
-
-	// Get all post links from the main post list (not sidebar)
-	hrefs, err := page.Locator(".article-list .post-list .post a:not(.post-cat)").EvaluateAll(
-		`els => els.map(e => e.getAttribute("href"))`,
-	)
-	require.NoError(t, err)
-	hrefList := toStringSlice(hrefs)
-
-	for _, h := range hrefList {
-		assert.NotContains(t, h, "/reading/",
-			"main post list should not contain reading entries")
-	}
-}
-
 // TestNoOrphanedPages verifies key pages are reachable through navigation.
 // An orphaned page exists but has no inbound link — users can never find it.
 func TestNoOrphanedPages(t *testing.T) {

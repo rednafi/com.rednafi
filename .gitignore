@@ -13,12 +13,6 @@ node_modules/
 .vscode/
 .idea/
 
-# Python (for pre-commit/scripts)
-__pycache__/
-*.py[cod]
-.venv/
-.ruff_cache/
-
 # Wrangler
 .wrangler/
 
@@ -29,25 +23,3 @@ tests/test-results/
 .cache/
 .claude/
 public-test/
-
-# Dev-only screenshot helper for the Geist redesign
-scripts/shot/
-# Dev-only Geist token extractor (reads --ds-* from the live spec)
-scripts/geistcolors/
-scripts/gridprobe/
-# Dev-only Geist component probes (computed styles of Note / Pagination / etc.)
-scripts/noteprobe/
-scripts/colorcheck/
-# Dev-only brand image renderer (favicon + social cover SVG -> PNG)
-scripts/ogimage/
-# Dev-only Geist typography probe (computed font metrics from the live spec)
-scripts/verceltype/
-
-# Dev-only pixel measurement + theme probes
-scripts/measure/
-scripts/themecheck/
-
-# Dev-only Geist ink probes (computed-style + pixel ink measurement vs vercel)
-scripts/inkprobe/
-scripts/inkpixels/
-scripts/fonturls/

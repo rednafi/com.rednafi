@@ -11,10 +11,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestConnectSidebarLinks verifies the /about page "Connect" section lists all
+// TestAboutConnectLinks verifies the /about page "Connect" section lists all
 // expected social links. The about page is plain markdown (no template), so the
 // links live in the article content under a "Connect" heading.
-func TestConnectSidebarLinks(t *testing.T) {
+func TestAboutConnectLinks(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/about/")

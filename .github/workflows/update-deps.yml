@@ -1,0 +1,111 @@
+name: Update dependencies
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-deps
+  cancel-in-progress: true
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require CI-triggering token
+        env:
+          UPDATE_DEPS_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          if [ -z "${UPDATE_DEPS_TOKEN}" ]; then
+            echo "PAT_TOKEN is required so dependency update commits trigger the deploy CI."
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+
+      - name: Update dependency pins
+        id: update
+        run: |
+          update_ci_env() {
+            perl -0pi -e "s/(^  $1: ).*\$/\${1}$2/m" .github/workflows/ci.yml
+          }
+
+          update_make_var() {
+            perl -0pi -e "s/(^$1 \\?= ).*\$/\${1}$2/m" Makefile
+          }
+
+          latest_github_release() {
+            curl -fsSL "https://api.github.com/repos/$1/releases/latest" |
+              jq -r '.tag_name | sub("^v"; "")'
+          }
+
+          latest_npm() {
+            npm view "$1" version
+          }
+
+          latest_node_major() {
+            curl -fsSL https://nodejs.org/dist/index.json |
+              jq -r '.[0].version | sub("^v"; "") | split(".")[0]'
+          }
+
+          hugo_version=$(latest_github_release gohugoio/hugo)
+          node_version=$(latest_node_major)
+          pagefind_version=$(latest_npm pagefind)
+          playwright_version=$(latest_npm playwright)
+          prettier_version=$(latest_npm prettier)
+          sequoia_version=$(latest_npm sequoia-cli)
+          wrangler_version=$(latest_npm wrangler)
+
+          update_ci_env HUGO_VERSION "${hugo_version}"
+          update_ci_env NODE_VERSION "${node_version}"
+          update_ci_env PAGEFIND_VERSION "${pagefind_version}"
+          update_ci_env PLAYWRIGHT_VERSION "${playwright_version}"
+          update_ci_env PRETTIER_VERSION "${prettier_version}"
+          update_ci_env SEQUOIA_CLI_VERSION "${sequoia_version}"
+
+          update_make_var PAGEFIND_VERSION "${pagefind_version}"
+          update_make_var PRETTIER_VERSION "${prettier_version}"
+          update_make_var WRANGLER_VERSION "${wrangler_version}"
+
+          perl -0pi -e "s/(defaultWrangler\\s*=\\s*\"npx -y wrangler@)[^\"]+(\")/\${1}${wrangler_version}\${2}/" scripts/media/main.go
+          perl -0pi -e "s/(defaultCommand\\s*=\\s*\"npx -y sequoia-cli@)[^\"]+( publish\")/\${1}${sequoia_version}\${2}/" scripts/sequoia/main.go
+
+          go get -u ./...
+          go mod tidy
+          gofmt -w scripts/media/main.go scripts/sequoia/main.go
+
+          if git diff --quiet; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Dependencies are already up to date."
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
+            git diff -- .github/workflows/ci.yml Makefile scripts/media/main.go scripts/sequoia/main.go go.mod go.sum
+          fi
+
+      - name: Commit dependency updates
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/ci.yml Makefile scripts/media/main.go scripts/sequoia/main.go go.mod go.sum
+          git commit -m "chore: update dependencies"
+          git push

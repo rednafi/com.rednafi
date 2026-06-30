@@ -27,7 +27,7 @@ func TestMain(m *testing.M) {
 	// Find the public directory
 	publicDir := filepath.Join("..", "public")
 	if _, err := os.Stat(publicDir); os.IsNotExist(err) {
-		fmt.Fprintln(os.Stderr, "public/ directory not found — run 'make build' first")
+		fmt.Fprintln(os.Stderr, "public/ directory not found - run 'hugo --environment production --minify --gc --cleanDestinationDir' first")
 		os.Exit(1)
 	}
 
@@ -1185,7 +1185,7 @@ func TestReducedMotion(t *testing.T) {
 	assert.Equal(t, "auto", sb)
 }
 
-// ---------- Navigation (footer/sidebar links resolve) ----------
+// ---------- Navigation (footer/header links resolve) ----------
 
 func TestFooterLinksResolve(t *testing.T) {
 	t.Parallel()
@@ -1202,14 +1202,15 @@ func TestFooterLinksResolve(t *testing.T) {
 	}
 }
 
-func TestSidebarLinksResolve(t *testing.T) {
+func TestHeaderMenuLinksResolve(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	hrefs, err := page.Locator(".aside-section a").EvaluateAll(
+	hrefs, err := page.Locator("#site-menu a").EvaluateAll(
 		`els => els.map(e => e.getAttribute("href")).filter(h => h && h.startsWith("/"))`,
 	)
 	require.NoError(t, err)
+	require.NotEmpty(t, toStringSlice(hrefs), "header menu should contain local links")
 	for _, h := range toStringSlice(hrefs) {
 		resp := httpGetResp(t, baseURL+h)
 		assert.Equal(t, 200, resp.StatusCode, "%s returned %d", h, resp.StatusCode)

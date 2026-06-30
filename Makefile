@@ -1,58 +1,40 @@
-# Make all the rules since we don't use make as a build tool
-.PHONY: $(MAKECMDGOALS)
-
-SHELL := /bin/bash -ex
+SHELL := /usr/bin/env bash
+.SHELLFLAGS := -euo pipefail -c
 MAKEFLAGS += --silent
 
-BREW_PACKAGES := gh hugo node
+.PHONY: init format dev run upload-post-image img-upload
+
+BREW_PACKAGES := go hugo node oxipng
+
 PAGEFIND_VERSION ?= 1.5.2
 PRETTIER_VERSION ?= 3.9.3
-SEQUOIA_CLI_VERSION ?= 0.5.7
 WRANGLER_VERSION ?= 4.83.0
-PAGES_SIZE_BUDGET_BYTES := 900000000
+
 PAGEFIND := npx -y pagefind@$(PAGEFIND_VERSION)
 PRETTIER := npx -y prettier@$(PRETTIER_VERSION)
-SEQUOIA := npx -y sequoia-cli@$(SEQUOIA_CLI_VERSION) publish
 WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
 
 init:
-	for pkg in $(BREW_PACKAGES); do \
-		brew list $$pkg &>/dev/null || brew install $$pkg; \
-	done
+	if command -v brew >/dev/null 2>&1; then \
+		for pkg in $(BREW_PACKAGES); do \
+			brew list "$$pkg" >/dev/null 2>&1 || brew install "$$pkg"; \
+		done; \
+	else \
+		for tool in go hugo node npm oxipng; do \
+			command -v "$$tool" >/dev/null 2>&1 || { echo "$$tool is required"; exit 1; }; \
+		done; \
+	fi
 	go run github.com/mxschmitt/playwright-go/cmd/playwright install chromium
-	uvx pre-commit install
 
 format:
 	go run ./scripts/lintcodeblocks
-	git status --porcelain -u | awk '{print $$2}' | xargs -r uvx pre-commit run --files
-	git status --porcelain -u | awk '{print $$2}' | grep '.md' | xargs -n 1 $(PRETTIER) --write
-
-update:
-	uvx pre-commit autoupdate -j 4
-
-frontmatter:
 	go run ./scripts/frontmatter
+	$(PRETTIER) --write "content/**/*.md"
 
-check-frontmatter:
-	go run ./scripts/frontmatter --check
-
-publish-standard-site:
-	SEQUOIA_CMD="$(SEQUOIA)" go run ./scripts/sequoia
-
-check-media:
-	go run ./scripts/media --check
-
-check-pages-size:
-	bytes=$$(du -sk public | awk '{print $$1 * 1024}'); \
-	echo "public/ is $$bytes bytes; budget is $(PAGES_SIZE_BUDGET_BYTES) bytes"; \
-	if [ "$$bytes" -gt "$(PAGES_SIZE_BUDGET_BYTES)" ]; then \
-		echo "public/ exceeds the GitHub Pages artifact budget"; \
-		exit 1; \
-	fi
-
-prune-pagefind-extras:
-	# This site uses the default Pagefind UI on a single-language en index.
-	# Keep the runtime files the search page loads and prune optional bundles.
+dev:
+	go run ./scripts/frontmatter
+	hugo --environment production --minify --gc --cleanDestinationDir
+	$(PAGEFIND)
 	rm -f \
 		public/pagefind/pagefind-component-ui.css \
 		public/pagefind/pagefind-component-ui.js \
@@ -60,32 +42,16 @@ prune-pagefind-extras:
 		public/pagefind/pagefind-modular-ui.css \
 		public/pagefind/pagefind-modular-ui.js \
 		public/pagefind/wasm.unknown.pagefind
-
-dev:
-	go run ./scripts/frontmatter
-	hugo --environment production --minify --gc --cleanDestinationDir
-	$(PAGEFIND)
-	$(MAKE) prune-pagefind-extras
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache
 
-build:
-	go run ./scripts/frontmatter
-	hugo --environment production --minify --gc --cleanDestinationDir
-	$(PAGEFIND)
-	$(MAKE) prune-pagefind-extras
-	$(MAKE) check-pages-size
+run: dev
 
-test: build
-	$(MAKE) check-frontmatter
-	$(MAKE) check-media
-	go test -v -count=1 ./...
-
-upload-post-image:
+img-upload upload-post-image:
 	@if [ -z "$(post)" ] || [ -z "$(file)" ] || [ -z "$(name)" ]; then \
-		echo "Usage: make upload-post-image post=<content.md> file=<image> name=<kebab-name>"; \
+		echo "Usage: make img-upload post=<content.md> file=<image> name=<kebab-name>"; \
 		echo ""; \
 		echo "Examples:"; \
-		echo "  make upload-post-image post=content/go/request_coalescing.md file=/tmp/diagram.png name=singleflight-flow"; \
+		echo "  make img-upload post=content/go/request_coalescing.md file=/tmp/diagram.png name=singleflight-flow"; \
 		exit 1; \
 	fi
 	go run ./scripts/media --post "$(post)" --file "$(file)" --name "$(name)" --wrangler "$(WRANGLER)"

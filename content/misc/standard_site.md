@@ -182,7 +182,7 @@ workflow].
     https://sequoia.pub
 
 [ci]:
-    https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml#L52-L78
+    https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml
 
 [docs.surf]:
     https://docs.surf

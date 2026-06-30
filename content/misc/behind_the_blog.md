@@ -30,8 +30,8 @@ absolutely necessary.
 ## Markdown
 
 I write plain Markdown files in my editor of choice, which has been VSCode since its launch.
-Once I'm finished, [pre-commit] runs a fleet of linters like [prettier] and [blacken-docs]
-to fix line length and code formatting.
+Once I'm finished, `make format` runs the local Markdown cleanup, including [prettier], to
+fix line length and formatting.
 
 ## Hugo
 
@@ -55,11 +55,10 @@ This workflow is heavily inspired by [Simon Willison's blog] on his workflow.
 
 ## GitHub Actions and GitHub Pages
 
-Once I push content to the main branch, [GitHub Actions] automatically runs, checks the
-linter, builds the site, and deploys it to [GitHub Pages]. There's nothing to maintain, and
-I don't have to worry about scaling, even if one of my posts hits the front page of Hacker
-News. Aside from the domain, this site costs me nothing to run, and I plan to keep it that
-way.
+Once I push content to the main branch, [GitHub Actions] automatically runs the checks,
+builds the site, and deploys it to [GitHub Pages]. There's nothing to maintain, and I don't
+have to worry about scaling, even if one of my posts hits the front page of Hacker News.
+Aside from the domain, this site costs me nothing to run, and I plan to keep it that way.
 
 ## Cloudflare Cache and R2
 
@@ -99,9 +98,8 @@ This command derives the R2 directory from the post, normalizes names to kebab-c
 article images are PNG screenshots, so the default path is screenshot to PNG, lossless max
 compression, upload, paste the printed URL into Markdown.
 
-Generated social cards follow the same storage policy. CI renders missing post covers,
-uploads them to R2 under `<section>/<post-slug>/cover-<hash>.png`, writes the URL back to
-Hugo frontmatter, and commits that metadata change without looping the workflow.
+Standard.site records use the same R2-hosted site cover. CI downloads and verifies it before
+publishing, then commits any generated metadata changes.
 
 ## Google Analytics
 
@@ -115,14 +113,8 @@ The [source code] and content for this site are all publicly available on GitHub
 <!-- references -->
 <!-- prettier-ignore-start -->
 
-[pre-commit]:
-    https://pre-commit.com/
-
 [prettier]:
     https://prettier.io/
-
-[blacken-docs]:
-    https://pypi.org/project/blacken-docs/
 
 [hugo]:
     https://gohugo.io/

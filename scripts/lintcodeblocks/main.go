@@ -4,7 +4,7 @@
 // inconsistently inside fenced code blocks). By default it rewrites every
 // offending file in place, replacing each tab with four spaces. With
 // --check it touches nothing and exits non-zero if any file contains a tab,
-// which is what CI / pre-commit hooks want.
+// which is what CI and local checks want.
 package main
 
 import (
