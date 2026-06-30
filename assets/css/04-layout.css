@@ -614,7 +614,8 @@
 
 /* home — a single centered column of writings (no sidebar), identical in shape
    on mobile and desktop; the bio lives on the dedicated /about page */
-.home-section-title {
+.home-section-title,
+.recent-writing-title {
   color: var(--faint);
   font-size: var(--fs-2xs);
   font-weight: var(--fw-semibold);

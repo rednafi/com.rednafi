@@ -205,12 +205,12 @@ func TestBaseLayout(t *testing.T) {
 
 func TestHomepage(t *testing.T) {
 	t.Parallel()
-	t.Run("uses recent writings as the homepage stream", func(t *testing.T) {
+	t.Run("uses recent writing as the homepage stream", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		title, err := page.Locator("#recent-writings").TextContent()
+		title, err := page.Locator("#recent-writing").TextContent()
 		require.NoError(t, err)
-		assert.Equal(t, "Recent writings", strings.TrimSpace(title))
+		assert.Equal(t, "Recent writing", strings.TrimSpace(title))
 	})
 
 	t.Run("dedicated about page has bio and connect sections", func(t *testing.T) {
@@ -979,7 +979,7 @@ func TestDesktopLayout(t *testing.T) {
 	t.Run("homepage is a single centered feed column", func(t *testing.T) {
 		// the redesigned landing is one column of writings (the bio lives on
 		// /about); there is no home sidebar
-		feed := page.Locator(".home-feed")
+		feed := page.Locator(".recent-writing")
 		visible, err := feed.IsVisible()
 		require.NoError(t, err)
 		assert.True(t, visible, "home feed column should render")
@@ -1029,7 +1029,7 @@ func TestMobileLayout(t *testing.T) {
 		// gutter (down from 24px). At 390px that's ~87% of the viewport (a bit
 		// less under the headless scrollbar gutter); still the bulk of the width.
 		ratio, err := page.Evaluate(`() => {
-			const f = document.querySelector(".home-feed").getBoundingClientRect().width;
+			const f = document.querySelector(".recent-writing").getBoundingClientRect().width;
 			return f / window.innerWidth;
 		}`)
 		require.NoError(t, err)

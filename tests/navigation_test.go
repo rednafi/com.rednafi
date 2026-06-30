@@ -59,7 +59,7 @@ func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
 
-		link := page.Locator(`.home-feed .post-list .post > a`).First()
+		link := page.Locator(`.recent-writing .post-list .post > a`).First()
 		href, err := link.GetAttribute("href")
 		require.NoError(t, err)
 		require.True(t, strings.HasPrefix(href, "/"), "post href should be root-relative: %s", href)

@@ -104,7 +104,8 @@
 
 /* a post list directly under its eyebrow label hugs it — the eyebrow's own
    margin sets the gap (home feed + 404 recent posts share this rhythm) */
-.home-section-title + .post-list > .post:first-child {
+.home-section-title + .post-list > .post:first-child,
+.recent-writing-title + .post-list > .post:first-child {
   padding-top: 0;
 }
 

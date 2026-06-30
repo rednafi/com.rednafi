@@ -159,14 +159,14 @@
 {{- if and .IsHome (not $isPaginatedHome) }}
 {{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
 {{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "inLanguage" site.Language.Lang "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
-{{- $recentListId := printf "%s#recent-writings" $homeURL }}
-{{- $recentWritings := first 10 (partial "home-pages.html" .) }}
+{{- $recentListId := printf "%s#recent-writing" $homeURL }}
+{{- $recentWriting := first 10 (partial "home-pages.html" .) }}
 {{- $items := slice }}
-{{- range $idx, $articlePage := $recentWritings }}
+{{- range $idx, $articlePage := $recentWriting }}
 {{- $item := dict "@type" "BlogPosting" "@id" $articlePage.Permalink "url" $articlePage.Permalink "headline" $articlePage.Title "datePublished" ($articlePage.PublishDate.Format $iso8601) "dateModified" ($articlePage.Lastmod.Format $iso8601) }}
 {{- $items = $items | append (dict "@type" "ListItem" "position" (add $idx 1) "item" $item) }}
 {{- end }}
-{{- $recentList := dict "@type" "ItemList" "@id" $recentListId "name" "Recent writings" "itemListOrder" "https://schema.org/ItemListOrderDescending" "numberOfItems" (len $recentWritings) "itemListElement" $items }}
+{{- $recentList := dict "@type" "ItemList" "@id" $recentListId "name" "Recent writing" "itemListOrder" "https://schema.org/ItemListOrderDescending" "numberOfItems" (len $recentWriting) "itemListElement" $items }}
 {{- $website = merge $website (dict "mainEntity" (dict "@id" $recentListId)) }}
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person $recentList) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}

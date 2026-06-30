@@ -31,8 +31,8 @@
   </header>
   {{- $heroJS := resources.Get "js/hero-fluid.js" | minify | fingerprint }}
   <script src="{{ $heroJS.RelPermalink }}" defer></script>
-  <section class="home-feed" aria-labelledby="recent-writings">
-    <h2 id="recent-writings" class="home-section-title">Recent writings</h2>
+  <section class="recent-writing" aria-labelledby="recent-writing">
+    <h2 id="recent-writing" class="recent-writing-title">Recent writing</h2>
     {{- $pages := partial "home-pages.html" . }}
     {{- $paginator := .Paginate $pages }}
     {{ partial "post-list.html" (dict "pages" $paginator.Pages "showExcerpt" true) }}

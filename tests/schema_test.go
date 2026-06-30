@@ -26,7 +26,7 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 
 	graph, ok := schema["@graph"].([]any)
 	require.True(t, ok, "@graph should be an array")
-	require.Len(t, graph, 3, "@graph should have WebSite, Person, and recent writings ItemList")
+	require.Len(t, graph, 3, "@graph should have WebSite, Person, and recent writing ItemList")
 
 	var website, person, itemList map[string]any
 	for _, item := range graph {
@@ -47,8 +47,8 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		assert.NotEmpty(t, website["url"])
 		assert.NotEmpty(t, website["description"])
 		mainEntity, ok := website["mainEntity"].(map[string]any)
-		require.True(t, ok, "WebSite mainEntity should point to recent writings")
-		assert.Contains(t, mainEntity["@id"], "#recent-writings")
+		require.True(t, ok, "WebSite mainEntity should point to recent writing")
+		assert.Contains(t, mainEntity["@id"], "#recent-writing")
 	})
 
 	t.Run("Person has jobTitle", func(t *testing.T) {
@@ -70,12 +70,12 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		assert.Equal(t, "https://rednafi.com/", person["mainEntityOfPage"])
 	})
 
-	t.Run("ItemList contains recent writings", func(t *testing.T) {
+	t.Run("ItemList contains recent writing", func(t *testing.T) {
 		require.NotNil(t, itemList, "ItemList object missing")
-		assert.Equal(t, "Recent writings", itemList["name"])
+		assert.Equal(t, "Recent writing", itemList["name"])
 		items, ok := itemList["itemListElement"].([]any)
 		require.True(t, ok, "itemListElement should be an array")
-		assert.GreaterOrEqual(t, len(items), 5, "should expose recent writings")
+		assert.GreaterOrEqual(t, len(items), 5, "should expose recent writing")
 		first, _ := items[0].(map[string]any)
 		assert.Equal(t, float64(1), first["position"])
 		firstItem, ok := first["item"].(map[string]any)
@@ -85,12 +85,12 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 		assert.NotEmpty(t, firstItem["url"])
 	})
 
-	t.Run("ItemList matches visible recent writings", func(t *testing.T) {
+	t.Run("ItemList matches visible recent writing", func(t *testing.T) {
 		require.NotNil(t, itemList, "ItemList object missing")
 		items, ok := itemList["itemListElement"].([]any)
 		require.True(t, ok, "itemListElement should be an array")
 
-		visibleRaw, err := page.Locator(`.home-feed .post-list .post > a`).EvaluateAll(
+		visibleRaw, err := page.Locator(`.recent-writing .post-list .post > a`).EvaluateAll(
 			`els => els.slice(0, 10).map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -108,7 +108,7 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 			schemaPaths = append(schemaPaths, strings.TrimPrefix(url, "https://rednafi.com"))
 		}
 		assert.Equal(t, visiblePaths[:len(schemaPaths)], schemaPaths,
-			"homepage ItemList JSON-LD should match the visible recent writings")
+			"homepage ItemList JSON-LD should match the visible recent writing")
 	})
 }
 
