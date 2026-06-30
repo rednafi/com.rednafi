@@ -1357,9 +1357,9 @@
       "slug": "dataclasses"
     },
     "content/misc/standard_site.md": {
-      "contentHash": "ce6e784ab6c1cbcc1436b77b898f2fe4478f3e3b7396dabb3555d857c3592f0c",
+      "contentHash": "c58fe7e7a065ebb194f3984074ddb7bec3470961de0c9f14a387ce89bee7612d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
-      "lastPublished": "2026-06-30T01:10:17.101Z",
+      "lastPublished": "2026-06-30T01:56:54.033Z",
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
