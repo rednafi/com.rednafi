@@ -391,9 +391,9 @@
       "slug": "bash-namerefs"
     },
     "content/misc/behind_the_blog.md": {
-      "contentHash": "5d7c7ed439552c2f7d3810da1991ec0a968064ff605bc9e9a721984d6a1b994e",
+      "contentHash": "05e5c75e4d6204419769b0c47484c8f22364f7a4505875c9bcc6928eb6dacd97",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e",
-      "lastPublished": "2026-06-30T01:13:22.790Z",
+      "lastPublished": "2026-06-30T09:39:50.938Z",
       "slug": "behind-the-blog"
     },
     "content/misc/shell_redirection.md": {
@@ -1357,9 +1357,9 @@
       "slug": "dataclasses"
     },
     "content/misc/standard_site.md": {
-      "contentHash": "c58fe7e7a065ebb194f3984074ddb7bec3470961de0c9f14a387ce89bee7612d",
+      "contentHash": "4dcf179573be64973809a99bbebfa21dd9f8dd79ee60f504e6979e46f18d4eda",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
-      "lastPublished": "2026-06-30T01:56:54.033Z",
+      "lastPublished": "2026-06-30T09:39:49.596Z",
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
