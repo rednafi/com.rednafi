@@ -81,9 +81,11 @@ jobs:
 
       - name: Download Standard.site cover
         if: steps.cache-standard-site-cover.outputs.cache-hit != 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           mkdir -p .cache/site-cover
-          wget -q -O .cache/site-cover/cover-b8f8f0fc773d.png https://blob.rednafi.com/home/cover-b8f8f0fc773d.png
+          npx -y wrangler@4.83.0 r2 object get blog/home/cover-b8f8f0fc773d.png --remote --file .cache/site-cover/cover-b8f8f0fc773d.png
           echo "94f9ab12fd2a73c9e23346015bc0c444310260d28c3f489a540dc02df336e6d2  .cache/site-cover/cover-b8f8f0fc773d.png" | sha256sum -c -
 
       - name: Publish Standard.site records

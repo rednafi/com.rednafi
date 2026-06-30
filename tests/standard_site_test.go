@@ -223,8 +223,10 @@ func TestMediaWorkflowUsesImmutableManualR2Uploads(t *testing.T) {
 	require.NoError(t, err)
 	assert.Contains(t, string(workflow), "Cache Standard.site cover")
 	assert.Contains(t, string(workflow), "standard-site-cover-b8f8f0fc773d")
+	assert.Contains(t, string(workflow), "r2 object get blog/home/cover-b8f8f0fc773d.png")
 	assert.Contains(t, string(workflow), "sha256sum -c -")
-	assert.NotContains(t, string(workflow), "CLOUDFLARE_API_TOKEN")
+	assert.NotContains(t, string(workflow), "r2 object put")
+	assert.NotContains(t, string(workflow), "upload-postcards")
 }
 
 func TestStandardSiteFrontmatterPaths(t *testing.T) {
