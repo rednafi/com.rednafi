@@ -10,8 +10,6 @@ tags:
     - Unix
     - DevOps
     - GitHub
-images:
-    - "https://blob.rednafi.com/misc/heredoc-headache/cover-1cbe274bda10.png"
 aliases:
     - /misc/heredoc_headache/
 discussions: []

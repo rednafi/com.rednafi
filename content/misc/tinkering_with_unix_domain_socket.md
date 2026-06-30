@@ -10,8 +10,6 @@ tags:
     - Shell
     - Unix
     - Networking
-images:
-    - "https://blob.rednafi.com/misc/tinkering-with-unix-domain-socket/cover-e25937eea0f1.png"
 aliases:
     - /misc/tinkering_with_unix_domain_socket/
 discussions: []

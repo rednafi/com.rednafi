@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/structural-subtyping/cover-039be5e94aaa.png"
 aliases:
     - /python/structural_subtyping/
 discussions: []

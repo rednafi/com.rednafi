@@ -9,8 +9,6 @@ tags:
     - Python
     - Testing
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/patch-where-the-object-is-used/cover-dfc42ee96ef0.png"
 aliases:
     - /python/patch_where_the_object_is_used/
 discussions: []

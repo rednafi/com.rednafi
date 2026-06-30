@@ -9,8 +9,6 @@ tags:
     - Networking
     - "Distributed Systems"
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/misc/notes-on-event-driven-systems/cover-90da65e77e42.png"
 aliases:
     - /misc/notes_on_event_driven_systems/
 discussions: []

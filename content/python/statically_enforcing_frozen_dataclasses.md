@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Typing
-images:
-    - "https://blob.rednafi.com/python/statically-enforcing-frozen-dataclasses/cover-af25d396896f.png"
 aliases:
     - /python/statically_enforcing_frozen_dataclasses/
 discussions: []

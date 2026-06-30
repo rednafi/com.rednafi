@@ -10,8 +10,6 @@ tags:
     - API
     - Testing
     - TIL
-images:
-    - "https://blob.rednafi.com/python/testing-http-requests/cover-36631abf7dee.png"
 aliases:
     - /python/testing_http_requests/
 discussions: []

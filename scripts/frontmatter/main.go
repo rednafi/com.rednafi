@@ -1,13 +1,10 @@
 package main
 
 import (
-	"crypto/sha256"
-	"encoding/hex"
 	"flag"
 	"fmt"
 	"io/fs"
 	"os"
-	"path"
 	"path/filepath"
 	"slices"
 	"strconv"
@@ -17,18 +14,12 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-const (
-	defaultAssetBase = "https://blob.rednafi.com"
-	cardDesignID     = "geist-fluid-card-v1"
-)
-
 var canonicalKeys = []string{
 	"title",
 	"slug",
 	"date",
 	"description",
 	"tags",
-	"images",
 	"aliases",
 	"discussions",
 	"mermaid",
@@ -60,7 +51,6 @@ type postFrontmatter struct {
 	Date        string
 	Description string
 	Tags        []string
-	Images      []string
 	Aliases     []string
 	Discussions []discussion
 	Mermaid     bool
@@ -71,7 +61,6 @@ type postFrontmatter struct {
 
 func main() {
 	check := flag.Bool("check", false, "fail if post frontmatter is not canonical")
-	assetBaseURL := flag.String("asset-base-url", defaultAssetBase, "public base URL for generated post card image assets")
 	flag.Parse()
 
 	publishing, err := loadPublishConfig("config.yml")
@@ -97,7 +86,7 @@ func main() {
 		}
 
 		raw := string(rawBytes)
-		next, err := normalizePostFrontmatter(raw, filePath, publishing.notesSection, *assetBaseURL)
+		next, err := normalizePostFrontmatter(raw, filePath, publishing.notesSection)
 		if err != nil {
 			return err
 		}
@@ -132,7 +121,7 @@ func main() {
 	}
 }
 
-func normalizePostFrontmatter(raw, filePath, notesSection, assetBaseURL string) (string, error) {
+func normalizePostFrontmatter(raw, filePath, notesSection string) (string, error) {
 	fmRaw, body, ok := splitFrontmatter(raw)
 	if !ok {
 		return "", fmt.Errorf("%s: missing YAML frontmatter", filePath)
@@ -151,7 +140,7 @@ func normalizePostFrontmatter(raw, filePath, notesSection, assetBaseURL string) 
 		return "", err
 	}
 
-	post, err := canonicalPost(filePath, body, notesSection, assetBaseURL, values)
+	post, err := canonicalPost(filePath, body, notesSection, values)
 	if err != nil {
 		return "", err
 	}
@@ -176,7 +165,7 @@ func frontmatterMap(filePath string, node *yaml.Node) (map[string]*yaml.Node, er
 	return values, nil
 }
 
-func canonicalPost(filePath, body, notesSection, assetBaseURL string, values map[string]*yaml.Node) (postFrontmatter, error) {
+func canonicalPost(filePath, body, notesSection string, values map[string]*yaml.Node) (postFrontmatter, error) {
 	required := []string{"title", "slug", "date", "description", "tags"}
 	for _, key := range required {
 		if values[key] == nil {
@@ -184,7 +173,7 @@ func canonicalPost(filePath, body, notesSection, assetBaseURL string, values map
 		}
 	}
 
-	slug := strings.TrimSpace(scalar(values["slug"]))
+	slug := slugFromFilePath(filePath)
 	if slug == "" {
 		return postFrontmatter{}, fmt.Errorf("%s: slug cannot be empty", filePath)
 	}
@@ -218,7 +207,6 @@ func canonicalPost(filePath, body, notesSection, assetBaseURL string, values map
 		Date:        strings.TrimSpace(scalar(values["date"])),
 		Description: strings.TrimSpace(scalar(values["description"])),
 		Tags:        tags,
-		Images:      []string{postCardURL(assetBaseURL, atprotoPath, strings.TrimSpace(scalar(values["title"])))},
 		Aliases:     aliases,
 		Discussions: discussions,
 		Mermaid:     containsMermaid(body),
@@ -240,7 +228,6 @@ func renderFrontmatter(post postFrontmatter) string {
 		b.WriteByte('\n')
 	}
 	writeStringSeq(&b, "tags", post.Tags)
-	writeStringSeq(&b, "images", post.Images)
 	writeStringSeq(&b, "aliases", post.Aliases)
 	writeDiscussions(&b, post.Discussions)
 	writeKeyValue(&b, "mermaid", strconv.FormatBool(post.Mermaid))
@@ -374,17 +361,9 @@ func atprotoPathFor(filePath, slug, notesSection string) (string, error) {
 	return fmt.Sprintf("/%s/%s/", section, slug), nil
 }
 
-func postCardURL(assetBaseURL, atprotoPath, title string) string {
-	return strings.TrimRight(assetBaseURL, "/") + "/" + postCardKey(atprotoPath, title)
-}
-
-func postCardKey(atprotoPath, title string) string {
-	clean := path.Clean("/" + atprotoPath)
-	clean = strings.Trim(clean, "/")
-	clean = strings.TrimSuffix(clean, "/index")
-	clean = slugPath(clean)
-	sum := sha256.Sum256([]byte(cardDesignID + "\n" + clean + "\n" + title))
-	return clean + "/cover-" + hex.EncodeToString(sum[:])[:12] + ".png"
+func slugFromFilePath(filePath string) string {
+	base := filepath.Base(filepath.ToSlash(filePath))
+	return slugPart(strings.TrimSuffix(base, filepath.Ext(base)))
 }
 
 func sectionFor(filePath string) string {
@@ -425,23 +404,19 @@ func loadPublishConfig(configPath string) (publishConfig, error) {
 	return publishing, nil
 }
 
-var slugPartReplacer = strings.NewReplacer("_", "-")
-
-func slugPath(value string) string {
-	parts := strings.Split(value, "/")
-	for i, part := range parts {
-		part = strings.ToLower(strings.TrimSpace(part))
-		part = slugPartReplacer.Replace(part)
-		part = collapseSlugPart(part)
-		if part == "" {
-			part = "post"
-		}
-		parts[i] = part
+func plainOrQuoted(value string) string {
+	if value == "" {
+		return `""`
 	}
-	return strings.Join(parts, "/")
+	if isPlainSafe(value) {
+		return value
+	}
+	return quoted(value)
 }
 
-func collapseSlugPart(value string) string {
+func slugPart(value string) string {
+	value = strings.ToLower(strings.TrimSpace(value))
+	value = strings.ReplaceAll(value, "_", "-")
 	var b strings.Builder
 	lastDash := false
 	for _, r := range value {
@@ -456,16 +431,6 @@ func collapseSlugPart(value string) string {
 		}
 	}
 	return strings.Trim(b.String(), "-")
-}
-
-func plainOrQuoted(value string) string {
-	if value == "" {
-		return `""`
-	}
-	if isPlainSafe(value) {
-		return value
-	}
-	return quoted(value)
 }
 
 func quoted(value string) string {

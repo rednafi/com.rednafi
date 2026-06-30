@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/go/type-assertion-vs-type-switches/cover-bc8088747c7e.png"
 aliases:
     - /go/type_assertion_vs_type_switches/
 discussions: []

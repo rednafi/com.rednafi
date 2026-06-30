@@ -37,8 +37,6 @@ func TestSitemapContainsKeyPages(t *testing.T) {
 		"maxims page should not be listed in sitemap")
 	assert.NotContains(t, body, "<loc>https://rednafi.com/blogroll/</loc>",
 		"noindex utility pages should not be listed in sitemap")
-	assert.NotContains(t, body, "<loc>https://rednafi.com/articles/</loc>",
-		"duplicate article index should not be listed in sitemap")
 	assert.NotContains(t, body, "<loc>https://rednafi.com/page/2/</loc>",
 		"paginated homepage pages are noindex and should not be listed in sitemap")
 	assert.NotContains(t, body, "<loc>https://rednafi.com/shards/</loc>",

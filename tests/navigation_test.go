@@ -105,17 +105,22 @@ func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
 		require.NoError(t, result.Click())
 		assertLocalURL(t, page)
 	})
+}
 
-	t.Run("alias refresh stays local", func(t *testing.T) {
-		page := newPage(t)
-		_, err := page.Goto(baseURL + "/misc/dns_record_to_share_text/")
-		require.NoError(t, err)
+func TestAliasRedirectPages(t *testing.T) {
+	t.Parallel()
 
-		require.Eventually(t, func() bool {
-			return strings.HasPrefix(page.URL(), baseURL+"/misc/dns-record-to-share-text/")
-		}, 2*time.Second, 50*time.Millisecond)
-		assertLocalURL(t, page)
-	})
+	tests := map[string]string{
+		"/articles/":                    `url=/`,
+		"/go/nil_interface_comparison/": `url=/go/nil-interface-comparison/`,
+	}
+	for path, target := range tests {
+		t.Run(path, func(t *testing.T) {
+			body := httpGet(t, baseURL+path)
+			assert.Contains(t, body, `http-equiv=refresh`)
+			assert.Contains(t, body, target)
+		})
+	}
 }
 
 func assertLocalURL(t *testing.T, page playwright.Page) {

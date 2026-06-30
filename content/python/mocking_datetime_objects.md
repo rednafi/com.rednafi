@@ -9,8 +9,6 @@ tags:
     - Python
     - Testing
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/mocking-datetime-objects/cover-a8b0c0852eee.png"
 aliases:
     - /python/mocking_datetime_objects/
 discussions: []

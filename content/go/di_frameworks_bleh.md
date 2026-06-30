@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - API
-images:
-    - "https://blob.rednafi.com/go/di-frameworks-bleh/cover-e28afa01a698.png"
 aliases:
     - /go/di_frameworks_bleh/
 discussions:

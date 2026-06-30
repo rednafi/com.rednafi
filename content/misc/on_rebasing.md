@@ -10,8 +10,6 @@ tags:
     - Shell
     - Unix
     - GitHub
-images:
-    - "https://blob.rednafi.com/misc/on-rebasing/cover-d499abc3a497.png"
 aliases:
     - /misc/on_rebasing/
 discussions:

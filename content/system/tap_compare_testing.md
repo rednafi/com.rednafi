@@ -9,8 +9,6 @@ tags:
     - "Distributed Systems"
     - Go
     - Testing
-images:
-    - "https://blob.rednafi.com/system/tap-compare-testing/cover-7adc4c0553d1.png"
 aliases: []
 discussions: []
 mermaid: true

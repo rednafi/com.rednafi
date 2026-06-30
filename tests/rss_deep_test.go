@@ -322,11 +322,3 @@ func TestAllSectionRSSFeeds(t *testing.T) {
 		})
 	}
 }
-
-// TestArticlesRSSRedirected verifies the retired duplicate articles feed is
-// redirected to the canonical main feed.
-func TestArticlesRSSRedirected(t *testing.T) {
-	t.Parallel()
-	body := httpGet(t, baseURL+"/_redirects")
-	assert.Contains(t, body, "/articles.xml /index.xml 301")
-}

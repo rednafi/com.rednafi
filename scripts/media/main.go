@@ -14,8 +14,6 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
-	"slices"
-	"strconv"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -28,25 +26,8 @@ const (
 	immutableCache    = "public, max-age=31536000, immutable"
 )
 
-var legacyURLPattern = regexp.MustCompile(`https://blob\.rednafi\.com/static/images/[^\s\]\)"<>]+`)
-
-type occurrence struct {
-	filePath string
-	oldURL   string
-}
-
-type migration struct {
-	oldURL  string
-	oldKey  string
-	newURL  string
-	newKey  string
-	tmpFile string
-}
-
 func main() {
 	check := flag.Bool("check", false, "fail if image URLs are not canonical")
-	migrateLegacy := flag.Bool("migrate-legacy", false, "migrate legacy blob.rednafi.com/static/images URLs")
-	purgeOld := flag.Bool("purge-old", false, "delete old R2 objects after successful migration")
 	postPath := flag.String("post", "", "content markdown file for a new post image upload")
 	filePath := flag.String("file", "", "local image file to upload")
 	imageName := flag.String("name", "", "semantic kebab-case image name")
@@ -61,19 +42,13 @@ func main() {
 		}
 		return
 	}
-	if *migrateLegacy {
-		if err := migrateLegacyURLs(*publicBase, *bucket, *wrangler, *purgeOld); err != nil {
-			fatal(err)
-		}
-		return
-	}
 	if *postPath != "" || *filePath != "" || *imageName != "" {
 		if err := uploadPostImage(*publicBase, *bucket, *wrangler, *postPath, *filePath, *imageName); err != nil {
 			fatal(err)
 		}
 		return
 	}
-	fatal(fmt.Errorf("pass --check, --migrate-legacy, or --post/--file/--name"))
+	fatal(fmt.Errorf("pass --check or --post/--file/--name"))
 }
 
 func uploadPostImage(publicBase, bucket, wrangler, postPath, sourcePath, imageName string) error {
@@ -102,7 +77,8 @@ func uploadPostImage(publicBase, bucket, wrangler, postPath, sourcePath, imageNa
 	}
 	defer os.RemoveAll(tmpdir)
 
-	tmpFile := filepath.Join(tmpdir, canonicalImageName(imageName)+ext)
+	canonicalName := canonicalImageName(imageName)
+	tmpFile := filepath.Join(tmpdir, canonicalName+ext)
 	if err := os.WriteFile(tmpFile, raw, 0o644); err != nil {
 		return err
 	}
@@ -121,254 +97,13 @@ func uploadPostImage(publicBase, bucket, wrangler, postPath, sourcePath, imageNa
 	if err != nil {
 		return err
 	}
-	key := path.Join(dir, canonicalImageName(imageName)+"-"+hash+ext)
-	if !publicObjectExists(publicBase, key) {
-		if err := putR2Object(wrangler, bucket, key, tmpFile, contentType(key)); err != nil {
-			return err
-		}
+	key := path.Join(dir, canonicalName+"-"+hash+ext)
+	if err := putR2Object(wrangler, bucket, key, tmpFile, contentType(key)); err != nil {
+		return err
 	}
 
 	fmt.Println(strings.TrimRight(publicBase, "/") + "/" + key)
 	return nil
-}
-
-func migrateLegacyURLs(publicBase, bucket, wrangler string, purgeOld bool) error {
-	occurrences, err := findLegacyURLs()
-	if err != nil {
-		return err
-	}
-	if len(occurrences) == 0 {
-		fmt.Println("No legacy R2 image URLs found.")
-		return nil
-	}
-
-	tmpdir, err := os.MkdirTemp("", "rednafi-media-*")
-	if err != nil {
-		return err
-	}
-	defer os.RemoveAll(tmpdir)
-
-	byURL := map[string]occurrence{}
-	for _, occ := range occurrences {
-		if _, ok := byURL[occ.oldURL]; !ok {
-			byURL[occ.oldURL] = occ
-		}
-	}
-
-	urls := make([]string, 0, len(byURL))
-	for oldURL := range byURL {
-		urls = append(urls, oldURL)
-	}
-	slices.Sort(urls)
-
-	var migrations []migration
-	for _, oldURL := range urls {
-		occ := byURL[oldURL]
-		mig, err := prepareMigration(tmpdir, publicBase, bucket, wrangler, occ)
-		if err != nil {
-			return err
-		}
-		migrations = append(migrations, mig)
-	}
-
-	if err := rewriteReferences(migrations); err != nil {
-		return err
-	}
-
-	remaining, err := findLegacyURLs()
-	if err != nil {
-		return err
-	}
-	if len(remaining) > 0 {
-		return fmt.Errorf("refusing to purge old images; %d legacy URL(s) still remain", len(remaining))
-	}
-
-	if purgeOld {
-		for _, mig := range migrations {
-			if err := deleteR2Object(wrangler, bucket, mig.oldKey); err != nil {
-				return err
-			}
-		}
-	}
-
-	fmt.Printf("Migrated %d R2 image object(s)", len(migrations))
-	if purgeOld {
-		fmt.Print(" and purged old keys")
-	}
-	fmt.Println(".")
-	return nil
-}
-
-func prepareMigration(tmpdir, publicBase, bucket, wrangler string, occ occurrence) (migration, error) {
-	oldKey, err := objectKey(occ.oldURL, publicBase)
-	if err != nil {
-		return migration{}, err
-	}
-
-	ext := strings.ToLower(path.Ext(oldKey))
-	if ext == "" {
-		return migration{}, fmt.Errorf("%s: missing image extension", occ.oldURL)
-	}
-
-	tmpFile := filepath.Join(tmpdir, strings.ReplaceAll(oldKey, "/", "__"))
-	if err := getR2Object(wrangler, bucket, oldKey, tmpFile); err != nil {
-		return migration{}, err
-	}
-	raw, err := os.ReadFile(tmpFile)
-	if err != nil {
-		return migration{}, err
-	}
-	if detected := detectImageExt(raw); detected != "" && detected != ext {
-		ext = detected
-		tmpWithExt := strings.TrimSuffix(tmpFile, path.Ext(tmpFile)) + ext
-		if err := os.Rename(tmpFile, tmpWithExt); err != nil {
-			return migration{}, err
-		}
-		tmpFile = tmpWithExt
-	}
-
-	if err := optimizeLosslessly(tmpFile, ext); err != nil {
-		return migration{}, err
-	}
-
-	raw, err = os.ReadFile(tmpFile)
-	if err != nil {
-		return migration{}, err
-	}
-	sum := sha256.Sum256(raw)
-	hash := hex.EncodeToString(sum[:])[:12]
-	newKey, err := canonicalKey(occ.filePath, oldKey, ext, hash)
-	if err != nil {
-		return migration{}, err
-	}
-
-	if !publicObjectExists(publicBase, newKey) {
-		if err := putR2Object(wrangler, bucket, newKey, tmpFile, contentType(newKey)); err != nil {
-			return migration{}, err
-		}
-	}
-
-	return migration{
-		oldURL:  occ.oldURL,
-		oldKey:  oldKey,
-		newURL:  strings.TrimRight(publicBase, "/") + "/" + newKey,
-		newKey:  newKey,
-		tmpFile: tmpFile,
-	}, nil
-}
-
-func findLegacyURLs() ([]occurrence, error) {
-	var occurrences []occurrence
-	roots := []string{"content", "config.yml"}
-	for _, root := range roots {
-		info, err := os.Stat(root)
-		if err != nil {
-			return nil, err
-		}
-		if !info.IsDir() {
-			found, err := legacyURLsInFile(root)
-			if err != nil {
-				return nil, err
-			}
-			occurrences = append(occurrences, found...)
-			continue
-		}
-		err = filepath.WalkDir(root, func(filePath string, entry fs.DirEntry, err error) error {
-			if err != nil {
-				return err
-			}
-			if entry.IsDir() || filepath.Ext(filePath) != ".md" {
-				return nil
-			}
-			found, err := legacyURLsInFile(filePath)
-			if err != nil {
-				return err
-			}
-			occurrences = append(occurrences, found...)
-			return nil
-		})
-		if err != nil {
-			return nil, err
-		}
-	}
-	return occurrences, nil
-}
-
-func legacyURLsInFile(filePath string) ([]occurrence, error) {
-	raw, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-	matches := legacyURLPattern.FindAllString(string(raw), -1)
-	out := make([]occurrence, 0, len(matches))
-	for _, match := range matches {
-		out = append(out, occurrence{filePath: filePath, oldURL: match})
-	}
-	return out, nil
-}
-
-func rewriteReferences(migrations []migration) error {
-	files := map[string]bool{}
-	occurrences, err := findLegacyURLs()
-	if err != nil {
-		return err
-	}
-	replacements := map[string]string{}
-	for _, mig := range migrations {
-		replacements[mig.oldURL] = mig.newURL
-	}
-	for _, occ := range occurrences {
-		files[occ.filePath] = true
-	}
-
-	paths := make([]string, 0, len(files))
-	for filePath := range files {
-		paths = append(paths, filePath)
-	}
-	slices.Sort(paths)
-
-	for _, filePath := range paths {
-		rawBytes, err := os.ReadFile(filePath)
-		if err != nil {
-			return err
-		}
-		next := string(rawBytes)
-		for oldURL, newURL := range replacements {
-			next = strings.ReplaceAll(next, oldURL, newURL)
-		}
-		if next != string(rawBytes) {
-			if err := os.WriteFile(filePath, []byte(next), 0o644); err != nil {
-				return err
-			}
-		}
-	}
-	return nil
-}
-
-func objectKey(rawURL, publicBase string) (string, error) {
-	u, err := url.Parse(rawURL)
-	if err != nil {
-		return "", err
-	}
-	base, err := url.Parse(publicBase)
-	if err != nil {
-		return "", err
-	}
-	if u.Scheme != base.Scheme || u.Host != base.Host {
-		return "", fmt.Errorf("%s: URL is not under %s", rawURL, publicBase)
-	}
-	return strings.TrimPrefix(u.EscapedPath(), "/"), nil
-}
-
-func canonicalKey(filePath, oldKey, ext, hash string) (string, error) {
-	dir, err := canonicalDir(filePath)
-	if err != nil {
-		return "", err
-	}
-
-	base := strings.TrimSuffix(path.Base(oldKey), path.Ext(oldKey))
-	name := canonicalImageName(base)
-	return path.Join(dir, name+"-"+hash+ext), nil
 }
 
 func canonicalDir(filePath string) (string, error) {
@@ -434,32 +169,12 @@ func scalar(node *yaml.Node) string {
 	return node.Value
 }
 
-var imageSequencePattern = regexp.MustCompile(`^img[_-](\d+)(?:[_-]v(\d+))?$`)
-
 func canonicalImageName(value string) string {
-	lower := strings.ToLower(strings.TrimSpace(value))
-	if match := imageSequencePattern.FindStringSubmatch(lower); match != nil {
-		n, _ := strconv.Atoi(match[1])
-		name := fmt.Sprintf("image-%02d", n)
-		if match[2] != "" {
-			name += "-v" + match[2]
-		}
-		return name
-	}
-	return slugPath(lower)
+	return slugPath(value)
 }
 
 func checkCanonicalMedia() error {
-	legacy, err := findLegacyURLs()
-	if err != nil {
-		return err
-	}
 	var problems []string
-	if len(legacy) > 0 {
-		for _, occ := range legacy {
-			problems = append(problems, fmt.Sprintf("%s: legacy R2 URL %s", occ.filePath, occ.oldURL))
-		}
-	}
 
 	var violations []string
 	for _, root := range []string{"content", "config.yml"} {
@@ -533,9 +248,6 @@ func nonCanonicalURLsInFile(filePath string) ([]string, error) {
 			violations = append(violations, fmt.Sprintf("%s: underscore in R2 path %s", filePath, rawURL))
 		}
 	}
-	if strings.Contains(string(rawBytes), "github.com/rednafi/com.rednafi/releases/download/post-cards") {
-		violations = append(violations, filePath+": generated cards must use R2, not GitHub Releases")
-	}
 	return violations, nil
 }
 
@@ -578,19 +290,9 @@ func optimizeLosslessly(filePath, ext string) error {
 	switch ext {
 	case ".png":
 		return run("oxipng", "-o", "max", "--strip", "safe", filePath)
-	case ".jpg", ".jpeg":
-		tmp := filePath + ".jpegtran"
-		if err := run("jpegtran", "-copy", "none", "-optimize", "-progressive", "-outfile", tmp, filePath); err != nil {
-			return err
-		}
-		return os.Rename(tmp, filePath)
 	default:
 		return nil
 	}
-}
-
-func getR2Object(wrangler, bucket, key, outPath string) error {
-	return runShell(wrangler + " r2 object get " + shellQuote(bucket+"/"+key) + " --file " + shellQuote(outPath) + " --remote")
 }
 
 func putR2Object(wrangler, bucket, key, filePath, ct string) error {
@@ -600,10 +302,6 @@ func putR2Object(wrangler, bucket, key, filePath, ct string) error {
 		" --content-type " + shellQuote(ct) +
 		" --cache-control " + shellQuote(immutableCache) +
 		" --remote")
-}
-
-func deleteR2Object(wrangler, bucket, key string) error {
-	return runShell(wrangler + " r2 object delete " + shellQuote(bucket+"/"+key) + " --remote --force")
 }
 
 func contentType(key string) string {
@@ -619,19 +317,6 @@ func contentType(key string) string {
 		}
 		return "application/octet-stream"
 	}
-}
-
-func publicObjectExists(publicBase, key string) bool {
-	req, err := http.NewRequest(http.MethodHead, strings.TrimRight(publicBase, "/")+"/"+key, nil)
-	if err != nil {
-		return false
-	}
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return false
-	}
-	defer resp.Body.Close()
-	return resp.StatusCode >= 200 && resp.StatusCode < 300
 }
 
 func detectImageExt(raw []byte) string {

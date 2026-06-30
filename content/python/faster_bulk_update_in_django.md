@@ -9,8 +9,6 @@ tags:
     - Python
     - Django
     - Database
-images:
-    - "https://blob.rednafi.com/python/faster-bulk-update-in-django/cover-d66643eedab9.png"
 aliases:
     - /python/faster_bulk_update_in_django/
 discussions: []

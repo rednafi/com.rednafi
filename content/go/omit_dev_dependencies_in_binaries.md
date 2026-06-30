@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - DevOps
-images:
-    - "https://blob.rednafi.com/go/omit-dev-dependencies-in-binaries/cover-f376f3b553c7.png"
 aliases:
     - /go/omit_dev_dependencies_in_binaries/
 discussions: []

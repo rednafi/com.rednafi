@@ -9,8 +9,6 @@ tags:
     - JavaScript
     - GitHub
     - DevOps
-images:
-    - "https://blob.rednafi.com/javascript/periodic-readme-updates-with-gh-actions/cover-902b8b2b3ee4.png"
 aliases:
     - /javascript/periodic_readme_updates_with_gh_actions/
 discussions: []

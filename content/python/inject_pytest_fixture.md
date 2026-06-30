@@ -10,8 +10,6 @@ tags:
     - TIL
     - Pytest
     - Testing
-images:
-    - "https://blob.rednafi.com/python/inject-pytest-fixture/cover-d5f9f6e8bec1.png"
 aliases:
     - /python/inject_pytest_fixture/
 discussions: []

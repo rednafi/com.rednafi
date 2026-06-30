@@ -7,8 +7,6 @@ description: >-
     Python 3.9+ decorator stacking for Enum classes.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/access-classmethod-like-property/cover-56aacfe1cd86.png"
 aliases:
     - /python/access_classmethod_like_property/
 discussions: []

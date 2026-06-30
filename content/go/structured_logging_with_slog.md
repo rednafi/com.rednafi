@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Logging
-images:
-    - "https://blob.rednafi.com/go/structured-logging-with-slog/cover-102f6397187c.png"
 aliases:
     - /go/structured_logging_with_slog/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - API
-images:
-    - "https://blob.rednafi.com/go/mocking-libraries-bleh/cover-9e88f428ee71.png"
 aliases: []
 discussions:
     - label: "Reddit"

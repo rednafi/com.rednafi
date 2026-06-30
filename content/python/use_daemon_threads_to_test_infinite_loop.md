@@ -9,8 +9,6 @@ tags:
     - Python
     - Testing
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/use-daemon-threads-to-test-infinite-loop/cover-d30e44a1400a.png"
 aliases:
     - /python/use_daemon_threads_to_test_infinite_loop/
 discussions: []

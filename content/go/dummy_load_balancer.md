@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Networking
-images:
-    - "https://blob.rednafi.com/go/dummy-load-balancer/cover-bdaff49133eb.png"
 aliases:
     - /go/dummy_load_balancer/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Django
     - TIL
     - Performance
-images:
-    - "https://blob.rednafi.com/python/save-with-update-fields-in-django/cover-e20a5d7f3998.png"
 aliases:
     - /python/save_with_update_fields_in_django/
 discussions:

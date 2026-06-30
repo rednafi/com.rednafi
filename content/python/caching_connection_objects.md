@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/python/caching-connection-objects/cover-27402075276b.png"
 aliases:
     - /python/caching_connection_objects/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     ValueError. Learn the trade-offs and best practices.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/apply-constraint-with-assert/cover-e4c255920a2c.png"
 aliases:
     - /python/apply_constraint_with_assert/
 discussions: []

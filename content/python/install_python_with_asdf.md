@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/install-python-with-asdf/cover-65ecdf7af626.png"
 aliases:
     - /python/install_python_with_asdf/
 discussions: []

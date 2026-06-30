@@ -10,8 +10,6 @@ tags:
     - Go
     - Logging
     - API
-images:
-    - "https://blob.rednafi.com/go/typesafe-slogging/cover-9b4d36fd0d2e.png"
 aliases: []
 discussions: []
 mermaid: false

@@ -7,8 +7,6 @@ description: >-
     handling via methodcaller for safer operations.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/operators-itemgetter/cover-6ed737b0a10b.png"
 aliases:
     - /python/operators_itemgetter/
 discussions: []

@@ -171,7 +171,6 @@ func TestBaseLayout(t *testing.T) {
 		assert.Contains(t, hrefList, "/blogroll/")
 		assert.Contains(t, hrefList, "/maxims/")
 		assert.Contains(t, hrefList, "/tags/")
-		assert.NotContains(t, hrefList, "/articles/")
 
 		footerText, err := page.Locator("footer").Evaluate(
 			`el => el.innerText.replace(/\s+/g, " ").trim()`,
@@ -245,7 +244,6 @@ func TestHomepage(t *testing.T) {
 		hrefList := toStringSlice(hrefs)
 		assert.NotContains(t, hrefList, "/appearances/")
 		assert.NotContains(t, hrefList, "/maxims/")
-		assert.NotContains(t, hrefList, "/articles/")
 		assert.NotContains(t, hrefList, "/tags/")
 	})
 
@@ -464,15 +462,6 @@ func TestSEOHomepage(t *testing.T) {
 		count, err := page.Locator(`link[rel="alternate"][type*="xml"]`).Count()
 		require.NoError(t, err)
 		assert.Greater(t, count, 0)
-
-		hrefs, err := page.Locator(`link[rel="alternate"][type*="xml"]`).EvaluateAll(
-			`els => els.map(e => e.getAttribute("href"))`,
-		)
-		require.NoError(t, err)
-		for _, href := range toStringSlice(hrefs) {
-			assert.NotContains(t, href, "articles.xml",
-				"homepage should not advertise the retired duplicate articles feed")
-		}
 	})
 
 	t.Run("theme-color meta", func(t *testing.T) {
@@ -743,9 +732,8 @@ func TestArchive(t *testing.T) {
 	})
 }
 
-// TestSearchPage is covered by TestSearchFunctionality (search_test.go) and
-// TestSearchPageConfiguration (special_pages_test.go). Removed to avoid
-// redundant Pagefind initialization that causes flakiness under load.
+// TestSearchPage is covered by TestSearchFunctionality and TestSearchPageCSS
+// (search_test.go). Removed to avoid redundant Pagefind initialization.
 
 func TestTagsPage(t *testing.T) {
 	t.Parallel()

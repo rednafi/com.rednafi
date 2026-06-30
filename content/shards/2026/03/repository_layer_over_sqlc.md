@@ -7,8 +7,6 @@ description: >-
 tags:
     - Go
     - Database
-images:
-    - "https://blob.rednafi.com/shards/2026/03/repository-layer-over-sqlc/cover-dc6074de034f.png"
 aliases: []
 discussions: []
 mermaid: false

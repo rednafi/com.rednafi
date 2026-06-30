@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/create-sub-dict/cover-72790736cd80.png"
 aliases:
     - /python/create_sub_dict/
 discussions: []

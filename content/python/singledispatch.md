@@ -7,8 +7,6 @@ description: >-
     dispatch and cleaner polymorphic behavior in Python.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/singledispatch/cover-4e2366f98341.png"
 aliases:
     - /python/singledispatch/
 discussions: []

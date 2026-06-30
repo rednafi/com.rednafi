@@ -7,8 +7,6 @@ description: >-
     ensure correct sys.path handling for imports.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/how-not-to-run-a-script/cover-6c40de7a13db.png"
 aliases:
     - /python/how_not_to_run_a_script/
 discussions: []

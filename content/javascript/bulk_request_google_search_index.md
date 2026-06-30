@@ -9,8 +9,6 @@ tags:
     - JavaScript
     - API
     - Web
-images:
-    - "https://blob.rednafi.com/javascript/bulk-request-google-search-index/cover-0850cf57c855.png"
 aliases:
     - /javascript/bulk_request_google_search_index/
 discussions: []

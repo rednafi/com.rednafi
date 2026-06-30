@@ -9,8 +9,6 @@ tags:
     - Python
     - Testing
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/patch-with-pytest-fixture/cover-bed33bee211a.png"
 aliases:
     - /python/patch_with_pytest_fixture/
 discussions: []

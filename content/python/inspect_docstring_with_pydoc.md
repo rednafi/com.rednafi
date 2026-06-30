@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - CLI
-images:
-    - "https://blob.rednafi.com/python/inspect-docstring-with-pydoc/cover-527313b59677.png"
 aliases:
     - /python/inspect_docstring_with_pydoc/
 discussions: []

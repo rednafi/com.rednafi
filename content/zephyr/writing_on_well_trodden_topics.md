@@ -7,8 +7,6 @@ description: >-
     have covered the same ground before you.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/writing-on-well-trodden-topics/cover-617bb233ca20.png"
 aliases:
     - /zephyr/writing_on_well_trodden_topics/
 discussions: []

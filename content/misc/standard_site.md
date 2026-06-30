@@ -10,8 +10,6 @@ tags:
     - Essay
     - DevOps
     - Web
-images:
-    - "https://blob.rednafi.com/misc/standard-site/cover-90ecea060c44.png"
 aliases: []
 discussions: []
 mermaid: true
@@ -105,44 +103,21 @@ lives in `.sequoia-state.json`, so reruns only touch what actually changed.
 
 ## Making it hands-free
 
-I didn't want to run `sequoia publish` by hand, so it happens in [CI]. Two pieces make that
-work.
+I didn't want to run `sequoia publish` by hand, so it happens in [CI]. The job does a few
+things before the Hugo build:
 
-A [small Go script] normalizes the post frontmatter before Sequoia runs. standard.site gives
-each document a stable path, and Sequoia reads that from an `atprotoPath` field in
-frontmatter. Rather than type it into every post, I derive it from the file's location and
-slug, so `content/zephyr/carry_the_pager.md` with `slug: carry-the-pager` gets
-`atprotoPath: /zephyr/carry-the-pager/` written in. The same script keeps the frontmatter
-keys in one order, adds the social preview `images` URL, and fails the build if a post has
-unknown or incomplete metadata.
+- checks that every post has the same frontmatter keys in the same order
+- sets `slug` and `atprotoPath` from the filename
+- stops the build if a post has extra fields, missing fields, or a wrong path
+- copies the posts to a temporary Sequoia directory and adds the shared cover there
+- asks Sequoia to publish only posts whose content changed
+- writes Sequoia's returned `atUri` values and `.sequoia-state.json` back
+- commits only those generated metadata changes with `[skip ci]`
+- builds and deploys the Hugo site
 
-Then GitHub Actions does the rest on every push to `main`. It normalizes frontmatter,
-generates any missing preview images, uploads those images to R2 with immutable cache
-headers, then runs `sequoia publish` with my handle and app password from repo secrets. It
-prettier-formats the metadata Sequoia generated, checks the frontmatter again, then commits
-the new `atUri`s, image URLs, `.sequoia-state.json`, and the `.well-known` file back with a
-`[skip ci]` tag. Finally Hugo builds and deploys.
-
-```yaml
-- name: Normalize post frontmatter
-  run: go run ./scripts/frontmatter
-
-- name: Generate missing post header images
-  run: go run ./scripts/postcards --missing-r2-assets
-
-- name: Upload post header images to R2
-  run: make upload-postcards
-
-- name: Publish standard.site records
-  env:
-    ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
-    ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
-  run: npx -y sequoia-cli publish
-```
-
-So my actual routine didn't change at all. Write Markdown, push to `main`, walk away. The
-ATProto side catches up by itself. This very post turned into a `site.standard.document` the
-moment the deploy ran.
+My routine didn't change: write Markdown and push to `main`. CI fills in the `atUri`,
+commits it back, and lets the deploy continue. This post turned into a
+`site.standard.document` the moment the deploy ran.
 
 ## Seeing it work
 

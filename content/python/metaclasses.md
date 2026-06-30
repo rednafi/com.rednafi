@@ -7,8 +7,6 @@ description: >-
     class behavior, and understand type as the default metaclass.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/metaclasses/cover-d07237297b38.png"
 aliases:
     - /python/metaclasses/
 discussions: []

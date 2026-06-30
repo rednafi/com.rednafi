@@ -10,8 +10,6 @@ tags:
     - Testing
     - CLI
     - Tooling
-images:
-    - "https://blob.rednafi.com/go/testscript-cli/cover-e81843ff6399.png"
 aliases: []
 discussions: []
 mermaid: false

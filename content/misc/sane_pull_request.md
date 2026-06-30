@@ -8,8 +8,6 @@ description: >-
 tags:
     - Git
     - GitHub
-images:
-    - "https://blob.rednafi.com/misc/sane-pull-request/cover-e6980bebe071.png"
 aliases:
     - /misc/sane_pull_request/
 discussions: []

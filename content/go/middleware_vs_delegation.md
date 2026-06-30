@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - Web
-images:
-    - "https://blob.rednafi.com/go/middleware-vs-delegation/cover-e30777e9ee21.png"
 aliases:
     - /go/middleware_vs_delegation/
 discussions: []

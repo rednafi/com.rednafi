@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/check-is-a-power-of-two/cover-04916a926733.png"
 aliases:
     - /python/check_is_a_power_of_two/
 discussions: []

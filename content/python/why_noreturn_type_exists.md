@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/why-noreturn-type-exists/cover-fef52228dbc3.png"
 aliases:
     - /python/why_noreturn_type_exists/
 discussions: []

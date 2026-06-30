@@ -8,8 +8,6 @@ description: >-
 tags:
     - TIL
     - Python
-images:
-    - "https://blob.rednafi.com/python/enable-repeatable-lazy-iterations/cover-466dddeea88d.png"
 aliases:
     - /python/enable_repeatable_lazy_iterations/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Shell
     - Unix
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/direnv/cover-0342c27b03bc.png"
 aliases:
     - /misc/direnv/
 discussions: []

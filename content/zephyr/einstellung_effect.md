@@ -7,8 +7,6 @@ description: >-
     becomes the barrier to future growth.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/einstellung-effect/cover-9434af64afb7.png"
 aliases:
     - /zephyr/einstellung_effect/
 discussions: []

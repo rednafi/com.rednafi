@@ -9,8 +9,6 @@ tags:
     - Database
     - Python
     - SQL
-images:
-    - "https://blob.rednafi.com/python/recipes-from-python-sqlite-docs/cover-44282e48a7fb.png"
 aliases:
     - /python/recipes_from_python_sqlite_docs/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     and how bounded contexts create better separation.
 tags:
     - Go
-images:
-    - "https://blob.rednafi.com/go/app-structure/cover-8b8f0cc339e5.png"
 aliases:
     - /go/app_structure/
 discussions: []

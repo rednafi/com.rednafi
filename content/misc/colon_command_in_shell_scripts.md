@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/colon-command-in-shell-scripts/cover-f9dc7b500871.png"
 aliases:
     - /misc/colon_command_in_shell_scripts/
 discussions: []

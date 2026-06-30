@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/install/cover-3d89ed46cd6b.png"
 aliases:
     - /misc/install/
 discussions: []

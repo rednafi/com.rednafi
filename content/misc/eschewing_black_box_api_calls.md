@@ -9,8 +9,6 @@ tags:
     - Python
     - JavaScript
     - Go
-images:
-    - "https://blob.rednafi.com/misc/eschewing-black-box-api-calls/cover-ecb63b248452.png"
 aliases:
     - /misc/eschewing_black_box_api_calls/
 discussions: []

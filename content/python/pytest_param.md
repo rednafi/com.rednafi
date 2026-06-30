@@ -10,8 +10,6 @@ tags:
     - Testing
     - TIL
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/pytest-param/cover-f087e3775200.png"
 aliases:
     - /python/pytest_param/
 discussions: []

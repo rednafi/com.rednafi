@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - Concurrency
-images:
-    - "https://blob.rednafi.com/go/closure-mutable-refs/cover-7a40f0cda8c6.png"
 aliases: []
 discussions: []
 mermaid: false

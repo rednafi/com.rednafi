@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/text-cropping-with-textwrap-shorten/cover-66979f90c8fd.png"
 aliases:
     - /python/text_cropping_with_textwrap_shorten/
 discussions: []

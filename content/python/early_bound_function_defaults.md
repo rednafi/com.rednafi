@@ -7,8 +7,6 @@ description: >-
     defaults and function calls bind at definition time.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/early-bound-function-defaults/cover-d29e195ad287.png"
 aliases:
     - /python/early_bound_function_defaults/
 discussions: []

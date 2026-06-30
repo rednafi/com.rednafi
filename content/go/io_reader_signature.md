@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Performance
-images:
-    - "https://blob.rednafi.com/go/io-reader-signature/cover-95703a1d949a.png"
 aliases:
     - /go/io_reader_signature/
 discussions: []

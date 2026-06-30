@@ -9,8 +9,6 @@ description: >-
 tags:
     - Go
     - "Error Handling"
-images:
-    - "https://blob.rednafi.com/go/to-wrap-or-not-to-wrap/cover-35c2c5cb2c4d.png"
 aliases: []
 discussions: []
 mermaid: false

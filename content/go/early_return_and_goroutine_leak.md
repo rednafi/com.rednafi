@@ -9,8 +9,6 @@ tags:
     - Go
     - Concurrency
     - Testing
-images:
-    - "https://blob.rednafi.com/go/early-return-and-goroutine-leak/cover-4b010f8c7d1e.png"
 aliases:
     - /go/early_return_and_goroutine_leak/
 discussions: []

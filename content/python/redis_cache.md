@@ -9,8 +9,6 @@ tags:
     - Python
     - API
     - Redis
-images:
-    - "https://blob.rednafi.com/python/redis-cache/cover-539d381ddbcc.png"
 aliases:
     - /python/redis_cache/
 discussions: []

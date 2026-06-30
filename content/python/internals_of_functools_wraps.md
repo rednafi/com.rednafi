@@ -7,8 +7,6 @@ description: >-
     functions using update_wrapper and partial application.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/internals-of-functools-wraps/cover-722dccbf915b.png"
 aliases:
     - /python/internals_of_functools_wraps/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/configure-options/cover-59fa12dfdb3e.png"
 aliases:
     - /go/configure_options/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     writing experience over inline links.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/footnotes-for-the-win/cover-0c5fd77cfd44.png"
 aliases:
     - /zephyr/footnotes_for_the_win/
 discussions: []

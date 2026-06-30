@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/use-command-v-over-which/cover-4e06efeb2402.png"
 aliases:
     - /misc/use_command_v_over_which/
 discussions: []

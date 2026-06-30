@@ -7,8 +7,6 @@ description: >-
     ambiguity and improves readability.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/in-favor-of-sentence-case/cover-c76d65e0e869.png"
 aliases:
     - /zephyr/in_favor_of_sentence_case/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Django
     - Concurrency
     - Database
-images:
-    - "https://blob.rednafi.com/python/django-bulk-operation-with-process-pool/cover-5f0723bceb1e.png"
 aliases:
     - /python/django_bulk_operation_with_process_pool/
 discussions: []

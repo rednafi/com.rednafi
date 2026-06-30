@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Docker
-images:
-    - "https://blob.rednafi.com/python/debug-dockerized-apps-in-vscode/cover-85f7aff6aec4.png"
 aliases:
     - /python/debug_dockerized_apps_in_vscode/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     hardcoded indexes and create more maintainable enums.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/add-attributes-to-enum-members/cover-e6eab684af05.png"
 aliases:
     - /python/add_attributes_to_enum_members/
 discussions: []

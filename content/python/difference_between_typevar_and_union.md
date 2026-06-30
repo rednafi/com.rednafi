@@ -9,8 +9,6 @@ tags:
     - Python
     - Typing
     - TIL
-images:
-    - "https://blob.rednafi.com/python/difference-between-typevar-and-union/cover-f6afc5b85093.png"
 aliases:
     - /python/difference_between_typevar_and_union/
 discussions: []

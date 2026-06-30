@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/strategy-pattern/cover-dfa0dba306b7.png"
 aliases:
     - /go/strategy_pattern/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - "Error Handling"
-images:
-    - "https://blob.rednafi.com/misc/use-strict-mode-while-running-bash-scripts/cover-1a84df4e0466.png"
 aliases:
     - /misc/use_strict_mode_while_running_bash_scripts/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - Performance
-images:
-    - "https://blob.rednafi.com/go/avoid-context-key-collisions/cover-7ce9b218a891.png"
 aliases: []
 discussions: []
 mermaid: false

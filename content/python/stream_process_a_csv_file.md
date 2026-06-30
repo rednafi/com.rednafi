@@ -9,8 +9,6 @@ tags:
     - Python
     - Networking
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/stream-process-a-csv-file/cover-2233c7c8786e.png"
 aliases:
     - /python/stream_process_a_csv_file/
 discussions: []

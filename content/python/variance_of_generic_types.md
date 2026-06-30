@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/variance-of-generic-types/cover-37648e1e9d94.png"
 aliases:
     - /python/variance_of_generic_types/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Security
-images:
-    - "https://blob.rednafi.com/go/totp-client/cover-6edff062a29b.png"
 aliases:
     - /go/totp_client/
 discussions: []

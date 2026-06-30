@@ -7,8 +7,6 @@ description: >-
     continuous learning in a rapidly changing field.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/diminishing-half-life-of-knowledge/cover-4afa7baa8b67.png"
 aliases:
     - /zephyr/diminishing_half_life_of_knowledge/
     - /misc/diminishing_half_life_of_knowledge/

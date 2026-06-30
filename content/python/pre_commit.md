@@ -9,8 +9,6 @@ tags:
     - Python
     - Git
     - DevOps
-images:
-    - "https://blob.rednafi.com/python/pre-commit/cover-253ac57260c3.png"
 aliases:
     - /python/pre_commit/
 discussions: []

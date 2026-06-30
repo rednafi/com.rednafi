@@ -7,8 +7,6 @@ description: >-
     over-specialization that limits career mobility.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/domain-knowledge-dilemma/cover-ac89249d098f.png"
 aliases:
     - /zephyr/domain_knowledge_dilemma/
 discussions: []

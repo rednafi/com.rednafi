@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/python/escape-template-pattern/cover-d4806928d528.png"
 aliases:
     - /python/escape_template_pattern/
 discussions: []

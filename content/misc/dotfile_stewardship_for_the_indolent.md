@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/dotfile-stewardship-for-the-indolent/cover-4284276c5ef1.png"
 aliases:
     - /misc/dotfile_stewardship_for_the_indolent/
 discussions: []

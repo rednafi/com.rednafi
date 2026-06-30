@@ -9,7 +9,7 @@
 
 {{- $homeURL := "/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
-{{- $pageImages := .Params.images | default site.Params.images }}
+{{- $pageImages := site.Params.images }}
 {{- $isPaginatedHome := false }}
 {{- if .IsHome }}
 {{- $pages := partial "home-pages.html" . }}
@@ -120,7 +120,7 @@
 {{- $ogImage := index . 0 }}
 {{- $ogImageWidth := 1200 }}
 {{- $ogImageHeight := 630 }}
-{{- if or (eq $ogImage "https://blob.rednafi.com/home/cover.png") (findRE `https://blob\.rednafi\.com/.+/cover-[0-9a-f]{12}\.png$` $ogImage) }}
+{{- if findRE `https://blob\.rednafi\.com/.+/cover-[0-9a-f]{12}\.png$` $ogImage }}
 {{- $ogImageWidth = 4080 }}
 {{- $ogImageHeight = 2142 }}
 {{- end }}

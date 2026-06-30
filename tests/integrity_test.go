@@ -57,7 +57,7 @@ func TestRSSFeedImageElement(t *testing.T) {
 	require.NoError(t, xml.Unmarshal([]byte(body), &feed))
 	assert.Equal(t, "Redowan's Reflections", feed.Channel.Image.Title)
 	assert.Equal(t,
-		"https://blob.rednafi.com/home/cover.png",
+		"https://blob.rednafi.com/home/cover-b8f8f0fc773d.png",
 		feed.Channel.Image.URL)
 	assert.Equal(t, "https://rednafi.com/", feed.Channel.Image.Link)
 }

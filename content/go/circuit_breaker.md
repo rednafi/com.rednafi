@@ -9,8 +9,6 @@ tags:
     - Networking
     - Go
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/circuit-breaker/cover-3fae412ba764.png"
 aliases:
     - /go/circuit_breaker/
 discussions:

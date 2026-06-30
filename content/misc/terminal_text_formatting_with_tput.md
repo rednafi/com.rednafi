@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/terminal-text-formatting-with-tput/cover-e6c7946a0149.png"
 aliases:
     - /misc/terminal_text_formatting_with_tput/
 discussions: []

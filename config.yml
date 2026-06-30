@@ -103,7 +103,7 @@ params:
 
   notesSection: "shards"
 
-  images: ["https://blob.rednafi.com/home/cover.png"]
+  images: ["https://blob.rednafi.com/home/cover-b8f8f0fc773d.png"]
 
   assets:
     favicon_svg: "/favicon.svg"

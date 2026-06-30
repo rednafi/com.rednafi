@@ -7,8 +7,6 @@ description: >-
     with intuitive operators and unified file operations.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/pathlib/cover-c950d9e7685e.png"
 aliases:
     - /python/pathlib/
 discussions: []

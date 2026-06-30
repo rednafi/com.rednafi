@@ -9,8 +9,6 @@ tags:
     - API
     - Networking
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/misc/protobuffed-contracts/cover-fd17153669f5.png"
 aliases:
     - /misc/protobuffed_contracts/
 discussions: []

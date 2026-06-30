@@ -8,8 +8,6 @@ tags:
     - Go
     - gRPC
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/shards/2026/03/etcd-codebase/cover-c013a00940ec.png"
 aliases: []
 discussions: []
 mermaid: false

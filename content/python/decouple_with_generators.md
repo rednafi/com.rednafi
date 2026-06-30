@@ -7,8 +7,6 @@ description: >-
     code for streaming, polling, and pipeline patterns.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/decouple-with-generators/cover-fcc72c5e748d.png"
 aliases:
     - /python/decouple_with_generators/
 discussions: []

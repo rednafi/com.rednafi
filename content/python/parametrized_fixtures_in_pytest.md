@@ -9,8 +9,6 @@ tags:
     - Python
     - Testing
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/parametrized-fixtures-in-pytest/cover-63b7fa998731.png"
 aliases:
     - /python/parametrized_fixtures_in_pytest/
 discussions: []

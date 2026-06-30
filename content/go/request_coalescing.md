@@ -11,8 +11,6 @@ tags:
     - Go
     - Concurrency
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/go/request-coalescing/cover-195175395048.png"
 aliases: []
 discussions:
     - label: "Reddit"

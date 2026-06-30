@@ -9,8 +9,6 @@ tags:
     - Go
     - Reflection
     - Codegen
-images:
-    - "https://blob.rednafi.com/go/struct-tags/cover-053cb021cd36.png"
 aliases:
     - /go/fun-with-struct-tags/
 discussions: []

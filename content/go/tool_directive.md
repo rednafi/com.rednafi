@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - DevOps
-images:
-    - "https://blob.rednafi.com/go/tool-directive/cover-187c4a9f0041.png"
 aliases:
     - /go/tool_directive/
 discussions: []

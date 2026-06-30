@@ -9,8 +9,6 @@ tags:
     - Python
     - API
     - Django
-images:
-    - "https://blob.rednafi.com/python/return-json-error-payload-in-drf/cover-6e16ac55c2c7.png"
 aliases:
     - /python/return_json_error_payload_in_drf/
 discussions: []

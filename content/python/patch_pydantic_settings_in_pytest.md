@@ -10,8 +10,6 @@ tags:
     - TIL
     - Testing
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/patch-pydantic-settings-in-pytest/cover-c76f2629a3e2.png"
 aliases:
     - /python/patch_pydantic_settings_in_pytest/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Python
     - System
     - Redis
-images:
-    - "https://blob.rednafi.com/misc/hierarchical-rate-limiting/cover-c18f7f80ab48.png"
 aliases:
     - /misc/hierarchical_rate_limiting/
 discussions: []

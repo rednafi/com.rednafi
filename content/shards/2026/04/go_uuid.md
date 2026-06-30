@@ -7,8 +7,6 @@ description: >-
 tags:
     - Go
     - API
-images:
-    - "https://blob.rednafi.com/shards/2026/04/go-uuid/cover-c313987d9415.png"
 aliases:
     - /shards/2026/04/go-uuid-stdlib/
 discussions: []

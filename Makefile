@@ -5,13 +5,14 @@ SHELL := /bin/bash -ex
 MAKEFLAGS += --silent
 
 BREW_PACKAGES := gh hugo node
-PAGEFIND_VERSION := 1.5.2
-PRETTIER_VERSION := 3.9.3
-SEQUOIA_CLI_VERSION := 0.5.7
-WRANGLER_VERSION := 4.83.0
+PAGEFIND_VERSION ?= 1.5.2
+PRETTIER_VERSION ?= 3.9.3
+SEQUOIA_CLI_VERSION ?= 0.5.7
+WRANGLER_VERSION ?= 4.83.0
 PAGES_SIZE_BUDGET_BYTES := 900000000
 PAGEFIND := npx -y pagefind@$(PAGEFIND_VERSION)
 PRETTIER := npx -y prettier@$(PRETTIER_VERSION)
+SEQUOIA := npx -y sequoia-cli@$(SEQUOIA_CLI_VERSION) publish
 WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
 
 init:
@@ -35,26 +36,11 @@ frontmatter:
 check-frontmatter:
 	go run ./scripts/frontmatter --check
 
-postcards:
-	go run ./scripts/postcards
-
-postcards-missing:
-	go run ./scripts/postcards --missing-r2-assets
-
-check-postcards:
-	go run ./scripts/postcards --check
-
-compress-postcards:
-	WRANGLER="$(WRANGLER)" bash ./scripts/upload-postcards --compress-only
-
-upload-postcards:
-	WRANGLER="$(WRANGLER)" bash ./scripts/upload-postcards
+publish-standard-site:
+	SEQUOIA_CMD="$(SEQUOIA)" go run ./scripts/sequoia
 
 check-media:
 	go run ./scripts/media --check
-
-migrate-legacy-media:
-	go run ./scripts/media --migrate-legacy --wrangler "$(WRANGLER)"
 
 check-pages-size:
 	bytes=$$(du -sk public | awk '{print $$1 * 1024}'); \
@@ -91,7 +77,6 @@ build:
 
 test: build
 	$(MAKE) check-frontmatter
-	$(MAKE) check-postcards
 	$(MAKE) check-media
 	go test -v -count=1 ./...
 

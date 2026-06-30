@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - API
-images:
-    - "https://blob.rednafi.com/go/deferred-teardown-closure/cover-4577f0d0be03.png"
 aliases:
     - /go/deferred_teardown_closure/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - Performance
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/python/preallocated-list/cover-ca6a959d7528.png"
 aliases:
     - /python/preallocated_list/
 discussions: []

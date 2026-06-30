@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Concurrency
-images:
-    - "https://blob.rednafi.com/go/prevent-struct-copies/cover-bae33e7cd134.png"
 aliases:
     - /go/prevent_struct_copies/
 discussions:

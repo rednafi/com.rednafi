@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - "Error Handling"
-images:
-    - "https://blob.rednafi.com/go/retry-function/cover-0b6896beb332.png"
 aliases:
     - /go/retry_function/
 discussions: []

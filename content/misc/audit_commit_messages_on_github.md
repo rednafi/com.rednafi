@@ -10,8 +10,6 @@ tags:
     - DevOps
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/misc/audit-commit-messages-on-github/cover-603bb8c4a692.png"
 aliases:
     - /misc/audit_commit_messages_on_github/
 discussions: []

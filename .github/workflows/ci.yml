@@ -22,8 +22,6 @@ jobs:
       PAGEFIND_VERSION: 1.5.2
       PLAYWRIGHT_VERSION: 1.61.1
       PRETTIER_VERSION: 3.9.3
-      SEQUOIA_CLI_VERSION: 0.5.7
-      OXIPNG_VERSION: 10.1.1
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -47,13 +45,6 @@ jobs:
 
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
-
-      - name: Install image tools
-        run: |
-          wget -q -O /tmp/oxipng.deb "https://github.com/oxipng/oxipng/releases/download/v${OXIPNG_VERSION}/oxipng_${OXIPNG_VERSION}-1_amd64.deb"
-          echo "6a433d9d10a9c4772e618136a491fc0e2b8b373c55db731fa5cc7b5f7a556053  /tmp/oxipng.deb" | sha256sum -c -
-          sudo dpkg -i /tmp/oxipng.deb
-          oxipng --version
 
       - name: Setup Go
         uses: actions/setup-go@v6
@@ -81,28 +72,25 @@ jobs:
       - name: Normalize post frontmatter
         run: go run ./scripts/frontmatter
 
-      - name: Generate missing post header images
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: go run ./scripts/postcards --missing-r2-assets
+      - name: Cache Standard.site cover
+        uses: actions/cache@v6
+        id: cache-standard-site-cover
+        with:
+          path: .cache/site-cover/cover-b8f8f0fc773d.png
+          key: standard-site-cover-b8f8f0fc773d
 
-      - name: Verify post header images
-        run: go run ./scripts/postcards --check
-
-      - name: Compress post header images
-        run: make compress-postcards
-
-      - name: Upload post header images to R2
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          POSTCARDS_SKIP_COMPRESSION: "1"
-        run: make upload-postcards
+      - name: Download Standard.site cover
+        if: steps.cache-standard-site-cover.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .cache/site-cover
+          wget -q -O .cache/site-cover/cover-b8f8f0fc773d.png https://blob.rednafi.com/home/cover-b8f8f0fc773d.png
+          echo "94f9ab12fd2a73c9e23346015bc0c444310260d28c3f489a540dc02df336e6d2  .cache/site-cover/cover-b8f8f0fc773d.png" | sha256sum -c -
 
       - name: Publish Standard.site records
         env:
           ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
           ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
-        run: npx -y sequoia-cli@${SEQUOIA_CLI_VERSION} publish
+        run: make publish-standard-site
 
       - name: Normalize published post frontmatter
         run: go run ./scripts/frontmatter
@@ -121,10 +109,10 @@ jobs:
 
       - name: Commit generated post metadata
         run: |
-          if [ -n "$(git status --porcelain -- content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json)" ]; then
+          if [ -n "$(git status --porcelain -- content .sequoia-state.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add content .sequoia-state.json static/.well-known/site.standard.publication sequoia.json
+            git add content .sequoia-state.json
             git commit -m "chore: sync post metadata [skip ci]"
             git push
           else

@@ -9,8 +9,6 @@ tags:
     - TIL
     - Hugo
     - Web
-images:
-    - "https://blob.rednafi.com/misc/self-hosted-google-fonts-in-hugo/cover-db1a358b5ff3.png"
 aliases:
     - /misc/self_hosted_google_fonts_in_hugo/
 discussions: []

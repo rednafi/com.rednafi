@@ -10,8 +10,6 @@ tags:
     - Django
     - TIL
     - API
-images:
-    - "https://blob.rednafi.com/python/uniform-error-response-in-drf/cover-134889b6083d.png"
 aliases:
     - /python/uniform_error_response_in_drf/
 discussions: []

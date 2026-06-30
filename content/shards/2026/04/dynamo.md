@@ -7,8 +7,6 @@ description: >-
 tags:
     - "Distributed Systems"
     - Databases
-images:
-    - "https://blob.rednafi.com/shards/2026/04/dynamo/cover-dcc86a3ec211.png"
 aliases: []
 discussions: []
 mermaid: false

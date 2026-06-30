@@ -7,8 +7,6 @@ description: >-
     staging, and production configs with type validation.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/config-management-with-pydantic/cover-a2ce2b30ec04.png"
 aliases:
     - /python/config_management_with_pydantic/
 discussions: []

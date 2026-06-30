@@ -9,8 +9,6 @@ tags:
     - Shell
     - Unix
     - TIL
-images:
-    - "https://blob.rednafi.com/misc/process-substitution-in-bash/cover-d44ca7a7f421.png"
 aliases:
     - /misc/process_substitution_in_bash/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Testing
     - TIL
     - Pytest
-images:
-    - "https://blob.rednafi.com/python/compose-multiple-levels-of-pytest-fixtures/cover-6bf149f53996.png"
 aliases:
     - /python/compose_multiple_levels_of_pytest_fixtures/
     - /python/compose-multiple-levels-of-pytest_fixtures/

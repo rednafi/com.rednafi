@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/dynamic-menu-with-select-in-bash/cover-eb8e8ca09085.png"
 aliases:
     - /misc/dynamic_menu_with_select_in_bash/
 discussions: []

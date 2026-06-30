@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/do-not-add-extensions-to-bash-executables/cover-1b78c5e3ffef.png"
 aliases:
     - /misc/do_not_add_extensions_to_bash_executables/
 discussions: []

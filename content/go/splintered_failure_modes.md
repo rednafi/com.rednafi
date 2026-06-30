@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - "Error Handling"
-images:
-    - "https://blob.rednafi.com/go/splintered-failure-modes/cover-7a7322525174.png"
 aliases: []
 discussions: []
 mermaid: false

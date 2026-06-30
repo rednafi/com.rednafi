@@ -9,8 +9,6 @@ tags:
     - Python
     - API
     - Security
-images:
-    - "https://blob.rednafi.com/python/disallow-large-file-download/cover-f37f024bc51a.png"
 aliases:
     - /python/disallow_large_file_download/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Performance
-images:
-    - "https://blob.rednafi.com/python/lru-cache-on-methods/cover-bbe2c4430a26.png"
 aliases:
     - /python/lru_cache_on_methods/
 discussions: []

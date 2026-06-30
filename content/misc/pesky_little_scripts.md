@@ -9,8 +9,6 @@ tags:
     - Shell
     - Unix
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/pesky-little-scripts/cover-7a3371fa2fc4.png"
 aliases:
     - /misc/pesky_little_scripts/
 discussions: []

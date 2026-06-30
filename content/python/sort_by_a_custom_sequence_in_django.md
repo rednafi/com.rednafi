@@ -9,8 +9,6 @@ tags:
     - Python
     - Django
     - Database
-images:
-    - "https://blob.rednafi.com/python/sort-by-a-custom-sequence-in-django/cover-7fcb566a90db.png"
 aliases:
     - /python/sort_by_a_custom_sequence_in_django/
 discussions: []

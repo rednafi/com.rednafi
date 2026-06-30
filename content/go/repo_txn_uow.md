@@ -10,8 +10,6 @@ tags:
     - Go
     - Database
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/repo-txn-uow/cover-5fd435c08ad7.png"
 aliases: []
 discussions: []
 mermaid: false

@@ -9,8 +9,6 @@ tags:
     - Go
     - Networking
     - Docker
-images:
-    - "https://blob.rednafi.com/go/rate-limiting-via-nginx/cover-43f3a03ed3fe.png"
 aliases:
     - /go/rate_limiting_via_nginx/
 discussions: []

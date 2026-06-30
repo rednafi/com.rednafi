@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - TIL
-images:
-    - "https://blob.rednafi.com/go/capture-console-output/cover-0230914321d7.png"
 aliases:
     - /go/capture_console_output/
 discussions: []

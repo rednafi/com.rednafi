@@ -10,8 +10,6 @@ tags:
     - Unix
     - Networking
     - Security
-images:
-    - "https://blob.rednafi.com/misc/ssh-saga/cover-bc21ad7bc23a.png"
 aliases:
     - /misc/ssh_saga/
 discussions: []

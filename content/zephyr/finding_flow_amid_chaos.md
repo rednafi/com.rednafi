@@ -7,8 +7,6 @@ description: >-
     Slack messages, and corporate interruptions.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/finding-flow-amid-chaos/cover-b2ca639baee0.png"
 aliases:
     - /zephyr/finding_flow_amid_chaos/
     - /misc/finding_flow_amid_chaos/

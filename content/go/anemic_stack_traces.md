@@ -9,8 +9,6 @@ tags:
     - Go
     - "Error Handling"
     - Logging
-images:
-    - "https://blob.rednafi.com/go/anemic-stack-traces/cover-463ec4c8e74d.png"
 aliases:
     - /go/anemic_stack_traces/
 discussions: []

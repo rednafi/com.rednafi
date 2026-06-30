@@ -8,8 +8,6 @@ description: >-
 tags:
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/misc/to-quote-or-not-to-quote/cover-d2cd00db7c93.png"
 aliases:
     - /misc/to_quote_or_not_to_quote/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Shell
     - Unix
     - Networking
-images:
-    - "https://blob.rednafi.com/misc/http-requests-via-dev-tcp/cover-f67ed5610ff2.png"
 aliases:
     - /misc/http_requests_via_dev_tcp/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - "Incident Post-mortem"
     - Django
     - Performance
-images:
-    - "https://blob.rednafi.com/python/outage-caused-by-eager-loading-file/cover-cc275bb85e7d.png"
 aliases:
     - /python/outage_caused_by_eager_loading_file/
 discussions: []

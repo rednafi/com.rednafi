@@ -10,8 +10,6 @@ tags:
     - Unix
     - JavaScript
     - Networking
-images:
-    - "https://blob.rednafi.com/misc/fixed-time-task-scheduling-with-at/cover-711096928a8c.png"
 aliases:
     - /misc/fixed_time_task_scheduling_with_at/
 discussions: []

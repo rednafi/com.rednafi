@@ -9,8 +9,6 @@ tags:
     - Python
     - Typing
     - API
-images:
-    - "https://blob.rednafi.com/python/declarative-payloads-with-typedict/cover-2a4be90de2fe.png"
 aliases:
     - /python/declarative_payloads_with_typedict/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     capitalization. Build coherent project history with consistent formatting.
 tags:
     - Git
-images:
-    - "https://blob.rednafi.com/misc/write-git-commit-messages-properly/cover-e4a3c9591928.png"
 aliases:
     - /misc/write_git_commit_messages_properly/
 discussions: []

@@ -45,7 +45,7 @@ func TestPostFrontmatterConformsToCanonicalFormat(t *testing.T) {
 		}
 
 		raw := string(rawBytes)
-		normalized, err := normalizePostFrontmatter(raw, rel, publishing.notesSection, defaultAssetBase)
+		normalized, err := normalizePostFrontmatter(raw, rel, publishing.notesSection)
 		if err != nil {
 			violations = append(violations, fmt.Sprintf("%s: %v", rel, err))
 			return nil
@@ -69,6 +69,63 @@ func TestPostFrontmatterConformsToCanonicalFormat(t *testing.T) {
 	}
 	if len(violations) > 0 {
 		t.Fatalf("post frontmatter is not canonical; run go run ./scripts/frontmatter:\n  %s", strings.Join(violations, "\n  "))
+	}
+}
+
+func TestNormalizePostFrontmatterPinsSlugAndAtprotoPathToFilePath(t *testing.T) {
+	raw := `---
+title: "Old"
+slug: wrong
+date: 2026-06-30
+description: >-
+    A short description.
+tags:
+    - Go
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /wrong/path/
+atUri: ""
+---
+Body.
+`
+
+	next, err := normalizePostFrontmatter(raw, "content/go/request_coalescing.md", "shards")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(next, "slug: request-coalescing\n") {
+		t.Fatalf("slug was not normalized from file path:\n%s", next)
+	}
+	if !strings.Contains(next, "atprotoPath: /go/request-coalescing/\n") {
+		t.Fatalf("atprotoPath was not normalized from file path:\n%s", next)
+	}
+}
+
+func TestNormalizePostFrontmatterRejectsUnknownKeys(t *testing.T) {
+	raw := `---
+title: "Old"
+slug: old
+date: 2026-06-30
+description: >-
+    A short description.
+tags:
+    - Go
+images: []
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+atprotoPath: /go/old/
+atUri: ""
+---
+Body.
+`
+
+	_, err := normalizePostFrontmatter(raw, "content/go/old.md", "shards")
+	if err == nil || !strings.Contains(err.Error(), `unknown frontmatter key "images"`) {
+		t.Fatalf("expected images to be rejected, got %v", err)
 	}
 }
 

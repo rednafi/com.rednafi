@@ -7,8 +7,6 @@ description: >-
     __enter__/__exit__, use contextlib decorators, and manage resources elegantly.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/contextmanager/cover-aa4af6d88875.png"
 aliases:
     - /python/contextmanager/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Git
     - TIL
     - GitHub
-images:
-    - "https://blob.rednafi.com/misc/when-to-use-git-pull-rebase/cover-21188f6534dd.png"
 aliases:
     - /misc/when_to_use_git_pull_rebase/
 discussions: []

@@ -7,8 +7,6 @@ description: >-
     minimizing risk while maintaining professionalism.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/notes-on-exit-interviews/cover-b3b9019343dd.png"
 aliases:
     - /zephyr/notes_on_exit_interviews/
 discussions: []

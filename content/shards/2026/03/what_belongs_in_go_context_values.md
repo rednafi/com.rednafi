@@ -8,8 +8,6 @@ tags:
     - Go
     - API
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/shards/2026/03/what-belongs-in-go-context-values/cover-aa1f22ab481d.png"
 aliases: []
 discussions: []
 mermaid: false

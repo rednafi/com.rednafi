@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/hoist-wire-plumb/cover-719f19418c10.png"
 aliases: []
 discussions: []
 mermaid: false

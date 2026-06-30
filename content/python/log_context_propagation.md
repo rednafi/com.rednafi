@@ -9,8 +9,6 @@ tags:
     - Python
     - API
     - Logging
-images:
-    - "https://blob.rednafi.com/python/log-context-propagation/cover-a64fc907799a.png"
 aliases:
     - /python/log_context_propagation/
 discussions: []

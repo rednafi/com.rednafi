@@ -9,8 +9,6 @@ tags:
     - JavaScript
     - Networking
     - GitHub
-images:
-    - "https://blob.rednafi.com/javascript/cors-proxy-with-cloudflare-workers/cover-5b6d2c2eab4d.png"
 aliases:
     - /javascript/cors_proxy_with_cloudflare_workers/
 discussions: []

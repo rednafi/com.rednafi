@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/go/nil-interface-comparison/cover-f25531eac655.png"
 aliases:
     - /go/nil_interface_comparison/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - Networking
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/pause-and-resume-a-socket-server/cover-8e8f6b551bf9.png"
 aliases:
     - /python/pause_and_resume_a_socket_server/
 discussions: []

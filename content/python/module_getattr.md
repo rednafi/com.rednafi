@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Performance
-images:
-    - "https://blob.rednafi.com/python/module-getattr/cover-05dbf3e0e3af.png"
 aliases:
     - /python/module_getattr/
 discussions: []

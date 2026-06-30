@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - Networking
-images:
-    - "https://blob.rednafi.com/misc/dns-record-to-share-text/cover-2607f9c6b031.png"
 aliases:
     - /misc/dns_record_to_share_text/
 discussions: []

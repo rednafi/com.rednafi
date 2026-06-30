@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Performance
-images:
-    - "https://blob.rednafi.com/python/use-urlsplit-over-urlparse/cover-d5280ab80686.png"
 aliases:
     - /python/use_urlsplit_over_urlparse/
 discussions: []

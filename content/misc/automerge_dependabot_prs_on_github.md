@@ -9,8 +9,6 @@ tags:
     - GitHub
     - DevOps
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/automerge-dependabot-prs-on-github/cover-c0e361907029.png"
 aliases:
     - /misc/automerge_dependabot_prs_on_github/
 discussions: []

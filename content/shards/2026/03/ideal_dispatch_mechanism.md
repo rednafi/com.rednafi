@@ -7,8 +7,6 @@ description: >-
 tags:
     - Go
     - API
-images:
-    - "https://blob.rednafi.com/shards/2026/03/ideal-dispatch-mechanism/cover-61ce590cdf13.png"
 aliases: []
 discussions: []
 mermaid: false

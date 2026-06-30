@@ -9,8 +9,6 @@ tags:
     - Python
     - "Error Handling"
     - Typing
-images:
-    - "https://blob.rednafi.com/python/go-rusty-with-exception-handling/cover-d39571991cf0.png"
 aliases:
     - /python/go_rusty_with_exception_handling/
 discussions: []

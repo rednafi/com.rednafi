@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/dynamic-shell-variables/cover-a78c04b2cb2e.png"
 aliases:
     - /misc/dynamic_shell_variables/
 discussions: []

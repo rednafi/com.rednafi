@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - DevOps
-images:
-    - "https://blob.rednafi.com/python/dependency-management-redux/cover-28ce1b6b1a54.png"
 aliases:
     - /python/dependency_management_redux/
 discussions: []

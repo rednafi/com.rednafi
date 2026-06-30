@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/tame-conditionals-with-bitmasks/cover-aac394197408.png"
 aliases:
     - /python/tame_conditionals_with_bitmasks/
 discussions: []

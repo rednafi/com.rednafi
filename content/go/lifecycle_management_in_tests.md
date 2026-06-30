@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - API
-images:
-    - "https://blob.rednafi.com/go/lifecycle-management-in-tests/cover-5d811d8ff186.png"
 aliases:
     - /go/lifecycle_management_in_tests/
 discussions: []

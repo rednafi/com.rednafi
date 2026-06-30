@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - CLI
-images:
-    - "https://blob.rednafi.com/misc/bash-namerefs/cover-4fa71ba4edd9.png"
 aliases:
     - /misc/bash_namerefs/
 discussions: []

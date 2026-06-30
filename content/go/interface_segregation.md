@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - Testing
-images:
-    - "https://blob.rednafi.com/go/interface-segregation/cover-74eceef3e7d8.png"
 aliases: []
 discussions:
     - label: "Hacker News"

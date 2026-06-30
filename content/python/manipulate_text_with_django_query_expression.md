@@ -9,8 +9,6 @@ tags:
     - Python
     - Django
     - Database
-images:
-    - "https://blob.rednafi.com/python/manipulate-text-with-django-query-expression/cover-5f9e4882bc5e.png"
 aliases:
     - /python/manipulate_text_with_django_query_expression/
 discussions: []

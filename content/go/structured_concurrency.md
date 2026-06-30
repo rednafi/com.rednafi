@@ -10,8 +10,6 @@ tags:
     - Python
     - Kotlin
     - Concurrency
-images:
-    - "https://blob.rednafi.com/go/structured-concurrency/cover-9ce8b5605d95.png"
 aliases: []
 discussions:
     - label: "Reddit"

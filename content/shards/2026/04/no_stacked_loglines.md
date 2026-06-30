@@ -9,8 +9,6 @@ tags:
     - Go
     - "Distributed Systems"
     - Observability
-images:
-    - "https://blob.rednafi.com/shards/2026/04/no-stacked-loglines/cover-305a2b44a699.png"
 aliases: []
 discussions:
     - label: "Reddit"

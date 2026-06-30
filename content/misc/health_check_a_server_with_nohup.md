@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - DevOps
-images:
-    - "https://blob.rednafi.com/misc/health-check-a-server-with-nohup/cover-260bbae56bf3.png"
 aliases:
     - /misc/health_check_a_server_with_nohup/
 discussions: []

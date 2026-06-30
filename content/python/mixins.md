@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/python/mixins/cover-50ea594b3226.png"
 aliases:
     - /python/mixins/
 discussions: []

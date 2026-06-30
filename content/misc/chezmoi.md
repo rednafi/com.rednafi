@@ -10,8 +10,6 @@ tags:
     - Shell
     - CLI
     - Unix
-images:
-    - "https://blob.rednafi.com/misc/chezmoi/cover-b0820a328d05.png"
 aliases: []
 discussions:
     - label: "Hacker News"

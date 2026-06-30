@@ -8,8 +8,6 @@ description: >-
 tags:
     - JavaScript
     - Web
-images:
-    - "https://blob.rednafi.com/javascript/exploring-observable-notebooks/cover-4a2db09ea045.png"
 aliases:
     - /javascript/exploring_observable_notebooks/
 discussions: []

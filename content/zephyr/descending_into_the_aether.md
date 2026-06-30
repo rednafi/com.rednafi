@@ -7,8 +7,6 @@ description: >-
     screen size and development capabilities.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/descending-into-the-aether/cover-0cf1b094e1b2.png"
 aliases:
     - /zephyr/descending_into_the_aether/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Typing
-images:
-    - "https://blob.rednafi.com/python/typing-override/cover-32468928fd58.png"
 aliases:
     - /python/typing_override/
 discussions: []

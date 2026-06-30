@@ -7,8 +7,6 @@ description: >-
     request rollbacks, and avoiding nested with statements.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/exitstack/cover-6510adf4f664.png"
 aliases:
     - /python/exitstack/
 discussions: []

@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Async
-images:
-    - "https://blob.rednafi.com/python/amphibian-decorators/cover-8977aa2830f7.png"
 aliases:
     - /python/amphibian_decorators/
 discussions: []

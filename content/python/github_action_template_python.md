@@ -9,8 +9,6 @@ tags:
     - Python
     - GitHub
     - DevOps
-images:
-    - "https://blob.rednafi.com/python/github-action-template-python/cover-03997574d3e5.png"
 aliases:
     - /python/github_action_template_python/
 discussions: []

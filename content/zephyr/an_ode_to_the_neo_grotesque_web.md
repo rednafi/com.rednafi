@@ -7,8 +7,6 @@ description: >-
     the raw spirit of the early internet.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/an-ode-to-the-neo-grotesque-web/cover-0ada4900ee58.png"
 aliases:
     - /zephyr/an_ode_to_the_neo_grotesque_web/
 discussions: []

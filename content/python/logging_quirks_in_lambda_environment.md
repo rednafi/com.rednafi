@@ -9,8 +9,6 @@ tags:
     - Python
     - AWS
     - Logging
-images:
-    - "https://blob.rednafi.com/python/logging-quirks-in-lambda-environment/cover-51828a43bf64.png"
 aliases:
     - /python/logging_quirks_in_lambda_environment/
 discussions: []

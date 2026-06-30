@@ -7,8 +7,6 @@ description: >-
     hashing, default values, and post-init processing.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/dataclasses/cover-aa39a1ac1a77.png"
 aliases:
     - /python/dataclasses/
 discussions: []

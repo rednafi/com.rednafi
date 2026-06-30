@@ -9,8 +9,6 @@ tags:
     - Python
     - Networking
     - Web
-images:
-    - "https://blob.rednafi.com/python/server-sent-events/cover-0af6f64d4d1f.png"
 aliases:
     - /python/server_sent_events/
 discussions: []

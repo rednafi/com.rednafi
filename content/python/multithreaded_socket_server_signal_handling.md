@@ -9,8 +9,6 @@ tags:
     - Python
     - Networking
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/multithreaded-socket-server-signal-handling/cover-d85aa29d2a04.png"
 aliases:
     - /python/multithreaded_socket_server_signal_handling/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - TIL
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/python/unix-style-pipeline-with-subprocess/cover-e5a188bf5aaf.png"
 aliases:
     - /python/unix_style_pipeline_with_subprocess/
 discussions: []

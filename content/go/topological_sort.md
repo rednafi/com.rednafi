@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/go/topological-sort/cover-4cacd25d0834.png"
 aliases:
     - /go/topological_sort/
 discussions: []

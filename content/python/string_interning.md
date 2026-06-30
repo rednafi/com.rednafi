@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Performance
-images:
-    - "https://blob.rednafi.com/python/string-interning/cover-8709b181ec8e.png"
 aliases:
     - /python/string_interning/
 discussions: []

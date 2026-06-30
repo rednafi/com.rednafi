@@ -9,8 +9,6 @@ tags:
     - Shell
     - Unix
     - TIL
-images:
-    - "https://blob.rednafi.com/misc/return-values-from-a-shell-function/cover-ca895f671013.png"
 aliases:
     - /misc/return_values_from_a_shell_function/
 discussions: []

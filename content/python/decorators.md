@@ -7,8 +7,6 @@ description: >-
     functions, decorator patterns, and advanced techniques.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/decorators/cover-afd6450ff4cc.png"
 aliases:
     - /python/decorators/
 discussions: []

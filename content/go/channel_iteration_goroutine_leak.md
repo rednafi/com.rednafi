@@ -9,8 +9,6 @@ tags:
     - Go
     - Concurrency
     - Profiling
-images:
-    - "https://blob.rednafi.com/go/channel-iteration-goroutine-leak/cover-884422df97e8.png"
 aliases: []
 discussions:
     - label: "r/golang"

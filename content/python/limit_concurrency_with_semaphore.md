@@ -9,8 +9,6 @@ tags:
     - Python
     - Async
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/limit-concurrency-with-semaphore/cover-92a699f860e2.png"
 aliases:
     - /python/limit_concurrency_with_semaphore/
 discussions: []

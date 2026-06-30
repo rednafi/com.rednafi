@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/concurrent-futures/cover-350b6d3ab9f4.png"
 aliases:
     - /python/concurrent_futures/
 discussions: []

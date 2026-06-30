@@ -9,8 +9,6 @@ tags:
     - Essay
     - Hugo
     - Web
-images:
-    - "https://blob.rednafi.com/misc/link-blog/cover-7d767e004cad.png"
 aliases:
     - /misc/link_blog/
 discussions:

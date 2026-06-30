@@ -9,8 +9,6 @@ tags:
     - Networking
     - Go
     - Web
-images:
-    - "https://blob.rednafi.com/misc/crossing-the-cors-crossroad/cover-09ded629e23a.png"
 aliases:
     - /misc/crossing_the_cors_crossroad/
 discussions: []

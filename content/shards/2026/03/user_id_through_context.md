@@ -8,8 +8,6 @@ tags:
     - Go
     - API
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/shards/2026/03/user-id-through-context/cover-db27a71d4c83.png"
 aliases: []
 discussions: []
 mermaid: false

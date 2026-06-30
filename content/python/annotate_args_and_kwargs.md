@@ -9,8 +9,6 @@ tags:
     - Python
     - Typing
     - TIL
-images:
-    - "https://blob.rednafi.com/python/annotate-args-and-kwargs/cover-aa8ea1a9db18.png"
 aliases:
     - /python/annotate_args_and_kwargs/
 discussions: []

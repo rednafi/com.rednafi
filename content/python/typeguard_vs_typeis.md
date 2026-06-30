@@ -9,8 +9,6 @@ tags:
     - Python
     - Typing
     - TIL
-images:
-    - "https://blob.rednafi.com/python/typeguard-vs-typeis/cover-4b459f4799c7.png"
 aliases:
     - /python/typeguard_vs_typeis/
 discussions: []

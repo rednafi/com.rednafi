@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/skip-first-part-of-an-iterable/cover-44f54f827fe9.png"
 aliases:
     - /python/skip_first_part_of_an_iterable/
 discussions: []

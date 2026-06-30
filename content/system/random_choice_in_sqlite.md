@@ -9,8 +9,6 @@ tags:
     - Database
     - SQL
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/system/random-choice-in-sqlite/cover-74257e9c5591.png"
 aliases:
     - /database/random_choice_in_sqlite/
 discussions: []

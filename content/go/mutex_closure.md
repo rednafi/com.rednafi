@@ -9,8 +9,6 @@ tags:
     - Go
     - Concurrency
     - API
-images:
-    - "https://blob.rednafi.com/go/mutex-closure/cover-404c82ffd244.png"
 aliases: []
 discussions: []
 mermaid: false

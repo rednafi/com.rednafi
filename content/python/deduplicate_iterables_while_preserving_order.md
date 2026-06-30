@@ -7,8 +7,6 @@ description: >-
     order using sets, OrderedDict, and nested deduplication.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/deduplicate-iterables-while-preserving-order/cover-656ab70eb90d.png"
 aliases:
     - /python/deduplicate_iterables_while_preserving_order/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - API
     - Security
-images:
-    - "https://blob.rednafi.com/python/verify-webhook-origin/cover-386fdfc72abb.png"
 aliases:
     - /python/verify_webhook_origin/
 discussions: []

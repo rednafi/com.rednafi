@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/use-init-subclass-hook-to-validate-subclasses/cover-d2a1585d6b55.png"
 aliases:
     - /python/use_init_subclass_hook_to_validate_subclasses/
 discussions: []

@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - Testing
-images:
-    - "https://blob.rednafi.com/go/test-state-not-interactions/cover-fd61d1829a5e.png"
 aliases:
     - /go/test_state_not_interactions/
 discussions: []

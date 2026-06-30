@@ -10,8 +10,6 @@ tags:
     - Unix
     - Python
     - Go
-images:
-    - "https://blob.rednafi.com/misc/run-single-instance/cover-23f57eeb70c6.png"
 aliases:
     - /misc/run_single_instance/
 discussions: []

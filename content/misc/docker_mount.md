@@ -9,8 +9,6 @@ tags:
     - TIL
     - Docker
     - DevOps
-images:
-    - "https://blob.rednafi.com/misc/docker-mount/cover-197c17b01862.png"
 aliases:
     - /misc/docker_mount/
 discussions: []

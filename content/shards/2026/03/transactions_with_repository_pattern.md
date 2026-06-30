@@ -7,8 +7,6 @@ description: >-
 tags:
     - Go
     - Database
-images:
-    - "https://blob.rednafi.com/shards/2026/03/transactions-with-repository-pattern/cover-66580785a1e4.png"
 aliases: []
 discussions: []
 mermaid: false

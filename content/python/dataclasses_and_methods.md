@@ -7,8 +7,6 @@ description: >-
     clarity and use dataclasses as pure data containers.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/dataclasses-and-methods/cover-5851190c4b63.png"
 aliases:
     - /python/dataclasses_and_methods/
 discussions:

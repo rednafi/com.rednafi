@@ -9,8 +9,6 @@ tags:
     - TypeScript
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/typescript/guard-clauses-and-never-type/cover-53a24adaf42c.png"
 aliases:
     - /typescript/guard_clauses_and_never_type/
 discussions: []

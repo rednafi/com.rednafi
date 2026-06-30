@@ -9,8 +9,6 @@ tags:
     - API
     - Go
     - Web
-images:
-    - "https://blob.rednafi.com/misc/etag-and-http-caching/cover-3ca22cb7b163.png"
 aliases:
     - /misc/etag_and_http_caching/
 discussions:

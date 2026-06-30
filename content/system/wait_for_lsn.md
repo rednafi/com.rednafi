@@ -11,8 +11,6 @@ tags:
     - SQL
     - "Distributed Systems"
     - Postgres
-images:
-    - "https://blob.rednafi.com/system/wait-for-lsn/cover-5739623353f3.png"
 aliases: []
 discussions: []
 mermaid: false

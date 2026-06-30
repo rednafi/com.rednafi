@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/static-typing-decorators/cover-d3ce40680d03.png"
 aliases:
     - /python/static_typing_decorators/
 discussions: []

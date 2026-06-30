@@ -7,8 +7,6 @@ description: >-
     Automatically serialize data with clean, maintainable code.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/declaratively-transform-dataclass-fields/cover-e78adcfb24a2.png"
 aliases:
     - /python/declaratively_transform_dataclass_fields/
 discussions: []

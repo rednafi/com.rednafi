@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/type-guard/cover-0cff5aebdc42.png"
 aliases:
     - /python/type_guard/
 discussions: []

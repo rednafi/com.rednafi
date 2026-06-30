@@ -9,8 +9,6 @@ tags:
     - Go
     - "Distributed Systems"
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/go/gateway-pattern/cover-a93fa47047c9.png"
 aliases:
     - /go/gateway_pattern/
 discussions: []

@@ -8,8 +8,6 @@ tags:
     - Go
     - Concurrency
     - Profiling
-images:
-    - "https://blob.rednafi.com/shards/2026/06/go-goroutine-leak-profile/cover-a9bb2d7f6e5f.png"
 aliases: []
 discussions: []
 mermaid: false

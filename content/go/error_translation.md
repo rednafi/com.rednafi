@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - "Error Handling"
-images:
-    - "https://blob.rednafi.com/go/error-translation/cover-e1704d70c420.png"
 aliases: []
 discussions: []
 mermaid: false

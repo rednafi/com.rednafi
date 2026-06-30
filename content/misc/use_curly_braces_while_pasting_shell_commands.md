@@ -9,8 +9,6 @@ tags:
     - Shell
     - Unix
     - TIL
-images:
-    - "https://blob.rednafi.com/misc/use-curly-braces-while-pasting-shell-commands/cover-107ac7bd4df0.png"
 aliases:
     - /misc/use_curly_braces_while_pasting_shell_commands/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - AI
     - LLMs
     - Culture
-images:
-    - "https://blob.rednafi.com/zephyr/carry-the-pager/cover-dfda16aed4e5.png"
 aliases: []
 discussions: []
 mermaid: false

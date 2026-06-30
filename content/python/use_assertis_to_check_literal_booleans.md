@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Testing
-images:
-    - "https://blob.rednafi.com/python/use-assertis-to-check-literal-booleans/cover-8fc97e759c73.png"
 aliases:
     - /python/use_assertis_to_check_literal_booleans/
 discussions: []

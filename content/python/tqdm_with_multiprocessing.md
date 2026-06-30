@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/tqdm-with-multiprocessing/cover-96c1591d5179.png"
 aliases:
     - /python/tqdm_with_multiprocessing/
 discussions: []

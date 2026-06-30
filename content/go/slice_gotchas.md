@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/go/slice-gotchas/cover-25e86df9b611.png"
 aliases:
     - /go/slice_gotchas/
 discussions: []

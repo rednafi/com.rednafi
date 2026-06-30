@@ -10,8 +10,6 @@ tags:
     - gRPC
     - Testing
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/go/testing-unary-grpc-services/cover-77ac2d5d44ff.png"
 aliases: []
 discussions: []
 mermaid: false

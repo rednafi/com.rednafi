@@ -9,8 +9,6 @@ tags:
     - Python
     - Django
     - Docker
-images:
-    - "https://blob.rednafi.com/python/django-and-jupyter-notebook/cover-c2478db5c6d7.png"
 aliases:
     - /python/django_and_jupyter_notebook/
 discussions: []

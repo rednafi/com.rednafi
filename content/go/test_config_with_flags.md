@@ -9,8 +9,6 @@ tags:
     - Go
     - Testing
     - CLI
-images:
-    - "https://blob.rednafi.com/go/test-config-with-flags/cover-e31a1ce141a9.png"
 aliases:
     - /go/test_config_with_flags/
 discussions: []

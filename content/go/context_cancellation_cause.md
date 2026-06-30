@@ -10,8 +10,6 @@ tags:
     - Go
     - "Error Handling"
     - Concurrency
-images:
-    - "https://blob.rednafi.com/go/context-cancellation-cause/cover-e3197ffa2b56.png"
 aliases: []
 discussions:
     - label: "Hacker News"

@@ -9,8 +9,6 @@ tags:
     - Essay
     - Hugo
     - DevOps
-images:
-    - "https://blob.rednafi.com/misc/behind-the-blog/cover-5a9f8dea702c.png"
 aliases:
     - /misc/behind_the_blog/
 discussions: []

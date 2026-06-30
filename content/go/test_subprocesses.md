@@ -8,8 +8,6 @@ description: >-
 tags:
     - Go
     - Testing
-images:
-    - "https://blob.rednafi.com/go/test-subprocesses/cover-9e6346cfbb55.png"
 aliases: []
 discussions: []
 mermaid: false

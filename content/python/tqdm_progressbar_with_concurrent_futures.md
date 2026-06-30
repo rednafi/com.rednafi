@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Concurrency
-images:
-    - "https://blob.rednafi.com/python/tqdm-progressbar-with-concurrent-futures/cover-1e2fc0f36e28.png"
 aliases:
     - /python/tqdm_progressbar_with_concurrent_futures/
 discussions: []

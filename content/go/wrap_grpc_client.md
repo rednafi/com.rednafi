@@ -10,8 +10,6 @@ tags:
     - gRPC
     - API
     - "Distributed Systems"
-images:
-    - "https://blob.rednafi.com/go/wrap-grpc-client/cover-4b87ad268e1a.png"
 aliases: []
 discussions: []
 mermaid: false

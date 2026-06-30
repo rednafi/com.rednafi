@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - "Design Patterns"
-images:
-    - "https://blob.rednafi.com/python/proxy-pattern/cover-9d82d43f0857.png"
 aliases:
     - /python/proxy_pattern/
 discussions: []

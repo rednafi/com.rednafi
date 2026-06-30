@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - TIL
-images:
-    - "https://blob.rednafi.com/python/attribute-delegation-in-composition/cover-cb290831ff98.png"
 aliases:
     - /python/attribute_delegation_in_composition/
 discussions: []

@@ -10,8 +10,6 @@ tags:
     - Unix
     - Git
     - TIL
-images:
-    - "https://blob.rednafi.com/misc/distil-git-logs-attached-to-a-file/cover-f263490a4025.png"
 aliases:
     - /misc/distil_git_logs_attached_to_a_file/
 discussions: []

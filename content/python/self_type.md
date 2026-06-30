@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Typing
-images:
-    - "https://blob.rednafi.com/python/self-type/cover-3bbd991814a6.png"
 aliases:
     - /python/self_type/
 discussions: []

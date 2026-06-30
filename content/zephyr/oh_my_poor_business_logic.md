@@ -7,8 +7,6 @@ description: >-
     real business problems and delivering value.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/oh-my-poor-business-logic/cover-4ce2af1c0e5c.png"
 aliases:
     - /zephyr/oh_my_poor_business_logic/
     - /misc/oh_my_poor_business_logic/

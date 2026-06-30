@@ -10,8 +10,6 @@ tags:
     - Networking
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/python/implement-traceroute/cover-cca801e0a825.png"
 aliases:
     - /python/implement_traceroute/
 discussions: []

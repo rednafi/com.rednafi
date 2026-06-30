@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Testing
-images:
-    - "https://blob.rednafi.com/python/partially-assert-callable-arguments/cover-70be24b09d24.png"
 aliases:
     - /python/partially_assert_callable_arguments/
 discussions: []

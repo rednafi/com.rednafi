@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - Performance
-images:
-    - "https://blob.rednafi.com/go/dysfunctional-options-pattern/cover-c06e9d08db59.png"
 aliases:
     - /go/dysfunctional_options_pattern/
 discussions:

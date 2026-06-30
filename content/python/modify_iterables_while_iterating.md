@@ -7,8 +7,6 @@ description: >-
     filters, or copying to avoid skipping elements.
 tags:
     - Python
-images:
-    - "https://blob.rednafi.com/python/modify-iterables-while-iterating/cover-24ede652800b.png"
 aliases:
     - /python/modify_iterables_while_iterating/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Concurrency
-images:
-    - "https://blob.rednafi.com/go/limit-goroutines-with-buffered-channels/cover-a3e1a0850768.png"
 aliases:
     - /go/limit_goroutines_with_buffered_channels/
 discussions: []

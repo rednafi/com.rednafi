@@ -10,8 +10,6 @@ tags:
     - Unix
     - TIL
     - "Data Structures"
-images:
-    - "https://blob.rednafi.com/misc/associative-arrays-in-bash/cover-97459a851b6d.png"
 aliases:
     - /misc/associative_arrays_in_bash/
 discussions: []

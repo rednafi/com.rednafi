@@ -8,8 +8,6 @@ description: >-
 tags:
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/misc/shell-redirection/cover-0470b866ca2d.png"
 aliases:
     - /misc/shell_redirection/
 discussions: []

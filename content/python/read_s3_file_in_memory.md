@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - AWS
-images:
-    - "https://blob.rednafi.com/python/read-s3-file-in-memory/cover-fac41837ff54.png"
 aliases:
     - /python/read_s3_file_in_memory/
 discussions: []

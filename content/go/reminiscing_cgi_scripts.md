@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - Web
-images:
-    - "https://blob.rednafi.com/go/reminiscing-cgi-scripts/cover-834a8a6d03d3.png"
 aliases:
     - /go/reminiscing_cgi_scripts/
 discussions:

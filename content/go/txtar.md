@@ -10,8 +10,6 @@ tags:
     - Go
     - Testing
     - Tooling
-images:
-    - "https://blob.rednafi.com/go/txtar/cover-acf07e50a5e4.png"
 aliases: []
 discussions: []
 mermaid: false

@@ -7,8 +7,6 @@ description: >-
 tags:
     - Shell
     - Unix
-images:
-    - "https://blob.rednafi.com/shards/2026/03/background-jobs-inherited-fd/cover-5c02a769f2be.png"
 aliases: []
 discussions: []
 mermaid: false

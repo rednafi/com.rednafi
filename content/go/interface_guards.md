@@ -9,8 +9,6 @@ tags:
     - Go
     - TIL
     - API
-images:
-    - "https://blob.rednafi.com/go/interface-guards/cover-ab6fae728688.png"
 aliases:
     - /go/interface_guards/
 discussions: []

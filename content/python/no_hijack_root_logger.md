@@ -8,8 +8,6 @@ description: >-
 tags:
     - Python
     - Logging
-images:
-    - "https://blob.rednafi.com/python/no-hijack-root-logger/cover-09565ee9d35a.png"
 aliases:
     - /python/no_hijack_root_logger/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Go
     - API
     - Testing
-images:
-    - "https://blob.rednafi.com/go/func-types-and-smis/cover-d548c1321acb.png"
 aliases:
     - /go/func_types_and_smis/
 discussions: []

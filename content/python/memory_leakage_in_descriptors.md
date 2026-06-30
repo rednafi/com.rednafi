@@ -9,8 +9,6 @@ tags:
     - Python
     - TIL
     - Performance
-images:
-    - "https://blob.rednafi.com/python/memory-leakage-in-descriptors/cover-b2af9a5a9755.png"
 aliases:
     - /python/memory_leakage_in_descriptors/
 discussions: []

@@ -9,8 +9,6 @@ tags:
     - Python
     - Database
     - TIL
-images:
-    - "https://blob.rednafi.com/python/switch-between-multiple-datastreams/cover-b7202889ae64.png"
 aliases:
     - /python/switch_between_multiple_datastreams/
 discussions: []

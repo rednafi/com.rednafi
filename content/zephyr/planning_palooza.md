@@ -7,8 +7,6 @@ description: >-
     productivity compared to centralized documentation.
 tags:
     - Essay
-images:
-    - "https://blob.rednafi.com/zephyr/planning-palooza/cover-c497cc99e4e4.png"
 aliases:
     - /zephyr/planning_palooza/
 discussions: []
