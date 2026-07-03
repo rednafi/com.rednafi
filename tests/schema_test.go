@@ -306,7 +306,7 @@ func TestOGImageDimensions(t *testing.T) {
 	t.Run("has og:image", func(t *testing.T) {
 		src, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "https://blob.rednafi.com/home/cover-c9234d37ea2a.png", src)
+		assert.Equal(t, "https://blob.rednafi.com/home/cover-39e2ac8de020.png", src)
 	})
 
 	t.Run("has og:image:width", func(t *testing.T) {

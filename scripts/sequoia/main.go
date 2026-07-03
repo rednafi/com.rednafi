@@ -19,8 +19,8 @@ const (
 	defaultStageDir        = ".cache/sequoia-publish"
 	defaultContentDir      = "content"
 	defaultImagesDir       = "images"
-	defaultSiteCoverSource = ".cache/site-cover/cover-c9234d37ea2a.png"
-	defaultSiteCoverRel    = "images/home/cover-c9234d37ea2a.png"
+	defaultSiteCoverSource = ".cache/site-cover/cover-39e2ac8de020.png"
+	defaultSiteCoverRel    = "images/home/cover-39e2ac8de020.png"
 	defaultCommand         = "npx -y sequoia-cli@0.5.7 publish"
 )
 

@@ -20,9 +20,9 @@ env:
   PAGEFIND_VERSION: 1.5.2
   PRETTIER_VERSION: 3.9.3
   SEQUOIA_CLI_VERSION: 0.5.7
-  SITE_COVER_PATH: .cache/site-cover/cover-c9234d37ea2a.png
-  SITE_COVER_URL: https://blob.rednafi.com/home/cover-c9234d37ea2a.png?ci-seed-c9234d37ea2a
-  SITE_COVER_SHA256: c9234d37ea2a92b1d152d4a6e129c3b69ff5a9414c60d052d0b5210feb5bd08e
+  SITE_COVER_PATH: .cache/site-cover/cover-39e2ac8de020.png
+  SITE_COVER_URL: https://blob.rednafi.com/home/cover-39e2ac8de020.png?ci-seed-39e2ac8de020
+  SITE_COVER_SHA256: 39e2ac8de020f10e7fb985ea235536530a4d5ac3c6fe87c3b14f277a7369843d
   PAGES_SIZE_BUDGET_BYTES: 900000000
 
 jobs:
@@ -104,7 +104,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ${{ env.SITE_COVER_PATH }}
-          key: standard-site-cover-c9234d37ea2a
+          key: standard-site-cover-39e2ac8de020
 
       - name: Download Standard.site cover
         run: |

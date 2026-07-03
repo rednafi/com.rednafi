@@ -47,7 +47,7 @@ Body.
 	}
 	wantPost := `---
 title: "Request coalescing with Go singleflight"
-ogImage: "images/home/cover-c9234d37ea2a.png"
+ogImage: "images/home/cover-39e2ac8de020.png"
 aliases: []
 ---
 Body.
