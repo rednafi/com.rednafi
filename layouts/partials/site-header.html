@@ -53,6 +53,7 @@
     var btn = document.querySelector("[data-nav-toggle]");
     var menu = document.querySelector("[data-nav-menu]");
     if (!wrap || !btn || !menu) return;
+    var header = wrap.closest(".site-header") || wrap;
     var hoverable = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     var closeTimer, hideTimer;
 
@@ -98,10 +99,15 @@
     btn.addEventListener("click", toggle);
 
     if (hoverable) {
-      // open on hover, close on leave with a short grace period so the cursor
-      // can cross the gap between the trigger and the panel (vercel behaviour)
+      // open on hover of the trigger only, but close against the whole
+      // bar + panel region (the panel is a descendant of the header, so the
+      // header's hover box is their union) — drifting onto the title while
+      // the menu is open must not yank it away
       wrap.addEventListener("mouseenter", open);
-      wrap.addEventListener("mouseleave", function () {
+      header.addEventListener("mouseenter", function () {
+        window.clearTimeout(closeTimer);
+      });
+      header.addEventListener("mouseleave", function () {
         window.clearTimeout(closeTimer);
         closeTimer = window.setTimeout(close, 160);
       });

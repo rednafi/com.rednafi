@@ -1218,6 +1218,35 @@ func TestHeaderMenuLinksResolve(t *testing.T) {
 	}
 }
 
+// TestHeaderMenuHoverRegion checks the hover-opened menu treats the whole
+// header bar + panel as one hover region (regression: it closed when the
+// pointer drifted from the panel up onto the site title).
+func TestHeaderMenuHoverRegion(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/")
+
+	expanded := func() string {
+		v, err := page.Locator("[data-nav-toggle]").GetAttribute("aria-expanded")
+		require.NoError(t, err)
+		return v
+	}
+
+	require.NoError(t, page.Locator("[data-nav-toggle]").Hover())
+	require.Equal(t, "true", expanded(), "menu should open on trigger hover")
+	require.NoError(t, page.Locator("#site-menu a").First().Hover())
+
+	// drift up onto the title and linger past the close grace period
+	require.NoError(t, page.Locator(".site-title").Hover())
+	time.Sleep(400 * time.Millisecond)
+	assert.Equal(t, "true", expanded(), "menu must stay open over the title")
+
+	// leaving the whole header region still closes it
+	require.NoError(t, page.Locator("footer").Hover())
+	time.Sleep(400 * time.Millisecond)
+	assert.Equal(t, "false", expanded(), "menu should close after leaving the header")
+}
+
 // ---------- Helpers ----------
 
 func httpGet(t *testing.T, url string) string {
