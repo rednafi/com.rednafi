@@ -56,8 +56,8 @@ else is tokens.
 `--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4) · `--fs-lg 1.1rem` (site title) ·
 `--fs-list-title clamp(21→26px)`. Display: `--fs-h1 clamp(40→48)`, `--fs-h2 clamp(24→32)`,
 `--fs-h3 clamp(20→24)`. Article body steps down to **17px/25.5 at ≤960px** (phones + iPad
-portrait), **18px/28 above** (`--fs-article`/`--lh-article`, hard `max-width:960` step —
-not a fluid ramp, which drifts smaller than Vercel mid-range).
+portrait), **18px/28 above** (`--fs-article`/`--lh-article`, hard `max-width:960` step — not
+a fluid ramp, which drifts smaller than Vercel mid-range).
 
 ### Radii / weights / motion
 

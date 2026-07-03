@@ -15,10 +15,11 @@ func TestImageAttributes(t *testing.T) {
 	page := newPage(t)
 	// Use a page known to have images, or check programmatically
 	articlesWithImages := []string{
-		"/go/configure-options/",
-		"/python/amphibian-decorators/",
+		"/python/redis-cache/",
+		"/misc/automerge-dependabot-prs-on-github/",
 	}
 
+	tested := false
 	for _, url := range articlesWithImages {
 		goto_(t, page, url)
 		images := page.Locator("article img")
@@ -27,6 +28,7 @@ func TestImageAttributes(t *testing.T) {
 		if count == 0 {
 			continue
 		}
+		tested = true
 
 		t.Run(url, func(t *testing.T) {
 			for i := range count {
@@ -43,10 +45,44 @@ func TestImageAttributes(t *testing.T) {
 					require.NoError(t, err)
 					assert.Equal(t, "async", decoding, "img %d missing async decoding", i)
 				})
+
+				t.Run("intrinsic dimensions", func(t *testing.T) {
+					// width/height prevent layout shift
+					width, err := img.GetAttribute("width")
+					require.NoError(t, err)
+					height, err := img.GetAttribute("height")
+					require.NoError(t, err)
+					assert.NotEmpty(t, width, "img %d missing width", i)
+					assert.NotEmpty(t, height, "img %d missing height", i)
+				})
+
+				t.Run("no distortion", func(t *testing.T) {
+					// height:auto must keep attrs from skewing the rendered box
+					ratio, err := img.Evaluate(`async el => {
+						el.scrollIntoView();
+						if (!el.complete) {
+							await new Promise(r => {
+								el.onload = r;
+								el.onerror = r;
+								setTimeout(r, 5000);
+							});
+						}
+						return el.naturalWidth > 0
+							? (el.clientWidth / el.clientHeight) / (el.naturalWidth / el.naturalHeight)
+							: -1;
+					}`, nil)
+					require.NoError(t, err)
+					if toFloat(ratio) < 0 {
+						t.Skip("image did not load; ratio not checkable offline")
+					}
+					assert.InDelta(t, 1.0, toFloat(ratio), 0.02,
+						"img %d rendered aspect ratio deviates from natural", i)
+				})
 			}
 		})
-		return // test at least one page with images
+		break // one image-bearing page is enough
 	}
+	require.True(t, tested, "no test page had images; update articlesWithImages")
 }
 
 // TestExternalImageReferrerPolicy checks external images have referrerpolicy="no-referrer".
@@ -55,21 +91,24 @@ func TestExternalImageReferrerPolicy(t *testing.T) {
 	page := newPage(t)
 	// Check multiple articles
 	articles := []string{
-		"/go/configure-options/",
-		"/go/anemic-stack-traces/",
+		"/python/redis-cache/",
+		"/misc/automerge-dependabot-prs-on-github/",
 	}
 
+	checked := 0
 	for _, url := range articles {
 		goto_(t, page, url)
 		extImages := page.Locator(`article img[src^="http"]`)
 		count, err := extImages.Count()
 		require.NoError(t, err)
+		checked += count
 		for i := range count {
 			policy, err := extImages.Nth(i).GetAttribute("referrerpolicy")
 			require.NoError(t, err)
 			assert.Equal(t, "no-referrer", policy, "external img %d at %s missing referrerpolicy", i, url)
 		}
 	}
+	require.Positive(t, checked, "no external images found; update articles list")
 }
 
 // TestItalicFontVariantsServed checks italic font variants are served.

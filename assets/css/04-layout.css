@@ -1,746 +1,594 @@
 @layer layout {
-
-.site-header {
-  /* slim top bar — vercel.com top-nav metrics. Not sticky (scrolls away, so no
+  .site-header {
+    /* slim top bar — vercel.com top-nav metrics. Not sticky (scrolls away, so no
      backdrop blur needed), but position:relative so it stays the positioning +
      stacking context for the absolutely-positioned dropdown menu (top:100%). */
-  position: relative;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-3);
-  margin-bottom: var(--space-7);
-  /* even vertical padding → consistent bar height */
-  padding-block: var(--space-3);
-  border-bottom: 1px solid var(--border);
-  /* full-width bar: border spans rail to rail; the rail gutter sits the
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-6);
+    /* even vertical padding → consistent bar height */
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--border);
+    /* full-width bar: border spans rail to rail; the rail gutter sits the
      title/actions on the main frame's rail edge (the reading column centers
      inside that frame, so on wide viewports it's inset further than the title) */
-  max-width: none;
-  padding-inline: var(--rail);
-  background: var(--bg);
-}
+    max-width: none;
+    padding-inline: var(--rail);
+    background: var(--bg);
+  }
 
-.site-title {
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-lg);
-  line-height: var(--lh-ui);
-  letter-spacing: -0.02em;
-  text-decoration: none;
-  color: var(--text);
-  transition: opacity var(--motion-fast);
-}
+  .site-title {
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-ui);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+    transition: opacity var(--motion-fast);
+  }
 
-.site-title:visited {
-  color: var(--text);
-}
+  .site-title:visited {
+    color: var(--text);
+  }
 
-.site-title:hover {
-  opacity: var(--op-dim);
-}
+  .site-title:hover {
+    opacity: var(--op-dim);
+  }
 
-.site-title:focus-visible {
-  outline: none;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--ring);
-}
+  .site-title:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--ring);
+  }
 
-/* right-side cluster: search · theme switcher · | · menu — one row of
+  /* right-side cluster: search · theme switcher · | · menu — one row of
    equal-height (32px) controls. margin-left:auto pushes it to the rail. */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-left: auto;
-}
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+  }
 
-/* the "Control" column: search + theme switcher stacked under the eyebrow, a
+  /* the "Control" column: search + theme switcher stacked under the eyebrow, a
    peer of the Writing / More groups (it carries .site-menu__group too). On
    phones the columns stack → Control · Writing · More. */
-.site-menu__controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* align the 32px control boxes to the nav links' text rows: padding-top centers
-     the first control on the first nav row (line-height 1.5 × fs-h3 + 2 × space-1),
-     and a fixed gap matches the nav links' ~constant visible row gap at every width
-     (a row-derived gap would collapse on phones, where nav rows shrink but the
-     control boxes stay 32px). */
-  --row: calc(1.5 * var(--fs-h3) + 2 * var(--space-1));
-  gap: var(--space-3);
-  padding-top: calc((var(--row) - 32px) / 2);
-}
+  .site-menu__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* center the first 32px control on the first nav row (34px: a 22px/28 item +
+     2×3px padding), constant at every width */
+    --row: 34px;
+    gap: var(--space-3);
+    padding-top: calc((var(--row) - 32px) / 2);
+  }
 
-/* three-state geist theme switcher: segmented control, icon-only buttons —
+  /* three-state geist theme switcher: segmented control, icon-only buttons —
    sized down to vercel's footer switcher (24px segments) */
-.theme-switcher {
-  box-sizing: border-box;
-  /* 32px tall, matching the search + hamburger icon buttons exactly */
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  gap: 2px;
-  padding: 2px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  /* same outer radius as the icon buttons so the cluster reads as one set */
-  border-radius: var(--radius);
-}
+  .theme-switcher {
+    box-sizing: border-box;
+    /* 32px tall, matching the search + hamburger icon buttons exactly */
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    gap: 2px;
+    padding: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    /* same outer radius as the icon buttons so the cluster reads as one set */
+    border-radius: var(--radius);
+  }
 
-.theme-toggle {
-  box-sizing: border-box;
-  width: 26px;
-  height: 26px;
-  flex: none;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  border-radius: var(--radius-sm);
-  color: var(--muted);
-  cursor: pointer;
-  transition: var(--transition-control);
-}
+  .theme-toggle {
+    box-sizing: border-box;
+    width: 26px;
+    height: 26px;
+    flex: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--muted);
+    cursor: pointer;
+    transition: var(--transition-control);
+  }
 
-.theme-toggle svg {
-  width: 14px;
-  height: 14px;
-}
+  .theme-toggle svg {
+    width: 14px;
+    height: 14px;
+  }
 
-/* standalone icon buttons (search + hamburger) carry a 16px glyph — the Geist
+  /* standalone icon buttons (search + hamburger) carry a 16px glyph — the Geist
    nav-icon size; the segmented switcher's 14px icons step down inside its pill */
-.nav-icon svg {
-  width: 16px;
-  height: 16px;
-}
+  .nav-icon svg {
+    width: 16px;
+    height: 16px;
+  }
 
-.theme-toggle:hover {
-  color: var(--text);
-  background-color: var(--surface-2);
-}
+  .theme-toggle:hover {
+    color: var(--text);
+    background-color: var(--surface-2);
+  }
 
-.theme-toggle:active {
-  background-color: var(--surface-2);
-}
+  .theme-toggle:active {
+    background-color: var(--surface-2);
+  }
 
-.theme-toggle[aria-checked="true"] {
-  color: var(--text);
-  /* raised in both themes (lighter than the pill) — see --toggle-active */
-  background-color: var(--toggle-active);
-  box-shadow: var(--shadow-sm);
-}
+  .theme-toggle[aria-checked="true"] {
+    color: var(--text);
+    /* raised in both themes (lighter than the pill) — see --toggle-active */
+    background-color: var(--toggle-active);
+    box-shadow: var(--shadow-sm);
+  }
 
-.theme-toggle:focus-visible {
-  outline: none;
-  color: var(--text);
-  box-shadow: var(--ring);
-}
+  .theme-toggle:focus-visible {
+    outline: none;
+    color: var(--text);
+    box-shadow: var(--ring);
+  }
 
-/* icon buttons in the bar: the search link + the hamburger share one box */
-.nav-toggle,
-.nav-icon {
-  box-sizing: border-box;
-  width: 32px;
-  height: 32px;
-  flex: none;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /* same surface fill as the theme switcher so all three read as one matched
-     set (an outline-only box looks lighter/smaller next to the filled pill) */
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--muted);
-  cursor: pointer;
-  text-decoration: none;
-  transition: var(--transition-control);
-}
+  /* panel icon button: the search link keeps the boxed look so it reads as one
+   matched set with the theme switcher pills inside the menu */
+  .nav-icon {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    flex: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-control);
+  }
 
-.nav-toggle:hover,
-.nav-icon:hover {
-  color: var(--text);
-  /* match every other bordered button: border darkens on hover */
-  border-color: var(--border-strong);
-  background-color: var(--surface-2);
-}
+  .nav-icon:hover {
+    color: var(--text);
+    /* match every other bordered button: border darkens on hover */
+    border-color: var(--border-strong);
+    background-color: var(--surface-2);
+  }
 
-.nav-icon:visited {
-  color: var(--muted);
-}
-.nav-icon[aria-current="page"] {
-  color: var(--text);
-  background-color: var(--surface-2);
-}
+  /* menu trigger — vercel's bare icon button (probed on vercel.com/blog): 44px
+   hit target, NO box/fill/hover, icon flush right (justify-end), full-strength
+   ink. Negative block margin keeps the bar at its 32px-row height. */
+  .nav-toggle {
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    margin-block: -6px;
+    flex: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+  }
 
-.nav-toggle:focus-visible,
-.nav-icon:focus-visible {
-  outline: none;
-  color: var(--text);
-  box-shadow: var(--ring);
-}
+  .nav-icon:visited {
+    color: var(--muted);
+  }
+  .nav-icon[aria-current="page"] {
+    color: var(--text);
+    background-color: var(--surface-2);
+  }
 
-.nav-toggle__bars {
-  position: relative;
-  width: 16px;
-  height: 1.5px;
-  background: currentColor;
-  border-radius: var(--radius-pill);
-  transition: background-color var(--motion-fast);
-}
+  .nav-toggle:focus-visible,
+  .nav-icon:focus-visible {
+    outline: none;
+    color: var(--text);
+    box-shadow: var(--ring);
+  }
 
-.nav-toggle__bars::before,
-.nav-toggle__bars::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 1.5px;
-  background: currentColor;
-  border-radius: var(--radius-pill);
-  transition:
-    top var(--motion-fast),
-    bottom var(--motion-fast),
-    transform var(--motion-fast);
-}
+  /* vercel's glyph is TWO 16px round-capped 1.5px lines 8px apart (svg lines at
+   y=8/y=16 of a 24 box) — the middle bar stays empty and only hosts the pair */
+  .nav-toggle__bars {
+    position: relative;
+    width: 16px;
+    height: 1.5px;
+    background: transparent;
+  }
 
-.nav-toggle__bars::before {
-  top: -5px;
-}
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: var(--radius-pill);
+    transition:
+      top var(--motion-fast),
+      bottom var(--motion-fast),
+      transform var(--motion-fast);
+  }
 
-.nav-toggle__bars::after {
-  bottom: -5px;
-}
+  .nav-toggle__bars::before {
+    top: -4px;
+  }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars {
-  background: transparent;
-}
+  .nav-toggle__bars::after {
+    bottom: -4px;
+  }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
-  top: 0;
-  transform: rotate(45deg);
-}
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
-  bottom: 0;
-  transform: rotate(-45deg);
-}
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
 
-/* trigger wrapper — static so the panel anchors to the (positioned) header and
+  /* trigger wrapper — static so the panel anchors to the (positioned) header and
    can span its full width like vercel's nav mega-panel */
-.nav-menu {
-  position: static;
-  display: inline-flex;
-}
+  .nav-menu {
+    position: static;
+    display: inline-flex;
+  }
 
-/* full-width mega-panel that drops below the bar: no card, just a hairline
-   bottom edge, grouped columns + large near-black items (vercel.com nav) */
-.site-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 5;
-  padding: var(--space-8) var(--rail) var(--space-10);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  transform-origin: top center;
-  transition:
-    opacity var(--motion-fast),
-    transform var(--motion-fast);
-}
+  /* full-width mega-panel that drops below the bar: no card, just a hairline
+   bottom edge, grouped columns + near-black items. All values measured on
+   vercel.com/blog's Resources dropdown: 4px top / 24px bottom, columns in the
+   same centered 1400px envelope as the bar. */
+  .site-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: 4px var(--rail) 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    transform-origin: top center;
+    transition:
+      opacity var(--motion-fast),
+      transform var(--motion-fast);
+  }
 
-.site-menu[hidden] {
-  display: none;
-}
+  .site-menu[hidden] {
+    display: none;
+  }
 
-/* closed (during the exit transition): faded + lifted; .is-open settles it.
+  /* closed (during the exit transition): faded + lifted; .is-open settles it.
    pointer-events:none so the invisible panel never intercepts clicks/focus even
    if `hidden` lags (e.g. an interrupted transition) */
-.site-menu:not(.is-open) {
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-}
-
-.site-menu.is-open {
-  opacity: 1;
-  transform: none;
-}
-
-/* grouped columns with uppercase eyebrows (vercel nav mega-panel) */
-.site-menu__cols {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(var(--space-8), 6vw, var(--space-12));
-}
-.site-menu__group {
-  min-width: 9rem;
-}
-.site-menu__eyebrow {
-  margin: 0 0 var(--space-4);
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-semibold);
-  text-transform: uppercase;
-  /* same tracking + leading as every other uppercase eyebrow/label on the site */
-  letter-spacing: 0.04em;
-  line-height: var(--lh-tight);
-}
-
-.site-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* large, near-black, regular-weight links — the vercel mega-panel item style */
-.site-menu__group li a {
-  display: block;
-  padding: var(--space-1) 0;
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-normal);
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-  color: var(--text);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color var(--motion-fast);
-}
-
-.site-menu__group li a:visited {
-  color: var(--text);
-}
-
-.site-menu__group li a:hover {
-  color: var(--muted);
-}
-
-.site-menu__group li a:focus-visible {
-  outline: none;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--ring);
-}
-
-.site-menu__group li a[aria-current="page"] {
-  color: var(--muted);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-menu {
-    transition: none;
+  .site-menu:not(.is-open) {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
   }
-}
 
-/* phones: stack the groups so the panel never gets cramped */
-@media (max-width: 640px) {
-  .site-menu {
-    padding: var(--space-6) var(--rail) var(--space-8);
+  .site-menu.is-open {
+    opacity: 1;
+    transform: none;
   }
+
+  /* grouped columns with sentence-case eyebrows (vercel nav mega-panel) */
   .site-menu__cols {
-    flex-direction: column;
-    gap: var(--space-6);
+    display: flex;
+    align-items: flex-start;
+    /* vercel's 250px fixed rows suit their long labels; ours are short, so fixed
+     rows read as voids. Match their VISUAL rhythm instead: text-width columns
+     separated by the ~112px whitespace their longest label leaves (measured
+     end-of-"Knowledge Base" -> "AI Apps" on the live panel). */
+    gap: 112px;
   }
-}
+  .site-menu__group {
+    min-width: 0;
+  }
+  /* vercel.com nav-panel group header: 14px/20, weight 400, sentence case, no
+   tracking; 5px below it → 25px eyebrow-top to item-top (measured). */
+  .site-menu__eyebrow {
+    margin: 0 0 5px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: var(--fw-normal);
+    letter-spacing: normal;
+    line-height: 20px;
+  }
 
-.aside-section-title {
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-tight);
-  /* shared with .home-section-title / .related-posts h2 so all eyebrows match */
-  margin: 0 0 var(--space-6);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
+  .site-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-.aside-section + .aside-section {
-  margin-top: var(--space-7);
-}
+  /* vercel.com/blog nav item, probed on the live span: 22px / 28px line /
+   -0.66px (-0.03em) tracking / 400, in a 250x34 row (3px block pad). */
+  .site-menu__group li a {
+    display: block;
+    padding: 3px 0;
+    font-size: 22px;
+    font-weight: var(--fw-normal);
+    letter-spacing: -0.03em;
+    line-height: 28px;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--motion-fast);
+  }
 
-.aside-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-5);
-}
+  .site-menu__group li a:visited {
+    color: var(--text);
+  }
 
-.aside-section li {
-  margin-bottom: var(--space-2);
-}
+  .site-menu__group li a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--faint);
+    text-underline-offset: 5px;
+  }
 
-.aside-section a {
-  font-size: var(--fs-base);
-}
+  .site-menu__group li a:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--ring);
+  }
 
-/* /about bio reads as normal blog body text — roman, body color, article size */
-.aside-bio p {
-  margin: 0 0 var(--space-4);
-  color: var(--text);
-  font-size: var(--fs-article);
-  line-height: var(--lh-article);
-}
+  .site-menu__group li a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--faint);
+    text-underline-offset: 5px;
+  }
 
-.aside-bio p:last-child {
-  margin-bottom: 0;
-}
+  @media (prefers-reduced-motion: reduce) {
+    .site-menu {
+      transition: none;
+    }
+  }
 
-.aside-connect a {
-  font-size: 0.95rem;
-}
+  /* phones: stack the groups so the panel never gets cramped */
+  @media (max-width: 640px) {
+    .site-menu__cols {
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .site-menu__group {
+      min-width: 0;
+    }
+  }
 
-.aside-connect li a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-/* landing intro hero — its own crosshair-framed container, separated from the
+  /* landing intro hero — its own crosshair-framed container, separated from the
    feed below by the hero's own border + the gap. */
-.home-intro {
-  margin-bottom: var(--space-8);
-}
+  .home-intro {
+    margin-bottom: var(--space-8);
+  }
 
-/* landing intro — a crosshair-framed container (the site's own grid language),
+  /* landing intro — a crosshair-framed container (the site's own grid language),
    centered copy + social icons, with a monochrome particle-fluid band flowing
    low across it (hero-fluid.js), à la vercel.com/fluid. Identical on every
    width. Re-themes light/dark. */
-.hero {
-  --cross: 10px;
-  --gx: var(--grid-cross);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: clamp(320px, 38vw, 420px);
-  margin-bottom: var(--space-8);
-  padding: clamp(var(--space-8), 6vw, var(--space-12));
-}
-/* the framed box: the border + the clipped particle canvas */
-.hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background-color: var(--bg);
-}
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-/* keep paper over the upper/centre where the copy lives; let the band show low */
-.hero__scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    var(--bg) 0%,
-    var(--bg) 46%,
-    color-mix(in srgb, var(--bg) 50%, transparent) 70%,
-    transparent 90%
-  );
-}
-.hero__body {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-6);
-  max-width: 34rem;
-}
-/* hero copy hierarchy: a big name lead over a normal-size, muted descriptor */
-.hero__text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 40rem;
-}
-.hero__lead {
-  margin: 0;
-  color: var(--text);
-  /* same scale as a blog post title (page h1): 40px mobile → 48px desktop */
-  font-size: var(--fs-h1);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-display);
-  /* matches the page h1 tracking (vercel.com/blog) */
-  letter-spacing: -0.06em;
-  text-wrap: balance;
-}
-.hero__tagline {
-  margin: 0;
-  color: var(--muted);
-  font-family: "Geist Mono", ui-monospace, monospace;
-  /* vercel subtitle scale, a touch smaller: 15px mobile → 18px desktop */
-  font-size: clamp(15px, 13.7px + 0.34vw, 18px);
-  /* tightened: snug two-line leading + negative tracking so the subtitle reads
-     as a crisp display line, not loose body copy */
-  line-height: var(--lh-tight);
-  letter-spacing: -0.04em;
-  text-wrap: balance;
-}
-
-/* two crosshair corner marks — top-left + bottom-right, matching the main frame */
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  width: calc(2 * var(--cross) + 1px);
-  height: calc(2 * var(--cross) + 1px);
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-image:
-    linear-gradient(var(--gx), var(--gx)),
-    linear-gradient(var(--gx), var(--gx));
-  background-position: var(--cross) 0, 0 var(--cross);
-  background-size: 1px 100%, 100% 1px;
-}
-.hero::before {
-  top: calc(-1 * var(--cross));
-  left: calc(-1 * var(--cross));
-}
-.hero::after {
-  bottom: calc(-1 * var(--cross));
-  right: calc(-1 * var(--cross));
-}
-
-/* social icon row — always a single line (only five small icons) */
-.connect-icons {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: var(--space-5);
-}
-.connect-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--faint);
-  transition: color var(--motion-fast);
-}
-.connect-icons a:visited {
-  color: var(--faint);
-}
-.connect-icons a:hover {
-  color: var(--text);
-}
-.connect-icons a:focus-visible {
-  outline: none;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--ring);
-}
-@media (max-width: 640px) {
-  /* smaller crosshairs to match the main grid; tighter padding so the icon row
-     fits the narrow card; the centred layout + low band stay identical to
-     desktop — the animation is never dropped */
   .hero {
-    --cross: 6px;
-    padding: clamp(var(--space-5), 5vw, var(--space-8));
+    --cross: 10px;
+    --gx: var(--grid-cross);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: clamp(320px, 38vw, 420px);
+    /* vertical gap to the feed lives on the .home-intro wrapper */
+    padding: clamp(var(--space-8), 6vw, var(--space-12));
   }
-  /* compact enough that all five icons stay inside the box down to ~280px */
+  /* the framed box: the border + the clipped particle canvas */
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+  }
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  /* keep paper over the upper/centre where the copy lives; let the band show low */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      var(--bg) 0%,
+      var(--bg) 46%,
+      color-mix(in srgb, var(--bg) 50%, transparent) 70%,
+      transparent 90%
+    );
+  }
+  .hero__body {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    max-width: 34rem;
+  }
+  /* hero copy hierarchy: a big name lead over a normal-size, muted descriptor */
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 40rem;
+  }
+  .hero__lead {
+    margin: 0;
+    color: var(--text);
+    /* same scale as a blog post title (page h1): 40px mobile → 48px desktop */
+    font-size: var(--fs-h1);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-display);
+    /* matches the page h1 tracking (vercel.com/blog) */
+    letter-spacing: -0.06em;
+    text-wrap: balance;
+  }
+  .hero__tagline {
+    margin: 0;
+    color: var(--muted);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    /* vercel subtitle scale, a touch smaller: 15px mobile → 18px desktop */
+    font-size: clamp(15px, 13.7px + 0.34vw, 18px);
+    /* tightened: snug two-line leading + negative tracking so the subtitle reads
+     as a crisp display line, not loose body copy */
+    line-height: var(--lh-tight);
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  /* two crosshair corner marks — top-left + bottom-right, matching the main frame */
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: calc(2 * var(--cross) + 1px);
+    height: calc(2 * var(--cross) + 1px);
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-image:
+      linear-gradient(var(--gx), var(--gx)), linear-gradient(var(--gx), var(--gx));
+    background-position:
+      var(--cross) 0,
+      0 var(--cross);
+    background-size:
+      1px 100%,
+      100% 1px;
+  }
+  .hero::before {
+    top: calc(-1 * var(--cross));
+    left: calc(-1 * var(--cross));
+  }
+  .hero::after {
+    bottom: calc(-1 * var(--cross));
+    right: calc(-1 * var(--cross));
+  }
+
+  /* social icon row — always a single line (only five small icons) */
   .connect-icons {
-    gap: var(--space-3);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-5);
   }
   .connect-icons a {
-    min-width: 32px;
-    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--faint);
+    transition: color var(--motion-fast);
   }
-}
+  .connect-icons a:visited {
+    color: var(--faint);
+  }
+  .connect-icons a:hover {
+    color: var(--text);
+  }
+  .connect-icons a:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--ring);
+  }
+  @media (max-width: 640px) {
+    /* smaller crosshairs to match the main grid; tighter padding so the icon row
+     fits the narrow card; the centred layout + low band stay identical to
+     desktop — the animation is never dropped */
+    .hero {
+      --cross: 6px;
+      padding: clamp(var(--space-5), 5vw, var(--space-8));
+    }
+    /* compact enough that all five icons stay inside the box down to ~280px */
+    .connect-icons {
+      gap: var(--space-3);
+    }
+    .connect-icons a {
+      min-width: 32px;
+      min-height: 44px;
+    }
+  }
 
-/* one clean entrance fade-up on load; only when motion is welcome */
-@media (prefers-reduced-motion: no-preference) {
-  .home-hero {
-    animation: home-hero-rise 0.55s var(--ease-out) both;
+  /* one clean entrance fade-up on load; only when motion is welcome */
+  @media (prefers-reduced-motion: no-preference) {
+    .home-hero {
+      animation: home-hero-rise 0.55s var(--ease-out) both;
+    }
   }
-}
-@keyframes home-hero-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+  @keyframes home-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-/* compact social row — evenly gapped links (gap-based, so wrapping on narrow
-   screens never leaves a stray separator at the start of a line) */
-.connect-inline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 var(--space-5);
-  margin-top: var(--space-5);
-  font-size: 0.95rem;
-  line-height: var(--lh-ui);
-}
-.connect-inline a {
-  display: inline-flex;
-  align-items: center;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.connect-inline a:visited {
-  color: var(--muted);
-}
-.connect-inline a:hover {
-  color: var(--link);
-}
-.connect-inline a:focus-visible {
-  outline: none;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--ring);
-}
-@media (max-width: 640px) {
-  /* comfortable touch targets (matches nav / tags / pagination) */
-  .connect-inline a {
-    min-height: 44px;
-  }
-}
-
-/* home — a single centered column of writings (no sidebar), identical in shape
+  /* home — a single centered column of writings (no sidebar), identical in shape
    on mobile and desktop; the bio lives on the dedicated /about page */
-.home-section-title,
-.recent-writing-title {
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-tight);
-  /* first post's top padding is zeroed in 05-components.css */
-  margin: 0 0 var(--space-6);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-/* reading column, centred in <main> with a wide gutter to the rails */
-.content-column {
-  max-width: var(--content-width);
-  margin: var(--content-top-band) auto 0;
-}
-
-/* geist grid: framed <main>; list pages keep the later inner rail, entries drop inner rails */
-main {
-  --cross: 10px;
-  --gx: var(--grid-cross);
-  container-type: inline-size;
-  flex: 1;
-  position: relative;
-  margin-top: var(--grid-top-band);
-  /* responsive inner gutter so content never touches the rails; rails stay at frame edge */
-  padding-inline: var(--rail);
-  /* bottom breathing room inside the frame, mirroring the content's top band */
-  padding-bottom: var(--content-top-band);
-  background-image:
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border));
-  background-repeat: no-repeat;
-  /* top + bottom frame lines, left + right rails */
-  background-position:
-    0 0,
-    0 100%,
-    0 0,
-    100% 0;
-  background-size:
-    100% 1px,
-    100% 1px,
-    1px 100%,
-    1px 100%;
-}
-
-main.main-entry {
-  background-image:
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border)),
-    linear-gradient(var(--border), var(--border));
-  background-position:
-    0 0,
-    0 100%,
-    0 0,
-    100% 0;
-  background-size:
-    100% 1px,
-    100% 1px,
-    1px 100%,
-    1px 100%;
-}
-main::before,
-main::after {
-  content: "";
-  position: absolute;
-  width: calc(2 * var(--cross) + 1px);
-  height: calc(2 * var(--cross) + 1px);
-  pointer-events: none;
-  background-repeat: no-repeat;
-}
-
-main::before {
-  top: calc(-1 * var(--cross));
-  left: calc(-1 * var(--cross));
-  background-image:
-    linear-gradient(var(--gx), var(--gx)),
-    linear-gradient(var(--gx), var(--gx));
-  background-position:
-    var(--cross) top,
-    0 var(--cross);
-  background-size:
-    1px calc(2 * var(--cross) + 1px),
-    100% 1px;
-}
-
-main::after {
-  right: calc(-1 * var(--cross));
-  bottom: calc(-1 * var(--cross));
-  background-image:
-    linear-gradient(var(--gx), var(--gx)),
-    linear-gradient(var(--gx), var(--gx));
-  background-position:
-    var(--cross) bottom,
-    0 var(--cross);
-  background-size:
-    1px calc(2 * var(--cross) + 1px),
-    100% 1px;
-}
-
-/* the open nav mega-panel drops over the content's top-left corner; its mark
-   pokes out just left of the panel edge — hide the top-left crosshairs while
-   the panel is open so nothing bleeds beside it */
-body:has(.site-menu.is-open) main::before,
-body:has(.site-menu.is-open) .hero::before {
-  opacity: 0;
-}
-
-@media (max-width: 640px) {
-  main {
-    --grid-top-band: var(--space-2);
-    --content-top-band: var(--space-5);
-    --cross: 6px;
+  .home-section-title,
+  .recent-writing-title {
+    color: var(--faint);
+    font-size: var(--fs-2xs);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-tight);
+    /* first post's top padding is zeroed in 05-components.css */
+    margin: 0 0 var(--space-6);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
-}
 
-@media (max-width: 900px) {
-  main.main-list {
+  /* reading column, centred in <main> with a wide gutter to the rails */
+  .content-column {
+    max-width: var(--content-width);
+    margin: var(--content-top-band) auto 0;
+  }
+
+  /* geist grid: framed <main> — one frame shared by every page kind */
+  main {
+    --cross: 10px;
+    --gx: var(--grid-cross);
+    container-type: inline-size;
+    flex: 1;
+    position: relative;
+    margin-top: var(--grid-top-band);
+    /* responsive inner gutter so content never touches the rails; rails stay at frame edge */
+    padding-inline: var(--rail);
+    /* bottom breathing room inside the frame, mirroring the content's top band */
+    padding-bottom: var(--content-top-band);
     background-image:
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border));
+    background-repeat: no-repeat;
+    /* top + bottom frame lines, left + right rails */
     background-position:
       0 0,
       0 100%,
@@ -752,84 +600,131 @@ body:has(.site-menu.is-open) .hero::before {
       1px 100%,
       1px 100%;
   }
-}
 
-/* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
-   narrow screen; content runs clean to the uniform 24px gutter (--rail), like vercel.
-   The hero keeps its splash-card border; only its crosshairs go. Placed after the
-   <=900px main-list frame rule so it wins on source order. */
-@media (max-width: 640px) {
-  main,
-  main.main-entry,
-  main.main-list {
-    background-image: none;
-    margin-top: 0;
-  }
   main::before,
-  main::after,
-  .hero::before,
-  .hero::after {
-    content: none;
+  main::after {
+    content: "";
+    position: absolute;
+    width: calc(2 * var(--cross) + 1px);
+    height: calc(2 * var(--cross) + 1px);
+    pointer-events: none;
+    background-repeat: no-repeat;
   }
-}
 
-footer {
-  /* vercel-tone footer: hairline top border, muted, center-aligned column —
+  main::before {
+    top: calc(-1 * var(--cross));
+    left: calc(-1 * var(--cross));
+    background-image:
+      linear-gradient(var(--gx), var(--gx)), linear-gradient(var(--gx), var(--gx));
+    background-position:
+      var(--cross) top,
+      0 var(--cross);
+    background-size:
+      1px calc(2 * var(--cross) + 1px),
+      100% 1px;
+  }
+
+  main::after {
+    right: calc(-1 * var(--cross));
+    bottom: calc(-1 * var(--cross));
+    background-image:
+      linear-gradient(var(--gx), var(--gx)), linear-gradient(var(--gx), var(--gx));
+    background-position:
+      var(--cross) bottom,
+      0 var(--cross);
+    background-size:
+      1px calc(2 * var(--cross) + 1px),
+      100% 1px;
+  }
+
+  /* the open nav mega-panel drops over the content's top-left corner; its mark
+   pokes out just left of the panel edge — hide the top-left crosshairs while
+   the panel is open so nothing bleeds beside it */
+  body:has(.site-menu.is-open) main::before,
+  body:has(.site-menu.is-open) .hero::before {
+    opacity: 0;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      --grid-top-band: var(--space-2);
+      --content-top-band: var(--space-5);
+      --cross: 6px;
+    }
+  }
+
+  /* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
+   narrow screen; content runs clean to the uniform 18px gutter (--rail), like vercel.
+   The hero keeps its splash-card border; only its crosshairs go. */
+  @media (max-width: 640px) {
+    main {
+      background-image: none;
+      margin-top: 0;
+    }
+    main::before,
+    main::after,
+    .hero::before,
+    .hero::after {
+      content: none;
+    }
+  }
+
+  footer {
+    /* vercel-tone footer: hairline top border, muted, center-aligned column —
      footer nav (blogroll · maxims · tags) over the byline */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-3);
-  margin-top: var(--space-10);
-  padding: var(--space-8) var(--rail);
-  font-size: var(--fs-sm);
-  color: var(--faint);
-  border-top: 1px solid var(--border);
-}
-footer .footer-byline {
-  margin: 0;
-}
-footer .footer-byline a {
-  color: var(--faint);
-}
-footer .footer-byline a:hover {
-  color: var(--link);
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    margin-top: var(--space-10);
+    padding: var(--space-8) var(--rail);
+    font-size: var(--fs-sm);
+    color: var(--faint);
+    border-top: 1px solid var(--border);
+  }
+  footer .footer-byline {
+    margin: 0;
+  }
+  footer .footer-byline a {
+    color: var(--faint);
+  }
 
-.aside-section a,
-footer a {
-  text-decoration: none;
-  color: var(--muted);
-}
+  /* footer is chrome — like the nav menu and hero icons, links darken to --text
+   on hover instead of colorizing (blue hover is reserved for content links) */
+  footer a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color var(--motion-fast);
+  }
 
-.aside-section a:visited,
-footer a:visited {
-  color: var(--muted);
-}
+  footer a:visited {
+    color: var(--muted);
+  }
 
-.aside-section a:hover,
-footer a:hover {
-  color: var(--link);
-}
+  footer a:hover,
+  footer .footer-byline a:hover {
+    color: var(--text);
+  }
 
-.aside-section li a {
-  display: inline-block;
-  transition: color var(--motion-fast);
-}
+  @media (max-width: 640px) {
+    /* footer band compresses one step on phones, like the header/menu/hero bands */
+    footer {
+      margin-top: var(--space-8);
+      padding: var(--space-6) var(--rail);
+    }
+  }
 
-/* page shell (sticky footer) */
-.page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+  /* page shell (sticky footer) */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-.page-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-
+  .page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }

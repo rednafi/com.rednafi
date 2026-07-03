@@ -195,7 +195,7 @@ func TestArticlesUseSiteCoverImage(t *testing.T) {
 	values := frontmatterValues(t, contentPath)
 	assert.NotContains(t, values, "images", "post frontmatter should not override the site cover")
 
-	_, err := os.Stat(filepath.Join("..", "public/images/home/cover-b8f8f0fc773d.png"))
+	_, err := os.Stat(filepath.Join("..", "public/images/home/cover-c9234d37ea2a.png"))
 	assert.True(t, os.IsNotExist(err), "site cover should stay in R2, not GitHub Pages")
 
 	page := newPage(t)
@@ -224,8 +224,8 @@ func TestMediaWorkflowUsesImmutableManualR2Uploads(t *testing.T) {
 	workflow, err := os.ReadFile("../.github/workflows/ci.yml")
 	require.NoError(t, err)
 	assert.Contains(t, string(workflow), "Cache Standard.site cover")
-	assert.Contains(t, string(workflow), "standard-site-cover-b8f8f0fc773d")
-	assert.Contains(t, string(workflow), "ci-seed-b8f8f0fc773d")
+	assert.Contains(t, string(workflow), "standard-site-cover-c9234d37ea2a")
+	assert.Contains(t, string(workflow), "ci-seed-c9234d37ea2a")
 	assert.Contains(t, string(workflow), "sha256sum -c -")
 	assert.Contains(t, string(workflow), "go run ./scripts/sequoia")
 	assert.NotContains(t, string(workflow), "CLOUDFLARE_API_TOKEN")

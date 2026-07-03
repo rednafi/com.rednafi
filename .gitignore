@@ -23,3 +23,6 @@ tests/test-results/
 .cache/
 .claude/
 public-test/
+
+# Local dev probe (rewrite from scratch if missing; not shipped)
+scripts/verceltype/

@@ -1,254 +1,264 @@
 @layer base {
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: "Geist", sans-serif;
-  font-size: 17px;
-  color: var(--text);
-  background: var(--bg);
-  scroll-behavior: smooth;
-  /* reserve the scrollbar gutter so centered content doesn't shift between
-     short (no-scroll) and long (scroll) pages */
-  scrollbar-gutter: stable;
-  /* iOS lets html scroll-x even when body is clipped — kill grid-rail sideways
-     scroll. `clip` (not `hidden`) so it doesn't become a scroll container and
-     break the sticky header; `hidden` fallback for old browsers. */
-  overflow-x: hidden;
-  overflow-x: clip;
-  -webkit-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  /* match vercel.com/blog exactly: contextual alternates off + required ligatures,
-     and no faux weights/italics (real variable instances are used instead) */
-  font-feature-settings: "calt" 0, "rlig";
-  font-synthesis: none;
-  /* thin Geist scrollbars (Firefox); ::-webkit-* below covers Chromium/Safari */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-  transition:
-    background-color var(--motion),
-    color var(--motion);
-}
-
-/* Geist scrollbars (Chromium/Safari); code blocks + tables opt into a slimmer bar below */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: var(--border-strong);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  border-radius: var(--radius-pill);
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--muted);
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* No -webkit-font-smoothing override in either theme: the browser default (auto)
-   applies macOS stem-darkening → heavier, darker strokes. `antialiased` thins text,
-   which read too thin, so it's deliberately off (light AND dark). No-op on Android. */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {
-    transition: none !important;
-    animation: none !important;
+    box-sizing: border-box;
   }
-}
 
-body {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  /* horizontal padding clears notches/rounded corners in landscape (safe-area) */
-  padding-block: var(--space-6);
-  padding-left: max(var(--space-6), env(safe-area-inset-left));
-  padding-right: max(var(--space-6), env(safe-area-inset-right));
-  line-height: var(--lh-normal);
-  overflow-wrap: break-word;
-  overflow-x: hidden;
-  overflow-x: clip;
-}
+  html {
+    font-family: "Geist", sans-serif;
+    font-size: 17px;
+    color: var(--text);
+    background: var(--bg);
+    scroll-behavior: smooth;
+    /* reserve the scrollbar gutter so centered content doesn't shift between
+     short (no-scroll) and long (scroll) pages */
+    scrollbar-gutter: stable;
+    /* iOS lets html scroll-x even when body is clipped — kill grid-rail sideways
+     scroll. `clip` (not `hidden`) so it doesn't become a scroll container and
+     break the sticky header; `hidden` fallback for old browsers. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    /* match vercel.com/blog exactly: contextual alternates off + required ligatures,
+     and no faux weights/italics (real variable instances are used instead) */
+    font-feature-settings:
+      "calt" 0,
+      "rlig";
+    font-synthesis: none;
+    /* thin Geist scrollbars (Firefox); ::-webkit-* below covers Chromium/Safari */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+    transition:
+      background-color var(--motion),
+      color var(--motion);
+  }
 
-::selection {
-  background: color-mix(in srgb, var(--link) 25%, transparent);
-  color: var(--text);
-}
+  /* Geist scrollbars (Chromium/Safari); code blocks + tables opt into a slimmer bar below */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border-strong);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: var(--radius-pill);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--muted);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 
-a {
-  color: var(--link);
-  text-underline-offset: 0.24rem;
-  transition: color var(--motion-fast);
-}
+  /* No -webkit-font-smoothing override in either theme: the browser default (auto)
+   applies macOS stem-darkening → heavier, darker strokes. `antialiased` thins text,
+   which read too thin, so it's deliberately off (light AND dark). No-op on Android. */
 
-a:visited {
-  color: var(--link); /* never recolor once visited */
-}
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
 
-img {
-  border-radius: var(--radius);
-}
+  body {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    /* horizontal padding clears notches/rounded corners in landscape (safe-area) */
+    padding-block: var(--space-6);
+    padding-left: max(var(--space-6), env(safe-area-inset-left));
+    padding-right: max(var(--space-6), env(safe-area-inset-right));
+    line-height: var(--lh-normal);
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
 
-/* small headings keep weight for hierarchy; the display headings (h1–h3) match
-   vercel.com/blog exactly: weight 400, large, tightly tracked */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--fw-semibold);
-}
-h1, h2, h3 {
-  font-weight: var(--fw-normal);
-}
-h1 {
-  font-size: var(--fs-h1);
-  /* vercel: 56/48 = 1.167 desktop, steps to 48/40 = 1.2 at <=960 (below); -0.06em */
-  line-height: 1.167;
-  letter-spacing: -0.06em;
-  margin-top: 0;
-  margin-bottom: var(--space-4);
-}
-@media (max-width: 960px) {
+  ::selection {
+    background: color-mix(in srgb, var(--link) 25%, transparent);
+    color: var(--text);
+  }
+
+  a {
+    color: var(--link);
+    text-underline-offset: 0.24rem;
+    transition: color var(--motion-fast);
+  }
+
+  a:visited {
+    color: var(--link); /* never recolor once visited */
+  }
+
+  img {
+    border-radius: var(--radius);
+  }
+
+  /* small headings keep weight for hierarchy; the display headings (h1–h3) match
+   vercel.com/blog exactly: h1 450, h2/h3 400 — large, tightly tracked */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: var(--fw-semibold);
+  }
+  h2,
+  h3 {
+    font-weight: var(--fw-normal);
+  }
   h1 {
-    line-height: 1.2;
+    font-size: var(--fs-h1);
+    font-weight: var(--fw-display);
+    /* vercel: 56/48 desktop, steps to 48/40 = 1.2 at <=960 (below); -0.06em */
+    line-height: calc(56 / 48);
+    letter-spacing: -0.06em;
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+  }
+  h2 {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-display);
+    letter-spacing: -0.04em;
   }
   h3 {
-    letter-spacing: -0.4px; /* vercel loosens h3 tracking on small screens */
+    /* keep ### visually below ## at every breakpoint */
+    font-size: var(--fs-h3);
+    line-height: var(--lh-display);
+    letter-spacing: -0.0457em; /* vercel's -1.28px at 28px, in em like h1/h2 */
   }
-}
-h2 {
-  font-size: var(--fs-h2);
-  line-height: var(--lh-display);
-  letter-spacing: -0.04em;
-}
-h3 {
-  /* keep ### visually below ## at every breakpoint */
-  font-size: var(--fs-h3);
-  line-height: var(--lh-display);
-  letter-spacing: -1.28px;
-}
-h4 {
-  font-size: var(--fs-base);
-  line-height: var(--lh-ui);
-}
-h5 {
-  font-size: var(--fs-md);
-  line-height: var(--lh-normal);
-}
-h6 {
-  font-size: var(--fs-md);
-  line-height: var(--lh-normal);
-}
+  /* after the base h1/h3 rules so the overrides win on source order */
+  @media (max-width: 960px) {
+    h1 {
+      line-height: 1.2;
+    }
+    h3 {
+      letter-spacing: -0.04em; /* vercel-measured -0.96px at the 24px mobile size */
+    }
+  }
+  h4 {
+    font-size: var(--fs-base);
+    line-height: var(--lh-ui);
+  }
+  h5 {
+    font-size: var(--fs-md);
+    line-height: var(--lh-normal);
+  }
+  h6 {
+    font-size: var(--fs-md);
+    line-height: var(--lh-normal);
+  }
 
-h1, h2, h3 {
-  text-wrap: balance;
-}
-article p,
-article li {
-  text-wrap: pretty;
-}
-/* reading body: 18px desktop, 17px on phones/tablets, ~1.55 leading */
-.article-content {
-  font-size: var(--fs-article);
-  line-height: var(--lh-article);
-}
-article p {
-  margin: 0 0 var(--space-4);
-}
-/* vercel's article rhythm: 24px between blocks */
-.article-content p,
-.article-content ul,
-.article-content ol,
-.article-content blockquote,
-.article-content .alert,
-.article-content .codeblock,
-.article-content pre,
-.article-content table,
-.article-content .highlight {
-  margin-bottom: var(--article-gap);
-}
-:is(h1, h2, h3, h4, h5, h6) {
-  scroll-margin-top: var(--space-4);
-}
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  article p,
+  article li {
+    text-wrap: pretty;
+  }
+  /* reading body: 18px desktop, 17px on phones/tablets, ~1.55 leading */
+  .article-content {
+    font-size: var(--fs-article);
+    line-height: var(--lh-article);
+  }
+  article p {
+    margin: 0 0 var(--space-4);
+  }
+  /* vercel's article rhythm: 24px between blocks */
+  .article-content p,
+  .article-content ul,
+  .article-content ol,
+  .article-content blockquote,
+  .article-content .alert,
+  .article-content .codeblock,
+  .article-content pre,
+  .article-content table,
+  .article-content .highlight {
+    margin-bottom: var(--article-gap);
+  }
+  :is(h1, h2, h3, h4, h5, h6) {
+    scroll-margin-top: var(--space-4);
+  }
 
-@media (max-width: 640px) {
-  :root {
-    /* one uniform 16px side gutter on phones (down from 24px, which read a bit fat).
+  @media (max-width: 640px) {
+    :root {
+      /* one uniform 18px side gutter on phones.
        The grid frame is dropped on mobile (04-layout), so --rail alone carries the
-       gutter — header, reading content, and footer all flush at 16px from the edge.
+       gutter — header, reading content, and footer all flush at 18px from the edge.
        Tablets/desktop keep the clamp() default in 02-tokens. */
-    --rail: 16px;
+      --rail: 18px;
+    }
+    body {
+      padding-block: var(--space-3);
+      /* gutter now lives on --rail; body padding only clears the notch (safe-area) */
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
   }
-  body {
-    padding-block: var(--space-3);
-    /* gutter now lives on --rail; body padding only clears the notch (safe-area) */
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
-}
 
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  padding: var(--space-2) var(--space-4);
-  /* elevated chip: --bg-2 lifts it above the page in dark (#1a1a1a on #0a0a0a),
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: var(--space-2) var(--space-4);
+    /* elevated chip: --bg-2 lifts it above the page in dark (#1a1a1a on #0a0a0a),
      where the drop-shadow is invisible; identical to --bg in light */
-  background: var(--bg-2);
-  color: var(--link);
-  /* read as a distinct elevated chip once it slides into view on focus */
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  left: var(--space-2);
-  top: var(--space-2);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* catch-all focus: outline (not the Geist box-shadow --ring controls use) so it wraps multi-line links */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
-
-/* skip-link target receives focus programmatically — don't flash a ring on it */
-main:focus {
-  outline: none;
-}
-
-/* forced-colors (Windows High Contrast) drops box-shadow focus rings — controls
-   that rely on --ring would show no focus, so force a visible outline back */
-@media (forced-colors: active) {
-  :focus-visible {
-    outline: 2px solid Highlight !important;
-    outline-offset: 2px;
+    background: var(--bg-2);
+    color: var(--link);
+    /* read as a distinct elevated chip once it slides into view on focus */
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
   }
-}
 
+  .skip-link:focus {
+    left: var(--space-2);
+    top: var(--space-2);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* catch-all focus: outline (not the Geist box-shadow --ring controls use) so it wraps multi-line links */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* skip-link target receives focus programmatically — don't flash a ring on it */
+  main:focus {
+    outline: none;
+  }
+
+  /* forced-colors (Windows High Contrast) drops box-shadow focus rings — controls
+   that rely on --ring would show no focus, so force a visible outline back */
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid Highlight !important;
+      outline-offset: 2px;
+    }
+  }
 }

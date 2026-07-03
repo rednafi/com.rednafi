@@ -1,67 +1,65 @@
 @layer print {
-
-@media print {
-  html,
-  body {
-    color-scheme: light !important;
-    color: #171717 !important;
-    background: #fafafa !important;
+  @media print {
+    html,
+    body {
+      color-scheme: light !important;
+      color: #171717 !important;
+      background: #fafafa !important;
+    }
+    main::before,
+    main::after {
+      display: none !important;
+    }
+    .site-header,
+    footer,
+    .breadcrumbs,
+    .post-tags,
+    .related-posts,
+    .post-ornament,
+    .pagination,
+    .skip-link,
+    .back-to-top,
+    .copy-code,
+    .toc {
+      display: none;
+    }
+    body {
+      max-width: 100%;
+    }
+    pre,
+    code,
+    table {
+      color: inherit !important;
+      background: transparent !important;
+    }
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+    a[href]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+      color: var(--faint);
+    }
+    a[href^="#"]::after,
+    a[href^="/"]::after {
+      content: "";
+    }
+    /* keep blocks whole and headings attached to their content across page breaks */
+    pre,
+    .codeblock,
+    table,
+    blockquote,
+    .alert,
+    figure,
+    img {
+      break-inside: avoid;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      break-after: avoid;
+    }
   }
-  main::before,
-  main::after {
-    display: none !important;
-  }
-  .site-header,
-  footer,
-  .breadcrumbs,
-  .post-tags,
-  .related-posts,
-  .post-ornament,
-  .pagination,
-  .skip-link,
-  .back-to-top,
-  .copy-code,
-  .toc {
-    display: none;
-  }
-  body {
-    max-width: 100%;
-  }
-  pre,
-  code,
-  table {
-    color: inherit !important;
-    background: transparent !important;
-  }
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-  a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
-    color: var(--faint);
-  }
-  a[href^="#"]::after,
-  a[href^="/"]::after {
-    content: "";
-  }
-  /* keep blocks whole and headings attached to their content across page breaks */
-  pre,
-  .codeblock,
-  table,
-  blockquote,
-  .alert,
-  figure,
-  img {
-    break-inside: avoid;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    break-after: avoid;
-  }
-}
-
 }

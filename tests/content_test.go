@@ -416,7 +416,17 @@ func TestInlineCodeStyling(t *testing.T) {
 			`el => parseFloat(getComputedStyle(el).paddingLeft) + parseFloat(getComputedStyle(el).paddingRight)`, nil,
 		)
 		require.NoError(t, err)
-		assert.Greater(t, padding.(float64), float64(0), "inline code should have padding")
+		// playwright returns whole numbers as int, fractional ones as float64
+		var pad float64
+		switch v := padding.(type) {
+		case float64:
+			pad = v
+		case int:
+			pad = float64(v)
+		default:
+			t.Fatalf("unexpected padding type %T", padding)
+		}
+		assert.Greater(t, pad, float64(0), "inline code should have padding")
 	})
 
 	t.Run("has border-radius", func(t *testing.T) {

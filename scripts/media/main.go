@@ -119,10 +119,11 @@ func canonicalDir(filePath string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	slug := slugPath(strings.TrimSpace(scalar(fm["slug"])))
-	if slug == "" {
-		slug = slugPath(strings.TrimSuffix(path.Base(rel), path.Ext(rel)))
+	rawSlug := strings.TrimSpace(scalar(fm["slug"]))
+	if rawSlug == "" {
+		rawSlug = strings.TrimSuffix(path.Base(rel), path.Ext(rel))
 	}
+	slug := slugPath(rawSlug)
 
 	parts := strings.Split(strings.TrimPrefix(rel, "content/"), "/")
 	section := slugPath(parts[0])

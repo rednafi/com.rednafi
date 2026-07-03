@@ -9,7 +9,7 @@
 
 {{- $homeURL := "/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
-{{- $pageImages := site.Params.images }}
+{{- $pageImages := .Params.images | default site.Params.images }}
 {{- $isPaginatedHome := false }}
 {{- if .IsHome }}
 {{- $pages := partial "home-pages.html" . }}
@@ -72,8 +72,10 @@
 {{- /* Favicons — content-hash query busts the browser's sticky favicon cache when the icon changes */ -}}
 {{- $svgV := hash.FNV32a (readFile "static/favicon.svg") }}
 {{- $pngV := hash.FNV32a (readFile "static/favicon.png") }}
-{{- $svg := site.Params.assets.favicon_svg | default "favicon.svg" | absURL }}
-{{- $png := site.Params.assets.favicon_png | default "favicon.png" | absURL }}
+{{- /* relURL, not absURL: absolute icon URLs make a localhost session fetch
+       PRODUCTION's stale icon (hugo server -e production keeps the prod baseURL) */ -}}
+{{- $svg := site.Params.assets.favicon_svg | default "favicon.svg" | relURL }}
+{{- $png := site.Params.assets.favicon_png | default "favicon.png" | relURL }}
 <link rel="icon" type="image/svg+xml" href="{{ printf "%s?v=%d" $svg $svgV | safeURL }}">
 <link rel="icon" type="image/png" href="{{ printf "%s?v=%d" $png $pngV | safeURL }}">
 <link rel="apple-touch-icon" href="{{ printf "%s?v=%d" $png $pngV | safeURL }}">
@@ -131,7 +133,8 @@
 <meta property="og:image:alt" content="{{ if $isArticlePage }}{{ $.Title }}{{ else }}{{ site.Title }}{{ end }}">
 {{- end }}
 {{- if $isArticlePage }}
-<meta property="article:author" content="{{ .Params.author | default site.Params.author }}">
+{{- /* og article:author expects a profile URL, not a name — point at /about */}}
+<meta property="article:author" content="{{ "about/" | absURL }}">
 <meta property="article:section" content="{{ .Section }}">
 {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $iso8601 }}">{{ end }}
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format $iso8601 }}">{{ end }}
@@ -147,7 +150,7 @@
 
 {{- /* Twitter Cards — title/desc/image fall back to OG tags */ -}}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="{{ site.Title }}">
+<meta name="twitter:image:alt" content="{{ if $isArticlePage }}{{ .Title }}{{ else }}{{ site.Title }}{{ end }}">
 {{- with site.Params.social.twitter }}
 <meta name="twitter:creator" content="@{{ . }}">
 <meta name="twitter:site" content="@{{ . }}">
@@ -196,7 +199,9 @@
 {{- end }}
 {{- /* BreadcrumbList JSON-LD */ -}}
 {{- if and $isArticlePage .Section }}
-{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" site.BaseURL) (dict "@type" "ListItem" "position" 2 "name" .Section "item" (printf "%s/" .Section | absURL)) (dict "@type" "ListItem" "position" 3 "name" .Title) }}
+{{- /* humanized section label ("Go", "JavaScript") — this is the crumb Google shows */}}
+{{- $sectionLabel := replace (replace (humanize .Section) "Javascript" "JavaScript") "Typescript" "TypeScript" }}
+{{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" site.BaseURL) (dict "@type" "ListItem" "position" 2 "name" $sectionLabel "item" (printf "%s/" .Section | absURL)) (dict "@type" "ListItem" "position" 3 "name" .Title) }}
 {{- $bc := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items }}
 {{ printf `<script type="application/ld+json">%s</script>` ($bc | jsonify) | safeHTML }}
 {{- end }}

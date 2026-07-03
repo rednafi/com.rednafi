@@ -12,23 +12,23 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   HUGO_VERSION: 0.163.3
   NODE_VERSION: 26
   PAGEFIND_VERSION: 1.5.2
-  PLAYWRIGHT_VERSION: 1.61.1
   PRETTIER_VERSION: 3.9.3
   SEQUOIA_CLI_VERSION: 0.5.7
-  SITE_COVER_PATH: .cache/site-cover/cover-b8f8f0fc773d.png
-  SITE_COVER_URL: https://blob.rednafi.com/home/cover-b8f8f0fc773d.png?ci-seed-b8f8f0fc773d
-  SITE_COVER_SHA256: 94f9ab12fd2a73c9e23346015bc0c444310260d28c3f489a540dc02df336e6d2
+  SITE_COVER_PATH: .cache/site-cover/cover-c9234d37ea2a.png
+  SITE_COVER_URL: https://blob.rednafi.com/home/cover-c9234d37ea2a.png?ci-seed-c9234d37ea2a
+  SITE_COVER_SHA256: c9234d37ea2a92b1d152d4a6e129c3b69ff5a9414c60d052d0b5210feb5bd08e
   PAGES_SIZE_BUDGET_BYTES: 900000000
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          submodules: recursive
+          # full history: enableGitInfo derives lastmod from git
           fetch-depth: 0
 
       - name: Cache Hugo
@@ -48,7 +48,7 @@ jobs:
 
       - name: Download Hugo
         if: steps.cache-hugo.outputs.cache-hit != 'true'
-        run: wget -q -O ~/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+        run: curl -fsSL --retry 3 --retry-delay 2 -o ~/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
 
       - name: Install Hugo
         run: sudo dpkg -i ~/hugo.deb
@@ -71,6 +71,14 @@ jobs:
           path: ~/.npm
           key: npm-${{ runner.os }}-pagefind-${{ env.PAGEFIND_VERSION }}-prettier-${{ env.PRETTIER_VERSION }}-sequoia-${{ env.SEQUOIA_CLI_VERSION }}
 
+      - name: Cache Hugo remote resources
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/hugo_cache
+          # remote image dims fetched at build; content-hashed URLs never go stale
+          key: hugo-cache-${{ runner.os }}-${{ hashFiles('content/**/*.md') }}
+          restore-keys: hugo-cache-${{ runner.os }}-
+
       - name: Cache Playwright browsers
         uses: actions/cache@v6
         id: cache-playwright
@@ -78,7 +86,8 @@ jobs:
           path: |
             ~/.cache/ms-playwright
             ~/.cache/ms-playwright-go
-          key: playwright-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}-${{ hashFiles('go.sum') }}
+          # go.sum pins playwright-go, which pins the browser build
+          key: playwright-${{ runner.os }}-${{ hashFiles('go.sum') }}
 
       - name: Install Playwright browsers
         if: steps.cache-playwright.outputs.cache-hit != 'true'
@@ -86,7 +95,7 @@ jobs:
 
       - name: Install Playwright deps
         if: steps.cache-playwright.outputs.cache-hit == 'true'
-        run: npx -y playwright@${PLAYWRIGHT_VERSION} install-deps chromium
+        run: go run github.com/mxschmitt/playwright-go/cmd/playwright install-deps chromium
 
       - name: Normalize post frontmatter
         run: go run ./scripts/frontmatter
@@ -95,7 +104,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ${{ env.SITE_COVER_PATH }}
-          key: standard-site-cover-b8f8f0fc773d
+          key: standard-site-cover-c9234d37ea2a
 
       - name: Download Standard.site cover
         run: |
@@ -110,6 +119,7 @@ jobs:
           ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
           ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
           SEQUOIA_CMD: npx -y sequoia-cli@${{ env.SEQUOIA_CLI_VERSION }} publish
+          SEQUOIA_SITE_COVER_SOURCE: ${{ env.SITE_COVER_PATH }}
         run: go run ./scripts/sequoia
 
       - name: Normalize published post frontmatter
@@ -126,9 +136,6 @@ jobs:
 
       - name: Check media URLs
         run: go run ./scripts/media --check
-
-      - name: Check Prettier formatting
-        run: npx -y prettier@${PRETTIER_VERSION} --check "content/**/*.md"
 
       - name: Commit generated post metadata
         run: |

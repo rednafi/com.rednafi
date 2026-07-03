@@ -286,7 +286,8 @@ func TestBreadcrumbSchema(t *testing.T) {
 		assert.Equal(t, float64(1), home["position"])
 
 		section, _ := items[1].(map[string]any)
-		assert.Equal(t, "go", section["name"])
+		assert.Equal(t, "Go", section["name"],
+			"breadcrumb section name should be the humanized label Google displays")
 		assert.Equal(t, float64(2), section["position"])
 
 		article, _ := items[2].(map[string]any)
@@ -305,7 +306,7 @@ func TestOGImageDimensions(t *testing.T) {
 	t.Run("has og:image", func(t *testing.T) {
 		src, err := page.Locator(`meta[property="og:image"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "https://blob.rednafi.com/home/cover-b8f8f0fc773d.png", src)
+		assert.Equal(t, "https://blob.rednafi.com/home/cover-c9234d37ea2a.png", src)
 	})
 
 	t.Run("has og:image:width", func(t *testing.T) {

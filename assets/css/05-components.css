@@ -1,1216 +1,1235 @@
 @layer components {
-
-/* secondary text — uniform size (.post-list .date styled separately below) */
-.post-meta,
-.footnotes,
-.post-tags {
-  font-size: var(--fs-sm);
-  color: var(--muted);
-}
-
-/* footnotes — Geist endnote section */
-.footnotes {
-  margin-top: var(--space-10);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--border);
-  line-height: var(--lh-relaxed);
-}
-/* goldmark emits its own <hr> as the first child of .footnotes — hide it */
-.footnotes > hr {
-  display: none;
-}
-.footnotes ol {
-  margin: 0;
-  /* same indent as article ul/ol/dd so list markers align across contexts */
-  padding-left: var(--space-6);
-}
-.footnotes li {
-  margin-bottom: var(--space-2);
-}
-.footnotes li:last-child {
-  margin-bottom: 0;
-}
-.footnotes li::marker {
-  color: var(--faint);
-}
-.footnote-backref {
-  margin-left: var(--space-2);
-  color: var(--faint);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.footnote-backref:hover {
-  color: var(--link);
-}
-.post-meta {
-  color: var(--faint);
-  font-variant-numeric: tabular-nums;
-}
-/* date · reading-time separator */
-.post-meta-sep {
-  margin: 0 var(--space-2);
-  color: var(--border-strong);
-}
-
-.section-desc {
-  font-size: var(--fs-md);
-  color: var(--muted);
-  font-style: italic;
-}
-
-.breadcrumbs {
-  margin-bottom: var(--space-2);
-  font-size: var(--fs-sm);
-  color: var(--faint);
-}
-.breadcrumbs a {
-  color: var(--faint);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.breadcrumbs a:visited {
-  color: var(--faint);
-}
-.breadcrumbs a:hover {
-  color: var(--link);
-}
-
-/* post list — date-forward, hairline rows (no boxes); identical across all lists */
-.post-list .post {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-5) 0;
-}
-
-/* local hairline row divider; page-level grid lines live on <main> */
-.post-list .post + .post {
-  border-top: 1px solid var(--border);
-}
-
-.content-column > article [data-pagefind-body] .article-content {
-  margin-top: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border);
-}
-.content-column > article [data-pagefind-body] .article-footer {
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border);
-}
-
-/* rich variant (home / sections / terms): more air for the excerpt */
-.post-list-rich .post {
-  padding: var(--space-6) 0;
-}
-
-/* a post list directly under its eyebrow label hugs it — the eyebrow's own
-   margin sets the gap (home feed + 404 recent posts share this rhythm) */
-.home-section-title + .post-list > .post:first-child,
-.recent-writing-title + .post-list > .post:first-child {
-  padding-top: 0;
-}
-
-.post-meta-line {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin: 0 0 var(--space-3);
-}
-
-.post-list .date {
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: var(--lh-none);
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-
-/* category beside the date, split by a thin vertical rule (::before) */
-.post-cat {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding-left: var(--space-3);
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: var(--lh-none);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.post-cat::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 1px;
-  height: 0.85em;
-  transform: translateY(-50%);
-  background: var(--border-strong);
-}
-.post-cat:visited {
-  color: var(--faint);
-}
-.post-cat:hover {
-  color: var(--link);
-}
-
-/* title — vercel blog display type: large, weight-400, tight negative tracking
-   (their featured titles are 40px/400/-0.06em). Light + airy, not small + bold. */
-.post-list .post > a {
-  display: block;
-  color: var(--text);
-  font-size: var(--fs-list-title);
-  font-weight: var(--fw-normal);
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  text-wrap: balance;
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.post-list .post > a:visited {
-  color: var(--text);
-}
-.post-list .post > a:hover {
-  color: var(--link);
-  text-decoration: none;
-}
-
-/* excerpt — two lines max */
-.post-list-rich p {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  margin: var(--space-3) 0 0;
-  max-width: 64ch;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: var(--fs-md);
-  line-height: var(--lh-relaxed);
-}
-
-@media (max-width: 640px) {
-  .post-list .post {
-    padding: var(--space-4) 0;
+  /* secondary text — uniform size (.post-list .date styled separately below) */
+  .post-meta,
+  .footnotes,
+  .post-tags {
+    font-size: var(--fs-sm);
+    color: var(--muted);
   }
-  .post-list-rich .post {
-    padding: var(--space-5) 0;
+
+  /* footnotes — Geist endnote section */
+  .footnotes {
+    margin-top: var(--space-10);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border);
+    line-height: var(--lh-relaxed);
   }
-  .post-meta-line {
-    gap: var(--space-2);
+  /* goldmark emits its own <hr> as the first child of .footnotes — hide it */
+  .footnotes > hr {
+    display: none;
+  }
+  .footnotes ol {
+    margin: 0;
+    /* same indent as article ul/ol so list markers align across contexts */
+    padding-left: 20px;
+  }
+  .footnotes li {
     margin-bottom: var(--space-2);
   }
+  .footnotes li:last-child {
+    margin-bottom: 0;
+  }
+  .footnotes li::marker {
+    color: var(--faint);
+  }
+  .footnote-backref {
+    margin-left: var(--space-2);
+    color: var(--faint);
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .footnote-backref:hover {
+    color: var(--link);
+  }
+  .post-meta {
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  /* date · reading-time separator */
+  .post-meta-sep {
+    margin: 0 var(--space-2);
+    color: var(--border-strong);
+  }
+
+  .section-desc {
+    font-size: var(--fs-md);
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .breadcrumbs {
+    margin-bottom: var(--space-2);
+    font-size: var(--fs-sm);
+    color: var(--faint);
+  }
+  .breadcrumbs a {
+    color: var(--faint);
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .breadcrumbs a:visited {
+    color: var(--faint);
+  }
+  .breadcrumbs a:hover {
+    color: var(--link);
+  }
+
+  /* post list — date-forward, hairline rows (no boxes); identical across all lists */
+  .post-list .post {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5) 0;
+  }
+
+  /* local hairline row divider; page-level grid lines live on <main> */
+  .post-list .post + .post {
+    border-top: 1px solid var(--border);
+  }
+
+  .content-column > article [data-pagefind-body] .article-content {
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+  }
+  .content-column > article [data-pagefind-body] .article-footer {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+  }
+
+  /* rich variant (home / sections / terms): more air for the excerpt */
+  .post-list-rich .post {
+    padding: var(--space-6) 0;
+  }
+
+  /* a post list directly under its eyebrow label hugs it — the eyebrow's own
+   margin sets the gap (home feed + 404 recent posts share this rhythm) */
+  .home-section-title + .post-list > .post:first-child,
+  .recent-writing-title + .post-list > .post:first-child {
+    padding-top: 0;
+  }
+
+  .post-meta-line {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-3);
+  }
+
+  .post-list .date {
+    color: var(--faint);
+    font-size: var(--fs-2xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: var(--lh-none);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* category beside the date, split by a thin vertical rule (::before) */
   .post-cat {
-    min-height: 32px;
-    padding-left: var(--space-2);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding-left: var(--space-3);
+    color: var(--faint);
+    font-size: var(--fs-2xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: var(--lh-none);
+    text-decoration: none;
+    transition: color var(--motion-fast);
   }
+  .post-cat::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 0.85em;
+    transform: translateY(-50%);
+    background: var(--border-strong);
+  }
+  .post-cat:visited {
+    color: var(--faint);
+  }
+  .post-cat:hover {
+    color: var(--link);
+  }
+
+  /* title — vercel blog display type: large, weight-400, tight negative tracking
+   (their featured titles are 40px/400/-0.06em). Light + airy, not small + bold. */
+  .post-list .post > a {
+    display: block;
+    color: var(--text);
+    font-size: var(--fs-list-title);
+    font-weight: var(--fw-normal);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .post-list .post > a:visited {
+    color: var(--text);
+  }
+  .post-list .post > a:hover {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  /* excerpt — two lines max */
   .post-list-rich p {
-    max-width: none;
-    margin-top: var(--space-2);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    margin: var(--space-3) 0 0;
+    max-width: 64ch;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
   }
-}
 
-.post-list a,
-article li a {
-  text-decoration: none;
-}
-.content-column li {
-  margin-bottom: var(--space-2);
-}
-/* vercel article rhythm: 24px base gap below every block, with headings adding a
+  @media (max-width: 640px) {
+    .post-list .post {
+      padding: var(--space-4) 0;
+    }
+    .post-list-rich .post {
+      padding: var(--space-5) 0;
+    }
+    .post-meta-line {
+      gap: var(--space-2);
+      margin-bottom: var(--space-2);
+    }
+    .post-cat {
+      min-height: 32px;
+      padding-left: var(--space-2);
+    }
+    .post-list-rich p {
+      max-width: none;
+      margin-top: var(--space-2);
+    }
+  }
+
+  .post-list a,
+  article li a {
+    text-decoration: none;
+  }
+  /* vercel article rhythm: 24px base gap below every block, with headings adding a
    padding-top lead-in on top of that gap (h2 → 72px above, h3+ → 64px above) */
-.article-content h2 {
-  margin: 0 0 var(--article-gap);
-  padding-top: var(--article-h2-lead);
-}
-.article-content :is(h3, h4, h5, h6) {
-  margin: 0 0 var(--article-gap);
-  padding-top: var(--article-h3-lead);
-}
-.article-content :is(h2, h3, h4, h5, h6):first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-.article-content :is(ul, ol) {
-  margin: 0 0 var(--article-gap);
-}
+  .article-content h2 {
+    margin: 0 0 var(--article-gap);
+    padding-top: var(--article-h2-lead);
+  }
+  .article-content :is(h3, h4, h5, h6) {
+    margin: 0 0 var(--article-gap);
+    padding-top: var(--article-h3-lead);
+  }
+  .article-content :is(h2, h3, h4, h5, h6):first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .article-content :is(ul, ol) {
+    margin: 0 0 var(--article-gap);
+  }
 
-/* animated underline (gradient, not text-decoration) */
-.article-content a {
-  text-decoration: none;
-  background-image: linear-gradient(var(--link), var(--link));
-  background-size: 0% 1px;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  transition:
-    background-size 0.25s var(--ease-out),
-    color var(--motion-fast);
-}
+  /* animated underline (gradient, not text-decoration): a quiet resting hairline
+   marks links without relying on color alone (WCAG 1.4.1); hover grows the
+   full-strength rule over it. clone repeats the line on every wrapped fragment. */
+  .article-content a {
+    text-decoration: none;
+    background-image:
+      linear-gradient(var(--link), var(--link)),
+      linear-gradient(
+        color-mix(in srgb, var(--link) 44%, transparent),
+        color-mix(in srgb, var(--link) 44%, transparent)
+      );
+    background-size:
+      0% 1px,
+      100% 1px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition:
+      background-size 0.25s var(--ease-out),
+      color var(--motion-fast);
+  }
 
-.article-content a:hover {
-  background-size: 100% 1px;
-}
+  .article-content a:hover {
+    background-size:
+      100% 1px,
+      100% 1px;
+  }
 
-.article-content .anchor,
-.article-content .footnotes a,
-.article-content .footnote-ref {
-  background-image: none;
-}
+  .article-content .anchor,
+  .article-content .footnotes a,
+  .article-content .footnote-ref {
+    background-image: none;
+  }
 
-/* in-body footnote ref [n] — excluded from the animated underline above */
-.article-content .footnote-ref {
-  color: var(--link);
-  font-weight: var(--fw-medium);
-  font-variant-numeric: tabular-nums;
-}
+  /* in-body footnote ref [n] — excluded from the animated underline above */
+  .article-content .footnote-ref {
+    color: var(--link);
+    font-weight: var(--fw-medium);
+    font-variant-numeric: tabular-nums;
+  }
 
-article ul,
-article ol {
-  padding-left: var(--space-6);
-}
-article li::marker {
-  color: var(--faint);
-}
-article dt {
-  font-weight: var(--fw-semibold);
-}
-article dd {
-  margin: 0 0 var(--space-2);
-  padding-left: var(--space-6);
-}
+  /* vercel list metrics: 20px indent + 8px marker gap; inter-item gap stays
+   --space-2. scoped to prose so .toc/.post-tags keep their own spacing */
+  .article-content ul,
+  .article-content ol {
+    padding-left: 20px;
+  }
+  .article-content li {
+    padding-left: 8px;
+  }
+  .content-column li {
+    margin-bottom: var(--space-2);
+  }
+  .article-content li::marker {
+    color: var(--faint);
+  }
+  .article-content dt {
+    font-weight: var(--fw-semibold);
+  }
+  .article-content dd {
+    margin: 0 0 var(--space-2);
+    padding-left: 28px; /* aligns with li text (20px indent + 8px gap) */
+  }
 
-article img,
-article video,
-article iframe {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-}
+  article img,
+  article video,
+  article iframe {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  /* keeps width/height attrs from distorting the clamped box */
+  article img {
+    height: auto;
+  }
 
-article sup {
-  line-height: var(--lh-none);
-}
+  article sup {
+    line-height: var(--lh-none);
+  }
 
-/* snappier taps: drop the 300ms delay + default tap flash */
-.site-title,
-.site-menu a,
-.nav-toggle,
-.theme-toggle,
-.pagination a,
-.back-to-top,
-.connect-inline a,
-summary {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
+  /* snappier taps: drop the 300ms delay + default tap flash */
+  .site-title,
+  .site-menu a,
+  .nav-toggle,
+  .theme-toggle,
+  .pagination a,
+  .back-to-top,
+  summary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-pre,
-code {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: var(--fs-sm);
-  /* vercel uses default features on mono (calt stays on for code) */
-  font-feature-settings: normal;
-}
+  pre,
+  code {
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-sm);
+    /* vercel uses default features on mono (calt stays on for code) */
+    font-feature-settings: normal;
+  }
 
-/* inline code chip — border mixes toward --border-strong (plain --border vanishes
-   on --code-bg); ligatures off so =>, !=, -> read literally */
-code {
-  font-size: 0.82em;
-  background-color: var(--code-bg);
-  padding: 0.1rem 0.34rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
-  font-variant-ligatures: none;
-  /* keep a multi-word chip (e.g. `sh -s 30s`) on one line so it never splits into
+  /* inline code chip — vercel's 4px 5px inset (incl. our 1px border); the Geist
+   chip fill + border stay. border mixes toward --border-strong (plain --border
+   vanishes on --code-bg); ligatures off so =>, !=, -> read literally */
+  code {
+    font-size: 0.82em;
+    background-color: var(--code-bg);
+    padding: 3px 5px;
+    border-radius: var(--radius-sm);
+    border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
+    font-variant-ligatures: none;
+    /* keep a multi-word chip (e.g. `sh -s 30s`) on one line so it never splits into
      two framed pieces at a line end — it moves to the next line whole instead */
-  white-space: nowrap;
-  /* clone keeps the frame intact in the rare case a single chip is too wide to fit */
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-/* code chip inside a link — inherit link hue, keep the frame */
-a > code,
-a code {
-  color: inherit;
-}
+    white-space: nowrap;
+    /* clone keeps the frame intact in the rare case a single chip is too wide to fit */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  /* code chip inside a link — inherit link hue, keep the frame */
+  a > code,
+  a code {
+    color: inherit;
+  }
 
-pre code {
-  padding: 0;
-  font-size: var(--fs-sm);
-  background: none;
-  border: none;
-  /* code blocks preserve newlines + scroll horizontally — don't inherit the inline
+  pre code {
+    padding: 0;
+    font-size: var(--fs-sm);
+    background: none;
+    border: none;
+    /* code blocks preserve newlines + scroll horizontally — don't inherit the inline
      chip's nowrap (which would collapse a block's lines into one) */
-  white-space: pre;
-}
+    white-space: pre;
+  }
 
-/* kbd — Geist key cap; raised look = 1px bottom shadow. Hugo wraps combos as
+  /* kbd — Geist key cap; raised look = 1px bottom shadow. Hugo wraps combos as
    nested <kbd>; inner one drops its frame (below) so the combo reads as one. */
-kbd {
-  display: inline-block;
-  min-width: 1.2em;
-  padding: 0.1rem 0.4rem;
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 0.78em;
-  line-height: var(--lh-ui);
-  text-align: center;
-  white-space: nowrap;
-  color: var(--text);
-  background-color: var(--bg);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-key);
-}
-kbd kbd {
-  padding: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-}
+  kbd {
+    display: inline-block;
+    min-width: 1.2em;
+    padding: 0.1rem 0.4rem;
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: 0.78em;
+    line-height: var(--lh-ui);
+    text-align: center;
+    white-space: nowrap;
+    color: var(--text);
+    background-color: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-key);
+  }
+  kbd kbd {
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
 
-pre {
-  background-color: var(--code-bg);
-  padding: var(--space-4);
-  margin: var(--article-gap) 0;
-  max-width: 100%;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-}
+  pre {
+    background-color: var(--code-bg);
+    /* vercel's 20px pre inset at every width */
+    padding: var(--pre-pad);
+    margin: var(--article-gap) 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
 
-/* slim 8px scrollbar shared by pre / mermaid / table — trims the thumb's 2px inset
+  /* slim 8px scrollbar shared by pre / mermaid / table — trims the thumb's 2px inset
    (built for the 10px page track) so it doesn't shrink to a 4px-thin thumb here */
-pre,
-.mermaid,
-table {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-}
-pre::-webkit-scrollbar,
-.mermaid::-webkit-scrollbar,
-table::-webkit-scrollbar {
-  height: 8px;
-}
-pre::-webkit-scrollbar-thumb,
-.mermaid::-webkit-scrollbar-thumb,
-table::-webkit-scrollbar-thumb {
-  border-width: 1px;
-}
+  pre,
+  .mermaid,
+  table {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  pre::-webkit-scrollbar,
+  .mermaid::-webkit-scrollbar,
+  table::-webkit-scrollbar {
+    height: 8px;
+  }
+  pre::-webkit-scrollbar-thumb,
+  .mermaid::-webkit-scrollbar-thumb,
+  table::-webkit-scrollbar-thumb {
+    border-width: 1px;
+  }
 
-.highlight {
-  margin: var(--article-gap) 0;
-}
-.highlight pre {
-  margin: 0;
-}
-.highlight pre code {
-  display: inline-block;
-  min-width: 100%;
-}
-/* .highlight .line.hl lives in the chroma layer (06-chroma.css) */
+  .highlight {
+    margin: var(--article-gap) 0;
+  }
+  .highlight pre {
+    margin: 0;
+  }
+  .highlight pre code {
+    display: inline-block;
+    min-width: 100%;
+  }
+  /* .highlight .line.hl lives in the chroma layer (06-chroma.css) */
 
-/* code block frame — wraps the Chroma output */
-.codeblock {
-  position: relative; /* anchor the copy button */
-  margin: var(--article-gap) 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
+  /* code block frame — wraps the Chroma output */
+  .codeblock {
+    position: relative; /* anchor the copy button */
+    margin: var(--article-gap) 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
 
-/* copy-to-clipboard — Geist icon button pinned to the top-right corner.
+  /* copy-to-clipboard — Geist icon button pinned to the top-right corner.
    injected by JS (baseof.html), so it only exists when it can work */
-.copy-code {
-  position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
-  z-index: 1;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  color: var(--faint);
-  background-color: var(--code-bg);
-  border: 1px solid var(--border);
-  /* matches the header icon buttons (search / hamburger): 32px, radius 6 */
-  border-radius: var(--radius);
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  transition: var(--transition-control);
-}
-.copy-code:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
-  background-color: var(--surface-2);
-}
-.copy-code:focus-visible {
-  outline: none;
-  color: var(--text);
-  box-shadow: var(--ring);
-}
-.copy-code__icon {
-  display: block;
-}
-.copy-code__check {
-  display: none;
-}
-.copy-code.copied {
-  color: var(--green-900);
-  border-color: color-mix(in srgb, var(--green-900) 40%, var(--border));
-}
-.copy-code.copied .copy-code__copy {
-  display: none;
-}
-.copy-code.copied .copy-code__check {
-  display: block;
-}
-.codeblock .highlight {
-  margin: 0;
-}
-.codeblock pre {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-}
-/* inset the focus ring — the rounded frame clips it with overflow:hidden */
-.codeblock pre:focus-visible {
-  outline-offset: -2px;
-}
+  .copy-code {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    z-index: 1;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--faint);
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    /* matches the header icon buttons (search / hamburger): 32px, radius 6 */
+    border-radius: var(--radius);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: var(--transition-control);
+  }
+  .copy-code:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background-color: var(--surface-2);
+  }
+  .copy-code:focus-visible {
+    outline: none;
+    color: var(--text);
+    box-shadow: var(--ring);
+  }
+  .copy-code__icon {
+    display: block;
+  }
+  .copy-code__check {
+    display: none;
+  }
+  .copy-code.copied {
+    color: var(--green-900);
+    border-color: color-mix(in srgb, var(--green-900) 40%, var(--border));
+  }
+  .copy-code.copied .copy-code__copy {
+    display: none;
+  }
+  .copy-code.copied .copy-code__check {
+    display: block;
+  }
+  .codeblock .highlight {
+    margin: 0;
+  }
+  .codeblock pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+  /* inset the focus ring — the rounded frame clips it with overflow:hidden */
+  .codeblock pre:focus-visible {
+    outline-offset: -2px;
+  }
 
-.mermaid {
-  margin: var(--article-gap) 0;
-  padding: var(--space-4);
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-}
-.mermaid svg {
-  /* scale the natural-size diagram down to the reading column (stays vector) */
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-}
+  .mermaid {
+    margin: var(--article-gap) 0;
+    padding: var(--pre-pad);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .mermaid svg {
+    /* scale the natural-size diagram down to the reading column (stays vector) */
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
 
-/* only these animate on light/dark flip (html eases bg+text above);
+  /* only these animate on light/dark flip (html eases bg+text above);
    prefers-reduced-motion cancels all of it */
-pre,
-code,
-blockquote,
-.alert {
-  transition:
-    background-color var(--motion),
-    border-color var(--motion);
-}
-.site-header,
-.profile-page .aside-section,
-footer {
-  transition: border-color var(--motion);
-}
+  pre,
+  code,
+  blockquote,
+  .alert {
+    transition:
+      background-color var(--motion),
+      border-color var(--motion);
+  }
+  .site-header,
+  footer {
+    transition: border-color var(--motion);
+  }
 
-/* alerts — Geist Notes. variant hue stays structural (fill / border / title);
+  /* alerts — Geist Notes. variant hue stays structural (fill / border / title);
    body content stays --text for AA. */
-.alert {
-  --note-bg: var(--code-bg);
-  --note-border: var(--border);
-  --note-title: var(--text);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
-  margin: var(--article-gap) 0;
-  padding: var(--space-4) var(--space-5);
-  background-color: var(--note-bg);
-  border: 1px solid var(--note-border);
-  /* same corner radius as code blocks (.codeblock) so all article boxes match */
-  border-radius: var(--radius);
-  color: var(--text);
-}
+  .alert {
+    --note-bg: var(--code-bg);
+    --note-border: var(--border);
+    --note-title: var(--text);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
+    margin: var(--article-gap) 0;
+    padding: var(--space-4) var(--space-5);
+    background-color: var(--note-bg);
+    border: 1px solid var(--note-border);
+    /* same corner radius as code blocks (.codeblock) so all article boxes match */
+    border-radius: var(--radius);
+    color: var(--text);
+  }
 
-/* blockquote — the faint box, but with a left accent "spine" so it never reads
+  /* blockquote — the faint box, but with a left accent "spine" so it never reads
    as a code block or admonition (those have a uniform hairline border). A large
    soft quotation mark + italic, full-contrast text complete the quote feel. */
-blockquote:not(.alert) {
-  position: relative;
-  margin: var(--article-gap) 0;
-  padding: var(--space-4) var(--space-5) var(--space-4) var(--space-10);
-  background-color: var(--code-bg);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--border-strong);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-size: var(--fs-article);
-  font-weight: var(--fw-normal);
-  font-style: italic;
-  line-height: var(--lh-article);
-  letter-spacing: normal;
-}
-/* big quiet opening quote mark (the normal typographic glyph), hanging top-left */
-blockquote:not(.alert)::before {
-  content: "\201C";
-  position: absolute;
-  left: var(--space-4);
-  top: var(--space-3);
-  color: var(--border-strong);
-  font-size: 2.6em;
-  line-height: 1;
-  font-style: normal;
-}
-/* a trailing attribution line (— Author) reads quiet + smaller */
-blockquote:not(.alert) cite,
-blockquote:not(.alert) footer {
-  display: block;
-  margin-top: var(--space-3);
-  font-size: var(--fs-md);
-  font-style: normal;
-  color: var(--muted);
-}
+  blockquote:not(.alert) {
+    position: relative;
+    margin: var(--article-gap) 0;
+    padding: var(--space-4) var(--space-5) var(--space-4) var(--space-10);
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: var(--fs-article);
+    font-weight: var(--fw-normal);
+    font-style: italic;
+    line-height: var(--lh-article);
+    letter-spacing: normal;
+  }
+  /* big quiet opening quote mark (the normal typographic glyph), hanging top-left */
+  blockquote:not(.alert)::before {
+    content: "\201C";
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-3);
+    color: var(--border-strong);
+    font-size: 2.6em;
+    line-height: 1;
+    font-style: normal;
+  }
+  /* a trailing attribution line (— Author) reads quiet + smaller */
+  blockquote:not(.alert) cite,
+  blockquote:not(.alert) footer {
+    display: block;
+    margin-top: var(--space-3);
+    font-size: var(--fs-md);
+    font-style: normal;
+    color: var(--muted);
+  }
 
-blockquote > p:first-child,
-.alert > :first-child,
-.alert-title:first-child {
-  margin-top: 0;
-}
-blockquote > p:last-child,
-.alert > :last-child {
-  margin-bottom: 0;
-}
-.alert > :is(ul, ol) {
-  margin-top: var(--space-1);
-}
+  blockquote > p:first-child,
+  .alert > :first-child,
+  .alert-title:first-child {
+    margin-top: 0;
+  }
+  blockquote > p:last-child,
+  .alert > :last-child {
+    margin-bottom: 0;
+  }
+  .alert > :is(ul, ol) {
+    margin-top: var(--space-1);
+  }
 
-.alert-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-weight: var(--fw-semibold);
-  margin: 0 0 var(--space-3);
-  line-height: var(--lh-ui);
-  color: var(--note-title);
-}
+  .alert-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--fw-semibold);
+    margin: 0 0 var(--space-3);
+    line-height: var(--lh-ui);
+    color: var(--note-title);
+  }
 
-.alert-title::before {
-  content: "";
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  flex: 0 0 1em;
-  background-color: currentColor;
-  mask: var(--note-icon) center / 100% 100% no-repeat;
-  -webkit-mask: var(--note-icon) center / 100% 100% no-repeat;
-}
+  .alert-title::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 1em;
+    background-color: currentColor;
+    mask: var(--note-icon) center / 100% 100% no-repeat;
+    -webkit-mask: var(--note-icon) center / 100% 100% no-repeat;
+  }
 
-.alert :is(p:not(.alert-title), li, dd) {
-  color: var(--text);
-}
+  .alert :is(p:not(.alert-title), li, dd) {
+    color: var(--text);
+  }
 
-.alert li::marker {
-  color: color-mix(in srgb, var(--note-title) 72%, var(--text));
-}
+  .alert li::marker {
+    color: color-mix(in srgb, var(--note-title) 72%, var(--text));
+  }
 
-.alert :not(pre) > code {
-  color: var(--text);
-  background-color: color-mix(in srgb, var(--code-bg) 78%, var(--note-bg));
-  border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
-}
+  .alert :not(pre) > code {
+    color: var(--text);
+    background-color: color-mix(in srgb, var(--code-bg) 78%, var(--note-bg));
+    border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
+  }
 
-.alert :is(pre, .codeblock) {
-  border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
-}
+  .alert :is(pre, .codeblock) {
+    border-color: color-mix(in srgb, var(--border-strong) 48%, var(--note-border));
+  }
 
-.alert pre {
-  color: var(--text);
-  background-color: color-mix(in srgb, var(--code-bg) 88%, var(--note-bg));
-}
+  .alert pre {
+    color: var(--text);
+    background-color: color-mix(in srgb, var(--code-bg) 88%, var(--note-bg));
+  }
 
-/* variant hues — Geist Note: 200 fill, 400 border (visible thin edge), 900 text;
+  /* variant hues — Geist Note: 200 fill, 400 border (visible thin edge), 900 text;
    each token carries its own dark value, so no separate dark overrides needed */
-.alert-note {
-  --note-bg: var(--blue-200);
-  --note-border: var(--blue-400);
-  --note-title: var(--blue-900);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
-}
-.alert-tip {
-  --note-bg: var(--green-200);
-  --note-border: var(--green-400);
-  --note-title: var(--green-900);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.75 14.65 9.35 21.25 12 14.65 14.65 12 21.25 9.35 14.65 2.75 12 9.35 9.35 12 2.75Z'/%3E%3C/svg%3E");
-}
-.alert-important {
-  --note-bg: var(--purple-200);
-  --note-border: var(--purple-400);
-  --note-title: var(--purple-900);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 9 9-9 9-9-9 9-9Z'/%3E%3Cpath d='M12 8v5'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
-}
-.alert-warning {
-  --note-bg: var(--amber-200);
-  --note-border: var(--amber-400);
-  --note-title: var(--amber-900);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
-}
-.alert-caution {
-  --note-bg: var(--red-200);
-  --note-border: var(--red-400);
-  --note-title: var(--red-900);
-  --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2Z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
-}
+  .alert-note {
+    --note-bg: var(--blue-200);
+    --note-border: var(--blue-400);
+    --note-title: var(--blue-900);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E");
+  }
+  .alert-tip {
+    --note-bg: var(--green-200);
+    --note-border: var(--green-400);
+    --note-title: var(--green-900);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.75 14.65 9.35 21.25 12 14.65 14.65 12 21.25 9.35 14.65 2.75 12 9.35 9.35 12 2.75Z'/%3E%3C/svg%3E");
+  }
+  .alert-important {
+    --note-bg: var(--purple-200);
+    --note-border: var(--purple-400);
+    --note-title: var(--purple-900);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 9 9-9 9-9-9 9-9Z'/%3E%3Cpath d='M12 8v5'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+  }
+  .alert-warning {
+    --note-bg: var(--amber-200);
+    --note-border: var(--amber-400);
+    --note-title: var(--amber-900);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+  }
+  .alert-caution {
+    --note-bg: var(--red-200);
+    --note-border: var(--red-400);
+    --note-title: var(--red-900);
+    --note-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86L7.86 2Z'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+  }
 
-/* tables — Geist data-table. border-collapse:separate so the frame can take
+  /* tables — Geist data-table. border-collapse:separate so the frame can take
    --radius; no render-hook wrapper, so the rendered body stays identical to RSS */
-table {
-  display: block;
-  width: 100%;
-  margin: var(--article-gap) 0;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  font-size: var(--fs-sm);
-  font-variant-numeric: tabular-nums;
-}
+  table {
+    display: block;
+    width: 100%;
+    margin: var(--article-gap) 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+  }
 
-table thead th {
-  background-color: var(--code-bg);
-  border-bottom: 1px solid var(--border-strong);
-  text-align: left;
-  font-weight: var(--fw-semibold);
-  color: var(--text);
-}
+  table thead th {
+    background-color: var(--code-bg);
+    border-bottom: 1px solid var(--border-strong);
+    text-align: left;
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+  }
 
-table th,
-table td {
-  padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--border);
-}
+  table th,
+  table td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+  }
 
-/* Geist data-tables use horizontal row dividers ONLY — no column gridlines */
+  /* Geist data-tables use horizontal row dividers ONLY — no column gridlines */
 
-/* last row sits flush on the rounded frame — drop its divider */
-table tbody tr:last-child td {
-  border-bottom: none;
-}
-table tbody tr:hover {
-  background-color: color-mix(in srgb, var(--code-bg) 55%, transparent);
-}
+  /* last row sits flush on the rounded frame — drop its divider */
+  table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  table tbody tr:hover {
+    background-color: color-mix(in srgb, var(--code-bg) 55%, transparent);
+  }
 
-/* shared focus ring for keyboard-tabbable controls (Geist accent box-shadow) */
-table:focus-visible,
-.pagination a:focus-visible,
-.post-tags a:focus-visible,
-summary:focus-visible {
-  outline: none;
-  box-shadow: var(--ring);
-}
+  /* shared focus ring for keyboard-tabbable controls (Geist accent box-shadow) */
+  table:focus-visible,
+  .pagination a:focus-visible,
+  .post-tags a:focus-visible,
+  summary:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+  }
 
-/* pagination — Geist secondary buttons; text stays --text in both themes for AA */
-.pagination {
-  margin-top: var(--space-8);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
+  /* pagination — Geist secondary buttons; text stays --text in both themes for AA */
+  .pagination {
+    margin-top: var(--space-8);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
 
-.pagination a {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-2) var(--space-4);
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-none);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: var(--transition-control);
-}
+  .pagination a {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-none);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-control);
+  }
 
-.pagination a:visited {
-  color: var(--text);
-}
+  .pagination a:visited {
+    color: var(--text);
+  }
 
-.pagination a:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
-  background-color: var(--surface);
-}
+  .pagination a:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background-color: var(--surface);
+  }
 
-.pagination a:active {
-  background-color: var(--surface-2);
-}
+  .pagination a:active {
+    background-color: var(--surface-2);
+  }
 
-/* archive — a dense, grid-aligned Geist table: date · title · category, one
+  /* archive — a dense, grid-aligned Geist table: date · title · category, one
    hairline-separated row each. tighter + more glanceable than the landing list,
    and built to scale to the full post history. */
-.archive-year {
-  margin-top: var(--space-8);
-}
-/* years read as quiet section dividers (anchor targets) */
-.archive-year h2 {
-  margin-bottom: var(--space-2);
-  padding-bottom: var(--space-2);
-  font-size: var(--fs-h3);
-  border-bottom: 1px solid var(--border);
-}
-.archive-year h2 a {
-  color: var(--text);
-  text-decoration: none;
-  background: none;
-}
-.archive-year h2 a:hover {
-  color: var(--link);
-}
-.archive-year h2 sup {
-  color: var(--faint);
-  font-weight: var(--fw-normal);
-  font-size: 0.7em;
-}
+  .archive-year {
+    margin-top: var(--space-8);
+  }
+  /* years read as quiet section dividers (anchor targets) */
+  .archive-year h2 {
+    margin-bottom: var(--space-2);
+    padding-bottom: var(--space-2);
+    font-size: var(--fs-h3);
+    border-bottom: 1px solid var(--border);
+  }
+  .archive-year h2 a {
+    color: var(--text);
+    text-decoration: none;
+    background: none;
+  }
+  .archive-year h2 a:hover {
+    color: var(--link);
+  }
+  .archive-year h2 sup {
+    color: var(--faint);
+    font-weight: var(--fw-normal);
+    font-size: 0.7em;
+  }
 
-.archive-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  .archive-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-/* one row = [fixed date] [flexible title] [category]; the date column is fixed
+  /* one row = [fixed date] [flexible title] [category]; the date column is fixed
    so titles align into a clean vertical edge (the "grid-bound" structure) */
-.archive-row {
-  display: grid;
-  grid-template-columns: 4.25rem 1fr auto;
-  align-items: baseline;
-  gap: var(--space-3) var(--space-4);
-  padding: var(--space-3) var(--space-2);
-  margin: 0 calc(-1 * var(--space-2));
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  /* the archive can hold the full history — skip painting off-screen rows */
-  content-visibility: auto;
-  contain-intrinsic-size: auto 3.5rem;
-  transition: background-color var(--motion-fast);
-}
-.archive-row:hover {
-  background-color: var(--surface);
-}
-
-/* date: Geist Mono tabular — the site's metadata language (post-list kicker) */
-.archive-date {
-  color: var(--muted);
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: var(--fs-xs);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
-  line-height: var(--lh-ui);
-  white-space: nowrap;
-}
-
-.archive-title {
-  color: var(--text);
-  font-size: var(--fs-base);
-  font-weight: var(--fw-normal);
-  letter-spacing: -0.011em;
-  line-height: var(--lh-snug);
-  text-decoration: none;
-  text-wrap: pretty;
-  transition: color var(--motion-fast);
-}
-.archive-title:visited {
-  color: var(--text);
-}
-.archive-title:hover {
-  color: var(--link);
-}
-
-/* quiet uppercase mono category tag, right-aligned (matches the kicker mono) */
-.archive-cat {
-  justify-self: end;
-  color: var(--muted);
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: var(--lh-ui);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color var(--motion-fast);
-}
-.archive-cat:visited {
-  color: var(--muted);
-}
-.archive-cat:hover {
-  color: var(--link);
-}
-
-@media (max-width: 640px) {
-  /* drop the category to its own line under the title; keep date aligned left */
   .archive-row {
-    grid-template-columns: 4.25rem 1fr;
-    gap: var(--space-1) var(--space-4);
+    display: grid;
+    grid-template-columns: 4.25rem 1fr auto;
+    align-items: baseline;
+    gap: var(--space-3) var(--space-4);
     padding: var(--space-3) var(--space-2);
+    margin: 0 calc(-1 * var(--space-2));
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    /* the archive can hold the full history — skip painting off-screen rows */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 3.5rem;
+    transition: background-color var(--motion-fast);
   }
+  .archive-row:hover {
+    background-color: var(--surface);
+  }
+
+  /* date: Geist Mono tabular — the site's metadata language (post-list kicker) */
+  .archive-date {
+    color: var(--muted);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    line-height: var(--lh-ui);
+    white-space: nowrap;
+  }
+
+  .archive-title {
+    color: var(--text);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-normal);
+    letter-spacing: -0.011em;
+    line-height: var(--lh-snug);
+    text-decoration: none;
+    text-wrap: pretty;
+    transition: color var(--motion-fast);
+  }
+  .archive-title:visited {
+    color: var(--text);
+  }
+  .archive-title:hover {
+    color: var(--link);
+  }
+
+  /* quiet uppercase mono category tag, right-aligned (matches the kicker mono) */
   .archive-cat {
-    grid-column: 2;
-    justify-self: start;
+    justify-self: end;
+    color: var(--muted);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-2xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: var(--lh-ui);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--motion-fast);
   }
-}
-.post-tags {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-top: var(--space-6);
-}
+  .archive-cat:visited {
+    color: var(--muted);
+  }
+  .archive-cat:hover {
+    color: var(--link);
+  }
 
-.post-tags a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: var(--space-1) var(--space-2);
-  background-color: var(--code-bg);
-  border: 1px solid var(--border);
-  /* Geist Badge is a small rounded rectangle, not a full pill. */
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-normal);
-  line-height: var(--lh-ui);
-  color: var(--muted);
-  transition: var(--transition-control);
-}
+  @media (max-width: 640px) {
+    /* drop the category to its own line under the title; keep date aligned left */
+    .archive-row {
+      grid-template-columns: 4.25rem 1fr;
+      gap: var(--space-1) var(--space-4);
+      padding: var(--space-3) var(--space-2);
+    }
+    .archive-cat {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+  .post-tags {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+  }
 
-.post-tags a:visited {
-  color: var(--muted);
-}
-.post-tags a:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
-  background-color: var(--surface-2);
-}
+  .post-tags a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    /* Geist Badge is a small rounded rectangle, not a full pill. */
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-normal);
+    line-height: var(--lh-ui);
+    color: var(--muted);
+    transition: var(--transition-control);
+  }
 
-/* tag cloud (/tags/) — reuses the .post-tags badge, adds a count chip */
-.tag-cloud {
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-.tag-cloud .tag-count {
-  margin-left: var(--space-2);
-  padding-left: var(--space-2);
-  border-left: 1px solid var(--border);
-  color: var(--faint);
-  font-variant-numeric: tabular-nums;
-}
-.tag-cloud a:hover .tag-count {
-  color: var(--text);
-  border-left-color: var(--border-strong);
-}
-.empty-state {
-  margin: var(--space-4) 0 0;
-  color: var(--muted);
-}
+  .post-tags a:visited {
+    color: var(--muted);
+  }
+  .post-tags a:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background-color: var(--surface-2);
+  }
 
-.anchor {
-  color: var(--faint);
-  text-decoration: none;
-  font-weight: var(--fw-normal);
-  margin-left: var(--space-1);
-  opacity: 0;
-  transition: opacity var(--motion-fast);
-}
+  /* tag cloud (/tags/) — reuses the .post-tags badge, adds a count chip */
+  .tag-cloud {
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .tag-cloud .tag-count {
+    margin-left: var(--space-2);
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--border);
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .tag-cloud a:hover .tag-count {
+    color: var(--text);
+    border-left-color: var(--border-strong);
+  }
+  .empty-state {
+    margin: var(--space-4) 0 0;
+    color: var(--muted);
+  }
 
-h2:hover .anchor,
-h3:hover .anchor,
-h4:hover .anchor,
-h5:hover .anchor,
-h6:hover .anchor,
-.anchor:focus {
-  opacity: var(--op-faint);
-}
+  .anchor {
+    color: var(--faint);
+    text-decoration: none;
+    font-weight: var(--fw-normal);
+    margin-left: var(--space-1);
+    opacity: 0;
+    transition: opacity var(--motion-fast);
+  }
 
-.anchor:hover {
-  opacity: 1;
-}
+  h2:hover .anchor,
+  h3:hover .anchor,
+  h4:hover .anchor,
+  h5:hover .anchor,
+  h6:hover .anchor,
+  .anchor:focus {
+    opacity: var(--op-faint);
+  }
 
-.back-to-top {
-  position: fixed;
-  /* clear the home-indicator / bottom safe area on notched phones */
-  bottom: max(var(--space-6), env(safe-area-inset-bottom));
-  /* sit just outside the centered page shell: half its width + 20px gutter */
-  right: max(var(--space-3), calc(50% - var(--page-width) / 2 - 20px));
-  box-sizing: border-box;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  box-shadow: none;
-  color: var(--muted);
-  text-decoration: none;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity var(--motion),
-    color var(--motion-fast),
-    border-color var(--motion-fast);
-}
+  .anchor:hover {
+    opacity: 1;
+  }
 
-.back-to-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
+  .back-to-top {
+    position: fixed;
+    /* clear the home-indicator / bottom safe area on notched phones */
+    bottom: max(var(--space-6), env(safe-area-inset-bottom));
+    /* sit just outside the centered page shell: half its width + 20px gutter */
+    right: max(var(--space-3), calc(50% - var(--page-width) / 2 - 20px));
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: none;
+    color: var(--muted);
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity var(--motion),
+      color var(--motion-fast),
+      border-color var(--motion-fast);
+  }
 
-.back-to-top:visited {
-  color: var(--muted);
-}
-.back-to-top:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
-  background: var(--surface);
-}
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-.back-to-top:focus-visible {
-  outline: none;
-  box-shadow: var(--ring);
-  color: var(--text);
-}
+  .back-to-top:visited {
+    color: var(--muted);
+  }
+  .back-to-top:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
 
-.post-ornament {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  margin: var(--space-8) 0;
-  color: var(--faint);
-  font-size: var(--fs-h2);
-}
+  .back-to-top:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+    color: var(--text);
+  }
 
-.post-ornament::before,
-.post-ornament::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to var(--dir), var(--border), transparent);
-}
+  .post-ornament {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin: var(--space-8) 0;
+    color: var(--faint);
+    font-size: var(--fs-h2);
+  }
 
-.post-ornament::before {
-  --dir: left;
-}
-.post-ornament::after {
-  --dir: right;
-}
+  .post-ornament::before,
+  .post-ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to var(--dir), var(--border), transparent);
+  }
 
-hr {
-  border: none;
-  width: 4rem;
-  height: 1px;
-  margin: var(--space-10) auto;
-  background: var(--border);
-}
+  .post-ornament::before {
+    --dir: left;
+  }
+  .post-ornament::after {
+    --dir: right;
+  }
 
-/* related posts + discussion backlinks — shared Geist footer-nav idiom:
-   eyebrow heading (reuses .aside-section-title / .home-section-title) over
+  hr {
+    border: none;
+    width: 4rem;
+    height: 1px;
+    margin: var(--space-10) auto;
+    background: var(--border);
+  }
+
+  /* related posts + discussion backlinks — shared Geist footer-nav idiom:
+   eyebrow heading (same look as .home-section-title) over
    hairline-separated rows. discussion-links is driven by the post's
    `discussions` frontmatter and renders nothing when the field is absent;
    it is label-agnostic, so any platform (Hacker News, Reddit, Lobsters, …)
    and any count of entries stack identically. */
-.related-posts,
-.discussion-links {
-  margin: var(--space-6) 0 0;
-}
-.related-posts h2,
-.discussion-links h2 {
-  margin: 0 0 var(--space-2);
-  color: var(--faint);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-tight);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.discussion-links p {
-  margin: 0 0 var(--space-3);
-  color: var(--muted);
-  font-size: var(--fs-md);
-  line-height: var(--lh-snug);
-}
-.related-posts ul,
-.discussion-links ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.related-posts li + li,
-.discussion-links li + li {
-  border-top: 1px solid var(--border);
-}
-.related-posts li a,
-.discussion-links li a {
-  display: block;
-  padding: var(--space-3) 0;
-  color: var(--text);
-  /* a bit under body copy — these footer-nav rows are secondary to the
+  .related-posts,
+  .discussion-links {
+    margin: var(--space-6) 0 0;
+  }
+  .related-posts h2,
+  .discussion-links h2 {
+    /* rows below carry --space-3 padding → rendered eyebrow gap ≈ the home feed's */
+    margin: 0 0 var(--space-3);
+    color: var(--faint);
+    font-size: var(--fs-2xs);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-tight);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .discussion-links p {
+    margin: 0 0 var(--space-3);
+    color: var(--muted);
+    font-size: var(--fs-md);
+    line-height: var(--lh-snug);
+  }
+  .related-posts ul,
+  .discussion-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .related-posts li + li,
+  .discussion-links li + li {
+    border-top: 1px solid var(--border);
+  }
+  .related-posts li a,
+  .discussion-links li a {
+    display: block;
+    padding: var(--space-3) 0;
+    color: var(--text);
+    /* a bit under body copy — these footer-nav rows are secondary to the
      article, not part of the reading flow (between --fs-md and --fs-base) */
-  font-size: 0.95rem;
-  line-height: var(--lh-snug);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.related-posts li a:visited,
-.discussion-links li a:visited {
-  color: var(--text);
-}
-.related-posts li a:hover,
-.discussion-links li a:hover {
-  color: var(--link);
-}
+    font-size: 0.95rem;
+    line-height: var(--lh-snug);
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .related-posts li a:visited,
+  .discussion-links li a:visited {
+    color: var(--text);
+  }
+  .related-posts li a:hover,
+  .discussion-links li a:hover {
+    color: var(--link);
+  }
 
-/* TOC — Geist disclosure: bordered summary joins a matching panel when open */
-.toc {
-  margin: var(--space-4) 0;
-  font-size: var(--fs-md);
-  line-height: var(--lh-normal);
-}
-.toc[open] > summary {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-color: transparent;
-}
-.toc nav {
-  padding: var(--space-3) var(--space-3) var(--space-3) 0;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-}
-.toc > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.toc nav ul {
-  margin: 0;
-  padding-left: var(--space-6);
-}
-.toc nav li {
-  margin-bottom: var(--space-1);
-}
-.toc nav li:last-child {
-  margin-bottom: 0;
-}
-.toc a {
-  color: var(--muted);
-  text-decoration: none;
-  transition: color var(--motion-fast);
-}
-.toc a:hover {
-  color: var(--link);
-  text-decoration: none;
-}
+  /* TOC — Geist disclosure: bordered summary joins a matching panel when open */
+  .toc {
+    margin: var(--space-4) 0;
+    font-size: var(--fs-md);
+    line-height: var(--lh-normal);
+  }
+  .toc[open] > summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+  }
+  .toc nav {
+    padding: var(--space-3) var(--space-3) var(--space-3) 0;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+  .toc > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .toc nav ul {
+    margin: 0;
+    padding-left: var(--space-6);
+  }
+  .toc nav li {
+    margin-bottom: var(--space-1);
+  }
+  .toc nav li::marker {
+    color: var(--faint);
+  }
+  .toc nav li:last-child {
+    margin-bottom: 0;
+  }
+  .toc a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .toc a:hover {
+    color: var(--link);
+    text-decoration: none;
+  }
 
-/* details/summary — Geist Collapse. native ▸ marker hidden per-engine (below);
+  /* details/summary — Geist Collapse. native ▸ marker hidden per-engine (below);
    chevron is an SVG mask in currentColor so it tracks hover/theme */
-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  cursor: pointer;
-  padding: var(--space-2) var(--space-3);
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: var(--fs-md);
-  color: var(--muted);
-  list-style: none; /* hide the default ▸ marker (Firefox) */
-  transition: var(--transition-control);
-}
-summary::-webkit-details-marker {
-  display: none; /* hide the default ▸ marker (Chromium/Safari) */
-}
-/* chevron — rotates 90° when open */
-summary::after {
-  content: "";
-  flex: none;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--faint);
-  -webkit-mask: var(--chevron-right) center / contain no-repeat;
-  mask: var(--chevron-right) center / contain no-repeat;
-  transition:
-    transform var(--motion),
-    background-color var(--motion-fast);
-}
-details[open] > summary::after {
-  transform: rotate(90deg);
-}
-summary:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
-}
-summary:hover::after {
-  background-color: var(--text);
-}
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    cursor: pointer;
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--fs-md);
+    color: var(--muted);
+    list-style: none; /* hide the default ▸ marker (Firefox) */
+    transition: var(--transition-control);
+  }
+  summary::-webkit-details-marker {
+    display: none; /* hide the default ▸ marker (Chromium/Safari) */
+  }
+  /* chevron — rotates 90° when open */
+  summary::after {
+    content: "";
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--faint);
+    -webkit-mask: var(--chevron-right) center / contain no-repeat;
+    mask: var(--chevron-right) center / contain no-repeat;
+    transition:
+      transform var(--motion),
+      background-color var(--motion-fast);
+  }
+  details[open] > summary::after {
+    transform: rotate(90deg);
+  }
+  summary:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  summary:hover::after {
+    background-color: var(--text);
+  }
 
-/* open <details> joins its panel as one card; :not(.toc) so the TOC keeps its
+  /* open <details> joins its panel as one card; :not(.toc) so the TOC keeps its
    own tailored padding */
-details:not(.toc)[open] > summary {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-color: transparent;
-}
-details:not(.toc)[open] > summary + * {
-  margin: 0;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-top: none;
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-}
-/* zero the revealed prose's edge margins so the panel hugs */
-details:not(.toc)[open] > summary + * > :first-child {
-  margin-top: 0;
-}
-details:not(.toc)[open] > summary + * > :last-child {
-  margin-bottom: 0;
-}
-
-/* responsive — mobile (body + h1 live in 03-base.css) */
-@media (max-width: 640px) {
-  .post-tags a {
-    min-height: 44px;
-    min-width: 44px;
+  details:not(.toc)[open] > summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
   }
-  /* comfortable touch targets for pagination (matches nav / tags) */
-  .pagination a {
-    min-height: 44px;
+  details:not(.toc)[open] > summary + * {
+    margin: 0;
+    /* horizontal inset matches the summary's --space-3 so text edges align */
+    padding: var(--space-3);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
   }
-  pre {
-    /* keep 1rem horizontal so the hl-line full-bleed stays gutter-aligned */
-    padding: var(--space-3) var(--space-4);
+  /* zero the revealed prose's edge margins so the panel hugs */
+  details:not(.toc)[open] > summary + * > :first-child {
+    margin-top: 0;
   }
-}
+  details:not(.toc)[open] > summary + * > :last-child {
+    margin-bottom: 0;
+  }
 
-/* profile-panel sidebar stacks naturally on small screens — no override needed */
-
+  /* responsive — mobile (body + h1 live in 03-base.css) */
+  @media (max-width: 640px) {
+    .post-tags a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    /* comfortable touch targets for pagination (matches nav / tags) */
+    .pagination a {
+      min-height: 44px;
+    }
+  }
 }

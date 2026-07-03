@@ -2,7 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {{- range .Data.Pages }}
   {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
-  {{- $isIndexablePage := or .IsHome $isArticlePage }}
+  {{- /* mirrors head.html's $isIndexablePage: home, articles, and the profile page */}}
+  {{- $isIndexablePage := or .IsHome $isArticlePage .Params.profilePage }}
   {{- if and $isIndexablePage (not .Params.robotsNoIndex) }}
   <url>
     <loc>{{ .Permalink }}</loc>

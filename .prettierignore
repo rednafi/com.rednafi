@@ -14,3 +14,6 @@ Makefile
 .prettierignore
 .git*
 .hugo*
+
+# machine-written state; sequoia owns its formatting
+.sequoia-state.json

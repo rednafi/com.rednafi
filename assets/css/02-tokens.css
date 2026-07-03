@@ -13,10 +13,10 @@
     --border-strong: #c9c9c9;
     --grid-cross: #a8a8a8;
     --link: #0062d1;
-    --visited: #0062d1;                 /* = --link; pinned by tests */
+    --visited: #0062d1; /* = --link; pinned by tests */
 
-    --surface: var(--code-bg);          /* control hover fill */
-    --surface-2: #ebebeb;               /* control active / pressed fill */
+    --surface: var(--code-bg); /* control hover fill */
+    --surface-2: #ebebeb; /* control active / pressed fill */
     /* raised segment in the theme switcher — lighter than the pill, so the
        selected segment reads as elevated (light: paper over the #f2f2f2 track) */
     --toggle-active: var(--bg);
@@ -24,17 +24,32 @@
 
     /* Geist semantic scale — alerts: 200 fill / 400 border (a visible thin
        edge) / 900 text; chroma + search mark reuse the 900s / amber */
-    --blue-200: #ebf5ff;   --blue-400: #cce6ff;   --blue-900: #0068d6;
-    --green-200: #ebfaeb;  --green-400: #c6f1c7;  --green-900: #297a3a;
-    --purple-200: #f9f1fe; --purple-400: #eddcf9; --purple-900: #7820bc;
-    --amber-200: #fff4d6;  --amber-400: #ffdd8f;  --amber-900: #a35200;
-    --red-200: #ffebeb;    --red-400: #fdd8d8;    --red-900: #cb2a2f;
-    --mark-bg: #ffdd8f;    /* Geist amber-400 */
+    --blue-200: #ebf5ff;
+    --blue-400: #cce6ff;
+    --blue-900: #0068d6;
+    --green-200: #ebfaeb;
+    --green-400: #c6f1c7;
+    --green-900: #297a3a;
+    --purple-200: #f9f1fe;
+    --purple-400: #eddcf9;
+    --purple-900: #7820bc;
+    --amber-200: #fff4d6;
+    --amber-400: #ffdd8f;
+    --amber-900: #a35200;
+    --red-200: #ffebeb;
+    --red-400: #fdd8d8;
+    --red-900: #cb2a2f;
+    --mark-bg: #ffdd8f; /* Geist amber-400 */
 
     /* Spacing — modular .25rem step (the number ≈ px/4) */
-    --space-1: .25rem;  --space-2: .5rem;   --space-3: .75rem;
-    --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
-    --space-7: 1.75rem; --space-8: 2rem;    --space-10: 2.5rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
     --space-12: 3rem;
     /* viewport-driven structural bands + grid gutter */
     --rail: clamp(0.5rem, 2vw, 2rem);
@@ -42,13 +57,12 @@
     --content-top-band: clamp(1.5rem, 3vw, 2rem);
 
     /* Type scale — rendered px at the 17px root in comments */
-    --fs-2xs: .72rem;  /* 12px — eyebrow labels, date / category */
-    --fs-xs: .8rem;    /* 14px — mobile code */
-    --fs-sm: .85rem;   /* 14px — meta, code, tables, badges, nav, footer */
-    --fs-md: .9rem;    /* 15px — toc, summary, excerpts, h5 / h6 */
-    --fs-base: 1rem;     /* 17px — body, h4, aside */
-    --fs-lg: 1.1rem;     /* 19px — h3, card title, site title, mobile post title */
-    --fs-title: 1.18rem; /* 20px — post-list title (desktop); mobile drops to --fs-lg */
+    --fs-2xs: 0.72rem; /* 12px — eyebrow labels, date / category */
+    --fs-xs: 0.8rem; /* 13.6px — archive dates (one step under --fs-sm) */
+    --fs-sm: 0.85rem; /* 14px — meta, tables, badges, nav, footer */
+    --fs-md: 0.9rem; /* 15px — toc, summary, excerpts, h5 / h6 */
+    --fs-base: 1rem; /* 17px — body, h4 */
+    --fs-lg: 1.1rem; /* 19px — site title */
     /* list-title — vercel blog titles are large + tight tracking, not small +
        bold. Fluid 23px → 26px (exact at 390px / 1280px). */
     --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px);
@@ -56,24 +70,26 @@
     /* Display headings — match vercel.com/blog EXACTLY: hard steps, not fluid
        clamps. Desktop defaults here; h1/h3 step down at <=960px and h2 at <640px
        (overrides at the end of this layer), mirroring vercel's breakpoints. */
-    --fs-h1: 48px;  /* article title / page h1 — 40px <=960 */
-    --fs-h2: 32px;  /* vercel keeps h2 32px at every width */
-    --fs-h3: 28px;  /* 24px <=960 */
+    --fs-h1: 48px; /* article title / page h1 — 40px <=960 */
+    --fs-h2: 32px; /* vercel keeps h2 32px at every width */
+    --fs-h3: 28px; /* 24px <=960 */
     /* reading body — 18px/28 by default (matches vercel), stepping DOWN to 17px
        at <=960px (vercel drops to 16px there; we keep it a touch larger). Hard
        breakpoint at max-width:960, so 960px itself is still 17px. Override below. */
     --fs-article: 18px;
-    --lh-article: 1.5556;  /* 28/18 */
-    --lh-display: 1.1;     /* heading leading */
+    --lh-article: calc(28 / 18); /* vercel-exact 28px leading */
+    --pre-pad: 20px; /* vercel pre padding; .line.hl full-bleed mirrors it */
+    --lh-display: 1.1; /* heading leading */
     /* article vertical rhythm — vercel exact (introducing-eve): 24px base gap
        between every block; headings add padding-top ON TOP of that gap, so the
        rendered lead-in is 24+48=72px above an h2 and 24+40=64px above an h3 */
     --article-gap: 24px;
-    --article-h2-lead: 48px;   /* vercel h2 padding-top */
-    --article-h3-lead: 40px;   /* vercel h3 padding-top */
+    --article-h2-lead: 48px; /* vercel h2 padding-top */
+    --article-h3-lead: 40px; /* vercel h3 padding-top */
 
     /* Weights */
     --fw-normal: 400;
+    --fw-display: 450; /* vercel post-title optical weight (h1 only) */
     --fw-medium: 500;
     --fw-semibold: 600;
 
@@ -86,25 +102,23 @@
     --lh-relaxed: 1.6;
 
     /* Opacity steps */
-    --op-faint: .4;
-    --op-dim: .72;
-    --op-hover: .85;
+    --op-faint: 0.4;
+    --op-dim: 0.72;
 
-    --radius-sm: 4px; --radius: 6px; --radius-lg: 12px; --radius-pill: 9999px;
+    --radius-sm: 4px;
+    --radius: 6px;
+    --radius-pill: 9999px;
     --content-width: 720px;
-    --page-width: 1150px;     /* 720 reading column + ~190px grid gutter each side */
-    --motion: .2s ease;
-    --motion-fast: .15s ease;
-    --ease-out: cubic-bezier(.4, 0, .2, 1);
+    --page-width: 1150px; /* 720 reading column + ~190px grid gutter each side */
+    --motion: 0.2s ease;
+    --motion-fast: 0.15s ease;
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
     /* shared control hover/press transition */
     --transition-control:
-      color var(--motion-fast),
-      border-color var(--motion-fast),
+      color var(--motion-fast), border-color var(--motion-fast),
       background-color var(--motion-fast);
     --ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 3px rgba(0, 0, 0, .06);
-    /* popover / menu elevation (geist) */
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .08);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
     --shadow-key: 0 1px 0 var(--border-strong);
 
     --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
@@ -132,15 +146,24 @@
     --toggle-active: #2e2e2e;
     --accent: var(--link);
 
-    --blue-200: #10233d;   --blue-400: #0d3868;   --blue-900: #52a8ff;
-    --green-200: #0f2e18;  --green-400: #0c451b;  --green-900: #62c073;
-    --purple-200: #2e1938; --purple-400: #4f2768; --purple-900: #bf7af0;
-    --amber-200: #331b00;  --amber-400: #573300;  --amber-900: #f2a20d;
-    --red-200: #3c1618;    --red-400: #671e21;    --red-900: #ff6166;
-    --mark-bg: #6b4105;    /* Geist amber-500 */
+    --blue-200: #10233d;
+    --blue-400: #0d3868;
+    --blue-900: #52a8ff;
+    --green-200: #0f2e18;
+    --green-400: #0c451b;
+    --green-900: #62c073;
+    --purple-200: #2e1938;
+    --purple-400: #4f2768;
+    --purple-900: #bf7af0;
+    --amber-200: #331b00;
+    --amber-400: #573300;
+    --amber-900: #f2a20d;
+    --red-200: #3c1618;
+    --red-400: #671e21;
+    --red-900: #ff6166;
+    --mark-bg: #6b4105; /* Geist amber-500 */
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 1px 3px rgba(0, 0, 0, .4);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .5);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
   }
 
   /* reading body steps down to 17px at <=960px: phones + tablets (incl. iPad
@@ -148,10 +171,10 @@
      18px/28 default. Hard step at max-width:960 (vercel uses 16px here; we keep 17). */
   @media (max-width: 960px) {
     :root {
-      --fs-article: 17px;  /* phones + tablets (a touch larger than vercel's 16px) */
-      --lh-article: 1.5;   /* 25.5/17 */
-      --fs-h1: 40px;       /* vercel: h1 40px <=960, 48px above */
-      --fs-h3: 24px;       /* vercel: h3 24px <=960, 28px above */
+      --fs-article: 17px; /* phones + tablets (a touch larger than vercel's 16px) */
+      --lh-article: 1.5; /* 25.5/17 */
+      --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
+      --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
     }
   }
 }

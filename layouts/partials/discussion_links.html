@@ -4,7 +4,7 @@
   <p>This post is being discussed at the places below. Feel free to jump in.</p>
   <ul>
     {{- range . }}
-    <li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .label }}</a></li>
+    <li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .label }} (opens in new tab)">{{ .label }}</a></li>
     {{- end }}
   </ul>
 </nav>

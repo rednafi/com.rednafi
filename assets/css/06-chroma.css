@@ -1,48 +1,83 @@
 @layer chroma {
-
-/* exact vercel.com/geist tokens: keyword=purple-900, name=green-900, string/number=blue-900.
+  /* exact vercel.com/geist tokens: keyword=purple-900, name=green-900, string/number=blue-900.
    Each --*-900 token carries its own dark value, so no [data-theme] overrides are needed. */
 
-pre,
-.chroma {
-  color: var(--text);
-}
+  pre,
+  .chroma {
+    color: var(--text);
+  }
 
-.chroma .lnt,
-.chroma .ln {
-  color: var(--faint);
-  user-select: none;
-  margin-right: 0.4em;
-  padding: 0 0.4em;
-}
+  .chroma .lnt,
+  .chroma .ln {
+    color: var(--faint);
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em;
+  }
 
-.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr,
-.chroma .na {
-  color: var(--purple-900);
-}
-.chroma .kt, .chroma .nc, .chroma .nn, .chroma .nf, .chroma .fm, .chroma .nb,
-.chroma .bp, .chroma .nd, .chroma .ne, .chroma .nl, .chroma .nt {
-  color: var(--green-900);
-}
-.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd,
-.chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr,
-.chroma .s1, .chroma .ss,
-.chroma .l, .chroma .ld, .chroma .m, .chroma .mb, .chroma .mf, .chroma .mh,
-.chroma .mi, .chroma .il, .chroma .mo {
-  color: var(--blue-900);
-}
-.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp,
-.chroma .cpf {
-  color: var(--faint);
-  font-style: italic;
-}
+  .chroma .k,
+  .chroma .kc,
+  .chroma .kd,
+  .chroma .kn,
+  .chroma .kp,
+  .chroma .kr,
+  .chroma .na {
+    color: var(--purple-900);
+  }
+  .chroma .kt,
+  .chroma .nc,
+  .chroma .nn,
+  .chroma .nf,
+  .chroma .fm,
+  .chroma .nb,
+  .chroma .bp,
+  .chroma .nd,
+  .chroma .ne,
+  .chroma .nl,
+  .chroma .nt {
+    color: var(--green-900);
+  }
+  .chroma .s,
+  .chroma .sa,
+  .chroma .sb,
+  .chroma .sc,
+  .chroma .dl,
+  .chroma .sd,
+  .chroma .s2,
+  .chroma .se,
+  .chroma .sh,
+  .chroma .si,
+  .chroma .sx,
+  .chroma .sr,
+  .chroma .s1,
+  .chroma .ss,
+  .chroma .l,
+  .chroma .ld,
+  .chroma .m,
+  .chroma .mb,
+  .chroma .mf,
+  .chroma .mh,
+  .chroma .mi,
+  .chroma .il,
+  .chroma .mo {
+    color: var(--blue-900);
+  }
+  .chroma .c,
+  .chroma .ch,
+  .chroma .cm,
+  .chroma .c1,
+  .chroma .cs,
+  .chroma .cp,
+  .chroma .cpf {
+    color: var(--faint);
+    font-style: italic;
+  }
 
-/* highlighted line: full-bleed via negative margin equal to pre's --space-4 padding */
-.highlight .line.hl {
-  background-color: color-mix(in srgb, var(--link) 11%, transparent);
-  display: block;
-  margin: 0 calc(-1 * var(--space-4));
-  padding: 0 var(--space-4);
-}
-
+  /* highlighted line: full-bleed via negative margin equal to pre's --pre-pad padding */
+  .highlight .line.hl {
+    background-color: color-mix(in srgb, var(--link) 11%, transparent);
+    display: block;
+    margin: 0 calc(-1 * var(--pre-pad));
+    padding: 0 var(--pre-pad);
+  }
 }

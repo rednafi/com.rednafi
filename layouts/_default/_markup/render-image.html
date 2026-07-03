@@ -1,9 +1,28 @@
 {{- $u := urls.Parse .Destination -}}
 {{- $siteURL := urls.Parse site.BaseURL -}}
 {{- $isExternal := and $u.IsAbs (ne $u.Host $siteURL.Host) -}}
+{{- /* author attrs win; else read intrinsic dims from the remote at build time.
+       svg + failed fetches degrade to dimensionless, never a broken build. */ -}}
+{{- $w := .Attributes.width -}}
+{{- $h := .Attributes.height -}}
+{{- if and (not $w) (not $h) $u.IsAbs -}}
+  {{- $dest := .Destination -}}
+  {{- with try (resources.GetRemote $dest) -}}
+    {{- with .Err -}}
+      {{- warnf "render-image: could not fetch %s: %s" $dest . -}}
+    {{- else with .Value -}}
+      {{- if and (eq .MediaType.MainType "image") (ne .MediaType.SubType "svg") -}}
+        {{- $w = .Width -}}
+        {{- $h = .Height -}}
+      {{- end -}}
+    {{- else -}}
+      {{- warnf "render-image: no resource for %s" $dest -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 <img src="{{ .Destination }}"
   {{- with .Text }} alt="{{ . }}"{{ end -}}
   {{- with .Title }} title="{{ . }}"{{ end -}}
-  {{- with .Attributes.width }} width="{{ . }}"{{ end -}}
-  {{- with .Attributes.height }} height="{{ . }}"{{ end -}}
+  {{- with $w }} width="{{ . }}"{{ end -}}
+  {{- with $h }} height="{{ . }}"{{ end -}}
   {{- if $isExternal }} referrerpolicy="no-referrer"{{ end }} loading="lazy" decoding="async">

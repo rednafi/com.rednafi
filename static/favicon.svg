@@ -1,8 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="t d">
-  <title id="t">rednafi.com favicon</title>
-  <desc id="d">Three particles on a dark disc.</desc>
-  <circle cx="256" cy="256" r="240" fill="#171717"/>
-  <circle cx="256" cy="184" r="50" fill="#fafafa"/>
-  <circle cx="194" cy="292" r="50" fill="#fafafa"/>
-  <circle cx="318" cy="292" r="50" fill="#fafafa"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="t">
+  <title id="t">rednafi.com</title>
+  <rect width="512" height="512" rx="120" fill="#0a0a0a"/>
+  <circle cx="256" cy="256" r="160" fill="#ffffff"/>
+  <defs><clipPath id="w"><circle cx="256" cy="256" r="150"/></clipPath></defs>
+  <g clip-path="url(#w)" fill="#0a0a0a">
+    <rect x="0" y="291" width="512" height="30"/>
+    <rect x="0" y="345" width="512" height="24"/>
+    <rect x="0" y="393" width="512" height="18"/>
+  </g>
 </svg>
