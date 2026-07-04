@@ -23,7 +23,7 @@ gRPC codebases to pick up conventions.
 
 I was mainly looking for pointers on how to organize protobuf definitions, wire up
 server-side metrics and interceptors, and build ergonomic client wrappers. The default
-answer here is often "_go read the Docker or Kubernetes codebase._" But both of those are
+answer here is often _"go read the Docker or Kubernetes codebase."_ But both of those are
 pretty huge and take forever to get accustomed to.
 
 Then I found [etcd]. It's used by Kubernetes' control plane for storing configs in a

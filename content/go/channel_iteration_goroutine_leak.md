@@ -19,7 +19,7 @@ atprotoPath: /go/channel-iteration-goroutine-leak/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n"
 ---
 
-I ran into the classic "_range over a channel_" leak while working on a custom cron
+I ran into the classic _"range over a channel"_ leak while working on a custom cron
 scheduler. I've debugged it on prod many times before, but writing one myself in a small
 piece of code reminded me how easy it is to write bugs like this even when you know about
 it.
