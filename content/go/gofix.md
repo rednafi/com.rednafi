@@ -572,9 +572,9 @@ greppable. No annotation on the old function can express that, but a custom anal
 `go fix` runs it through the `-fixtool` flag. I'll cover how to write one in a separate
 post.
 
-You can get a lot done with just the built-in analyzers, though. I ran the new `go fix` on a
-large RPC service at work, and `newexpr` alone cleaned up a pile of pointer helper calls
-that had been accumulating for years. Extremely satisfying.
+You can get a lot done with just the built-in analyzers. I ran the new `go fix` on a large
+RPC service at work, and `newexpr` alone cleaned up a pile of pointer helper calls that had
+been accumulating for years. Extremely satisfying.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
