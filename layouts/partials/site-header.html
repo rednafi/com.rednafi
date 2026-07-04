@@ -84,7 +84,8 @@
       // hide after the close transition; a timer fallback guarantees it hides
       // even when there's no transition (prefers-reduced-motion sets
       // transition:none, so transitionend never fires) or it's interrupted
-      var hide = function () {
+      var hide = function (e) {
+        if (e && (e.target !== menu || e.propertyName !== "opacity")) return;
         window.clearTimeout(hideTimer);
         menu.removeEventListener("transitionend", hide);
         if (!isOpen()) menu.hidden = true;

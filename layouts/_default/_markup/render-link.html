@@ -13,4 +13,4 @@
 <a href="{{ $href }}"
   {{- with .Title }} title="{{ . }}"{{ end -}}
   {{- if $ext }} rel="noopener noreferrer" target="_blank"{{ with .PlainText }} aria-label="{{ . }} (opens in new tab)"{{ end }}{{ end -}}
->{{ or .Text .PlainText }}</a>
+>{{ or .Text .PlainText }}</a>{{- "" -}}

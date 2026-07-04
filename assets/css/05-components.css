@@ -542,14 +542,16 @@
   pre,
   code,
   blockquote,
-  .alert {
+  .alert,
+  .mermaid,
+  table,
+  table th,
+  table td,
+  .site-header,
+  footer {
     transition:
       background-color var(--motion),
       border-color var(--motion);
-  }
-  .site-header,
-  footer {
-    transition: border-color var(--motion);
   }
 
   /* alerts — Geist Notes. variant hue stays structural (fill / border / title);
@@ -735,8 +737,11 @@
   table tbody tr:last-child td {
     border-bottom: none;
   }
+  table tbody tr {
+    transition: background-color var(--motion-fast);
+  }
   table tbody tr:hover {
-    background-color: color-mix(in srgb, var(--code-bg) 55%, transparent);
+    background-color: color-mix(in srgb, var(--surface) 55%, transparent);
   }
 
   /* shared focus ring for keyboard-tabbable controls (Geist accent box-shadow) */
@@ -1001,8 +1006,7 @@
     pointer-events: none;
     transition:
       opacity var(--motion),
-      color var(--motion-fast),
-      border-color var(--motion-fast);
+      var(--transition-control);
   }
 
   .back-to-top.visible {
@@ -1017,6 +1021,10 @@
     color: var(--text);
     border-color: var(--border-strong);
     background: var(--surface);
+  }
+
+  .back-to-top:active {
+    background: var(--surface-2);
   }
 
   .back-to-top:focus-visible {
@@ -1201,6 +1209,9 @@
   summary:hover {
     color: var(--text);
     border-color: var(--border-strong);
+  }
+  details:not([open]) > summary:hover {
+    background-color: var(--surface-2);
   }
   summary:hover::after {
     background-color: var(--text);

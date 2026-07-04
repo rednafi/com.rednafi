@@ -196,9 +196,7 @@
     border: 1px solid var(--border) !important;
     border-radius: var(--radius) !important;
     cursor: pointer !important;
-    transition:
-      border-color var(--motion-fast),
-      background-color var(--motion-fast) !important;
+    transition: var(--transition-control) !important;
   }
 
   .pagefind-ui__button:hover {

@@ -28,7 +28,7 @@
     letter-spacing: -0.02em;
     text-decoration: none;
     color: var(--text);
-    transition: opacity var(--motion-fast);
+    transition: color var(--motion-fast);
   }
 
   .site-title:visited {
@@ -36,13 +36,7 @@
   }
 
   .site-title:hover {
-    opacity: var(--op-dim);
-  }
-
-  .site-title:focus-visible {
-    outline: none;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--ring);
+    color: var(--muted);
   }
 
   /* right-side cluster: search · theme switcher · | · menu — one row of
@@ -263,7 +257,9 @@
     transform-origin: top center;
     transition:
       opacity var(--motion-fast),
-      transform var(--motion-fast);
+      transform var(--motion-fast),
+      background-color var(--motion),
+      border-color var(--motion);
   }
 
   .site-menu[hidden] {
@@ -331,26 +327,6 @@
 
   .site-menu__group li a:visited {
     color: var(--text);
-  }
-
-  .site-menu__group li a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--faint);
-    text-underline-offset: 5px;
-  }
-
-  .site-menu__group li a:focus-visible {
-    outline: none;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--ring);
-  }
-
-  .site-menu__group li a[aria-current="page"] {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--faint);
-    text-underline-offset: 5px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -509,11 +485,6 @@
   }
   .connect-icons a:hover {
     color: var(--text);
-  }
-  .connect-icons a:focus-visible {
-    outline: none;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--ring);
   }
   @media (max-width: 640px) {
     /* smaller crosshairs to match the main grid; tighter padding so the icon row
@@ -686,12 +657,8 @@
   footer .footer-byline {
     margin: 0;
   }
-  footer .footer-byline a {
-    color: var(--faint);
-  }
-
-  /* footer is chrome — like the nav menu and hero icons, links darken to --text
-   on hover instead of colorizing (blue hover is reserved for content links) */
+  /* footer is chrome — links darken to --text with the nav menu's underline on
+   hover (blue hover is reserved for content links) */
   footer a {
     text-decoration: none;
     color: var(--muted);
@@ -702,9 +669,24 @@
     color: var(--muted);
   }
 
+  .site-menu__group li a:hover,
+  .site-menu__group li a[aria-current="page"],
   footer a:hover,
-  footer .footer-byline a:hover {
+  footer a[aria-current="page"] {
     color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--faint);
+    text-underline-offset: 0.23em;
+  }
+
+  .site-title:focus-visible,
+  .site-menu__group li a:focus-visible,
+  .connect-icons a:focus-visible,
+  footer a:focus-visible {
+    outline: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--ring);
   }
 
   @media (max-width: 640px) {
