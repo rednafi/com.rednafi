@@ -8,6 +8,11 @@
     --code-string: #2544bb;
     --code-variable: #00538b;
     --code-comment: #505050;
+    --code-removed: #8f1313;
+    --code-removed-bg: #ffd8d5;
+    --code-added: #005000;
+    --code-added-bg: #c1f2d1;
+    --code-hunk-bg: #e0e0e0;
   }
 
   @media screen {
@@ -20,6 +25,11 @@
       --code-string: #79a8ff;
       --code-variable: #00d3d0;
       --code-comment: #a8a8a8;
+      --code-removed: #ffbfbf;
+      --code-removed-bg: #4f1119;
+      --code-added: #a0e0a0;
+      --code-added-bg: #00381f;
+      --code-hunk-bg: #303030;
     }
   }
 
@@ -102,6 +112,19 @@
   .chroma .cpf {
     color: var(--code-comment);
     font-style: italic;
+  }
+
+  .chroma .gd {
+    color: var(--code-removed);
+    background-color: var(--code-removed-bg);
+  }
+  .chroma .gi {
+    color: var(--code-added);
+    background-color: var(--code-added-bg);
+  }
+  .chroma .gu {
+    font-weight: var(--fw-semibold);
+    background-color: var(--code-hunk-bg);
   }
 
   /* highlighted line: full-bleed via negative margin equal to pre's --pre-pad padding */
