@@ -583,7 +583,7 @@ been accumulating for years. Extremely satisfying.
 <!-- prettier-ignore-start -->
 
 [GopherCon talk]:
-    https://www.youtube.com/watch?v=_VePjjjV9JU
+    https://www.youtube.com/watch?v=_VePjjjV9JU&t=254s
 
 [Go 1 compatibility promise]:
     https://go.dev/doc/go1compat
