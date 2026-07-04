@@ -24,8 +24,8 @@ func TestZZVisualAudit(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, path)
 		_, err := page.Screenshot(playwright.PageScreenshotOptions{
-			Path:     playwright.String(outDir + "/" + name + "-light.png"),
-			FullPage: playwright.Bool(true),
+			Path:     new(outDir + "/" + name + "-light.png"),
+			FullPage: new(true),
 		})
 		require.NoError(t, err)
 		require.NoError(t, themeButton(t, page, "dark").Click())
@@ -36,8 +36,8 @@ func TestZZVisualAudit(t *testing.T) {
 		}`)
 		require.NoError(t, err)
 		_, err = page.Screenshot(playwright.PageScreenshotOptions{
-			Path:     playwright.String(outDir + "/" + name + "-dark.png"),
-			FullPage: playwright.Bool(true),
+			Path:     new(outDir + "/" + name + "-dark.png"),
+			FullPage: new(true),
 		})
 		require.NoError(t, err)
 	}
@@ -45,8 +45,8 @@ func TestZZVisualAudit(t *testing.T) {
 		page := newMobilePage(t)
 		goto_(t, page, path)
 		_, err := page.Screenshot(playwright.PageScreenshotOptions{
-			Path:     playwright.String(outDir + "/" + name + "-mobile.png"),
-			FullPage: playwright.Bool(true),
+			Path:     new(outDir + "/" + name + "-mobile.png"),
+			FullPage: new(true),
 		})
 		require.NoError(t, err)
 	}
