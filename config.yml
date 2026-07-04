@@ -52,24 +52,16 @@ params:
     description: >-
       Redowan Delowar - platform engineer in Berlin working at Wolt/DoorDash. Notes on
       software, distributed systems, testing, and tools.
-    # Every name the same person is known by — the human name "Redowan Nafi"
-    # and the handle "rednafi" reconcile to the one #person entity, alongside
-    # the canonical name (params.author = "Redowan Delowar").
     alternateName:
       - Redowan Nafi
       - rednafi
       - Redowan
-    # Self-hosted headshot on R2 — the Person entity's face, reused as the
-    # visible /about photo (single source of truth for the portrait).
     image: "https://blob.rednafi.com/about/profile-2026-262bdaae0852.jpg"
     worksFor:
       name: Wolt
       url: "https://wolt.com"
       parentName: DoorDash
       parentUrl: "https://www.doordash.com"
-    # wikidataId intentionally omitted — Q139619919 returns 404 (no such item).
-    # Asserting a dead knowledge-graph ID helps nothing; create a real Wikidata
-    # item, then add `wikidataId:` + its URL to sameAs to re-enable.
     knowsAbout:
       - "Go"
       - "Python"
@@ -113,17 +105,12 @@ params:
 
   analytics:
     google:
-      # Bare token only — Google's meta is name="google-site-verification"
-      # content="<token>"; the old value wrongly embedded the name= prefix.
       SiteVerificationTag: "GoibEK52o5Z7xpKQ7ppTd8bA_s1wQp5hcG7aIWPJJfk"
     yandex:
       SiteVerificationTag: "cb037a09f985e313"
     naver:
       SiteVerificationTag: "097e5d3cd7b9e1ee3ad0addb5aaeea1b1a50be20"
     bing:
-      # Paste the msvalidate.01 token from Bing Webmaster Tools (or import the
-      # property from Search Console). Renders only when set. Bing also feeds
-      # Copilot/DuckDuckGo, and unlocks IndexNow for instant re-indexing.
       SiteVerificationTag: ""
 
 markup:

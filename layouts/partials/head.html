@@ -175,9 +175,6 @@
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person $recentList) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if $isArticlePage }}
-{{- /* Full Person entity (same #person @id as home/about) so every article
-       carries the complete identity — all alternate names incl. "Redowan Nafi",
-       sameAs, worksFor, photo — reconciled into one knowledge-graph node. */ -}}
 {{- $author := partial "schema-person.html" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" $aboutURL) }}
 {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "inLanguage" site.Language.Lang }}
 {{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}
@@ -188,10 +185,6 @@
 {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" .) }}{{ end }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
 {{- else if .Params.profilePage }}
-{{- /* ProfilePage → Person: Google's documented markup for an author/creator
-       profile. Pairs the same #person entity (consistent @id across home,
-       articles, and here) so the name "Redowan Delowar", the handle "rednafi",
-       and the site reconcile to one knowledge-graph entity. */ -}}
 {{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" $aboutURL) }}
 {{- $profile := dict "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink) "url" .Permalink "name" $pageTitle "inLanguage" site.Language.Lang "isPartOf" (dict "@id" $websiteId) "mainEntity" (dict "@id" $personId) }}
 {{- with .Params.dateCreated }}{{ $profile = merge $profile (dict "dateCreated" .) }}{{ end }}
