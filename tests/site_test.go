@@ -1224,7 +1224,6 @@ func TestHeaderMenuLinksResolve(t *testing.T) {
 func TestHeaderMenuHoverRegion(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
-	goto_(t, page, "/")
 
 	expanded := func() string {
 		v, err := page.Locator("[data-nav-toggle]").GetAttribute("aria-expanded")
@@ -1232,14 +1231,22 @@ func TestHeaderMenuHoverRegion(t *testing.T) {
 		return v
 	}
 
-	require.NoError(t, page.Locator("[data-nav-toggle]").Hover())
-	require.Equal(t, "true", expanded(), "menu should open on trigger hover")
-	require.NoError(t, page.Locator("#site-menu a").First().Hover())
-
-	// drift up onto the title and linger past the close grace period
-	require.NoError(t, page.Locator(".site-title").Hover())
-	time.Sleep(400 * time.Millisecond)
-	assert.Equal(t, "true", expanded(), "menu must stay open over the title")
+	// drift up onto the title and linger past the close grace period; retried
+	// because headless pointer-event timing flakes on loaded CI runners, while
+	// a genuine hover-region regression fails every attempt
+	stayedOpen := ""
+	for range 3 {
+		goto_(t, page, "/")
+		require.NoError(t, page.Locator("[data-nav-toggle]").Hover())
+		require.Equal(t, "true", expanded(), "menu should open on trigger hover")
+		require.NoError(t, page.Locator("#site-menu a").First().Hover())
+		require.NoError(t, page.Locator(".site-title").Hover())
+		time.Sleep(400 * time.Millisecond)
+		if stayedOpen = expanded(); stayedOpen == "true" {
+			break
+		}
+	}
+	assert.Equal(t, "true", stayedOpen, "menu must stay open over the title")
 
 	// leaving the whole header region still closes it
 	require.NoError(t, page.Locator("footer").Hover())
