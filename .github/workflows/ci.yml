@@ -137,16 +137,19 @@ jobs:
       - name: Check media URLs
         run: go run ./scripts/media --check
 
-      - name: Commit generated post metadata
+      - name: Run go fix
+        run: go fix ./...
+
+      - name: Commit generated changes
         run: |
-          if [ -n "$(git status --porcelain -- content .sequoia-state.json)" ]; then
+          if [ -n "$(git status --porcelain -- content .sequoia-state.json scripts tests)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add content .sequoia-state.json
-            git commit -m "chore: sync post metadata [skip ci]"
+            git add content .sequoia-state.json scripts tests
+            git commit -m "chore: sync generated changes [skip ci]"
             git push
           else
-            echo "Post metadata is already up to date."
+            echo "Generated files are already up to date."
           fi
 
       - name: Setup Pages
