@@ -529,8 +529,7 @@ func TestSyntaxHighlightingPresence(t *testing.T) {
 }
 
 // TestSyntaxHighlightingDarkTheme verifies Chroma colors change when the
-// dark theme is activated. The site uses modus-operandi (light) and
-// modus-vivendi (dark) color schemes.
+// dark theme is activated.
 func TestSyntaxHighlightingDarkTheme(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
@@ -562,4 +561,9 @@ func TestSyntaxHighlightingDarkTheme(t *testing.T) {
 	assert.NotEqual(t, lightColor, darkColor,
 		"Chroma keyword color should change between light (%v) and dark (%v) themes",
 		lightColor, darkColor)
+
+	assert.Equal(t, "rgb(83, 23, 172)", lightColor,
+		"light keyword should be modus-operandi #5317ac")
+	assert.Equal(t, "rgb(182, 160, 255)", darkColor,
+		"dark keyword should be modus-vivendi #b6a0ff")
 }

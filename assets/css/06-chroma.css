@@ -1,6 +1,27 @@
 @layer chroma {
-  /* exact vercel.com/geist tokens: keyword=purple-900, name=green-900, string/number=blue-900.
-   Each --*-900 token carries its own dark value, so no [data-theme] overrides are needed. */
+  :root {
+    --code-keyword: #5317ac;
+    --code-constant: #0000c0;
+    --code-type: #005a5f;
+    --code-builtin: #8f0075;
+    --code-func: #721045;
+    --code-string: #2544bb;
+    --code-variable: #00538b;
+    --code-comment: #505050;
+  }
+
+  @media screen {
+    [data-theme="dark"] {
+      --code-keyword: #b6a0ff;
+      --code-constant: #00bcff;
+      --code-type: #6ae4b9;
+      --code-builtin: #f78fe7;
+      --code-func: #feacd0;
+      --code-string: #79a8ff;
+      --code-variable: #00d3d0;
+      --code-comment: #a8a8a8;
+    }
+  }
 
   pre,
   .chroma {
@@ -16,26 +37,34 @@
   }
 
   .chroma .k,
-  .chroma .kc,
   .chroma .kd,
   .chroma .kn,
   .chroma .kp,
-  .chroma .kr,
-  .chroma .na {
-    color: var(--purple-900);
+  .chroma .kr {
+    color: var(--code-keyword);
   }
-  .chroma .kt,
-  .chroma .nc,
-  .chroma .nn,
-  .chroma .nf,
-  .chroma .fm,
+  .chroma .kc,
+  .chroma .l,
+  .chroma .ld,
+  .chroma .m,
+  .chroma .mb,
+  .chroma .mf,
+  .chroma .mh,
+  .chroma .mi,
+  .chroma .il,
+  .chroma .mo {
+    color: var(--code-constant);
+  }
+  .chroma .kt {
+    color: var(--code-type);
+  }
   .chroma .nb,
-  .chroma .bp,
-  .chroma .nd,
-  .chroma .ne,
-  .chroma .nl,
-  .chroma .nt {
-    color: var(--green-900);
+  .chroma .bp {
+    color: var(--code-builtin);
+  }
+  .chroma .nf,
+  .chroma .fm {
+    color: var(--code-func);
   }
   .chroma .s,
   .chroma .sa,
@@ -50,17 +79,19 @@
   .chroma .sx,
   .chroma .sr,
   .chroma .s1,
-  .chroma .ss,
-  .chroma .l,
-  .chroma .ld,
-  .chroma .m,
-  .chroma .mb,
-  .chroma .mf,
-  .chroma .mh,
-  .chroma .mi,
-  .chroma .il,
-  .chroma .mo {
-    color: var(--blue-900);
+  .chroma .ss {
+    color: var(--code-string);
+  }
+  .chroma .nv,
+  .chroma .vc,
+  .chroma .vg,
+  .chroma .vi,
+  .chroma .vm,
+  .chroma .nt,
+  .chroma .o,
+  .chroma .ow,
+  .chroma .or {
+    color: var(--code-variable);
   }
   .chroma .c,
   .chroma .ch,
@@ -69,7 +100,7 @@
   .chroma .cs,
   .chroma .cp,
   .chroma .cpf {
-    color: var(--faint);
+    color: var(--code-comment);
     font-style: italic;
   }
 

@@ -23,7 +23,7 @@
     --accent: var(--link);
 
     /* Geist semantic scale — alerts: 200 fill / 400 border (a visible thin
-       edge) / 900 text; chroma + search mark reuse the 900s / amber */
+       edge) / 900 text; search mark reuses the amber */
     --blue-200: #ebf5ff;
     --blue-400: #cce6ff;
     --blue-900: #0068d6;
