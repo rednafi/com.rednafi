@@ -202,6 +202,36 @@ Body.
 	}
 }
 
+func TestOrphanDocumentsOnlyDeletesUnreferencedDuplicates(t *testing.T) {
+	records := []document{
+		{URI: "at://did/site.standard.document/live", Path: "/go/gofix/"},
+		{URI: "at://did/site.standard.document/dupe1", Path: "/go/gofix/"},
+		{URI: "at://did/site.standard.document/dupe2", Path: "/go/gofix/"},
+		{URI: "at://did/site.standard.document/other", Path: "/go/other/"},
+		{URI: "at://did/site.standard.document/stray", Path: "/go/deleted-post/"},
+		{URI: "at://did/site.standard.document/blank", Path: ""},
+	}
+	referenced := map[string]bool{
+		"at://did/site.standard.document/live":  true,
+		"at://did/site.standard.document/other": true,
+	}
+
+	orphans := orphanDocuments(records, referenced)
+
+	want := []string{
+		"at://did/site.standard.document/dupe1",
+		"at://did/site.standard.document/dupe2",
+	}
+	if len(orphans) != len(want) {
+		t.Fatalf("orphans = %v, want %v", orphans, want)
+	}
+	for i, uri := range want {
+		if orphans[i].URI != uri {
+			t.Fatalf("orphans[%d] = %q, want %q", i, orphans[i].URI, uri)
+		}
+	}
+}
+
 func TestSyncBackAfterPublishPreservesPartialPublishState(t *testing.T) {
 	tempDir := t.TempDir()
 	t.Chdir(tempDir)
