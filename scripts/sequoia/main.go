@@ -150,9 +150,23 @@ func copyContent(stageDir string) error {
 		if filepath.Base(src) == "_index.md" {
 			return writeFile(dst, raw, 0o644)
 		}
-		next := injectSiteCover(string(raw))
+		next := stripEmptyAtURI(injectSiteCover(string(raw)))
 		return writeFile(dst, []byte(next), 0o644)
 	})
+}
+
+var emptyAtURIRe = regexp.MustCompile(`(?m)^atUri:\s*(""|'')?\s*$\n?`)
+
+func stripEmptyAtURI(raw string) string {
+	fmRaw, body, ok := splitFrontmatter(raw)
+	if !ok {
+		return raw
+	}
+	nextFM := emptyAtURIRe.ReplaceAllString(fmRaw, "")
+	if nextFM == fmRaw {
+		return raw
+	}
+	return joinFrontmatter(nextFM, body)
 }
 
 func injectSiteCover(raw string) string {

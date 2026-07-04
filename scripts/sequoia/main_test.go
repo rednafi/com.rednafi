@@ -126,6 +126,82 @@ description: "The JavaScript programming language."
 	}
 }
 
+func TestPrepareWorkspaceStripsEmptyAtURI(t *testing.T) {
+	tempDir := t.TempDir()
+	t.Chdir(tempDir)
+
+	coverPath := filepath.Join(tempDir, "cover.png")
+	if err := os.WriteFile(coverPath, []byte("png"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(defaultContentDir, "go"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	rawNew := `---
+title: "New post"
+aliases: []
+atprotoPath: /go/new-post/
+atUri: ""
+---
+Body.
+`
+	if err := os.WriteFile(filepath.Join(defaultContentDir, "go", "new.md"), []byte(rawNew), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	rawPublished := `---
+title: "Published post"
+aliases: []
+atprotoPath: /go/published-post/
+atUri: "at://did:plc:example/site.standard.document/abc"
+---
+Body.
+`
+	if err := os.WriteFile(filepath.Join(defaultContentDir, "go", "published.md"), []byte(rawPublished), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile("sequoia.json", []byte(`{"contentDir":"old","imagesDir":"static"}`), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	stageDir := filepath.Join(tempDir, "stage")
+	if err := prepareWorkspace(stageDir, coverPath); err != nil {
+		t.Fatal(err)
+	}
+
+	stagedNew, err := os.ReadFile(filepath.Join(stageDir, defaultContentDir, "go", "new.md"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	wantNew := `---
+title: "New post"
+ogImage: "images/home/cover-39e2ac8de020.png"
+aliases: []
+atprotoPath: /go/new-post/
+---
+Body.
+`
+	if string(stagedNew) != wantNew {
+		t.Fatalf("staged content mismatch:\n%s", stagedNew)
+	}
+
+	stagedPublished, err := os.ReadFile(filepath.Join(stageDir, defaultContentDir, "go", "published.md"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	wantPublished := `---
+title: "Published post"
+ogImage: "images/home/cover-39e2ac8de020.png"
+aliases: []
+atprotoPath: /go/published-post/
+atUri: "at://did:plc:example/site.standard.document/abc"
+---
+Body.
+`
+	if string(stagedPublished) != wantPublished {
+		t.Fatalf("staged published content mismatch:\n%s", stagedPublished)
+	}
+}
+
 func TestSyncBackAfterPublishPreservesPartialPublishState(t *testing.T) {
 	tempDir := t.TempDir()
 	t.Chdir(tempDir)
