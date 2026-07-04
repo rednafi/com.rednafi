@@ -21,6 +21,7 @@ func TestSitemapContainsKeyPages(t *testing.T) {
 		// the profile page is indexable (index, follow + ProfilePage schema),
 		// so the sitemap must advertise it
 		"https://rednafi.com/about/",
+		"https://rednafi.com/appearances/",
 	}
 
 	for _, page := range keyPages {
@@ -32,8 +33,6 @@ func TestSitemapContainsKeyPages(t *testing.T) {
 
 	assert.NotContains(t, body, "<loc>https://rednafi.com/archive/</loc>",
 		"archive page should not be listed in sitemap")
-	assert.NotContains(t, body, "<loc>https://rednafi.com/appearances/</loc>",
-		"appearances page should not be listed in sitemap")
 	assert.NotContains(t, body, "<loc>https://rednafi.com/maxims/</loc>",
 		"maxims page should not be listed in sitemap")
 	assert.NotContains(t, body, "<loc>https://rednafi.com/blogroll/</loc>",

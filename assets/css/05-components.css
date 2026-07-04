@@ -50,6 +50,15 @@
     margin: 0 var(--space-2);
     color: var(--border-strong);
   }
+  .post-meta-author,
+  .post-meta-author:visited {
+    color: var(--faint);
+    text-decoration: none;
+    transition: color var(--motion-fast);
+  }
+  .post-meta-author:hover {
+    color: var(--link);
+  }
 
   .section-desc {
     font-size: var(--fs-md);

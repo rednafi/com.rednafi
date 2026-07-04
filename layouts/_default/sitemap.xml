@@ -3,7 +3,7 @@
   {{- range .Data.Pages }}
   {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
   {{- /* mirrors head.html's $isIndexablePage: home, articles, and the profile page */}}
-  {{- $isIndexablePage := or .IsHome $isArticlePage .Params.profilePage }}
+  {{- $isIndexablePage := or .IsHome $isArticlePage .Params.profilePage .Params.indexable }}
   {{- if and $isIndexablePage (not .Params.robotsNoIndex) }}
   <url>
     <loc>{{ .Permalink }}</loc>

@@ -2,6 +2,7 @@
 title: Appearances
 aliases:
     - /talks/
+indexable: true
 hideMeta: true
 hideRelated: true
 hideBreadcrumbs: true

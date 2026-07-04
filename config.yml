@@ -49,6 +49,9 @@ params:
     jobTitle: Software Engineer
     givenName: Redowan
     familyName: Delowar
+    description: >-
+      Redowan Delowar - platform engineer in Berlin working at Wolt/DoorDash. Notes on
+      software, distributed systems, testing, and tools.
     # Every name the same person is known by — the human name "Redowan Nafi"
     # and the handle "rednafi" reconcile to the one #person entity, alongside
     # the canonical name (params.author = "Redowan Delowar").
@@ -82,9 +85,8 @@ params:
       - "https://fosstodon.org/@rednafi"
       - "https://x.com/rednafi"
     websiteAlternateName:
-      - "Redowan Delowar"
-      - "Redowan Delowar's Blog"
       - "rednafi"
+      - "Redowan Delowar"
   description: >-
     Software engineering blog by Redowan Delowar covering platform engineering, backend
     systems, distributed systems, reliability, databases, Go, Python, TypeScript, and

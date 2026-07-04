@@ -66,8 +66,16 @@ func TestHomepageSchemaCompleteness(t *testing.T) {
 	t.Run("Person has name and URL", func(t *testing.T) {
 		require.NotNil(t, person)
 		assert.NotEmpty(t, person["name"])
-		assert.Equal(t, "https://rednafi.com/", person["url"])
-		assert.Equal(t, "https://rednafi.com/", person["mainEntityOfPage"])
+		assert.Equal(t, "https://rednafi.com/about/", person["url"])
+		assert.Equal(t, "https://rednafi.com/about/", person["mainEntityOfPage"])
+	})
+
+	t.Run("Person description is a bio, not the site description", func(t *testing.T) {
+		require.NotNil(t, person)
+		desc, _ := person["description"].(string)
+		assert.NotEmpty(t, desc)
+		assert.NotContains(t, desc, "Software engineering blog",
+			"Person.description must describe the human, not the site")
 	})
 
 	t.Run("ItemList contains recent writing", func(t *testing.T) {
@@ -119,10 +127,10 @@ func TestIdentityLinks(t *testing.T) {
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	t.Run("has rel=author pointing to homepage", func(t *testing.T) {
+	t.Run("has rel=author pointing to the about profile page", func(t *testing.T) {
 		href, err := page.Locator(`link[rel="author"]`).GetAttribute("href")
 		require.NoError(t, err)
-		assert.Equal(t, "https://rednafi.com/", href)
+		assert.Equal(t, "https://rednafi.com/about/", href)
 	})
 
 	t.Run("has rel=me links for social profiles", func(t *testing.T) {

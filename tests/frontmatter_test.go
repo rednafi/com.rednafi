@@ -83,7 +83,7 @@ func TestHideRelated(t *testing.T) {
 func TestRobotsNoIndex(t *testing.T) {
 	t.Parallel()
 	pages := []string{
-		"/archive/", "/appearances/", "/maxims/",
+		"/archive/", "/maxims/",
 		"/search/", "/blogroll/",
 		"/python/", "/go/", "/misc/", "/zephyr/", "/shards/",
 		"/page/2/",
@@ -107,7 +107,7 @@ func TestRobotsNoIndex(t *testing.T) {
 // actual post pages should have index, follow.
 func TestRobotsIndexOnRegularPages(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/"}
+	pages := []string{"/", "/go/anemic-stack-traces/", "/shards/2026/04/dynamo/", "/appearances/"}
 	for _, url := range pages {
 		t.Run(url, func(t *testing.T) {
 			page := newPage(t)

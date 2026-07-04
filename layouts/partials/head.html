@@ -8,6 +8,7 @@
 {{- end }}
 
 {{- $homeURL := "/" | absURL }}
+{{- $aboutURL := "about/" | absURL }}
 {{- $isArticlePage := and .IsPage (or (in site.Params.mainSections .Section) (eq site.Params.notesSection .Section)) }}
 {{- $pageImages := .Params.images | default site.Params.images }}
 {{- $isPaginatedHome := false }}
@@ -16,7 +17,7 @@
 {{- $homePaginator := .Paginate $pages }}
 {{- $isPaginatedHome = gt $homePaginator.PageNumber 1 }}
 {{- end }}
-{{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage .Params.profilePage }}
+{{- $isIndexablePage := or (and .IsHome (not $isPaginatedHome)) $isArticlePage .Params.profilePage .Params.indexable }}
 {{- $pageTitle := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
 
 {{- /* Title */ -}}
@@ -46,7 +47,7 @@
 {{- end }}
 
 {{- /* Author & identity */ -}}
-<link rel="author" href="{{ $homeURL }}">
+<link rel="author" href="{{ $aboutURL }}">
 {{- range site.Params.schema.sameAs }}
 <link rel="me" href="{{ . }}">
 {{- end }}
@@ -134,7 +135,7 @@
 {{- end }}
 {{- if $isArticlePage }}
 {{- /* og article:author expects a profile URL, not a name — point at /about */}}
-<meta property="article:author" content="{{ "about/" | absURL }}">
+<meta property="article:author" content="{{ $aboutURL }}">
 <meta property="article:section" content="{{ .Section }}">
 {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $iso8601 }}">{{ end }}
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format $iso8601 }}">{{ end }}
@@ -160,7 +161,7 @@
 {{- $websiteId := printf "%s#website" $homeURL }}
 {{- $personId := printf "%s#person" $homeURL }}
 {{- if and .IsHome (not $isPaginatedHome) }}
-{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" $aboutURL) }}
 {{- $website := dict "@type" "WebSite" "@id" $websiteId "name" site.Title "alternateName" site.Params.schema.websiteAlternateName "url" site.BaseURL "description" site.Params.description "inLanguage" site.Language.Lang "author" (dict "@id" $personId) "publisher" (dict "@id" $personId) }}
 {{- $recentListId := printf "%s#recent-writing" $homeURL }}
 {{- $recentWriting := first 10 (partial "home-pages.html" .) }}
@@ -177,7 +178,7 @@
 {{- /* Full Person entity (same #person @id as home/about) so every article
        carries the complete identity — all alternate names incl. "Redowan Nafi",
        sameAs, worksFor, photo — reconciled into one knowledge-graph node. */ -}}
-{{- $author := partial "schema-person.html" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "description" site.Params.description "url" $homeURL) }}
+{{- $author := partial "schema-person.html" (dict "@type" "Person" "name" (.Params.author | default site.Params.author) "url" $aboutURL) }}
 {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "inLanguage" site.Language.Lang }}
 {{- $schema = merge $schema (dict "datePublished" (.PublishDate.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601)) }}
 {{- $schema = merge $schema (dict "author" $author "publisher" (dict "@type" "Person" "@id" $personId "name" site.Params.author)) }}
@@ -191,8 +192,9 @@
        profile. Pairs the same #person entity (consistent @id across home,
        articles, and here) so the name "Redowan Delowar", the handle "rednafi",
        and the site reconcile to one knowledge-graph entity. */ -}}
-{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "description" site.Params.description "url" $homeURL) }}
+{{- $person := partial "schema-person.html" (dict "@type" "Person" "name" site.Params.author "url" $aboutURL) }}
 {{- $profile := dict "@type" "ProfilePage" "@id" (printf "%s#profilepage" .Permalink) "url" .Permalink "name" $pageTitle "inLanguage" site.Language.Lang "isPartOf" (dict "@id" $websiteId) "mainEntity" (dict "@id" $personId) }}
+{{- with .Params.dateCreated }}{{ $profile = merge $profile (dict "dateCreated" .) }}{{ end }}
 {{- with .Lastmod }}{{ $profile = merge $profile (dict "dateModified" (.Format $iso8601)) }}{{ end }}
 {{- $schema := dict "@context" "https://schema.org" "@graph" (slice $profile $person) }}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}

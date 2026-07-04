@@ -2,6 +2,7 @@
 {{- with site.Params.schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
 {{- with site.Params.schema.givenName }}{{ $person = merge $person (dict "givenName" .) }}{{ end }}
 {{- with site.Params.schema.familyName }}{{ $person = merge $person (dict "familyName" .) }}{{ end }}
+{{- with site.Params.schema.description }}{{ $person = merge $person (dict "description" .) }}{{ end }}
 {{- with site.Params.schema.alternateName }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
 {{- with site.Params.schema.image }}{{ $person = merge $person (dict "image" .) }}{{ end }}
 {{- with site.Params.schema.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end }}
@@ -12,5 +13,5 @@
 {{- $person = merge $person (dict "worksFor" $org) }}
 {{- end }}
 {{- with site.Params.schema.wikidataId }}{{ $person = merge $person (dict "identifier" (dict "@type" "PropertyValue" "propertyID" "Wikidata" "value" .)) }}{{ end }}
-{{- $person = merge $person (dict "mainEntityOfPage" ("/" | absURL)) -}}
+{{- $person = merge $person (dict "mainEntityOfPage" ("about/" | absURL)) -}}
 {{- return $person -}}
