@@ -342,8 +342,8 @@ behind `go fix -fixtool`. That `-fixtool` flag is also how you run a custom fixe
 
 The modernizers are developed as a suite in the [modernize package]. The suite updates
 continuously, and each Go release freezes a copy into the toolchain. Go 1.26's copy is the
-22-analyzer roster you saw from `go tool fix help`: eighteen modernizers, the `inline`
-analyzer, and the three housekeeping fixers `buildtag`, `hostport`, and `plusbuild`.
+22-analyzer roster you saw from `go tool fix help`: eighteen modernizers plus the `inline`,
+`buildtag`, `hostport`, and `plusbuild` analyzers.
 
 You run the standalone `modernize` command directly with `go run`:
 
@@ -468,11 +468,12 @@ Nothing breaks. When a user of your library runs `go fix ./...`:
 
 It beats deprecating something and hoping everyone reads the changelog. gopls honors the
 directive too. Callers see "Call of greet.Hello should be inlined" right in the editor and
-can apply it as a quick fix. gopls can also inline any call on demand, even without a
+can apply it as a quick fix. gopls can also inline a call on demand, even without a
 directive.
 
 The deprecated [golang.org/x/net/context] package carries these annotations today. Run
-`go fix` on anything that still imports it and the calls move to the standard `context`.
+`go fix` on anything that still imports it and the calls move to the standard `context`. Its
+`var` aliases like `Canceled` stay behind, because the directive doesn't work on variables.
 
 The directive handles more than renames. Say the new API added a parameter the old one
 hardcoded, and a type got a better name in the same release:
@@ -521,7 +522,8 @@ forward to another package. That's how `ioutil.ReadFile` calls become `os.ReadFi
 The directive works on functions, type aliases, and constants. Only exported, package-level
 symbols migrate across packages: an unexported helper's calls get rewritten only inside its
 own package. A function needs a body, a type has to be a true alias, and a constant has to
-refer to another named constant. Tests in the wrapper's own package don't get rewritten.
+refer to another named constant. A call inside the wrapper's own dedicated test, like
+`TestHello` for `Hello`, doesn't get rewritten.
 
 Annotate a whole deprecated package like that and eventually nobody imports it, so you can
 delete it. The x/tools [deadcode] command finds the wrappers nobody calls anymore.
@@ -529,9 +531,10 @@ delete it. The x/tools [deadcode] command finds the wrappers nobody calls anymor
 The inliner refuses to inline a callee that contains `defer` rather than wrap the body in a
 function literal. And it doesn't handle generics yet, as the `ptr` helper showed.
 
-When a clean substitution isn't safe, the inliner settles for correct but clunky output.
-When nothing safe exists, it skips the call silently. Directive mistakes are silent too. Run
-`go fix -json` to see them.
+When a clean substitution isn't safe, `go fix` skips the call silently. The one exception is
+opt-in: `-inline.allow_binding_decl` accepts rewrites that keep argument order safe with an
+extra `var params = args` line. Directive mistakes are silent too. Run `go fix -json` to see
+them.
 
 ## What inline can't do
 
@@ -643,7 +646,7 @@ been accumulating for years. Extremely satisfying.
     https://github.com/golang/go/issues/77581
 
 [golang.org/x/net/context]:
-    https://pkg.go.dev/golang.org/x/net/context
+    https://go.googlesource.com/net/+/refs/heads/master/context/context.go
 
 [deadcode]:
     https://pkg.go.dev/golang.org/x/tools/cmd/deadcode
