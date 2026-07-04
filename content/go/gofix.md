@@ -526,14 +526,6 @@ refer to another named constant. Tests in the wrapper's own package don't get re
 Annotate a whole deprecated package like that and eventually nobody imports it, so you can
 delete it. The x/tools [deadcode] command finds the wrappers nobody calls anymore.
 
-The inliner post puts the inliner at about 7,000 lines of dense, compiler-like logic, and
-Google has used it to prepare more than 18,000 changelists to its monorepo.
-
-Function-call arguments get bound to variables so side effects keep their order. Names in
-the wrapper's body must mean the same thing at the call site, which rules out shadowing.
-Constant expressions get checked, since a rewrite that produces `""[0]` would turn a runtime
-panic into a compile error. Imports get added and removed as needed.
-
 The inliner refuses to inline a callee that contains `defer` rather than wrap the body in a
 function literal. And it doesn't handle generics yet, as the `ptr` helper showed.
 
@@ -571,21 +563,17 @@ When a caller runs `go fix`, the wrapper's body gets copied to every call site,
 ```
 
 There's a `ctx` in scope one line up, and the rewrite ignores it. Every call site in the
-program now carries `context.Background()`, and cancellation stops propagating at each one.
-Nothing in the result marks the call sites that still need attention.
-
-You might try `context.TODO()` in the wrapper instead, so the rewrite at least leaves a
-searchable marker behind. That doesn't work either. The wrapper is live code that runs for
-every caller who hasn't migrated yet. It has to ship a real default, not a to-do note.
+program now carries `context.Background()`, cancellation stops propagating, and nothing
+marks the sites that still need attention. Putting `context.TODO()` in the wrapper doesn't
+work either: the wrapper is live code for callers who haven't migrated, and it needs a real
+default, not a to-do note.
 
 The fix you actually want is "use the ctx in scope here, or fall back to something
-greppable". That's a property of each call site, and no annotation on the old function can
-express it.
-
-For that, you write a custom analyzer against the same framework the modernizers use. It
-sees every call site with full type information, so it can pick the `ctx` in scope and fall
-back to `context.TODO()` when there is none. `go fix` runs it through the `-fixtool` flag.
-I'll cover how to write and ship one, along with the analysis framework, in a separate post.
+greppable". That's a per-call-site decision, and no annotation on the old function can
+express it. A custom analyzer can. Built on the same framework as the modernizers, it sees
+every call site with full type information, picks the `ctx` in scope, and falls back to
+`context.TODO()` when there is none. `go fix` runs it through `-fixtool`. I'll cover how to
+write and ship one, along with the analysis framework, in a separate post.
 
 The built-in analyzers are plenty on their own, though. I ran the new `go fix` on a large
 RPC service at work, and `newexpr` alone cleaned up a pile of pointer helper calls that had
