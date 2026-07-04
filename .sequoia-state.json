@@ -1393,9 +1393,9 @@
       "slug": "request-coalescing"
     },
     "content/go/gofix.md": {
-      "contentHash": "1c195c2f305358ae833aafc94c5d21f2386f7ced0285491067800285bab0200f",
+      "contentHash": "827da747b90d33795b6c281413063fcc5e5d7c5b9e43ebfe1999cdac5247fd52",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptttuqfiu2t",
-      "lastPublished": "2026-07-04T20:46:10.154Z",
+      "lastPublished": "2026-07-04T20:53:08.170Z",
       "slug": "gofix"
     }
   },
