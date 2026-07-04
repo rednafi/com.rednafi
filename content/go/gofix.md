@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /go/gofix/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptslqoy5k2z"
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptttuqfiu2t"
 ---
 
 Go 1.26 rebuilt `go fix` from scratch. If you haven't tried it yet, give it a spin: it

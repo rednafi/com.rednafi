@@ -121,9 +121,9 @@
       "slug": "wrap-grpc-client"
     },
     "content/shards/2026/03/etcd_codebase.md": {
-      "contentHash": "4ea871759b890797c5cc539c056a42e58c53a77d779af905b016e9276624545c",
+      "contentHash": "54cc1c68a671a7d980c7fa7480df58c9ef4ef56b5882bf531c8d4cd1028a2098",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iceuad2u",
-      "lastPublished": "2026-07-03T19:57:27.276Z",
+      "lastPublished": "2026-07-04T19:57:33.653Z",
       "slug": "etcd-codebase"
     },
     "content/go/to_wrap_or_not_to_wrap.md": {
@@ -1381,9 +1381,9 @@
       "slug": "go-goroutine-leak-profile"
     },
     "content/go/channel_iteration_goroutine_leak.md": {
-      "contentHash": "1be781a47d2d6986e73c68719afc9ab977a1ede0e57414f14710146ead849ed4",
+      "contentHash": "2d1b93ee790d98a6724e0f5deaa2b3539048cb8c81bc13e75db646e948a2cca6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n",
-      "lastPublished": "2026-07-03T19:55:51.658Z",
+      "lastPublished": "2026-07-04T19:57:33.023Z",
       "slug": "channel-iteration-goroutine-leak"
     },
     "content/go/request_coalescing.md": {
@@ -1391,6 +1391,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mpcm52jalc2z",
       "lastPublished": "2026-07-03T19:55:51.194Z",
       "slug": "request-coalescing"
+    },
+    "content/go/gofix.md": {
+      "contentHash": "3810a88cea61ebc1100cfa13559b0369b39772d9d042d1c690558bd428ea1acb",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptttuqfiu2t",
+      "lastPublished": "2026-07-04T19:57:32.536Z",
+      "slug": "gofix"
     }
   },
   "publication": {
