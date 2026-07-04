@@ -569,7 +569,8 @@ real default.
 
 The fix has to happen per call site: use the `ctx` in scope, or fall back to something
 greppable. No annotation on the old function can express that, but a custom analyzer can.
-`go fix` runs it through `-fixtool`. Writing one is a separate post.
+`go fix` runs it through the `-fixtool` flag. I'll cover how to write one in a separate
+post.
 
 The built-in analyzers are plenty on their own, though. I ran the new `go fix` on a large
 RPC service at work, and `newexpr` alone cleaned up a pile of pointer helper calls that had
