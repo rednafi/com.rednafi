@@ -11,16 +11,18 @@
 
 {{- if .IsHome }}
 <div class="content-column home">
+  {{- $pages := partial "home-pages.html" . }}
+  {{- $paginator := .Paginate $pages }}
+  <h1 class="sr-only">{{ site.Title }}</h1>
+  {{- if eq $paginator.PageNumber 1 }}
   <header class="home-intro home-hero">
-    {{- /* crosshair-framed hero (site grid language): centered one-line bio +
-           social icons, with a monochrome particle-fluid band (curl-noise flow,
-           hero-fluid.js) flowing low across it — same on every width, à la
-           vercel.com/fluid. Full bio lives on /about. <h1> sr-only for SEO. */}}
+    {{- /* wake badge + copy over the particle-fluid band (hero-fluid.js).
+           Full bio lives on /about. <h1> sr-only for SEO. */}}
     <section class="hero" aria-label="Intro">
       <span class="hero__media" aria-hidden="true"><canvas id="hero-fluid" class="hero__canvas"></canvas></span>
       <span class="hero__scrim" aria-hidden="true"></span>
       <div class="hero__body">
-        <h1 class="sr-only">{{ site.Title }}</h1>
+        {{ partial "hero-mark.html" . }}
         <div class="hero__text">
           <p class="hero__lead">Hi, I’m Redowan.</p>
           <p class="hero__tagline">A roving amateur fumbling through software, systems, and sundry.</p>
@@ -31,10 +33,9 @@
   </header>
   {{- $heroJS := resources.Get "js/hero-fluid.js" | minify | fingerprint }}
   <script src="{{ $heroJS.RelPermalink }}" defer></script>
+  {{- end }}
   <section class="recent-writing" aria-labelledby="recent-writing">
     <h2 id="recent-writing" class="recent-writing-title">Recent writing</h2>
-    {{- $pages := partial "home-pages.html" . }}
-    {{- $paginator := .Paginate $pages }}
     {{ partial "post-list.html" (dict "pages" $paginator.Pages "showExcerpt" true) }}
     {{ partial "pagination.html" $paginator }}
   </section>

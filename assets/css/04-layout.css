@@ -12,10 +12,9 @@
     margin-bottom: var(--space-6);
     /* even vertical padding → consistent bar height */
     padding-block: var(--space-3);
-    border-bottom: 1px solid var(--border);
-    /* full-width bar: border spans rail to rail; the rail gutter sits the
-     title/actions on the main frame's rail edge (the reading column centers
-     inside that frame, so on wide viewports it's inset further than the title) */
+    /* full-width bar: the rail gutter sits the title/actions on the main
+     frame's rail edge (the reading column centers inside that frame, so on
+     wide viewports it's inset further than the title) */
     max-width: none;
     padding-inline: var(--rail);
     background: var(--bg);
@@ -346,19 +345,15 @@
     }
   }
 
-  /* landing intro hero — its own crosshair-framed container, separated from the
-   feed below by the hero's own border + the gap. */
+  /* breakout: --hero-inset per side of main's content box (100cqw), ≥ column width */
   .home-intro {
+    --hero-inset: calc(var(--rail) + var(--space-8));
+    margin-inline: min(calc((100cqw - 2 * var(--hero-inset) - 100%) / -2), 0px);
     margin-bottom: var(--space-8);
   }
 
-  /* landing intro — a crosshair-framed container (the site's own grid language),
-   centered copy + social icons, with a monochrome particle-fluid band flowing
-   low across it (hero-fluid.js), à la vercel.com/fluid. Identical on every
-   width. Re-themes light/dark. */
+  /* wake badge + centered copy over the low particle-fluid band */
   .hero {
-    --cross: 10px;
-    --gx: var(--grid-cross);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -369,13 +364,12 @@
     /* vertical gap to the feed lives on the .home-intro wrapper */
     padding: clamp(var(--space-8), 6vw, var(--space-12));
   }
-  /* the framed box: the border + the clipped particle canvas */
+  /* the clipped particle canvas — borderless */
   .hero__media {
     position: absolute;
     inset: 0;
     z-index: 0;
     overflow: hidden;
-    border: 1px solid var(--border);
     background-color: var(--bg);
   }
   .hero__canvas {
@@ -385,18 +379,30 @@
     width: 100%;
     height: 100%;
   }
-  /* keep paper over the upper/centre where the copy lives; let the band show low */
+  /* paper over the copy; the band only shows in the bottom strip */
   .hero__scrim {
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
     background: linear-gradient(
-      var(--bg) 0%,
-      var(--bg) 46%,
-      color-mix(in srgb, var(--bg) 50%, transparent) 70%,
-      transparent 90%
+      to top,
+      transparent 0,
+      color-mix(in srgb, var(--bg) 65%, transparent) 60px,
+      var(--bg) 110px
     );
+  }
+  /* brand ink/paper, pinned — dark mode reproduces the cover */
+  .hero__mark {
+    display: block;
+    margin-bottom: var(--space-1);
+    color: var(--ink);
+  }
+  [data-theme="dark"] .hero__mark {
+    color: var(--paper);
+  }
+  .hero__mark rect {
+    fill: var(--bg);
   }
   .hero__body {
     position: relative;
@@ -411,7 +417,8 @@
   .hero__text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    /* optically equal to the body gap: the line boxes eat ~5px of it */
+    gap: calc(var(--space-6) + var(--space-1));
     max-width: 40rem;
   }
   .hero__lead {
@@ -438,34 +445,6 @@
     text-wrap: balance;
   }
 
-  /* two crosshair corner marks — top-left + bottom-right, matching the main frame */
-  .hero::before,
-  .hero::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    width: calc(2 * var(--cross) + 1px);
-    height: calc(2 * var(--cross) + 1px);
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-image:
-      linear-gradient(var(--gx), var(--gx)), linear-gradient(var(--gx), var(--gx));
-    background-position:
-      var(--cross) 0,
-      0 var(--cross);
-    background-size:
-      1px 100%,
-      100% 1px;
-  }
-  .hero::before {
-    top: calc(-1 * var(--cross));
-    left: calc(-1 * var(--cross));
-  }
-  .hero::after {
-    bottom: calc(-1 * var(--cross));
-    right: calc(-1 * var(--cross));
-  }
-
   /* social icon row — always a single line (only five small icons) */
   .connect-icons {
     display: flex;
@@ -487,12 +466,13 @@
     color: var(--text);
   }
   @media (max-width: 640px) {
-    /* smaller crosshairs to match the main grid; tighter padding so the icon row
-     fits the narrow card; the centred layout + low band stay identical to
-     desktop — the animation is never dropped */
+    /* tighter padding; the top slack goes to the feed, not the hero */
     .hero {
-      --cross: 6px;
       padding: clamp(var(--space-5), 5vw, var(--space-8));
+      padding-top: var(--space-2);
+    }
+    .content-column.home {
+      margin-top: var(--space-2);
     }
     /* compact enough that all five icons stay inside the box down to ~280px */
     .connect-icons {
@@ -548,11 +528,12 @@
     container-type: inline-size;
     flex: 1;
     position: relative;
-    margin-top: var(--grid-top-band);
+    /* header→line exactly 44px (header margin + this) */
+    margin-top: calc(44px - var(--space-6));
     /* responsive inner gutter so content never touches the rails; rails stay at frame edge */
     padding-inline: var(--rail);
-    /* bottom breathing room inside the frame, mirroring the content's top band */
-    padding-bottom: var(--content-top-band);
+    /* bottom breathing room inside the frame, two steps deeper than the top band */
+    padding-bottom: calc(2 * var(--content-top-band));
     background-image:
       linear-gradient(var(--border), var(--border)),
       linear-gradient(var(--border), var(--border)),
@@ -611,48 +592,37 @@
   /* the open nav mega-panel drops over the content's top-left corner; its mark
    pokes out just left of the panel edge — hide the top-left crosshairs while
    the panel is open so nothing bleeds beside it */
-  body:has(.site-menu.is-open) main::before,
-  body:has(.site-menu.is-open) .hero::before {
+  body:has(.site-menu.is-open) main::before {
     opacity: 0;
   }
 
-  @media (max-width: 640px) {
-    main {
-      --grid-top-band: var(--space-2);
-      --content-top-band: var(--space-5);
-      --cross: 6px;
-    }
-  }
-
   /* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
-   narrow screen; content runs clean to the uniform 18px gutter (--rail), like vercel.
-   The hero keeps its splash-card border; only its crosshairs go. */
+   narrow screen; content runs clean to the uniform 18px gutter (--rail), like vercel */
   @media (max-width: 640px) {
     main {
+      --content-top-band: var(--space-5);
       background-image: none;
       margin-top: 0;
     }
     main::before,
-    main::after,
-    .hero::before,
-    .hero::after {
+    main::after {
       content: none;
     }
   }
 
   footer {
-    /* vercel-tone footer: hairline top border, muted, center-aligned column —
+    /* vercel-tone footer: muted, center-aligned column —
      footer nav (blogroll · maxims · tags) over the byline */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--space-3);
-    margin-top: var(--space-10);
-    padding: var(--space-8) var(--rail);
+    /* line→footer: 48px gap + 40px pad = 88px — vercel's 130px felt too far */
+    margin-top: 48px;
+    padding: 40px var(--rail) var(--space-8);
     font-size: var(--fs-sm);
     color: var(--faint);
-    border-top: 1px solid var(--border);
   }
   footer .footer-byline {
     margin: 0;

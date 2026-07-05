@@ -48,7 +48,7 @@ else is tokens.
 ### Spacing — `.25rem` step (≈ px/4 at 17px root)
 
 `--space-1 .25rem … --space-12 3rem`. Structural bands: `--rail` (clamp .5–2rem),
-`--grid-top-band`, `--content-top-band`.
+`--content-top-band`.
 
 ### Type scale (rendered px at 17px root)
 

@@ -1,7 +1,9 @@
 // Generate the brand badge + OG cover. Default run renders a proof sheet of
 // badge candidates (sizes 16-128 on light/dark) and one cover mock per
 // variant into .cache/ogimage/. `-final <variant>` renders the shipping cover
-// at 4080x2142, optimizes it, and names it cover-<sha256-12>.png.
+// at 4080x2142, optimizes it, and names it cover-<sha256-12>.png. `-favicon
+// <variant>` rewrites static/favicon.{svg,png}; `-hero` rewrites the landing
+// hero's wake-mark partial.
 package main
 
 import (
@@ -31,15 +33,33 @@ const (
 
 var variants = []string{"ripple", "wake", "spiral", "particles"}
 
+// the shipping brand mark; the landing hero mirrors it
+const heroVariant = "wake"
+
+// floor-grid canvas + horizon, shared by the cover and the hero partials
+const (
+	gridW, gridH   = 1200.0, 630.0
+	gridCX, gridHY = 600.0, 470.0
+)
+
+// badge filler-disc geometry; the hero mark's crop derives from it
+const discC, discR = 256, 204
+
 func main() {
 	final := flag.String("final", "", "variant to render as the shipping cover")
 	favOnly := flag.String("favicon", "", "variant to render as favicons only (leaves the cover alone)")
+	hero := flag.Bool("hero", false, "rewrite the landing hero's wake-mark partial, nothing else")
 	flag.Parse()
 
 	for _, v := range []string{*final, *favOnly} {
 		if v != "" && !slices.Contains(variants, v) {
 			log.Fatalf("unknown variant %q; valid: %s", v, strings.Join(variants, ", "))
 		}
+	}
+
+	if *hero {
+		writeHeroPartials()
+		return
 	}
 
 	outDir := ".cache/ogimage"
@@ -84,6 +104,12 @@ func main() {
 }
 
 func renderFinal(browser playwright.Browser, outDir, variant string) {
+	// The landing hero's mark mirrors the brand cover; keep it in lockstep.
+	if variant == heroVariant {
+		writeHeroPartials()
+	} else {
+		fmt.Println("note: hero partials track", heroVariant, "— left untouched")
+	}
 	// 1200x630 layout at dsf 3.4 = 4080x2142, the dimensions head.html emits.
 	// Favicons are separate; regenerate them with -favicon.
 	shoot(browser, outDir, "cover-final.html", coverHTML(variant), 1200, 630, 3.4, "cover-final.png")
@@ -335,20 +361,7 @@ func badgeSVG(variant string, size int, fg, bg string) string {
       <circle cx="256" cy="322" r="208"/>
     </g>`
 	case "wake":
-		// solid disc above a waterline, sliced into fading strips below it: the
-		// disc's own reflection.
-		var rects strings.Builder
-		y, gap := 298.0, 13.0
-		for y < 460 {
-			rects.WriteString(fmt.Sprintf(`<rect x="0" y="%.0f" width="512" height="%.0f"/>`, y, gap))
-			strip := 27.0 - (y-298.0)*0.13
-			if strip < 6 {
-				strip = 6
-			}
-			y += gap + strip
-			gap *= 1.28
-		}
-		carve = `<g clip-path="url(#disc)" fill="` + fg + `">` + rects.String() + `</g>`
+		carve = `<g clip-path="url(#disc)" fill="` + fg + `">` + wakeStripRects() + `</g>`
 	case "spiral":
 		carve = `<path d="` + spiralPath(300, 256, 256) + `" fill="none" stroke="` + fg +
 			`" stroke-width="34" stroke-linecap="round"/>`
@@ -398,37 +411,80 @@ func spiralPath(fit, cx, cy float64) string {
 	return d.String()
 }
 
-// gridSVG draws the cover background: a monochrome 80s wireframe floor,
-// faded near the horizon. No glow — tried, rejected as a smudge.
-func gridSVG() string {
-	const w, h, cx, hy = 1200.0, 630.0, 600.0, 470.0
-	var b strings.Builder
+// wakeStripRects returns the wake carve: fading reflection strips below the waterline.
+func wakeStripRects() string {
+	var rects strings.Builder
+	y, gap := 298.0, 13.0
+	for y < 460 {
+		rects.WriteString(fmt.Sprintf(`<rect x="0" y="%.0f" width="512" height="%.0f"/>`, y, gap))
+		strip := 27.0 - (y-298.0)*0.13
+		if strip < 6 {
+			strip = 6
+		}
+		y += gap + strip
+		gap *= 1.28
+	}
+	return rects.String()
+}
 
-	// floor: rows compress quadratically toward the horizon at hy, verticals
-	// fan out from the vanishing point to evenly spaced feet on the bottom edge
+// gridFloorLines returns the floor: rows compress quadratically toward the
+// horizon, verticals fan from the vanishing point.
+func gridFloorLines() string {
 	var lines strings.Builder
 	const rows, footGap = 9, 96.0
 	for i := 1; i <= rows; i++ {
 		t := float64(i) / float64(rows)
-		y := hy + (h-hy)*t*t
-		fmt.Fprintf(&lines, `<line x1="0" y1="%.1f" x2="%.0f" y2="%.1f"/>`, y, w, y)
+		y := gridHY + (gridH-gridHY)*t*t
+		fmt.Fprintf(&lines, `<line x1="0" y1="%.1f" x2="%.0f" y2="%.1f"/>`, y, gridW, y)
 	}
 	for k := -14; k <= 14; k++ {
-		fmt.Fprintf(&lines, `<line x1="%.0f" y1="%.1f" x2="%.1f" y2="%.0f"/>`, cx, hy, cx+float64(k)*footGap, h)
+		fmt.Fprintf(&lines, `<line x1="%.0f" y1="%.1f" x2="%.1f" y2="%.0f"/>`, gridCX, gridHY, gridCX+float64(k)*footGap, gridH)
 	}
+	return lines.String()
+}
 
-	b.WriteString(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+// gridSVG draws the cover background: a monochrome 80s wireframe floor,
+// faded near the horizon. No glow — tried, rejected as a smudge.
+func gridSVG() string {
+	return fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" width="%[1]g" height="%[2]g" viewBox="0 0 %[1]g %[2]g">
   <defs>
-    <linearGradient id="fadeDown" x1="0" y1="470" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+    <linearGradient id="fadeDown" x1="0" y1="%[3]g" x2="0" y2="%[2]g" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fff" stop-opacity="0"/>
       <stop offset="0.45" stop-color="#fff" stop-opacity="0.55"/>
       <stop offset="1" stop-color="#fff" stop-opacity="1"/>
     </linearGradient>
-    <mask id="mDown"><rect width="1200" height="630" fill="url(#fadeDown)"/></mask>
+    <mask id="mDown"><rect width="%[1]g" height="%[2]g" fill="url(#fadeDown)"/></mask>
   </defs>
-  <g mask="url(#mDown)" stroke="` + text + `" stroke-width="1.5" opacity="0.32">` + lines.String() + `</g>
-</svg>`)
-	return b.String()
+  <g mask="url(#mDown)" stroke="%[4]s" stroke-width="1.5" opacity="0.32">%[5]s</g>
+</svg>`, gridW, gridH, gridHY, text, gridFloorLines())
+}
+
+type heroPartial struct {
+	path, svg string
+}
+
+// heroPartials builds the landing hero's wake mark from the cover geometry;
+// a test asserts the committed file matches, so the mark can't drift.
+func heroPartials() []heroPartial {
+	header := "{{- /* generated by scripts/ogimage (-hero, and on -final " + heroVariant + "); do not edit */}}\n"
+	mark := header + fmt.Sprintf(`<svg class="hero__mark" viewBox="%[1]d %[1]d %[2]d %[2]d" width="80" height="80" aria-hidden="true">
+  <defs><clipPath id="hero-wake"><circle cx="%[3]d" cy="%[3]d" r="%[4]d"/></clipPath></defs>
+  <circle cx="%[3]d" cy="%[3]d" r="%[4]d" fill="currentColor"/>
+  <g clip-path="url(#hero-wake)">%[5]s</g>
+</svg>
+`, discC-discR, 2*discR, discC, discR, wakeStripRects())
+	return []heroPartial{
+		{"layouts/partials/hero-mark.html", mark},
+	}
+}
+
+func writeHeroPartials() {
+	for _, f := range heroPartials() {
+		if err := os.WriteFile(f.path, []byte(f.svg), 0o644); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("wrote", f.path)
+	}
 }
 
 func coverHTML(variant string) string {

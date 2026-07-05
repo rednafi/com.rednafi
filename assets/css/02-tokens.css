@@ -3,6 +3,9 @@
      darker for AA contrast. */
   :root {
     color-scheme: light;
+    /* brand constants, theme-independent — mirror ink/paper in scripts/ogimage */
+    --ink: #0a0a0a;
+    --paper: #ffffff;
     --bg: #fafafa;
     --bg-2: var(--bg);
     --text: #171717;
@@ -53,7 +56,6 @@
     --space-12: 3rem;
     /* viewport-driven structural bands + grid gutter */
     --rail: clamp(0.5rem, 2vw, 2rem);
-    --grid-top-band: clamp(0.8rem, calc(2.4vw - 0.2rem), 1.3rem);
     --content-top-band: clamp(1.5rem, 3vw, 2rem);
 
     /* Type scale — rendered px at the 17px root in comments */
