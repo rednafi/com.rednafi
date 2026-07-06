@@ -18,7 +18,7 @@ env:
   HUGO_VERSION: 0.163.3
   NODE_VERSION: 26
   PAGEFIND_VERSION: 1.5.2
-  PRETTIER_VERSION: 3.9.3
+  PRETTIER_VERSION: 3.9.4
   SEQUOIA_CLI_VERSION: 0.5.7
   SITE_COVER_PATH: .cache/site-cover/cover-39e2ac8de020.png
   SITE_COVER_URL: https://blob.rednafi.com/home/cover-39e2ac8de020.png?ci-seed-39e2ac8de020
