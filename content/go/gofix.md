@@ -567,13 +567,11 @@ When a caller runs `go fix`, the wrapper's body gets copied to every call site,
 
 There's a `ctx` in scope one line up, and the rewrite ignores it. Every call site now
 carries `context.Background()`, and nothing marks the ones that need attention.
-`context.TODO()` in the wrapper won't save you either: the wrapper is live code and needs a
-real default.
+`context.TODO()` is probably a better candidate here.
 
-The fix has to happen per call site: use the `ctx` in scope, or fall back to something
-greppable. No annotation on the old function can express that, but a custom analyzer can.
-`go fix` runs it through the `-fixtool` flag. I'll cover how to write one in a separate
-post.
+The fix is to use the `ctx` in scope at each call site. No annotation on the old function
+can express that, but a custom analyzer can. `go fix` runs it through the `-fixtool` flag.
+I'll cover how to write one in a separate post.
 
 You can get a lot done with just the built-in analyzers. I ran the new `go fix` on a large
 RPC service at work, and `newexpr` alone cleaned up a pile of pointer helper calls that had
