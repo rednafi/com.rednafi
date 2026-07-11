@@ -213,13 +213,6 @@ brought them back in line with Go 1.17. Both figures cover the compiler as a who
 than stenciling alone, but the 1.20 notes attribute the earlier regression largely to
 generics support.
 
----
-
-Rust and C++ specialize generic functions down to concrete types. Java erases them to a
-single implementation and drops the type information. Go monomorphizes too, but stencils
-down to GC shapes instead of concrete types. Types with the same shape share machine code,
-and the dictionary provides the concrete type when an operation needs it.
-
 <!-- references -->
 <!-- prettier-ignore-start -->
 
