@@ -16,11 +16,7 @@ atprotoPath: /zephyr/descending-into-the-aether/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlw6i26"
 ---
 
-<img
-    src="https://user-images.githubusercontent.com/
-30027932/252213261-01adc640-3bcf-46d8-8f40-dc506e0cb493.jpg"
-    alt="Macbook Air M2 15 inch"
-width="800px"> </img>
+![Macbook Air M2 15 inch][image_1]
 
 Around a year ago, I ditched my fancy Linux rig for a beefed-up 16" MacBook Pro and ever
 since, it's been my primary machine for both personal and work stuff. I love how this
@@ -89,5 +85,8 @@ if not the most - prudent tech purchases that I made this year!
 
 [recency bias]:
     https://en.wikipedia.org/wiki/Recency_bias
+
+[image_1]:
+    https://blob.rednafi.com/zephyr/descending-into-the-aether/image-01-0e0101df7fb3.jpg
 
 <!-- prettier-ignore-end -->
