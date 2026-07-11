@@ -1399,9 +1399,9 @@
       "slug": "gofix"
     },
     "content/go/gc_shape_stenciling.md": {
-      "contentHash": "89efb2c6e922801f5960d3d4e42c745b0566ecf5719b80f486b2273046ee6383",
+      "contentHash": "fe4d3dac12a3e9561147c8f32bf02cac66acaee22b27a98951d338da418a38a1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mqflmo5cu62o",
-      "lastPublished": "2026-07-11T21:52:24.589Z",
+      "lastPublished": "2026-07-11T21:55:23.913Z",
       "slug": "gc-shape-stenciling"
     }
   },
