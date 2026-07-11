@@ -35,6 +35,9 @@ which increases [compile time and binary size]. Erasure is at the opposite end o
 spectrum. There is only one body to compile, but the concrete types are gone at runtime. The
 program needs casts and boxing instead.
 
+Go sits between the two with an approach called [GC shape stenciling]. It monomorphizes, but
+only down to a type's GC shape. Types with the same shape share one compiled body.
+
 ## Full monomorphization
 
 A small Rust program shows how full monomorphization generates all the concrete functions.
@@ -103,8 +106,8 @@ casts and boxes are runtime work that a specialized version never does.
 
 ## GC shape stenciling
 
-Go's generics proposal left the implementation strategy open. What shipped is a mix of the
-two called [GC shape stenciling]. Here is the same `identity` function in Go:
+Go's generics proposal left the implementation strategy open. What shipped is GC shape
+stenciling. Here is the same `identity` function in Go:
 
 ```go
 package main
