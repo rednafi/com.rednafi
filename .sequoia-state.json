@@ -391,9 +391,9 @@
       "slug": "bash-namerefs"
     },
     "content/misc/behind_the_blog.md": {
-      "contentHash": "3af18c0544bc85832554cf85f9076bfdd039880f5672d7f21a0a8460d2a6e538",
+      "contentHash": "2f284418e15bf3a928f7fb5a7b6a31efa103ae4ef300681f02ff29ea7aa82c86",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e",
-      "lastPublished": "2026-07-03T19:57:37.244Z",
+      "lastPublished": "2026-07-11T21:38:15.600Z",
       "slug": "behind-the-blog"
     },
     "content/misc/shell_redirection.md": {
@@ -703,9 +703,9 @@
       "slug": "enable-repeatable-lazy-iterations"
     },
     "content/zephyr/descending_into_the_aether.md": {
-      "contentHash": "6852df87bb49aca300423d2cae0757189638430193670207f5ab13755eb9c024",
+      "contentHash": "7ae275be2b1f54f79aef4b610b876ec4253dd4c9301e30adbe77653801494df6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlw6i26",
-      "lastPublished": "2026-07-03T19:57:51.341Z",
+      "lastPublished": "2026-07-11T21:38:16.781Z",
       "slug": "descending-into-the-aether"
     },
     "content/python/escape_template_pattern.md": {
