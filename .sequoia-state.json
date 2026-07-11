@@ -1397,6 +1397,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptttuqfiu2t",
       "lastPublished": "2026-07-06T00:47:09.337Z",
       "slug": "gofix"
+    },
+    "content/go/gc_shape_stenciling.md": {
+      "contentHash": "98a60700a9ab60806a7792722a98bd772b39279b3eb25afae9dca4ed70a203bb",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mqflmo5cu62o",
+      "lastPublished": "2026-07-11T21:18:16.053Z",
+      "slug": "gc-shape-stenciling"
     }
   },
   "publication": {

@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /go/gc-shape-stenciling/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mqflmo5cu62o"
 ---
 
 While going through the [Go generics proposal], I got curious about how the compiler
