@@ -35,6 +35,8 @@ which increases [compile time and binary size]. Erasure is at the opposite end o
 spectrum. There is only one body to compile, but the concrete types are gone at runtime. The
 program needs casts and boxing instead.
 
+## Full monomorphization
+
 A small Rust program shows how full monomorphization generates all the concrete functions.
 It calls the generic `identity` function once with a `u32` and once with a `u64`:
 
@@ -86,6 +88,8 @@ specialization for each concrete set of arguments. When the same specialization 
 several object files, [GCC's implementation] emits every copy and leaves it to the linker to
 collapse the duplicates.
 
+## Type erasure
+
 Java keeps one implementation instead. `Box<String>` and `Box<Integer>` both run as the same
 `Box` class. An unbounded `T` erases to `Object`, so a field declared as `T` is stored as an
 `Object` in bytecode. When code reads that field from a `Box<String>`, `javac` [inserts a
@@ -96,6 +100,8 @@ The concrete type argument is [not available at runtime] to the erased class. Er
 means type parameters accept only reference types. Pass an `int` where a `T` is expected and
 Java [boxes it as an `Integer`]. Boxing [entails heap allocation and indirection]. Those
 casts and boxes are runtime work that a specialized version never does.
+
+## GC shape stenciling
 
 Go's generics proposal left the implementation strategy open. What shipped is a mix of the
 two called [GC shape stenciling]. Here is the same `identity` function in Go:
@@ -204,10 +210,12 @@ brought them back in line with Go 1.17. Both figures cover the compiler as a who
 than stenciling alone, but the 1.20 notes attribute the earlier regression largely to
 generics support.
 
+---
+
 Rust and C++ specialize generic functions down to concrete types. Java erases them to a
-single implementation and drops the type information. Go stencils down to GC shapes instead.
-Types with the same shape share machine code, and the dictionary provides the concrete type
-when an operation needs it.
+single implementation and drops the type information. Go monomorphizes too, but stencils
+down to GC shapes instead of concrete types. Types with the same shape share machine code,
+and the dictionary provides the concrete type when an operation needs it.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
