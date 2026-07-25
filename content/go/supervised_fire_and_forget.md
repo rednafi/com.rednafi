@@ -157,8 +157,8 @@ func New(capacity, workers int, onPanic func(any)) *Background {
 }
 ```
 
-`workers.Go` is [WaitGroup.Go], added in Go 1.25. It starts each worker goroutine and
-tracks it in the group in one call. `Stop` waits on that group during shutdown.
+`workers.Go` is [WaitGroup.Go], added in Go 1.25. It starts each worker goroutine and tracks
+it in the group in one call. `Stop` waits on that group during shutdown.
 
 Each worker drains the channel:
 
