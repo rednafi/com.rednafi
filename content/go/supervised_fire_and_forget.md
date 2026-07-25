@@ -101,7 +101,7 @@ close(tasks)
 Each receive loop runs one task at a time, so four workers mean at most four tasks run at
 once. The buffer holds 64 pending closures. Once it fills, the send blocks until a worker
 receives a task. Closing the channel ends the receive loops. The workers drain whatever is
-left in the buffer and exit.
+left in the buffer and exit (not shown here).
 
 ## A real pool needs more than a channel
 
