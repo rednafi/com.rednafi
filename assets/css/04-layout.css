@@ -352,7 +352,7 @@
     margin-bottom: var(--space-8);
   }
 
-  /* wake badge + centered copy over the low particle-fluid band */
+  /* wake badge + centered copy over the low tetromino band */
   .hero {
     position: relative;
     display: flex;
@@ -364,7 +364,7 @@
     /* vertical gap to the feed lives on the .home-intro wrapper */
     padding: clamp(var(--space-8), 6vw, var(--space-12));
   }
-  /* the clipped particle canvas — borderless */
+  /* the clipped well — borderless */
   .hero__media {
     position: absolute;
     inset: 0;
@@ -468,8 +468,28 @@
   @media (max-width: 640px) {
     /* tighter padding; the top slack goes to the feed, not the hero */
     .hero {
+      --band: 64px;
       padding: clamp(var(--space-5), 5vw, var(--space-8));
       padding-top: var(--space-2);
+      /* the field drops to a band under the copy — nothing sits over the icons */
+      padding-bottom: calc(var(--band) + var(--space-4));
+    }
+    .hero__media {
+      top: auto;
+      height: var(--band);
+      mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        #000 20%,
+        #000 80%,
+        transparent 100%
+      );
+    }
+    .hero__scrim {
+      display: none;
+    }
+    .home-intro {
+      margin-bottom: var(--space-6);
     }
     .content-column.home {
       margin-top: var(--space-2);
@@ -481,6 +501,39 @@
     .connect-icons a {
       min-width: 32px;
       min-height: 44px;
+    }
+  }
+
+  /* desktop masthead: band runs rail-to-rail, copy sits on the feed's left edge,
+   the fluid fills the right of the band */
+  @media (min-width: 900px) {
+    .home-intro {
+      --hero-inset: calc(-1 * var(--rail));
+      margin-top: calc(-1 * var(--content-top-band));
+      margin-bottom: var(--space-10);
+    }
+    .hero {
+      --fluid-w: clamp(280px, 40cqw, 520px);
+      align-items: flex-start;
+      text-align: left;
+      min-height: clamp(260px, 22vw, 320px);
+      padding-block: var(--space-10);
+      padding-left: calc(var(--rail) + max(0px, (100cqw - var(--content-width)) / 2));
+      padding-right: calc(var(--fluid-w) + var(--space-8));
+      border-bottom: 1px solid var(--border);
+    }
+    /* 1px insets keep the frame's top line and right rail clear of the canvas */
+    .hero__media {
+      inset: 1px 1px 0 auto;
+      width: var(--fluid-w);
+      /* the well fades out on the edge that faces the copy */
+      mask-image: linear-gradient(to right, transparent 0, #000 26%);
+    }
+    .hero__scrim {
+      display: none;
+    }
+    .hero__body {
+      align-items: flex-start;
     }
   }
 
