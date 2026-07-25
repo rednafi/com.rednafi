@@ -372,7 +372,7 @@
 
   pre code {
     padding: 0;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-code);
     background: none;
     border: none;
     /* code blocks preserve newlines + scroll horizontally — don't inherit the inline

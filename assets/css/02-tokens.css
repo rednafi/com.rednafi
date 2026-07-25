@@ -62,6 +62,7 @@
     --fs-2xs: 0.72rem; /* 12px — eyebrow labels, date / category */
     --fs-xs: 0.8rem; /* 13.6px — archive dates (one step under --fs-sm) */
     --fs-sm: 0.85rem; /* 14px — meta, tables, badges, nav, footer */
+    --fs-code: 0.87rem; /* 14.8px — fenced code */
     --fs-md: 0.9rem; /* 15px — toc, summary, excerpts, h5 / h6 */
     --fs-base: 1rem; /* 17px — body, h4 */
     --fs-lg: 1.1rem; /* 19px — site title */

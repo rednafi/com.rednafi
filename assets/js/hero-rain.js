@@ -55,7 +55,7 @@
     d.len = 8 + Math.floor(Math.random() * c.rows * 0.42)
     // pick a fall rate in css px/s, then convert to this column's rows/s so
     // small blocks don't crawl next to big ones
-    d.speed = ((26 + Math.random() * 88) * dpr) / c.size
+    d.speed = ((8 + Math.random() * 26) * dpr) / c.size
     d.alpha = 0.24 + Math.random() * 0.44
     // short re-entry gap only — a long one leaves visible holes in the field
     d.head = seeded

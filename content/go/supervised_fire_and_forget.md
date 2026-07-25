@@ -101,7 +101,7 @@ close(tasks)
 Each receive loop runs one task at a time, so four workers mean at most four tasks run at
 once. The buffer holds 64 pending closures. Once it fills, the send blocks until a worker
 receives a task. Closing the channel ends the receive loops. The workers drain whatever is
-left in the buffer and exit.
+left in the buffer and exit (not shown here).
 
 ## A real pool needs more than a channel
 
@@ -157,8 +157,8 @@ func New(capacity, workers int, onPanic func(any)) *Background {
 }
 ```
 
-`workers.Go` is [`WaitGroup.Go`], added in Go 1.25. It starts each worker goroutine and
-tracks it in the group in one call. `Stop` waits on that group during shutdown.
+`workers.Go` is [WaitGroup.Go], added in Go 1.25. It starts each worker goroutine and tracks
+it in the group in one call. `Stop` waits on that group during shutdown.
 
 Each worker drains the channel:
 
@@ -375,7 +375,7 @@ The complete implementation is in the [example repo].
 [complete implementation]:
     https://github.com/rednafi/examples/blob/main/supervised-fire-and-forget/internal/bg/bg.go
 
-[`WaitGroup.Go`]:
+[WaitGroup.Go]:
     https://pkg.go.dev/sync#WaitGroup.Go
 
 [example handler]:
