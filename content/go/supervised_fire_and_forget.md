@@ -196,11 +196,12 @@ of spawning more goroutines. The boolean just says whether the task was accepted
 
 The lock exists because a send on a closed channel panics. `Stop` closes the channel, so the
 pool has to make sure no `Submit` is halfway through a send when that happens. That's what
-the `sync.RWMutex` is for. `Submit` sends while holding the read lock, which any number of
-goroutines can share. `Stop` closes the channel while holding the write lock, which it can
-only take once every reader has released it. That way the close can never land in the middle
-of a send, and once `Stop` has run, a later `Submit` sees `stopped` and returns false
-instead of sending.
+the `sync.RWMutex` is for.
+
+`Submit` sends while holding the read lock, which any number of goroutines can share. `Stop`
+closes the channel while holding the write lock, which it can only take once every reader
+has released it. That way the close can never land in the middle of a send, and once `Stop`
+has run, a later `Submit` sees `stopped` and returns false instead of sending.
 
 A plain `sync.Mutex` would prevent the panic just as well, but it would force submissions
 through one at a time for no benefit. Sending on a channel is already safe from multiple
