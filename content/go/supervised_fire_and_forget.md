@@ -157,7 +157,7 @@ func New(capacity, workers int, onPanic func(any)) *Background {
 }
 ```
 
-`workers.Go` is [`WaitGroup.Go`], added in Go 1.25. It starts each worker goroutine and
+`workers.Go` is [WaitGroup.Go], added in Go 1.25. It starts each worker goroutine and
 tracks it in the group in one call. `Stop` waits on that group during shutdown.
 
 Each worker drains the channel:
@@ -375,7 +375,7 @@ The complete implementation is in the [example repo].
 [complete implementation]:
     https://github.com/rednafi/examples/blob/main/supervised-fire-and-forget/internal/bg/bg.go
 
-[`WaitGroup.Go`]:
+[WaitGroup.Go]:
     https://pkg.go.dev/sync#WaitGroup.Go
 
 [example handler]:
