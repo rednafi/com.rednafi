@@ -13,7 +13,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /go/supervised-fire-and-forget/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrirbf5kti26"
 ---
 
 These days, unmanaged `go func()` calls don't appear as often as they used to in the early

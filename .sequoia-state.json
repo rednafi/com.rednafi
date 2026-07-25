@@ -1399,10 +1399,16 @@
       "slug": "gofix"
     },
     "content/go/gc_shape_stenciling.md": {
-      "contentHash": "d2037f4b7e4c30bc11b41bba9ccd0bbdd003304fe722d2f25a655c1a9b24f6c2",
+      "contentHash": "029301b2214f9c6758bf8f4be6049ba7b1eaf843d89f9106d73024825fbcd077",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mqflmo5cu62o",
-      "lastPublished": "2026-07-11T21:57:28.001Z",
+      "lastPublished": "2026-07-25T21:02:30.966Z",
       "slug": "gc-shape-stenciling"
+    },
+    "content/go/supervised_fire_and_forget.md": {
+      "contentHash": "ccd4cd14836e9ee6f11fda3defb7a6c3c78adfa3097805e567e5529c7fe25e67",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrirbf5kti26",
+      "lastPublished": "2026-07-25T21:02:30.814Z",
+      "slug": "supervised-fire-and-forget"
     }
   },
   "publication": {
