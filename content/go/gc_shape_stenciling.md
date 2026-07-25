@@ -10,7 +10,9 @@ tags:
     - TIL
     - Codegen
 aliases: []
-discussions: []
+discussions:
+    - label: "Hacker News"
+      url: "https://news.ycombinator.com/item?id=48877151"
 mermaid: false
 type_label: ""
 atprotoPath: /go/gc-shape-stenciling/
