@@ -195,8 +195,7 @@ The send blocks when the queue is full, so a burst of requests waits for the wor
 of spawning more goroutines. The boolean just says whether the task was accepted.
 
 The lock exists because a send on a closed channel panics. `Stop` closes the channel, so the
-pool has to make sure no `Submit` is halfway through a send when that happens. That's what
-the `sync.RWMutex` is for.
+pool has to make sure no `Submit` is halfway through a send when that happens.
 
 `Submit` sends while holding the read lock, which any number of goroutines can share. `Stop`
 closes the channel while holding the write lock, which it can only take once every reader
