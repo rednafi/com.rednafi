@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /shards/2026/07/go-example-any-signature/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrp4m3jwi62t"
 ---
 
 Go's [proposal to allow examples with any signature] was [accepted] on July 8. Today, an

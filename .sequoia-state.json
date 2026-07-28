@@ -1409,6 +1409,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrirbf5kti26",
       "lastPublished": "2026-07-25T21:02:30.814Z",
       "slug": "supervised-fire-and-forget"
+    },
+    "content/shards/2026/07/go_example_any_signature.md": {
+      "contentHash": "f23d89d9f474ca9de2312462dea45e5870166e2657131206aa23f667b53b60f0",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrp4m3jwi62t",
+      "lastPublished": "2026-07-28T09:41:19.440Z",
+      "slug": "go-example-any-signature"
     }
   },
   "publication": {
