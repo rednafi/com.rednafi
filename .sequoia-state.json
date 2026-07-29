@@ -1417,9 +1417,9 @@
       "slug": "go-example-any-signature"
     },
     "content/shards/2026/07/go_flag_all_is_set.md": {
-      "contentHash": "9938cba5e6e30efe0450d8cffac79e84083cc06a3f186166da6fc3c65d33a92f",
+      "contentHash": "86de7827244cb2dfc0f6eb86501a68dd82e3161ec4d186d818c27a8e56cf830c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrszl4q7uq2l",
-      "lastPublished": "2026-07-29T22:57:44.856Z",
+      "lastPublished": "2026-07-29T23:11:21.393Z",
       "slug": "go-flag-all-is-set"
     }
   },
