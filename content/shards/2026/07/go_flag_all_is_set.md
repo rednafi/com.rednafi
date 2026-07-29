@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /shards/2026/07/go-flag-all-is-set/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrszl4q7uq2l"
 ---
 
 Go's [proposal for package flag] was [accepted] on July 23, 2026. It fixes an awkward case
