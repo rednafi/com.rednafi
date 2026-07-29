@@ -54,14 +54,14 @@ jobs:
         run: sudo dpkg -i ~/hugo.deb
 
       - name: Setup Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
           cache: true
           cache-dependency-path: go.sum
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -126,7 +126,7 @@ jobs:
         run: go run ./scripts/frontmatter
 
       - name: Format generated Markdown metadata
-        run: npx -y prettier@${PRETTIER_VERSION} --write "content/**/*.md"
+        run: npx -y "prettier@${PRETTIER_VERSION}" --write "content/**/*.md"
 
       - name: Check Markdown tabs
         run: go run ./scripts/lintcodeblocks --check
@@ -160,7 +160,7 @@ jobs:
         run: hugo --environment production --minify --gc --cleanDestinationDir
 
       - name: Build Pagefind search index
-        run: npx -y pagefind@${PAGEFIND_VERSION}
+        run: npx -y "pagefind@${PAGEFIND_VERSION}"
 
       - name: Prune unused Pagefind assets
         run: |

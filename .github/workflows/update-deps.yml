@@ -31,16 +31,16 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: Setup Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
           cache: true
           cache-dependency-path: go.sum
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: "lts/*"
+          node-version: "latest"
 
       - name: Update dependency pins
         id: update
@@ -70,7 +70,6 @@ jobs:
           hugo_version=$(latest_github_release gohugoio/hugo)
           node_version=$(latest_node_major)
           pagefind_version=$(latest_npm pagefind)
-          playwright_version=$(latest_npm playwright)
           prettier_version=$(latest_npm prettier)
           sequoia_version=$(latest_npm sequoia-cli)
           wrangler_version=$(latest_npm wrangler)
@@ -78,7 +77,6 @@ jobs:
           update_ci_env HUGO_VERSION "${hugo_version}"
           update_ci_env NODE_VERSION "${node_version}"
           update_ci_env PAGEFIND_VERSION "${pagefind_version}"
-          update_ci_env PLAYWRIGHT_VERSION "${playwright_version}"
           update_ci_env PRETTIER_VERSION "${prettier_version}"
           update_ci_env SEQUOIA_CLI_VERSION "${sequoia_version}"
 
