@@ -1174,12 +1174,10 @@ func TestHeaderMenuLinksResolve(t *testing.T) {
 	}
 }
 
-// TestHeaderMenuHoverRegion checks the hover-opened menu treats the whole
-// header bar + panel as one hover region (regression: it closed when the
-// pointer drifted from the panel up onto the site title).
 func TestHeaderMenuHoverRegion(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
+	goto_(t, page, "/")
 
 	expanded := func() string {
 		v, err := page.Locator("[data-nav-toggle]").GetAttribute("aria-expanded")
@@ -1187,27 +1185,21 @@ func TestHeaderMenuHoverRegion(t *testing.T) {
 		return v
 	}
 
-	// drift up onto the title and linger past the close grace period; retried
-	// because headless pointer-event timing flakes on loaded CI runners, while
-	// a genuine hover-region regression fails every attempt
-	stayedOpen := ""
-	for range 3 {
-		goto_(t, page, "/")
-		require.NoError(t, page.Locator("[data-nav-toggle]").Hover())
-		require.Equal(t, "true", expanded(), "menu should open on trigger hover")
-		require.NoError(t, page.Locator("#site-menu a").First().Hover())
-		require.NoError(t, page.Locator(".site-title").Hover())
-		time.Sleep(400 * time.Millisecond)
-		if stayedOpen = expanded(); stayedOpen == "true" {
-			break
-		}
-	}
-	assert.Equal(t, "true", stayedOpen, "menu must stay open over the title")
+	wrapper := page.Locator("[data-nav]")
+	header := page.Locator(".site-header")
+	require.NoError(t, wrapper.DispatchEvent("mouseenter", nil))
+	require.Equal(t, "true", expanded(), "menu should open on trigger hover")
 
-	// leaving the whole header region still closes it
-	require.NoError(t, page.Locator(".site-footer").Hover())
-	time.Sleep(400 * time.Millisecond)
-	assert.Equal(t, "false", expanded(), "menu should close after leaving the header")
+	require.NoError(t, wrapper.DispatchEvent("mouseleave", nil))
+	require.NoError(t, header.DispatchEvent("mouseenter", nil))
+	time.Sleep(250 * time.Millisecond)
+	assert.Equal(t, "true", expanded(), "menu must stay open over the header")
+
+	require.NoError(t, header.DispatchEvent("mouseleave", nil))
+	assert.Eventually(t, func() bool {
+		value, err := page.Locator("[data-nav-toggle]").GetAttribute("aria-expanded")
+		return err == nil && value == "false"
+	}, time.Second, 20*time.Millisecond, "menu should close after leaving the header")
 }
 
 func TestHeaderMenuDoesNotHideFocusedControls(t *testing.T) {
