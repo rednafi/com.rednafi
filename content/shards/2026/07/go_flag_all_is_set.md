@@ -55,13 +55,17 @@ func applyEnv(fs *flag.FlagSet) error {
             return
         }
 
-        key := "APP_" + strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
+        key := "APP_" + strings.ToUpper(
+            strings.ReplaceAll(f.Name, "-", "_"),
+        )
         value, ok := os.LookupEnv(key)
         if !ok {
             return
         }
         if err := fs.Set(f.Name, value); err != nil {
-            applyErr = fmt.Errorf("set flag -%s from %s: %w", f.Name, key, err)
+            applyErr = fmt.Errorf(
+                "set flag -%s from %s: %w", f.Name, key, err,
+            )
         }
     })
     return applyErr
