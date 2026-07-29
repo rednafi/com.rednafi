@@ -84,7 +84,7 @@ func TestRobotsNoIndex(t *testing.T) {
 	t.Parallel()
 	pages := []string{
 		"/archive/", "/maxims/",
-		"/search/", "/blogroll/",
+		"/blogroll/",
 		"/python/", "/go/", "/misc/", "/zephyr/", "/shards/",
 		"/page/2/",
 		"/tags/", "/tags/go/",

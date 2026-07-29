@@ -299,11 +299,10 @@ func TestRSSFeedHasLastBuildDate(t *testing.T) {
 	assert.Contains(t, body, "<lastBuildDate>")
 }
 
-// TestRSSFeedDoesNotIncludeSearchOrArchive verifies utility pages are excluded from RSS.
-func TestRSSFeedDoesNotIncludeSearchOrArchive(t *testing.T) {
+// TestRSSFeedDoesNotIncludeArchive verifies utility pages are excluded from RSS.
+func TestRSSFeedDoesNotIncludeArchive(t *testing.T) {
 	t.Parallel()
 	body := httpGet(t, baseURL+"/index.xml")
-	assert.NotContains(t, body, "/search/")
 	assert.NotContains(t, body, "/archive/")
 }
 

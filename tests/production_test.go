@@ -1,6 +1,7 @@
 package site_test
 
 import (
+	"os"
 	"strings"
 	"testing"
 
@@ -9,7 +10,7 @@ import (
 )
 
 // TestGoogleAnalyticsInProduction verifies the production build includes
-// the Google Analytics script. If the env/production guard in baseof.html
+// the Google Analytics script. If the env/production guard in analytics.html
 // breaks, analytics silently disappears and traffic data stops.
 func TestGoogleAnalyticsInProduction(t *testing.T) {
 	t.Parallel()
@@ -28,6 +29,19 @@ func TestGoogleAnalyticsRespectsDNT(t *testing.T) {
 	body := httpGet(t, baseURL+"/")
 	assert.Contains(t, body, "doNotTrack",
 		"analytics should check Do Not Track preference")
+}
+
+// TestGoogleAnalyticsStaysOutOfInitialInteractions keeps analytics from
+// competing with search, scrolling, or the Core Web Vitals measurement window.
+func TestGoogleAnalyticsStaysOutOfInitialInteractions(t *testing.T) {
+	t.Parallel()
+	source, err := os.ReadFile("../layouts/partials/analytics.html")
+	require.NoError(t, err)
+	body := string(source)
+
+	assert.NotContains(t, body, `["pointerdown","keydown","scroll","touchstart"]`)
+	assert.Contains(t, body, "setTimeout(schedule, 5000)")
+	assert.Contains(t, body, "requestIdleCallback")
 }
 
 // TestCSSIsMinified verifies the served CSS file is minified (no multi-line
@@ -153,16 +167,29 @@ func TestTOCSummaryStyling(t *testing.T) {
 	})
 }
 
-// TestPageHasNoLoadAnimation verifies the body does not animate on page load.
 func TestPageHasNoLoadAnimation(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	animation, err := page.Evaluate(
-		`() => getComputedStyle(document.body).animationName`,
-	)
+	for _, selector := range []string{"body", ".home-hero"} {
+		animation, err := page.Locator(selector).Evaluate(
+			`element => getComputedStyle(element).animationName`, nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "none", animation, "%s should not animate on page load", selector)
+	}
+}
+
+func TestHeroAnimationBudget(t *testing.T) {
+	t.Parallel()
+	source, err := os.ReadFile("../assets/js/hero-rain.js")
 	require.NoError(t, err)
-	assert.Equal(t, "none", animation,
-		"body should not animate on page load")
+	body := string(source)
+
+	assert.Contains(t, body, "1000 / 30")
+	assert.Contains(t, body, "IntersectionObserver")
+	assert.Contains(t, body, "visibilitychange")
+	assert.NotContains(t, body, "requestAnimationFrame")
+	assert.NotContains(t, body, "willReadFrequently")
 }

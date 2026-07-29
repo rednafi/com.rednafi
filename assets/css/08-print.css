@@ -11,7 +11,8 @@
       display: none !important;
     }
     .site-header,
-    footer,
+    .site-footer,
+    .command-palette,
     .breadcrumbs,
     .post-tags,
     .related-posts,

@@ -127,6 +127,7 @@ func TestMermaidPagesRenderAndRerender(t *testing.T) {
 
 			page := newPage(t)
 			goto_(t, page, tc.URL)
+			require.NoError(t, page.Locator("article .mermaid").First().ScrollIntoViewIfNeeded())
 
 			_, err := page.WaitForFunction(
 				`() => typeof window.__mermaidRerender === 'function' &&
@@ -203,6 +204,7 @@ func TestMermaidDiagramsFitColumnOnMobile(t *testing.T) {
 
 			page := newMobilePage(t)
 			goto_(t, page, tc.URL)
+			require.NoError(t, page.Locator("article .mermaid").First().ScrollIntoViewIfNeeded())
 
 			_, err := page.WaitForFunction(
 				`() => {

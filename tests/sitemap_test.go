@@ -64,8 +64,6 @@ func TestSitemapAndRobotsConsistency(t *testing.T) {
 
 	// robots.txt must reference the sitemap
 	assert.Contains(t, robots, "sitemap.xml", "robots.txt should reference sitemap")
-	assert.NotContains(t, robots, "Disallow: /search/",
-		"search should be crawlable so Google can see its noindex meta")
 
 	// The homepage must be in both
 	assert.Contains(t, robots, "Allow: /")

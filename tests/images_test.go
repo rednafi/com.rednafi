@@ -46,6 +46,13 @@ func TestImageAttributes(t *testing.T) {
 					assert.Equal(t, "async", decoding, "img %d missing async decoding", i)
 				})
 
+				t.Run("alt attribute", func(t *testing.T) {
+					hasAlt, err := img.Evaluate(`el => el.hasAttribute("alt")`, nil)
+					require.NoError(t, err)
+					assert.Equal(t, true, hasAlt,
+						"img %d must have alt; an empty value marks it decorative", i)
+				})
+
 				t.Run("intrinsic dimensions", func(t *testing.T) {
 					// width/height prevent layout shift
 					width, err := img.GetAttribute("width")

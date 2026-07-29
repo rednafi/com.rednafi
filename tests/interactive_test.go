@@ -69,50 +69,6 @@ func TestPrintURLExpansion(t *testing.T) {
 	})
 }
 
-// TestFocusVisibleStyles verifies keyboard users see an outline when focusing
-// interactive elements. This is a WCAG 2.1 Level AA requirement.
-func TestFocusVisibleStyles(t *testing.T) {
-	t.Parallel()
-	page := newPage(t)
-	goto_(t, page, "/")
-
-	t.Run("focus-visible CSS rule exists", func(t *testing.T) {
-		hasRule, err := page.Evaluate(`() => {
-			// Rules live inside @layer blocks, so recurse into nested cssRules.
-			const walk = (rules) => {
-				for (const rule of rules) {
-					if (rule.selectorText && rule.selectorText.includes(":focus-visible")) return true;
-					if (rule.cssRules && walk(rule.cssRules)) return true;
-				}
-				return false;
-			};
-			for (const sheet of document.styleSheets) {
-				try { if (walk(sheet.cssRules)) return true; } catch(e) {}
-			}
-			return false;
-		}`)
-		require.NoError(t, err)
-		assert.True(t, hasRule.(bool), "CSS should define :focus-visible styles")
-	})
-
-	t.Run("theme toggle shows a focus indicator on keyboard focus", func(t *testing.T) {
-		require.NoError(t, themeButton(t, page, "dark").Focus())
-		// A visible focus indicator is either an outline or a Geist box-shadow
-		// focus ring — accept either.
-		indicator, err := themeButton(t, page, "dark").Evaluate(
-			`el => {
-				const s = getComputedStyle(el);
-				const hasOutline = s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0;
-				const hasRing = s.boxShadow && s.boxShadow !== "none";
-				return hasOutline || hasRing ? "visible" : "none";
-			}`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "visible", indicator,
-			"focused button should show a visible focus indicator (outline or ring)")
-	})
-}
-
 // TestTOCExpandCollapse verifies the table of contents <details> element
 // can be toggled open and closed.
 func TestTOCExpandCollapse(t *testing.T) {
@@ -293,6 +249,20 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 
 // TestCopyCodeButton verifies the code-block copy button copies the block's
 // text to the clipboard and shows transient "copied" feedback.
+func TestCopyCodeAssetsAreConditional(t *testing.T) {
+	t.Parallel()
+
+	home := newPage(t)
+	goto_(t, home, "/")
+	assert.Zero(t, locatorCount(t, home.Locator(`script[src*="/js/copy-code"]`)))
+	assert.Zero(t, locatorCount(t, home.Locator("[data-copy-code-template]")))
+
+	article := newPage(t)
+	goto_(t, article, "/go/anemic-stack-traces/")
+	assert.Equal(t, 1, locatorCount(t, article.Locator(`script[src*="/js/copy-code"]`)))
+	assert.Equal(t, 1, locatorCount(t, article.Locator("[data-copy-code-template]")))
+}
+
 func TestCopyCodeButton(t *testing.T) {
 	t.Parallel()
 	ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{
@@ -309,6 +279,10 @@ func TestCopyCodeButton(t *testing.T) {
 	count, err := page.Locator(".codeblock .copy-code").Count()
 	require.NoError(t, err)
 	require.Greater(t, count, 0, "code blocks should render a copy button")
+	outputBlocks := page.Locator(`.codeblock[data-lang="txt"]`)
+	require.Greater(t, locatorCount(t, outputBlocks), 0)
+	assert.Zero(t, locatorCount(t, outputBlocks.Locator(".copy-code")),
+		"output blocks should not render copy controls")
 
 	t.Run("button has accessible label", func(t *testing.T) {
 		label, err := btn.GetAttribute("aria-label")

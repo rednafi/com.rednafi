@@ -26,7 +26,7 @@
     --accent: var(--link);
 
     /* Geist semantic scale — alerts: 200 fill / 400 border (a visible thin
-       edge) / 900 text; search mark reuses the amber */
+       edge) / 900 text */
     --blue-200: #ebf5ff;
     --blue-400: #cce6ff;
     --blue-900: #0068d6;
@@ -42,7 +42,6 @@
     --red-200: #ffebeb;
     --red-400: #fdd8d8;
     --red-900: #cb2a2f;
-    --mark-bg: #ffdd8f; /* Geist amber-400 */
 
     /* Spacing — modular .25rem step (the number ≈ px/4) */
     --space-1: 0.25rem;
@@ -70,9 +69,7 @@
        bold. Fluid 23px → 26px (exact at 390px / 1280px). */
     --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px);
 
-    /* Display headings — match vercel.com/blog EXACTLY: hard steps, not fluid
-       clamps. Desktop defaults here; h1/h3 step down at <=960px and h2 at <640px
-       (overrides at the end of this layer), mirroring vercel's breakpoints. */
+    /* Display headings use hard responsive steps rather than fluid clamps. */
     --fs-h1: 48px; /* article title / page h1 — 40px <=960 */
     --fs-h2: 32px; /* vercel keeps h2 32px at every width */
     --fs-h3: 28px; /* 24px <=960 */
@@ -110,6 +107,7 @@
 
     --radius-sm: 4px;
     --radius: 6px;
+    --radius-lg: 12px;
     --radius-pill: 9999px;
     --content-width: 720px;
     --page-width: 1150px; /* 720 reading column + ~190px grid gutter each side */
@@ -122,7 +120,9 @@
       background-color var(--motion-fast);
     --ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-dialog: 0 24px 80px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.12);
     --shadow-key: 0 1px 0 var(--border-strong);
+    --backdrop: rgba(0, 0, 0, 0.38);
 
     --chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
   }
@@ -164,9 +164,9 @@
     --red-200: #3c1618;
     --red-400: #671e21;
     --red-900: #ff6166;
-    --mark-bg: #6b4105; /* Geist amber-500 */
-
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-dialog: 0 24px 80px rgba(0, 0, 0, 0.48), 0 8px 24px rgba(0, 0, 0, 0.36);
+    --backdrop: rgba(0, 0, 0, 0.68);
   }
 
   /* reading body steps down to 17px at <=960px: phones + tablets (incl. iPad

@@ -16,8 +16,6 @@
   <h1 class="sr-only">{{ site.Title }}</h1>
   {{- if eq $paginator.PageNumber 1 }}
   <header class="home-intro home-hero">
-    {{- /* wake badge + copy beside the matrix rain (hero-rain.js).
-           Full bio lives on /about. <h1> sr-only for SEO. */}}
     <section class="hero" aria-label="Intro">
       <span class="hero__media" aria-hidden="true"><canvas id="hero-rain" class="hero__canvas"></canvas></span>
       <span class="hero__scrim" aria-hidden="true"></span>

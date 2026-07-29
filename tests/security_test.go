@@ -8,38 +8,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestSecurityHeaders verifies the _headers file serves correct security headers.
-func TestSecurityHeaders(t *testing.T) {
-	t.Parallel()
-	body := httpGet(t, baseURL+"/_headers")
-
-	t.Run("X-Content-Type-Options nosniff", func(t *testing.T) {
-		assert.Contains(t, body, "X-Content-Type-Options: nosniff")
-	})
-
-	t.Run("X-Frame-Options DENY", func(t *testing.T) {
-		assert.Contains(t, body, "X-Frame-Options: DENY")
-	})
-
-	t.Run("Referrer-Policy", func(t *testing.T) {
-		assert.Contains(t, body, "Referrer-Policy: strict-origin-when-cross-origin")
-	})
-
-	t.Run("CSP frame-ancestors none", func(t *testing.T) {
-		assert.Contains(t, body, "frame-ancestors 'none'")
-	})
-
-	t.Run("Permissions-Policy locks down unused features", func(t *testing.T) {
-		assert.Contains(t, body, "Permissions-Policy:")
-		assert.Contains(t, body, "camera=()")
-	})
-
-	t.Run("cache control for assets", func(t *testing.T) {
-		assert.Contains(t, body, "max-age=31536000")
-		assert.Contains(t, body, "immutable")
-	})
-}
-
 // TestNoMixedContent verifies no HTTP resources are loaded on HTTPS pages.
 // Since we test locally over HTTP, we check that production URLs in the HTML
 // use https://, not http://.

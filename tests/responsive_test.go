@@ -167,7 +167,7 @@ func TestStackedHomeFrameNoRail(t *testing.T) {
 	page := newMobilePage(t)
 	goto_(t, page, "/")
 
-	bg, err := page.Locator("main.main-list").Evaluate(
+	bg, err := page.Locator("main").Evaluate(
 		`el => getComputedStyle(el).backgroundImage`, nil,
 	)
 	require.NoError(t, err)

@@ -78,6 +78,51 @@ func TestColorContrastAA(t *testing.T) {
 	check("dark")
 }
 
+// TestCommandPaletteColorContrastAA checks the elevated palette surface, which
+// differs from the page background in dark mode.
+func TestCommandPaletteColorContrastAA(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/")
+
+	read := func(name string) string {
+		value, err := page.Evaluate(
+			`name => {
+				const probe = document.createElement("span");
+				probe.style.color = "var(" + name + ")";
+				document.body.appendChild(probe);
+				const rgb = getComputedStyle(probe).color.match(/\d+/g).slice(0, 3);
+				probe.remove();
+				return "#" + rgb.map(value => Number(value).toString(16).padStart(2, "0")).join("");
+			}`,
+			name,
+		)
+		require.NoError(t, err)
+		text, _ := value.(string)
+		return text
+	}
+	check := func(theme string) {
+		background := read("--bg-2")
+		for _, name := range []string{"--text", "--muted", "--faint"} {
+			foreground := read(name)
+			assert.GreaterOrEqualf(
+				t,
+				contrastRatio(foreground, background),
+				4.5,
+				"%s palette: %s (%s) on --bg-2 (%s) falls below AA",
+				theme,
+				name,
+				foreground,
+				background,
+			)
+		}
+	}
+
+	check("light")
+	require.NoError(t, themeButton(t, page, "dark").Click())
+	check("dark")
+}
+
 // TestFocusRingIsOpaque verifies the Geist focus ring on controls is a fully
 // opaque accent ring (var(--ring)), not a faint translucent glow — a visible
 // keyboard-focus indicator (WCAG 2.4.11). The theme toggle is borderless, so its

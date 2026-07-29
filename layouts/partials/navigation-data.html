@@ -1,0 +1,13 @@
+{{- $home := dict "url" "/" "label" "Home" "description" "Recent writing" "keywords" "home latest recent posts" -}}
+{{- $archive := dict "url" "/archive/" "label" "Archive" "description" "Browse every post" "keywords" "archive all writing articles posts" -}}
+{{- $tags := dict "url" "/tags/" "label" "Tags" "description" "Browse writing by topic" "keywords" "tags topics categories browse" -}}
+{{- $about := dict "url" "/about/" "label" "About" "description" "Profile, work, and ways to connect" "keywords" "about bio profile redowan contact connect cv" -}}
+{{- $appearances := dict "url" "/appearances/" "label" "Appearances" "commandTitle" "Talks & appearances" "description" "Talks, podcasts, videos, and slides" "keywords" "talk talks speaking conference appearances podcast podcasts video slides" -}}
+{{- $blogroll := dict "url" "/blogroll/" "label" "Blogroll" "description" "Writers and technical blogs worth following" "keywords" "blogroll blogs writers friends recommendations reading" -}}
+{{- $maxims := dict "url" "/maxims/" "label" "Maxims" "description" "Short principles and reminders" "keywords" "maxims principles reminders aphorisms" -}}
+{{- return (dict
+  "groups" (slice
+    (dict "title" "Writing" "items" (slice $archive $tags))
+    (dict "title" "More" "items" (slice $about $appearances $blogroll $maxims)))
+  "quickLinks" (slice $home $archive $about $appearances $blogroll $tags $maxims))
+-}}

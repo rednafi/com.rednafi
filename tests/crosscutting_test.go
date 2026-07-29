@@ -1,7 +1,6 @@
 package site_test
 
 import (
-	"slices"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,7 +18,6 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 		"archive":  "/archive/",
 		"tags":     "/tags/",
 		"section":  "/python/",
-		"search":   "/search/",
 		"404":      "/404.html",
 	}
 
@@ -35,6 +33,7 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 			viewport, err := page.Locator(`meta[name="viewport"]`).GetAttribute("content")
 			require.NoError(t, err, "%s missing viewport", name)
 			assert.Contains(t, viewport, "width=device-width", "%s missing width=device-width", name)
+			assert.Contains(t, viewport, "initial-scale=1", "%s missing initial-scale=1", name)
 		})
 	}
 }
@@ -61,29 +60,18 @@ func TestContentColumnMaxWidth(t *testing.T) {
 	}
 }
 
-// TestNoOrphanedPages verifies key pages are reachable through navigation.
-// An orphaned page exists but has no inbound link — users can never find it.
-func TestNoOrphanedPages(t *testing.T) {
+func TestArchiveIsDiscoverable(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
 
-	// Collect all links from homepage (navigation, sidebar, post list)
 	allHrefs, err := page.Locator("a[href]").EvaluateAll(
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)
 	hrefList := toStringSlice(allHrefs)
 
-	// Utility pages that must remain discoverable from homepage.
-	mustLink := []string{
-		"/archive/", "/search/",
-	}
-
-	for _, target := range mustLink {
-		assert.True(t, slices.Contains(hrefList, target),
-			"%s should be linked from homepage", target)
-	}
+	assert.Contains(t, hrefList, "/archive/", "archive should be linked from homepage")
 }
 
 // TestHTMLLangOnAllPages verifies the lang attribute is set on every page

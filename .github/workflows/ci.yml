@@ -163,14 +163,7 @@ jobs:
         run: npx -y "pagefind@${PAGEFIND_VERSION}"
 
       - name: Prune unused Pagefind assets
-        run: |
-          rm -f \
-            public/pagefind/pagefind-component-ui.css \
-            public/pagefind/pagefind-component-ui.js \
-            public/pagefind/pagefind-highlight.js \
-            public/pagefind/pagefind-modular-ui.css \
-            public/pagefind/pagefind-modular-ui.js \
-            public/pagefind/wasm.unknown.pagefind
+        run: make prune-pagefind
 
       - name: Check GitHub Pages artifact size
         run: |

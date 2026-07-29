@@ -35,7 +35,7 @@ func TestNotFoundPage(t *testing.T) {
 		require.NoError(t, err)
 		assert.True(t, headerVisible, "404 page should show site header")
 
-		footerVisible, err := page.Locator("footer").IsVisible()
+		footerVisible, err := page.Locator(".site-footer").IsVisible()
 		require.NoError(t, err)
 		assert.True(t, footerVisible, "404 page should show footer")
 	})
@@ -48,5 +48,19 @@ func TestNotFoundPage(t *testing.T) {
 		robots, err := page.Locator(`meta[name="robots"]`).GetAttribute("content")
 		require.NoError(t, err)
 		assert.Contains(t, robots, "noindex")
+	})
+
+	t.Run("recent posts reuse the homepage stream", func(t *testing.T) {
+		home := newPage(t)
+		goto_(t, home, "/")
+		homeHref, err := home.Locator(".recent-writing .post > a").First().GetAttribute("href")
+		require.NoError(t, err)
+
+		notFound := newPage(t)
+		_, err = notFound.Goto(baseURL + "/404.html")
+		require.NoError(t, err)
+		notFoundHref, err := notFound.Locator(".post-list .post > a").First().GetAttribute("href")
+		require.NoError(t, err)
+		assert.Equal(t, homeHref, notFoundHref)
 	})
 }

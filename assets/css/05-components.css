@@ -95,12 +95,12 @@
     border-top: 1px solid var(--border);
   }
 
-  .content-column > article [data-pagefind-body] .article-content {
+  .article-body > header + .article-content {
     margin-top: var(--space-6);
     padding-top: var(--space-6);
     border-top: 1px solid var(--border);
   }
-  .content-column > article [data-pagefind-body] .article-footer {
+  .article-body > .article-footer {
     padding-top: var(--space-6);
     border-top: 1px solid var(--border);
   }
@@ -365,7 +365,6 @@
     box-decoration-break: clone;
   }
   /* code chip inside a link — inherit link hue, keep the frame */
-  a > code,
   a code {
     color: inherit;
   }
@@ -457,7 +456,7 @@
   }
 
   /* copy-to-clipboard — Geist icon button pinned to the top-right corner.
-   injected by JS (baseof.html), so it only exists when it can work */
+   injected by copy-code.js, so it only exists when it can work */
   .copy-code {
     position: absolute;
     top: var(--space-2);
@@ -473,7 +472,7 @@
     color: var(--faint);
     background-color: var(--code-bg);
     border: 1px solid var(--border);
-    /* matches the header icon buttons (search / hamburger): 32px, radius 6 */
+    /* matches the desktop command trigger */
     border-radius: var(--radius);
     cursor: pointer;
     touch-action: manipulation;
@@ -548,7 +547,7 @@
   table th,
   table td,
   .site-header,
-  footer {
+  .site-footer {
     transition:
       background-color var(--motion),
       border-color var(--motion);

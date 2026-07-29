@@ -2,7 +2,7 @@ SHELL := /usr/bin/env bash
 .SHELLFLAGS := -euo pipefail -c
 MAKEFLAGS += --silent
 
-.PHONY: init build dev run test lint format upload-post-image img-upload
+.PHONY: init build prune-pagefind dev run test lint format upload-post-image img-upload
 
 BREW_PACKAGES := go hugo node oxipng
 
@@ -13,6 +13,15 @@ WRANGLER_VERSION ?= 4.114.0
 PAGEFIND := npx -y pagefind@$(PAGEFIND_VERSION)
 PRETTIER := npx -y prettier@$(PRETTIER_VERSION)
 WRANGLER := npx -y wrangler@$(WRANGLER_VERSION)
+PAGEFIND_EXTRAS := \
+	public/pagefind/pagefind-ui.css \
+	public/pagefind/pagefind-ui.js \
+	public/pagefind/pagefind-component-ui.css \
+	public/pagefind/pagefind-component-ui.js \
+	public/pagefind/pagefind-highlight.js \
+	public/pagefind/pagefind-modular-ui.css \
+	public/pagefind/pagefind-modular-ui.js \
+	public/pagefind/wasm.unknown.pagefind
 
 # stateless bootstrap: install/verify every dep, prove with an in-memory build
 init:
@@ -39,13 +48,10 @@ build:
 	go run ./scripts/frontmatter
 	hugo --environment production --minify --gc --cleanDestinationDir
 	$(PAGEFIND)
-	rm -f \
-		public/pagefind/pagefind-component-ui.css \
-		public/pagefind/pagefind-component-ui.js \
-		public/pagefind/pagefind-highlight.js \
-		public/pagefind/pagefind-modular-ui.css \
-		public/pagefind/pagefind-modular-ui.js \
-		public/pagefind/wasm.unknown.pagefind
+	$(MAKE) prune-pagefind
+
+prune-pagefind:
+	rm -f $(PAGEFIND_EXTRAS)
 
 dev: build
 	hugo server --disableFastRender -e production --bind 0.0.0.0 --ignoreCache

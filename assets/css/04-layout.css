@@ -7,7 +7,7 @@
     z-index: 20;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: var(--space-2) var(--space-3);
     margin-bottom: var(--space-6);
     /* even vertical padding → consistent bar height */
@@ -38,8 +38,8 @@
     color: var(--muted);
   }
 
-  /* right-side cluster: search · theme switcher · | · menu — one row of
-   equal-height (32px) controls. margin-left:auto pushes it to the rail. */
+  /* right-side cluster: command search + menu. margin-left:auto pushes it to
+   the rail. */
   .header-actions {
     display: flex;
     align-items: center;
@@ -47,25 +47,17 @@
     margin-left: auto;
   }
 
-  /* the "Control" column: search + theme switcher stacked under the eyebrow, a
-   peer of the Writing / More groups (it carries .site-menu__group too). On
-   phones the columns stack → Control · Writing · More. */
+  /* the "Site" column: theme switcher aligned with the first navigation row. */
   .site-menu__controls {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    /* center the first 32px control on the first nav row (34px: a 22px/28 item +
-     2×3px padding), constant at every width */
-    --row: 34px;
-    gap: var(--space-3);
-    padding-top: calc((var(--row) - 32px) / 2);
+    padding-top: 1px;
   }
 
-  /* three-state geist theme switcher: segmented control, icon-only buttons —
-   sized down to vercel's footer switcher (24px segments) */
+  /* three-state geist theme switcher: segmented control, icon-only buttons */
   .theme-switcher {
     box-sizing: border-box;
-    /* 32px tall, matching the search + hamburger icon buttons exactly */
+    /* 32px tall, matching the command trigger exactly */
     height: 32px;
     display: inline-flex;
     align-items: center;
@@ -100,13 +92,6 @@
     height: 14px;
   }
 
-  /* standalone icon buttons (search + hamburger) carry a 16px glyph — the Geist
-   nav-icon size; the segmented switcher's 14px icons step down inside its pill */
-  .nav-icon svg {
-    width: 16px;
-    height: 16px;
-  }
-
   .theme-toggle:hover {
     color: var(--text);
     background-color: var(--surface-2);
@@ -129,36 +114,7 @@
     box-shadow: var(--ring);
   }
 
-  /* panel icon button: the search link keeps the boxed look so it reads as one
-   matched set with the theme switcher pills inside the menu */
-  .nav-icon {
-    box-sizing: border-box;
-    width: 32px;
-    height: 32px;
-    flex: none;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--muted);
-    cursor: pointer;
-    text-decoration: none;
-    transition: var(--transition-control);
-  }
-
-  .nav-icon:hover {
-    color: var(--text);
-    /* match every other bordered button: border darkens on hover */
-    border-color: var(--border-strong);
-    background-color: var(--surface-2);
-  }
-
-  /* menu trigger — vercel's bare icon button (probed on vercel.com/blog): 44px
-   hit target, NO box/fill/hover, icon flush right (justify-end), full-strength
-   ink. Negative block margin keeps the bar at its 32px-row height. */
+  /* 44px bare menu target within the 32px header row. */
   .nav-toggle {
     box-sizing: border-box;
     width: 44px;
@@ -176,16 +132,7 @@
     cursor: pointer;
   }
 
-  .nav-icon:visited {
-    color: var(--muted);
-  }
-  .nav-icon[aria-current="page"] {
-    color: var(--text);
-    background-color: var(--surface-2);
-  }
-
-  .nav-toggle:focus-visible,
-  .nav-icon:focus-visible {
+  .nav-toggle:focus-visible {
     outline: none;
     color: var(--text);
     box-shadow: var(--ring);
@@ -240,10 +187,7 @@
     display: inline-flex;
   }
 
-  /* full-width mega-panel that drops below the bar: no card, just a hairline
-   bottom edge, grouped columns + near-black items. All values measured on
-   vercel.com/blog's Resources dropdown: 4px top / 24px bottom, columns in the
-   same centered 1400px envelope as the bar. */
+  /* Full-width panel anchored below the header. */
   .site-menu {
     position: absolute;
     top: 100%;
@@ -265,9 +209,7 @@
     display: none;
   }
 
-  /* closed (during the exit transition): faded + lifted; .is-open settles it.
-   pointer-events:none so the invisible panel never intercepts clicks/focus even
-   if `hidden` lags (e.g. an interrupted transition) */
+  /* Keep the closing panel out of pointer and focus paths. */
   .site-menu:not(.is-open) {
     opacity: 0;
     transform: translateY(-8px);
@@ -279,21 +221,21 @@
     transform: none;
   }
 
-  /* grouped columns with sentence-case eyebrows (vercel nav mega-panel) */
   .site-menu__cols {
     display: flex;
     align-items: flex-start;
-    /* vercel's 250px fixed rows suit their long labels; ours are short, so fixed
-     rows read as voids. Match their VISUAL rhythm instead: text-width columns
-     separated by the ~112px whitespace their longest label leaves (measured
-     end-of-"Knowledge Base" -> "AI Apps" on the live panel). */
     gap: 112px;
   }
+
+  .site-menu__links {
+    display: flex;
+    align-items: flex-start;
+    gap: 112px;
+  }
+
   .site-menu__group {
     min-width: 0;
   }
-  /* vercel.com nav-panel group header: 14px/20, weight 400, sentence case, no
-   tracking; 5px below it → 25px eyebrow-top to item-top (measured). */
   .site-menu__eyebrow {
     margin: 0 0 5px;
     color: var(--muted);
@@ -309,8 +251,6 @@
     padding: 0;
   }
 
-  /* vercel.com/blog nav item, probed on the live span: 22px / 28px line /
-   -0.66px (-0.03em) tracking / 400, in a 250x34 row (3px block pad). */
   .site-menu__group li a {
     display: block;
     padding: 3px 0;
@@ -328,20 +268,16 @@
     color: var(--text);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .site-menu {
-      transition: none;
-    }
-  }
-
   /* phones: stack the groups so the panel never gets cramped */
   @media (max-width: 640px) {
     .site-menu__cols {
       flex-direction: column;
       gap: var(--space-6);
     }
-    .site-menu__group {
-      min-width: 0;
+
+    .site-menu__links {
+      flex-direction: column;
+      gap: var(--space-6);
     }
   }
 
@@ -537,23 +473,6 @@
     }
   }
 
-  /* one clean entrance fade-up on load; only when motion is welcome */
-  @media (prefers-reduced-motion: no-preference) {
-    .home-hero {
-      animation: home-hero-rise 0.55s var(--ease-out) both;
-    }
-  }
-  @keyframes home-hero-rise {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   /* home — a single centered column of writings (no sidebar), identical in shape
    on mobile and desktop; the bio lives on the dedicated /about page */
   .home-section-title,
@@ -663,39 +582,45 @@
     }
   }
 
-  footer {
-    /* vercel-tone footer: muted, center-aligned column —
-     footer nav (blogroll · maxims · tags) over the byline */
+  @media (max-width: 360px) {
+    .site-title {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .site-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--space-3);
-    /* line→footer: 48px gap + 40px pad = 88px — vercel's 130px felt too far */
     margin-top: 48px;
     padding: 40px var(--rail) var(--space-8);
     font-size: var(--fs-sm);
     color: var(--faint);
   }
-  footer .footer-byline {
+  .site-footer .footer-byline {
     margin: 0;
   }
   /* footer is chrome — links darken to --text with the nav menu's underline on
    hover (blue hover is reserved for content links) */
-  footer a {
+  .site-footer a {
     text-decoration: none;
     color: var(--muted);
     transition: color var(--motion-fast);
   }
 
-  footer a:visited {
+  .site-footer a:visited {
     color: var(--muted);
   }
 
   .site-menu__group li a:hover,
   .site-menu__group li a[aria-current="page"],
-  footer a:hover,
-  footer a[aria-current="page"] {
+  .site-footer a:hover,
+  .site-footer a[aria-current="page"] {
     color: var(--text);
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -706,7 +631,7 @@
   .site-title:focus-visible,
   .site-menu__group li a:focus-visible,
   .connect-icons a:focus-visible,
-  footer a:focus-visible {
+  .site-footer a:focus-visible {
     outline: none;
     border-radius: var(--radius-sm);
     box-shadow: var(--ring);
@@ -714,7 +639,7 @@
 
   @media (max-width: 640px) {
     /* footer band compresses one step on phones, like the header/menu/hero bands */
-    footer {
+    .site-footer {
       margin-top: var(--space-8);
       padding: var(--space-6) var(--rail);
     }

@@ -82,18 +82,15 @@ func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
 		require.NotContains(t, hrefs, "https://rednafi.com")
 	})
 
-	t.Run("search result links stay local when clicked", func(t *testing.T) {
+	t.Run("command search result links stay local when opened from the keyboard", func(t *testing.T) {
 		page := newPage(t)
-		goto_(t, page, "/search/")
+		goto_(t, page, "/")
 
-		err := page.Locator(".pagefind-ui__search-input").WaitFor(playwright.LocatorWaitForOptions{
-			Timeout: playwright.Float(10000),
-		})
-		require.NoError(t, err)
-		require.NoError(t, page.Locator(".pagefind-ui__search-input").Fill("postgres"))
+		require.NoError(t, page.Locator("[data-command-open]").Click())
+		require.NoError(t, page.Locator("[data-command-input]").Fill("postgres"))
 
-		result := page.Locator(".pagefind-ui__result-link").First()
-		err = result.WaitFor(playwright.LocatorWaitForOptions{
+		result := page.Locator(`[data-command-source="pagefind"]`).First()
+		err := result.WaitFor(playwright.LocatorWaitForOptions{
 			Timeout: playwright.Float(10000),
 		})
 		require.NoError(t, err)
@@ -102,7 +99,7 @@ func TestInternalNavigationStaysOnLocalOrigin(t *testing.T) {
 		require.NoError(t, err)
 		require.NotContains(t, href, "rednafi.com")
 
-		require.NoError(t, result.Click())
+		require.NoError(t, page.Keyboard().Press("Enter"))
 		assertLocalURL(t, page)
 	})
 }

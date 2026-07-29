@@ -1,2 +1,2 @@
 /* Cascade layer order — earlier layers have LOWER priority. Declared once, first. */
-@layer tokens, base, layout, components, chroma, vendor, print;
+@layer tokens, base, layout, components, chroma, print;

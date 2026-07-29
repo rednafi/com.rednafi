@@ -1,0 +1,43 @@
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- with site.Config.Services.GoogleAnalytics.ID }}
+<script>
+  (function () {
+    if (
+      navigator.doNotTrack == "1" ||
+      window.doNotTrack == "1" ||
+      navigator.msDoNotTrack == "1"
+    )
+      return;
+
+    var id = {{ . }};
+    var started = false;
+
+    function start() {
+      if (started) return;
+      started = true;
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        dataLayer.push(arguments);
+      };
+      gtag("js", new Date());
+      gtag("config", id);
+    }
+
+    function schedule() {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        setTimeout(start, 0);
+      }
+    }
+    addEventListener("load", function () {
+      setTimeout(schedule, 5000);
+    }, { once: true });
+  })();
+</script>
+{{- end }}
+{{- end }}

@@ -45,6 +45,7 @@ func TestCSSVariablesDefinedInDark(t *testing.T) {
 		"--code-bg": "#1a1a1a",
 		"--border":  "#2e2e2e",
 		"--link":    "#52a8ff",
+		"--visited": "#52a8ff",
 	}
 
 	for v, expected := range expectedDark {
@@ -173,4 +174,29 @@ func TestStickyFooter(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "1", flex)
 	})
+}
+
+// TestFooterStylesAreScoped prevents site chrome rules from leaking into the
+// semantic footer used for article tags and blockquote attributions.
+func TestFooterStylesAreScoped(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/go/configure-options/")
+
+	siteDisplay, err := page.Locator(".site-footer").Evaluate(
+		`el => getComputedStyle(el).display`, nil,
+	)
+	require.NoError(t, err)
+	assert.Equal(t, "flex", siteDisplay)
+
+	articleDisplay, err := page.Locator(".article-footer").Evaluate(
+		`el => getComputedStyle(el).display`, nil,
+	)
+	require.NoError(t, err)
+	assert.Equal(t, "block", articleDisplay)
+	articleAlign, err := page.Locator(".article-footer").Evaluate(
+		`el => getComputedStyle(el).textAlign`, nil,
+	)
+	require.NoError(t, err)
+	assert.NotEqual(t, "center", articleAlign)
 }

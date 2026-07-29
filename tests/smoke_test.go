@@ -70,7 +70,7 @@ func TestSiteBuildSmokeTest(t *testing.T) {
 }
 
 // TestNoConsoleErrors verifies no JavaScript errors are thrown on key pages.
-// Console errors signal broken scripts (theme toggle, back-to-top, Pagefind).
+// Console errors signal broken global scripts such as theme, navigation, and back-to-top.
 func TestNoConsoleErrors(t *testing.T) {
 	t.Parallel()
 	pages := []string{"/", "/go/anemic-stack-traces/", "/archive/"}

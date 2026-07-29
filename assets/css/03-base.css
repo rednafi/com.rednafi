@@ -14,9 +14,7 @@
     /* reserve the scrollbar gutter so centered content doesn't shift between
      short (no-scroll) and long (scroll) pages */
     scrollbar-gutter: stable;
-    /* iOS lets html scroll-x even when body is clipped — kill grid-rail sideways
-     scroll. `clip` (not `hidden`) so it doesn't become a scroll container and
-     break the sticky header; `hidden` fallback for old browsers. */
+    /* Prevent horizontal overflow without creating a scroll container. */
     overflow-x: hidden;
     overflow-x: clip;
     -webkit-text-size-adjust: 100%;
@@ -97,7 +95,7 @@
   }
 
   a:visited {
-    color: var(--link); /* never recolor once visited */
+    color: var(--visited); /* currently equals --link; kept as a semantic token */
   }
 
   img {
@@ -151,10 +149,7 @@
     font-size: var(--fs-base);
     line-height: var(--lh-ui);
   }
-  h5 {
-    font-size: var(--fs-md);
-    line-height: var(--lh-normal);
-  }
+  h5,
   h6 {
     font-size: var(--fs-md);
     line-height: var(--lh-normal);
@@ -178,15 +173,7 @@
     margin: 0 0 var(--space-4);
   }
   /* vercel's article rhythm: 24px between blocks */
-  .article-content p,
-  .article-content ul,
-  .article-content ol,
-  .article-content blockquote,
-  .article-content .alert,
-  .article-content .codeblock,
-  .article-content pre,
-  .article-content table,
-  .article-content .highlight {
+  .article-content p {
     margin-bottom: var(--article-gap);
   }
   :is(h1, h2, h3, h4, h5, h6) {

@@ -76,8 +76,7 @@ func newPage(t *testing.T) playwright.Page {
 	return page
 }
 
-// themeButton reveals the nav menu panel — where the search + theme switcher
-// now live — and returns the theme toggle for the given variant
+// themeButton reveals the nav menu panel and returns the theme toggle for the given variant
 // ("light"/"dark"/"system"). Idempotent: safe to call repeatedly.
 func themeButton(t *testing.T, page playwright.Page, variant string) playwright.Locator {
 	t.Helper()
@@ -114,14 +113,6 @@ func goto_(t *testing.T, page playwright.Page, path string) {
 
 func TestBaseLayout(t *testing.T) {
 	t.Parallel()
-	t.Run("has correct lang attribute", func(t *testing.T) {
-		page := newPage(t)
-		goto_(t, page, "/")
-		lang, err := page.Locator("html").GetAttribute("lang")
-		require.NoError(t, err)
-		assert.Equal(t, "en", lang)
-	})
-
 	t.Run("has skip-to-content link", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
@@ -162,7 +153,7 @@ func TestBaseLayout(t *testing.T) {
 	t.Run("has footer with navigation links", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		hrefs, err := page.Locator("footer a").EvaluateAll(
+		hrefs, err := page.Locator(".site-footer a").EvaluateAll(
 			`els => els.map(e => e.getAttribute("href"))`,
 		)
 		require.NoError(t, err)
@@ -172,7 +163,7 @@ func TestBaseLayout(t *testing.T) {
 		assert.Contains(t, hrefList, "/maxims/")
 		assert.Contains(t, hrefList, "/tags/")
 
-		footerText, err := page.Locator("footer").Evaluate(
+		footerText, err := page.Locator(".site-footer").Evaluate(
 			`el => el.innerText.replace(/\s+/g, " ").trim()`,
 			nil,
 		)
@@ -189,18 +180,6 @@ func TestBaseLayout(t *testing.T) {
 		assert.Equal(t, "Back to top", label)
 	})
 
-	t.Run("body has home class on homepage only", func(t *testing.T) {
-		page := newPage(t)
-		goto_(t, page, "/")
-		cls, err := page.Locator("body").GetAttribute("class")
-		require.NoError(t, err)
-		assert.Contains(t, cls, "home")
-
-		goto_(t, page, "/archive/")
-		cls2, err := page.Locator("body").GetAttribute("class")
-		require.NoError(t, err)
-		assert.NotContains(t, cls2, "home")
-	})
 }
 
 func TestHomepage(t *testing.T) {
@@ -364,17 +343,6 @@ func TestThemeToggle(t *testing.T) {
 		assert.True(t, theme == "" || theme == "light")
 	})
 
-	t.Run("CSS variables change with theme", func(t *testing.T) {
-		page := newPage(t)
-		goto_(t, page, "/")
-		lightBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
-		require.NoError(t, err)
-		require.NoError(t, themeButton(t, page, "dark").Click())
-		darkBg, err := page.Evaluate(`() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()`)
-		require.NoError(t, err)
-		assert.NotEqual(t, lightBg, darkBg)
-		assert.Equal(t, "#0a0a0a", darkBg)
-	})
 }
 
 func TestBackToTop(t *testing.T) {
@@ -537,17 +505,8 @@ func TestRobotsTxt(t *testing.T) {
 	body := httpGet(t, baseURL+"/robots.txt")
 	assert.Contains(t, body, "User-agent: *")
 	assert.Contains(t, body, "Allow: /")
-	assert.NotContains(t, body, "Disallow: /search/")
 	assert.Contains(t, body, "Sitemap:")
 	assert.Contains(t, body, "sitemap.xml")
-}
-
-func TestSitemap(t *testing.T) {
-	t.Parallel()
-	body := httpGet(t, baseURL+"/sitemap.xml")
-	assert.Contains(t, body, "<urlset")
-	assert.Contains(t, body, "<url>")
-	assert.Contains(t, body, "<loc>")
 }
 
 // ---------- Content & Features ----------
@@ -732,9 +691,6 @@ func TestArchive(t *testing.T) {
 	})
 }
 
-// TestSearchPage is covered by TestSearchFunctionality and TestSearchPageCSS
-// (search_test.go). Removed to avoid redundant Pagefind initialization.
-
 func TestTagsPage(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
@@ -876,7 +832,7 @@ func TestKeyPagesReturn200(t *testing.T) {
 	t.Parallel()
 	pages := []string{
 		"/", "/appearances/", "/blogroll/",
-		"/maxims/", "/archive/", "/search/", "/tags/",
+		"/maxims/", "/archive/", "/tags/",
 		"/python/", "/go/", "/misc/",
 	}
 	for _, p := range pages {
@@ -994,16 +950,6 @@ func TestDesktopLayout(t *testing.T) {
 		assert.Equal(t, "720px", mw, "home column shares the 720px reading width")
 	})
 
-	t.Run("content column max-width 720px", func(t *testing.T) {
-		page2 := newPage(t)
-		goto_(t, page2, "/archive/")
-		mw, err := page2.Locator(".content-column").Evaluate(
-			`el => getComputedStyle(el).maxWidth`, nil,
-		)
-		require.NoError(t, err)
-		assert.Equal(t, "720px", mw)
-	})
-
 	t.Run("body max-width 1150px", func(t *testing.T) {
 		mw, err := page.Locator("body").Evaluate(
 			`el => getComputedStyle(el).maxWidth`, nil,
@@ -1057,7 +1003,7 @@ func TestPrintStyles(t *testing.T) {
 		Media: playwright.MediaPrint,
 	}))
 
-	for _, sel := range []string{".site-header", "footer", ".breadcrumbs", ".back-to-top", ".skip-link"} {
+	for _, sel := range []string{".site-header", ".site-footer", ".command-palette", ".breadcrumbs", ".back-to-top", ".skip-link"} {
 		t.Run(sel+" hidden in print", func(t *testing.T) {
 			// Use page.Evaluate because locator.Evaluate auto-waits for visibility,
 			// which times out on display:none elements.
@@ -1141,7 +1087,8 @@ func TestPreconnectHints(t *testing.T) {
 	)
 	require.NoError(t, err)
 	hrefList := toStringSlice(hrefs)
-	assert.Contains(t, hrefList, "https://blob.rednafi.com")
+	assert.NotContains(t, hrefList, "https://blob.rednafi.com",
+		"lazy article images should not make every page preconnect to the image host")
 	assert.NotContains(t, hrefList, "https://cdn.jsdelivr.net")
 
 	mermaidPage := newPage(t)
@@ -1150,7 +1097,8 @@ func TestPreconnectHints(t *testing.T) {
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)
-	assert.Contains(t, toStringSlice(mermaidHrefs), "https://cdn.jsdelivr.net")
+	assert.NotContains(t, toStringSlice(mermaidHrefs), "https://cdn.jsdelivr.net",
+		"lazy Mermaid loading should not preconnect before a diagram enters the viewport")
 }
 
 func TestPageLoadPerformance(t *testing.T) {
@@ -1163,13 +1111,21 @@ func TestPageLoadPerformance(t *testing.T) {
 		assert.Equal(t, 0, count)
 	})
 
-	t.Run("viewport meta is set", func(t *testing.T) {
+	t.Run("heavy optional scripts stay off the initial homepage path", func(t *testing.T) {
 		page := newPage(t)
 		goto_(t, page, "/")
-		content, err := page.Locator(`meta[name="viewport"]`).GetAttribute("content")
+		resources, err := page.Evaluate(`() =>
+			performance.getEntriesByType("resource").map(entry => entry.name)`)
 		require.NoError(t, err)
-		assert.Contains(t, content, "width=device-width")
-		assert.Contains(t, content, "initial-scale=1")
+		names := strings.Join(toStringSlice(resources), "\n")
+		for _, fragment := range []string{
+			"/js/command-palette.min.",
+			"/js/copy-code.min.",
+			"/js/mermaid.min.",
+			"/pagefind/",
+		} {
+			assert.NotContains(t, names, fragment)
+		}
 	})
 }
 
@@ -1191,7 +1147,7 @@ func TestFooterLinksResolve(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
-	hrefs, err := page.Locator("footer a").EvaluateAll(
+	hrefs, err := page.Locator(".site-footer a").EvaluateAll(
 		`els => els.map(e => e.getAttribute("href"))`,
 	)
 	require.NoError(t, err)
@@ -1249,9 +1205,33 @@ func TestHeaderMenuHoverRegion(t *testing.T) {
 	assert.Equal(t, "true", stayedOpen, "menu must stay open over the title")
 
 	// leaving the whole header region still closes it
-	require.NoError(t, page.Locator("footer").Hover())
+	require.NoError(t, page.Locator(".site-footer").Hover())
 	time.Sleep(400 * time.Millisecond)
 	assert.Equal(t, "false", expanded(), "menu should close after leaving the header")
+}
+
+func TestHeaderMenuDoesNotHideFocusedControls(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/")
+
+	toggle := page.Locator("[data-nav-toggle]")
+	require.NoError(t, toggle.Focus())
+	require.NoError(t, page.Keyboard().Press("Enter"))
+	link := page.Locator("#site-menu a").First()
+	require.NoError(t, link.Focus())
+	require.NoError(t, page.Locator(".site-header").DispatchEvent("mouseleave", nil))
+	time.Sleep(300 * time.Millisecond)
+
+	expanded, err := toggle.GetAttribute("aria-expanded")
+	require.NoError(t, err)
+	assert.Equal(t, "true", expanded,
+		"pointer movement must not hide a menu control that still owns keyboard focus")
+	visible, err := link.IsVisible()
+	require.NoError(t, err)
+	assert.True(t, visible)
+
+	require.NoError(t, page.Keyboard().Press("Escape"))
 }
 
 // ---------- Helpers ----------

@@ -1,17 +1,7 @@
-/* Landing splash — matrix rain in the site's monochrome palette. Fine columns
-   of square pixels fall from the ceiling, each column packing several drops at
-   once with its own block size, speed, trail length and weight, so the field
-   never empties out. Positions are carried as floats and rounded to device
-   pixels at draw time, so a trail slides instead of stepping row to row.
-   Canvas2D, no deps. Re-themes light/dark, holds a static frame under
-   prefers-reduced-motion, and pauses when scrolled off-screen. */
 ;(function () {
   var canvas = document.getElementById("hero-rain")
   if (!canvas) return
-  /* CPU-backed (willReadFrequently) so the canvas isn't promoted to its own GPU
-     compositing layer — otherwise the bio text stacked above it loses subpixel
-     antialiasing and renders soft/grayscale next to the rest of the page */
-  var ctx = canvas.getContext("2d", { willReadFrequently: true })
+  var ctx = canvas.getContext("2d")
   if (!ctx) return
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -23,9 +13,6 @@
     last = 0
   var paper = "250,250,250",
     shades = []
-  /* per-cell brightness jitter, keyed on column+row so it sits still in space
-     while a trail falls through it — without it neighbouring blocks land on
-     near-identical alphas and the trail smears into one gradient bar */
   var JIT = new Float32Array(64)
   for (var q = 0; q < 64; q++) {
     JIT[q] = 0.62 + Math.random() * 0.38
@@ -35,8 +22,6 @@
     var cs = getComputedStyle(document.documentElement)
     var ink = trip(cs.getPropertyValue("--text"), "23,23,23")
     paper = trip(cs.getPropertyValue("--bg"), "250,250,250")
-    // prebuilt alpha ramp: a few thousand rects a frame, none of them paying
-    // for string building
     shades = []
     for (var i = 0; i <= 48; i++) {
       shades.push("rgba(" + ink + "," + (i / 48).toFixed(3) + ")")
@@ -53,11 +38,8 @@
   function reset(d, seeded) {
     var c = columns[d.c]
     d.len = 8 + Math.floor(Math.random() * c.rows * 0.42)
-    // pick a fall rate in css px/s, then convert to this column's rows/s so
-    // small blocks don't crawl next to big ones
     d.speed = ((8 + Math.random() * 26) * dpr) / c.size
     d.alpha = 0.24 + Math.random() * 0.44
-    // short re-entry gap only — a long one leaves visible holes in the field
     d.head = seeded
       ? Math.random() * (c.rows + d.len)
       : -d.len - Math.random() * c.rows * 0.08
@@ -75,14 +57,11 @@
       columns.push({
         x: x,
         size: size,
-        // visible gap between cells, so a trail reads as stacked pixels
         gap: Math.max(1, Math.round(size * 0.2)),
         rows: Math.ceil(H / size)
       })
       x += size
     }
-    // every column carries two independent meteors, and each re-enters quickly
-    // after burning out, so the field's weight stays constant
     for (var i = 0; i < columns.length; i++) {
       for (var k = 0; k < 2; k++) {
         var d = { c: i }
@@ -115,12 +94,10 @@
         if (y > H) continue
         var t = 1 - k / d.len
         var a = d.alpha * t * (0.34 + 0.66 * t) * JIT[(d.c * 31 + (cell - k) * 17) & 63]
-        // the leading pair is the meteor's core, at full width and near-solid
         if (k === 0) a = Math.min(0.94, d.alpha * 2.0)
         else if (k === 1) a = Math.min(0.72, d.alpha * 1.35)
         var s = (a * 48) | 0
         if (s < 1) continue
-        // tail narrows as it burns out, so it dissolves into loose pixels
         var side2 = k < 2 ? side : Math.max(1, Math.round(side * (0.32 + 0.68 * t)))
         ctx.fillStyle = shades[s]
         ctx.fillRect(c.x + ((side - side2) >> 1), y, side2, side2)
@@ -129,21 +106,27 @@
   }
 
   var running = false
-  function loop(now) {
+  var inView = true
+  var frameInterval = 1000 / 30
+  var frameTimer
+  function loop() {
     if (!running) return
-    if (last) step(Math.min(0.05, (now - last) / 1000))
+    var now = performance.now()
+    step(Math.min(0.05, (now - last) / 1000))
     last = now
     draw()
-    requestAnimationFrame(loop)
+    frameTimer = window.setTimeout(loop, frameInterval)
   }
   function play() {
-    if (running || reduce.matches) return
+    if (running || reduce.matches || !inView || document.hidden) return
     running = true
-    last = 0
-    requestAnimationFrame(loop)
+    last = performance.now()
+    frameTimer = window.setTimeout(loop, frameInterval)
   }
   function pause() {
     running = false
+    window.clearTimeout(frameTimer)
+    last = 0
   }
 
   function resize() {
@@ -158,8 +141,6 @@
     draw()
   }
 
-  // debounce resize: a window drag fires dozens of events/sec and each one
-  // re-seeds every column — coalesce them so that happens once the drag settles
   var resizeTimer
   window.addEventListener("resize", function () {
     window.clearTimeout(resizeTimer)
@@ -174,15 +155,18 @@
   })
 
   resize()
-  if (reduce.matches) {
-    draw()
-  } else if ("IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window) {
+    inView = false
     new IntersectionObserver(function (e) {
-      e[0].isIntersecting ? play() : pause()
+      inView = e[0].isIntersecting
+      inView ? play() : pause()
     }).observe(canvas)
-  } else {
+  } else if (!reduce.matches) {
     play()
   }
+  document.addEventListener("visibilitychange", function () {
+    document.hidden ? pause() : play()
+  })
   if (reduce.addEventListener) {
     reduce.addEventListener("change", function () {
       if (reduce.matches) {

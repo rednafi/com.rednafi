@@ -28,13 +28,11 @@ func TestZZVisualAudit(t *testing.T) {
 			FullPage: new(true),
 		})
 		require.NoError(t, err)
-		require.NoError(t, themeButton(t, page, "dark").Click())
-		page.WaitForTimeout(600)
 		_, err = page.Evaluate(`() => {
-			const m = document.querySelector('[data-nav-menu]');
-			if (m) { m.hidden = true; m.classList.remove('is-open'); }
+			document.documentElement.setAttribute("data-theme", "dark");
 		}`)
 		require.NoError(t, err)
+		page.WaitForTimeout(300)
 		_, err = page.Screenshot(playwright.PageScreenshotOptions{
 			Path:     new(outDir + "/" + name + "-dark.png"),
 			FullPage: new(true),
@@ -50,4 +48,31 @@ func TestZZVisualAudit(t *testing.T) {
 		})
 		require.NoError(t, err)
 	}
+
+	page := newPage(t)
+	goto_(t, page, "/")
+	require.NoError(t, page.Locator("[data-command-open]").Click())
+	page.WaitForTimeout(250)
+	_, err := page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/command-palette-light.png"),
+	})
+	require.NoError(t, err)
+	_, err = page.Evaluate(
+		`() => document.documentElement.setAttribute("data-theme", "dark")`,
+	)
+	require.NoError(t, err)
+	page.WaitForTimeout(300)
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/command-palette-dark.png"),
+	})
+	require.NoError(t, err)
+
+	page = newMobilePage(t)
+	goto_(t, page, "/")
+	require.NoError(t, page.Locator("[data-command-open]").Click())
+	page.WaitForTimeout(250)
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/command-palette-mobile.png"),
+	})
+	require.NoError(t, err)
 }

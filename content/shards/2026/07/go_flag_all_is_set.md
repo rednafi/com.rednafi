@@ -1,7 +1,7 @@
 ---
 title: "Accepted proposal: range over all command-line flags"
 slug: go-flag-all-is-set
-date: 2026-07-30
+date: 2026-07-30T00:00:00+02:00
 description: >-
     The flag package is getting a range-friendly iterator and a direct way to tell whether a
     flag was set successfully.

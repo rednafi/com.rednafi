@@ -2,10 +2,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- /* stop iOS Safari turning version numbers / dates into tel: links */ -}}
 <meta name="format-detection" content="telephone=no">
-<link rel="preconnect" href="https://blob.rednafi.com">
-{{- if .Params.mermaid }}
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-{{- end }}
 
 {{- $homeURL := "/" | absURL }}
 {{- $aboutURL := "about/" | absURL }}
