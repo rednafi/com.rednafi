@@ -355,7 +355,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     font-weight: var(--fw-normal);
     letter-spacing: -0.025em;
     line-height: var(--lh-ui);
@@ -374,7 +374,7 @@
     }
 
     .site-menu__group li strong {
-      font-size: var(--fs-md);
+      font-size: var(--fs-base);
     }
   }
 
@@ -412,7 +412,7 @@
   .hero__footer,
   .hero__eyebrow {
     font-family: "Geist Mono", ui-monospace, monospace;
-    font-size: var(--fs-2xs);
+    font-size: var(--fs-sm);
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
@@ -511,7 +511,7 @@
     color: var(--muted);
     padding-left: var(--space-5);
     border-left: 1px solid var(--border-strong);
-    font-size: clamp(17px, 1.65cqw, 19px);
+    font-size: var(--fs-article);
     line-height: var(--lh-normal);
     letter-spacing: -0.025em;
     text-wrap: pretty;
@@ -602,6 +602,11 @@
   }
 
   @media (min-width: 961px) {
+    .hero__grid {
+      /* Reserve the image's left bleed so it can never enter the text column. */
+      column-gap: calc(var(--hero-gutter) + var(--space-3));
+    }
+
     .hero__utility,
     .hero__footer {
       box-sizing: border-box;
@@ -623,6 +628,21 @@
     }
   }
 
+  @media (min-width: 961px) and (max-width: 1100px) {
+    .hero__actions {
+      flex-wrap: nowrap;
+      gap: var(--space-2);
+    }
+
+    .hero__cta {
+      min-width: 0;
+      gap: var(--space-1);
+      padding-inline: var(--space-2);
+      font-size: var(--fs-2xs);
+      white-space: nowrap;
+    }
+  }
+
   .hero__footer {
     display: flex;
     align-items: center;
@@ -640,6 +660,7 @@
 
   /* social icon row — a quiet counterweight to the oversized headline */
   .connect-icons {
+    box-sizing: border-box;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -729,6 +750,18 @@
 
     .hero__grid {
       grid-template-columns: 1fr;
+      row-gap: 0;
+      column-gap: 0;
+      padding-block: var(--space-10);
+    }
+
+    .hero__art {
+      margin-top: 0;
+    }
+
+    /* The visible CTA-to-image edge owns the gutter directly. */
+    .hero__actions {
+      margin-bottom: var(--space-10);
     }
 
     .hero__body {
@@ -761,11 +794,6 @@
       display: none;
     }
 
-    .hero__grid {
-      gap: var(--space-10);
-      padding-block: var(--space-10);
-    }
-
     .hero__eyebrow {
       margin-bottom: var(--space-8);
       line-height: var(--lh-relaxed);
@@ -777,17 +805,24 @@
     }
 
     .hero__tagline {
-      font-size: 17px;
+      font-size: var(--fs-article);
     }
 
     .hero__actions {
       width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-2);
       margin-top: var(--space-8);
     }
 
     .hero__cta {
-      flex: 1 1 145px;
-      gap: var(--space-4);
+      width: 100%;
+      min-width: 0;
+      gap: var(--space-2);
+      padding-inline: var(--space-3);
+      font-size: clamp(var(--fs-2xs), 3.5vw, var(--fs-sm));
+      white-space: nowrap;
     }
 
     .hero__art {
@@ -828,6 +863,29 @@
 
     .recent-writing__intro p {
       max-width: 34ch;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .hero__actions {
+      gap: var(--space-1);
+    }
+
+    .hero__cta {
+      gap: var(--space-1);
+      padding-inline: var(--space-2);
+    }
+
+    .connect-icons {
+      min-width: 0;
+      gap: var(--space-1);
+    }
+  }
+
+  @media (max-width: 300px) {
+    .hero__actions {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
     }
   }
 

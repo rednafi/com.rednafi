@@ -38,26 +38,43 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 	}
 }
 
-// TestContentColumnMaxWidth verifies the content-column never exceeds 720px
-// across page types. If max-width breaks, text becomes unreadable on wide
-// screens — a major readability regression.
+// TestContentColumnMaxWidth verifies every page type uses the same centered
+// 720px base wrapper. Purposeful editorial elements such as the homepage hero
+// may bleed from that wrapper without changing the underlying column.
 func TestContentColumnMaxWidth(t *testing.T) {
 	t.Parallel()
-	pages := []string{"/go/anemic-stack-traces/", "/archive/"}
 
-	for _, url := range pages {
-		t.Run(url, func(t *testing.T) {
+	for name, path := range map[string]string{
+		"home":    "/",
+		"article": "/go/anemic-stack-traces/",
+		"archive": "/archive/",
+		"section": "/go/",
+		"about":   "/about/",
+		"404":     "/404.html",
+	} {
+		t.Run(name, func(t *testing.T) {
 			page := newPage(t)
-			goto_(t, page, url)
-
-			mw, err := page.Locator(".content-column").Evaluate(
-				`el => getComputedStyle(el).maxWidth`, nil,
+			goto_(t, page, path)
+			values, err := page.Locator(".content-column").Evaluate(
+				`el => ({ maxWidth: getComputedStyle(el).maxWidth, width: el.getBoundingClientRect().width })`, nil,
 			)
 			require.NoError(t, err)
-			assert.Equal(t, "720px", mw,
-				"content-column max-width should be 720px on %s", url)
+			metrics := values.(map[string]any)
+			assert.Equal(t, "720px", metrics["maxWidth"], "%s max-width drifted", name)
+			assert.LessOrEqual(t, toFloat(metrics["width"]), 720.5, "%s exceeds the base column", name)
 		})
 	}
+
+	t.Run("article reading content", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/go/anemic-stack-traces/")
+		width, err := page.Locator(".article-content").Evaluate(
+			`el => el.getBoundingClientRect().width`, nil,
+		)
+		require.NoError(t, err)
+		assert.InDelta(t, 720, toFloat(width), 1,
+			"desktop article should retain the standard centered 720px reading width")
+	})
 }
 
 func TestArchiveIsDiscoverable(t *testing.T) {

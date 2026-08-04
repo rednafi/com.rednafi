@@ -94,5 +94,5 @@ func TestDeepAnchorLinkNavigation(t *testing.T) {
 	)
 	require.NoError(t, err)
 	// Should be near the top of viewport (within ~200px)
-	assert.Less(t, top.(float64), float64(200), "anchor target should be near top of viewport")
+	assert.Less(t, toFloat(top), float64(200), "anchor target should be near top of viewport")
 }

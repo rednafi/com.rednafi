@@ -7,13 +7,12 @@
 
   html {
     font-family: "Geist", sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     color: var(--text);
     background: var(--bg);
     scroll-behavior: smooth;
-    /* reserve the scrollbar gutter so centered content doesn't shift between
-     short (no-scroll) and long (scroll) pages */
-    scrollbar-gutter: stable;
+    /* Keep the centered column truly symmetric; platform scrollbars may overlay
+       the viewport, matching Vercel, rather than reserving an extra right rail. */
     /* Prevent horizontal overflow without creating a scroll container. */
     overflow-x: hidden;
     overflow-x: clip;
@@ -23,7 +22,8 @@
      and no faux weights/italics (real variable instances are used instead) */
     font-feature-settings:
       "calt" 0,
-      "rlig";
+      "rlig",
+      "ss11";
     font-synthesis: none;
     /* thin Geist scrollbars (Firefox); ::-webkit-* below covers Chromium/Safari */
     scrollbar-width: thin;
@@ -164,7 +164,7 @@
   article li {
     text-wrap: pretty;
   }
-  /* reading body: 18px desktop, 17px on phones/tablets, ~1.55 leading */
+  /* Vercel article body: 18/28 desktop, 16/24 through the mobile/tablet step. */
   .article-content {
     font-size: var(--fs-article);
     line-height: var(--lh-article);
@@ -180,13 +180,12 @@
     scroll-margin-top: var(--space-4);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     :root {
-      /* one uniform 18px side gutter on phones.
-       The grid frame is dropped on mobile (04-layout), so --rail alone carries the
-       gutter — header, reading content, and footer all flush at 18px from the edge.
-       Tablets/desktop keep the clamp() default in 02-tokens. */
-      --rail: 18px;
+      /* Vercel's uniform 24px side gutter through its 960px type/layout step.
+       The main rail alone carries this gutter; retaining the body's desktop pad
+       here double-inset tablets and made the article look squeezed. */
+      --rail: 24px;
     }
     body {
       padding-block: var(--space-3);

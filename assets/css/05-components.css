@@ -1,4 +1,18 @@
 @layer components {
+  .article-body {
+    width: 100%;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .article-body > header {
+    position: relative;
+  }
+
+  .article-body > header > h1 {
+    margin-bottom: var(--space-5);
+  }
+
   /* secondary text — uniform size (.post-list .date styled separately below) */
   .post-meta,
   .footnotes,
@@ -42,17 +56,60 @@
     color: var(--link);
   }
   .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-2);
     color: var(--faint);
-    font-family: "Geist Mono", ui-monospace, monospace;
-    font-size: var(--fs-2xs);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-family: "Geist", sans-serif;
+    font-size: var(--fs-sm);
+    line-height: 20px;
+    letter-spacing: normal;
     font-variant-numeric: tabular-nums;
   }
-  /* date · reading-time separator */
+
+  .post-meta-details {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-2);
+    min-width: 0;
+    margin-top: 0;
+  }
+  /* Quiet separators remain visible wherever the row stays inline. */
   .post-meta-sep {
-    margin: 0 var(--space-2);
+    margin: 0;
     color: var(--border-strong);
+  }
+
+  .post-meta :is(time, .post-meta-reading) {
+    white-space: nowrap;
+  }
+
+  .post-meta-author {
+    min-width: 0;
+  }
+
+  @media (max-width: 640px) {
+    .post-meta-author {
+      flex-basis: 100%;
+    }
+
+    .post-meta-sep--author {
+      display: none;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .post-meta-details {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+    }
+
+    .post-meta-details > .post-meta-sep {
+      display: none;
+    }
   }
   .post-meta-author,
   .post-meta-author:visited {
@@ -71,11 +128,13 @@
   }
 
   .breadcrumbs {
-    margin-bottom: var(--space-2);
-    font-family: "Geist Mono", ui-monospace, monospace;
-    font-size: var(--fs-2xs);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    min-width: 0;
+    margin: 0 0 var(--space-5);
+    font-family: "Geist", sans-serif;
+    font-size: var(--fs-sm);
+    line-height: 20px;
+    letter-spacing: normal;
+    text-transform: none;
     color: var(--faint);
   }
   .breadcrumbs a {
@@ -104,8 +163,14 @@
 
   .article-body > header + .article-content {
     margin-top: var(--space-6);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--border);
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  @media (min-width: 961px) {
+    .article-body > header + .article-content {
+      margin-top: var(--space-16, 4rem);
+    }
   }
   .article-body > .article-footer {
     padding-top: var(--space-6);
@@ -332,6 +397,14 @@
     margin: 0 0 var(--article-gap);
     padding-top: var(--article-h3-lead);
   }
+
+  .article-content h4 {
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.1;
+    letter-spacing: 0.1em;
+  }
   .article-content :is(h2, h3, h4, h5, h6):first-child {
     margin-top: 0;
     padding-top: 0;
@@ -448,9 +521,10 @@
    chip fill + border stay. border mixes toward --border-strong (plain --border
    vanishes on --code-bg); ligatures off so =>, !=, -> read literally */
   code {
-    font-size: 0.82em;
+    font-size: 14px;
+    line-height: 20px;
     background-color: var(--code-bg);
-    padding: 3px 5px;
+    padding: 4px 5px;
     border-radius: var(--radius-sm);
     border: 1px solid color-mix(in srgb, var(--border-strong) 60%, var(--code-bg));
     font-variant-ligatures: none;
@@ -469,6 +543,8 @@
   pre code {
     padding: 0;
     font-size: var(--fs-code);
+    line-height: var(--lh-code);
+    font-feature-settings: "liga" 0;
     background: none;
     border: none;
     /* code blocks preserve newlines + scroll horizontally — don't inherit the inline
@@ -503,7 +579,9 @@
   pre {
     background-color: var(--code-bg);
     /* vercel's 20px pre inset at every width */
-    padding: var(--pre-pad);
+    padding: var(--pre-pad) 0;
+    font-size: 16px;
+    line-height: 24px;
     margin: var(--article-gap) 0;
     max-width: 100%;
     overflow-x: auto;
@@ -606,7 +684,8 @@
     margin: 0;
   }
   .codeblock pre {
-    margin: 0;
+    width: calc(100% - 2px);
+    margin: 0 1px;
     border: none;
     border-radius: 0;
   }
@@ -1238,9 +1317,9 @@
 
   /* TOC — Geist disclosure: bordered summary joins a matching panel when open */
   .toc {
-    margin: var(--space-4) 0;
-    font-size: var(--fs-md);
-    line-height: var(--lh-normal);
+    margin: var(--space-5) 0 0;
+    font-size: var(--fs-sm);
+    line-height: 20px;
   }
   .toc[open] > summary {
     border-bottom-left-radius: 0;
@@ -1248,6 +1327,10 @@
     border-bottom-color: transparent;
   }
   .toc nav {
+    box-sizing: border-box;
+    max-height: min(50dvh, 320px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: var(--space-3) var(--space-3) var(--space-3) 0;
     border: 1px solid var(--border);
     border-top: none;
@@ -1259,6 +1342,9 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-3);
+    min-height: 40px;
+    font-size: var(--fs-sm);
+    line-height: 20px;
   }
   .toc nav ul {
     margin: 0;

@@ -164,8 +164,8 @@ func TestTOCSummaryStyling(t *testing.T) {
 			nil,
 		)
 		require.NoError(t, err)
-		assert.InEpsilon(t, 0.9, ratio.(float64), 0.01,
-			"TOC font should stay at 0.9rem")
+		assert.InEpsilon(t, 0.875, ratio.(float64), 0.01,
+			"TOC font should match the 14px Geist control scale")
 	})
 }
 
@@ -215,6 +215,7 @@ func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
 		{Width: 320, Height: 568},
 		{Width: 390, Height: 844},
 		{Width: 768, Height: 1024},
+		{Width: 960, Height: 1024},
 		{Width: 1280, Height: 800},
 	} {
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
@@ -227,26 +228,21 @@ func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
 
 			fits, err := page.Evaluate(`() => {
 				const grid = document.querySelector('.hero__grid');
-				const gridRect = grid.getBoundingClientRect();
-				const gridGap = parseFloat(getComputedStyle(grid).columnGap);
 				const stage = document.querySelector('.hero__art-stage').getBoundingClientRect();
 				const art = document.querySelector('.hero__art').getBoundingClientRect();
 				const body = document.querySelector('.hero__body').getBoundingClientRect();
+				const actions = document.querySelector('.hero__actions').getBoundingClientRect();
 				const utility = document.querySelector('.hero__utility').getBoundingClientRect();
 				const footer = document.querySelector('.hero__footer').getBoundingClientRect();
 				const footerItems = [...document.querySelectorAll('.hero__footer a')];
 				const scene = document.querySelector('.hero__image').getBoundingClientRect();
 				const image = document.querySelector('.hero__image');
-				const balancedMobileSpacing = window.innerWidth > 640 ||
-					Math.abs((stage.top - body.bottom) - (footer.top - stage.bottom)) < 0.5;
+				const balancedStackedSpacing = window.innerWidth > 960 ||
+					Math.abs((stage.top - actions.bottom) - (footer.top - stage.bottom)) < 0.5;
 				const stageShapeFits = window.innerWidth > 960
 					? Math.abs(stage.top - art.top) < 0.5 &&
 						Math.abs(stage.bottom - art.bottom) < 0.5 &&
-						stage.left < body.right &&
-						Math.abs(
-							(body.right + gridGap - stage.left) -
-							(stage.right - gridRect.right)
-						) < 0.5 &&
+						stage.left >= body.right &&
 						Math.abs(stage.right - utility.right) < 0.5 &&
 						Math.abs(stage.right - footer.right) < 0.5 &&
 						footerItems.every((item) => item.getBoundingClientRect().right <= footer.right)
@@ -255,7 +251,7 @@ func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
 						: Math.abs(stage.width / stage.height - 1.6) < 0.01;
 				return stage.width > 0 && stage.height > 0 &&
 					stageShapeFits &&
-					balancedMobileSpacing &&
+					balancedStackedSpacing &&
 					Math.abs(scene.left - stage.left) < 0.5 &&
 					Math.abs(scene.right - stage.right) < 0.5 &&
 					Math.abs(scene.top - stage.top) < 0.5 &&

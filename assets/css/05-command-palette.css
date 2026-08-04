@@ -12,7 +12,8 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     font: inherit;
-    line-height: var(--lh-none);
+    font-size: var(--fs-sm);
+    line-height: 20px;
     cursor: pointer;
     transition: var(--transition-control);
   }

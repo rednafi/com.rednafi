@@ -151,9 +151,9 @@ func TestBackToTopVisibility(t *testing.T) {
 func TestBreadcrumbsOnDifferentPages(t *testing.T) {
 	t.Parallel()
 	pages := map[string][]string{
-		"/go/anemic-stack-traces/":    {"home", "go"},
-		"/python/dataclasses/":        {"home", "python"},
-		"/misc/pesky-little-scripts/": {"home", "misc"},
+		"/go/anemic-stack-traces/":    {"Home", "Go"},
+		"/python/dataclasses/":        {"Home", "Python"},
+		"/misc/pesky-little-scripts/": {"Home", "Misc"},
 	}
 
 	for url, expectedCrumbs := range pages {

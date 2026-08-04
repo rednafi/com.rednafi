@@ -57,14 +57,16 @@
     --rail: clamp(0.5rem, 2vw, 2rem);
     --content-top-band: clamp(1.5rem, 3vw, 2rem);
 
-    /* Type scale — rendered px at the 17px root in comments */
-    --fs-2xs: 0.72rem; /* 12px — eyebrow labels, date / category */
-    --fs-xs: 0.8rem; /* 13.6px — archive dates (one step under --fs-sm) */
-    --fs-sm: 0.85rem; /* 14px — meta, tables, badges, nav, footer */
-    --fs-code: 0.86rem; /* 14.6px — fenced code */
-    --fs-md: 0.9rem; /* 15px — toc, summary, excerpts, h5 / h6 */
-    --fs-base: 1rem; /* 17px — body, h4 */
-    --fs-lg: 1.1rem; /* 19px — site title */
+    /* Vercel's rendered type steps; fixed pixels avoid rem-rounding drift. */
+    --fs-2xs: 12px;
+    --fs-xs: 13px;
+    --fs-sm: 14px;
+    /* Fenced code: 14.4/21 desktop; 13.4/20 at <=960px. */
+    --fs-code: 14.4px;
+    --lh-code: 21px;
+    --fs-md: 16px;
+    --fs-base: 16px;
+    --fs-lg: 20px;
     /* list-title — vercel blog titles are large + tight tracking, not small +
        bold. Fluid 23px → 26px (exact at 390px / 1280px). */
     --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px);
@@ -73,9 +75,7 @@
     --fs-h1: 48px; /* article title / page h1 — 40px <=960 */
     --fs-h2: 32px; /* vercel keeps h2 32px at every width */
     --fs-h3: 28px; /* 24px <=960 */
-    /* reading body — 18px/28 by default (matches vercel), stepping DOWN to 17px
-       at <=960px (vercel drops to 16px there; we keep it a touch larger). Hard
-       breakpoint at max-width:960, so 960px itself is still 17px. Override below. */
+    /* Vercel article body: 18px/28 desktop, 16px/24 at <=960px. */
     --fs-article: 18px;
     --lh-article: calc(28 / 18); /* vercel-exact 28px leading */
     --pre-pad: 20px; /* vercel pre padding; .line.hl full-bleed mirrors it */
@@ -169,15 +169,15 @@
     --backdrop: rgba(0, 0, 0, 0.68);
   }
 
-  /* reading body steps down to 17px at <=960px: phones + tablets (incl. iPad
-     portrait 768/834 and iPad mini) get 17px; iPad landscape 1024 and up keep the
-     18px/28 default. Hard step at max-width:960 (vercel uses 16px here; we keep 17). */
+  /* Vercel's hard article type step at 960px. */
   @media (max-width: 960px) {
     :root {
-      --fs-article: 17px; /* phones + tablets (a touch larger than vercel's 16px) */
-      --lh-article: 1.5; /* 25.5/17 */
+      --fs-article: 16px;
+      --lh-article: 1.5; /* 24/16 */
       --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
       --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
+      --fs-code: 13.4px;
+      --lh-code: 20px;
     }
   }
 }

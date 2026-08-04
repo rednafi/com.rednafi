@@ -194,7 +194,7 @@ func TestCSSVariableConsistencyAcrossPages(t *testing.T) {
 	}
 }
 
-func TestQuietMetadataTypographyIsUnified(t *testing.T) {
+func TestQuietMetadataTypographyRoles(t *testing.T) {
 	t.Parallel()
 
 	style := func(t *testing.T, pageURL, selector string) []string {
@@ -215,22 +215,21 @@ func TestQuietMetadataTypographyIsUnified(t *testing.T) {
 		return toStringSlice(value)
 	}
 
-	want := style(t, "/", ".hero__eyebrow")
-	require.NotEmpty(t, want)
-	assert.Contains(t, strings.ToLower(want[0]), "geist mono")
-	assert.Equal(t, "uppercase", want[4])
+	hero := style(t, "/", ".hero__eyebrow")
+	require.NotEmpty(t, hero)
+	assert.Contains(t, strings.ToLower(hero[0]), "geist mono")
+	assert.Equal(t, "14px", hero[1])
+	assert.Equal(t, "uppercase", hero[4])
 
-	for _, item := range []struct {
-		name     string
-		pageURL  string
-		selector string
-	}{
-		{name: "footer", pageURL: "/", selector: ".site-footer"},
-		{name: "breadcrumbs", pageURL: "/shards/2026/04/dynamo/", selector: ".breadcrumbs"},
-		{name: "article metadata", pageURL: "/go/rate-limiting-via-nginx/", selector: ".post-meta"},
-	} {
-		t.Run(item.name, func(t *testing.T) {
-			assert.Equal(t, want, style(t, item.pageURL, item.selector))
-		})
-	}
+	footer := style(t, "/", ".site-footer")
+	assert.Contains(t, strings.ToLower(footer[0]), "geist mono")
+	assert.Equal(t, "12px", footer[1])
+	assert.Equal(t, "uppercase", footer[4])
+
+	breadcrumbs := style(t, "/shards/2026/04/dynamo/", ".breadcrumbs")
+	metadata := style(t, "/go/rate-limiting-via-nginx/", ".post-meta")
+	assert.Equal(t, breadcrumbs, metadata)
+	assert.Contains(t, strings.ToLower(metadata[0]), "geist")
+	assert.NotContains(t, strings.ToLower(metadata[0]), "mono")
+	assert.Equal(t, []string{"14px", "20px", "normal", "none"}, metadata[1:])
 }

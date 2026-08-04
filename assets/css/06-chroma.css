@@ -127,11 +127,14 @@
     background-color: var(--code-hunk-bg);
   }
 
-  /* highlighted line: full-bleed via negative margin equal to pre's --pre-pad padding */
+  /* Vercel code rows: 20px horizontal inset inside a vertically padded pre. */
+  .highlight .line {
+    display: block;
+    padding-inline: var(--pre-pad);
+  }
+
   .highlight .line.hl {
     background-color: color-mix(in srgb, var(--link) 11%, transparent);
-    display: block;
-    margin: 0 calc(-1 * var(--pre-pad));
-    padding: 0 var(--pre-pad);
+    margin: 0;
   }
 }

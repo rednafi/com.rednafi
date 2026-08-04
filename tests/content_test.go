@@ -386,7 +386,7 @@ func TestTableRendering(t *testing.T) {
 			`el => parseFloat(getComputedStyle(el).paddingLeft)`, nil,
 		)
 		require.NoError(t, err)
-		assert.Greater(t, padding.(float64), float64(0), "table cells should have padding")
+		assert.Greater(t, toFloat(padding), float64(0), "table cells should have padding")
 	})
 }
 

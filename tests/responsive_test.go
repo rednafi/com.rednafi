@@ -92,7 +92,7 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	}
 
 	// matched to vercel.com/blog: h1 48px desktop → 40px mobile; body 18px desktop
-	// → 17px on phones/tablets (a touch larger than vercel's 16px)
+	// → 16px on phones/tablets.
 	t.Run("h1 matches the vercel scale on desktop and mobile", func(t *testing.T) {
 		assert.InDelta(t, 48.0, fontSize(desktop, "h1"), 0.5, "desktop h1 should be 48px")
 		assert.InDelta(t, 40.0, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 40px")
@@ -116,8 +116,8 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	t.Run("reading body matches the vercel scale", func(t *testing.T) {
 		assert.InDelta(t, 18.0, fontSize(desktop, ".article-content p"), 0.5,
 			"desktop article body should be 18px")
-		assert.InDelta(t, 17.0, fontSize(mobile, ".article-content p"), 0.5,
-			"mobile article body should be 17px")
+		assert.InDelta(t, 16.0, fontSize(mobile, ".article-content p"), 0.5,
+			"mobile article body should be 16px")
 	})
 
 	t.Run("pre keeps its full size on mobile", func(t *testing.T) {
@@ -227,8 +227,8 @@ func TestMobileArticleBreadcrumbs(t *testing.T) {
 		`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
 	)
 	require.NoError(t, err)
-	assert.Less(t, fontSize.(float64), float64(16),
-		"breadcrumbs should use the quiet metadata size")
+	assert.Equal(t, 14.0, toFloat(fontSize),
+		"breadcrumbs should match Vercel's 14px category trail")
 }
 
 func TestMobileHeroKeepsFullIdentityLine(t *testing.T) {
