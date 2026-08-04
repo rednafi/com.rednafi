@@ -47,7 +47,6 @@ func TestAdversarialHomepageResponsiveMatrix(t *testing.T) {
 	}
 
 	for _, viewport := range viewports {
-		viewport := viewport
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
 			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
 			require.NoError(t, err)
@@ -173,7 +172,6 @@ func TestAdversarialArticleMetadataResponsiveMatrix(t *testing.T) {
 	}
 
 	for _, viewport := range viewports {
-		viewport := viewport
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
 			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
 			require.NoError(t, err)
@@ -247,7 +245,6 @@ func TestAdversarialArticleShellResponsiveMatrix(t *testing.T) {
 	}
 
 	for _, viewport := range viewports {
-		viewport := viewport
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
 			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
 			require.NoError(t, err)
@@ -429,7 +426,7 @@ func TestAdversarialDPRAndThemeReflow(t *testing.T) {
 				}
 				ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{
 					Viewport:          &playwright.Size{Width: testCase.width, Height: testCase.height},
-					DeviceScaleFactor: playwright.Float(testCase.dpr),
+					DeviceScaleFactor: new(testCase.dpr),
 					ColorScheme:       colorScheme,
 				})
 				require.NoError(t, err)
@@ -477,7 +474,6 @@ func TestAdversarialCommandPaletteViewportMatrix(t *testing.T) {
 	}
 
 	for _, viewport := range viewports {
-		viewport := viewport
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
 			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
 			require.NoError(t, err)

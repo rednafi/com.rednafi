@@ -18,7 +18,6 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 		{Width: 1280, Height: 900},
 		{Width: 1440, Height: 900},
 	} {
-		viewport := viewport
 		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
 			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
 			require.NoError(t, err)
