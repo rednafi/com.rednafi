@@ -14,13 +14,15 @@ are codified in tokens and tests.
 Templates own semantic markup; behavior lives in small fingerprinted controllers:
 
 - `site.js`: theme controls, navigation menu, and back-to-top behavior on every page.
-- `command-palette-loader.js`: the small global shortcut listener; it imports
-  `command-palette.js` only on click or <kbd>⌘/Ctrl K</kbd>. The Pagefind API is imported
-  later still, after a non-empty query.
+- `command-palette.js`: one deferred native-dialog controller for quick navigation, global
+  <kbd>G</kbd>-then-key shortcuts, and search. The much larger Pagefind API remains lazy and
+  loads only after a non-empty query.
 - `copy-code.js`: emitted only when the code-block render hook records a copyable block in
   the page store.
-- `hero-rain.js`: homepage-only, paused off-screen and capped at 30 rendered frames per
-  second.
+- The homepage uses Joshua Profitt's bare-tree photograph through immutable 720, 1440, and
+  2400-pixel variants on the site's R2-backed CDN. The monochrome crop fills the text row on
+  desktop, uses a contained 16:10 stage on tablet, and uses the same bottom-anchored,
+  near-square crop on phones. The favicon remains a separate brand asset.
 - `mermaid.js`: diagram-page-only; the much larger, version-pinned CDN runtime loads only
   when a diagram enters the viewport.
 
@@ -73,7 +75,7 @@ else is tokens.
 ### Type scale (rendered px at 17px root)
 
 `--fs-2xs .72rem` (eyebrows/meta) · `--fs-sm .85rem` (nav/meta/code/tables) ·
-`--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4) · `--fs-lg 1.1rem` (site title) ·
+`--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4/site title) · `--fs-lg 1.1rem` ·
 `--fs-list-title clamp(23→26px)`. Display: `--fs-h1` steps 40→48px, `--fs-h2` stays 32px,
 and `--fs-h3` steps 24→28px. Article body steps down to **17px/25.5 at ≤960px** (phones +
 iPad portrait), **18px/28 above** (`--fs-article`/`--lh-article`, hard `max-width:960`
@@ -81,11 +83,11 @@ step).
 
 ### Radii / weights / motion
 
-Radii: `--radius-sm 4px` (chips/badges) · `--radius 6px` (controls/boxes) ·
-`--radius-lg 12px` · `--radius-pill 9999px`. Every radius in the codebase is tokenized.
-Weights: 400/500/600 only. Motion: `--motion .2s`, `--motion-fast .15s`, shared
-`--transition-control` (color/border/bg). Focus: `--ring` = `0 0 0 2px bg, 0 0 0 4px accent`
-(the shadcn `ring-2 + ring-offset-2` pattern).
+Radii: `--radius-sm 4px` (compact interior controls) · `--radius 6px` (icon controls/boxes)
+· `--radius-lg 12px` · `--radius-pill 9999px` (text actions and metadata pills). Every
+radius in the codebase is tokenized. Weights: 400/500/600 only. Motion: `--motion .2s`,
+`--motion-fast .15s`, shared `--transition-control` (color/border/bg). Focus: `--ring` =
+`0 0 0 2px bg, 0 0 0 4px accent` (the shadcn `ring-2 + ring-offset-2` pattern).
 
 ## Article vertical rhythm (matches Vercel)
 
@@ -98,21 +100,50 @@ Weights: 400/500/600 only. Motion: `--motion .2s`, `--motion-fast .15s`, shared
 
 | component                                                             | size                                 | radius        | notes                                         |
 | --------------------------------------------------------------------- | ------------------------------------ | ------------- | --------------------------------------------- |
-| Command search trigger                                                | 32px desktop / 44px mobile           | 6px           | text + shortcut desktop; icon-only mobile     |
-| Menu trigger                                                          | 44px, 16px glyph                     | 6px           | bare header control                           |
+| Command search trigger                                                | 32px desktop / 44px mobile           | pill          | text + shortcut desktop; icon-only mobile     |
+| Menu trigger                                                          | 44px, 16px glyph                     | 6px           | opens an explicit compact popover             |
 | Copy button                                                           | 32px, 16px glyph                     | 6px           | filled `--surface`, border `--border`         |
-| Command palette                                                       | 640px max / viewport-bound on mobile | 12px          | lazy Pagefind API; elevated themed surface    |
+| Command palette                                                       | 640px max / viewport-bound on mobile | 12px          | lazy Pagefind, route/action shortcut hints    |
 | Theme switcher                                                        | 32px pill, 14px icons, 26px segments | 6px / 4px seg | active segment raised via `--toggle-active`   |
-| Badge / tag                                                           | 32px min, `4.25/8.5` pad             | 4px           | `--code-bg` fill                              |
-| Pagination button                                                     | text, `8.5/17` pad                   | 6px           | outline variant (bg `--bg`)                   |
+| Tag / metadata action                                                 | 32px desktop / 44px mobile           | pill          | mono uppercase, transparent + strong border   |
+| Pagination button                                                     | 32px desktop / 44px mobile           | pill          | outlined secondary action                     |
 | Back-to-top FAB                                                       | 44px                                 | 6px           | fixed, outside reading column                 |
 | Boxed content (code, alert, blockquote, table, summary, toc, mermaid) | —                                    | 6px           | border `--border` (alerts use variant border) |
-| Menu group label                                                      | 14px / 400                           | —             | sentence case, `--muted`                      |
+| Menu group label                                                      | `--fs-2xs` / 400                     | —             | mono uppercase, `--faint`                     |
 | Section/result eyebrow                                                | `--fs-2xs` 600                       | —             | uppercase, `0.04em`, `--faint`                |
 
 UI icons are **stroked** (`stroke-width: 2`, Lucide style); brand/social icons are
-**filled**. Capitalization tiers: sentence-case menu groups · UPPERCASE section/result
-eyebrows · Title-Case primary nav · lowercase quiet meta (breadcrumbs + footer).
+**filled**. Capitalization tiers: UPPERCASE menu groups, section/result eyebrows, tags,
+breadcrumbs, article metadata, and footer · Title-Case primary nav.
+
+## Keyboard navigation
+
+The command panel is both universal search and the shortcut reference. Its empty state is
+one bounded navigation list; typing replaces it with a separately labelled content-results
+view with excerpts and page kinds. A single fixed backdrop layer supplies restrained blur
+(10px desktop, 6px mobile); no scrolling child or animated element carries a filter.
+
+The shortcut grammar uses sequential <kbd>G</kbd> chords: <kbd>/</kbd> opens search,
+<kbd>?</kbd> opens the shortcut reference, navigation destinations use “go to” mnemonics,
+and <kbd>G D</kbd> toggles dark mode. Theme switching also remains a searchable palette
+command: press <kbd>/</kbd>, type `theme`, then press <kbd>Enter</kbd>. No global modifier
+bindings are claimed, leaving browser and operating-system shortcuts untouched. Interactive
+and editable controls suppress global shortcuts.
+
+| chord | action          |
+| ----- | --------------- |
+| `G H` | Home            |
+| `G A` | Archive         |
+| `G T` | Tags            |
+| `G P` | About / profile |
+| `G M` | Maxims          |
+| `G B` | Blogroll        |
+| `G D` | Toggle theme    |
+
+The sequence expires after 1.2 seconds. There are deliberately no shortcuts for every
+section or control. Route chords pause inside editable controls so search text can never
+navigate unexpectedly. Within the command palette, arrow keys move, <kbd>Enter</kbd> opens
+or runs a command, and <kbd>Escape</kbd> closes.
 
 ## Control-state matrix
 
@@ -121,7 +152,7 @@ eyebrows · Title-Case primary nav · lowercase quiet meta (breadcrumbs + footer
   links: animated gradient underline (0→100%).
 - **focus-visible**: every interactive control gets `--ring`; article text links get a
   wrapping `2px` outline. No control lacks a visible focus indicator.
-- **active**: pagination + theme-toggle press to `--surface-2`.
+- **active**: pagination, tags, and theme-toggle press to `--surface-2`.
 
 ## Dark-mode rule
 
@@ -134,13 +165,19 @@ line. Hover legibility in dark relies on the border step (`#2e2e2e → #454545`)
 
 Deeper-than-Geist text for contrast; `contrast_test.go` covers light + dark. Focus rings on
 all controls; 44px mobile touch targets for nav/search/tags/pagination/connect rows. The
-command palette traps focus, makes the page inert while open, and searches through
-Pagefind's low-level API only after the first query. Theme defaults to **System** (follows
-OS), overridable. `prefers-reduced-motion` cancels transitions/animations. Skip-link,
-`sr-only`, forced-colors fallback all present.
+command palette traps focus, makes the page inert while open, exposes every supported
+shortcut, and searches through Pagefind's low-level API only after the first query. Pagefind
+indexes all writing and evergreen pages (including Maxims); weighted hidden tag metadata
+makes taxonomy terms searchable without duplicating visible content. Queries are debounced
+before loading the index. Theme defaults to **System** (follows OS), overridable.
+`prefers-reduced-motion` cancels transitions/animations. Skip-link, `sr-only`, forced-colors
+fallback all present.
 
 ## Responsive
 
-Single 640px breakpoint (+900px for the list-grid frame); type scales via `clamp()`.
-Verified: **no horizontal overflow 320→1440px**; reading column fills width on small
-screens, caps at 720px centered on desktop.
+The primary layout breakpoint is 640px, with purpose-specific steps at 360px (tight phone),
+700/900px (content and frame), 960px (reading type + stacked hero), and 1023px (compact
+header search). The label-only navigation popover and command shortcut panel use simple
+single-column rows, and both are viewport-bound from 320px phones through desktop. Display
+type scales via `clamp()`. Verified: **no horizontal overflow 320→1440px**; the reading
+column fills width on small screens and caps at 720px centered on desktop.

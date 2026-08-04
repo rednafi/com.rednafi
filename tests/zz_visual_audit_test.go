@@ -57,6 +57,14 @@ func TestZZVisualAudit(t *testing.T) {
 		Path: new(outDir + "/command-palette-light.png"),
 	})
 	require.NoError(t, err)
+	require.NoError(t, page.Locator("[data-command-input]").Fill("software"))
+	require.NoError(t, page.Locator(`[data-command-source="pagefind"]`).First().WaitFor(
+		playwright.LocatorWaitForOptions{Timeout: playwright.Float(10000)},
+	))
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/command-palette-results-light.png"),
+	})
+	require.NoError(t, err)
 	_, err = page.Evaluate(
 		`() => document.documentElement.setAttribute("data-theme", "dark")`,
 	)
@@ -73,6 +81,33 @@ func TestZZVisualAudit(t *testing.T) {
 	page.WaitForTimeout(250)
 	_, err = page.Screenshot(playwright.PageScreenshotOptions{
 		Path: new(outDir + "/command-palette-mobile.png"),
+	})
+	require.NoError(t, err)
+
+	page = newPage(t)
+	goto_(t, page, "/")
+	require.NoError(t, page.Locator("[data-nav-toggle]").Click())
+	page.WaitForTimeout(200)
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/navigation-light.png"),
+	})
+	require.NoError(t, err)
+	_, err = page.Evaluate(
+		`() => document.documentElement.setAttribute("data-theme", "dark")`,
+	)
+	require.NoError(t, err)
+	page.WaitForTimeout(300)
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/navigation-dark.png"),
+	})
+	require.NoError(t, err)
+
+	page = newMobilePage(t)
+	goto_(t, page, "/")
+	require.NoError(t, page.Locator("[data-nav-toggle]").Click())
+	page.WaitForTimeout(200)
+	_, err = page.Screenshot(playwright.PageScreenshotOptions{
+		Path: new(outDir + "/navigation-mobile.png"),
 	})
 	require.NoError(t, err)
 }

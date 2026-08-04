@@ -228,5 +228,34 @@ func TestMobileArticleBreadcrumbs(t *testing.T) {
 	)
 	require.NoError(t, err)
 	assert.Less(t, fontSize.(float64), float64(16),
-		"breadcrumbs should use small font (0.85rem)")
+		"breadcrumbs should use the quiet metadata size")
+}
+
+func TestMobileHeroKeepsFullIdentityLine(t *testing.T) {
+	t.Parallel()
+	page := newMobilePage(t)
+	goto_(t, page, "/")
+
+	items := page.Locator(".hero__eyebrow span")
+	require.Equal(t, 3, locatorCount(t, items))
+	texts, err := items.AllTextContents()
+	require.NoError(t, err)
+	assert.Equal(t, []string{"Redowan Delowar", "software engineer", "Berlin"},
+		texts)
+	for index := range 3 {
+		visible, err := items.Nth(index).IsVisible()
+		require.NoError(t, err)
+		assert.True(t, visible)
+	}
+	transform, err := page.Locator(".hero__eyebrow").Evaluate(
+		`el => getComputedStyle(el).textTransform`, nil,
+	)
+	require.NoError(t, err)
+	assert.Equal(t, "uppercase", transform)
+
+	weight, err := page.Locator(".site-title").Evaluate(
+		`el => getComputedStyle(el).fontWeight`, nil,
+	)
+	require.NoError(t, err)
+	assert.Equal(t, "400", weight, "the wordmark should keep its width with a thinner stroke")
 }

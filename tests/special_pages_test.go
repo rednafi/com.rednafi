@@ -124,24 +124,21 @@ func TestTagPillStyling(t *testing.T) {
 
 	tag := tags.First()
 
-	t.Run("has rounded Geist badge corners", func(t *testing.T) {
-		// Geist badges are small rounded rectangles (var(--radius-sm) = 4px),
-		// not full pills.
+	t.Run("uses the shared text-action pill radius", func(t *testing.T) {
 		radius, err := tag.Evaluate(
 			`el => getComputedStyle(el).borderTopLeftRadius`, nil,
 		)
 		require.NoError(t, err)
-		assert.NotEqual(t, "0px", radius, "tags should have rounded corners")
-		assert.NotContains(t, radius, "999", "tags should be a rounded rectangle, not a full pill")
+		assert.Equal(t, "9999px", radius, "tags should match the site's rounded text actions")
 	})
 
-	t.Run("has background color", func(t *testing.T) {
+	t.Run("has a quiet transparent background", func(t *testing.T) {
 		bg, err := tag.Evaluate(
 			`el => getComputedStyle(el).backgroundColor`, nil,
 		)
 		require.NoError(t, err)
-		assert.NotEqual(t, "rgba(0, 0, 0, 0)", bg,
-			"tag pill should have background color")
+		assert.Equal(t, "rgba(0, 0, 0, 0)", bg,
+			"tag pills should use their border, not a heavy resting fill")
 	})
 
 	t.Run("has border", func(t *testing.T) {

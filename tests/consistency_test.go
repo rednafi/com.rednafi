@@ -193,3 +193,44 @@ func TestCSSVariableConsistencyAcrossPages(t *testing.T) {
 		})
 	}
 }
+
+func TestQuietMetadataTypographyIsUnified(t *testing.T) {
+	t.Parallel()
+
+	style := func(t *testing.T, pageURL, selector string) []string {
+		t.Helper()
+		page := newPage(t)
+		goto_(t, page, pageURL)
+		value, err := page.Locator(selector).Evaluate(`el => {
+			const style = getComputedStyle(el);
+			return [
+				style.fontFamily,
+				style.fontSize,
+				style.lineHeight,
+				style.letterSpacing,
+				style.textTransform
+			];
+		}`, nil)
+		require.NoError(t, err)
+		return toStringSlice(value)
+	}
+
+	want := style(t, "/", ".hero__eyebrow")
+	require.NotEmpty(t, want)
+	assert.Contains(t, strings.ToLower(want[0]), "geist mono")
+	assert.Equal(t, "uppercase", want[4])
+
+	for _, item := range []struct {
+		name     string
+		pageURL  string
+		selector string
+	}{
+		{name: "footer", pageURL: "/", selector: ".site-footer"},
+		{name: "breadcrumbs", pageURL: "/shards/2026/04/dynamo/", selector: ".breadcrumbs"},
+		{name: "article metadata", pageURL: "/go/rate-limiting-via-nginx/", selector: ".post-meta"},
+	} {
+		t.Run(item.name, func(t *testing.T) {
+			assert.Equal(t, want, style(t, item.pageURL, item.selector))
+		})
+	}
+}

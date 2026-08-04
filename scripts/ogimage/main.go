@@ -140,33 +140,37 @@ func renderFinal(browser playwright.Browser, outDir, variant string) {
 	fmt.Println("sha256:", hash)
 }
 
-// faviconSVG is the favicon-specific mark, planetscale-style: a full-bleed
-// black rounded-square tile with the white mark disc inside. The square fills
-// the canvas so the tab icon matches github/planetscale optical size; the
-// white disc carries contrast on light AND dark tab bars (no scheme flip).
-// Disc = 62.5% of the tile — planetscale's measured white/tile ratio — so the
-// black guard around it reads as thick as theirs.
-func faviconSVG(variant string) string {
-	carve := `<g fill="` + ink + `">
-    <circle cx="204.8" cy="288.8" r="42.4"/>
-    <circle cx="288.8" cy="252.8" r="25.6"/>
-    <circle cx="334.4" cy="210.4" r="16"/>
-  </g>`
-	if variant == "wake" {
-		// reflection strips clipped 10px inside the disc so its bottom rim
-		// stays closed (a strip touching the edge melts the disc into the tile)
-		carve = `<defs><clipPath id="w"><circle cx="256" cy="256" r="150"/></clipPath></defs>
-  <g clip-path="url(#w)" fill="` + ink + `">
-    <rect x="0" y="291" width="512" height="30"/>
-    <rect x="0" y="345" width="512" height="24"/>
-    <rect x="0" y="393" width="512" height="18"/>
-  </g>`
+// faviconSVG freezes the homepage's matrix rain into a legible small mark.
+func faviconSVG(_ string) string {
+	type drop struct {
+		x, head, length, size int
+	}
+	drops := []drop{
+		{34, 190, 6, 18}, {76, 402, 9, 14}, {116, 278, 7, 20},
+		{166, 458, 11, 16}, {210, 226, 6, 18}, {252, 366, 9, 20},
+		{302, 174, 5, 16}, {344, 430, 10, 18}, {392, 286, 7, 20},
+		{442, 470, 12, 15}, {476, 238, 6, 14},
+	}
+	var pixels strings.Builder
+	for _, d := range drops {
+		for trail := 0; trail < d.length; trail++ {
+			y := d.head - trail*(d.size+5)
+			if y < 20 || y > 492 {
+				continue
+			}
+			opacity := 0.92 * (1 - float64(trail)/float64(d.length))
+			if trail == 0 {
+				opacity = 1
+			}
+			fmt.Fprintf(&pixels, `<rect x="%d" y="%d" width="%d" height="%d" rx="2" opacity="%.2f"/>`, d.x, y, d.size, d.size, opacity)
+		}
 	}
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="t">
   <title id="t">rednafi.com</title>
   <rect width="512" height="512" rx="120" fill="` + ink + `"/>
-  <circle cx="256" cy="256" r="160" fill="` + paper + `"/>
-  ` + carve + `
+  <clipPath id="c"><rect width="512" height="512" rx="120"/></clipPath>
+  <g clip-path="url(#c)" fill="` + paper + `">` + pixels.String() + `
+  </g>
 </svg>`
 }
 

@@ -10,38 +10,38 @@
       aria-haspopup="dialog"
       aria-controls="command-palette"
       aria-expanded="false"
-      aria-keyshortcuts="Meta+K Control+K"
+      aria-keyshortcuts="/"
       data-command-open
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <span class="command-trigger__label">Search</span>
-      <kbd><span data-command-modifier>⌘</span><span>K</span></kbd>
+      <kbd>/</kbd>
     </button>
     <div class="nav-menu" data-nav>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle>
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
       <div id="site-menu" class="site-menu" data-nav-menu hidden>
-        <div class="site-menu__cols">
-          <div class="site-menu__group">
-            <p class="site-menu__eyebrow">Site</p>
-            <div class="site-menu__controls">
-              {{ partial "header-controls.html" . }}
-            </div>
-          </div>
-          <nav class="site-menu__links" aria-label="Primary">
-            {{- range $navigation.groups }}
-            <div class="site-menu__group">
-              <p class="site-menu__eyebrow">{{ .title }}</p>
-              <ul>
-                {{- range .items }}
-                <li><a href="{{ .url }}"{{ if eq $cur .url }} aria-current="page"{{ end }}>{{ .label }}</a></li>
-                {{- end }}
-              </ul>
-            </div>
-            {{- end }}
-          </nav>
+        <div class="site-menu__theme">
+          <p class="site-menu__eyebrow">Site</p>
+          {{ partial "header-controls.html" . }}
         </div>
+        <nav class="site-menu__links" aria-label="Primary">
+          {{- range $navigation.groups }}
+          <div class="site-menu__group">
+            <p class="site-menu__eyebrow">{{ .title }}</p>
+            <ul>
+              {{- range .items }}
+              <li>
+                <a href="{{ .url }}"{{ if eq $cur .url }} aria-current="page"{{ end }}>
+                  <strong>{{ .label }}</strong>
+                </a>
+              </li>
+              {{- end }}
+            </ul>
+          </div>
+          {{- end }}
+        </nav>
       </div>
     </div>
   </div>

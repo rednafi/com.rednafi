@@ -77,6 +77,10 @@
       })
     })
 
+    document.addEventListener("site:toggle-theme", function () {
+      applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true)
+    })
+
     if (media.addEventListener) {
       media.addEventListener("change", function () {
         if (
@@ -96,9 +100,6 @@
     var menu = document.querySelector("[data-nav-menu]")
     if (!wrapper || !toggle || !menu) return
 
-    var header = wrapper.closest(".site-header") || wrapper
-    var hoverable = window.matchMedia("(hover: hover) and (pointer: fine)").matches
-    var closeTimer
     var hideTimer
 
     function isOpen() {
@@ -106,7 +107,6 @@
     }
 
     function open() {
-      window.clearTimeout(closeTimer)
       window.clearTimeout(hideTimer)
       if (isOpen()) return
 
@@ -121,7 +121,6 @@
     }
 
     function close() {
-      window.clearTimeout(closeTimer)
       if (!isOpen()) return
 
       menu.classList.remove("is-open")
@@ -155,22 +154,6 @@
     }
 
     toggle.addEventListener("click", toggleMenu)
-
-    if (hoverable) {
-      wrapper.addEventListener("mouseenter", open)
-      header.addEventListener("mouseenter", function () {
-        window.clearTimeout(closeTimer)
-      })
-      header.addEventListener("mouseleave", function () {
-        window.clearTimeout(closeTimer)
-        closeTimer = window.setTimeout(function () {
-          if (!menu.contains(document.activeElement)) close()
-        }, 160)
-      })
-      header.addEventListener("focusout", function (event) {
-        if (!header.contains(event.relatedTarget)) close()
-      })
-    }
   }
 
   function initBackToTop() {

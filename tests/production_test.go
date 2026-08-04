@@ -1,10 +1,12 @@
 package site_test
 
 import (
+	"fmt"
 	"os"
 	"strings"
 	"testing"
 
+	"github.com/mxschmitt/playwright-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -181,15 +183,87 @@ func TestPageHasNoLoadAnimation(t *testing.T) {
 	}
 }
 
-func TestHeroAnimationBudget(t *testing.T) {
+func TestHeroImageIsResponsiveAndAnimationFree(t *testing.T) {
 	t.Parallel()
-	source, err := os.ReadFile("../assets/js/hero-rain.js")
-	require.NoError(t, err)
-	body := string(source)
+	body := httpGet(t, baseURL+"/")
 
-	assert.Contains(t, body, "1000 / 30")
-	assert.Contains(t, body, "IntersectionObserver")
-	assert.Contains(t, body, "visibilitychange")
-	assert.NotContains(t, body, "requestAnimationFrame")
-	assert.NotContains(t, body, "willReadFrequently")
+	assert.Contains(t, body, `class=hero__image`)
+	assert.Contains(t, body, `srcset=`)
+	assert.Contains(t, body, `loading=eager`)
+	assert.Contains(t, body, `fetchpriority=high`)
+	assert.Contains(t, body, `https://blob.rednafi.com/home/bare-tree-720-94d8aede5a87.jpg`)
+	assert.Contains(t, body, `https://blob.rednafi.com/home/bare-tree-1440-4d255ba67226.jpg`)
+	assert.Contains(t, body, `https://blob.rednafi.com/home/bare-tree-2400-a9e2a45476dd.jpg`)
+	assert.NotContains(t, body, `images.unsplash.com`)
+	assert.NotContains(t, body, "hero-rain")
+}
+
+func TestHeroImageLoads(t *testing.T) {
+	t.Parallel()
+	page := newPage(t)
+	goto_(t, page, "/")
+
+	rendered, err := page.Locator(".hero__image").Evaluate(
+		`image => image.complete && image.naturalWidth > 0 && image.naturalHeight > 0`, nil,
+	)
+	require.NoError(t, err)
+	assert.Equal(t, true, rendered, "the hero photograph should load successfully")
+}
+
+func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
+	for _, viewport := range []playwright.Size{
+		{Width: 320, Height: 568},
+		{Width: 390, Height: 844},
+		{Width: 768, Height: 1024},
+		{Width: 1280, Height: 800},
+	} {
+		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
+			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
+			require.NoError(t, err)
+			t.Cleanup(func() { ctx.Close() })
+			page, err := ctx.NewPage()
+			require.NoError(t, err)
+			goto_(t, page, "/")
+
+			fits, err := page.Evaluate(`() => {
+				const grid = document.querySelector('.hero__grid');
+				const gridRect = grid.getBoundingClientRect();
+				const gridGap = parseFloat(getComputedStyle(grid).columnGap);
+				const stage = document.querySelector('.hero__art-stage').getBoundingClientRect();
+				const art = document.querySelector('.hero__art').getBoundingClientRect();
+				const body = document.querySelector('.hero__body').getBoundingClientRect();
+				const utility = document.querySelector('.hero__utility').getBoundingClientRect();
+				const footer = document.querySelector('.hero__footer').getBoundingClientRect();
+				const footerItems = [...document.querySelectorAll('.hero__footer a')];
+				const scene = document.querySelector('.hero__image').getBoundingClientRect();
+				const image = document.querySelector('.hero__image');
+				const balancedMobileSpacing = window.innerWidth > 640 ||
+					Math.abs((stage.top - body.bottom) - (footer.top - stage.bottom)) < 0.5;
+				const stageShapeFits = window.innerWidth > 960
+					? Math.abs(stage.top - art.top) < 0.5 &&
+						Math.abs(stage.bottom - art.bottom) < 0.5 &&
+						stage.left < body.right &&
+						Math.abs(
+							(body.right + gridGap - stage.left) -
+							(stage.right - gridRect.right)
+						) < 0.5 &&
+						Math.abs(stage.right - utility.right) < 0.5 &&
+						Math.abs(stage.right - footer.right) < 0.5 &&
+						footerItems.every((item) => item.getBoundingClientRect().right <= footer.right)
+					: window.innerWidth <= 640
+						? Math.abs(stage.width / stage.height - 0.9) < 0.01
+						: Math.abs(stage.width / stage.height - 1.6) < 0.01;
+				return stage.width > 0 && stage.height > 0 &&
+					stageShapeFits &&
+					balancedMobileSpacing &&
+					Math.abs(scene.left - stage.left) < 0.5 &&
+					Math.abs(scene.right - stage.right) < 0.5 &&
+					Math.abs(scene.top - stage.top) < 0.5 &&
+					Math.abs(scene.bottom - stage.bottom) < 0.5 &&
+					image.complete && image.naturalWidth > 0 && image.naturalHeight > 0;
+			}`)
+			require.NoError(t, err)
+			assert.Equal(t, true, fits, "the hero photograph should fit every stage edge")
+		})
+	}
 }

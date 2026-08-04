@@ -1,8 +1,7 @@
 @layer layout {
   .site-header {
-    /* slim top bar — vercel.com top-nav metrics. Not sticky (scrolls away, so no
-     backdrop blur needed), but position:relative so it stays the positioning +
-     stacking context for the absolutely-positioned dropdown menu (top:100%). */
+    /* Slim top bar. It scrolls away with the page; relative positioning keeps
+     its controls above the framed content while the menu popover is open. */
     position: relative;
     z-index: 20;
     display: flex;
@@ -21,10 +20,19 @@
   }
 
   .site-title {
-    font-weight: var(--fw-semibold);
-    font-size: var(--fs-lg);
-    line-height: var(--lh-ui);
-    letter-spacing: -0.02em;
+    box-sizing: border-box;
+    height: 32px;
+    min-width: 0;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-weight: var(--fw-normal);
+    font-size: var(--fs-base);
+    line-height: 32px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
     text-decoration: none;
     color: var(--text);
     transition: color var(--motion-fast);
@@ -45,13 +53,6 @@
     align-items: center;
     gap: var(--space-2);
     margin-left: auto;
-  }
-
-  /* the "Site" column: theme switcher aligned with the first navigation row. */
-  .site-menu__controls {
-    display: flex;
-    align-items: flex-start;
-    padding-top: 1px;
   }
 
   /* three-state geist theme switcher: segmented control, icon-only buttons */
@@ -163,11 +164,21 @@
   }
 
   .nav-toggle__bars::before {
-    top: -4px;
+    top: -5px;
   }
 
   .nav-toggle__bars::after {
-    bottom: -4px;
+    bottom: -5px;
+  }
+
+  @media (max-width: 1023px) {
+    .header-actions {
+      gap: 0;
+    }
+
+    .nav-toggle {
+      justify-content: center;
+    }
   }
 
   .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
@@ -180,24 +191,29 @@
     transform: rotate(-45deg);
   }
 
-  /* trigger wrapper — static so the panel anchors to the (positioned) header and
-   can span its full width like vercel's nav mega-panel */
+  /* Compact popover anchored to the menu trigger. */
   .nav-menu {
-    position: static;
+    position: relative;
     display: inline-flex;
   }
 
-  /* Full-width panel anchored below the header. */
   .site-menu {
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: calc(100% + var(--space-2));
     right: 0;
     z-index: 5;
-    padding: 4px var(--rail) 24px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    transform-origin: top center;
+    box-sizing: border-box;
+    width: min(420px, calc(100vw - 2 * var(--space-4)));
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-3);
+    color: var(--text);
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 48px color-mix(in srgb, var(--text) 16%, transparent);
+    transform-origin: top right;
     transition:
       opacity var(--motion-fast),
       transform var(--motion-fast),
@@ -212,7 +228,7 @@
   /* Keep the closing panel out of pointer and focus paths. */
   .site-menu:not(.is-open) {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-6px) scale(0.985);
     pointer-events: none;
   }
 
@@ -221,262 +237,481 @@
     transform: none;
   }
 
-  .site-menu__cols {
+  .site-menu__theme {
     display: flex;
-    align-items: flex-start;
-    gap: 112px;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+    padding: 0 0 var(--space-3);
+    border-bottom: 1px solid var(--border);
   }
 
   .site-menu__links {
     display: flex;
-    align-items: flex-start;
-    gap: 112px;
+    flex-direction: column;
+    gap: var(--space-3);
+    counter-reset: site-menu-item;
   }
 
   .site-menu__group {
     min-width: 0;
   }
   .site-menu__eyebrow {
-    margin: 0 0 5px;
-    color: var(--muted);
-    font-size: 14px;
+    margin: 0;
+    padding: 0 var(--space-2) var(--space-1);
+    color: var(--faint);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-2xs);
     font-weight: var(--fw-normal);
-    letter-spacing: normal;
-    line-height: 20px;
+    letter-spacing: 0.04em;
+    line-height: var(--lh-tight);
+    text-transform: uppercase;
+  }
+
+  .site-menu__theme .site-menu__eyebrow {
+    padding: 0;
   }
 
   .site-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
+  .site-menu__group li {
+    min-width: 0;
+    counter-increment: site-menu-item;
+  }
+
+  .site-menu__group + .site-menu__group {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
+  }
+
   .site-menu__group li a {
-    display: block;
-    padding: 3px 0;
-    font-size: 22px;
-    font-weight: var(--fw-normal);
-    letter-spacing: -0.03em;
-    line-height: 28px;
+    box-sizing: border-box;
+    min-height: 48px;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) 14px;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
     color: var(--text);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
     text-decoration: none;
-    white-space: nowrap;
-    transition: color var(--motion-fast);
+    transition:
+      color var(--motion-fast),
+      background-color var(--motion-fast);
+  }
+
+  .site-menu__group li a::before {
+    content: "0" counter(site-menu-item);
+    color: var(--faint);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.02em;
+  }
+
+  .site-menu__group li a::after {
+    content: "↗";
+    color: var(--faint);
+    font-size: var(--fs-sm);
+    transform: translate(-2px, 2px);
+    transition: transform var(--motion-fast);
   }
 
   .site-menu__group li a:visited {
     color: var(--text);
   }
 
-  /* phones: stack the groups so the panel never gets cramped */
-  @media (max-width: 640px) {
-    .site-menu__cols {
-      flex-direction: column;
-      gap: var(--space-6);
-    }
-
-    .site-menu__links {
-      flex-direction: column;
-      gap: var(--space-6);
-    }
+  .site-menu__group li a:hover,
+  .site-menu__group li a[aria-current="page"] {
+    color: var(--bg);
+    background: var(--text);
+    border-color: var(--text);
+    text-decoration: none;
   }
 
-  /* breakout: --hero-inset per side of main's content box (100cqw), ≥ column width */
-  .home-intro {
-    --hero-inset: calc(var(--rail) + var(--space-8));
-    margin-inline: min(calc((100cqw - 2 * var(--hero-inset) - 100%) / -2), 0px);
-    margin-bottom: var(--space-8);
+  .site-menu__group li a:hover::before,
+  .site-menu__group li a:hover::after,
+  .site-menu__group li a[aria-current="page"]::before,
+  .site-menu__group li a[aria-current="page"]::after {
+    color: inherit;
+    opacity: 0.72;
   }
 
-  /* wake badge + centered copy over the low tetromino band */
-  .hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: clamp(320px, 38vw, 420px);
-    /* vertical gap to the feed lives on the .home-intro wrapper */
-    padding: clamp(var(--space-8), 6vw, var(--space-12));
+  .site-menu__group li a:hover::after,
+  .site-menu__group li a:focus-visible::after {
+    transform: translate(1px, -1px);
   }
-  /* the clipped well — borderless */
-  .hero__media {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+
+  .site-menu__group li strong {
+    min-width: 0;
     overflow: hidden;
-    background-color: var(--bg);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-normal);
+    letter-spacing: -0.025em;
+    line-height: var(--lh-ui);
   }
-  .hero__canvas {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
+
+  @media (max-width: 640px) {
+    .site-menu {
+      width: calc(100vw - 2 * var(--rail));
+      max-height: calc(100dvh - 76px);
+    }
+
+    .site-menu__group li a {
+      min-height: 50px;
+      grid-template-columns: 22px minmax(0, 1fr) 12px;
+      padding-inline: var(--space-2);
+    }
+
+    .site-menu__group li strong {
+      font-size: var(--fs-md);
+    }
   }
-  /* paper over the copy; the band only shows in the bottom strip */
-  .hero__scrim {
+
+  /* Home masthead — a wide editorial spread inside the site's existing Geist frame. */
+  .home-intro {
+    margin-inline: min(calc((100cqw - 100%) / -2), 0px);
+    margin-bottom: var(--space-10);
+  }
+
+  .hero {
+    --hero-gutter: clamp(var(--space-6), 4cqw, var(--space-12));
+    position: relative;
+    overflow: clip;
+    padding-inline: var(--hero-gutter);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero::before {
+    content: "";
     position: absolute;
-    inset: 0;
-    z-index: 1;
+    width: min(52rem, 82cqw);
+    aspect-ratio: 1;
+    top: 4%;
+    left: -34%;
     pointer-events: none;
-    background: linear-gradient(
-      to top,
-      transparent 0,
-      color-mix(in srgb, var(--bg) 65%, transparent) 60px,
-      var(--bg) 110px
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--text) 4%, transparent),
+      transparent 67%
     );
+    filter: blur(2px);
   }
-  /* brand ink/paper, pinned — dark mode reproduces the cover */
-  .hero__mark {
-    display: block;
-    margin-bottom: var(--space-1);
-    color: var(--ink);
+
+  .hero__utility,
+  .hero__footer,
+  .hero__eyebrow {
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
-  [data-theme="dark"] .hero__mark {
-    color: var(--paper);
+
+  .hero__utility {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-4);
+    color: var(--faint);
+    border-bottom: 1px solid var(--border);
   }
-  .hero__mark rect {
-    fill: var(--bg);
+
+  .hero__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
   }
+
+  .hero__status-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    border-radius: var(--radius-pill);
+    background: currentColor;
+    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.14fr) minmax(400px, 0.86fr);
+    align-items: stretch;
+    gap: clamp(var(--space-1), 0.75cqw, var(--space-3));
+    padding-block: var(--space-10);
+  }
+
   .hero__body {
     position: relative;
-    z-index: 3;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-    max-width: 34rem;
+    align-items: flex-start;
+    align-self: center;
+    min-width: 0;
   }
-  /* hero copy hierarchy: a big name lead over a normal-size, muted descriptor */
+
+  .hero__eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--space-3);
+    row-gap: var(--space-2);
+    margin: 0 0 clamp(var(--space-8), 4vw, var(--space-12));
+    color: var(--faint);
+  }
+
+  .hero__eyebrow span {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .hero__eyebrow span + span::before {
+    content: "/";
+    margin-right: var(--space-3);
+  }
+
   .hero__text {
     display: flex;
     flex-direction: column;
-    /* optically equal to the body gap: the line boxes eat ~5px of it */
-    gap: calc(var(--space-6) + var(--space-1));
-    max-width: 40rem;
+    gap: var(--space-6);
   }
+
   .hero__lead {
     margin: 0;
     color: var(--text);
-    /* same scale as a blog post title (page h1): 40px mobile → 48px desktop */
-    font-size: var(--fs-h1);
-    font-weight: var(--fw-semibold);
-    line-height: var(--lh-display);
-    /* matches the page h1 tracking (vercel.com/blog) */
-    letter-spacing: -0.06em;
-    text-wrap: balance;
+    font-size: clamp(62px, 6.7cqw, 86px);
+    font-weight: 460;
+    line-height: 0.91;
+    letter-spacing: -0.082em;
   }
-  .hero__tagline {
-    margin: 0;
-    color: var(--muted);
-    font-family: "Geist Mono", ui-monospace, monospace;
-    /* vercel subtitle scale, a touch smaller: 15px mobile → 18px desktop */
-    font-size: clamp(15px, 13.7px + 0.34vw, 18px);
-    /* tightened: snug two-line leading + negative tracking so the subtitle reads
-     as a crisp display line, not loose body copy */
-    line-height: var(--lh-tight);
-    letter-spacing: -0.04em;
+
+  .hero__lead span {
+    display: block;
     text-wrap: balance;
   }
 
-  /* social icon row — always a single line (only five small icons) */
+  .hero__lead span:last-child {
+    color: color-mix(in srgb, var(--text) 72%, var(--bg));
+    font-weight: 380;
+  }
+
+  .hero__tagline {
+    max-width: 46ch;
+    margin: 0;
+    color: var(--muted);
+    padding-left: var(--space-5);
+    border-left: 1px solid var(--border-strong);
+    font-size: clamp(17px, 1.65cqw, 19px);
+    line-height: var(--lh-normal);
+    letter-spacing: -0.025em;
+    text-wrap: pretty;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: clamp(var(--space-8), 4vw, var(--space-12));
+  }
+
+  .hero__cta {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: var(--space-3) var(--space-4);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    transition:
+      transform var(--motion-fast),
+      color var(--motion-fast),
+      background-color var(--motion-fast),
+      border-color var(--motion-fast);
+  }
+
+  .hero__cta:visited {
+    color: var(--text);
+  }
+
+  .hero__cta:hover {
+    transform: translateY(-3px);
+    background: var(--surface);
+    border-color: var(--text);
+  }
+
+  .hero__cta--primary,
+  .hero__cta--primary:visited {
+    color: var(--bg);
+    background: var(--text);
+    border-color: var(--text);
+  }
+
+  .hero__cta--primary:hover {
+    color: var(--bg);
+    background: var(--muted);
+  }
+
+  .hero__art {
+    position: relative;
+    overflow: clip;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    padding-block: 0;
+  }
+
+  .hero__art-stage {
+    position: relative;
+    overflow: hidden;
+    flex: none;
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    background: var(--surface);
+  }
+
+  .hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center bottom;
+    filter: grayscale(1) contrast(1.08);
+  }
+
+  @media (min-width: 961px) {
+    .hero__utility,
+    .hero__footer {
+      box-sizing: border-box;
+      width: calc(100% + 2 * var(--hero-gutter));
+      margin-left: calc(-1 * var(--hero-gutter));
+      padding-inline: var(--hero-gutter);
+    }
+
+    .hero__art {
+      align-self: stretch;
+      width: calc(100% + 2 * var(--hero-gutter));
+      margin-left: calc(-1 * var(--hero-gutter));
+    }
+
+    .hero__art-stage {
+      flex: 1;
+      min-height: clamp(450px, 50vh, 540px);
+      aspect-ratio: auto;
+    }
+  }
+
+  .hero__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    min-height: 68px;
+    padding-block: var(--space-3);
+    color: var(--faint);
+    border-top: 1px solid var(--border);
+  }
+
+  .hero__footer p {
+    margin: 0;
+  }
+
+  /* social icon row — a quiet counterweight to the oversized headline */
   .connect-icons {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     gap: var(--space-5);
+    padding-right: var(--space-1);
   }
+
   .connect-icons a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--faint);
-    transition: color var(--motion-fast);
+    transition:
+      color var(--motion-fast),
+      transform var(--motion-fast);
   }
+
   .connect-icons a:visited {
     color: var(--faint);
   }
+
   .connect-icons a:hover {
     color: var(--text);
-  }
-  @media (max-width: 640px) {
-    /* tighter padding; the top slack goes to the feed, not the hero */
-    .hero {
-      --band: 64px;
-      padding: clamp(var(--space-5), 5vw, var(--space-8));
-      padding-top: var(--space-2);
-      /* the field drops to a band under the copy — nothing sits over the icons */
-      padding-bottom: calc(var(--band) + var(--space-4));
-    }
-    .hero__media {
-      top: auto;
-      height: var(--band);
-      mask-image: linear-gradient(
-        to right,
-        transparent 0,
-        #000 20%,
-        #000 80%,
-        transparent 100%
-      );
-    }
-    .hero__scrim {
-      display: none;
-    }
-    .home-intro {
-      margin-bottom: var(--space-6);
-    }
-    .content-column.home {
-      margin-top: var(--space-2);
-    }
-    /* compact enough that all five icons stay inside the box down to ~280px */
-    .connect-icons {
-      gap: var(--space-3);
-    }
-    .connect-icons a {
-      min-width: 32px;
-      min-height: 44px;
-    }
+    transform: translateY(-2px);
   }
 
-  /* desktop masthead: band runs rail-to-rail, copy sits on the feed's left edge,
-   the fluid fills the right of the band */
-  @media (min-width: 900px) {
-    .home-intro {
-      --hero-inset: calc(-1 * var(--rail));
-      margin-top: calc(-1 * var(--content-top-band));
-      margin-bottom: var(--space-10);
-    }
-    .hero {
-      --fluid-w: clamp(280px, 40cqw, 520px);
-      align-items: flex-start;
-      text-align: left;
-      min-height: clamp(260px, 22vw, 320px);
-      padding-block: var(--space-10);
-      padding-left: calc(var(--rail) + max(0px, (100cqw - var(--content-width)) / 2));
-      padding-right: calc(var(--fluid-w) + var(--space-8));
-      border-bottom: 1px solid var(--border);
-    }
-    /* 1px insets keep the frame's top line and right rail clear of the canvas */
-    .hero__media {
-      inset: 1px 1px 0 auto;
-      width: var(--fluid-w);
-      /* the well fades out on the edge that faces the copy */
-      mask-image: linear-gradient(to right, transparent 0, #000 26%);
-    }
-    .hero__scrim {
-      display: none;
-    }
-    .hero__body {
-      align-items: flex-start;
-    }
+  .recent-writing__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+    align-items: end;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border);
   }
 
-  /* home — a single centered column of writings (no sidebar), identical in shape
-   on mobile and desktop; the bio lives on the dedicated /about page */
-  .home-section-title,
   .recent-writing-title {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(38px, 5vw, 52px);
+    font-weight: var(--fw-normal);
+    line-height: var(--lh-none);
+    letter-spacing: -0.06em;
+  }
+
+  .recent-writing__intro p {
+    margin: 0 0 var(--space-3);
+    color: var(--muted);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+
+  .recent-writing__intro a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+  }
+
+  .recent-writing__intro a span {
+    transition: transform var(--motion-fast);
+  }
+
+  .recent-writing__intro a:hover span {
+    transform: translateX(var(--space-1));
+  }
+
+  /* 404/recommendation eyebrow; the homepage uses the larger editorial h2 above. */
+  .home-section-title {
     color: var(--faint);
     font-size: var(--fs-2xs);
     font-weight: var(--fw-semibold);
@@ -485,6 +720,136 @@
     margin: 0 0 var(--space-6);
     text-transform: uppercase;
     letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 960px) {
+    .home-intro {
+      margin-inline: 0;
+    }
+
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__body {
+      max-width: 680px;
+    }
+
+    .hero__lead {
+      font-size: clamp(54px, 9cqw, 72px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .content-column.home {
+      margin-top: 0;
+    }
+
+    .home-intro {
+      margin-bottom: var(--space-10);
+    }
+
+    .hero {
+      padding-inline: 0;
+    }
+
+    .hero__utility {
+      padding-block: var(--space-3);
+    }
+
+    .hero__utility > span:last-child {
+      display: none;
+    }
+
+    .hero__grid {
+      gap: var(--space-10);
+      padding-block: var(--space-10);
+    }
+
+    .hero__eyebrow {
+      margin-bottom: var(--space-8);
+      line-height: var(--lh-relaxed);
+    }
+
+    .hero__lead {
+      font-size: clamp(42px, 12cqw, 50px);
+      line-height: 0.96;
+    }
+
+    .hero__tagline {
+      font-size: 17px;
+    }
+
+    .hero__actions {
+      width: 100%;
+      margin-top: var(--space-8);
+    }
+
+    .hero__cta {
+      flex: 1 1 145px;
+      gap: var(--space-4);
+    }
+
+    .hero__art {
+      padding-block: 0;
+    }
+
+    .hero__art-stage {
+      aspect-ratio: 9 / 10;
+    }
+
+    .hero__footer {
+      align-items: flex-start;
+      flex-direction: column;
+      padding-block: var(--space-5);
+      line-height: var(--lh-relaxed);
+    }
+
+    .connect-icons {
+      width: 100%;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .connect-icons a {
+      min-width: 32px;
+      min-height: 44px;
+    }
+
+    .recent-writing__head {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+
+    .recent-writing-title {
+      font-size: 34px;
+    }
+
+    .recent-writing__intro p {
+      max-width: 34ch;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero__lead {
+      font-size: 40px;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .hero__cta {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .home-intro {
+      margin-top: calc(-1 * var(--content-top-band));
+    }
   }
 
   /* reading column, centred in <main> with a wide gutter to the rails */
@@ -561,13 +926,6 @@
       100% 1px;
   }
 
-  /* the open nav mega-panel drops over the content's top-left corner; its mark
-   pokes out just left of the panel edge — hide the top-left crosshairs while
-   the panel is open so nothing bleeds beside it */
-  body:has(.site-menu.is-open) main::before {
-    opacity: 0;
-  }
-
   /* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
    narrow screen; content runs clean to the uniform 18px gutter (--rail), like vercel */
   @media (max-width: 640px) {
@@ -582,25 +940,22 @@
     }
   }
 
-  @media (max-width: 360px) {
-    .site-title {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
   .site-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--space-3);
-    margin-top: 48px;
-    padding: 40px var(--rail) var(--space-8);
-    font-size: var(--fs-sm);
+    margin-top: 0;
+    padding: var(--space-10) var(--rail) var(--space-8);
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--faint);
+    background: color-mix(in srgb, var(--surface) 72%, var(--bg));
+    border-inline: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
   .site-footer .footer-byline {
     margin: 0;
@@ -617,8 +972,13 @@
     color: var(--muted);
   }
 
-  .site-menu__group li a:hover,
-  .site-menu__group li a[aria-current="page"],
+  @media (max-width: 640px) {
+    .site-footer {
+      padding: var(--space-8) var(--rail) var(--space-6);
+      border-inline: 0;
+    }
+  }
+
   .site-footer a:hover,
   .site-footer a[aria-current="page"] {
     color: var(--text);
@@ -629,20 +989,13 @@
   }
 
   .site-title:focus-visible,
+  .hero__cta:focus-visible,
   .site-menu__group li a:focus-visible,
   .connect-icons a:focus-visible,
   .site-footer a:focus-visible {
     outline: none;
     border-radius: var(--radius-sm);
     box-shadow: var(--ring);
-  }
-
-  @media (max-width: 640px) {
-    /* footer band compresses one step on phones, like the header/menu/hero bands */
-    .site-footer {
-      margin-top: var(--space-8);
-      padding: var(--space-6) var(--rail);
-    }
   }
 
   /* page shell (sticky footer) */

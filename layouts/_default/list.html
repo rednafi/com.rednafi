@@ -13,27 +13,67 @@
 <div class="content-column home">
   {{- $pages := partial "home-pages.html" . }}
   {{- $paginator := .Paginate $pages }}
-  <h1 class="sr-only">{{ site.Title }}</h1>
-  {{- if eq $paginator.PageNumber 1 }}
+  {{- $isFirstPage := eq $paginator.PageNumber 1 }}
+  {{- if $isFirstPage }}
   <header class="home-intro home-hero">
-    <section class="hero" aria-label="Intro">
-      <span class="hero__media" aria-hidden="true"><canvas id="hero-rain" class="hero__canvas"></canvas></span>
-      <span class="hero__scrim" aria-hidden="true"></span>
-      <div class="hero__body">
-        {{ partial "hero-mark.html" . }}
-        <div class="hero__text">
-          <p class="hero__lead">Hi, I’m Redowan.</p>
-          <p class="hero__tagline">A roving amateur fumbling through software, systems, and sundry.</p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__utility" aria-hidden="true">
+        <span class="hero__status"><span class="hero__status-dot"></span>Independent field notes</span>
+        <span>52.5200° N &nbsp;·&nbsp; 13.4050° E</span>
+      </div>
+      <div class="hero__grid">
+        <div class="hero__body">
+          <p class="hero__eyebrow">
+            <span>Redowan Delowar</span>
+            <span>software engineer</span>
+            <span>Berlin</span>
+          </p>
+          <div class="hero__text">
+            <h1 id="hero-title" class="hero__lead">
+              <span>Hi, I’m Redowan.</span>
+              <span>I work with computers.</span>
+            </h1>
+            <p class="hero__tagline">...and sometimes I write about them here.</p>
+          </div>
+          <div class="hero__actions">
+            <a class="hero__cta hero__cta--primary" href="#recent-writing">Read the latest <span aria-hidden="true">↓</span></a>
+            <a class="hero__cta" href="/about/">About Redowan <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
+        <div class="hero__art">
+          <figure class="hero__art-stage">
+            <img
+              class="hero__image"
+              src="https://blob.rednafi.com/home/bare-tree-720-94d8aede5a87.jpg"
+              srcset="https://blob.rednafi.com/home/bare-tree-720-94d8aede5a87.jpg 720w, https://blob.rednafi.com/home/bare-tree-1440-4d255ba67226.jpg 1440w, https://blob.rednafi.com/home/bare-tree-2400-a9e2a45476dd.jpg 2400w"
+              sizes="(max-width: 960px) calc(100vw - 2rem), 46vw"
+              width="1200"
+              height="1800"
+              alt="Weathered bare tree against a pale sky"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </figure>
+        </div>
+      </div>
+      <div class="hero__footer">
+        <p>{{ len $pages }} posts since 2020.</p>
         {{ partial "connect.html" . }}
       </div>
     </section>
   </header>
-  {{- $heroJS := resources.Get "js/hero-rain.js" | minify | fingerprint }}
-  <script src="{{ $heroJS.RelPermalink }}" defer></script>
+  {{- else }}
+  <h1 class="sr-only">{{ site.Title }} — Page {{ $paginator.PageNumber }}</h1>
   {{- end }}
-  <section class="recent-writing" aria-labelledby="recent-writing">
-    <h2 id="recent-writing" class="recent-writing-title">Recent writing</h2>
+  <section class="recent-writing{{ if $isFirstPage }} recent-writing--featured{{ end }}" aria-labelledby="recent-writing">
+    <div class="recent-writing__head">
+      <h2 id="recent-writing" class="recent-writing-title">Recent writing</h2>
+      <div class="recent-writing__intro">
+        <p>Longer articles, short notes, and things I'll probably need to look up again.</p>
+        <a href="/archive/">Browse the archive <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
     {{ partial "post-list.html" (dict "pages" $paginator.Pages "showExcerpt" true) }}
     {{ partial "pagination.html" $paginator }}
   </section>

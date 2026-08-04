@@ -1,8 +1,7 @@
 {{- $siteJS := resources.Get "js/site.js" | minify | fingerprint }}
 {{- $commandJS := resources.Get "js/command-palette.js" | minify | fingerprint }}
-{{- $commandLoaderJS := resources.Get "js/command-palette-loader.js" | minify | fingerprint }}
 <script src="{{ $siteJS.RelPermalink }}" defer></script>
-<script src="{{ $commandLoaderJS.RelPermalink }}" data-command-module="{{ $commandJS.RelPermalink }}" defer></script>
+<script src="{{ $commandJS.RelPermalink }}" defer></script>
 {{- if .Store.Get "hasCopyableCode" }}
 {{- $copyJS := resources.Get "js/copy-code.js" | minify | fingerprint }}
 <script src="{{ $copyJS.RelPermalink }}" defer></script>

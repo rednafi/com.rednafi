@@ -30,6 +30,7 @@
 
 {{- $tags := .GetTerms "tags" }}
 {{- with $tags }}
+<span class="sr-only" aria-hidden="true" data-pagefind-meta="tags" data-pagefind-weight="20">{{ range . }}{{ .LinkTitle }} {{ end }}</span>
 <footer class="article-footer" data-pagefind-ignore>
 <ul class="post-tags">
   {{- range . }}

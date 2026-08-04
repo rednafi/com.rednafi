@@ -1,253 +1,236 @@
 ;(function () {
-  var palette = document.querySelector("[data-command-palette]")
-  var dialog = palette && palette.querySelector(".command-palette__dialog")
-  var input = palette && palette.querySelector("[data-command-input]")
-  var results = palette && palette.querySelector("[data-command-results]")
-  var groupLabel = palette && palette.querySelector("[data-command-group-label]")
-  var empty = palette && palette.querySelector("[data-command-empty]")
-  var status = palette && palette.querySelector("[data-command-status]")
-  var template = palette && palette.querySelector("[data-command-quick-links]")
-  var pageShell = document.querySelector(".page")
+  var dialog = document.querySelector("[data-command-palette]")
+  var panel = dialog && dialog.querySelector(".command-palette__dialog")
   var trigger = document.querySelector("[data-command-open]")
+  var input = dialog && dialog.querySelector("[data-command-input]")
+  var results = dialog && dialog.querySelector("[data-command-results]")
+  var label = dialog && dialog.querySelector("[data-command-group-label]")
+  var empty = dialog && dialog.querySelector("[data-command-empty]")
+  var status = dialog && dialog.querySelector("[data-command-status]")
+  var template = dialog && dialog.querySelector("[data-command-quick-links]")
   if (
-    !palette ||
     !dialog ||
+    !panel ||
+    !trigger ||
     !input ||
     !results ||
-    !groupLabel ||
+    !label ||
     !empty ||
     !status ||
-    !template ||
-    !trigger
+    !template
   )
     return
 
   var quickLinks = Array.prototype.map.call(
-    template.content.querySelectorAll("a"),
+    template.content.querySelectorAll("[data-title]"),
     function (link) {
       return {
-        title: link.getAttribute("data-title") || "",
-        description: link.getAttribute("data-description") || "",
-        keywords: link.getAttribute("data-keywords") || "",
+        title: link.dataset.title || "",
+        description: link.dataset.description || "",
+        keywords: link.dataset.keywords || "",
+        shortcut: link.dataset.commandShortcut || "",
+        action: link.dataset.commandAction || "",
         url: link.getAttribute("href") || "/"
       }
     }
   )
-  var pagefindPromise
-  var searchTimer
-  var searchSequence = 0
-  var activeIndex = -1
-  var lastFocus = null
-  var openState = false
+  var pagefind
+  var timer
+  var sequence = 0
+  var active = -1
+  var lastFocus
+  var chord = ""
+  var chordTimer
+  var shortcuts = {}
 
-  function getPagefind() {
-    if (!pagefindPromise) {
-      pagefindPromise = import("/pagefind/pagefind.js").catch(function (error) {
-        pagefindPromise = null
-        throw error
-      })
-    }
-    return pagefindPromise
+  quickLinks.forEach(function (link) {
+    var keys = link.shortcut.split(/\s+/)
+    if (keys.length !== 2) return
+    shortcuts[keys[0]] = shortcuts[keys[0]] || {}
+    shortcuts[keys[0]][keys[1]] = link.action || link.url
+  })
+
+  function normalized(value) {
+    var text = String(value || "").toLowerCase()
+    return text.normalize ? text.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : text
   }
 
-  function normalizedURL(url) {
+  function normalizedURL(value) {
     try {
-      var parsed = new URL(url, window.location.origin)
-      return parsed.pathname.replace(/index\.html$/, "") + parsed.hash
-    } catch (e) {
-      return url
+      var url = new URL(value, location.origin)
+      return url.pathname.replace(/index\.html$/, "") + url.hash
+    } catch (_) {
+      return value
     }
   }
 
-  function matchesQuickLink(link, query) {
-    var words = query.toLowerCase().split(/\s+/).filter(Boolean)
-    var haystack = [link.title, link.description, link.keywords].join(" ").toLowerCase()
-    return words.every(function (word) {
-      return haystack.indexOf(word) !== -1
-    })
+  function sectionName(value) {
+    var section = normalizedURL(value).split("/").filter(Boolean)[0] || "Page"
+    return (
+      {
+        go: "Go",
+        javascript: "JavaScript",
+        misc: "Misc",
+        python: "Python",
+        shards: "Note",
+        system: "Systems",
+        typescript: "TypeScript",
+        zephyr: "Essay"
+      }[section] || "Page"
+    )
   }
 
-  function sectionName(url) {
-    var special = {
-      "/about/": "Page",
-      "/appearances/": "Page",
-      "/blogroll/": "Page",
-      "/maxims/": "Page"
+  function resultNode(item, source, index) {
+    var link = document.createElement(item.action ? "button" : "a")
+    if (item.action) {
+      link.type = "button"
+      link.dataset.commandAction = item.action
+      link.addEventListener("click", function () {
+        document.dispatchEvent(new CustomEvent("site:toggle-theme"))
+        closePalette()
+      })
+    } else {
+      link.href = item.url
     }
-    var path = normalizedURL(url).split("#")[0]
-    if (special[path]) return special[path]
-    var section = path.split("/").filter(Boolean)[0] || "Page"
-    var names = {
-      go: "Go",
-      javascript: "JavaScript",
-      misc: "Misc",
-      python: "Python",
-      shards: "Note",
-      system: "Systems",
-      typescript: "TypeScript",
-      zephyr: "Essay"
-    }
-    return names[section] || "Writing"
-  }
-
-  function resultNode(result, source) {
-    var link = document.createElement("a")
-    link.href = result.url
-    link.setAttribute("data-command-result", "")
-
-    var icon = document.createElement("span")
-    icon.className = "command-palette__result-icon"
-    icon.setAttribute("aria-hidden", "true")
-    icon.innerHTML =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l4 4v16H6z"/><path d="M14 2v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>'
+    link.id = "command-palette-result-" + index
+    link.dataset.commandResult = ""
+    link.dataset.commandSource = source
+    link.setAttribute("role", "option")
+    link.setAttribute("aria-selected", "false")
+    link.tabIndex = -1
 
     var copy = document.createElement("span")
     copy.className = "command-palette__result-copy"
     var title = document.createElement("strong")
-    title.textContent = (result.meta && result.meta.title) || result.title || "Untitled"
+    title.textContent = (item.meta && item.meta.title) || item.title || "Untitled"
     var excerpt = document.createElement("small")
-    excerpt.textContent = result.plain_excerpt || result.description || "Open this result"
-    copy.appendChild(title)
-    copy.appendChild(excerpt)
+    excerpt.textContent = item.plain_excerpt || item.description || "Open this result"
+    copy.append(title, excerpt)
 
     var kind = document.createElement("span")
-    kind.className = "command-palette__result-kind"
-    kind.textContent = source === "quick-link" ? "Page" : sectionName(result.url)
+    kind.className = "command-palette__result-meta"
+    if (source === "quick-link" && item.shortcut) {
+      kind.classList.add("command-palette__shortcut")
+      item.shortcut.split(/\s+/).forEach(function (key) {
+        var keycap = document.createElement("kbd")
+        keycap.textContent = key.toUpperCase()
+        kind.appendChild(keycap)
+      })
+    } else {
+      kind.textContent = sectionName(item.url)
+    }
 
-    var arrow = document.createElement("span")
-    arrow.className = "command-palette__result-arrow"
-    arrow.setAttribute("aria-hidden", "true")
-    arrow.innerHTML =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>'
-
-    link.appendChild(icon)
-    link.appendChild(copy)
-    link.appendChild(kind)
-    link.appendChild(arrow)
+    link.append(copy, kind)
     return link
   }
 
-  function resultLinks() {
+  function options() {
     return Array.prototype.slice.call(results.querySelectorAll("[data-command-result]"))
   }
 
   function setActive(index, scroll) {
-    var links = resultLinks()
-    if (!links.length) {
-      activeIndex = -1
+    var items = options()
+    if (!items.length) {
+      active = -1
       input.removeAttribute("aria-activedescendant")
       return
     }
-    activeIndex = (index + links.length) % links.length
-    links.forEach(function (link, i) {
-      var active = i === activeIndex
-      link.classList.toggle("is-active", active)
-      link.setAttribute("aria-selected", String(active))
+    active = (index + items.length) % items.length
+    items.forEach(function (item, position) {
+      var selected = position === active
+      item.classList.toggle("is-active", selected)
+      item.setAttribute("aria-selected", String(selected))
     })
-    input.setAttribute("aria-activedescendant", links[activeIndex].id)
-    if (scroll) links[activeIndex].scrollIntoView({ block: "nearest" })
+    input.setAttribute("aria-activedescendant", items[active].id)
+    if (scroll) items[active].scrollIntoView({ block: "nearest" })
   }
 
-  function prepareResult(link, index, source) {
-    link.id = "command-palette-result-" + index
-    link.setAttribute("role", "option")
-    link.setAttribute("aria-selected", "false")
-    link.setAttribute("tabindex", "-1")
-    link.setAttribute("data-command-source", source)
-    link.addEventListener("mousemove", function () {
-      setActive(resultLinks().indexOf(link), false)
-    })
-    return link
-  }
-
-  function render(nodes, label, loading) {
+  function render(items, heading, loading) {
     results.replaceChildren()
-    nodes.slice(0, 8).forEach(function (item, index) {
-      var node = resultNode(item.data, item.source)
-      results.appendChild(prepareResult(node, index, item.source))
+    items.slice(0, 8).forEach(function (item, index) {
+      results.appendChild(resultNode(item.data, item.source, index))
     })
-
-    var links = resultLinks()
-    groupLabel.textContent = label
-    groupLabel.hidden = !links.length && !loading
-    empty.hidden = loading || !!links.length
+    label.textContent = heading
+    label.hidden = !items.length && !loading
+    empty.hidden = loading || !!items.length
     results.setAttribute("aria-busy", String(!!loading))
-    setActive(links.length ? 0 : -1, false)
+    setActive(items.length ? 0 : -1, false)
   }
 
-  function renderQuickLinks() {
+  function showQuickLinks() {
     render(
       quickLinks.map(function (link) {
-        return { source: "quick-link", data: link }
+        return { data: link, source: "quick-link" }
       }),
-      "Quick links",
+      "Navigate",
       false
     )
-    status.textContent = quickLinks.length + " quick links"
+    status.textContent = quickLinks.length + " navigation links"
   }
 
-  function beginSearch(query) {
-    window.clearTimeout(searchTimer)
-    searchSequence += 1
-    var sequence = searchSequence
+  function search(query) {
+    clearTimeout(timer)
+    var request = ++sequence
     if (!query) {
-      renderQuickLinks()
+      showQuickLinks()
       return
     }
 
+    var words = normalized(query).split(/\s+/).filter(Boolean)
     var matches = quickLinks.filter(function (link) {
-      return matchesQuickLink(link, query)
+      var haystack = normalized([link.title, link.description, link.keywords].join(" "))
+      return words.every(function (word) {
+        return haystack.indexOf(word) !== -1
+      })
     })
     render(
       matches.map(function (link) {
-        return { source: "quick-link", data: link }
+        return { data: link, source: "quick-link" }
       }),
       matches.length ? "Top matches" : "Searching…",
       true
     )
     status.textContent = "Searching for " + query
 
-    searchTimer = window.setTimeout(function () {
-      getPagefind()
-        .then(function (pagefind) {
-          return pagefind.search(query)
+    timer = setTimeout(function () {
+      pagefind = pagefind || import("/pagefind/pagefind.js")
+      pagefind
+        .then(function (api) {
+          return api.search(query)
         })
-        .then(function (search) {
-          if (sequence !== searchSequence) return []
+        .then(function (found) {
           return Promise.all(
-            search.results.slice(0, 8).map(function (result) {
+            found.results.slice(0, 8).map(function (result) {
               return result.data()
             })
           )
         })
-        .then(function (pagefindResults) {
-          if (sequence !== searchSequence) return
+        .then(function (found) {
+          if (request !== sequence) return
           var seen = new Set(
             matches.map(function (link) {
               return normalizedURL(link.url)
             })
           )
           var combined = matches.map(function (link) {
-            return { source: "quick-link", data: link }
+            return { data: link, source: "quick-link" }
           })
-
-          pagefindResults.forEach(function (result) {
-            var url = normalizedURL(result.url)
-            if (seen.has(url)) return
-            seen.add(url)
-            combined.push({ source: "pagefind", data: result })
+          found.forEach(function (item) {
+            var url = normalizedURL(item.url)
+            if (!seen.has(url)) {
+              seen.add(url)
+              combined.push({ data: item, source: "pagefind" })
+            }
           })
-
-          render(combined, "Results", false)
-          var count = Math.min(combined.length, 8)
-          status.textContent =
-            count + (count === 1 ? " result" : " results") + " for " + query
+          render(combined, "Search results", false)
+          status.textContent = Math.min(combined.length, 8) + " results for " + query
         })
         .catch(function () {
-          if (sequence !== searchSequence) return
+          if (request !== sequence) return
+          pagefind = null
           render(
             matches.map(function (link) {
-              return { source: "quick-link", data: link }
+              return { data: link, source: "quick-link" }
             }),
             matches.length ? "Top matches" : "Search unavailable",
             false
@@ -257,109 +240,88 @@
     }, 90)
   }
 
-  function openPalette(initialFocus, initialQuery) {
-    if (openState) {
-      input.focus()
-      return
-    }
-    openState = true
-    lastFocus = initialFocus || document.activeElement
-
-    var navToggle = document.querySelector("[data-nav-toggle][aria-expanded='true']")
-    if (navToggle) {
-      lastFocus = navToggle
-      navToggle.click()
-    }
-
-    palette.hidden = false
-    if (pageShell) pageShell.setAttribute("inert", "")
-    document.body.classList.add("command-palette-open")
+  function openPalette(event) {
+    if (event) event.preventDefault()
+    if (dialog.open) return
+    lastFocus = document.activeElement
+    var nav = document.querySelector("[data-nav-toggle][aria-expanded='true']")
+    if (nav) nav.click()
+    input.value = ""
+    showQuickLinks()
+    dialog.showModal()
     trigger.setAttribute("aria-expanded", "true")
-    renderQuickLinks()
-    input.value = initialQuery || ""
-    if (input.value) beginSearch(input.value.trim())
-    palette.setAttribute("data-command-ready", "")
     input.focus()
-    document.addEventListener("keydown", handleDialogKeys)
-    requestAnimationFrame(function () {
-      if (!openState) return
-      palette.classList.add("is-open")
-    })
   }
 
   function closePalette() {
-    if (!openState) return
-    openState = false
-    window.clearTimeout(searchTimer)
-    searchSequence += 1
-    palette.classList.remove("is-open")
-    palette.hidden = true
-    input.value = ""
-    if (pageShell) pageShell.removeAttribute("inert")
-    document.body.classList.remove("command-palette-open")
-    trigger.setAttribute("aria-expanded", "false")
-    document.removeEventListener("keydown", handleDialogKeys)
-    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus()
+    if (dialog.open) dialog.close()
   }
 
-  function handleDialogKeys(event) {
-    if (!openState) return
+  trigger.addEventListener("click", openPalette)
+  dialog.querySelector("[data-command-close]").addEventListener("click", closePalette)
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) closePalette()
+  })
+  dialog.addEventListener("close", function () {
+    clearTimeout(timer)
+    sequence += 1
+    input.value = ""
+    trigger.setAttribute("aria-expanded", "false")
+    if (lastFocus && lastFocus.focus) lastFocus.focus()
+  })
+  input.addEventListener("input", function () {
+    search(input.value.trim())
+  })
+  input.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       event.preventDefault()
-      event.stopPropagation()
       closePalette()
-      return
-    }
-    if (event.target === input && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+    } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault()
-      setActive(activeIndex + (event.key === "ArrowDown" ? 1 : -1), true)
-      return
-    }
-    if (event.target === input && event.key === "Enter") {
-      var links = resultLinks()
-      if (activeIndex >= 0 && links[activeIndex]) {
+      setActive(active + (event.key === "ArrowDown" ? 1 : -1), true)
+    } else if (event.key === "Enter") {
+      var items = options()
+      if (items[active]) {
         event.preventDefault()
-        links[activeIndex].click()
-      }
-      return
-    }
-    if (event.key === "Tab") {
-      var focusable = Array.prototype.slice.call(
-        dialog.querySelectorAll(
-          'input, button:not([disabled]), a[href]:not([tabindex="-1"])'
-        )
-      )
-      if (!focusable.length) return
-      var first = focusable[0]
-      var last = focusable[focusable.length - 1]
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
+        items[active].click()
       }
     }
-  }
-
-  trigger.setAttribute("aria-expanded", "false")
-  document.addEventListener("command-palette:toggle", function (event) {
-    openState
-      ? closePalette()
-      : openPalette(
-          event.detail && event.detail.lastFocus,
-          event.detail && event.detail.query
-        )
   })
-
-  Array.prototype.forEach.call(
-    palette.querySelectorAll("[data-command-close]"),
-    function (close) {
-      close.addEventListener("click", closePalette)
+  results.addEventListener("mousemove", function (event) {
+    var item = event.target.closest("[data-command-result]")
+    if (item) setActive(options().indexOf(item), false)
+  })
+  function resetChord() {
+    chord = ""
+    clearTimeout(chordTimer)
+  }
+  document.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented || event.isComposing || event.repeat) return
+    var interactive =
+      event.target.closest &&
+      event.target.closest("a, button, input, textarea, select, [contenteditable]")
+    if (interactive || event.metaKey || event.ctrlKey || event.altKey) {
+      resetChord()
+      return
     }
-  )
-
-  input.addEventListener("input", function () {
-    beginSearch(input.value.trim())
+    var key = event.key.toLowerCase()
+    if (key === "/" || key === "?") {
+      resetChord()
+      openPalette(event)
+      return
+    }
+    if (chord && shortcuts[chord] && shortcuts[chord][key]) {
+      event.preventDefault()
+      var command = shortcuts[chord][key]
+      resetChord()
+      if (command === "theme") document.dispatchEvent(new CustomEvent("site:toggle-theme"))
+      else location.assign(command)
+      return
+    }
+    resetChord()
+    if (shortcuts[key]) {
+      chord = key
+      chordTimer = setTimeout(resetChord, 1200)
+    }
   })
 })()

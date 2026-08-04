@@ -168,7 +168,7 @@ func TestBaseLayout(t *testing.T) {
 			nil,
 		)
 		require.NoError(t, err)
-		assert.Contains(t, footerText, "blogroll \u00b7 maxims \u00b7 tags")
+		assert.Contains(t, footerText, "BLOGROLL \u00b7 MAXIMS \u00b7 TAGS")
 	})
 
 	t.Run("has back-to-top button with aria-label", func(t *testing.T) {
@@ -259,6 +259,23 @@ func TestHomepage(t *testing.T) {
 				assert.Contains(t, page.URL(), "/page/2/")
 			}
 		}
+	})
+
+	t.Run("paginated pages keep their heading and standard post list", func(t *testing.T) {
+		page := newPage(t)
+		goto_(t, page, "/page/2/")
+
+		heading := page.Locator("main h1")
+		require.Equal(t, 1, locatorCount(t, heading))
+		assert.Contains(t, locatorText(t, heading), "Page 2")
+		assert.True(t, strings.Contains(locatorAttr(t, heading, "class"), "sr-only"))
+		assert.Zero(t, locatorCount(t, page.Locator(".recent-writing--featured")))
+
+		marker, err := page.Locator(".recent-writing .post").First().Evaluate(
+			`post => getComputedStyle(post, "::after").content`, nil,
+		)
+		require.NoError(t, err)
+		assert.Equal(t, "none", marker)
 	})
 }
 
@@ -1119,7 +1136,6 @@ func TestPageLoadPerformance(t *testing.T) {
 		require.NoError(t, err)
 		names := strings.Join(toStringSlice(resources), "\n")
 		for _, fragment := range []string{
-			"/js/command-palette.min.",
 			"/js/copy-code.min.",
 			"/js/mermaid.min.",
 			"/pagefind/",
@@ -1174,7 +1190,7 @@ func TestHeaderMenuLinksResolve(t *testing.T) {
 	}
 }
 
-func TestHeaderMenuHoverRegion(t *testing.T) {
+func TestHeaderMenuUsesExplicitToggle(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
@@ -1185,21 +1201,19 @@ func TestHeaderMenuHoverRegion(t *testing.T) {
 		return v
 	}
 
-	wrapper := page.Locator("[data-nav]")
-	header := page.Locator(".site-header")
-	require.NoError(t, wrapper.DispatchEvent("mouseenter", nil))
-	require.Equal(t, "true", expanded(), "menu should open on trigger hover")
+	require.NoError(t, page.Locator("[data-nav]").DispatchEvent("mouseenter", nil))
+	require.Equal(t, "false", expanded(), "pointer hover should not open navigation unexpectedly")
 
-	require.NoError(t, wrapper.DispatchEvent("mouseleave", nil))
-	require.NoError(t, header.DispatchEvent("mouseenter", nil))
-	time.Sleep(250 * time.Millisecond)
-	assert.Equal(t, "true", expanded(), "menu must stay open over the header")
+	require.NoError(t, page.Locator("[data-nav-toggle]").Click())
+	require.Equal(t, "true", expanded(), "the explicit menu button should open navigation")
 
-	require.NoError(t, header.DispatchEvent("mouseleave", nil))
+	require.NoError(t, page.Locator("main").Click(playwright.LocatorClickOptions{
+		Position: &playwright.Position{X: 4, Y: 4},
+	}))
 	assert.Eventually(t, func() bool {
 		value, err := page.Locator("[data-nav-toggle]").GetAttribute("aria-expanded")
 		return err == nil && value == "false"
-	}, time.Second, 20*time.Millisecond, "menu should close after leaving the header")
+	}, time.Second, 20*time.Millisecond, "an outside click should close navigation")
 }
 
 func TestHeaderMenuDoesNotHideFocusedControls(t *testing.T) {
@@ -1224,6 +1238,53 @@ func TestHeaderMenuDoesNotHideFocusedControls(t *testing.T) {
 	assert.True(t, visible)
 
 	require.NoError(t, page.Keyboard().Press("Escape"))
+}
+
+func TestHeaderMenuResponsiveSurface(t *testing.T) {
+	t.Parallel()
+
+	for _, viewport := range []playwright.Size{
+		{Width: 320, Height: 568},
+		{Width: 390, Height: 844},
+		{Width: 768, Height: 1024},
+		{Width: 1280, Height: 800},
+	} {
+		t.Run(fmt.Sprintf("%dx%d", viewport.Width, viewport.Height), func(t *testing.T) {
+			ctx, err := browser.NewContext(playwright.BrowserNewContextOptions{Viewport: &viewport})
+			require.NoError(t, err)
+			t.Cleanup(func() { ctx.Close() })
+			page, err := ctx.NewPage()
+			require.NoError(t, err)
+			goto_(t, page, "/")
+			require.NoError(t, page.Locator("[data-nav-toggle]").Click())
+
+			menu := page.Locator("[data-nav-menu]")
+			box, err := menu.BoundingBox()
+			require.NoError(t, err)
+			require.NotNil(t, box)
+			assert.GreaterOrEqual(t, box.X, float64(0))
+			assert.LessOrEqual(t, box.X+box.Width, float64(viewport.Width))
+			assert.LessOrEqual(t, box.Y+box.Height, float64(viewport.Height))
+			assert.Zero(t, locatorCount(t, menu.Locator("small")),
+				"the label-only menu should not add page descriptions")
+			assert.Equal(t, "Site", locatorText(t, menu.Locator(".site-menu__theme .site-menu__eyebrow")))
+
+			minHeight, err := menu.Locator("nav a").First().Evaluate(
+				`el => parseFloat(getComputedStyle(el).minHeight)`, nil,
+			)
+			require.NoError(t, err)
+			height := toFloat(minHeight)
+			if viewport.Width <= 640 {
+				assert.GreaterOrEqual(t, height, float64(44))
+			} else {
+				assert.GreaterOrEqual(t, height, float64(40))
+			}
+
+			fits, err := page.Evaluate(`() => document.documentElement.scrollWidth <= innerWidth`)
+			require.NoError(t, err)
+			assert.Equal(t, true, fits)
+		})
+	}
 }
 
 // ---------- Helpers ----------
