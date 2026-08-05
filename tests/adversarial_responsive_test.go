@@ -193,6 +193,7 @@ func TestAdversarialArticleMetadataResponsiveMatrix(t *testing.T) {
 				const authorBox = author.getBoundingClientRect();
 				const detailsBox = details.getBoundingClientRect();
 				const style = getComputedStyle(metadata);
+				const typeScale = innerWidth <= 960 ? 1.06 : 1;
 
 				if (document.documentElement.scrollWidth > innerWidth + tolerance)
 					problems.push("document overflows horizontally");
@@ -201,8 +202,8 @@ func TestAdversarialArticleMetadataResponsiveMatrix(t *testing.T) {
 					if (box.left < containmentBox.left - tolerance || box.right > containmentBox.right + tolerance)
 						problems.push(name + " escapes article metadata region");
 				}
-				if (parseFloat(style.fontSize) !== 14 || parseFloat(style.lineHeight) !== 20)
-					problems.push("metadata type is not 14/20");
+				if (Math.abs(parseFloat(style.fontSize) - 14 * typeScale) > 0.05 || Math.abs(parseFloat(style.lineHeight) - 20 * typeScale) > 0.05)
+					problems.push("metadata type scale drifted");
 				if (!style.fontFamily.toLowerCase().includes("geist") || style.fontFamily.toLowerCase().includes("mono"))
 					problems.push("metadata is not Geist Sans");
 				if (style.textTransform !== "none" || style.letterSpacing !== "normal")
@@ -284,6 +285,8 @@ func TestAdversarialArticleShellResponsiveMatrix(t *testing.T) {
 				const toc = box("details.toc");
 				const summary = box("details.toc > summary");
 				const tocNav = box("details.toc > nav");
+				const mobile = innerWidth <= 960;
+				const typeScale = mobile ? 1.06 : 1;
 				within("article shell", outer, viewportBox);
 				within("article header", articleHeader, outer);
 				within("article content", content, outer);
@@ -293,18 +296,18 @@ func TestAdversarialArticleShellResponsiveMatrix(t *testing.T) {
 				within("TOC panel", tocNav, toc);
 
 				const crumbStyle = getComputedStyle(el(".breadcrumbs"));
-				if (parseFloat(crumbStyle.fontSize) !== 14 || parseFloat(crumbStyle.lineHeight) !== 20)
-					problems.push("breadcrumbs are not 14/20");
+				if (Math.abs(parseFloat(crumbStyle.fontSize) - 14 * typeScale) > 0.05 || Math.abs(parseFloat(crumbStyle.lineHeight) - 20 * typeScale) > 0.05)
+					problems.push("breadcrumb type scale drifted");
 				if (crumbStyle.fontFamily.toLowerCase().includes("mono") || crumbStyle.textTransform !== "none")
 					problems.push("breadcrumbs use the wrong type treatment");
 				const summaryStyle = getComputedStyle(el("details.toc > summary"));
-				if (parseFloat(summaryStyle.fontSize) !== 14 || parseFloat(summaryStyle.lineHeight) !== 20)
-					problems.push("TOC summary is not 14/20");
+				if (Math.abs(parseFloat(summaryStyle.fontSize) - 14 * typeScale) > 0.05 || Math.abs(parseFloat(summaryStyle.lineHeight) - 20 * typeScale) > 0.05)
+					problems.push("TOC summary type scale drifted");
 				if (summary.height < 40 - tolerance) problems.push("TOC target is shorter than 40px");
 				if (tocNav.scrollHeight > tocNav.clientHeight && getComputedStyle(el("details.toc > nav")).overflowY !== "auto")
 					problems.push("long TOC cannot scroll internally");
 
-				const expectedOuterWidth = Math.min(innerWidth - 48, 720);
+				const expectedOuterWidth = Math.min(innerWidth - (mobile ? 36 : 48), 720);
 				if (Math.abs(outer.width - expectedOuterWidth) > tolerance)
 					problems.push("article shell width drifted: " + outer.width + " / " + expectedOuterWidth);
 				const expectedContentWidth = expectedOuterWidth;
@@ -388,9 +391,9 @@ func TestAdversarialContinuousResponsiveSweep(t *testing.T) {
 						}
 						const mobile = innerWidth <= 960;
 						const type = selector => getComputedStyle(document.querySelector(selector));
-						if (parseFloat(type(".article-body h1").fontSize) !== (mobile ? 40 : 48)) problems.push("h1 breakpoint drift");
-						if (parseFloat(type(".article-content > p").fontSize) !== (mobile ? 16 : 18)) problems.push("body breakpoint drift");
-						if (Math.abs(parseFloat(type(".article-content pre code").fontSize) - (mobile ? 13.4 : 14.4)) > 0.05) problems.push("fenced-code breakpoint drift");
+						if (Math.abs(parseFloat(type(".article-body h1").fontSize) - (mobile ? 42.4 : 48)) > 0.05) problems.push("h1 breakpoint drift");
+						if (Math.abs(parseFloat(type(".article-content > p").fontSize) - (mobile ? 16.96 : 18)) > 0.05) problems.push("body breakpoint drift");
+						if (Math.abs(parseFloat(type(".article-content pre code").fontSize) - (mobile ? 14.2 : 14.4)) > 0.05) problems.push("fenced-code breakpoint drift");
 					}
 					return problems;
 				}`, target.name)

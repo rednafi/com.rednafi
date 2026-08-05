@@ -63,7 +63,7 @@
     color: var(--faint);
     font-family: "Geist", sans-serif;
     font-size: var(--fs-sm);
-    line-height: 20px;
+    line-height: var(--lh-compact);
     letter-spacing: normal;
     font-variant-numeric: tabular-nums;
   }
@@ -132,7 +132,7 @@
     margin: 0 0 var(--space-5);
     font-family: "Geist", sans-serif;
     font-size: var(--fs-sm);
-    line-height: 20px;
+    line-height: var(--lh-compact);
     letter-spacing: normal;
     text-transform: none;
     color: var(--faint);
@@ -383,6 +383,12 @@
     }
   }
 
+  @media (max-width: 960px) {
+    .recent-writing--featured .post-list-rich > .post:first-child::after {
+      font-size: clamp(114.48px, 21.2vw, 165.36px);
+    }
+  }
+
   .post-list a,
   article li a {
     text-decoration: none;
@@ -400,7 +406,7 @@
 
   .article-content h4 {
     font-family: "Geist Mono", ui-monospace, monospace;
-    font-size: 16px;
+    font-size: var(--fs-base);
     font-weight: 450;
     line-height: 1.1;
     letter-spacing: 0.1em;
@@ -521,8 +527,8 @@
    chip fill + border stay. border mixes toward --border-strong (plain --border
    vanishes on --code-bg); ligatures off so =>, !=, -> read literally */
   code {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--fs-inline-code);
+    line-height: var(--lh-inline-code);
     background-color: var(--code-bg);
     padding: 4px 5px;
     border-radius: var(--radius-sm);
@@ -580,8 +586,8 @@
     background-color: var(--code-bg);
     /* vercel's 20px pre inset at every width */
     padding: var(--pre-pad) 0;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: var(--fs-pre);
+    line-height: var(--lh-pre);
     margin: var(--article-gap) 0;
     max-width: 100%;
     overflow-x: auto;
@@ -1301,7 +1307,7 @@
     color: var(--text);
     /* a bit under body copy — these footer-nav rows are secondary to the
      article, not part of the reading flow (between --fs-md and --fs-base) */
-    font-size: 0.95rem;
+    font-size: var(--fs-footer-link);
     line-height: var(--lh-snug);
     text-decoration: none;
     transition: color var(--motion-fast);
@@ -1319,7 +1325,7 @@
   .toc {
     margin: var(--space-5) 0 0;
     font-size: var(--fs-sm);
-    line-height: 20px;
+    line-height: var(--lh-compact);
   }
   .toc[open] > summary {
     border-bottom-left-radius: 0;
@@ -1344,7 +1350,7 @@
     gap: var(--space-3);
     min-height: 40px;
     font-size: var(--fs-sm);
-    line-height: 20px;
+    line-height: var(--lh-compact);
   }
   .toc nav ul {
     margin: 0;

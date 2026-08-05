@@ -769,7 +769,7 @@
     }
 
     .hero__lead {
-      font-size: clamp(54px, 9cqw, 72px);
+      font-size: clamp(57.24px, 9.54cqw, 76.32px);
     }
   }
 
@@ -800,7 +800,7 @@
     }
 
     .hero__lead {
-      font-size: clamp(42px, 12cqw, 50px);
+      font-size: clamp(44.52px, 12.72cqw, 53px);
       line-height: 0.96;
     }
 
@@ -821,7 +821,7 @@
       min-width: 0;
       gap: var(--space-2);
       padding-inline: var(--space-3);
-      font-size: clamp(var(--fs-2xs), 3.5vw, var(--fs-sm));
+      font-size: clamp(var(--fs-2xs), 3.71vw, var(--fs-sm));
       white-space: nowrap;
     }
 
@@ -858,7 +858,7 @@
     }
 
     .recent-writing-title {
-      font-size: 34px;
+      font-size: 36.04px;
     }
 
     .recent-writing__intro p {
@@ -891,7 +891,7 @@
 
   @media (max-width: 360px) {
     .hero__lead {
-      font-size: 40px;
+      font-size: 42.4px;
     }
 
     .hero__actions {
