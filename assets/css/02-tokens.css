@@ -62,8 +62,8 @@
     --fs-xs: 13px;
     --fs-sm: 14px;
     --lh-compact: 20px;
-    /* Fenced code: 14.4/21 desktop; 13.4/20 at <=960px. */
-    --fs-code: 14.4px;
+    /* Fenced code: 14.3/21 desktop; 13.5/20 at <=960px. */
+    --fs-code: 14.3px;
     --lh-code: 21px;
     --fs-md: 16px;
     --fs-base: 16px;
@@ -178,7 +178,7 @@
       --lh-article: 24px;
       --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
       --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
-      --fs-code: 13.4px;
+      --fs-code: 13.5px;
       --lh-code: 20px;
     }
   }

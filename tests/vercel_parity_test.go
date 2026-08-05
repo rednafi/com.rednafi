@@ -68,7 +68,7 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 
 				checkType(".article-content pre", 16, 24, "code frame");
 				// Sole typography exception retained from the reference commit.
-				checkType(".article-content pre code", mobile ? 13.4 : 14.4, mobile ? 20 : 21, "fenced code");
+				checkType(".article-content pre code", mobile ? 13.5 : 14.3, mobile ? 20 : 21, "fenced code");
 				checkType(".article-content p > code", 14, 20, "inline code");
 				const pre = style(".article-content pre");
 				close(pre.paddingTop, 20, "code top padding");
