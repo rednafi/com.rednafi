@@ -61,13 +61,8 @@
     --fs-2xs: 12px;
     --fs-xs: 13px;
     --fs-sm: 14px;
-    --fs-inline-code: 14px;
-    --lh-inline-code: 20px;
-    --fs-footer-link: 15.2px;
-    --fs-pre: 16px;
-    --lh-pre: 24px;
     --lh-compact: 20px;
-    /* Fenced code: 14.4/21 desktop; mobile values are 1.06× the 13.4/20 step. */
+    /* Fenced code: 14.4/21 desktop; 13.4/20 at <=960px. */
     --fs-code: 14.4px;
     --lh-code: 21px;
     --fs-md: 16px;
@@ -178,28 +173,13 @@
   /* Vercel's hard article type step at 960px. */
   @media (max-width: 960px) {
     :root {
-      /* Mobile type preview: every font step is 1.06× its responsive default.
-         Spacing and controls deliberately stay at their normal dimensions. */
-      --fs-2xs: 12.72px;
-      --fs-xs: 13.78px;
-      --fs-sm: 14.84px;
-      --fs-inline-code: 14.84px;
-      --lh-inline-code: 21.2px;
-      --fs-footer-link: 16.11px;
-      --fs-pre: 16.96px;
-      --lh-pre: 25.44px;
-      --lh-compact: 21.2px;
-      --fs-md: 16.96px;
-      --fs-base: 16.96px;
-      --fs-lg: 21.2px;
-      --fs-list-title: clamp(24.38px, 23px + 0.3604vw, 27.56px);
-      --fs-article: 16.96px;
-      --lh-article: 1.5;
-      --fs-h1: 42.4px;
-      --fs-h2: 33.92px;
-      --fs-h3: 25.44px;
-      --fs-code: 14.2px;
-      --lh-code: 21.2px;
+      /* Deliberate mobile exception: body copy is 1.04× Vercel's 16px size. */
+      --fs-article: 16.64px;
+      --lh-article: 24px;
+      --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
+      --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
+      --fs-code: 13.4px;
+      --lh-code: 20px;
     }
   }
 }

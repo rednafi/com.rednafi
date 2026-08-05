@@ -988,7 +988,7 @@ func TestMobileLayout(t *testing.T) {
 	})
 
 	t.Run("feed column uses most of the mobile width", func(t *testing.T) {
-		// With the mobile grid frame dropped, content runs to the uniform 18px
+		// With the mobile grid frame dropped, content runs to the uniform 20px
 		// side gutter. At 390px that's ~88% of the viewport (a bit
 		// less under the headless scrollbar gutter); still the bulk of the width.
 		ratio, err := page.Evaluate(`() => {
@@ -1000,15 +1000,15 @@ func TestMobileLayout(t *testing.T) {
 			"feed should use most of the mobile viewport width")
 	})
 
-	t.Run("mobile side gutter is 18px", func(t *testing.T) {
+	t.Run("mobile side gutter is 20px", func(t *testing.T) {
 		// The decorative grid frame is dropped on mobile, so --rail carries the
-		// whole side gutter (18px); body padding is just safe-area.
+		// whole side gutter (20px); body padding is just safe-area.
 		rail, err := page.Locator("main").Evaluate(
 			`el => parseFloat(getComputedStyle(el).paddingLeft)`, nil,
 		)
 		require.NoError(t, err)
-		assert.InDelta(t, float64(18), toFloat(rail), 0.5,
-			"mobile gutter should use the reduced 18px rail")
+		assert.InDelta(t, float64(20), toFloat(rail), 0.5,
+			"mobile gutter should use the 20px rail")
 	})
 }
 

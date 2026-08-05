@@ -29,7 +29,6 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 			problems, err := page.Evaluate(`() => {
 				const problems = [];
 				const mobile = innerWidth <= 960;
-				const scale = mobile ? 1.06 : 1;
 				const close = (actual, expected, label, tolerance = 0.11) => {
 					if (Math.abs(parseFloat(actual) - expected) > tolerance)
 						problems.push(label + ": " + actual + " != " + expected + "px");
@@ -42,17 +41,19 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				};
 
 				close(style("html").fontSize, 16, "root font-size");
-				checkType(".site-title", 16 * scale, 32, "site title");
-				checkType(".command-trigger", 14 * scale, 20 * scale, "search trigger");
-				checkType(".article-body h1", mobile ? 40 * scale : 48, mobile ? 48 * scale : 56, "article h1");
-				checkType(".post-meta", 14 * scale, 20 * scale, "article metadata");
-				checkType(".article-content > p", mobile ? 16 * scale : 18, mobile ? 24 * scale : 28, "article body");
-				checkType(".article-content h2", 32 * scale, 35.2 * scale, "article h2");
-				checkType(".article-content h3", mobile ? 24 * scale : 28, mobile ? 26.4 * scale : 30.8, "article h3");
-				checkType(".article-content h4", 16 * scale, 17.6 * scale, "article h4");
+				checkType(".site-title", 16, 32, "site title");
+				checkType(".command-trigger", 14, 20, "search trigger");
+				checkType(".article-body h1", mobile ? 40 : 48, mobile ? 48 : 56, "article h1");
+				checkType(".post-meta", 14, 20, "article metadata");
+				// Sole prose exception: mobile body copy is 1.04x Vercel's 16px size;
+				// line-height remains Vercel's 24px.
+				checkType(".article-content > p", mobile ? 16.64 : 18, mobile ? 24 : 28, "article body");
+				checkType(".article-content h2", 32, 35.2, "article h2");
+				checkType(".article-content h3", mobile ? 24 : 28, mobile ? 26.4 : 30.8, "article h3");
+				checkType(".article-content h4", 16, 17.6, "article h4");
 
 				const h1 = style(".article-body h1");
-				close(h1.letterSpacing, mobile ? -2.4 * scale : -2.88, "h1 tracking");
+				close(h1.letterSpacing, mobile ? -2.4 : -2.88, "h1 tracking");
 				if (h1.fontWeight !== "450") problems.push("h1 weight: " + h1.fontWeight + " != 450");
 				const h2 = style(".article-content h2");
 				close(h2.paddingTop, 48, "h2 lead padding");
@@ -61,13 +62,14 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				close(h3.paddingTop, 40, "h3 lead padding");
 				close(h3.marginBottom, 24, "h3 trailing rhythm");
 				const h4 = style(".article-content h4");
-				close(h4.letterSpacing, 1.6 * scale, "h4 tracking");
+				close(h4.letterSpacing, 1.6, "h4 tracking");
 				if (h4.fontWeight !== "450") problems.push("h4 weight: " + h4.fontWeight + " != 450");
 				if (!h4.fontFamily.toLowerCase().includes("geist mono")) problems.push("h4 is not Geist Mono");
 
-				checkType(".article-content pre", 16 * scale, 24 * scale, "code frame");
-				checkType(".article-content pre code", mobile ? 14.2 : 14.4, mobile ? 21.2 : 21, "fenced code");
-				checkType(".article-content p > code", 14 * scale, 20 * scale, "inline code");
+				checkType(".article-content pre", 16, 24, "code frame");
+				// Sole typography exception retained from the reference commit.
+				checkType(".article-content pre code", mobile ? 13.4 : 14.4, mobile ? 20 : 21, "fenced code");
+				checkType(".article-content p > code", 14, 20, "inline code");
 				const pre = style(".article-content pre");
 				close(pre.paddingTop, 20, "code top padding");
 				close(pre.paddingRight, 0, "code right frame padding");
@@ -81,11 +83,11 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				close(inline.paddingRight, 5, "inline-code horizontal padding");
 
 				const body = document.querySelector(".article-content").getBoundingClientRect();
-				const expectedWidth = Math.min(innerWidth - (mobile ? 36 : 48), 720);
+				const expectedWidth = Math.min(innerWidth - (mobile ? 40 : 48), 720);
 				close(body.width, expectedWidth, "reading column width", 0.6);
 				if (Math.abs(body.left - (innerWidth - body.right)) > 0.6)
 					problems.push("reading column is not horizontally centered");
-				if (mobile) close(style("main").paddingLeft, 18, "mobile rail");
+				if (mobile) close(style("main").paddingLeft, 20, "mobile rail");
 				const block = document.querySelector(".codeblock").getBoundingClientRect();
 				const preBox = document.querySelector(".codeblock pre").getBoundingClientRect();
 				close(preBox.left - block.left, 2, "code frame inner left inset", 0.6);

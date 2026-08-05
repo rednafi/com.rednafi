@@ -77,7 +77,6 @@
     padding-block: var(--space-6);
     padding-left: max(var(--space-6), env(safe-area-inset-left));
     padding-right: max(var(--space-6), env(safe-area-inset-right));
-    font-size: var(--fs-base);
     line-height: var(--lh-normal);
     overflow-wrap: break-word;
     overflow-x: hidden;
@@ -183,10 +182,10 @@
 
   @media (max-width: 960px) {
     :root {
-      /* Uniform 18px side gutter through the mobile/tablet layout step.
+      /* Uniform 20px side gutter through the mobile/tablet layout step.
        The main rail alone carries this gutter; retaining the body's desktop pad
        here double-inset tablets and made the article look squeezed. */
-      --rail: 18px;
+      --rail: 20px;
     }
     body {
       padding-block: var(--space-3);

@@ -91,11 +91,11 @@ func TestMobileTypographyConsistent(t *testing.T) {
 		return toFloat(size)
 	}
 
-	// Desktop stays matched to vercel.com/blog. The complete mobile type scale is
-	// intentionally 1.06× larger than that responsive baseline.
-	t.Run("h1 preserves the desktop scale and mobile 1.06x preview", func(t *testing.T) {
+	// Heading declarations stay matched to vercel.com/blog; body copy has one
+	// deliberate mobile font-size exception below.
+	t.Run("h1 matches the vercel scale on desktop and mobile", func(t *testing.T) {
 		assert.InDelta(t, 48.0, fontSize(desktop, "h1"), 0.5, "desktop h1 should be 48px")
-		assert.InDelta(t, 42.4, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 42.4px")
+		assert.InDelta(t, 40.0, fontSize(mobile, "h1"), 0.5, "mobile h1 should be 40px")
 	})
 
 	t.Run("article h2 stays larger than h3", func(t *testing.T) {
@@ -108,24 +108,23 @@ func TestMobileTypographyConsistent(t *testing.T) {
 		assert.InDelta(t, 28.0, desktopH3, 0.5, "desktop h3 should be 28px")
 		assert.Greater(t, desktopH2, desktopH3, "desktop h2 should be larger than h3")
 
-		assert.InDelta(t, 33.92, mobileH2, 0.5, "mobile h2 should be 33.92px")
-		assert.InDelta(t, 25.44, mobileH3, 0.5, "mobile h3 should be 25.44px")
+		assert.InDelta(t, 32.0, mobileH2, 0.5, "mobile h2 should be 32px")
+		assert.InDelta(t, 24.0, mobileH3, 0.5, "mobile h3 should be 24px")
 		assert.Greater(t, mobileH2, mobileH3, "mobile h2 should be larger than h3")
 	})
 
 	t.Run("reading body matches the vercel scale", func(t *testing.T) {
 		assert.InDelta(t, 18.0, fontSize(desktop, ".article-content p"), 0.5,
 			"desktop article body should be 18px")
-		assert.InDelta(t, 16.96, fontSize(mobile, ".article-content p"), 0.5,
-			"mobile article body should be 16.96px")
+		assert.InDelta(t, 16.64, fontSize(mobile, ".article-content p"), 0.5,
+			"mobile article body should be 1.04x Vercel's 16px declaration")
 	})
 
-	t.Run("pre follows the mobile type preview", func(t *testing.T) {
-		assert.InDelta(t, 16.0, fontSize(desktop, "pre"), 0.2,
-			"desktop pre should stay 16px")
-		assert.InDelta(t, 16.96, fontSize(mobile, "pre"), 0.2,
-			"mobile pre should be 1.06x larger")
+	t.Run("pre keeps the Vercel declaration at both breakpoints", func(t *testing.T) {
+		assert.InDelta(t, fontSize(desktop, "pre"), fontSize(mobile, "pre"), 0.2,
+			"pre should remain 16px before presentation zoom")
 	})
+
 }
 
 // TestPostListTitleTypographyTokens verifies post-list titles use the vercel
@@ -156,8 +155,8 @@ func TestPostListTitleTypographyTokens(t *testing.T) {
 
 	assert.InDelta(t, 26.0, size(desktop), 0.5,
 		"desktop post-list title should use --fs-list-title (26px)")
-	assert.InDelta(t, 24.4, size(mobile), 0.5,
-		"mobile post-list title should use the 1.06x --fs-list-title step")
+	assert.InDelta(t, 23.0, size(mobile), 0.5,
+		"mobile post-list title should keep the Vercel --fs-list-title declaration")
 	assert.Equal(t, "400", weight(desktop),
 		"vercel list titles are weight-400, not bold")
 }
@@ -229,8 +228,8 @@ func TestMobileArticleBreadcrumbs(t *testing.T) {
 		`el => parseFloat(getComputedStyle(el).fontSize)`, nil,
 	)
 	require.NoError(t, err)
-	assert.InDelta(t, 14.84, toFloat(fontSize), 0.05,
-		"breadcrumbs should use the mobile 1.06x type scale")
+	assert.Equal(t, 14.0, toFloat(fontSize),
+		"breadcrumbs should keep Vercel's 14px category trail declaration")
 }
 
 func TestMobileHeroKeepsFullIdentityLine(t *testing.T) {
