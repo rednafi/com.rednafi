@@ -131,12 +131,12 @@
   /* Dark theme overrides. */
   [data-theme="dark"] {
     color-scheme: dark;
-    --bg: #0a0a0a;
-    --bg-2: #1a1a1a;
+    --bg: #141414;
+    --bg-2: #1c1c1c;
     --text: #ededed;
     --muted: #a1a1a1;
     --faint: #8f8f8f;
-    --code-bg: #1a1a1a;
+    --code-bg: #1c1c1c;
     --border: #2e2e2e;
     --border-strong: #454545;
     --grid-cross: #878787;
@@ -145,7 +145,7 @@
 
     --surface: var(--code-bg);
     --surface-2: #1f1f1f;
-    /* dark: elevated segment is LIGHTER than the #1a1a1a pill (raised, not a dark
+    /* dark: elevated segment is LIGHTER than the #1c1c1c pill (raised, not a dark
        cutout) — mirrors the light-mode raised look */
     --toggle-active: #2e2e2e;
     --accent: var(--link);

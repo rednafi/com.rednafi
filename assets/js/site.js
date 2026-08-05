@@ -43,9 +43,9 @@
       if (persist) writePreference(preference)
       if (
         themeMeta &&
-        themeMeta.getAttribute("content") !== (theme === "dark" ? "#0a0a0a" : "#fafafa")
+        themeMeta.getAttribute("content") !== (theme === "dark" ? "#141414" : "#fafafa")
       ) {
-        themeMeta.setAttribute("content", theme === "dark" ? "#0a0a0a" : "#fafafa")
+        themeMeta.setAttribute("content", theme === "dark" ? "#141414" : "#fafafa")
       }
       syncButtons(preference)
       if (changed && window.__mermaidRerender) window.__mermaidRerender()

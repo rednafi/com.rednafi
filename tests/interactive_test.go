@@ -244,7 +244,7 @@ func TestDarkThemeCodeBackground(t *testing.T) {
 	assert.NotEqual(t, lightCodeBg, darkCodeBg,
 		"--code-bg should differ between light (%v) and dark (%v) themes",
 		lightCodeBg, darkCodeBg)
-	assert.Equal(t, "#1a1a1a", darkCodeBg)
+	assert.Equal(t, "#1c1c1c", darkCodeBg)
 }
 
 // TestCopyCodeButton verifies the code-block copy button copies the block's

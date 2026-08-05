@@ -40,9 +40,9 @@ func TestCSSVariablesDefinedInDark(t *testing.T) {
 	require.NoError(t, themeButton(t, page, "dark").Click())
 
 	expectedDark := map[string]string{
-		"--bg":      "#0a0a0a",
+		"--bg":      "#141414",
 		"--text":    "#ededed",
-		"--code-bg": "#1a1a1a",
+		"--code-bg": "#1c1c1c",
 		"--border":  "#2e2e2e",
 		"--link":    "#52a8ff",
 		"--visited": "#52a8ff",

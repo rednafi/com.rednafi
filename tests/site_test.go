@@ -456,7 +456,7 @@ func TestSEOHomepage(t *testing.T) {
 
 		dark, err := page.Locator(`meta[name="theme-color"][media*="dark"]`).GetAttribute("content")
 		require.NoError(t, err)
-		assert.Equal(t, "#0a0a0a", dark)
+		assert.Equal(t, "#141414", dark)
 	})
 
 	t.Run("favicon links", func(t *testing.T) {

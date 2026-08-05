@@ -54,10 +54,6 @@
     background: transparent;
   }
 
-  /* No -webkit-font-smoothing override in either theme: the browser default (auto)
-   applies macOS stem-darkening → heavier, darker strokes. `antialiased` thins text,
-   which read too thin, so it's deliberately off (light AND dark). No-op on Android. */
-
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -201,7 +197,7 @@
     top: 0;
     z-index: 100;
     padding: var(--space-2) var(--space-4);
-    /* elevated chip: --bg-2 lifts it above the page in dark (#1a1a1a on #0a0a0a),
+    /* elevated chip: --bg-2 lifts it above the page in dark (#1c1c1c on #141414),
      where the drop-shadow is invisible; identical to --bg in light */
     background: var(--bg-2);
     color: var(--link);
