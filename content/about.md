@@ -91,7 +91,7 @@ reflect those of my employer.
 
 <!-- Curriculum vitae -->
 [my cv]:
-    https://docs.google.com/document/d/1LHQsrdJVN4RTFZ2DTmuwpe9zKcWfKJmABeSQXEnbZRQ/edit?usp=sharing
+    https://github.com/rednafi/resume/blob/main/resume-redowan-delowar.pdf
 
 <!-- Appearances & Blogroll -->
 [give talks and appear on podcasts]:
