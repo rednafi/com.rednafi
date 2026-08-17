@@ -305,7 +305,7 @@ func TestAdversarialArticleShellResponsiveMatrix(t *testing.T) {
 				if (tocNav.scrollHeight > tocNav.clientHeight && getComputedStyle(el("details.toc > nav")).overflowY !== "auto")
 					problems.push("long TOC cannot scroll internally");
 
-				const expectedOuterWidth = Math.min(innerWidth - (mobile ? 40 : 48), 720);
+				const expectedOuterWidth = Math.min(innerWidth - (mobile ? 36 : 48), 720);
 				if (Math.abs(outer.width - expectedOuterWidth) > tolerance)
 					problems.push("article shell width drifted: " + outer.width + " / " + expectedOuterWidth);
 				const expectedContentWidth = expectedOuterWidth;

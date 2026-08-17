@@ -985,7 +985,7 @@
   }
 
   /* mobile: drop the decorative grid frame (rails + corner crosshairs) — it crowds a
-   narrow screen; content runs clean to the uniform 20px gutter (--rail) */
+   narrow screen; content runs clean to the uniform 18px gutter (--rail) */
   @media (max-width: 640px) {
     main {
       --content-top-band: var(--space-5);

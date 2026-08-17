@@ -178,10 +178,10 @@
 
   @media (max-width: 960px) {
     :root {
-      /* Uniform 20px side gutter through the mobile/tablet layout step.
+      /* Uniform 18px side gutter through the mobile/tablet layout step.
        The main rail alone carries this gutter; retaining the body's desktop pad
        here double-inset tablets and made the article look squeezed. */
-      --rail: 20px;
+      --rail: 18px;
     }
     body {
       padding-block: var(--space-3);

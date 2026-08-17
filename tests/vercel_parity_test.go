@@ -83,11 +83,11 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				close(inline.paddingRight, 5, "inline-code horizontal padding");
 
 				const body = document.querySelector(".article-content").getBoundingClientRect();
-				const expectedWidth = Math.min(innerWidth - (mobile ? 40 : 48), 720);
+				const expectedWidth = Math.min(innerWidth - (mobile ? 36 : 48), 720);
 				close(body.width, expectedWidth, "reading column width", 0.6);
 				if (Math.abs(body.left - (innerWidth - body.right)) > 0.6)
 					problems.push("reading column is not horizontally centered");
-				if (mobile) close(style("main").paddingLeft, 20, "mobile rail");
+				if (mobile) close(style("main").paddingLeft, 18, "mobile rail");
 				const block = document.querySelector(".codeblock").getBoundingClientRect();
 				const preBox = document.querySelector(".codeblock pre").getBoundingClientRect();
 				close(preBox.left - block.left, 2, "code frame inner left inset", 0.6);
