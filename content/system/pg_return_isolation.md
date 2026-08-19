@@ -59,7 +59,7 @@ Postgres gives me a concrete reference model that is pretty close to the SQL sta
 
 Here is how I stack a few common databases against that model.
 
-| Database      | Transaction and isolation model                                                                                                                                                                                     | Closest Postgres reference             | Difference from Postgres                                                                                                                                                                                                                                             |
+| Database      | Transaction and isolation model                                                                                                                                                                                     | Closest Postgres reference             | Highlights                                                                                                                                                                                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PostgreSQL    | Interactive transactions across rows and tables. _Read Committed_ is the default, _Repeatable Read_ provides snapshot isolation, and _Serializable_ uses SSI.                                                       | Baseline                               | _Repeatable Read_ can allow write skew. _Serializable_ may return `40001`, requiring the application to retry the entire transaction.                                                                                                                                |
 | [Aurora DSQL] | Interactive distributed transactions using [strong snapshot isolation] and optimistic concurrency control.                                                                                                          | _Repeatable Read_                      | DSQL detects write-write conflicts but doesn't validate ordinary read-write dependencies. Write skew can happen. Conflicts return `40001`, and `SELECT FOR UPDATE` can make the relevant read dependencies participate in conflict detection.                        |
@@ -138,6 +138,6 @@ high-performance systems.
     https://brooker.co.za/blog/2024/01/23/big-deal.html
 
 [image_1]:
-    https://github.com/user-attachments/assets/68910d42-166f-4207-8345-45890db00940
+    https://github.com/user-attachments/assets/03a57125-5959-48cd-9f84-7f372220fb35
 
 <!-- prettier-ignore-end -->

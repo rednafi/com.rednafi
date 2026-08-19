@@ -1,6 +1,6 @@
 module rednafi.com
 
-go 1.26.5
+go 1.27.0
 
 require (
 	github.com/mxschmitt/playwright-go v0.6201.0
