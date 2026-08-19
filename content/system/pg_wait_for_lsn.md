@@ -17,7 +17,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /system/pg-wait-for-lsn/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo6r3pkjfr2o"
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthp25dkhw2u"
 ---
 
 Postgres 19 finally gives us a clean way to do read-after-write across replicas. Without it,
