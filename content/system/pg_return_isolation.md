@@ -138,6 +138,6 @@ high-performance systems.
     https://brooker.co.za/blog/2024/01/23/big-deal.html
 
 [image_1]:
-    https://github.com/user-attachments/assets/03a57125-5959-48cd-9f84-7f372220fb35
+    https://blob.rednafi.com/system/pg-return-isolation/postgresql-isolation-levels-dafec4753c2c.png
 
 <!-- prettier-ignore-end -->
