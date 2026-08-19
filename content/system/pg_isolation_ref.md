@@ -16,7 +16,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /system/pg-isolation-ref/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthp24j6pl2p"
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthuqpfscr26"
 ---
 
 ![PostgreSQL transaction isolation levels][image_1]
