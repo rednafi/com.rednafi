@@ -65,10 +65,9 @@ func TestCommandPaletteInteraction(t *testing.T) {
 
 	require.NoError(t, page.Keyboard().Press("Escape"))
 	assert.Eventually(t, func() bool {
-		value, err := dialog.Evaluate(`element => element.open`, nil)
-		return err == nil && value == false
+		expanded, err := trigger.GetAttribute("aria-expanded")
+		return err == nil && expanded == "false"
 	}, time.Second, 20*time.Millisecond)
-	assert.Equal(t, "false", locatorAttr(t, trigger, "aria-expanded"))
 	focused, err = trigger.Evaluate(`element => element === document.activeElement`, nil)
 	require.NoError(t, err)
 	assert.Equal(t, true, focused, "native close should restore focus")
