@@ -1435,9 +1435,9 @@
       "slug": "pg-wait-for-lsn"
     },
     "content/system/pg_isolation_ref.md": {
-      "contentHash": "6181ba6d289164c32295b31f3748c8df0836f34d9a53897f0f90a5e34f2b1626",
+      "contentHash": "d27a21929b3c0e8b566eba802d656301da3ba048ce228cfa1133ebdc0c4538e6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthuqpfscr26",
-      "lastPublished": "2026-08-19T23:22:29.657Z",
+      "lastPublished": "2026-08-20T00:54:15.537Z",
       "slug": "pg-isolation-ref"
     }
   },
