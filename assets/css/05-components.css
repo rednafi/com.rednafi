@@ -1,7 +1,7 @@
 @layer components {
   .article-body {
     width: 100%;
-    max-width: 720px;
+    max-width: var(--content-width);
     margin-inline: auto;
   }
 

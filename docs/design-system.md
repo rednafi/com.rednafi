@@ -180,4 +180,4 @@ The primary layout breakpoint is 640px, with purpose-specific steps at 360px (ti
 header search). The label-only navigation popover and command shortcut panel use simple
 single-column rows, and both are viewport-bound from 320px phones through desktop. Display
 type scales via `clamp()`. Verified: **no horizontal overflow 320→1440px**; the reading
-column fills width on small screens and caps at 720px centered on desktop.
+column fills width on small screens and caps at 760px centered on desktop.

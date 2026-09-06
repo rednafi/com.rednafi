@@ -33,7 +33,7 @@ func TestTabletLayout(t *testing.T) {
 			`el => getComputedStyle(el).maxWidth`, nil,
 		)
 		require.NoError(t, err)
-		assert.Equal(t, "720px", mw, "home shares the 720px reading column")
+		assert.Equal(t, "760px", mw, "home shares the 760px reading column")
 	})
 }
 
