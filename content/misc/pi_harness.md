@@ -13,7 +13,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /misc/pi-harness/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mustaxyvn62c"
 ---
 
 ![Pi running in Ghostty with a read tool call][image_1]

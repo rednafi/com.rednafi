@@ -1439,6 +1439,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthuqpfscr26",
       "lastPublished": "2026-08-20T00:54:15.537Z",
       "slug": "pg-isolation-ref"
+    },
+    "content/misc/pi_harness.md": {
+      "contentHash": "d2cd2602811cb9ececa4f5349d66647b7f04f16bbad5b66cb48387f4bcca985d",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mustaxyvn62c",
+      "lastPublished": "2026-09-06T01:20:16.809Z",
+      "slug": "pi-harness"
     }
   },
   "publication": {
