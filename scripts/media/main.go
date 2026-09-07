@@ -22,7 +22,7 @@ import (
 const (
 	defaultPublicBase = "https://blob.rednafi.com"
 	defaultBucket     = "blog"
-	defaultWrangler   = "npx -y wrangler@4.127.1"
+	defaultWrangler   = "npx -y wrangler@4.129.0"
 	immutableCache    = "public, max-age=31536000, immutable"
 )
 
