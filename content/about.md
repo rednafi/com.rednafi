@@ -32,9 +32,9 @@ reach out. I'm always up for a chat.
 - [LinkedIn]
 - [RSS]
 
-## Curriculum vitae
+## Resume
 
-For the paper trail inclined, here's [my CV].
+For the paper trail inclined, here's [my resume].
 
 ## Colophon
 
@@ -89,9 +89,9 @@ reflect those of my employer.
 [rss]:
     /index.xml
 
-<!-- Curriculum vitae -->
-[my cv]:
-    https://github.com/rednafi/resume/blob/main/resume-redowan-delowar.pdf
+<!-- Resume -->
+[my resume]:
+    https://cdn.jsdelivr.net/gh/rednafi/resume@main/resume-redowan-delowar.pdf
 
 <!-- Appearances & Blogroll -->
 [give talks and appear on podcasts]:
