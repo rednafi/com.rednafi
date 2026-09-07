@@ -964,7 +964,7 @@ func TestDesktopLayout(t *testing.T) {
 		mw, err := page.Locator(".content-column.home").Evaluate(
 			`el => getComputedStyle(el).maxWidth`, nil)
 		require.NoError(t, err)
-		assert.Equal(t, "760px", mw, "home column shares the 760px reading width")
+		assert.Equal(t, "740px", mw, "home column shares the 740px reading width")
 	})
 
 	t.Run("body max-width 1150px", func(t *testing.T) {

@@ -110,8 +110,8 @@
     --radius: 6px;
     --radius-lg: 12px;
     --radius-pill: 9999px;
-    --content-width: 760px;
-    --page-width: 1150px; /* 760 reading column within the outer page frame */
+    --content-width: 740px;
+    --page-width: 1150px; /* 740 reading column within the outer page frame */
     --motion: 0.2s ease;
     --motion-fast: 0.15s ease;
     --ease-out: cubic-bezier(0.4, 0, 0.2, 1);

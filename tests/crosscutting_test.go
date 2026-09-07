@@ -39,7 +39,7 @@ func TestCharsetAndViewportOnAllPageTypes(t *testing.T) {
 }
 
 // TestContentColumnMaxWidth verifies every page type uses the same centered
-// 760px base wrapper. Purposeful editorial elements such as the homepage hero
+// 740px base wrapper. Purposeful editorial elements such as the homepage hero
 // may bleed from that wrapper without changing the underlying column.
 func TestContentColumnMaxWidth(t *testing.T) {
 	t.Parallel()
@@ -60,8 +60,8 @@ func TestContentColumnMaxWidth(t *testing.T) {
 			)
 			require.NoError(t, err)
 			metrics := values.(map[string]any)
-			assert.Equal(t, "760px", metrics["maxWidth"], "%s max-width drifted", name)
-			assert.LessOrEqual(t, toFloat(metrics["width"]), 760.5, "%s exceeds the base column", name)
+			assert.Equal(t, "740px", metrics["maxWidth"], "%s max-width drifted", name)
+			assert.LessOrEqual(t, toFloat(metrics["width"]), 740.5, "%s exceeds the base column", name)
 		})
 	}
 
@@ -72,8 +72,8 @@ func TestContentColumnMaxWidth(t *testing.T) {
 			`el => el.getBoundingClientRect().width`, nil,
 		)
 		require.NoError(t, err)
-		assert.InDelta(t, 760, toFloat(width), 1,
-			"desktop article should retain the standard centered 760px reading width")
+		assert.InDelta(t, 740, toFloat(width), 1,
+			"desktop article should retain the standard centered 740px reading width")
 	})
 }
 
