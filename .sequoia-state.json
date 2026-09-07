@@ -1441,9 +1441,9 @@
       "slug": "pg-isolation-ref"
     },
     "content/misc/pi_harness.md": {
-      "contentHash": "d2cd2602811cb9ececa4f5349d66647b7f04f16bbad5b66cb48387f4bcca985d",
+      "contentHash": "646c1125fb6940737664928425c9c9e65a79f7fa6f32f31cb835fed7da886b70",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mustaxyvn62c",
-      "lastPublished": "2026-09-06T01:20:16.809Z",
+      "lastPublished": "2026-09-07T13:53:14.952Z",
       "slug": "pi-harness"
     }
   },
