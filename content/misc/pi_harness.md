@@ -115,6 +115,13 @@ harness. It feels good to use a tool whose core I can keep in my head without fl
 TUI has been rock solid too. It hasn't crashed or frozen on me once. I haven't seen it
 flicker while I'm working. Maybe that's because it's a frikkin TUI and [not a game engine!]
 
+---
+
+- [What I learned building an opinionated and minimal coding agent ~ Mario Zechner]
+- [I've sold out ~ Mario Zechner]
+- [Pi: The minimal agent within OpenClaw ~ Armin Ronacher]
+- [Building Pi with Pi ~ Armin Ronacher]
+
 <!-- references -->
 <!-- prettier-ignore-start -->
 
@@ -162,6 +169,18 @@ flicker while I'm working. Maybe that's because it's a frikkin TUI and [not a ga
 
 [not a game engine!]:
     https://x.com/trq212/status/2014051501786931427
+
+[what i learned building an opinionated and minimal coding agent ~ mario zechner]:
+    https://mariozechner.at/posts/2025-11-30-pi-coding-agent/
+
+[i've sold out ~ mario zechner]:
+    https://mariozechner.at/posts/2026-04-08-ive-sold-out/
+
+[pi: the minimal agent within openclaw ~ armin ronacher]:
+    https://lucumr.pocoo.org/2026/1/31/pi/
+
+[building pi with pi ~ armin ronacher]:
+    https://lucumr.pocoo.org/2026/5/24/pi-oss/
 
 <!-- pi running in ghostty -->
 [image_1]:
