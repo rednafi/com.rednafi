@@ -7,6 +7,7 @@ description: >-
     deliver it themselves.
 tags:
     - Essay
+    - AI
 aliases: []
 discussions: []
 mermaid: false
@@ -14,6 +15,8 @@ type_label: ""
 atprotoPath: /zephyr/no-skin-in-the-game/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mvupfboad52g"
 ---
+
+![A gray megaphone mounted high on a wall][image_1]
 
 I'm talking in the context of [industrial programming]. A few statements I believe to be
 true:
@@ -102,5 +105,10 @@ This makes me wonder: why do we listen to people who have no skin in the game?
 
 [skin in the game]:
     https://en.wikipedia.org/wiki/Skin_in_the_Game_(book)
+
+[image_1]:
+    https://blob.rednafi.com/zephyr/no-skin-in-the-game/megaphone-b0b0c559cf0b.jpg
+
+<!-- image_1: Photo by Franck V on Unsplash: https://unsplash.com/photos/tiNCpHudGrw -->
 
 <!-- prettier-ignore-end -->
