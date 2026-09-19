@@ -139,36 +139,23 @@
     box-shadow: var(--ring);
   }
 
-  /* vercel's glyph is TWO 16px round-capped 1.5px lines 8px apart (svg lines at
-   y=8/y=16 of a 24 box) — the middle bar stays empty and only hosts the pair */
-  .nav-toggle__bars {
-    position: relative;
+  .nav-toggle__icon {
     width: 16px;
-    height: 1.5px;
-    background: transparent;
+    height: 16px;
   }
 
-  .nav-toggle__bars::before,
-  .nav-toggle__bars::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 16px;
-    height: 1.5px;
-    border-top: 1.5px solid currentColor;
-    border-radius: var(--radius-pill);
-    transition:
-      top var(--motion-fast),
-      bottom var(--motion-fast),
-      transform var(--motion-fast);
+  .nav-toggle__icon path {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform var(--motion-fast);
   }
 
-  .nav-toggle__bars::before {
-    top: -5px;
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon path:first-child {
+    transform: translateY(5px) rotate(45deg);
   }
 
-  .nav-toggle__bars::after {
-    bottom: -5px;
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon path:last-child {
+    transform: translateY(-5px) rotate(-45deg);
   }
 
   @media (max-width: 1023px) {
@@ -179,16 +166,6 @@
     .nav-toggle {
       justify-content: center;
     }
-  }
-
-  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
-    top: 0;
-    transform: rotate(45deg);
-  }
-
-  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
-    bottom: 0;
-    transform: rotate(-45deg);
   }
 
   /* Compact popover anchored to the menu trigger. */
