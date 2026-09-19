@@ -12,7 +12,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /zephyr/no-skin-in-the-game/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mvupfboad52g"
 ---
 
 I'm talking in the context of [industrial programming]. A few statements I believe to be

@@ -1445,6 +1445,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mustaxyvn62c",
       "lastPublished": "2026-09-07T13:53:14.952Z",
       "slug": "pi-harness"
+    },
+    "content/zephyr/no_skin_in_the_game.md": {
+      "contentHash": "16ef12444e69c9fd7bb822267fcc76b8aca3c743761e258a0f53b1542e5d02a0",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mvupfboad52g",
+      "lastPublished": "2026-09-19T12:41:37.286Z",
+      "slug": "no-skin-in-the-game"
     }
   },
   "publication": {
