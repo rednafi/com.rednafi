@@ -155,7 +155,7 @@
     left: 0;
     width: 16px;
     height: 1.5px;
-    background: var(--text);
+    border-top: 1.5px solid currentColor;
     border-radius: var(--radius-pill);
     transition:
       top var(--motion-fast),
