@@ -232,27 +232,14 @@ func TestMobileArticleBreadcrumbs(t *testing.T) {
 		"breadcrumbs should keep Vercel's 14px category trail declaration")
 }
 
-func TestMobileHeroKeepsFullIdentityLine(t *testing.T) {
+func TestMobileHeroKeepsCompactIntroduction(t *testing.T) {
 	t.Parallel()
 	page := newMobilePage(t)
 	goto_(t, page, "/")
 
-	items := page.Locator(".hero__eyebrow span")
-	require.Equal(t, 3, locatorCount(t, items))
-	texts, err := items.AllTextContents()
-	require.NoError(t, err)
-	assert.Equal(t, []string{"Redowan Delowar", "software engineer", "Berlin"},
-		texts)
-	for index := range 3 {
-		visible, err := items.Nth(index).IsVisible()
-		require.NoError(t, err)
-		assert.True(t, visible)
-	}
-	transform, err := page.Locator(".hero__eyebrow").Evaluate(
-		`el => getComputedStyle(el).textTransform`, nil,
-	)
-	require.NoError(t, err)
-	assert.Equal(t, "uppercase", transform)
+	assert.Equal(t, 0, locatorCount(t, page.Locator(".hero__utility")))
+	assert.Equal(t, 0, locatorCount(t, page.Locator(".hero__eyebrow")))
+	assert.Equal(t, 0, locatorCount(t, page.Locator(".hero__footer p")))
 
 	weight, err := page.Locator(".site-title").Evaluate(
 		`el => getComputedStyle(el).fontWeight`, nil,

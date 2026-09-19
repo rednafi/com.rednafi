@@ -215,12 +215,6 @@ func TestQuietMetadataTypographyRoles(t *testing.T) {
 		return toStringSlice(value)
 	}
 
-	hero := style(t, "/", ".hero__eyebrow")
-	require.NotEmpty(t, hero)
-	assert.Contains(t, strings.ToLower(hero[0]), "geist mono")
-	assert.Equal(t, "14px", hero[1])
-	assert.Equal(t, "uppercase", hero[4])
-
 	footer := style(t, "/", ".site-footer")
 	assert.Contains(t, strings.ToLower(footer[0]), "geist mono")
 	assert.Equal(t, "12px", footer[1])

@@ -232,7 +232,6 @@ func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
 				const art = document.querySelector('.hero__art').getBoundingClientRect();
 				const body = document.querySelector('.hero__body').getBoundingClientRect();
 				const actions = document.querySelector('.hero__actions').getBoundingClientRect();
-				const utility = document.querySelector('.hero__utility').getBoundingClientRect();
 				const footer = document.querySelector('.hero__footer').getBoundingClientRect();
 				const footerItems = [...document.querySelectorAll('.hero__footer a')];
 				const scene = document.querySelector('.hero__image').getBoundingClientRect();
@@ -243,7 +242,6 @@ func TestHeroImageFitsItsStageAcrossViewports(t *testing.T) {
 					? Math.abs(stage.top - art.top) < 0.5 &&
 						Math.abs(stage.bottom - art.bottom) < 0.5 &&
 						stage.left >= body.right &&
-						Math.abs(stage.right - utility.right) < 0.5 &&
 						Math.abs(stage.right - footer.right) < 0.5 &&
 						footerItems.every((item) => item.getBoundingClientRect().right <= footer.right)
 					: window.innerWidth <= 640

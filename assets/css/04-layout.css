@@ -381,7 +381,7 @@
   /* Home masthead — a wide editorial spread inside the site's existing Geist frame. */
   .home-intro {
     margin-inline: min(calc((100cqw - 100%) / -2), 0px);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-6);
   }
 
   .hero {
@@ -408,45 +408,12 @@
     filter: blur(2px);
   }
 
-  .hero__utility,
-  .hero__footer,
-  .hero__eyebrow {
-    font-family: "Geist Mono", ui-monospace, monospace;
-    font-size: var(--fs-sm);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .hero__utility {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: var(--space-4);
-    color: var(--faint);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hero__status {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  .hero__status-dot {
-    width: 6px;
-    height: 6px;
-    display: inline-block;
-    border-radius: var(--radius-pill);
-    background: currentColor;
-    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 10%, transparent);
-  }
-
   .hero__grid {
     display: grid;
     grid-template-columns: minmax(0, 1.14fr) minmax(400px, 0.86fr);
     align-items: stretch;
     gap: clamp(var(--space-1), 0.75cqw, var(--space-3));
-    padding-block: var(--space-10);
+    padding-block: var(--space-6);
   }
 
   .hero__body {
@@ -457,27 +424,6 @@
     align-items: flex-start;
     align-self: center;
     min-width: 0;
-  }
-
-  .hero__eyebrow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: var(--space-3);
-    row-gap: var(--space-2);
-    margin: 0 0 clamp(var(--space-8), 4vw, var(--space-12));
-    color: var(--faint);
-  }
-
-  .hero__eyebrow span {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-
-  .hero__eyebrow span + span::before {
-    content: "/";
-    margin-right: var(--space-3);
   }
 
   .hero__text {
@@ -607,7 +553,6 @@
       column-gap: calc(var(--hero-gutter) + var(--space-3));
     }
 
-    .hero__utility,
     .hero__footer {
       box-sizing: border-box;
       width: calc(100% + 2 * var(--hero-gutter));
@@ -623,7 +568,7 @@
 
     .hero__art-stage {
       flex: 1;
-      min-height: clamp(450px, 50vh, 540px);
+      min-height: clamp(400px, 46vh, 500px);
       aspect-ratio: auto;
     }
   }
@@ -646,16 +591,11 @@
   .hero__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-6);
-    min-height: 68px;
-    padding-block: var(--space-3);
+    justify-content: flex-end;
+    min-height: 56px;
+    padding-block: var(--space-2);
     color: var(--faint);
     border-top: 1px solid var(--border);
-  }
-
-  .hero__footer p {
-    margin: 0;
   }
 
   /* social icon row — a quiet counterweight to the oversized headline */
@@ -752,16 +692,16 @@
       grid-template-columns: 1fr;
       row-gap: 0;
       column-gap: 0;
-      padding-block: var(--space-10);
+      padding-block: var(--space-6);
     }
 
     .hero__art {
       margin-top: 0;
     }
 
-    /* The visible CTA-to-image edge owns the gutter directly. */
+    /* Keep the stacked hero compact and balance the space around the image. */
     .hero__actions {
-      margin-bottom: var(--space-10);
+      margin-bottom: var(--space-6);
     }
 
     .hero__body {
@@ -784,19 +724,6 @@
 
     .hero {
       padding-inline: 0;
-    }
-
-    .hero__utility {
-      padding-block: var(--space-3);
-    }
-
-    .hero__utility > span:last-child {
-      display: none;
-    }
-
-    .hero__eyebrow {
-      margin-bottom: var(--space-8);
-      line-height: var(--lh-relaxed);
     }
 
     .hero__lead {
@@ -834,10 +761,7 @@
     }
 
     .hero__footer {
-      align-items: flex-start;
-      flex-direction: column;
-      padding-block: var(--space-5);
-      line-height: var(--lh-relaxed);
+      padding-block: var(--space-2);
     }
 
     .connect-icons {

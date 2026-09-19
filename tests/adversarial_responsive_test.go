@@ -72,7 +72,6 @@ func TestAdversarialHomepageResponsiveMatrix(t *testing.T) {
 				[
 					["header", rect(".site-header")],
 					["hero", rect(".hero")],
-					["utility", rect(".hero__utility")],
 					["body", rect(".hero__body")],
 					["image stage", rect(".hero__art-stage")],
 					["footer", rect(".hero__footer")],
@@ -112,7 +111,7 @@ func TestAdversarialHomepageResponsiveMatrix(t *testing.T) {
 				} else {
 					if (Math.abs(stage.top - art.top) > tolerance || Math.abs(stage.bottom - art.bottom) > tolerance)
 						problems.push("desktop image does not fill its art row");
-					for (const selector of [".hero__eyebrow", ".hero__lead", ".hero__tagline", ".hero__actions"]) {
+					for (const selector of [".hero__lead", ".hero__tagline", ".hero__actions"]) {
 						const box = rect(selector);
 						if (box.right > stage.left + tolerance)
 							problems.push(selector + " overlaps the desktop image");
@@ -375,7 +374,7 @@ func TestAdversarialContinuousResponsiveSweep(t *testing.T) {
 							insideViewport(selector, box(selector));
 						const stage = box(".hero__art-stage");
 						if (innerWidth > 960) {
-							for (const selector of [".hero__eyebrow", ".hero__lead", ".hero__tagline", ".hero__actions"])
+							for (const selector of [".hero__lead", ".hero__tagline", ".hero__actions"])
 								if (box(selector).right > stage.left + tolerance) problems.push(selector + " overlaps image");
 						}
 					} else {

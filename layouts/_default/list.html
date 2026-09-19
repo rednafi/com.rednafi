@@ -17,17 +17,8 @@
   {{- if $isFirstPage }}
   <header class="home-intro home-hero">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__utility" aria-hidden="true">
-        <span class="hero__status"><span class="hero__status-dot"></span>Independent field notes</span>
-        <span>52.5200° N &nbsp;·&nbsp; 13.4050° E</span>
-      </div>
       <div class="hero__grid">
         <div class="hero__body">
-          <p class="hero__eyebrow">
-            <span>Redowan Delowar</span>
-            <span>software engineer</span>
-            <span>Berlin</span>
-          </p>
           <div class="hero__text">
             <h1 id="hero-title" class="hero__lead">
               <span>Hi, I’m Redowan.</span>
@@ -58,7 +49,6 @@
         </div>
       </div>
       <div class="hero__footer">
-        <p>{{ len $pages }} posts since 2020.</p>
         {{ partial "connect.html" . }}
       </div>
     </section>
