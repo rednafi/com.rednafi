@@ -117,10 +117,10 @@ func TestBodyOverflowHidden(t *testing.T) {
 		"body should have overflow-x: clip to prevent horizontal scroll without becoming a scroll container")
 }
 
-// TestSmoothScrollBehavior verifies the page uses smooth scrolling for
-// anchor navigation (but not when prefers-reduced-motion is set — that's
-// tested in TestReducedMotion).
-func TestSmoothScrollBehavior(t *testing.T) {
+// TestImmediateScrollBehavior verifies programmatic scrolling is not animated.
+// Read-aloud tools frequently reposition the viewport as speech advances; global
+// smooth scrolling makes those requests overlap and causes disorienting jumps.
+func TestImmediateScrollBehavior(t *testing.T) {
 	t.Parallel()
 	page := newPage(t)
 	goto_(t, page, "/")
@@ -129,8 +129,8 @@ func TestSmoothScrollBehavior(t *testing.T) {
 		`() => getComputedStyle(document.documentElement).scrollBehavior`,
 	)
 	require.NoError(t, err)
-	assert.Equal(t, "smooth", sb,
-		"html should have scroll-behavior: smooth for anchor navigation")
+	assert.Equal(t, "auto", sb,
+		"html should keep programmatic scrolling immediate for read-aloud tools")
 }
 
 // TestImageBorderRadius verifies article images have rounded corners

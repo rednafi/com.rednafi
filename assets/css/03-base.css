@@ -10,7 +10,10 @@
     font-size: 16px;
     color: var(--text);
     background: var(--bg);
-    scroll-behavior: smooth;
+    /* Keep programmatic scrolling immediate. Read-aloud tools repeatedly move the
+       viewport to follow speech; global smooth scrolling makes those requests
+       overlap and causes the page to jump back and forth. */
+    scroll-behavior: auto;
     /* Keep the centered column truly symmetric; platform scrollbars may overlay
        the viewport, matching Vercel, rather than reserving an extra right rail. */
     /* Prevent horizontal overflow without creating a scroll container. */
@@ -55,9 +58,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     *::before,
     *::after {
