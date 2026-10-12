@@ -1453,9 +1453,9 @@
       "slug": "no-skin-in-the-game"
     },
     "content/go/patch_field_mask.md": {
-      "contentHash": "bbfd5e1385574f8926cc60995a04e65aa8c4d8c14625331991c07e5134859a79",
+      "contentHash": "db10e3568d7e31f451eef8476b63d486a5573c2b8cbb094ba603a369089e07fe",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mxplcfemlb2q",
-      "lastPublished": "2026-10-12T22:35:30.089Z",
+      "lastPublished": "2026-10-12T22:44:06.313Z",
       "slug": "patch-field-mask"
     }
   },

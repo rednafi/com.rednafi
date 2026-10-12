@@ -147,7 +147,7 @@ func (s *Server) patchUser(w http.ResponseWriter, r *http.Request) {
     // ...
 
     var in User
-    
+
     // json v2 API
     if err := json.UnmarshalRead(r.Body, &in); err != nil {
         http.Error(w, "invalid JSON body", http.StatusBadRequest)
