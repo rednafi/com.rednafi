@@ -137,4 +137,11 @@
     background-color: color-mix(in srgb, var(--link) 11%, transparent);
     margin: 0;
   }
+
+  /* inline highlight from the codeblock mark="..." attribute */
+  .highlight mark.code-mark {
+    color: inherit;
+    background-color: color-mix(in srgb, var(--link) 18%, transparent);
+    border-radius: 3px;
+  }
 }
