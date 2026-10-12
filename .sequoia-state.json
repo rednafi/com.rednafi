@@ -1451,6 +1451,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mvupfboad52g",
       "lastPublished": "2026-09-19T13:48:59.860Z",
       "slug": "no-skin-in-the-game"
+    },
+    "content/go/patch_field_mask.md": {
+      "contentHash": "bbfd5e1385574f8926cc60995a04e65aa8c4d8c14625331991c07e5134859a79",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mxplcfemlb2q",
+      "lastPublished": "2026-10-12T22:35:30.089Z",
+      "slug": "patch-field-mask"
     }
   },
   "publication": {

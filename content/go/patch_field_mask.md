@@ -12,7 +12,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /go/patch-field-mask/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mxplcfemlb2q"
 ---
 
 u/SnooSongs6758 [asked on r/golang]:
