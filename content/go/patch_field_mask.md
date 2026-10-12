@@ -50,7 +50,7 @@ fields named in the mask.
 Say the server has this user stored. Each request below starts from it:
 
 ```json
-{"id": "1", "name": "Alice", "address": "Old Street 1"}
+{"id":"1","name":"Alice","address":"Old Street 1"}
 ```
 
 To update the address, the client sets the `update_mask` query parameter to `address` and
@@ -68,7 +68,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{"id": "1", "name": "Alice", "address": "New Street 2"}
+{"id":"1","name":"Alice","address":"New Street 2"}
 ```
 
 To delete the address, the query parameter stays `update_mask=address`, and the body sends
@@ -85,7 +85,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{"id": "1", "name": "Alice", "address": ""}
+{"id":"1","name":"Alice","address":""}
 ```
 
 An empty body, `{}`, does the same thing, because `address` is still in the mask.
@@ -104,7 +104,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{"id": "1", "name": "Bob", "address": "Old Street 1"}
+{"id":"1","name":"Bob","address":"Old Street 1"}
 ```
 
 On the Go side, the asker used a pointer so the handler could see `null`. With pointers, the
@@ -141,16 +141,20 @@ type User struct {
 In the handler, `in` is the request body and `u` is the stored user. The loop goes through
 the mask and copies each named field from `in` to `u`. An unknown field name gets a 400:
 
-```go {hl_lines=["16","18"]}
+```go {hl_lines=["18","20"]}
 func (s *Server) patchUser(w http.ResponseWriter, r *http.Request) {
     mask := r.URL.Query().Get("update_mask")
+    // ...
 
     var in User
-    if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+    
+    // json v2 API
+    if err := json.UnmarshalRead(r.Body, &in); err != nil {
         http.Error(w, "invalid JSON body", http.StatusBadRequest)
         return
     }
 
+    // ...
     u, ok := s.users[r.PathValue("id")]
     // ...
 
