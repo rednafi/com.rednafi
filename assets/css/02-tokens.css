@@ -62,7 +62,7 @@
     --fs-xs: 13px;
     --fs-sm: 14px;
     --lh-compact: 20px;
-    /* Fenced code: 14.3/21 desktop; 13.5/20 at <=960px. */
+    /* Fenced code: 14.3/21 desktop; 13.5/20 scaled by 17/16.64 at <=960px. */
     --fs-code: 14.3px;
     --lh-code: 21px;
     --fs-md: 16px;
@@ -173,13 +173,14 @@
   /* Vercel's hard article type step at 960px. */
   @media (max-width: 960px) {
     :root {
-      /* Deliberate mobile exception: body copy is 1.04× Vercel's 16px size. */
-      --fs-article: 16.64px;
+      /* Deliberate mobile exception: body copy is 17px. */
+      --fs-article: 17px;
       --lh-article: 24px;
       --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
       --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
-      --fs-code: 13.5px;
-      --lh-code: 20px;
+      /* code grows by the same 16.64 → 17 factor as the body */
+      --fs-code: calc(13.5px * 17 / 16.64);
+      --lh-code: calc(20px * 17 / 16.64);
     }
   }
 }

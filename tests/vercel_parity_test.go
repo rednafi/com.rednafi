@@ -47,7 +47,7 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				checkType(".post-meta", 14, 20, "article metadata");
 				// Sole prose exception: mobile body copy is 1.04x Vercel's 16px size;
 				// line-height remains Vercel's 24px.
-				checkType(".article-content > p", mobile ? 16.64 : 18, mobile ? 24 : 28, "article body");
+				checkType(".article-content > p", mobile ? 17 : 18, mobile ? 24 : 28, "article body");
 				checkType(".article-content h2", 32, 35.2, "article h2");
 				checkType(".article-content h3", mobile ? 24 : 28, mobile ? 26.4 : 30.8, "article h3");
 				checkType(".article-content h4", 16, 17.6, "article h4");
@@ -68,7 +68,7 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 
 				checkType(".article-content pre", 16, 24, "code frame");
 				// Sole typography exception retained from the reference commit.
-				checkType(".article-content pre code", mobile ? 13.5 : 14.3, mobile ? 20 : 21, "fenced code");
+				checkType(".article-content pre code", mobile ? 13.5 * 17 / 16.64 : 14.3, mobile ? 20 * 17 / 16.64 : 21, "fenced code");
 				checkType(".article-content p > code", 14, 20, "inline code");
 				const pre = style(".article-content pre");
 				close(pre.paddingTop, 20, "code top padding");

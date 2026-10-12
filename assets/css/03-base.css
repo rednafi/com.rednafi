@@ -160,7 +160,7 @@
   article li {
     text-wrap: pretty;
   }
-  /* Vercel article body: 18/28 desktop, 16/24 through the mobile/tablet step. */
+  /* Vercel article body: 18/28 desktop, 17/24 through the mobile/tablet step. */
   .article-content {
     font-size: var(--fs-article);
     line-height: var(--lh-article);

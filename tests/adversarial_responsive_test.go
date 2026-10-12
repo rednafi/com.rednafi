@@ -389,8 +389,8 @@ func TestAdversarialContinuousResponsiveSweep(t *testing.T) {
 						const mobile = innerWidth <= 960;
 						const type = selector => getComputedStyle(document.querySelector(selector));
 						if (parseFloat(type(".article-body h1").fontSize) !== (mobile ? 40 : 48)) problems.push("h1 breakpoint drift");
-						if (Math.abs(parseFloat(type(".article-content > p").fontSize) - (mobile ? 16.64 : 18)) > 0.05) problems.push("body breakpoint drift");
-						if (Math.abs(parseFloat(type(".article-content pre code").fontSize) - (mobile ? 13.5 : 14.3)) > 0.05) problems.push("fenced-code breakpoint drift");
+						if (Math.abs(parseFloat(type(".article-content > p").fontSize) - (mobile ? 17 : 18)) > 0.05) problems.push("body breakpoint drift");
+						if (Math.abs(parseFloat(type(".article-content pre code").fontSize) - (mobile ? 13.5 * 17 / 16.64 : 14.3)) > 0.05) problems.push("fenced-code breakpoint drift");
 					}
 					return problems;
 				}`, target.name)
