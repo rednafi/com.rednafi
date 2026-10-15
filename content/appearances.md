@@ -34,7 +34,7 @@ On Go, agents, and doing the right things from commit one.
 
 [talk-2-video]: #
 [talk-2-slides]:
-    https://docs.google.com/presentation/d/146GjJEe3u6SZyR5LNjq9hGoG0Xdz1eWUbbuJUW3dp-M
+    https://github.com/rednafi/talks/blob/main/cheap-rigor/slides.pdf
 
 ### Go interface segregation redux — Dec 3, 2025, GDG Berlin
 
@@ -46,7 +46,7 @@ segregation in Go].
 
 [talk-1-video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
 [talk-1-slides]:
-    https://docs.google.com/presentation/d/10d4K1V4uJLsanzBS6Jz-Ibnw7kYXnQJJWSEKIimbqnU
+    https://github.com/rednafi/talks/blob/main/go-interface-segregation-redux/slides.pdf
 
 ## Podcasts
 
