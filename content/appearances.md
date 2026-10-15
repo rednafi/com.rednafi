@@ -22,7 +22,7 @@ collisions in Go context keys].
 
 [talk-3-video]: #
 [talk-3-slides]:
-    https://github.com/rednafi/talks/blob/main/context-propagation-in-go/slides.pdf
+    https://cdn.jsdelivr.net/gh/rednafi/talks@main/context-propagation-in-go/slides.pdf
 [what canceled my go context?]: /go/context-cancellation-cause/
 [avoiding collisions in go context keys]: /go/avoid-context-key-collisions/
 
@@ -33,7 +33,7 @@ collisions in Go context keys].
 On Go, agents, and doing the right things from commit one.
 
 [talk-2-video]: #
-[talk-2-slides]: https://github.com/rednafi/talks/blob/main/cheap-rigor/slides.pdf
+[talk-2-slides]: https://cdn.jsdelivr.net/gh/rednafi/talks@main/cheap-rigor/slides.pdf
 
 ### Go interface segregation redux — Dec 3, 2025, GDG Berlin
 
@@ -45,7 +45,7 @@ segregation in Go].
 
 [talk-1-video]: https://www.youtube.com/watch?v=AtSutJ2rSr8
 [talk-1-slides]:
-    https://github.com/rednafi/talks/blob/main/go-interface-segregation-redux/slides.pdf
+    https://cdn.jsdelivr.net/gh/rednafi/talks@main/go-interface-segregation-redux/slides.pdf
 
 ## Podcasts
 
