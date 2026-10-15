@@ -12,6 +12,20 @@ description: >-
 
 ## Talks
 
+### Context propagation in Go — TBD
+
+[Video][talk-3-video] | [Slides][talk-3-slides]
+
+On passing a context down, recording why it stopped, keeping context values in check, and
+enforcing the rules with linters. Related posts: [What canceled my Go context?], [Avoiding
+collisions in Go context keys].
+
+[talk-3-video]: #
+[talk-3-slides]:
+    https://github.com/rednafi/talks/blob/main/context-propagation-in-go/slides.pdf
+[what canceled my go context?]: /go/context-cancellation-cause/
+[avoiding collisions in go context keys]: /go/avoid-context-key-collisions/
+
 ### Cheap rigor — TBD
 
 [Video][talk-2-video] | [Slides][talk-2-slides]
