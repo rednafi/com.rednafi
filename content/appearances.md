@@ -33,8 +33,7 @@ collisions in Go context keys].
 On Go, agents, and doing the right things from commit one.
 
 [talk-2-video]: #
-[talk-2-slides]:
-    https://github.com/rednafi/talks/blob/main/cheap-rigor/slides.pdf
+[talk-2-slides]: https://github.com/rednafi/talks/blob/main/cheap-rigor/slides.pdf
 
 ### Go interface segregation redux — Dec 3, 2025, GDG Berlin
 
