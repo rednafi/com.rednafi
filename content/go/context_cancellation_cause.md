@@ -61,8 +61,8 @@ func processOrder(ctx context.Context, orderID string) error {
 - (3) if anything goes wrong, including a context cancellation, the error is returned as-is
 
 When a context gets canceled, the underlying reason is either `context.Canceled` or
-`context.DeadlineExceeded`. Libraries wrap these in their own types (`*url.Error` for
-`net/http`, gRPC status codes for `grpc`), but `errors.Is` still matches the sentinel.
+`context.DeadlineExceeded`. `net/http` wraps these in a `*url.Error`, but `errors.Is` still
+matches the sentinel. gRPC turns them into status codes instead.
 
 So if `checkInventory` makes an HTTP call and the client disconnects while it's in flight,
 the error that bubbles all the way up is:
@@ -176,9 +176,9 @@ inventory cause is preserved.
 
 `context.Cause` is a standalone function rather than a method on `Context` because Go's
 compatibility promise means the `Context` interface can't add new methods. `Err()` will
-always return `nil`, `Canceled`, or `DeadlineExceeded`. If you call `context.Cause` on a
-context that wasn't created with one of the cause-aware functions, it returns whatever
-`ctx.Err()` returns. On an uncanceled context, it returns `nil`.
+always return `nil`, `Canceled`, or `DeadlineExceeded`. If no cause was set on the context
+or any of its parents, `context.Cause` returns whatever `ctx.Err()` returns. On an
+uncanceled context, it returns `nil`.
 
 This handles explicit cancellation, but the function still has no timeout. The original
 version used `WithTimeout` for the 5-second deadline. To label that timeout with a cause, Go
@@ -323,11 +323,11 @@ processOrder completed
 This is actually what the stdlib does internally; `WithDeadline` uses `time.AfterFunc` under
 the hood.
 
-The trade-off is that `ctx.Err()` always returns `context.Canceled`, never
-`context.DeadlineExceeded`, because you're using `WithCancelCause` instead of `WithTimeout`.
-`ctx.Deadline()` also returns the zero value, which matters if downstream code or frameworks
-use it to propagate deadlines (gRPC, for example, sends the deadline across service
-boundaries via `ctx.Deadline()`). If downstream code branches on
+The trade-off is that a timeout shows up as `context.Canceled`. You never get
+`context.DeadlineExceeded` here because you're using `WithCancelCause` instead of
+`WithTimeout`. `ctx.Deadline()` also won't report the 5-second deadline, which matters if
+downstream code or frameworks use it to propagate deadlines (gRPC, for example, sends the
+deadline across service boundaries via `ctx.Deadline()`). If downstream code branches on
 `errors.Is(err, context.DeadlineExceeded)`, that check won't match either.
 
 ## When you also need DeadlineExceeded
@@ -342,7 +342,7 @@ func processOrder(ctx context.Context, orderID string) error {
     ctx, cancelTimeout := context.WithTimeoutCause(         // (2)
         ctx,
         5*time.Second,
-        fmt.Errorf("order %s: 5s timeout exceeded", orderID),
+        fmt.Errorf("order %s: 5s timeout exceeded: %w", orderID, context.DeadlineExceeded),
     )
     defer cancelTimeout()                                   // (3)
     defer cancelCause(errors.New("processOrder completed")) // (4)
@@ -364,7 +364,7 @@ func processOrder(ctx context.Context, orderID string) error {
 ```
 
 - (1) outer context for error-path and normal-completion causes
-- (2) inner context with a timeout cause for the deadline path
+- (2) inner context for the deadline path. Its cause wraps `DeadlineExceeded`
 - (3) deferred first, runs last (LIFO), cleans up the inner timeout context
 - (4) deferred second, runs first (LIFO), cancels the outer context with a cause
 
@@ -381,12 +381,8 @@ LIFO defer ordering, canceling the outer and propagating to the inner. Then
 > runs _before_ it (LIFO). If you reverse them, `cancelTimeout()` cancels the inner context
 > with `context.Canceled` before `cancelCause` gets a chance to set a meaningful cause.
 
-One subtlety: after line (2), `ctx` points to the inner context. If you call
-`context.Cause(ctx)` on it after a `cancelCause(specificErr)` call, you'll see
-`context.Canceled` (propagated from the outer), not the specific error. The specific cause
-lives on the outer context. In practice this doesn't matter because the caller inspects the
-returned `error`, not `context.Cause`, but it's worth knowing if you add logging inside
-`processOrder` itself.
+After line (2), `ctx` points to the inner context. Calling `cancelCause(specificErr)`
+cancels it too, with the same cause. So `context.Cause(ctx)` returns the specific error.
 
 The manual timer pattern is simpler and covers most cases. This stacked approach is for when
 downstream code specifically relies on `errors.Is(err, context.DeadlineExceeded)`.
@@ -485,7 +481,7 @@ func handleOrder(w http.ResponseWriter, r *http.Request) {
     cancel, _ := r.Context().
         Value(cancelCauseKey{}).(context.CancelCauseFunc)
 
-    if err := processOrder(r.Context()); err != nil {
+    if err := processOrder(r.Context(), r.PathValue("id")); err != nil {
         cancel(fmt.Errorf("order processing failed: %w", err))
         http.Error(w, "order failed", http.StatusInternalServerError)
         return
@@ -498,10 +494,10 @@ First cancel wins, so the most specific reason is what shows up in the middlewar
 [streamingfast/substreams] uses this approach in production, storing a `CancelCauseFunc` in
 the request context so worker pools downstream can cancel with a specific error.
 
-One thing to know: the stdlib's HTTP server and most third-party libraries cancel contexts
-without setting a cause, since they predate Go 1.20. If a client disconnects,
-`context.Cause(ctx)` will return `context.Canceled`, not a custom error. The cause APIs are
-most useful for reasons set by your own code.
+One thing to know: the stdlib's HTTP server and many third-party libraries cancel contexts
+without setting a cause. If a client disconnects, `context.Cause(ctx)` will return
+`context.Canceled`, not a custom error. The cause APIs are most useful for reasons set by
+your own code.
 
 ## Closing words
 
@@ -580,7 +576,7 @@ Runnable examples:
     https://go.dev/play/p/WmX6WywiL7o
 
 [playground: stacked contexts]:
-    https://go.dev/play/p/ASYa0IngONt
+    https://go.dev/play/p/J9m0ZWTQNO6
 
 [playground: reading and logging]:
     https://go.dev/play/p/l7XlYaAg0Qw

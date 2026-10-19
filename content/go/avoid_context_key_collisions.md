@@ -27,9 +27,8 @@ func WithValue(parent Context, key, val any) Context
 func (c Context) Value(key any) any
 ```
 
-`WithValue` can take any comparable value as both the key and the value. The key defines how
-the stored value is identified, and the value can be any data you want to pass through the
-call chain.
+`WithValue` takes a comparable key and a value of any type. The key defines how the stored
+value is identified, and the value can be any data you want to pass through the call chain.
 
 `Value`, on the other hand, also returns `any`, which means the compiler cannot infer the
 concrete type at compile time. To use the returned data safely, you must perform a type
@@ -100,7 +99,7 @@ fmt.Println(a == b) // true
 ```
 
 Each boxed interface here stores two things: a pointer to the type `string` and a pointer to
-the data `"key"`. Since both type and data pointers match, the comparison returns true.
+the data `"key"`. Since both the types and the data are equal, the comparison returns true.
 
 `WithValue` stores both the key and the value as `any`. When you later call `Value`, Go
 compares the boxed key you pass in with those stored in the context chain. If two different
@@ -159,8 +158,8 @@ Even if another package uses the string `"id"`, the key types differ, so they ca
 collide.
 
 To avoid allocation when `WithValue` assigns the inbound value to interface `any`, you can
-define an empty struct key. Unlike strings or integers, which allocate when boxed into an
-interface, a zero-sized struct occupies no memory and needs no allocation:
+define an empty struct key. Unlike strings or integers, which can allocate when boxed into
+an interface, a zero-sized struct occupies no memory and needs no allocation:
 
 ```go
 type key struct{}
@@ -320,7 +319,7 @@ everywhere.
 
     ```go
     func WithLabels(ctx context.Context, labels LabelSet) context.Context
-    func Labels(ctx context.Context) LabelSet
+    func Label(ctx context.Context, key string) (string, bool)
     ```
 
 You can find similar examples outside of the stdlib. For instance, the [OpenTelemetry Go
