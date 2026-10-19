@@ -139,9 +139,9 @@
       "slug": "mutex-closure"
     },
     "content/go/context_cancellation_cause.md": {
-      "contentHash": "cfdfb5b3bea6559807c0bc7a6f53aac0a87b705ddd56e7c3c0b23721cfef034b",
+      "contentHash": "e053101761ff9460df166f52b5fbdd0321eda4bdf03bc13ad1806e7d888a9a38",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icg5ae2u",
-      "lastPublished": "2026-07-03T19:57:27.812Z",
+      "lastPublished": "2026-10-19T10:29:12.439Z",
       "slug": "context-cancellation-cause"
     },
     "content/go/structured_concurrency.md": {
@@ -181,9 +181,9 @@
       "slug": "interface-segregation"
     },
     "content/go/avoid_context_key_collisions.md": {
-      "contentHash": "b92bfcfaba95f8d017cc21669f2b1c3dec88e85715c92a727bc74051583c6319",
+      "contentHash": "3d150d3f9a946475af155243624a3e9f9707f8272f8e74c9b101ab000e88e734",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieekd726",
-      "lastPublished": "2026-07-03T19:57:29.348Z",
+      "lastPublished": "2026-10-19T10:29:12.776Z",
       "slug": "avoid-context-key-collisions"
     },
     "content/go/organizing_tests.md": {
