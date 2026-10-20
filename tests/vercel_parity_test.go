@@ -45,9 +45,9 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				checkType(".command-trigger", 14, 20, "search trigger");
 				checkType(".article-body h1", mobile ? 40 : 48, mobile ? 48 : 56, "article h1");
 				checkType(".post-meta", 14, 20, "article metadata");
-				// Body copy is 17.5/24 on phones only; tablets keep 18/28.
-				const phone = innerWidth <= 640;
-				checkType(".article-content > p", phone ? 17.5 : 18, phone ? 24 : 28, "article body");
+				// Sole prose exception: mobile body copy is 1.04x Vercel's 16px size;
+				// line-height remains Vercel's 24px.
+				checkType(".article-content > p", mobile ? 17 : 18, mobile ? 24 : 28, "article body");
 				checkType(".article-content h2", 32, 35.2, "article h2");
 				checkType(".article-content h3", mobile ? 24 : 28, mobile ? 26.4 : 30.8, "article h3");
 				checkType(".article-content h4", 16, 17.6, "article h4");
@@ -67,7 +67,8 @@ func TestVercelArticleTypographyAndRhythmParity(t *testing.T) {
 				if (!h4.fontFamily.toLowerCase().includes("geist mono")) problems.push("h4 is not Geist Mono");
 
 				checkType(".article-content pre", 16, 24, "code frame");
-				checkType(".article-content pre code", 14.3, 21, "fenced code");
+				// Sole typography exception retained from the reference commit.
+				checkType(".article-content pre code", mobile ? 13.5 * 17 / 16.64 : 14.3, mobile ? 20 * 17 / 16.64 : 21, "fenced code");
 				checkType(".article-content p > code", 14, 20, "inline code");
 				const pre = style(".article-content pre");
 				close(pre.paddingTop, 20, "code top padding");

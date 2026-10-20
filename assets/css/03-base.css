@@ -147,7 +147,7 @@
   }
   h5,
   h6 {
-    font-size: var(--fs-base);
+    font-size: var(--fs-md);
     line-height: var(--lh-normal);
   }
 

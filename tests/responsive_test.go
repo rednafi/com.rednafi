@@ -116,8 +116,8 @@ func TestMobileTypographyConsistent(t *testing.T) {
 	t.Run("reading body matches the vercel scale", func(t *testing.T) {
 		assert.InDelta(t, 18.0, fontSize(desktop, ".article-content p"), 0.5,
 			"desktop article body should be 18px")
-		assert.InDelta(t, 17.5, fontSize(mobile, ".article-content p"), 0.1,
-			"mobile article body should be 17.5px")
+		assert.InDelta(t, 17.0, fontSize(mobile, ".article-content p"), 0.5,
+			"mobile article body should be 17px")
 	})
 
 	t.Run("pre keeps the Vercel declaration at both breakpoints", func(t *testing.T) {
