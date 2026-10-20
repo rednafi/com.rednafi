@@ -32,7 +32,6 @@
     font-size: var(--fs-base);
     line-height: 32px;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
     text-decoration: none;
     color: var(--text);
     transition: color var(--motion-fast);

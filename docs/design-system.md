@@ -72,14 +72,14 @@ else is tokens.
 `--space-1 .25rem … --space-12 3rem`. Structural bands: `--rail` (clamp .5–2rem),
 `--content-top-band`.
 
-### Type scale (rendered px at 17px root)
+### Type scale (fixed px)
 
-`--fs-2xs .72rem` (eyebrows/meta) · `--fs-sm .85rem` (nav/meta/code/tables) ·
-`--fs-md .9rem` (toc/excerpt) · `--fs-base 1rem` (body/h4/site title) · `--fs-lg 1.1rem` ·
-`--fs-list-title clamp(23→26px)`. Display: `--fs-h1` steps 40→48px, `--fs-h2` stays 32px,
-and `--fs-h3` steps 24→28px. Article body steps down to **17px/25.5 at ≤960px** (phones +
-iPad portrait), **18px/28 above** (`--fs-article`/`--lh-article`, hard `max-width:960`
-step).
+`--fs-2xs 12` · `--fs-xs 13` · `--fs-sm 14` (meta/inline code) · `--fs-code 14.3/21` (fenced
+code) · `--fs-base 16` (UI/h4/site title) · `--fs-lg 20` · `--fs-list-title 23→26`. Display:
+`--fs-h1 48`, `--fs-h2 32`, `--fs-h3 28`. Article body `--fs-article 18/28`.
+
+At ≤960px h1 → 40 and h3 → 24. At ≤640px (phones only) article body → **17.5/24**; tablets
+keep 18/28.
 
 ### Radii / weights / motion
 

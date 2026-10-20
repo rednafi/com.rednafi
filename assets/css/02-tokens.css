@@ -57,28 +57,21 @@
     --rail: clamp(0.5rem, 2vw, 2rem);
     --content-top-band: clamp(1.5rem, 3vw, 2rem);
 
-    /* Vercel's rendered type steps; fixed pixels avoid rem-rounding drift. */
+    /* Type scale in fixed px. h1/h3 step down at <=960px, article body at <=640px. */
     --fs-2xs: 12px;
     --fs-xs: 13px;
     --fs-sm: 14px;
     --lh-compact: 20px;
-    /* Fenced code: 14.3/21 desktop; 13.5/20 scaled by 17/16.64 at <=960px. */
-    --fs-code: 14.3px;
+    --fs-code: 14.3px; /* fenced code */
     --lh-code: 21px;
-    --fs-md: 16px;
     --fs-base: 16px;
     --fs-lg: 20px;
-    /* list-title — vercel blog titles are large + tight tracking, not small +
-       bold. Fluid 23px → 26px (exact at 390px / 1280px). */
-    --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px);
-
-    /* Display headings use hard responsive steps rather than fluid clamps. */
-    --fs-h1: 48px; /* article title / page h1 — 40px <=960 */
-    --fs-h2: 32px; /* vercel keeps h2 32px at every width */
-    --fs-h3: 28px; /* 24px <=960 */
-    /* Vercel article body: 18px/28 desktop, 16px/24 at <=960px. */
+    --fs-list-title: clamp(23px, 21.7px + 0.34vw, 26px); /* 23px → 26px */
+    --fs-h1: 48px;
+    --fs-h2: 32px;
+    --fs-h3: 28px;
     --fs-article: 18px;
-    --lh-article: calc(28 / 18); /* vercel-exact 28px leading */
+    --lh-article: 28px;
     --pre-pad: 20px; /* vercel pre padding; .line.hl full-bleed mirrors it */
     --lh-display: 1.1; /* heading leading */
     /* article vertical rhythm — vercel exact (introducing-eve): 24px base gap
@@ -170,17 +163,18 @@
     --backdrop: rgba(0, 0, 0, 0.68);
   }
 
-  /* Vercel's hard article type step at 960px. */
   @media (max-width: 960px) {
     :root {
-      /* Deliberate mobile exception: body copy is 17px. */
-      --fs-article: 17px;
+      --fs-h1: 40px;
+      --fs-h3: 24px;
+    }
+  }
+
+  /* Phones only; tablets keep the 18px desktop body. */
+  @media (max-width: 640px) {
+    :root {
+      --fs-article: 17.5px;
       --lh-article: 24px;
-      --fs-h1: 40px; /* vercel: h1 40px <=960, 48px above */
-      --fs-h3: 24px; /* vercel: h3 24px <=960, 28px above */
-      /* code grows by the same 16.64 → 17 factor as the body */
-      --fs-code: calc(13.5px * 17 / 16.64);
-      --lh-code: calc(20px * 17 / 16.64);
     }
   }
 }

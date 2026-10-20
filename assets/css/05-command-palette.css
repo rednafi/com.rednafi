@@ -224,7 +224,7 @@
   }
 
   .command-palette__result-copy strong {
-    font-size: var(--fs-md);
+    font-size: var(--fs-base);
     font-weight: var(--fw-medium);
     line-height: var(--lh-ui);
   }
@@ -273,7 +273,7 @@
   .command-palette__empty p {
     margin: var(--space-3) 0 var(--space-1);
     color: var(--text);
-    font-size: var(--fs-md);
+    font-size: var(--fs-base);
     font-weight: var(--fw-medium);
   }
 
