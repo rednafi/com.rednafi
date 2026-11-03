@@ -21,10 +21,10 @@ Liz Fong-Jones's [proposal to add maps.Grow] was [accepted] on October 29. It gi
 way to make room in a map that already exists, much like `make(M, n)` does for a new one.
 
 A Go map grows on its own as you add entries. Each time it runs out of room, the runtime
-allocates bigger storage, rehashes the entries into it, and leaves the old storage for the
-garbage collector. One grow is cheap, but a loop that adds thousands of entries can trigger
-many of them, and each one burns CPU and creates more garbage. If you know the final size
-when you create the map, you pass it to `make` and skip all that extra work.
+allocates a larger hash table, rehashes the entries into it, and leaves the old table for
+the garbage collector. A loop that adds thousands of entries can trigger this many times,
+and each time costs CPU and creates more garbage. If you know the final size when you create
+the map, you can pass it to `make` and skip all that extra work.
 
 But that only works if you're the one creating the map. If someone else created it and
 you're only adding entries, you're stuck with however much room it has.
@@ -83,7 +83,7 @@ Here:
 Even with the extra copy, [that change] cut CPU use by about 5% in production. Copying
 everything once was cheaper than letting the map grow step by step.
 
-With `maps.Grow`, you don't need the swap:
+With `maps.Grow`, you can skip all those shenanigans:
 
 ```go
 // Grow increases m's capacity, if necessary, so that at least n more
@@ -115,17 +115,18 @@ func (f *fieldHolder) AddFields(src map[string]any) {
 }
 ```
 
-`maps.Grow` returns nothing, while `slices.Grow` returns a new slice. The reason is what
-each variable holds:
+If you've used `slices.Grow`, you might expect `maps.Grow` to return the grown map. It
+doesn't, and the reason is how Go stores slices and maps:
 
-- A slice variable holds a small [slice struct] with a pointer to the backing array, a
-  length, and a capacity. `slices.Grow` allocates a bigger array, copies the elements over,
-  and returns a new slice that points to it. That's why you write `s = slices.Grow(s, n)`.
-- A map variable holds a pointer to a [maps.Map] struct in the runtime. `maps.Grow` puts
-  bigger storage behind that same pointer, and every variable holding the map sees it.
-  There's nothing to return.
+- A slice is a small [slice struct]. It holds a pointer to an array, a length, and a
+  capacity. When `slices.Grow` needs more room, it makes a bigger array and copies the
+  elements into it. Your old slice still points to the old array. That's why `slices.Grow`
+  returns a new slice and you write `s = slices.Grow(s, n)`.
+- A map is a pointer to a [maps.Map] struct in the runtime. When `maps.Grow` needs more
+  room, it puts a larger hash table behind that pointer. The pointer itself doesn't change,
+  so every variable holding the map sees the new table. There's nothing to return.
 
-A nil map is a nil pointer with no storage behind it, so `Grow` panics if you ask it to add
+A nil map is a nil pointer with no table behind it, so `Grow` panics if you ask it to add
 room:
 
 ```go
@@ -152,14 +153,15 @@ The proposal also changes `maps.Copy`.
 
 > [!IMPORTANT]
 >
-> `maps.Copy(dst, src)` will make room for `len(src)` entries in `dst` before it starts
-> copying. That never wastes space, because `dst` ends up with at least that many entries
-> however the keys overlap. Code that already calls `maps.Copy` gets faster without any
-> change. In the [benchmarks], copying into an empty or small map took about half the time
-> on an AMD 5600X and allocated about half as much memory.
+> `maps.Copy(dst, src)` will now make room in `dst` for `len(src)` entries before it copies
+> anything. That room always gets used, because `dst` holds at least `len(src)` entries
+> after the copy. Code that already calls `maps.Copy` gets faster without any change. In the
+> [benchmarks], copying into an empty or small map took about half the time on an AMD 5600X
+> and allocated about half as much memory.
 
-When you add entries without `maps.Copy`, you still call `Grow` yourself. The header loop
-above uses `Header.Add`, so it's one example. Filling a map from a slice is another:
+That only covers copying one map into another. The header loop above calls `Header.Add`
+instead, so it still needs its own `maps.Grow` call. So does code that fills a map from a
+slice:
 
 ```go {hl_lines=["2"]}
 func index(dst map[string]User, users []User) {
