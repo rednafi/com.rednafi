@@ -64,7 +64,7 @@ jobs:
 
           latest_node_major() {
             curl -fsSL https://nodejs.org/dist/index.json |
-              jq -r '.[0].version | sub("^v"; "") | split(".")[0]'
+              jq -r '[.[] | select(.version | contains("-") | not)][0].version | sub("^v"; "") | split(".")[0]'
           }
 
           hugo_version=$(latest_github_release gohugoio/hugo)
