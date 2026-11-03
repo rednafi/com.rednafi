@@ -18,16 +18,16 @@ atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs
 ---
 
 Liz Fong-Jones's [proposal to add maps.Grow] was [accepted] on October 29. It lets you make
-room in a map that already exists, much like `make(M, n)` does for a new one.
+room in a map that already exists. `make(M, n)` already does this for a new map.
 
-A Go map grows on its own as you add entries. Each time it runs out of room, the runtime
-allocates a larger hash table, rehashes the entries into it, and leaves the old table for
-the garbage collector. A loop that adds thousands of entries can trigger this many times,
-and each time costs CPU and creates more garbage. If you know the final size when you create
-the map, you can pass it to `make` and skip all that extra work.
+A Go map grows on its own as you add entries. When it runs out of room, the runtime
+allocates a larger hash table and rehashes the entries into it. The old table is left for
+the garbage collector. A loop that adds thousands of entries can hit this again and again.
+Each time costs CPU and creates more garbage. If you know the final size up front, you can
+pass it to `make` and skip all that extra work.
 
-But that only works if you're the one creating the map. If someone else created it and
-you're only adding entries, you can't control how often it grows.
+But that only works if you're the one creating the map. If someone else created it and you
+only add entries, you can't control how often it grows.
 
 `net/http/httputil.ReverseProxy` hits this on every request. It copies the upstream response
 headers into the client's response:
@@ -42,15 +42,16 @@ func copyHeader(dst, src http.Header) {
 }
 ```
 
-The proxy calls this as `copyHeader(rw.Header(), res.Header)`. `rw` is the
-`http.ResponseWriter`, and `rw.Header()` returns the header map that the server will write
-back to the client. The server created that map before the proxy ever saw it. The proxy
-knows how many headers are coming but can't pass that number to the map, so the map may grow
-several times inside this loop.
+The proxy calls this as `copyHeader(rw.Header(), res.Header)`. Here `res` is the upstream
+response and `rw` is the `http.ResponseWriter` for the client. `rw.Header()` returns the
+header map the server will send back to the client. The server created that map before the
+proxy's code ran. The proxy knows how many headers are coming but can't pass that number to
+the map. So the map may grow several times inside this loop.
 
-The usual workaround is to build a bigger map yourself and swap it in. [libhoney-go] does
-this. It keeps an event's fields in a map and hands that map out through a `Fields()`
-method. A simplified version looks like this:
+The proxy can't replace the map behind `rw.Header()`, so it's stuck with this. Code that
+owns its map has a workaround. It can build a bigger map and swap it in. Honeycomb's Go SDK,
+[libhoney-go], does this. It keeps an event's fields in a map and returns that map from
+`Fields()`. A simplified version looks like this:
 
 ```go {hl_lines=["13","15"]}
 type fieldHolder struct {
@@ -76,11 +77,11 @@ func (f *fieldHolder) AddFields(src map[string]any) {
 
 Here:
 
-- (1) to switch to the bigger map, it first has to copy every field it already has
-- (2) `f.data` now points to the new map, so anyone who got the old map from `Fields()`
-  won't see the new fields
+- (1) copies every field that `f.data` already has into the bigger map
+- (2) swaps in the new map. Callers who got the old map from `Fields()` won't see the new
+  fields.
 
-Even with the extra copy, [that change] cut CPU use by about 5% in production. Copying
+Even with the extra copy, [adding this swap] cut CPU use by about 5% in production. Copying
 everything once was cheaper than letting the map grow step by step.
 
 With `maps.Grow`, you can skip all those shenanigans. It's defined as:
@@ -89,6 +90,11 @@ With `maps.Grow`, you can skip all those shenanigans. It's defined as:
 // Grow increases m's capacity, if necessary, so that at least n more
 // entries can be added without further growth in the typical case, as if
 // m had been created with make(M, len(m)+n). Grow never shrinks m.
+// This is best effort: it cannot guarantee there will be no additional
+// growth.
+//
+// Grow panics if n is negative. It also panics if m is nil and n > 0,
+// as assigning to an element of a nil map would.
 func Grow[M ~map[K]V, K comparable, V any](m M, n int)
 ```
 
@@ -105,8 +111,8 @@ func copyHeader(dst, src http.Header) {
 }
 ```
 
-And libhoney can grow `f.data` in place. Callers who got the map from `Fields()` still hold
-the same map, so they see the new fields:
+libhoney can grow `f.data` in place. Callers who got the map from `Fields()` still hold that
+same map and see the new fields:
 
 ```go {hl_lines=["2"]}
 func (f *fieldHolder) AddFields(src map[string]any) {
@@ -116,53 +122,56 @@ func (f *fieldHolder) AddFields(src map[string]any) {
 ```
 
 If you've used `slices.Grow`, you might expect `maps.Grow` to return the grown map. It
-doesn't, and the reason is how Go stores slices and maps:
+doesn't, because Go stores slices and maps differently:
 
-- A slice is a small [slice struct]. It holds a pointer to an array, a length, and a
-  capacity. When `slices.Grow` needs more room, it makes a bigger array and copies the
-  elements into it. Your old slice still points to the old array. That's why `slices.Grow`
-  returns a new slice and you write `s = slices.Grow(s, n)`.
+- A slice is a small [slice struct] with a pointer to an array, a length, and a capacity.
+  When `slices.Grow` needs more room, it makes a bigger array and copies the elements into
+  it. Your old slice still points to the old array. That's why you write
+  `s = slices.Grow(s, n)`.
 - A map is a pointer to a [maps.Map] struct in the runtime. When `maps.Grow` needs more
-  room, it replaces the hash tables behind that pointer with larger ones. The pointer itself
-  doesn't change, so every variable holding the map sees the new tables. There's nothing to
-  return.
+  room, it swaps the hash tables behind that pointer for larger ones. The pointer stays the
+  same. Every variable holding the map sees the new tables, so there's nothing to return.
 
-A nil map is a nil pointer with no table behind it, so `Grow` panics if you ask it to add
-room:
+A nil map is a nil pointer with no table behind it. That's why `Grow` panics on a nil map
+when `n > 0`:
 
 ```go
 var m map[string]int // m is a nil map
 maps.Grow(m, 0)  // fine, nothing to add
 maps.Grow(m, 10) // panic: assignment to entry in nil map
-maps.Grow(m, -1) // panics, n is negative
+maps.Grow(m, -1) // panic: maps: cannot grow by a negative count
 ```
 
 If you don't have a map yet, use `make`.
 
-The `n` you pass is a hint, just like the size you give `make`. The doc comment calls `Grow`
-best effort, so the map may still grow later. You also can't ask a map for its capacity. An
-earlier proposal to allow [cap on maps] was declined.
+The doc comment also calls `Grow` best effort. Like the size you pass to `make`, `n` is only
+a hint. The map may still grow later. The comment mentions `m`'s capacity, but Go gives you
+no way to read it. An earlier proposal to allow [cap on maps] was declined.
 
 > [!NOTE]
 >
-> With a slice, `cap(s)` tells you exactly how far you can append before a new array gets
-> allocated. A map can't tell you that. A large map is split into several hash tables, and
-> each key's hash decides which table it goes into. One table can fill up and grow while the
-> others still have room. A table also grows before every slot is full. So `cap(m)` could
-> only be a rough guess. That's why `Grow` takes a hint but never reports a number back.
+> With a slice, `cap(s)` tells you exactly how far you can append before Go allocates a new
+> array. A map can't tell you that. A large map is split into several hash tables, and each
+> key's hash decides which table it goes into. One table can fill up and grow while the
+> others still have room. A table also grows before all its slots are full. So `cap(m)`
+> could only be a rough guess. That's why `Grow` takes a hint and never reports a number
+> back.
 
 The proposal also changes `maps.Copy`.
 
 > [!IMPORTANT]
 >
 > `maps.Copy(dst, src)` will now make room in `dst` for `len(src)` entries before it copies
-> anything. That room always gets used, because `dst` holds at least `len(src)` entries
+> anything. That room never goes to waste, because `dst` holds at least `len(src)` entries
 > after the copy. Code that already calls `maps.Copy` gets faster without any change. In the
-> [benchmarks], copying into an empty or small map took about half the time on an AMD 5600X
-> and allocated about half as much memory.
+> [benchmarks], copying into an empty or small map took about half the time on an AMD 5600X.
+> It also allocated about half as much memory.
 
-This only happens inside `maps.Copy`. The proxy's `copyHeader` copies with `Header.Add`, so
-it still needs its own `maps.Grow` call. So does code that fills a map from a slice:
+`maps.Copy` makes room for `len(src)` entries in total. It doesn't add room on top of what
+`dst` already holds. libhoney's map has fields of its own, so it still calls `Grow` to make
+room for both. The proxy's `copyHeader` doesn't use `maps.Copy` at all. It adds headers one
+by one with `Header.Add`, so it needs its own `Grow` call. The same goes for code that fills
+a map from a slice:
 
 ```go {hl_lines=["2"]}
 func index(dst map[string]User, users []User) {
@@ -173,8 +182,8 @@ func index(dst map[string]User, users []User) {
 }
 ```
 
-If most of those users are already in `dst`, the extra room goes unused and you've spent
-memory for nothing.
+If most of those users are already in `dst`, the extra room goes unused. You've spent memory
+for nothing.
 
 The [implementation], the [Copy change], and a [follow-up] that uses `maps.Grow` in
 `httputil` and `cgi` are all still under review. They're expected to land in Go 1.28.
@@ -191,7 +200,7 @@ The [implementation], the [Copy change], and a [follow-up] that uses `maps.Grow`
 [libhoney-go]:
     https://github.com/honeycombio/libhoney-go/blob/02e9dbf361012fafbe8698f429b65630500dc10a/libhoney.go#L642-L658
 
-[that change]:
+[adding this swap]:
     https://github.com/honeycombio/libhoney-go/pull/279
 
 [slice struct]:
