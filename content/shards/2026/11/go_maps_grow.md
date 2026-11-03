@@ -27,7 +27,7 @@ and each time costs CPU and creates more garbage. If you know the final size whe
 the map, you can pass it to `make` and skip all that extra work.
 
 But that only works if you're the one creating the map. If someone else created it and
-you're only adding entries, you're stuck with however much room it has.
+you're only adding entries, you can't control how often it grows.
 
 `net/http/httputil.ReverseProxy` hits this on every request. It copies the upstream response
 headers into the client's response:
@@ -76,14 +76,14 @@ func (f *fieldHolder) AddFields(src map[string]any) {
 
 Here:
 
-- (1) every existing field gets copied again just to move it into the bigger map
-- (2) `f.data` now points to a new map, so anyone who called `Fields()` earlier still holds
-  the old one and won't see the new fields
+- (1) to switch to the bigger map, it first has to copy every field it already has
+- (2) `f.data` now points to the new map, so anyone who got the old map from `Fields()`
+  won't see the new fields
 
 Even with the extra copy, [that change] cut CPU use by about 5% in production. Copying
 everything once was cheaper than letting the map grow step by step.
 
-With `maps.Grow`, you can skip all those shenanigans:
+With `maps.Grow`, you can skip all those shenanigans. It's defined as:
 
 ```go
 // Grow increases m's capacity, if necessary, so that at least n more
@@ -92,7 +92,7 @@ With `maps.Grow`, you can skip all those shenanigans:
 func Grow[M ~map[K]V, K comparable, V any](m M, n int)
 ```
 
-The proxy can make room before the loop starts:
+Using `Grow`, the proxy can make room before the loop starts:
 
 ```go {hl_lines=["2"]}
 func copyHeader(dst, src http.Header) {
@@ -123,14 +123,15 @@ doesn't, and the reason is how Go stores slices and maps:
   elements into it. Your old slice still points to the old array. That's why `slices.Grow`
   returns a new slice and you write `s = slices.Grow(s, n)`.
 - A map is a pointer to a [maps.Map] struct in the runtime. When `maps.Grow` needs more
-  room, it puts a larger hash table behind that pointer. The pointer itself doesn't change,
-  so every variable holding the map sees the new table. There's nothing to return.
+  room, it replaces the hash tables behind that pointer with larger ones. The pointer itself
+  doesn't change, so every variable holding the map sees the new tables. There's nothing to
+  return.
 
 A nil map is a nil pointer with no table behind it, so `Grow` panics if you ask it to add
 room:
 
 ```go
-var m map[string]int
+var m map[string]int // m is a nil map
 maps.Grow(m, 0)  // fine, nothing to add
 maps.Grow(m, 10) // panic: assignment to entry in nil map
 maps.Grow(m, -1) // panics, n is negative
@@ -145,9 +146,10 @@ earlier proposal to allow [cap on maps] was declined.
 > [!NOTE]
 >
 > With a slice, `cap(s)` tells you exactly how far you can append before a new array gets
-> allocated. A map can't tell you that. Where an entry lands depends on its hash, and the
-> runtime grows the map before every slot is full. So `cap(m)` could only be a rough guess.
-> That's why `Grow` takes a hint but never reports a number back.
+> allocated. A map can't tell you that. A large map is split into several hash tables, and
+> each key's hash decides which table it goes into. One table can fill up and grow while the
+> others still have room. A table also grows before every slot is full. So `cap(m)` could
+> only be a rough guess. That's why `Grow` takes a hint but never reports a number back.
 
 The proposal also changes `maps.Copy`.
 
@@ -159,8 +161,8 @@ The proposal also changes `maps.Copy`.
 > [benchmarks], copying into an empty or small map took about half the time on an AMD 5600X
 > and allocated about half as much memory.
 
-This only happens inside `maps.Copy`. The header loop above copies with `Header.Add`, so it
-still needs its own `maps.Grow` call. So does code that fills a map from a slice:
+This only happens inside `maps.Copy`. The proxy's `copyHeader` copies with `Header.Add`, so
+it still needs its own `maps.Grow` call. So does code that fills a map from a slice:
 
 ```go {hl_lines=["2"]}
 func index(dst map[string]User, users []User) {
