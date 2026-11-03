@@ -1457,6 +1457,12 @@
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mxplcfemlb2q",
       "lastPublished": "2026-10-15T19:09:12.390Z",
       "slug": "patch-field-mask"
+    },
+    "content/shards/2026/11/go_maps_grow.md": {
+      "contentHash": "faa8ef3ed97423ed5050a9966c3be8ecdccc9c5efc720b67612d740e14698bab",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs2q",
+      "lastPublished": "2026-11-03T16:46:11.156Z",
+      "slug": "go-maps-grow"
     }
   },
   "publication": {

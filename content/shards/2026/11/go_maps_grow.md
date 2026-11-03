@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /shards/2026/11/go-maps-grow/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs2q"
 ---
 
 Liz Fong-Jones's [proposal to add maps.Grow] was [accepted] on October 29. It gives you a
