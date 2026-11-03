@@ -17,8 +17,8 @@ atprotoPath: /shards/2026/11/go-maps-grow/
 atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs2q"
 ---
 
-Liz Fong-Jones's [proposal to add maps.Grow] was [accepted] on October 29. It gives you a
-way to make room in a map that already exists, much like `make(M, n)` does for a new one.
+Liz Fong-Jones's [proposal to add maps.Grow] was [accepted] on October 29. It lets you make
+room in a map that already exists, much like `make(M, n)` does for a new one.
 
 A Go map grows on its own as you add entries. Each time it runs out of room, the runtime
 allocates a larger hash table, rehashes the entries into it, and leaves the old table for
@@ -159,9 +159,8 @@ The proposal also changes `maps.Copy`.
 > [benchmarks], copying into an empty or small map took about half the time on an AMD 5600X
 > and allocated about half as much memory.
 
-That only covers copying one map into another. The header loop above calls `Header.Add`
-instead, so it still needs its own `maps.Grow` call. So does code that fills a map from a
-slice:
+This only happens inside `maps.Copy`. The header loop above copies with `Header.Add`, so it
+still needs its own `maps.Grow` call. So does code that fills a map from a slice:
 
 ```go {hl_lines=["2"]}
 func index(dst map[string]User, users []User) {
@@ -176,7 +175,7 @@ If most of those users are already in `dst`, the extra room goes unused and you'
 memory for nothing.
 
 The [implementation], the [Copy change], and a [follow-up] that uses `maps.Grow` in
-`httputil` and `cgi` are all still under review. The change is expected to land in Go 1.28.
+`httputil` and `cgi` are all still under review. They're expected to land in Go 1.28.
 
 <!-- references -->
 <!-- prettier-ignore-start -->
