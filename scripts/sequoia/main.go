@@ -26,7 +26,7 @@ const (
 	defaultImagesDir       = "images"
 	defaultSiteCoverSource = ".cache/site-cover/cover-39e2ac8de020.png"
 	defaultSiteCoverRel    = "images/home/cover-39e2ac8de020.png"
-	defaultCommand         = "npx -y sequoia-cli@0.5.7 publish"
+	defaultCommand         = "npx -y sequoia-cli@0.5.8 publish"
 )
 
 type frontmatter struct {
