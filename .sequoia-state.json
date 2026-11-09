@@ -1,1371 +1,1371 @@
 {
   "posts": {
     "content/zephyr/carry_the_pager.md": {
-      "contentHash": "5716d32b55f64d9fad4594ac5cfe90f79de531b15eb067c35de5171075d0d6bd",
+      "contentHash": "1005099dcdd462d9916cdefeb57bdc69e4b0266629656263c4ce8a3e21337091",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapia32u",
-      "lastPublished": "2026-07-03T19:57:22.425Z",
+      "lastPublished": "2026-11-09T05:50:54.004Z",
       "slug": "carry-the-pager"
     },
     "content/go/testscript_cli.md": {
-      "contentHash": "2bc213e3c5a929bd98bf7e47267daf03d1516472651c1e4bb6e9d153aa5b50c5",
+      "contentHash": "ad8b662fd3a525247d2a672e0fdc7c9d4abba2b8939d7e60eeec0713924d5ba7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iapyv72e",
-      "lastPublished": "2026-07-03T19:57:22.602Z",
+      "lastPublished": "2026-11-09T05:50:54.451Z",
       "slug": "testscript-cli"
     },
     "content/go/txtar.md": {
-      "contentHash": "76461d4984fe3c0e0727583418e30bd2d2fee1eb91ad24fe179f9339a5a58a6a",
+      "contentHash": "7a5abea3ff6f6da24c0e963471891ca7f05748205405b6c930eda46baed76d41",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaqkhp2e",
-      "lastPublished": "2026-07-03T19:57:22.784Z",
+      "lastPublished": "2026-11-09T05:50:54.869Z",
       "slug": "txtar"
     },
     "content/go/typesafe_slogging.md": {
-      "contentHash": "3c9feedd6172ec6b8927227cab712a70c0b802cd8ba1627bb92354e29fe82369",
+      "contentHash": "8e6d120a81b8ef7119e827e2dcce827b20c61eb67425cfd5525e5f6dcd5b53cb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iar24h2o",
-      "lastPublished": "2026-07-03T19:57:23.044Z",
+      "lastPublished": "2026-11-09T05:50:55.387Z",
       "slug": "typesafe-slogging"
     },
     "content/go/hoist_wire_plumb.md": {
-      "contentHash": "913933c8cfc893cbc04cad47e95d147a8b0dd7de8ebd2e8d180d18931fd126c9",
+      "contentHash": "101f7ed7257d419726803fe03628371a18fc2a2d8f02994bd67968ebc68f5323",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iarjm42o",
-      "lastPublished": "2026-07-03T19:57:23.403Z",
+      "lastPublished": "2026-11-09T05:50:55.806Z",
       "slug": "hoist-wire-plumb"
     },
     "content/go/closure_mutable_refs.md": {
-      "contentHash": "af59995346e67a1d32827fff703d57cccb73a5a28117bd99a9c9f824729ed0f7",
+      "contentHash": "2b55dce31b87f23307b6a16eb5b73fd1d012fa8fdbed0bb9f9433d8c0f9fef11",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaryep2a",
-      "lastPublished": "2026-07-03T19:57:23.573Z",
+      "lastPublished": "2026-11-09T05:50:56.343Z",
       "slug": "closure-mutable-refs"
     },
     "content/shards/2026/04/go_uuid.md": {
-      "contentHash": "72020378da96da1704a3b2969a5a447e986be4e0f38c940e1d34b590d8eb601f",
+      "contentHash": "37532dad9a1905230451bb6c734454dc75f99fc9730462236e1cb7ecc1927a92",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasgzl26",
-      "lastPublished": "2026-07-03T19:57:24.009Z",
+      "lastPublished": "2026-11-09T05:50:56.781Z",
       "slug": "go-uuid"
     },
     "content/go/struct_tags.md": {
-      "contentHash": "c3c168e6a0556e4d4fffec7f04ccf52b34de575eba13f68145d6b07c96f8abe4",
+      "contentHash": "85fe991c41fa3ba2ee67c44898c6ed6fb051dbc587075737e36e0c6f07563259",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasvmq2s",
-      "lastPublished": "2026-07-03T19:57:24.173Z",
+      "lastPublished": "2026-11-09T05:50:57.215Z",
       "slug": "struct-tags"
     },
     "content/go/error_translation.md": {
-      "contentHash": "6df875757b0f0032368c26a06d4524ab82c03fe42f9e3c95818cfba88da8d9d6",
+      "contentHash": "ca7e9f0aac537497e96a2ed53d1717f3409492ff0d45c9b1b79f0b80d69b561c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iate732j",
-      "lastPublished": "2026-07-03T19:57:24.373Z",
+      "lastPublished": "2026-11-09T05:50:57.677Z",
       "slug": "error-translation"
     },
     "content/shards/2026/04/dynamo.md": {
-      "contentHash": "a157435a6e1ae4aa4ac9a838193acc0a8335e038b14e28c48e4269912bf0d312",
+      "contentHash": "0d124370ae9cc5d17f1916fb696ecb42ad2f93e5697333885fc441ae2a0d93a8",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iattwy2z",
-      "lastPublished": "2026-07-03T19:57:24.544Z",
+      "lastPublished": "2026-11-09T05:50:58.063Z",
       "slug": "dynamo"
     },
     "content/shards/2026/04/no_stacked_loglines.md": {
-      "contentHash": "971301d0a00a917077cb825452f809aa7b4d3f147d305971dd3fd2a7b976dc4b",
+      "contentHash": "075657c3b6b4f0a4a99e6fc869f13ca18570a246afc8ae2ecdf29d4a4784ee1d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaubml26",
-      "lastPublished": "2026-07-03T19:57:24.708Z",
+      "lastPublished": "2026-11-09T05:50:58.492Z",
       "slug": "no-stacked-loglines"
     },
     "content/shards/2026/03/ideal_dispatch_mechanism.md": {
-      "contentHash": "aac81da38a04ee198a933561b4e3e3fe08b5849bf482aa8d5c94c576412dac0b",
+      "contentHash": "3c2d76d39c743fe6cdac7a9b6c8fdfc0ade14fabd7f6a6530d684c26a94973b1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iaupby2z",
-      "lastPublished": "2026-07-03T19:57:25.139Z",
+      "lastPublished": "2026-11-09T05:50:58.959Z",
       "slug": "ideal-dispatch-mechanism"
     },
     "content/shards/2026/03/background_jobs_inherited_fd.md": {
-      "contentHash": "6bebc5757268f18c1e1d32066d679e543b4b9228b32b5bbd3e06db57e7b7f436",
+      "contentHash": "b707014dfa7b4639870fed8f750517abb0c274ea672eb294b26c7bd99e0c5d8a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iav2we2u",
-      "lastPublished": "2026-07-03T19:57:25.401Z",
+      "lastPublished": "2026-11-09T05:50:59.385Z",
       "slug": "background-jobs-inherited-fd"
     },
     "content/go/testing_unary_grpc_services.md": {
-      "contentHash": "24f625679f826cce2cc8b672c91bfbcc4f576ea805ef03d31016de1fabc71b49",
+      "contentHash": "5b9b9fd16db34484840259a81b044df129d7230a19f102a339dcba5a9d1b04e1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavilu2u",
-      "lastPublished": "2026-07-03T19:57:25.631Z",
+      "lastPublished": "2026-11-09T05:50:59.882Z",
       "slug": "testing-unary-grpc-services"
     },
     "content/go/repo_txn_uow.md": {
-      "contentHash": "17dba145ecd696364ab41e4d1e1dabbe01bac45e3bb983b31a3a2ed4669e2777",
+      "contentHash": "28ec14a9765d82b577b50d36844ee4fb73099da45d7109dcbe5af5cf81a1b01c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iavwe326",
-      "lastPublished": "2026-07-03T19:57:26.167Z",
+      "lastPublished": "2026-11-09T05:51:00.381Z",
       "slug": "repo-txn-uow"
     },
     "content/shards/2026/03/transactions_with_repository_pattern.md": {
-      "contentHash": "7463ad62c7b76b812b7b06ed0d71e766fd523822b45318c784c6e0e472edb183",
+      "contentHash": "ca9c2dcea37e2d908034c98141b6fbd309f9cbd759b21aa83cf7abf530a9db89",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ic7jg72o",
-      "lastPublished": "2026-07-03T19:57:26.359Z",
+      "lastPublished": "2026-11-09T05:51:00.833Z",
       "slug": "transactions-with-repository-pattern"
     },
     "content/shards/2026/03/user_id_through_context.md": {
-      "contentHash": "a730931e3c3daa020f952c59c530ea23852b5cb86c85e5997774cb9a225ecfb6",
+      "contentHash": "5597bc70475a5cbf6dc3fdeb9caa8afbc44571d24d3a1e4a703a4e878ed5256f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iccmzp2o",
-      "lastPublished": "2026-07-03T19:57:26.517Z",
+      "lastPublished": "2026-11-09T05:51:01.261Z",
       "slug": "user-id-through-context"
     },
     "content/shards/2026/03/what_belongs_in_go_context_values.md": {
-      "contentHash": "aa8c8155b08b403ffb5a576df33054046580c7d48003f7bb53b1e8429b183227",
+      "contentHash": "92090527256b733a9ba58f679aff64fa2c5a68b61d9069acf2118c3880f1fdc1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdmbd26",
-      "lastPublished": "2026-07-03T19:57:26.684Z",
+      "lastPublished": "2026-11-09T05:51:01.741Z",
       "slug": "what-belongs-in-go-context-values"
     },
     "content/shards/2026/03/repository_layer_over_sqlc.md": {
-      "contentHash": "10938402e2b7441613261b107f04dcf2ec953ce096d21f9b96c5d58f3c734c4a",
+      "contentHash": "4653d5eada5c4abae44c8115d64f62f3221e67a1ee71dfc05a82da53e8df76c3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icdzwq2z",
-      "lastPublished": "2026-07-03T19:57:26.853Z",
+      "lastPublished": "2026-11-09T05:51:02.128Z",
       "slug": "repository-layer-over-sqlc"
     },
     "content/go/wrap_grpc_client.md": {
-      "contentHash": "13932cece5970a8a4539543d76a28a47084971df833109ed9b655d87d48ffd33",
+      "contentHash": "e411d306d864823df0aeb40b9e1385bcca95fc0b8b45382b3aed1c90f83d9312",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icegj42o",
-      "lastPublished": "2026-07-03T19:57:27.092Z",
+      "lastPublished": "2026-11-09T05:51:02.589Z",
       "slug": "wrap-grpc-client"
     },
     "content/shards/2026/03/etcd_codebase.md": {
-      "contentHash": "54cc1c68a671a7d980c7fa7480df58c9ef4ef56b5882bf531c8d4cd1028a2098",
+      "contentHash": "6e8944797ea2e2426ce5ca67c60c8ef9460341900ee11aedd5a5434878934c33",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iceuad2u",
-      "lastPublished": "2026-07-04T19:57:33.653Z",
+      "lastPublished": "2026-11-09T05:51:02.995Z",
       "slug": "etcd-codebase"
     },
     "content/go/to_wrap_or_not_to_wrap.md": {
-      "contentHash": "ab7826beeae0238de9afee3f435f9b6137c2bef6402c74bb418fc1ff80bcd880",
+      "contentHash": "cda8c0b1d98fb5b2e702265c59f2970de0e13f8101b277e6f0011b4223753e16",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfcvq2s",
-      "lastPublished": "2026-07-03T19:57:27.469Z",
+      "lastPublished": "2026-11-09T05:51:03.446Z",
       "slug": "to-wrap-or-not-to-wrap"
     },
     "content/go/mutex_closure.md": {
-      "contentHash": "73cbde8023f5e8c719311e75341432dd8c663a9af95ce9f164a51a1104c8778f",
+      "contentHash": "10084a8c51436eb76a4e72004b25419ec3ddc775abaf0b3ce456dce67da723a3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icfpks2y",
-      "lastPublished": "2026-07-03T19:57:27.654Z",
+      "lastPublished": "2026-11-09T05:51:03.899Z",
       "slug": "mutex-closure"
     },
     "content/go/context_cancellation_cause.md": {
-      "contentHash": "e053101761ff9460df166f52b5fbdd0321eda4bdf03bc13ad1806e7d888a9a38",
+      "contentHash": "c9506c4e39735031d4eb8fca5496add959d58492f31665cf3423dc9a365ecefa",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icg5ae2u",
-      "lastPublished": "2026-10-19T10:29:12.439Z",
+      "lastPublished": "2026-11-09T05:51:04.327Z",
       "slug": "context-cancellation-cause"
     },
     "content/go/structured_concurrency.md": {
-      "contentHash": "88f2ec3ea3ec1824b0dde2ef216143474c94b13d509b7b262c880aba4e8163c1",
+      "contentHash": "c4bb90a95ab10ab42f82bf9c83d8054e25a26ec6a04973576a898f32b61278d2",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icgznp2o",
-      "lastPublished": "2026-07-03T19:57:27.966Z",
+      "lastPublished": "2026-11-09T05:51:04.764Z",
       "slug": "structured-concurrency"
     },
     "content/go/mocking_libraries_bleh.md": {
-      "contentHash": "2599ce78ee9b525e9075e8bc6b8aa8fc74d3d8f2b3a5160d715e3f2e93f8027f",
+      "contentHash": "4597c463469869497a301b0ab0aeb2bdde6bc9e6678b1f898abf5b5d31c7927f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6icho3l2e",
-      "lastPublished": "2026-07-03T19:57:28.184Z",
+      "lastPublished": "2026-11-09T05:51:05.762Z",
       "slug": "mocking-libraries-bleh"
     },
     "content/system/tap_compare_testing.md": {
-      "contentHash": "4783edccbb982f1383fbb1a10b6a26047042416b8f85ecd1506ad2cb6e702f8a",
+      "contentHash": "5d2d3e8429521394798994b8d07b2627d055c1ed45db01850ad3452c764fa110",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ici5pd2u",
-      "lastPublished": "2026-07-03T19:57:28.360Z",
+      "lastPublished": "2026-11-09T05:51:06.341Z",
       "slug": "tap-compare-testing"
     },
     "content/go/splintered_failure_modes.md": {
-      "contentHash": "2de503d8d8da006e28760501ab565aa23b40e4bf51d085075866468309d5d09a",
+      "contentHash": "2c03dbbd1b26f80d8d26cb3e9bdbd995249856858c10e592c41f7f0118f5b22b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idbtw72b",
-      "lastPublished": "2026-07-03T19:57:28.528Z",
+      "lastPublished": "2026-11-09T05:51:06.877Z",
       "slug": "splintered-failure-modes"
     },
     "content/go/test_subprocesses.md": {
-      "contentHash": "773648c75370e11e76fea310b755e2441c2de00477d44dc29e70b637237b63b2",
+      "contentHash": "f611a51ab8343af49b79e75d8fe8386c381ffe6ee9f768de89531ebe44be34bc",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ideoqs2p",
-      "lastPublished": "2026-07-03T19:57:29.012Z",
+      "lastPublished": "2026-11-09T05:51:07.363Z",
       "slug": "test-subprocesses"
     },
     "content/go/interface_segregation.md": {
-      "contentHash": "4eed85d0f08be5a859d299ae7805a36b27c475b8297bdc7d41f2dbba540b8508",
+      "contentHash": "f9233cadd6076362ead46ae7d80ed6a563ccded210a925406e88ff5624b6aefb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idf3h22p",
-      "lastPublished": "2026-07-03T19:57:29.183Z",
+      "lastPublished": "2026-11-09T05:51:07.900Z",
       "slug": "interface-segregation"
     },
     "content/go/avoid_context_key_collisions.md": {
-      "contentHash": "3d150d3f9a946475af155243624a3e9f9707f8272f8e74c9b101ab000e88e734",
+      "contentHash": "36aad7c4bb341be007cba1dcfbc9d0d9ed0ad37d70daeac0d5f81804275d72d2",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieekd726",
-      "lastPublished": "2026-10-19T10:29:12.776Z",
+      "lastPublished": "2026-11-09T05:51:08.449Z",
       "slug": "avoid-context-key-collisions"
     },
     "content/go/organizing_tests.md": {
-      "contentHash": "df7409c02bd30f948f811b72e248cba19e4a7bc421e978c3f50a323c2eae4ad3",
+      "contentHash": "b35a5440fd0a3172cd1b4cca14daa40274d8e284384e896f614a7d7ba618698b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieh3gy2z",
-      "lastPublished": "2026-07-03T19:57:29.717Z",
+      "lastPublished": "2026-11-09T05:51:09.029Z",
       "slug": "organizing-tests"
     },
     "content/go/subtest_grouping.md": {
-      "contentHash": "297d3b4ba47b10beb17cf143964470f7dc1ed93409f282cc847b4d5446b3c45c",
+      "contentHash": "03285928801791d2a90ecafddc8954ca8a5ed2c3faac7d522d65f8e6937c50af",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iehi4x2e",
-      "lastPublished": "2026-07-03T19:57:29.920Z",
+      "lastPublished": "2026-11-09T05:51:09.566Z",
       "slug": "subtest-grouping"
     },
     "content/go/app_structure.md": {
-      "contentHash": "e669f7c3c7297347a4c045bc80767fcd654866a2597eff21ef7b0301ee59be46",
+      "contentHash": "715286cf65431be08f4de2da82e7985adc788581c350d184a0551fbda3025b48",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iehuqs2y",
-      "lastPublished": "2026-07-03T19:57:30.059Z",
+      "lastPublished": "2026-11-09T05:51:10.106Z",
       "slug": "app-structure"
     },
     "content/go/test_state_not_interactions.md": {
-      "contentHash": "4a7fe828f76a2144a783b9812a513d0a1ed715fa46b7651842eb372849810e1b",
+      "contentHash": "166df5d968a36db50401ab039c5d70a48cda105ffab0f9d8130537e04ddd486c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ieibh22y",
-      "lastPublished": "2026-07-03T19:57:30.223Z",
+      "lastPublished": "2026-11-09T05:51:10.612Z",
       "slug": "test-state-not-interactions"
     },
     "content/go/early_return_and_goroutine_leak.md": {
-      "contentHash": "2373468b5ef7be2b43851ab43d46343c50928603ed1e75be838811d198e79e57",
+      "contentHash": "e7e30312a43a5af837718e76757a08e83c062676bdac3e956aa2ae78cd277690",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ietlpt2e",
-      "lastPublished": "2026-07-03T19:57:30.432Z",
+      "lastPublished": "2026-11-09T05:51:11.176Z",
       "slug": "early-return-and-goroutine-leak"
     },
     "content/go/lifecycle_management_in_tests.md": {
-      "contentHash": "e898ff9af110a8aec33b49a7847d784ad15839e6d33b4a3b00a492c636917849",
+      "contentHash": "2df6adaaae8bedb271f03e09737875ef0672bae6b6271610fae71a48fd1b1948",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ievo5u2u",
-      "lastPublished": "2026-07-03T19:57:30.666Z",
+      "lastPublished": "2026-11-09T05:51:11.713Z",
       "slug": "lifecycle-management-in-tests"
     },
     "content/go/gateway_pattern.md": {
-      "contentHash": "c50e26c3f82e440a2366fdf7ea3785c5ce3d72377dc0ddb1cce97accc3c9b2d6",
+      "contentHash": "7f4b6e0ab485ebd8a36c101a017762cfef8d692abe5a25e4c0aae6e4a8dedbe6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iew3vp2e",
-      "lastPublished": "2026-07-03T19:57:30.835Z",
+      "lastPublished": "2026-11-09T05:51:12.234Z",
       "slug": "gateway-pattern"
     },
     "content/go/test_config_with_flags.md": {
-      "contentHash": "42595bf9b06b4bb1109378e4f04f6625eaea8e95070dd58cdb8979af2a1873ee",
+      "contentHash": "bd2b80b22664de89d69837c33ceb62e011fcd7462748b8a3632ba392e3a983c7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifk6gd2u",
-      "lastPublished": "2026-07-03T19:57:31.002Z",
+      "lastPublished": "2026-11-09T05:51:12.731Z",
       "slug": "test-config-with-flags"
     },
     "content/go/di_frameworks_bleh.md": {
-      "contentHash": "7c433f4eeacf004f51166fb0c1b1c9673098d9c271e9db9001cede000c23155a",
+      "contentHash": "10d3ee42a75ac48d1e55417d2d71d4a373b59a88ef46b318b358676e83aed3c6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifouv326",
-      "lastPublished": "2026-07-03T19:57:31.234Z",
+      "lastPublished": "2026-11-09T05:51:13.268Z",
       "slug": "di-frameworks-bleh"
     },
     "content/go/prevent_struct_copies.md": {
-      "contentHash": "d6422712aac8dfead4e8868df47fa0b36b43cdc081939b626fb34a3c42bfc15d",
+      "contentHash": "16232b24517ab6be5df15a8a72b6e499c9f2fd0701c5c46346d7536278c70578",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpbkx2e",
-      "lastPublished": "2026-07-03T19:57:31.421Z",
+      "lastPublished": "2026-11-09T05:51:13.821Z",
       "slug": "prevent-struct-copies"
     },
     "content/go/tool_directive.md": {
-      "contentHash": "7975e5413871b672a2bf5e0e1c938491123b24448684d9b3a6bdfc6b7a5fff76",
+      "contentHash": "5bcdcb5eb00131f51fca5cb7996e4ae084021266127bb1223088ea294d25c840",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifpp4x2b",
-      "lastPublished": "2026-07-03T19:57:31.599Z",
+      "lastPublished": "2026-11-09T05:51:14.353Z",
       "slug": "tool-directive"
     },
     "content/go/capture_console_output.md": {
-      "contentHash": "533be46d3d8e37330da94081a85c2038e155a3d89c93cf2b6b04cc1bd87b5ec1",
+      "contentHash": "11617de6445fc63e34477cc5da2be300fc1aa9079cd109b0db6f36e2ab9f5b58",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifq3uy26",
-      "lastPublished": "2026-07-03T19:57:31.853Z",
+      "lastPublished": "2026-11-09T05:51:14.841Z",
       "slug": "capture-console-output"
     },
     "content/go/deferred_teardown_closure.md": {
-      "contentHash": "4f2b29a3984f902344d2d06ab83a0a7307e862606491d62710e32c26192724d3",
+      "contentHash": "134a9c4caa28915118bdf400704e83ae6ca00e13ace36418256ddcb5edc4c289",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ifqina2z",
-      "lastPublished": "2026-07-03T19:57:32.030Z",
+      "lastPublished": "2026-11-09T05:51:15.508Z",
       "slug": "deferred-teardown-closure"
     },
     "content/go/sort_slice.md": {
-      "contentHash": "2040bfd46832a1214fb156133dc5eb013993ed8b76bf72c6e79c50dd5f4832e6",
+      "contentHash": "18459e4edeabb0b40946f2e982b9fca5e064294f1ccd7215b420e176797e5852",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igauwn2o",
-      "lastPublished": "2026-07-03T19:57:32.266Z",
+      "lastPublished": "2026-11-09T05:51:16.072Z",
       "slug": "sort-slice"
     },
     "content/go/nil_interface_comparison.md": {
-      "contentHash": "35a6dab09fe3047253f2c59007a38b29d08064efa2ef909f46ea672cffe1f761",
+      "contentHash": "339fedd50fabbfb5d81661e2248c4785bdf3784a4c7529b0c22539a902487b17",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ige4h52o",
-      "lastPublished": "2026-07-03T19:57:32.529Z",
+      "lastPublished": "2026-11-09T05:51:16.541Z",
       "slug": "nil-interface-comparison"
     },
     "content/go/middleware_vs_delegation.md": {
-      "contentHash": "fff1d87fe8274557fb293a8e6018a2ad33ed95fd8fb8ad4a34d134620a960329",
+      "contentHash": "beba72c4f5eb12c3d38468b4a8067d041e8ba2a5c9bc3792ef604e6bb7f693ce",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igen442u",
-      "lastPublished": "2026-07-03T19:57:32.774Z",
+      "lastPublished": "2026-11-09T05:51:17.075Z",
       "slug": "middleware-vs-delegation"
     },
     "content/go/io_reader_signature.md": {
-      "contentHash": "7e7ee4216904a2dc4f18374904df2dcd281aa0e1e70fb3c8d6baf169fdb95344",
+      "contentHash": "3264fccdf110e3cf7f1bbbccb5d6de3ddea3b0b7d4de7908e001f63a949a84d8",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igf4pk2y",
-      "lastPublished": "2026-07-03T19:57:32.947Z",
+      "lastPublished": "2026-11-09T05:51:17.582Z",
       "slug": "io-reader-signature"
     },
     "content/go/slice_gotchas.md": {
-      "contentHash": "af91626ba91f71d58ab6014be2b56537841bf3108cfed3e8fac411c5489e2f6f",
+      "contentHash": "dfa7bff804479b8b15b9f62b1a8bdb6b914cff96fc97b871877dde0690b09554",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfkhh2e",
-      "lastPublished": "2026-07-03T19:57:33.141Z",
+      "lastPublished": "2026-11-09T05:51:18.059Z",
       "slug": "slice-gotchas"
     },
     "content/zephyr/domain_knowledge_dilemma.md": {
-      "contentHash": "9f89bfdd6d9de30cdee679465690a1d474afde1dd5e90098ba223e1212414923",
+      "contentHash": "37cac4d404e328fb3864d144c41d5192c8c09570ad26e96af93b74ce4b134f77",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igfyz22p",
-      "lastPublished": "2026-07-03T19:57:33.480Z",
+      "lastPublished": "2026-11-09T05:51:18.559Z",
       "slug": "domain-knowledge-dilemma"
     },
     "content/misc/hierarchical_rate_limiting.md": {
-      "contentHash": "d2d7648ff5fb1f5188a195cadd037a5f4e640fa713163e76fa378573ae73f24d",
+      "contentHash": "3c9c77f7a6d08ffa9b397aedb7d9aca620f5c95f27be7be8655def27e84bfbee",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggfov2o",
-      "lastPublished": "2026-07-03T19:57:33.637Z",
+      "lastPublished": "2026-11-09T05:51:19.060Z",
       "slug": "hierarchical-rate-limiting"
     },
     "content/misc/dynamic_shell_variables.md": {
-      "contentHash": "76236e65698d0b5e9e85630652dc69588fe94083a6ef883e569326be87d01ffc",
+      "contentHash": "d06424e3bff4398e39655b2d021d5d169fdf64c393ca5175b3da3576687ce20b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iggtga26",
-      "lastPublished": "2026-07-03T19:57:33.881Z",
+      "lastPublished": "2026-11-09T05:51:19.593Z",
       "slug": "dynamic-shell-variables"
     },
     "content/misc/link_blog.md": {
-      "contentHash": "f3c344f54bc00debd84fdbde9c97d97e970fd37f5885109c3f97572be0b68a6b",
+      "contentHash": "42294300827212f318f620455b29f5d032bf21385a46b5b9e2b20d776baccee9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6igvfay2s",
-      "lastPublished": "2026-07-03T19:57:34.059Z",
+      "lastPublished": "2026-11-09T05:51:20.077Z",
       "slug": "link-blog"
     },
     "content/misc/run_single_instance.md": {
-      "contentHash": "415dd77a682a01d88a980aebb593f3f89e4b8bbd39710ae8fd214c88ce331f29",
+      "contentHash": "12a6c0a3297f764a4146e865f27b5c48b04e3ef3c827ba43788be268566cf585",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih2kca2s",
-      "lastPublished": "2026-07-03T19:57:34.344Z",
+      "lastPublished": "2026-11-09T05:51:20.524Z",
       "slug": "run-single-instance"
     },
     "content/go/func_types_and_smis.md": {
-      "contentHash": "3020128c5a433a100efb33fa7033398938bee58275357bc570bd6df98071af26",
+      "contentHash": "17e13e3c93f8d0e36b60e8d4ca54a0bfb18098268abcaa3cc393df7970535a6c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3bs72o",
-      "lastPublished": "2026-07-03T19:57:34.750Z",
+      "lastPublished": "2026-11-09T05:51:20.941Z",
       "slug": "func-types-and-smis"
     },
     "content/misc/ssh_saga.md": {
-      "contentHash": "e8eb8f6167283ee4a3fd31c3d33cdfde79fea8000f7d973b0714385b4935dd1d",
+      "contentHash": "22be228781d135714fe7a60dcfda9191303c747dac5b58c04151e3cafe030fbf",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih3pdh2b",
-      "lastPublished": "2026-07-03T19:57:35.021Z",
+      "lastPublished": "2026-11-09T05:51:21.407Z",
       "slug": "ssh-saga"
     },
     "content/python/inject_pytest_fixture.md": {
-      "contentHash": "2ac268fe1fb60f9781121d81518159e9e9ab18f112ea3666c5bdef6e904d69b6",
+      "contentHash": "5c280d7e2ecc46dfcf1adcd315e4c3df2250acb704d8067dfa91096fcacc66a3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih47wn2o",
-      "lastPublished": "2026-07-03T19:57:35.202Z",
+      "lastPublished": "2026-11-09T05:51:21.834Z",
       "slug": "inject-pytest-fixture"
     },
     "content/python/typing_override.md": {
-      "contentHash": "7a385ae815b2d3c2e667997b5afe7ceb0f27cced45fe5bd6277f5ac2fd6f3ba6",
+      "contentHash": "954d66e88b6480d58395655abfadf1b16accd0da1e725f850dbdf8f6e44165eb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih5nxd26",
-      "lastPublished": "2026-07-03T19:57:35.518Z",
+      "lastPublished": "2026-11-09T05:51:22.316Z",
       "slug": "typing-override"
     },
     "content/python/module_getattr.md": {
-      "contentHash": "73c2d45ff91a89132352cdf4c88feb56a9d2be8e892f02e1a5025a4389ceda80",
+      "contentHash": "c2ac0521ddd1af79f24fd4648b7fd670d2d4f6aedb79aa1674c6f7ac9ce99873",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih6rzi26",
-      "lastPublished": "2026-07-03T19:57:35.687Z",
+      "lastPublished": "2026-11-09T05:51:22.747Z",
       "slug": "module-getattr"
     },
     "content/misc/docker_mount.md": {
-      "contentHash": "adc5d9f23a0cf556a56aea6ef8bacbe1ffe347ddf39da91e437f577907d079fa",
+      "contentHash": "e5e59f9fcb11fc63b578ff83ebf6afc6f3e0ce092b98e17cb61447cc33d3e516",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih76pt2e",
-      "lastPublished": "2026-07-03T19:57:35.870Z",
+      "lastPublished": "2026-11-09T05:51:23.160Z",
       "slug": "docker-mount"
     },
     "content/go/topological_sort.md": {
-      "contentHash": "a2cba9238aadea5b95cb460cc7365ffde003eb398f303b24f484d281edbccedb",
+      "contentHash": "814c7a2dcea63ccf96f2cc1c5cffa27547facd1f9b6d1f67c56fbbd72663f2ed",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ih7s732e",
-      "lastPublished": "2026-07-03T19:57:36.103Z",
+      "lastPublished": "2026-11-09T05:51:23.576Z",
       "slug": "topological-sort"
     },
     "content/go/circuit_breaker.md": {
-      "contentHash": "f61f94d9b4af244744e3a9195e0c2d3d64ad8b17b936a5f22bfb083796e83c91",
+      "contentHash": "8f06563e8411f31de3683c0e3cb9a8e218d9c77e2abdc9bc629bd0cb9c076ba5",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iha7yp2o",
-      "lastPublished": "2026-07-03T19:57:36.253Z",
+      "lastPublished": "2026-11-09T05:51:23.992Z",
       "slug": "circuit-breaker"
     },
     "content/misc/direnv.md": {
-      "contentHash": "780f3cf414563aaffb7696fdc54fd37c8c21b52e1c3456744ed1dbc519d4af22",
+      "contentHash": "135b664ab026bcff3dfab7a47f15edf015cda84720f08a05966b573f6388ac8f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihbc232j",
-      "lastPublished": "2026-07-03T19:57:36.654Z",
+      "lastPublished": "2026-11-09T05:51:24.389Z",
       "slug": "direnv"
     },
     "content/misc/notes_on_event_driven_systems.md": {
-      "contentHash": "6d0d0362c0c6e554729aca55276e0d36fd2bad299f8d1bc203b798e79c2a0d27",
+      "contentHash": "2ff9c7cfb249f62a17ed8140e30f362a79701bc96d6a9cf155a8193dc2d72da9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihd7mq26",
-      "lastPublished": "2026-07-03T19:57:36.931Z",
+      "lastPublished": "2026-11-09T05:51:24.883Z",
       "slug": "notes-on-event-driven-systems"
     },
     "content/misc/bash_namerefs.md": {
-      "contentHash": "e0e7b1ad7d95288134fa134ebcceb6abb46a27090df4d653432c507a1aefde3d",
+      "contentHash": "37915f739f7727c963c41e04fc90ed2e2c03220f873721bf697923b22c489ad0",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihdq7y26",
-      "lastPublished": "2026-07-03T19:57:37.082Z",
+      "lastPublished": "2026-11-09T05:51:25.292Z",
       "slug": "bash-namerefs"
     },
     "content/misc/behind_the_blog.md": {
-      "contentHash": "2f284418e15bf3a928f7fb5a7b6a31efa103ae4ef300681f02ff29ea7aa82c86",
+      "contentHash": "1e394b20acf9aeaa83e4664479396197127c576abed763db733a8e3b4e22068e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihe7u32e",
-      "lastPublished": "2026-07-11T21:38:15.600Z",
+      "lastPublished": "2026-11-09T05:51:25.705Z",
       "slug": "behind-the-blog"
     },
     "content/misc/shell_redirection.md": {
-      "contentHash": "3514b230c785a77b3280c1ace7c10ac8aa948f970890e32781c7d9d0bb42887f",
+      "contentHash": "fa9c6199d7992618644360277126b1826dca005d6dd6ecb343edc98693e744f5",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihrbup2e",
-      "lastPublished": "2026-07-03T19:57:37.455Z",
+      "lastPublished": "2026-11-09T05:51:26.144Z",
       "slug": "shell-redirection"
     },
     "content/python/testing_http_requests.md": {
-      "contentHash": "550425ea28004a56af0b3337e721f08c17f3c836cb4a52346cf88f2a68954438",
+      "contentHash": "40928001d441f5011602136aa0f45aeae26a044ed9b19e04e420f16815fb3941",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ihuhgq2e",
-      "lastPublished": "2026-07-03T19:57:37.630Z",
+      "lastPublished": "2026-11-09T05:51:26.582Z",
       "slug": "testing-http-requests"
     },
     "content/python/pytest_param.md": {
-      "contentHash": "495ccd2839d9b94211d7ffa39cb6a4d95e9f24ff1db4f85bc0a90150159dd0f0",
+      "contentHash": "d753140d7585ccbcbcb183d8c77545e69dcf81924d36cf8c97baf8accb40ad8c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iik3pi2b",
-      "lastPublished": "2026-07-03T19:57:37.787Z",
+      "lastPublished": "2026-11-09T05:51:27.037Z",
       "slug": "pytest-param"
     },
     "content/misc/http_requests_via_dev_tcp.md": {
-      "contentHash": "1ab4cee2cbf24917307f4d05b85dfefb78857777ab623c29505a6501329744e4",
+      "contentHash": "00d254fd5b5793a69664a3a7cc65a91b41a93aeed078a0fc81f21f3ae156a77d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iimyid2e",
-      "lastPublished": "2026-07-03T19:57:37.936Z",
+      "lastPublished": "2026-11-09T05:51:27.491Z",
       "slug": "http-requests-via-dev-tcp"
     },
     "content/python/log_context_propagation.md": {
-      "contentHash": "e3332b4eb26b1e47a78692556229bf93a7cf1654e6de7427180a8eb6c0a90b94",
+      "contentHash": "f721304cdf65f470f8c98029657bbdd2dbab1a0eb7ca9a6b0672d4fb0f72a9fb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iink3s2y",
-      "lastPublished": "2026-07-03T19:57:38.146Z",
+      "lastPublished": "2026-11-09T05:51:28.086Z",
       "slug": "log-context-propagation"
     },
     "content/python/no_hijack_root_logger.md": {
-      "contentHash": "bd86d4f1d0f14b0ba315142fee9d388e00b89fd16258e91923630251ac3983ff",
+      "contentHash": "8ed29a4fa9906deca6a8d69195cad52910b535e84d811a2ebac2201952dd9a71",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iinxuh2o",
-      "lastPublished": "2026-07-03T19:57:38.311Z",
+      "lastPublished": "2026-11-09T05:51:28.499Z",
       "slug": "no-hijack-root-logger"
     },
     "content/misc/install.md": {
-      "contentHash": "c9f4f538b4375c03ab69c02cbd9b94d04b3ce0dbe009bb210fc6d49b0538a45c",
+      "contentHash": "b569ad4ea3ee69c24c830d8a6878f850201e6095f5587e3d15f18106e164e8e0",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iioggq26",
-      "lastPublished": "2026-07-03T19:57:38.492Z",
+      "lastPublished": "2026-11-09T05:51:28.929Z",
       "slug": "install"
     },
     "content/misc/heredoc_headache.md": {
-      "contentHash": "31d15c274c59aa08cf5b67b55c7d7a7e575e9a4aa4b8aa0afd5e9b32176a490a",
+      "contentHash": "a20a5b7dcdd435ee0f1c3f40a25ccc59f1fac8974a44548c06dd4fe6d06cd03e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iiot7326",
-      "lastPublished": "2026-07-03T19:57:38.680Z",
+      "lastPublished": "2026-11-09T05:51:29.424Z",
       "slug": "heredoc-headache"
     },
     "content/misc/sane_pull_request.md": {
-      "contentHash": "8801e9e276e1f627dd0d4ded3e1107bea38f887586db363b7826d5ca974754b1",
+      "contentHash": "4c55f3770da610fdd7e3cbdc71624979a86947395e2fc3ad086991212fd283a3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ije4ry2s",
-      "lastPublished": "2026-07-03T19:57:38.852Z",
+      "lastPublished": "2026-11-09T05:51:29.833Z",
       "slug": "sane-pull-request"
     },
     "content/misc/on_rebasing.md": {
-      "contentHash": "ecf1e4d92e76df5886e93e3b52858903f60fbd859e6d48dc0af797d33fdb973d",
+      "contentHash": "3f79f9f7e5f703e985cb8d9bfaf60058e9cc216e923e34ef7c7c20d12a273a4c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijg2ca26",
-      "lastPublished": "2026-07-03T19:57:39.028Z",
+      "lastPublished": "2026-11-09T05:51:30.245Z",
       "slug": "on-rebasing"
     },
     "content/misc/protobuffed_contracts.md": {
-      "contentHash": "b0e5231fce76ec543b1d3ff4ff54868af0c15e417a27e17f906f4d4c397b82a9",
+      "contentHash": "b0d84715f51d22ceb8dbc595d2a2e432eb465c37b92ba2009ba158b7d177defc",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ijghwc2p",
-      "lastPublished": "2026-07-03T19:57:39.254Z",
+      "lastPublished": "2026-11-09T05:51:30.717Z",
       "slug": "protobuffed-contracts"
     },
     "content/python/typeguard_vs_typeis.md": {
-      "contentHash": "cde7315e0c40b8c88f78cac5ea87e086a19a045c6783ec188e833d5c5efce3fc",
+      "contentHash": "1ca80fb2d85e0099d4b88cb82576c2b19f1a43bdcf69976c52aa1ffc8f327aaa",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikab7s2e",
-      "lastPublished": "2026-07-03T19:57:39.447Z",
+      "lastPublished": "2026-11-09T05:51:31.121Z",
       "slug": "typeguard-vs-typeis"
     },
     "content/misc/etag_and_http_caching.md": {
-      "contentHash": "3d312220a9527310b563f3df43fe349cf0ccb1a07322ce7bc1bdf00e99909a99",
+      "contentHash": "1ef7ca1cc54a4159655033b25a142076ed329a32ef4bbf14d829a7ab3429092e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhkn72o",
-      "lastPublished": "2026-07-03T19:57:40.326Z",
+      "lastPublished": "2026-11-09T05:51:31.545Z",
       "slug": "etag-and-http-caching"
     },
     "content/misc/crossing_the_cors_crossroad.md": {
-      "contentHash": "42731c90c5d32064d05f4ce42ac22ac07cac5200b10c818ff19c73f746eb9c9f",
+      "contentHash": "8c3228438cca58ba1c32bfa11d8fdc4f6993e19ce7ca73dc5fc861966951d47e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikhy6f2o",
-      "lastPublished": "2026-07-03T19:57:40.639Z",
+      "lastPublished": "2026-11-09T05:51:31.960Z",
       "slug": "crossing-the-cors-crossroad"
     },
     "content/go/dysfunctional_options_pattern.md": {
-      "contentHash": "7769ccfb49de0b72ff2461fde869c54d90494f61a6a2ba50ff6e807197e10bdd",
+      "contentHash": "8765f0a900f87a19507a7c6eec6e7cf9fc67c6343a887eb7a786a34f01f89b3b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p",
-      "lastPublished": "2026-07-03T19:57:40.842Z",
+      "lastPublished": "2026-11-09T05:51:32.389Z",
       "slug": "dysfunctional-options-pattern"
     },
     "content/zephyr/einstellung_effect.md": {
-      "contentHash": "5ed0b3a4e83ecd1722a18de13d963c594899a1fc38790a162401ed33c297a1ed",
+      "contentHash": "b8f5b7f090c57140ea7756868b741795ee8ecc07ea45ba173042c981b7cf88b0",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikirky2b",
-      "lastPublished": "2026-07-03T19:57:41.122Z",
+      "lastPublished": "2026-11-09T05:51:32.775Z",
       "slug": "einstellung-effect"
     },
     "content/go/strategy_pattern.md": {
-      "contentHash": "da4b4c5187ac577704bcf9dc3428f62ac205f0e86f6e096aee5041cabbd1013b",
+      "contentHash": "c163ca0da325a7c10b3a1a4436ed9bf84fc534029ae45cc8098bf66cc73d005b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikj7al2e",
-      "lastPublished": "2026-07-03T19:57:41.318Z",
+      "lastPublished": "2026-11-09T05:51:33.249Z",
       "slug": "strategy-pattern"
     },
     "content/go/anemic_stack_traces.md": {
-      "contentHash": "2c1fc497af2f9cbdcc91606a2116e27b7ee888ad6f38b6923fd9970eef38dd70",
+      "contentHash": "4b8040b7d45bbd54235c6dc92dcb6b16a85df7d5cc18d6816cab69562a410f30",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikzjsy2a",
-      "lastPublished": "2026-07-03T19:57:41.555Z",
+      "lastPublished": "2026-11-09T05:51:33.662Z",
       "slug": "anemic-stack-traces"
     },
     "content/go/retry_function.md": {
-      "contentHash": "3e2ef8ec5af69625ed05cf5707067ae9df9587c4cf84ec18accdc5c529197692",
+      "contentHash": "5199f96aa614b6ec1118e1427b5fb9bc13928e94154f85649344fb0c67975a03",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilseml2j",
-      "lastPublished": "2026-07-03T19:57:41.754Z",
+      "lastPublished": "2026-11-09T05:51:34.075Z",
       "slug": "retry-function"
     },
     "content/go/type_assertion_vs_type_switches.md": {
-      "contentHash": "540139dff0967da3c7adddfafce2025a776f674f8f9e79b12b59a7522dfd1571",
+      "contentHash": "e8a72a09a7a81def2a52b017052627c8f8d028170b341410d2bf8c6060724328",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilw2rv2o",
-      "lastPublished": "2026-07-03T19:57:41.948Z",
+      "lastPublished": "2026-11-09T05:51:34.544Z",
       "slug": "type-assertion-vs-type-switches"
     },
     "content/python/patch_pydantic_settings_in_pytest.md": {
-      "contentHash": "6f7325be7f9c206ecd9c7325696957be7aa9432adafb114f84b589183bed1adb",
+      "contentHash": "dc451b0b53ed51ecf66134151d99cd4ff906709f8fe25864e9b534b5372a9c94",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilxpld2e",
-      "lastPublished": "2026-07-03T19:57:42.164Z",
+      "lastPublished": "2026-11-09T05:51:34.967Z",
       "slug": "patch-pydantic-settings-in-pytest"
     },
     "content/go/omit_dev_dependencies_in_binaries.md": {
-      "contentHash": "fbe29cbef7ac1e67f3a20bcb8b967c529582bca66b5fcc330b5177f92965cc8e",
+      "contentHash": "047a691c10aee660a17dff3f679f33230abb11b2c23a60016091c839a702dc32",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ilyjvb2b",
-      "lastPublished": "2026-07-03T19:57:42.554Z",
+      "lastPublished": "2026-11-09T05:51:35.392Z",
       "slug": "omit-dev-dependencies-in-binaries"
     },
     "content/misc/eschewing_black_box_api_calls.md": {
-      "contentHash": "7f6557865dcdb3e30ea61c32e673ca9ba77beb53ba8b3b9b9e4795cbc5b2ea64",
+      "contentHash": "3eee67975f326938b9403cf12cab33874b119ab1b541c5f0a2dabea25947283d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in4vxd2e",
-      "lastPublished": "2026-07-03T19:57:43.673Z",
+      "lastPublished": "2026-11-09T05:51:35.887Z",
       "slug": "eschewing-black-box-api-calls"
     },
     "content/python/annotate_args_and_kwargs.md": {
-      "contentHash": "f42789fa5ac145f03c6e4ab8732f13278d904960caef2dbf79817dbad28a8796",
+      "contentHash": "bb09f28704fb241a105e60811f374942f53bdaae9d219115bf7139c3a14b7984",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7hy32j",
-      "lastPublished": "2026-07-03T19:57:43.870Z",
+      "lastPublished": "2026-11-09T05:51:36.300Z",
       "slug": "annotate-args-and-kwargs"
     },
     "content/go/rate_limiting_via_nginx.md": {
-      "contentHash": "c73326359a12bf177f7f2c2103369616ae09b2b0c055f456c8bcf0282864cdad",
+      "contentHash": "c926ece59f783d305debd76351025c0b4e45801acbd7505033987d027524a21b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6in7wqq2a",
-      "lastPublished": "2026-07-03T19:57:44.023Z",
+      "lastPublished": "2026-11-09T05:51:36.693Z",
       "slug": "rate-limiting-via-nginx"
     },
     "content/python/statically_enforcing_frozen_dataclasses.md": {
-      "contentHash": "ced776e964e513f234bdb9e8fd2e1d5c8bb9bbf9e4ef0276e5c4d4980fc10932",
+      "contentHash": "9eb1351a949236c9d125e9aa8c0a9455ebc8546c061d7a40073cf25f69923819",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inaeg22e",
-      "lastPublished": "2026-07-03T19:57:44.210Z",
+      "lastPublished": "2026-11-09T05:51:37.101Z",
       "slug": "statically-enforcing-frozen-dataclasses"
     },
     "content/zephyr/planning_palooza.md": {
-      "contentHash": "6fb4ebb344d0789383c43aa027358fe283092c0eab1aa6701d980ea9d8b3ea84",
+      "contentHash": "3baa1651a745c85956c13d5e28c80215a1ae4cb2aa3736fa37ea9f0679a66c3a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inar2e2u",
-      "lastPublished": "2026-07-03T19:57:45.307Z",
+      "lastPublished": "2026-11-09T05:51:37.550Z",
       "slug": "planning-palooza"
     },
     "content/go/reminiscing_cgi_scripts.md": {
-      "contentHash": "5490a0782f30f7e288bee0c8c31f3264c6a6d988afa1ae43f30fce2dc6289ea8",
+      "contentHash": "bfded80c47409d3a5c100f789d72071510c6548c89f8570bdbaab459e85ff697",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inbkfe2e",
-      "lastPublished": "2026-07-03T19:57:45.483Z",
+      "lastPublished": "2026-11-09T05:51:37.969Z",
       "slug": "reminiscing-cgi-scripts"
     },
     "content/python/debug_dockerized_apps_in_vscode.md": {
-      "contentHash": "2991de98cab8339924c8f06d227f93652bc154a389089a1b2ea355c76d7f5903",
+      "contentHash": "8a23a411ce8075e7c102bddae3e9685631f29fb44b811d18fce239a42260cbc7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incgrd2e",
-      "lastPublished": "2026-07-03T19:57:45.956Z",
+      "lastPublished": "2026-11-09T05:51:38.455Z",
       "slug": "debug-dockerized-apps-in-vscode"
     },
     "content/python/dataclasses_and_methods.md": {
-      "contentHash": "2250041ce8e4fdb6f424d1b5b172f772288ef897738eb43710646f3117bd840e",
+      "contentHash": "8fb4b596184367729048c0506871c5231321ec1920af3b684299ab64724ed37c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6incuiq2a",
-      "lastPublished": "2026-07-03T19:57:46.152Z",
+      "lastPublished": "2026-11-09T05:51:38.922Z",
       "slug": "dataclasses-and-methods"
     },
     "content/zephyr/finding_flow_amid_chaos.md": {
-      "contentHash": "66e8e69a2ea0259fe07a5e1cdc5145dda3f23dc85f1505a31ef32582c00b9cb9",
+      "contentHash": "7c796ae8218ba3ea868c97927dfa80de236361a11ad3cc14c1e0c5c3f4e5cd93",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inohma2o",
-      "lastPublished": "2026-07-03T19:57:46.347Z",
+      "lastPublished": "2026-11-09T05:51:39.374Z",
       "slug": "finding-flow-amid-chaos"
     },
     "content/zephyr/diminishing_half_life_of_knowledge.md": {
-      "contentHash": "cc6cd1339c75b280f138129d09b7900a89ccce387c12498da5d10efe6eaf9f3d",
+      "contentHash": "549e085b25aa32159766e9716ba513f5dbbe35a0e76e4848c5cead837cba2253",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqb3n2o",
-      "lastPublished": "2026-07-03T19:57:46.564Z",
+      "lastPublished": "2026-11-09T05:51:39.815Z",
       "slug": "diminishing-half-life-of-knowledge"
     },
     "content/zephyr/oh_my_poor_business_logic.md": {
-      "contentHash": "3fdd669ff9458e1ae9f814d90988adeaae7d740e9b2bec6d2f69302fc2dd1bcb",
+      "contentHash": "33d01fdc27778db413968f119cea2b63fb0c6c8eb91999708bd9dbffdd3ed0d8",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6inqnt22y",
-      "lastPublished": "2026-07-03T19:57:46.825Z",
+      "lastPublished": "2026-11-09T05:51:40.247Z",
       "slug": "oh-my-poor-business-logic"
     },
     "content/misc/pesky_little_scripts.md": {
-      "contentHash": "e773e7c4c86682df56f6ba978523f46390e464cd60de2b7c80cf5d623ff14ab9",
+      "contentHash": "9fce7750d74962986ffca9d7d57b8548b149940a32f84a10fcd0138d90f9544d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iocstl2j",
-      "lastPublished": "2026-07-03T19:57:47.215Z",
+      "lastPublished": "2026-11-09T05:51:40.709Z",
       "slug": "pesky-little-scripts"
     },
     "content/zephyr/footnotes_for_the_win.md": {
-      "contentHash": "6aef8b813dc387ce097f2115eb2aa15abb9fda70d89daefc54789bcd30f96c82",
+      "contentHash": "eeb95cd2918cd58a2ab06fb2d78d84db9abb058b4f5edd29f0df7c570247850a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iofazi26",
-      "lastPublished": "2026-07-03T19:57:47.409Z",
+      "lastPublished": "2026-11-09T05:51:41.116Z",
       "slug": "footnotes-for-the-win"
     },
     "content/misc/dotfile_stewardship_for_the_indolent.md": {
-      "contentHash": "520921e66b55995aa8bb2493033530a1fff24ca9616ebe6672e97d10ba2eb89f",
+      "contentHash": "faae9fecc5889f7569642a46acc4a68d561f887c405f3c4a193b9e94ffbfc51f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iogd5d2j",
-      "lastPublished": "2026-07-03T19:57:47.596Z",
+      "lastPublished": "2026-11-09T05:51:41.500Z",
       "slug": "dotfile-stewardship-for-the-indolent"
     },
     "content/zephyr/an_ode_to_the_neo_grotesque_web.md": {
-      "contentHash": "27ad691c7fd6ffd4cef355884939ddff153290a3c43e51842e7acb0e2c539922",
+      "contentHash": "a361c00ac1601ced84499f791d3c2b5d3f5638f7fbd56184a1f94d84f14ff36f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iqz3lf2o",
-      "lastPublished": "2026-07-03T19:57:47.774Z",
+      "lastPublished": "2026-11-09T05:51:41.977Z",
       "slug": "an-ode-to-the-neo-grotesque-web"
     },
     "content/misc/self_hosted_google_fonts_in_hugo.md": {
-      "contentHash": "54bcb04f791efec802ee2c890e0cf22abc5ab82ada2f3d69ed73504593d45b53",
+      "contentHash": "74387cf73b8c2c304cd233a2088486d19d041e35739de50447cca20d821ebccb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir2ofm2u",
-      "lastPublished": "2026-07-03T19:57:47.956Z",
+      "lastPublished": "2026-11-09T05:51:42.388Z",
       "slug": "self-hosted-google-fonts-in-hugo"
     },
     "content/go/configure_options.md": {
-      "contentHash": "be1c762e64692a439a4b77cd03f94eaca7d5b05da95107dd508c6a979d7c6bf6",
+      "contentHash": "8a9b17980a121e6522bbf466812f095814aaf521acc4a5064c219530da1a8b75",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir352c2y",
-      "lastPublished": "2026-07-03T19:57:48.163Z",
+      "lastPublished": "2026-11-09T05:51:42.886Z",
       "slug": "configure-options"
     },
     "content/go/dummy_load_balancer.md": {
-      "contentHash": "2518e048e98a21ffb3f58397d9233b9a6fb231fd510851f6b6d5a51f53c4b9c0",
+      "contentHash": "7de7a5af5b860a3fe92951bdaa042fe8fba1857f88a2db09c0975d8140d4a82a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir3omu2u",
-      "lastPublished": "2026-07-03T19:57:48.326Z",
+      "lastPublished": "2026-11-09T05:51:43.320Z",
       "slug": "dummy-load-balancer"
     },
     "content/go/limit_goroutines_with_buffered_channels.md": {
-      "contentHash": "edb46a004b8c53882d796e9ff7884e388d06423c3ce2c9fd6222a9cb122e1b21",
+      "contentHash": "36f60704baefa6500f4e6fe5b2f3c7b96cbd7dd8b6121c0924eaa5fb22ededdf",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir44f22a",
-      "lastPublished": "2026-07-03T19:57:48.626Z",
+      "lastPublished": "2026-11-09T05:51:43.759Z",
       "slug": "limit-goroutines-with-buffered-channels"
     },
     "content/go/totp_client.md": {
-      "contentHash": "28697bb8dbf71bf1f3db2c3c27376605fbc7b824bb968aaf4189d6f29e564b2f",
+      "contentHash": "be02ffbaf8cd05c2cf42e2a3e09225379e8efe7e5a7dbe60cdba29589f48130e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4jyi26",
-      "lastPublished": "2026-07-03T19:57:48.777Z",
+      "lastPublished": "2026-11-09T05:51:44.182Z",
       "slug": "totp-client"
     },
     "content/go/interface_guards.md": {
-      "contentHash": "e5a28367599514ff907536250de90596c3fa348b12a7956c5bc73ca168455268",
+      "contentHash": "6077d58d594ce10a364beb3c0589d611e48dfedcbb2d7f46317f897f310572ab",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir4yne2e",
-      "lastPublished": "2026-07-03T19:57:48.975Z",
+      "lastPublished": "2026-11-09T05:51:44.625Z",
       "slug": "interface-guards"
     },
     "content/zephyr/writing_on_well_trodden_topics.md": {
-      "contentHash": "b7ec345cebc650441b77f70aad8404e493d3e2957b83816671763819256e16f2",
+      "contentHash": "3bd3cbec2170f9cd859824d3527b381d8f724f6e31ce073a6f7f960bb8b6a667",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5jck2a",
-      "lastPublished": "2026-07-03T19:57:49.158Z",
+      "lastPublished": "2026-11-09T05:51:45.120Z",
       "slug": "writing-on-well-trodden-topics"
     },
     "content/go/structured_logging_with_slog.md": {
-      "contentHash": "859819c530a876cb128d8bc07ac4610b5ee773f52ffc7034904b9cc4a6b0320e",
+      "contentHash": "f2ac38e97f6211bd5d4b6e6d12fa49c1c91c1ddde450d10c14d2b4fac0092ddb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5xxq2o",
-      "lastPublished": "2026-07-03T19:57:49.557Z",
+      "lastPublished": "2026-11-09T05:51:45.582Z",
       "slug": "structured-logging-with-slog"
     },
     "content/zephyr/notes_on_exit_interviews.md": {
-      "contentHash": "72046d800132574c22520c517b67858cc119baaf4b070af951bac87ca93d2f7a",
+      "contentHash": "c1b2adaf9c70e3fd6f8177f326e6bbe486cb2a77a7f30ed62d8a1874c40ec7cf",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6eni2z",
-      "lastPublished": "2026-07-03T19:57:49.810Z",
+      "lastPublished": "2026-11-09T05:51:45.969Z",
       "slug": "notes-on-exit-interviews"
     },
     "content/python/tame_conditionals_with_bitmasks.md": {
-      "contentHash": "76ea95f0f10eccee7b45c6380d0fbeb0b5a0465e1f619595b23f2e0084adb54e",
+      "contentHash": "1180c82102e284fb7e835ed8ff3f2ec910b7fbc81b1d067d4b54736501d12fee",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir6say26",
-      "lastPublished": "2026-07-03T19:57:49.989Z",
+      "lastPublished": "2026-11-09T05:51:46.377Z",
       "slug": "tame-conditionals-with-bitmasks"
     },
     "content/misc/dns_record_to_share_text.md": {
-      "contentHash": "5320865be06fe27f5ce6fe2042a6da41cba83c57871daf915eb04f4952aee3d4",
+      "contentHash": "ae23508095a7e116629f64ab09d5c37886d6d941e51651c8ef621214634a75d0",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir77x22s",
-      "lastPublished": "2026-07-03T19:57:50.476Z",
+      "lastPublished": "2026-11-09T05:51:46.783Z",
       "slug": "dns-record-to-share-text"
     },
     "content/python/memory_leakage_in_descriptors.md": {
-      "contentHash": "38310f07cb599e68359918976b1b339b570fdc2d822b601d600fa7779178b783",
+      "contentHash": "eb02799a1e92f2f7c919e37e60e0e50bf76c9089531fa4290be11a5bc4f8e5f8",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir7nny2z",
-      "lastPublished": "2026-07-03T19:57:50.654Z",
+      "lastPublished": "2026-11-09T05:51:47.223Z",
       "slug": "memory-leakage-in-descriptors"
     },
     "content/python/unix_style_pipeline_with_subprocess.md": {
-      "contentHash": "85c7533c5b8be097b6110a07310b38d0ea54b2249efce79eefdc2493f03e7b2e",
+      "contentHash": "d10fbeac3578595820b67af253a166737c5cefd5364d6dae6a523f0dfa0da8f7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irj6bv2u",
-      "lastPublished": "2026-07-03T19:57:50.910Z",
+      "lastPublished": "2026-11-09T05:51:47.653Z",
       "slug": "unix-style-pipeline-with-subprocess"
     },
     "content/python/enable_repeatable_lazy_iterations.md": {
-      "contentHash": "0cfe6fd38acf99e8557f2d1e42d0b5355f1e2546e68e4abecf7158d61ab1e67c",
+      "contentHash": "33480c946e33e9a36330a8bcae417f38334886aa9effe4cc32f5125883721085",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlhi42e",
-      "lastPublished": "2026-07-03T19:57:51.135Z",
+      "lastPublished": "2026-11-09T05:51:48.035Z",
       "slug": "enable-repeatable-lazy-iterations"
     },
     "content/zephyr/descending_into_the_aether.md": {
-      "contentHash": "7ae275be2b1f54f79aef4b610b876ec4253dd4c9301e30adbe77653801494df6",
+      "contentHash": "ff5275c328a11632fd68b253b51773a1b0bbadbbfdd4a6dea827df08ba3fd645",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irlw6i26",
-      "lastPublished": "2026-07-11T21:38:16.781Z",
+      "lastPublished": "2026-11-09T05:51:48.453Z",
       "slug": "descending-into-the-aether"
     },
     "content/python/escape_template_pattern.md": {
-      "contentHash": "1916f8e42212385d110f7518e97f2fd950bc874fe788f813f041f99e2e021bdf",
+      "contentHash": "f837bc381558f13e187fe3364af7328260d3bd762238a075eb2e0fe88929ffdf",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmfuy2o",
-      "lastPublished": "2026-07-03T19:57:51.568Z",
+      "lastPublished": "2026-11-09T05:51:49.141Z",
       "slug": "escape-template-pattern"
     },
     "content/python/dependency_management_redux.md": {
-      "contentHash": "ce760b8eef308e8acb5d9e00a6ddc1da18b40e52307adf210ac5d20ea38ef5dd",
+      "contentHash": "558b902dc50cb8a17eeb2c94750c5a07666be7e4888fe2a9a2ede2fcefdbd34d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6irmuhe2e",
-      "lastPublished": "2026-07-03T19:57:51.759Z",
+      "lastPublished": "2026-11-09T05:51:49.644Z",
       "slug": "dependency-management-redux"
     },
     "content/python/implement_traceroute.md": {
-      "contentHash": "5659fdfd88ffd149d8c2d0bbeecc28e55e56e5a60a72f8bfca6827b4e48f914d",
+      "contentHash": "015d015e9e8863df348ed46038fbbb08b6c6a27bc4ffde412348e172f266c0b9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6is3zrs2y",
-      "lastPublished": "2026-07-03T19:57:51.947Z",
+      "lastPublished": "2026-11-09T05:51:50.139Z",
       "slug": "implement-traceroute"
     },
     "content/javascript/bulk_request_google_search_index.md": {
-      "contentHash": "72eb18dd44fbb92402573e5dea09b07fa1f379816a9e5c43168f3d6138a236d1",
+      "contentHash": "33ad43373fa872fed5a7455d129ea19ac1baa2412cd12fda9ca6f043cd72131c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iuuppk2s",
-      "lastPublished": "2026-07-03T19:57:52.096Z",
+      "lastPublished": "2026-11-09T05:51:50.672Z",
       "slug": "bulk-request-google-search-index"
     },
     "content/javascript/cors_proxy_with_cloudflare_workers.md": {
-      "contentHash": "b172ec685c428804e8b0b2330991591304fa9cb42c5474a8444baf9709dc99ad",
+      "contentHash": "afd887ad877d8b6045e529f29a38a1015525293f6872ac27c3e48830a6678348",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2eg22e",
-      "lastPublished": "2026-07-03T19:57:52.340Z",
+      "lastPublished": "2026-11-09T05:51:51.156Z",
       "slug": "cors-proxy-with-cloudflare-workers"
     },
     "content/misc/fixed_time_task_scheduling_with_at.md": {
-      "contentHash": "a49955e138257b2563f81d34d1faacab0f92617c7599dc3f79aed926aeb7c3eb",
+      "contentHash": "bbf8ca052a4131031cdbbd98490c159699e65e3500f06a75860c0fd2a8056849",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv2sxk2p",
-      "lastPublished": "2026-07-03T19:57:52.539Z",
+      "lastPublished": "2026-11-09T05:51:51.727Z",
       "slug": "fixed-time-task-scheduling-with-at"
     },
     "content/python/sort_by_a_custom_sequence_in_django.md": {
-      "contentHash": "0c0e9a7515d2f20a489381a2cd4e88b2e759b1b4138dc1a9eee70bf608a94ce1",
+      "contentHash": "2fda64b032c834a010524cb120c58d8322440fcc5c8172e74c6f52331a3f9dbf",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3clk2p",
-      "lastPublished": "2026-07-03T19:57:52.729Z",
+      "lastPublished": "2026-11-09T05:51:52.212Z",
       "slug": "sort-by-a-custom-sequence-in-django"
     },
     "content/javascript/periodic_readme_updates_with_gh_actions.md": {
-      "contentHash": "be1c26eecbd81a33503df1cc66a8b89b052c215b4f2bcdbd04faa61d2b44ca2f",
+      "contentHash": "29ef00011ffe4e4d9d953f89ff2ed52cbfd6ddeeff301b7a6ae6f1fe1f67951d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iv3tcd26",
-      "lastPublished": "2026-07-03T19:57:52.944Z",
+      "lastPublished": "2026-11-09T05:51:52.682Z",
       "slug": "periodic-readme-updates-with-gh-actions"
     },
     "content/misc/associative_arrays_in_bash.md": {
-      "contentHash": "8d976a19b56a5a98185df0dc1cce7e47134997edb89947c69d3d51ea6af920ee",
+      "contentHash": "3c735ed43aad2819f1d37bd5179c4f8019935d153765994c0f219cdb9a965199",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivgqtu2e",
-      "lastPublished": "2026-07-03T19:57:53.119Z",
+      "lastPublished": "2026-11-09T05:51:53.237Z",
       "slug": "associative-arrays-in-bash"
     },
     "content/python/deduplicate_iterables_while_preserving_order.md": {
-      "contentHash": "eddd12877bfca1934f1a291e9f535fccedbda6a0e44f7d6f6d4e1814b006b0d0",
+      "contentHash": "a75a7333927526429f51176cff2624fc54cf1d840996f5736fa91d551645971b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivi4rx2u",
-      "lastPublished": "2026-07-03T19:57:53.348Z",
+      "lastPublished": "2026-11-09T05:51:53.784Z",
       "slug": "deduplicate-iterables-while-preserving-order"
     },
     "content/misc/process_substitution_in_bash.md": {
-      "contentHash": "b753da4aea97a5c9e042eee25179be6d0c56f358aacef2d4010db952d6882d93",
+      "contentHash": "68b58e3744ac73360ee2fbff7eece2f16e0deb06c2572aa6be01831e0e711f65",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivijkd26",
-      "lastPublished": "2026-07-03T19:57:53.503Z",
+      "lastPublished": "2026-11-09T05:51:54.228Z",
       "slug": "process-substitution-in-bash"
     },
     "content/misc/dynamic_menu_with_select_in_bash.md": {
-      "contentHash": "b4dd51a3d9901a3ef0d374addf7a0be90b1317b6e7ffd6f6df98fc0f3715319c",
+      "contentHash": "0aac6ca97002e7cce47dd60cf442664b6b53aa433ad90f1fdbad85dde01cf34c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivj25c2e",
-      "lastPublished": "2026-07-03T19:57:53.656Z",
+      "lastPublished": "2026-11-09T05:51:54.632Z",
       "slug": "dynamic-menu-with-select-in-bash"
     },
     "content/misc/terminal_text_formatting_with_tput.md": {
-      "contentHash": "7a48fb976b3d3ccf77a0056441c7b4d867bf23240b8e8ee31565417db9a2e031",
+      "contentHash": "87972eec5bba5cc21aea3c555d1f3e2d45eb7436045ee613f4548979a21b8aeb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ivvlhs2s",
-      "lastPublished": "2026-07-03T19:57:53.839Z",
+      "lastPublished": "2026-11-09T05:51:55.056Z",
       "slug": "terminal-text-formatting-with-tput"
     },
     "content/javascript/exploring_observable_notebooks.md": {
-      "contentHash": "13021cd89663a2e8cfe0b01d87eea2bb7d2936ee5cc89d02656af8635528b7ce",
+      "contentHash": "06b8d9a378eae68f644c55a47de7e603f053f436fe1be354f09acfa56a95e325",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iyioos2e",
-      "lastPublished": "2026-07-03T19:57:54.028Z",
+      "lastPublished": "2026-11-09T05:51:55.481Z",
       "slug": "exploring-observable-notebooks"
     },
     "content/python/server_sent_events.md": {
-      "contentHash": "720097b8157038dae3796728af9a2b99966b87f369bb3804c063c9ce5e24bd98",
+      "contentHash": "49091e5f14f45aee59962bd8f4aec300385f120691d65ce307518837910c4beb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iz3had2s",
-      "lastPublished": "2026-07-03T19:57:54.256Z",
+      "lastPublished": "2026-11-09T05:51:55.983Z",
       "slug": "server-sent-events"
     },
     "content/misc/tinkering_with_unix_domain_socket.md": {
-      "contentHash": "21533f720029596d52fd3dfc1f2b5ded75c8be75098da3178068cd4fa2e249c3",
+      "contentHash": "d4e6693230d1b37e5c6520859e9ed61a0e529e4d60cf2bf677e5f30994c25b09",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6izsbqk2e",
-      "lastPublished": "2026-07-03T19:57:54.468Z",
+      "lastPublished": "2026-11-09T05:51:56.374Z",
       "slug": "tinkering-with-unix-domain-socket"
     },
     "content/python/multithreaded_socket_server_signal_handling.md": {
-      "contentHash": "bd658d22e791bb46be4d87a86a4aa21981e0bfcf9306fade921415f19b55581c",
+      "contentHash": "bae5901a4d81bd56ba4f3054489c2c7bb5f16ac6c1a3cdd1fdbe47f314ff3a74",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22dh22b",
-      "lastPublished": "2026-07-03T19:57:54.654Z",
+      "lastPublished": "2026-11-09T05:51:56.784Z",
       "slug": "multithreaded-socket-server-signal-handling"
     },
     "content/python/switch_between_multiple_datastreams.md": {
-      "contentHash": "4d720e2452af3c0ed8e94184ed6862dbd30b0d54aa2e25f632ef2b167d52429a",
+      "contentHash": "53c89a21998f705d1ea2cb3b2f70e70933d815f03d1e1ee2d9dd12c583cce447",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j22r4f2o",
-      "lastPublished": "2026-07-03T19:57:54.798Z",
+      "lastPublished": "2026-11-09T05:51:57.212Z",
       "slug": "switch-between-multiple-datastreams"
     },
     "content/python/skip_first_part_of_an_iterable.md": {
-      "contentHash": "beeb7a834d63f4403a119ca22e58e9588e4d3e8f00667025fa2588ccccf57495",
+      "contentHash": "b072988ab8b0fae2f58fdd954742cecdf5eab5b56b527e712bc3e9b0b0cb05d7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j236vq2z",
-      "lastPublished": "2026-07-03T19:57:54.975Z",
+      "lastPublished": "2026-11-09T05:51:57.607Z",
       "slug": "skip-first-part-of-an-iterable"
     },
     "content/python/pause_and_resume_a_socket_server.md": {
-      "contentHash": "144aafd8650ce894e9a9ab8336a564438460c44d415bbc223e3cb00a8a8da6a7",
+      "contentHash": "ade3c119a5ed8f8b79af63a23ba985978b9b72540972d1cb76a3a6eda8227f11",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23nhe2p",
-      "lastPublished": "2026-07-03T19:57:55.180Z",
+      "lastPublished": "2026-11-09T05:51:57.994Z",
       "slug": "pause-and-resume-a-socket-server"
     },
     "content/python/django_and_jupyter_notebook.md": {
-      "contentHash": "e8a32524e4c8cc8cc892987ad3d7634c863a2c4ea42a5560e3edebb5931deff3",
+      "contentHash": "f6ed1c45a4e85daf51d6856e72fe6b18b9bcf2a2d1e29fe00bc5daea6f91df8c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j23z6e2p",
-      "lastPublished": "2026-07-03T19:57:55.366Z",
+      "lastPublished": "2026-11-09T05:51:58.394Z",
       "slug": "django-and-jupyter-notebook"
     },
     "content/python/manipulate_text_with_django_query_expression.md": {
-      "contentHash": "c515b99c4bea3adf428246a4dbf01610efc3a6e94006b51c54eeb2c6ed2c379a",
+      "contentHash": "0ad694e7c65f52f1971f013d83f77532ecdfb96a16cc5d8518551c09f72a5a79",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j24gt32j",
-      "lastPublished": "2026-07-03T19:57:55.576Z",
+      "lastPublished": "2026-11-09T05:51:58.827Z",
       "slug": "manipulate-text-with-django-query-expression"
     },
     "content/python/tqdm_progressbar_with_concurrent_futures.md": {
-      "contentHash": "255b28dea91975540a43ca9573a2f7a65e1e488a506303653a9fc132bf56d404",
+      "contentHash": "45eb06e420f29143bbfe1f061ea08dfeb122d1995a4673ef91e8f66b030dd098",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j24wh32j",
-      "lastPublished": "2026-07-03T19:57:55.767Z",
+      "lastPublished": "2026-11-09T05:51:59.247Z",
       "slug": "tqdm-progressbar-with-concurrent-futures"
     },
     "content/misc/colon_command_in_shell_scripts.md": {
-      "contentHash": "9d0f5cbdeb91222a29c58ba4a665908676df6fb54c6156fab4d547c1b1a56478",
+      "contentHash": "12501382343870c049d7c814aef3cb723a86d420bdbeade3b3b69675df3ec51d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j33l242a",
-      "lastPublished": "2026-07-03T19:57:56.032Z",
+      "lastPublished": "2026-11-09T05:51:59.687Z",
       "slug": "colon-command-in-shell-scripts"
     },
     "content/python/faster_bulk_update_in_django.md": {
-      "contentHash": "320e4c39ab8b95c0e1707fd7f3c479559d1b429fd8d497192d17122c8548cf9a",
+      "contentHash": "61b0c2b2124807d4f15f676b2048c8b0f56d389366dd745a69155a06f4b1c5f1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j43ao32s",
-      "lastPublished": "2026-07-03T19:57:56.210Z",
+      "lastPublished": "2026-11-09T05:52:00.219Z",
       "slug": "faster-bulk-update-in-django"
     },
     "content/python/install_python_with_asdf.md": {
-      "contentHash": "b3fadc58ce43ac3c22649171ec2a3dd6f5519d189c199360019422a9739b64da",
+      "contentHash": "e43dba078d2c7c78ced0f9ca67a5b90d19f5581c1addb64170f846a941f62379",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j44klm2e",
-      "lastPublished": "2026-07-03T19:57:56.376Z",
+      "lastPublished": "2026-11-09T05:52:00.640Z",
       "slug": "install-python-with-asdf"
     },
     "content/python/save_with_update_fields_in_django.md": {
-      "contentHash": "8f4e6c0f3ca670a832d95b37c97889fc3f38625e236f9e76c556d6de414e27e3",
+      "contentHash": "c08ced878021ead2cae7730bc2065f6ea4c185a45fd2144ce666ee7ad377dbd9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6j4kc352u",
-      "lastPublished": "2026-07-03T19:57:56.729Z",
+      "lastPublished": "2026-11-09T05:52:01.029Z",
       "slug": "save-with-update-fields-in-django"
     },
     "content/python/logging_quirks_in_lambda_environment.md": {
-      "contentHash": "e338c50b05024aa37df6c9f903f582fb2f50ed728f1d7d17e4a13396b87f58d4",
+      "contentHash": "7229ec52bcc9423de2a03e8e410d95cd49c0e6a47c07acfcea0bbf0f6afb9705",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6japwhm2e",
-      "lastPublished": "2026-07-03T19:57:56.888Z",
+      "lastPublished": "2026-11-09T05:52:01.461Z",
       "slug": "logging-quirks-in-lambda-environment"
     },
     "content/python/outage_caused_by_eager_loading_file.md": {
-      "contentHash": "1675767641b595984f454e5912637ca1ea6e2e253abfc218876c433ad54e2326",
+      "contentHash": "cf263e98c9d0be40fb61a2e2e81ca9e6cc9c4d34c605e72cc694c55be925fa89",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqe4f2u",
-      "lastPublished": "2026-07-03T19:57:57.048Z",
+      "lastPublished": "2026-11-09T05:52:01.892Z",
       "slug": "outage-caused-by-eager-loading-file"
     },
     "content/misc/audit_commit_messages_on_github.md": {
-      "contentHash": "af9f8689b111e26016883d438d18530f558fbd0ac36b6b508f757e5c89de17d9",
+      "contentHash": "c0b5d3b7e0f37d64035bbab064f6a703508abbda4467492919b6e269ac8fb385",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jaqrsm2e",
-      "lastPublished": "2026-07-03T19:57:57.266Z",
+      "lastPublished": "2026-11-09T05:52:02.329Z",
       "slug": "audit-commit-messages-on-github"
     },
     "content/misc/to_quote_or_not_to_quote.md": {
-      "contentHash": "7b57521934c02d41fa8ce672b25b286bdaff8f2d03a607a884996847076668fd",
+      "contentHash": "3e7f0fd50339113c12dbc1fc8fae5b103dbe721475803a5b5bd5a23ce0f5ba88",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jar6jd2s",
-      "lastPublished": "2026-07-03T19:57:57.472Z",
+      "lastPublished": "2026-11-09T05:52:02.726Z",
       "slug": "to-quote-or-not-to-quote"
     },
     "content/misc/return_values_from_a_shell_function.md": {
-      "contentHash": "04bbbde42f5e0156100730590ebcc7e45b8e98bc0f6d3fa755b601c7ec96a2c0",
+      "contentHash": "6c42f14ea7405a76542682750959c7ed1012508cc7d9b37a0ed4f71f64325133",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jarl6x2u",
-      "lastPublished": "2026-07-03T19:57:57.841Z",
+      "lastPublished": "2026-11-09T05:52:03.179Z",
       "slug": "return-values-from-a-shell-function"
     },
     "content/python/verify_webhook_origin.md": {
-      "contentHash": "35f1da3cbd42c7f1ce03e41d5539b68a3f465581f758f7690133a922faf2fd54",
+      "contentHash": "64d18ed6d93b4ba78d9b7119ab0f83ef5293a9c0d54d9c7617754122503e38bb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jarwvd2y",
-      "lastPublished": "2026-07-03T19:57:58.020Z",
+      "lastPublished": "2026-11-09T05:52:03.634Z",
       "slug": "verify-webhook-origin"
     },
     "content/python/recipes_from_python_sqlite_docs.md": {
-      "contentHash": "cf226b178653e7ed433a1ce051eed7e331069e9d708b8a3040ef289833da4415",
+      "contentHash": "2ff0e79382e17a8f63113bb3a55822fb0738a905fc1f18a4df4aa122ca417497",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jasenl26",
-      "lastPublished": "2026-07-03T19:57:58.279Z",
+      "lastPublished": "2026-11-09T05:52:04.088Z",
       "slug": "recipes-from-python-sqlite-docs"
     },
     "content/python/use_urlsplit_over_urlparse.md": {
-      "contentHash": "89c4789b26cec0fc65bad98c48825e8eea5283717b3d14ecc3af7cc56bda2238",
+      "contentHash": "77fca6da79e7bfd6f3ff7040803ce6f5adb1c1fe9bdcd91dad5db9df09d9ad9b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcl34l2o",
-      "lastPublished": "2026-07-03T19:57:58.749Z",
+      "lastPublished": "2026-11-09T05:52:04.507Z",
       "slug": "use-urlsplit-over-urlparse"
     },
     "content/system/random_choice_in_sqlite.md": {
-      "contentHash": "e1f35ad1e91d5ce240d48b4b2737e65bee7902e6bf3e1c03d01acba77238bad5",
+      "contentHash": "90fca56864e9d278e936791f19befa48dbd9b56f9f34b9f6d50f3344b42d9f75",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcpy7f2o",
-      "lastPublished": "2026-07-03T19:57:58.957Z",
+      "lastPublished": "2026-11-09T05:52:04.949Z",
       "slug": "random-choice-in-sqlite"
     },
     "content/python/exitstack.md": {
-      "contentHash": "f9525985b0c69dccec6c776db816d869275d05cef6bd692ee0a36096d228fd85",
+      "contentHash": "f20cd203ca061a435096d1f2f5af958c71259d5bc68ac136cc726105b0d3bdcb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jcqhtf2o",
-      "lastPublished": "2026-07-03T19:57:59.139Z",
+      "lastPublished": "2026-11-09T05:52:05.542Z",
       "slug": "exitstack"
     },
     "content/python/compose_multiple_levels_of_pytest_fixtures.md": {
-      "contentHash": "75d2392113d140db07fae25b02d303f626ec0ac96992f369cf97f5b3e7e2f0bf",
+      "contentHash": "b7ab36b534ef95d6b478f079f0e236b03367194fc4f87029403e332307c7e41a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jddhb32b",
-      "lastPublished": "2026-07-03T19:57:59.301Z",
+      "lastPublished": "2026-11-09T05:52:05.995Z",
       "slug": "compose-multiple-levels-of-pytest-fixtures"
     },
     "content/python/patch_where_the_object_is_used.md": {
-      "contentHash": "7a8a267d5ef383757b3b38d1f3073cbeffb2fb51354d26af1df382b022a07906",
+      "contentHash": "447ce9c0d6234fb5409989fa7b024293d688e8bfd35ba4af7568d445160c5866",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdgh3t2o",
-      "lastPublished": "2026-07-03T19:57:59.475Z",
+      "lastPublished": "2026-11-09T05:52:06.442Z",
       "slug": "patch-where-the-object-is-used"
     },
     "content/python/partially_assert_callable_arguments.md": {
-      "contentHash": "59baee988f49786f51ea50ba48b3bb9e39520d03b783cc8208a08120b6b5e780",
+      "contentHash": "dde3f93e154fc95eec377e31723aa22e337b4fe2f996ce70c9d6db40abf73353",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdguqt26",
-      "lastPublished": "2026-07-03T19:57:59.740Z",
+      "lastPublished": "2026-11-09T05:52:06.899Z",
       "slug": "partially-assert-callable-arguments"
     },
     "content/misc/when_to_use_git_pull_rebase.md": {
-      "contentHash": "4d15fb41847320d7bc96074387964b95e20fa0571ae2f802d63c2fc4322be273",
+      "contentHash": "4438ac5beaa25a3adaf5946d9e65d39f7fe021030b624e1413467181812902a7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhddi26",
-      "lastPublished": "2026-07-03T19:57:59.895Z",
+      "lastPublished": "2026-11-09T05:52:07.320Z",
       "slug": "when-to-use-git-pull-rebase"
     },
     "content/python/apply_constraint_with_assert.md": {
-      "contentHash": "b00bd75779c20fe4620184af16b706eb5cda29bdb3f5c9cc2e0b7f62dfda22fc",
+      "contentHash": "8f1318da1b9bb48980c8618de2d5de51eb3f5a1b7380d609ac8614590f92912e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdhpzq26",
-      "lastPublished": "2026-07-03T19:58:00.073Z",
+      "lastPublished": "2026-11-09T05:52:07.751Z",
       "slug": "apply-constraint-with-assert"
     },
     "content/misc/automerge_dependabot_prs_on_github.md": {
-      "contentHash": "cf29a9240b62008b2accbfdfb4eaf18fd73196fa18c970edff6886431d8a25e9",
+      "contentHash": "e31d244744bde4002ea80082e907d2494475a7ee3de8956d5880b928e7bf7290",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdi5on2u",
-      "lastPublished": "2026-07-03T19:58:00.240Z",
+      "lastPublished": "2026-11-09T05:52:08.226Z",
       "slug": "automerge-dependabot-prs-on-github"
     },
     "content/python/stream_process_a_csv_file.md": {
-      "contentHash": "65a0f3eaa215bf7c0b5945dcb7037e0ddad869488d69399514118303d554a673",
+      "contentHash": "c5e0be1f1da31c280f8fd5f0a7dfb9aba9b37ff6197c4b8785e2f922fbe34f6e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdncon2o",
-      "lastPublished": "2026-07-03T19:58:00.439Z",
+      "lastPublished": "2026-11-09T05:52:08.669Z",
       "slug": "stream-process-a-csv-file"
     },
     "content/python/django_bulk_operation_with_process_pool.md": {
-      "contentHash": "33580dd49deb241504dc6f772d7bcef4cdb95144ed0256091bd01c4ace514bc4",
+      "contentHash": "c3a7b5c5736b854f5191e3a3f48903a4d0c38c161b880008ba23eb18d671f04d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdonrl26",
-      "lastPublished": "2026-07-03T19:58:00.618Z",
+      "lastPublished": "2026-11-09T05:52:09.084Z",
       "slug": "django-bulk-operation-with-process-pool"
     },
     "content/python/read_s3_file_in_memory.md": {
-      "contentHash": "07186f2d14d684c9f6ff9e52202233991341ecfa46272efa3ddc71316b176a79",
+      "contentHash": "4bb5a376f2e8ee78177be8abcfb9014bc573e1db3e69600c78a04bab06fea14d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdp2hr2z",
-      "lastPublished": "2026-07-03T19:58:00.896Z",
+      "lastPublished": "2026-11-09T05:52:09.499Z",
       "slug": "read-s3-file-in-memory"
     },
     "content/misc/distil_git_logs_attached_to_a_file.md": {
-      "contentHash": "14975297337a293605e049d3b76520aca7f74eb6179d30e43d10d0ada0f6045b",
+      "contentHash": "b2ce38ec30c51802fdcb79074c5b6c82dbaced835e054424be725a18d2bc8f6c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jdpj2h2u",
-      "lastPublished": "2026-07-03T19:58:01.115Z",
+      "lastPublished": "2026-11-09T05:52:09.922Z",
       "slug": "distil-git-logs-attached-to-a-file"
     },
     "content/python/operators_itemgetter.md": {
-      "contentHash": "6f175911dffa412c7a0b753205bbbe530ce487ea7c31fd3a69f79fc721bf0e9b",
+      "contentHash": "3bade9433b991aaf4a7c2ec0073ae6e02392ff3de787561d17f756c5896696bd",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jejf4m2j",
-      "lastPublished": "2026-07-03T19:58:01.298Z",
+      "lastPublished": "2026-11-09T05:52:10.341Z",
       "slug": "operators-itemgetter"
     },
     "content/typescript/guard_clauses_and_never_type.md": {
-      "contentHash": "e2f6ecd1f801a5d2319a2f7d40ce0923526bb9358693bb9d72c77f687d8d9feb",
+      "contentHash": "8411703385dd92fa509de6cc0cba7c5d72709a4245f58944e69e359785341d49",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jgphdt2y",
-      "lastPublished": "2026-07-03T19:58:01.481Z",
+      "lastPublished": "2026-11-09T05:52:10.793Z",
       "slug": "guard-clauses-and-never-type"
     },
     "content/misc/health_check_a_server_with_nohup.md": {
-      "contentHash": "2a0efe446c2a175df1ea5eda8b829355c59b1010a29ac2533294373971cfca23",
+      "contentHash": "72fab3cc936d31f7a5dfc3c24e97c48e46488ec91143d74ec3ebe5a2070e8875",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhg4zb2z",
-      "lastPublished": "2026-07-03T19:58:01.634Z",
+      "lastPublished": "2026-11-09T05:52:11.224Z",
       "slug": "health-check-a-server-with-nohup"
     },
     "content/python/return_json_error_payload_in_drf.md": {
-      "contentHash": "47897f890997e4fe6bfb3ac929cce4d54b28a8592730509098eaa62a13cded3f",
+      "contentHash": "8c3f069095d7a1212e88c582841836e996c62ff2521e10bb2fe93fc271b7b321",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhgjpl26",
-      "lastPublished": "2026-07-03T19:58:05.045Z",
+      "lastPublished": "2026-11-09T05:52:11.607Z",
       "slug": "return-json-error-payload-in-drf"
     },
     "content/python/decouple_with_generators.md": {
-      "contentHash": "9cb0ea9c525d2dd969e348f492785c1dfd75a4193d79024a5f40c86f6b225cce",
+      "contentHash": "a1957f07fee0ba8a556bfc7a6254f668218742569d8a561dc54c3680077b8894",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhgxb52o",
-      "lastPublished": "2026-07-03T19:58:05.442Z",
+      "lastPublished": "2026-11-09T05:52:12.023Z",
       "slug": "decouple-with-generators"
     },
     "content/python/preallocated_list.md": {
-      "contentHash": "a4110918df89438bc20541834f59bda202870a61029e7a9d33189f1de178104f",
+      "contentHash": "4c659eaca6452f87abcf9e76da8275fd19096035bc97a0b685cea6af79b53220",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhrddy2u",
-      "lastPublished": "2026-07-03T19:58:07.244Z",
+      "lastPublished": "2026-11-09T05:52:12.514Z",
       "slug": "preallocated-list"
     },
     "content/zephyr/in_favor_of_sentence_case.md": {
-      "contentHash": "e6d52ecae4caf7af82e58e9db3fa4d54c6d84614720d9cc7c4ea38ed6bcaa876",
+      "contentHash": "bcc848b4c57c22ccbe56d7475b8486fb551746111fc7b181a76e6a74395854e9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jhtxct2y",
-      "lastPublished": "2026-07-03T19:58:07.462Z",
+      "lastPublished": "2026-11-09T05:52:12.964Z",
       "slug": "in-favor-of-sentence-case"
     },
     "content/python/disallow_large_file_download.md": {
-      "contentHash": "322bc9a9f3b6b3523b841894066d846c7ff9f5cfe9d893eb7b1aa4beff192f21",
+      "contentHash": "b2a0b805ff69f486bfdebd8a529bca1903d37db0ef293f68d127fda14d78d8f7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ji7ubl2o",
-      "lastPublished": "2026-07-03T19:58:07.653Z",
+      "lastPublished": "2026-11-09T05:52:13.536Z",
       "slug": "disallow-large-file-download"
     },
     "content/python/declaratively_transform_dataclass_fields.md": {
-      "contentHash": "8816366fef61a2ef4f2bf77ac48fe60062974c0d68b9fd21dd21621836480308",
+      "contentHash": "b359563add9aaea7e30db28a1884a791143ee8e802f0b5ec1ea76ac9e59a9132",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jib7452o",
-      "lastPublished": "2026-07-03T19:58:07.851Z",
+      "lastPublished": "2026-11-09T05:52:13.953Z",
       "slug": "declaratively-transform-dataclass-fields"
     },
     "content/python/mocking_datetime_objects.md": {
-      "contentHash": "ec47fc40d0c79afb7d539baf04d086fb671b70b014c27f5be86cc9f9c4492320",
+      "contentHash": "e175eb482ef625d777137f382c606d500fdf9f1f14fa7bd5d3bea9c1c099a81e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jicl4t2s",
-      "lastPublished": "2026-07-03T19:58:08.003Z",
+      "lastPublished": "2026-11-09T05:52:14.362Z",
       "slug": "mocking-datetime-objects"
     },
     "content/python/how_not_to_run_a_script.md": {
-      "contentHash": "8898a13e0d99f0937c89343d173f4a4a469bd6c80a4d883ad7913238dfab3311",
+      "contentHash": "8ecd2ebbe18750a72a8597a538fe0123f7fb0ed6b06d5a5768ffadbde9ba638b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiw52v2u",
-      "lastPublished": "2026-07-03T19:58:08.197Z",
+      "lastPublished": "2026-11-09T05:52:14.813Z",
       "slug": "how-not-to-run-a-script"
     },
     "content/python/caching_connection_objects.md": {
-      "contentHash": "4fb3df1b870b83484ac8332df36033eb994a5ecec86037fb9e29a95e5e7736b3",
+      "contentHash": "b3620f9139e848dde084c337bb0a974c0ae3db7cf7d5ab63ec6b22933f02c404",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jixlzm2a",
-      "lastPublished": "2026-07-03T19:58:08.436Z",
+      "lastPublished": "2026-11-09T05:52:15.288Z",
       "slug": "caching-connection-objects"
     },
     "content/python/declarative_payloads_with_typedict.md": {
-      "contentHash": "2e496c52bcc35837d22251aeb763f2e2758de03b60295d2465633811adf436a0",
+      "contentHash": "bd20f20d68f0619ac9bd4a15fc40621525e70be0a16aed9cccead781f97e4ee5",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jixzl52o",
-      "lastPublished": "2026-07-03T19:58:08.652Z",
+      "lastPublished": "2026-11-09T05:52:15.697Z",
       "slug": "declarative-payloads-with-typedict"
     },
     "content/python/parametrized_fixtures_in_pytest.md": {
-      "contentHash": "dbc4f8e028b3326bb8b6a86a77e03034c39dd046c79690845e2d4e399c91577a",
+      "contentHash": "8f3d29cd27e9e6716562240c91f8a5600549f789568b561ba2b9e88a699c26ae",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiyjbl2s",
-      "lastPublished": "2026-07-03T19:58:08.829Z",
+      "lastPublished": "2026-11-09T05:52:16.139Z",
       "slug": "parametrized-fixtures-in-pytest"
     },
     "content/python/modify_iterables_while_iterating.md": {
-      "contentHash": "de65ba88f0081a2df233788bc79a4ca3235e58af8434683d60c742985de3b973",
+      "contentHash": "c03e6a823212b766d67ba968f440505229fd4fa3a13736a996a9cdbafc1c1a20",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jiywyj2z",
-      "lastPublished": "2026-07-03T19:58:09.004Z",
+      "lastPublished": "2026-11-09T05:52:16.534Z",
       "slug": "modify-iterables-while-iterating"
     },
     "content/python/github_action_template_python.md": {
-      "contentHash": "741de5e17aff4df2ce7dba74fc0d91ca8b39f1b68413f4f1407d1448f7446b20",
+      "contentHash": "99a4f3d72ed598245ae50c2c8e56047d3e42d6356b3ddbc70e9eeae4a3bc41c1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizcmt2y",
-      "lastPublished": "2026-07-03T19:58:09.334Z",
+      "lastPublished": "2026-11-09T05:52:16.932Z",
       "slug": "github-action-template-python"
     },
     "content/python/self_type.md": {
-      "contentHash": "8cb5dadc30830ffd33fd4d30cb77e4f75321e432eb157fade24b2c4af754a02e",
+      "contentHash": "923fb2cb03a7426b43c679424bcc1333e1c29b58a607b307824bb3b1c71ac854",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jizogm2a",
-      "lastPublished": "2026-07-03T19:58:09.537Z",
+      "lastPublished": "2026-11-09T05:52:17.406Z",
       "slug": "self-type"
     },
     "content/python/patch_with_pytest_fixture.md": {
-      "contentHash": "69918a73c275c818accb891edc04d9732002d4bedd46ceea0236c48974af3f83",
+      "contentHash": "60133942d99da155b07139f876a7aa0e6e3299d90b680d2481747537929cfade",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jjcink2e",
-      "lastPublished": "2026-07-03T19:58:09.732Z",
+      "lastPublished": "2026-11-09T05:52:17.785Z",
       "slug": "patch-with-pytest-fixture"
     },
     "content/python/type_guard.md": {
-      "contentHash": "280b8be1ed48c964fb3acdad58afe446cc7959d8f920859eaa94e66083c6ca97",
+      "contentHash": "d9c959ef52d62d5c6dc2c7cbfcb78354189d9d2d378c783ccb7ba96998213a23",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jkijfa26",
-      "lastPublished": "2026-07-03T19:58:09.915Z",
+      "lastPublished": "2026-11-09T05:52:18.209Z",
       "slug": "type-guard"
     },
     "content/python/why_noreturn_type_exists.md": {
-      "contentHash": "8eb1b0ff4bed28fed30a83137c6115ab0c274d09238bf7fa59e3b59671a44ccb",
+      "contentHash": "bac6421da3baefc7d7a82720261088e49ba3c9d9e32784f36250146065fbf2bb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmdmyi2u",
-      "lastPublished": "2026-07-03T19:58:10.071Z",
+      "lastPublished": "2026-11-09T05:52:18.584Z",
       "slug": "why-noreturn-type-exists"
     },
     "content/python/add_attributes_to_enum_members.md": {
-      "contentHash": "dadd57334b16caa62d356277d6c04f41fca71221b05d40dfa100eac715341061",
+      "contentHash": "ac88b728611901e1d1471d48e18c3cd256ff431385675f33562a80d1d53cb5f4",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmfcnm2b",
-      "lastPublished": "2026-07-03T19:58:10.239Z",
+      "lastPublished": "2026-11-09T05:52:19.048Z",
       "slug": "add-attributes-to-enum-members"
     },
     "content/python/internals_of_functools_wraps.md": {
-      "contentHash": "8a64761d908d0c273c889eebc8db3542ee9a5a9e3fd647ffd3b360d7ddc24081",
+      "contentHash": "7f77b32d8c67557addb4077e15862020d2cbb9afac94bf71bff0795aa15808db",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmg27e2a",
-      "lastPublished": "2026-07-03T19:58:10.420Z",
+      "lastPublished": "2026-11-09T05:52:19.504Z",
       "slug": "internals-of-functools-wraps"
     },
     "content/python/limit_concurrency_with_semaphore.md": {
-      "contentHash": "146eaf7324f7f9bef6f8d579caafee7af43e975c02ac8197df99fb6d76d41835",
+      "contentHash": "26b6085de3b998b78b6154f3f403cefda98fe298a57cab3afb917ef016132488",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmqqyl2o",
-      "lastPublished": "2026-07-03T19:58:10.591Z",
+      "lastPublished": "2026-11-09T05:52:19.979Z",
       "slug": "limit-concurrency-with-semaphore"
     },
     "content/python/amphibian_decorators.md": {
-      "contentHash": "5f92eb07afa5483be7552e3ef2dabd72254c1aec8919987d805c74bfd5bf3aa0",
+      "contentHash": "6acc20d4023fb21ff1545eddd38a4f1c73cf80b8ef34b961dc9613d7709ad75d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmu4bm2j",
-      "lastPublished": "2026-07-03T19:58:10.798Z",
+      "lastPublished": "2026-11-09T05:52:20.475Z",
       "slug": "amphibian-decorators"
     },
     "content/python/go_rusty_with_exception_handling.md": {
-      "contentHash": "acfb8be0ee5a05d3828d0e63b73b3aab0aa43e27b6691ce90e8a6c4ac38b27fa",
+      "contentHash": "95ae54346d834a1ed532541e888edba542a4678cefa0fa0e6430bcae2d2b0186",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jmzfbq26",
-      "lastPublished": "2026-07-03T19:58:10.985Z",
+      "lastPublished": "2026-11-09T05:52:20.857Z",
       "slug": "go-rusty-with-exception-handling"
     },
     "content/python/variance_of_generic_types.md": {
-      "contentHash": "a9494ba6dd1901a20bec2a2517d721a95a3070d501965e7f59d24acd3a4dd70b",
+      "contentHash": "da9028e07d6d944f4b566f28e1104b41f5b490e1e42f3025d78aedab6ab11925",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn2r6e2e",
-      "lastPublished": "2026-07-03T19:58:11.154Z",
+      "lastPublished": "2026-11-09T05:52:21.241Z",
       "slug": "variance-of-generic-types"
     },
     "content/python/create_sub_dict.md": {
-      "contentHash": "dd975f6adeffbdbc31324664ec76bb5f423b30999146c6d158b3c2fb6a4f77f1",
+      "contentHash": "2f895e5f6496a92a7945f9531921e1dcb2d1c1eabed5488e9854f1cd0c76dd2d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn36ut2y",
-      "lastPublished": "2026-07-03T19:58:11.333Z",
+      "lastPublished": "2026-11-09T05:52:21.683Z",
       "slug": "create-sub-dict"
     },
     "content/python/early_bound_function_defaults.md": {
-      "contentHash": "22c4afde4f6c896310148ecee39b40b6ba50d70e52f583f686339999b0a84d60",
+      "contentHash": "84f0acf6b167910f25d4d3803bcf24cb9f08c03a8e8cefb9e77c744e7be540b0",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn3nim2b",
-      "lastPublished": "2026-07-03T19:58:11.495Z",
+      "lastPublished": "2026-11-09T05:52:22.142Z",
       "slug": "early-bound-function-defaults"
     },
     "content/python/use_assertis_to_check_literal_booleans.md": {
-      "contentHash": "9f1d555001adbf9027ebefb65572e4df5b4545806746e5c4eb41a2bf4194da68",
+      "contentHash": "3a4ce8fdb1c6976d38502f2849b4ba59dda071c5befe0b0672abaf20f45df41e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn435u2j",
-      "lastPublished": "2026-07-03T19:58:11.698Z",
+      "lastPublished": "2026-11-09T05:52:22.558Z",
       "slug": "use-assertis-to-check-literal-booleans"
     },
     "content/python/static_typing_decorators.md": {
-      "contentHash": "124e4d67e8d8d410052a827525f976edba43b00c170dad0ba0ca7486d6cc4f7d",
+      "contentHash": "5df7e6618ba3d08bf29bb5be2a2bbf40ac0d06845cf58633a424293b77e4bf1e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn4jwm2a",
-      "lastPublished": "2026-07-03T19:58:11.846Z",
+      "lastPublished": "2026-11-09T05:52:22.986Z",
       "slug": "static-typing-decorators"
     },
     "content/python/inspect_docstring_with_pydoc.md": {
-      "contentHash": "9bb29bc5d2320fc351c9ab8066d92b1ff414c99cbe3fc1883eb8a0e595d1611b",
+      "contentHash": "5c793b74d974b290a3c6f6447972399d8c4631aa182893ca390cd235f03ff4a8",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn4yi42p",
-      "lastPublished": "2026-07-03T19:58:12.033Z",
+      "lastPublished": "2026-11-09T05:52:23.376Z",
       "slug": "inspect-docstring-with-pydoc"
     },
     "content/python/check_is_a_power_of_two.md": {
-      "contentHash": "958c13b1f90ed8d730a68b0e64c1478d28ab19bd4892e57cef68790e1e38dbec",
+      "contentHash": "aa5a20c7bfe703d776be7ad3c08d549e9f019f931f3da5ecf812bfac0ff4f574",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jn5i7t2o",
-      "lastPublished": "2026-07-03T19:58:12.193Z",
+      "lastPublished": "2026-11-09T05:52:23.812Z",
       "slug": "check-is-a-power-of-two"
     },
     "content/python/uniform_error_response_in_drf.md": {
-      "contentHash": "60bb5c018c557f683cff682de4a86be76e23590630c48ed76845b6ddc008a8df",
+      "contentHash": "119360594b8e62ad6d06a7d708b76900eb81ae10c13f889dd38dd30ddafe3576",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbe5f2u",
-      "lastPublished": "2026-07-03T19:58:12.355Z",
+      "lastPublished": "2026-11-09T05:52:24.246Z",
       "slug": "uniform-error-response-in-drf"
     },
     "content/python/difference_between_typevar_and_union.md": {
-      "contentHash": "d8b7434594e15c54821b19d6d1472cdbe8d9e26a60ab6dfc04161da818721a39",
+      "contentHash": "eb289da5f89432d813478e2e1069054fa98aae8bb4cd196a582f9b00c7100860",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnbzpm2a",
-      "lastPublished": "2026-07-03T19:58:12.733Z",
+      "lastPublished": "2026-11-09T05:52:24.656Z",
       "slug": "difference-between-typevar-and-union"
     },
     "content/python/lru_cache_on_methods.md": {
-      "contentHash": "86c69a2972c845417bb40882cb5edf9959212faa468677bcc133c668b67aa445",
+      "contentHash": "2f3e4822367d07d8cc85ced05922adf8470b5f4c40157dba224ef533c9f31afa",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnjivq26",
-      "lastPublished": "2026-07-03T19:58:12.906Z",
+      "lastPublished": "2026-11-09T05:52:25.094Z",
       "slug": "lru-cache-on-methods"
     },
     "content/python/text_cropping_with_textwrap_shorten.md": {
-      "contentHash": "97c95a8193dc51750dfb83f4f00960deb3f269c0eb7cfbadb43306c89ec96d92",
+      "contentHash": "e645a36e3cd5a5f450f3d798ed03fff423008af4e4dbd95942aedca41df01dde",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnkzst2o",
-      "lastPublished": "2026-07-03T19:58:13.115Z",
+      "lastPublished": "2026-11-09T05:52:25.499Z",
       "slug": "text-cropping-with-textwrap-shorten"
     },
     "content/python/string_interning.md": {
-      "contentHash": "b0aba359dcffc0154310dde8cd6ba1cf719669b8e3075e43da0740a89e6ceddd",
+      "contentHash": "8e075cfbf6b9c793fe5695e677294b29dfd0775577559d1a2a819594244a0387",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlmbf2u",
-      "lastPublished": "2026-07-03T19:58:13.417Z",
+      "lastPublished": "2026-11-09T05:52:25.923Z",
       "slug": "string-interning"
     },
     "content/python/structural_subtyping.md": {
-      "contentHash": "bc2d117268970e292ac08c5a3758c1ced2c46571a56566c95d849cd1cd12798c",
+      "contentHash": "f4aed36ae4c26fb7a6b67b15e0ba9f6b6b4d88bc5ea890e03539eabb8db84f92",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnlyya2u",
-      "lastPublished": "2026-07-03T19:58:13.597Z",
+      "lastPublished": "2026-11-09T05:52:26.539Z",
       "slug": "structural-subtyping"
     },
     "content/python/attribute_delegation_in_composition.md": {
-      "contentHash": "332233c5556ff19000b1f92c177ca1b290d0a8e82a3489105493561711427a69",
+      "contentHash": "ccea49849db8f22c1cfc575cef2559aaff2e9aa93e7a447d1394ee6adf5b1302",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmfqc2e",
-      "lastPublished": "2026-07-03T19:58:13.750Z",
+      "lastPublished": "2026-11-09T05:52:26.941Z",
       "slug": "attribute-delegation-in-composition"
     },
     "content/python/access_classmethod_like_property.md": {
-      "contentHash": "0ee5190b953a181e54cbe0296a9f82b122b696d7e28a7778a932688e34384ee1",
+      "contentHash": "aa8707a47646fa8b6ff50c4cdc968d6967aeb6fa5303da7d6c504f9ca17452aa",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnmvau2b",
-      "lastPublished": "2026-07-03T19:58:13.896Z",
+      "lastPublished": "2026-11-09T05:52:27.328Z",
       "slug": "access-classmethod-like-property"
     },
     "content/misc/do_not_add_extensions_to_bash_executables.md": {
-      "contentHash": "68f911854e6de08601d828fb6018018ee9934fd6c2533ecee38e052fcb3e0602",
+      "contentHash": "bde6e3591f27aef4d50e6878b1fd6869f31d54a141e58a0c561954fa6a619ae5",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnydhe2j",
-      "lastPublished": "2026-07-03T19:58:14.099Z",
+      "lastPublished": "2026-11-09T05:52:27.739Z",
       "slug": "do-not-add-extensions-to-bash-executables"
     },
     "content/python/use_init_subclass_hook_to_validate_subclasses.md": {
-      "contentHash": "3e41162527b86c6b77c491fb271daa3c4a8124058a8cb0d93be308b1cec4c544",
+      "contentHash": "530e7bf69433974ae39589eb178d03b6f28d41e21ea9c0fb6d36443bf0b768e3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jnzvf326",
-      "lastPublished": "2026-07-03T19:58:14.297Z",
+      "lastPublished": "2026-11-09T05:52:28.136Z",
       "slug": "use-init-subclass-hook-to-validate-subclasses"
     },
     "content/python/use_daemon_threads_to_test_infinite_loop.md": {
-      "contentHash": "a7f5e2ba701ea97f31f76652588925d2b38d40ecb1465c2c93867199110d181f",
+      "contentHash": "0b56d6fc07cbf0958b3bde49e9ae1efd7f589739bdced2f3950f16d5f4873fdd",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2ez42a",
-      "lastPublished": "2026-07-03T19:58:14.446Z",
+      "lastPublished": "2026-11-09T05:52:28.608Z",
       "slug": "use-daemon-threads-to-test-infinite-loop"
     },
     "content/python/tqdm_with_multiprocessing.md": {
-      "contentHash": "3bf065ca22fa03e7e8fdf64a2b9b903de5867b67f64920356f826cbe7ff681a8",
+      "contentHash": "9394f0064f463560fffadeb427b27b092c6455022862f9e0063138e35b035e96",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo2uje2e",
-      "lastPublished": "2026-07-03T19:58:14.613Z",
+      "lastPublished": "2026-11-09T05:52:29.150Z",
       "slug": "tqdm-with-multiprocessing"
     },
     "content/misc/use_command_v_over_which.md": {
-      "contentHash": "a19ffae43d31fdd9d84d617fff84b20bd97ec524b28ec947766c092cc8192f12",
+      "contentHash": "070c741ea899eb38c84573e39af09bf52e8ec5b184efe1e23ae167b278479364",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3c6u2b",
-      "lastPublished": "2026-07-03T19:58:14.799Z",
+      "lastPublished": "2026-11-09T05:52:29.634Z",
       "slug": "use-command-v-over-which"
     },
     "content/misc/write_git_commit_messages_properly.md": {
-      "contentHash": "28ab63de6e081fbfba00aa2764724187a7161a28b84b5c028aac6f8677bf2d96",
+      "contentHash": "71f3bc3b64c4b16c7d4ea8a307b948be35a3403a3dbe9336c276a2e6742087fa",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo3qu42p",
-      "lastPublished": "2026-07-03T19:58:14.982Z",
+      "lastPublished": "2026-11-09T05:52:30.036Z",
       "slug": "write-git-commit-messages-properly"
     },
     "content/python/functools_partial_flattens_nestings_automatically.md": {
-      "contentHash": "63cfd572a435aeae8f1ea8bd48c0accb4e24c0807b5acaf7e3c6aa8f6960ad14",
+      "contentHash": "658cb2ed49eefadbec821bcfecdce625a1ed579bf352747e218b500da3ec92b9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo47ie2b",
-      "lastPublished": "2026-07-03T19:58:15.613Z",
+      "lastPublished": "2026-11-09T05:52:31.585Z",
       "slug": "functools-partial-flattens-nestings-automatically"
     },
     "content/misc/use_strict_mode_while_running_bash_scripts.md": {
-      "contentHash": "45a07ac2fadbc108d63fd14653ecc80bb08d5835372187a338190f55e54e157c",
+      "contentHash": "37402a04d31000623703f121d0aced5f2bc3bc7e23a79b947d4a17514130494c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo4p5y26",
-      "lastPublished": "2026-07-03T19:58:15.180Z",
+      "lastPublished": "2026-11-09T05:52:30.697Z",
       "slug": "use-strict-mode-while-running-bash-scripts"
     },
     "content/misc/use_curly_braces_while_pasting_shell_commands.md": {
-      "contentHash": "a461328d50f673d62a2a13b4d86d8745a2a918589dcd73df252b28b91cc7a4f1",
+      "contentHash": "d6c793701047ae923053b544308c98f097a4383a2c285f1a4cbc6221e4ed3f1d",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5bqd2s",
-      "lastPublished": "2026-07-03T19:58:15.347Z",
+      "lastPublished": "2026-11-09T05:52:31.143Z",
       "slug": "use-curly-braces-while-pasting-shell-commands"
     },
     "content/python/config_management_with_pydantic.md": {
-      "contentHash": "530fb6a505719dc4a580044991b6da1f64fad45b6c934fe420aa7e5285f403c1",
+      "contentHash": "b1bca9120059e7f6071f1c9408a2eb8820658fb3d8fe529640435804796a303e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo5ph22e",
-      "lastPublished": "2026-07-03T19:58:15.837Z",
+      "lastPublished": "2026-11-09T05:52:32.050Z",
       "slug": "config-management-with-pydantic"
     },
     "content/python/mixins.md": {
-      "contentHash": "3b43dc9d02d2acb5e6236a3aaf2e40bf640e8425e92f2048b5f8fa89db51d80f",
+      "contentHash": "70608c4ed5d51eaade47d861bc62d76cc4cea2bfef053429398b47672a2fec2b",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jo65yu2p",
-      "lastPublished": "2026-07-03T19:58:16.069Z",
+      "lastPublished": "2026-11-09T05:52:32.572Z",
       "slug": "mixins"
     },
     "content/python/metaclasses.md": {
-      "contentHash": "b183fd4bd39c7345a3fe3c4de3aeeb27e7754a1dc3ff7c8db5a788694d1a478f",
+      "contentHash": "2cac18ea22d05753daf83a0aefa405faa1084068ab7dded471d315d985963e56",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jooz3f2u",
-      "lastPublished": "2026-07-03T19:58:16.266Z",
+      "lastPublished": "2026-11-09T05:52:33.125Z",
       "slug": "metaclasses"
     },
     "content/python/proxy_pattern.md": {
-      "contentHash": "01ef0425cce060e87bda5836cfc97c0be8695442c8a2c81b267f30b86022bd68",
+      "contentHash": "82f829c8f5addc11f33d0f72512cee7e9f88aa7b68013c07544ea48296015673",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jorswy2u",
-      "lastPublished": "2026-07-03T19:58:16.471Z",
+      "lastPublished": "2026-11-09T05:52:33.585Z",
       "slug": "proxy-pattern"
     },
     "content/python/redis_cache.md": {
-      "contentHash": "c254826969aa2f5a030f4222a26648e19803116335cf1396baff2d3ff6b99ea8",
+      "contentHash": "ac6c2e15411b8511d54c9a71a1fc43a8cdfc4e53d1cc2e9f8271c0419ba2bd5c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6joudwv2o",
-      "lastPublished": "2026-07-03T19:58:16.869Z",
+      "lastPublished": "2026-11-09T05:52:34.033Z",
       "slug": "redis-cache"
     },
     "content/python/decorators.md": {
-      "contentHash": "5ebbf6fd897a2e2528ca11c2f049657a510d3f45cd80ef9d2c01a610229f173a",
+      "contentHash": "17dfcdd675f8d66659f33877b0195ae9871de20e1496f8dce400b510e940a0d4",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jpvep22e",
-      "lastPublished": "2026-07-03T19:58:17.074Z",
+      "lastPublished": "2026-11-09T05:52:34.527Z",
       "slug": "decorators"
     },
     "content/python/concurrent_futures.md": {
-      "contentHash": "3d62a470e86439adfbf8193119c301a4c4434f6261abe803b8132eea29e56ea5",
+      "contentHash": "35297acfdcf79e703cd84682d7442dd9b02df093d898099442ce066cb5d66ccb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq2ybe2j",
-      "lastPublished": "2026-07-03T19:58:17.351Z",
+      "lastPublished": "2026-11-09T05:52:34.961Z",
       "slug": "concurrent-futures"
     },
     "content/python/pathlib.md": {
-      "contentHash": "cc3a49005bb6803fa97546959c8ec96077bbc0ed895554b30d2728155af4b4ae",
+      "contentHash": "03d0ea2a76cf458985b14a2da9f8c91d4fc8bba8fbe81952e8d0c521d5cb3c4a",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq3kuf2u",
-      "lastPublished": "2026-07-03T19:58:17.662Z",
+      "lastPublished": "2026-11-09T05:52:35.450Z",
       "slug": "pathlib"
     },
     "content/python/pre_commit.md": {
-      "contentHash": "58ea5327144daa0dd1351ac6faa45904d10a7ae8a0dbff0efd9a6111a12d6c8a",
+      "contentHash": "bbc0deae6287138ecf4625f59c76a9e31b2a0b8aaef6e5ee4fb6dabe8f229fc3",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jq7un22e",
-      "lastPublished": "2026-07-03T19:58:17.811Z",
+      "lastPublished": "2026-11-09T05:52:35.876Z",
       "slug": "pre-commit"
     },
     "content/python/singledispatch.md": {
-      "contentHash": "f393c7abaf62b2f50193718edc7ca0eb9bdfbe4d0b8fcc3361196b4768f46150",
+      "contentHash": "929d0ef42252df19d40c741c0087139774c067f863764026c8e97791e30c6f32",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqeiza26",
-      "lastPublished": "2026-07-03T19:58:17.966Z",
+      "lastPublished": "2026-11-09T05:52:36.302Z",
       "slug": "singledispatch"
     },
     "content/python/contextmanager.md": {
-      "contentHash": "7f103dda5473d97493920dd3fcd747050d05867c672d1aac3d9176a9169895fc",
+      "contentHash": "16da0b305ceda0ba7a4decc73a916dc32c6cb8726a03dfa594b12088c6d25f0c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqezom2a",
-      "lastPublished": "2026-07-03T19:58:18.185Z",
+      "lastPublished": "2026-11-09T05:52:36.730Z",
       "slug": "contextmanager"
     },
     "content/python/dataclasses.md": {
-      "contentHash": "cb7ad73dbc83a9eee0c671aaab93c71d0d7c1848ca986f7170a38199a2910013",
+      "contentHash": "0ca8eb84082e25c973795204d7128b34346e37054b1a77af9ad7e4b2734e4f63",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6jqfibt2s",
-      "lastPublished": "2026-07-03T19:58:18.371Z",
+      "lastPublished": "2026-11-09T05:52:37.201Z",
       "slug": "dataclasses"
     },
     "content/misc/standard_site.md": {
-      "contentHash": "82da75710258ccba9237f890577c129a4caca160e5ef7fc731099f9b93e31d3d",
+      "contentHash": "a3b4831e6fca2174c0172bbc898cd988ada300f186b929fda8977038156cd631",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnpdinpxqp2r",
-      "lastPublished": "2026-07-03T19:57:22.236Z",
+      "lastPublished": "2026-11-09T05:50:53.550Z",
       "slug": "standard-site"
     },
     "content/misc/chezmoi.md": {
-      "contentHash": "40113f894662388fe6c31dc20782e35d4909ae2af73cd0e236cb9bbf05ce7dea",
+      "contentHash": "2c8656c5fca82c00b752304e4c56f83cc6078772f8af5ee25965a9800072b62f",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mo2dhnsg7s2k",
-      "lastPublished": "2026-07-03T19:57:22.048Z",
+      "lastPublished": "2026-11-09T05:50:53.046Z",
       "slug": "chezmoi"
     },
     "content/system/wait_for_lsn.md": {
@@ -1375,33 +1375,33 @@
       "slug": "wait-for-lsn"
     },
     "content/shards/2026/06/go_goroutine_leak_profile.md": {
-      "contentHash": "aef8fd548f45192c208e1a6ac04bfde461c274b58d1db5034fa2b8a4c2749e59",
+      "contentHash": "e83c49b205a8d325b993b768d85a4a11878e1ee36b2aca8249751c6c981e4172",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e",
-      "lastPublished": "2026-07-03T19:57:21.693Z",
+      "lastPublished": "2026-11-09T05:50:52.047Z",
       "slug": "go-goroutine-leak-profile"
     },
     "content/go/channel_iteration_goroutine_leak.md": {
-      "contentHash": "2d1b93ee790d98a6724e0f5deaa2b3539048cb8c81bc13e75db646e948a2cca6",
+      "contentHash": "19a6941436e26021419a8b56a8a5e69c470d79d1b1eba5a81ec0fc9a2e1fa9c7",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mosowt5kgz2n",
-      "lastPublished": "2026-07-04T19:57:33.023Z",
+      "lastPublished": "2026-11-09T05:50:51.570Z",
       "slug": "channel-iteration-goroutine-leak"
     },
     "content/go/request_coalescing.md": {
-      "contentHash": "459b43432369836e5416e12ed4aab231da161f8e04f246e17af0c25f5df2fa77",
+      "contentHash": "b257d9e42571b260acf84d7d7f4a5b3e68f194030a84151688541b1ee4d25332",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mpcm52jalc2z",
-      "lastPublished": "2026-07-03T19:55:51.194Z",
+      "lastPublished": "2026-11-09T05:50:51.011Z",
       "slug": "request-coalescing"
     },
     "content/go/gofix.md": {
-      "contentHash": "339dab576e0f93089c80da0bf4a6fe116eb8ff30935e6010a76be65d69e7061b",
+      "contentHash": "9412cce34335d718437739d839eca3a2c93d679933ec5c90ea17e26a9a169447",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mptttuqfiu2t",
-      "lastPublished": "2026-07-06T00:47:09.337Z",
+      "lastPublished": "2026-11-09T05:50:50.433Z",
       "slug": "gofix"
     },
     "content/go/gc_shape_stenciling.md": {
-      "contentHash": "029301b2214f9c6758bf8f4be6049ba7b1eaf843d89f9106d73024825fbcd077",
+      "contentHash": "dc68bb6510b4f7c5daa28d3eccd0a1b584f208ef0c10fb99d2d609a6c92b3232",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mqflmo5cu62o",
-      "lastPublished": "2026-07-25T21:02:30.966Z",
+      "lastPublished": "2026-11-09T05:50:49.945Z",
       "slug": "gc-shape-stenciling"
     },
     "content/go/supervised_fire_and_forget.md": {
@@ -1411,15 +1411,15 @@
       "slug": "supervised-fire-and-forget"
     },
     "content/shards/2026/07/go_example_any_signature.md": {
-      "contentHash": "f23d89d9f474ca9de2312462dea45e5870166e2657131206aa23f667b53b60f0",
+      "contentHash": "b553b0032e616ef5a45b8e2382b8a87b06ba9ea36195ad8fb9d44d43b29b538c",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrp4m3jwi62t",
-      "lastPublished": "2026-07-28T09:41:19.440Z",
+      "lastPublished": "2026-11-09T05:50:48.969Z",
       "slug": "go-example-any-signature"
     },
     "content/shards/2026/07/go_flag_all_is_set.md": {
-      "contentHash": "476739aea6d850b8c310ee4929e739aa6061841a25e60f92d7cd3e511a243a96",
+      "contentHash": "ec94f1d75dbf56af73a12fc00496da09aa7d42a4e89688ce694b4977e3fadf64",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrszl4q7uq2l",
-      "lastPublished": "2026-07-29T23:32:36.223Z",
+      "lastPublished": "2026-11-09T05:50:48.435Z",
       "slug": "go-flag-all-is-set"
     },
     "content/system/pg_return_isolation.md": {
@@ -1435,33 +1435,33 @@
       "slug": "pg-wait-for-lsn"
     },
     "content/system/pg_isolation_ref.md": {
-      "contentHash": "d27a21929b3c0e8b566eba802d656301da3ba048ce228cfa1133ebdc0c4538e6",
+      "contentHash": "a383966e524e0a255d9b7c4ee85289613366ded085221a8c34d76f5cdae6a0ce",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mthuqpfscr26",
-      "lastPublished": "2026-08-20T00:54:15.537Z",
+      "lastPublished": "2026-11-09T05:50:47.949Z",
       "slug": "pg-isolation-ref"
     },
     "content/misc/pi_harness.md": {
-      "contentHash": "646c1125fb6940737664928425c9c9e65a79f7fa6f32f31cb835fed7da886b70",
+      "contentHash": "490e0d3513baf828ba739fd103cb2758f813f4b4f4d8737141bae2027fd660b2",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mustaxyvn62c",
-      "lastPublished": "2026-09-07T13:53:14.952Z",
+      "lastPublished": "2026-11-09T05:50:47.435Z",
       "slug": "pi-harness"
     },
     "content/zephyr/no_skin_in_the_game.md": {
-      "contentHash": "42146cad6304b49b75f01c6fc412a1044544b7c00210ddae9bb49fbdc678965d",
+      "contentHash": "96e6c2bc2cbdc24316a711cacc810846613ad69b808a8f3d99a669b4a691e436",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mvupfboad52g",
-      "lastPublished": "2026-09-19T13:48:59.860Z",
+      "lastPublished": "2026-11-09T05:50:46.945Z",
       "slug": "no-skin-in-the-game"
     },
     "content/go/patch_field_mask.md": {
-      "contentHash": "124fb7f60067735a4f3def59f888c080ffc9dee7cab708f4f49c1be38e7a3c55",
+      "contentHash": "031438c8e04acae2b953d38a114817cd22f5111f3889b9a5cb68e90a1dc00efb",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mxplcfemlb2q",
-      "lastPublished": "2026-10-15T19:09:12.390Z",
+      "lastPublished": "2026-11-09T05:50:46.438Z",
       "slug": "patch-field-mask"
     },
     "content/shards/2026/11/go_maps_grow.md": {
-      "contentHash": "7f81c22421296c251faa2765a45b8eb6d4240a831a1e37c6ebb4b7bfcc26c038",
+      "contentHash": "5803e5e1e0a23b394aede089970ed4ccaae4967a2eb884fee123a247c03bd6c6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs2q",
-      "lastPublished": "2026-11-03T18:28:34.976Z",
+      "lastPublished": "2026-11-09T05:50:45.935Z",
       "slug": "go-maps-grow"
     }
   },
