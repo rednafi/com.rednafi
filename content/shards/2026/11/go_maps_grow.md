@@ -9,6 +9,7 @@ tags:
     - Go
     - Performance
     - API
+    - "Proposal Review"
 aliases: []
 discussions: []
 mermaid: false

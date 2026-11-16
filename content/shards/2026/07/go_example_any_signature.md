@@ -9,6 +9,7 @@ tags:
     - Go
     - Testing
     - API
+    - "Proposal Review"
 aliases: []
 discussions: []
 mermaid: false

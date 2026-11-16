@@ -9,6 +9,7 @@ tags:
     - Go
     - CLI
     - API
+    - "Proposal Review"
 aliases: []
 discussions: []
 mermaid: false

@@ -7,6 +7,7 @@ description: >-
 tags:
     - Go
     - API
+    - "Proposal Review"
 aliases:
     - /shards/2026/04/go-uuid-stdlib/
 discussions: []
