@@ -15,7 +15,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /shards/2026/11/go-untyped-composite-literals/
-atUri: ""
+atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3n2hbb2vv362p"
 ---
 
 Damien Neil's [proposal for type-inferred composite literals] was [accepted] back in April.

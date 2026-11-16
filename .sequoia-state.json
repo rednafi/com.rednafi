@@ -37,9 +37,9 @@
       "slug": "closure-mutable-refs"
     },
     "content/shards/2026/04/go_uuid.md": {
-      "contentHash": "37532dad9a1905230451bb6c734454dc75f99fc9730462236e1cb7ecc1927a92",
+      "contentHash": "6af2c6e583c5fb12373ef3f4025945fbe00f8d0f0fb642e466fcf78a65897272",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6iasgzl26",
-      "lastPublished": "2026-11-09T05:50:56.781Z",
+      "lastPublished": "2026-11-16T19:30:07.905Z",
       "slug": "go-uuid"
     },
     "content/go/struct_tags.md": {
@@ -1375,9 +1375,9 @@
       "slug": "wait-for-lsn"
     },
     "content/shards/2026/06/go_goroutine_leak_profile.md": {
-      "contentHash": "e83c49b205a8d325b993b768d85a4a11878e1ee36b2aca8249751c6c981e4172",
+      "contentHash": "a9c34c0eaf24908d21804a852373f6f4353adcc88240d66e3427907bdccda0c9",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mom6loqgyn2e",
-      "lastPublished": "2026-11-09T05:50:52.047Z",
+      "lastPublished": "2026-11-16T19:30:07.083Z",
       "slug": "go-goroutine-leak-profile"
     },
     "content/go/channel_iteration_goroutine_leak.md": {
@@ -1411,15 +1411,15 @@
       "slug": "supervised-fire-and-forget"
     },
     "content/shards/2026/07/go_example_any_signature.md": {
-      "contentHash": "b553b0032e616ef5a45b8e2382b8a87b06ba9ea36195ad8fb9d44d43b29b538c",
+      "contentHash": "bb8b3d1519297f1d95f0e33a35d55e11a60c803d8de29dcdd9fe185ecc4463d1",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrp4m3jwi62t",
-      "lastPublished": "2026-11-09T05:50:48.969Z",
+      "lastPublished": "2026-11-16T19:30:06.431Z",
       "slug": "go-example-any-signature"
     },
     "content/shards/2026/07/go_flag_all_is_set.md": {
-      "contentHash": "ec94f1d75dbf56af73a12fc00496da09aa7d42a4e89688ce694b4977e3fadf64",
+      "contentHash": "01fab6d39779b8aa3febdc127dbe9b704f06e6d9384e3cc825e263165a017be2",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mrszl4q7uq2l",
-      "lastPublished": "2026-11-09T05:50:48.435Z",
+      "lastPublished": "2026-11-16T19:30:06.025Z",
       "slug": "go-flag-all-is-set"
     },
     "content/system/pg_return_isolation.md": {
@@ -1459,10 +1459,16 @@
       "slug": "patch-field-mask"
     },
     "content/shards/2026/11/go_maps_grow.md": {
-      "contentHash": "5803e5e1e0a23b394aede089970ed4ccaae4967a2eb884fee123a247c03bd6c6",
+      "contentHash": "2117c945d36978c8e49796d80d440ae2d96e333ef0b50f7535552a5aeaa8926e",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mzgbzzisrs2q",
-      "lastPublished": "2026-11-09T05:50:45.935Z",
+      "lastPublished": "2026-11-16T19:30:05.635Z",
       "slug": "go-maps-grow"
+    },
+    "content/shards/2026/11/go_untyped_composite_literals.md": {
+      "contentHash": "71407cd7ab4facda3a8eb600b93bccd4ca0b8747e7653add70703098d82bae9b",
+      "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3n2hbb2vv362p",
+      "lastPublished": "2026-11-16T19:30:05.134Z",
+      "slug": "go-untyped-composite-literals"
     }
   },
   "publication": {
