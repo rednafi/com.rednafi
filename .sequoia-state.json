@@ -1465,9 +1465,9 @@
       "slug": "go-maps-grow"
     },
     "content/shards/2026/11/go_untyped_composite_literals.md": {
-      "contentHash": "71407cd7ab4facda3a8eb600b93bccd4ca0b8747e7653add70703098d82bae9b",
+      "contentHash": "546484709be84e5df831f9029cacc19f5a5cf39125eee8af8df39d2b48ee70c6",
       "atUri": "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3n2hbb2vv362p",
-      "lastPublished": "2026-11-16T19:30:05.134Z",
+      "lastPublished": "2026-11-23T07:05:27.891Z",
       "slug": "go-untyped-composite-literals"
     }
   },
